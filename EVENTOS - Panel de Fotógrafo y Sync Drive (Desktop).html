@@ -4,6 +4,20 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>EVENTOS Escolar - Panel de Fotógrafo Profesional</title>
+<!-- Auth Guard inmediato para evitar parpadeo -->
+<script>
+  (function() {
+    try {
+      const isAuth = sessionStorage.getItem('eventos_fotografo_auth');
+      if (isAuth !== 'true') {
+        // Redirección con fallback
+        window.location.href = 'EVENTOS - Login Fotógrafo y Acceso Seguro.html';
+      }
+    } catch(e) {
+      console.warn('Auth check error:', e);
+    }
+  })();
+</script>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -199,9 +213,13 @@
 <span class="material-symbols-outlined text-[18px]" data-icon="rocket_launch">rocket_launch</span>
 <span class="font-bold">Guardar y Habilitar Galería Pública</span>
 </a>
-<!-- Profile Avatar -->
-<div class="flex items-center ml-space-xs pl-space-xs border-l border-outline-variant">
+<!-- Profile Avatar & Cerrar Sesión Button -->
+<div class="flex items-center ml-space-xs pl-space-xs border-l border-outline-variant gap-2">
 <img alt="Fotógrafo Profesional" class="w-8 h-8 rounded-full border border-outline-variant object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDidWl-horFzLhxzXCk5iSIf5_VCbBOp0s007c5aV3vQ8aThlM6Nv4-XZUKEnIq15dSzzd2DYYXsPyI72URQUt6u12CDGedYEqwmwzBdk3qUuR6b4kOje6m-CPpxcfDcNGgO-MOFfgnnpyurTIxdXJQQfvdNlFAvRNrB2OoEHi5SFJli25SIcxVK-z46PqNxnhjCdZQQVvUaaKiLdrJVEje32BvwsXzm904s151HtcUs7j69sGKjX4x"/>
+<button class="flex items-center gap-1 px-2.5 py-1 text-[12px] font-bold text-error hover:text-white bg-error-container/40 hover:bg-error border border-error/30 rounded-lg transition-colors duration-150 cursor-pointer shadow-2xs" onclick="cerrarSesion()" title="Cerrar sesión segura de fotógrafo">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span>
+<span class="hidden sm:inline">Cerrar Sesión</span>
+</button>
 </div>
 </div>
 </div>
@@ -247,9 +265,13 @@
 </div>
 <span class="text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded" id="badge-copia-precio">$7.000</span>
 </a>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="galeria-escolar.html" target="_blank">
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="galeria-escolar.html">
 <span class="material-symbols-outlined text-[20px] text-primary" data-icon="open_in_new">open_in_new</span>
 <span>Ver Galería Pública</span>
+</a>
+<a class="flex items-center gap-space-sm text-outline hover:text-primary hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="index.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span>Volver al Inicio</span>
 </a>
 </nav>
 </div>
@@ -264,6 +286,10 @@
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="storage">storage</span>
 <span>Guardado automático local</span>
 </div>
+<button class="mt-2 text-left px-space-md py-space-xs text-[12px] text-error font-semibold flex items-center gap-2 hover:bg-error-container/30 rounded transition-colors" onclick="cerrarSesion()">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span>
+<span>Cerrar Sesión</span>
+</button>
 </div>
 </aside>
 <!-- CENTRAL MAIN WORKSPACE -->
@@ -712,6 +738,34 @@
 </div>
 <!-- JAVASCRIPT AUTOSUFICIENTE (CERO CÓDIGO - LOCALSTORAGE + RENDER FETCH) -->
 <script>
+  // 1. AUTH GUARD - VERIFICACIÓN DE SESIÓN ACTIVA
+  function verificarAutenticacion() {
+    try {
+      const isAuth = sessionStorage.getItem('eventos_fotografo_auth');
+      if (isAuth !== 'true') {
+        // Redireccionar a la pantalla de login fotógrafo
+        window.location.href = 'EVENTOS - Login Fotógrafo y Acceso Seguro.html';
+        return false;
+      }
+    } catch(e) {
+      console.warn('Error validando autenticación:', e);
+    }
+    return true;
+  }
+
+  // 2. FUNCIÓN DE CERRAR SESIÓN
+  function cerrarSesion() {
+    try {
+      sessionStorage.removeItem('eventos_fotografo_auth');
+    } catch(e) {
+      console.warn('Error al limpiar sesión:', e);
+    }
+    showToast('Sesión Finalizada', 'Has cerrado sesión con éxito. Redirigiendo...');
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 600);
+  }
+
   // Configuración predeterminada
   const DEFAULT_CONFIG = {
     folderId: '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_',
@@ -728,6 +782,8 @@
 
   // Cargar estado inicial desde localStorage
   function initDashboard() {
+    if (!verificarAutenticacion()) return;
+
     const saved = localStorage.getItem('eventos_escolar_config');
     let cfg = DEFAULT_CONFIG;
     if (saved) {
@@ -902,7 +958,6 @@
       'Galería Pública Habilitada',
       'Parámetros guardados. Redirigiendo a la galería de los padres con las fotos actualizadas...'
     );
-    // Permite al usuario visitar galeria-escolar.html si existe en el entorno
     setTimeout(() => {
       window.location.href = 'galeria-escolar.html';
     }, 1200);
