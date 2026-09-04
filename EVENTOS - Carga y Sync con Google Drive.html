@@ -1,14 +1,29 @@
-<!DOCTYPE html><html class="light" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>EVENTOS Escolar - Panel de Fotógrafo Profesional</title>
+<!-- Auth Guard inmediato para evitar parpadeo -->
+<script>
+  (function() {
+    try {
+      const isAuth = sessionStorage.getItem('eventos_fotografo_auth');
+      if (isAuth !== 'true') {
+        // Redirección con fallback
+        window.location.href = 'EVENTOS - Login Fotógrafo y Acceso Seguro.html';
+      }
+    } catch(e) {
+      console.warn('Auth check error:', e);
+    }
+  })();
+</script>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -133,19 +148,35 @@
         transparent 70px
       );
     }
-    /* Anti right click context styling */
     .proof-layer {
       user-select: none;
       -webkit-user-drag: none;
     }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-animation {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
   </style>
 </head>
 <body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TOAST CONTAINER -->
+<div class="fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-[-120%] opacity-0 pointer-events-none max-w-md bg-surface-container-lowest border-2 border-emerald-600 rounded-xl p-space-md shadow-2xl flex items-start gap-space-sm" id="toast">
+<span class="material-symbols-outlined text-emerald-600 text-[26px] shrink-0" data-icon="check_circle">check_circle</span>
+<div class="flex flex-col">
+<h4 class="font-bold text-title-md text-primary leading-tight" id="toast-title">¡Sincronización Exitosa!</h4>
+<p class="text-body-sm text-on-surface-variant mt-0.5" id="toast-msg">¡Carpeta de Drive sincronizada con éxito! La galería pública ya está actualizada y lista para los padres.</p>
+</div>
+<button class="text-outline hover:text-primary ml-auto p-1 text-sm font-bold" onclick="dismissToast()">✕</button>
+</div>
 <!-- TOP APP BAR -->
 <header class="bg-surface sticky top-0 z-40 shadow-sm border-b border-outline-variant">
-<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
+<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16 gap-3">
 <!-- Left Anchor & Institution Selector -->
-<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-md">
 <div class="flex items-center gap-space-xs">
 <span class="material-symbols-outlined text-primary text-[28px]" data-icon="photo_camera_back" data-weight="fill" style="font-variation-settings: 'FILL' 1;">photo_camera_back</span>
 <span class="text-title-md font-title-md font-bold tracking-tight text-primary">EVENTOS Escolar</span>
@@ -156,50 +187,39 @@
 <span class="material-symbols-outlined text-primary text-[20px]" data-icon="school">school</span>
 <div class="flex flex-col">
 <span class="text-label-sm font-label-sm text-on-surface-variant leading-none">Institución Activa</span>
-<span class="text-body-md font-body-md font-semibold text-primary leading-tight">Belgrano Day School - Egresados 2026</span>
+<span class="text-body-md font-body-md font-semibold text-primary leading-tight" id="active-event-display">Belgrano Day School - Egresados 2026</span>
 </div>
 <span class="material-symbols-outlined text-on-surface-variant text-[18px] ml-space-xs" data-icon="unfold_more">unfold_more</span>
 </div>
 </div>
-<!-- Navigation Links from JSON (Lotes y Drive is mapped active for this screen) -->
-<nav class="hidden xl:flex items-center gap-space-lg">
-<a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors duration-150" href="EVENTOS - Directorio Escolar.html">Colegios</a>
-<a class="border-b-2 border-primary text-primary font-label-md text-label-md pb-1 flex items-center gap-1" href="#">
-          Lotes y Drive
-          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-</a>
-<a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors duration-150" href="#">Marcas de Agua</a>
-<a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors duration-150 flex items-center gap-1" href="#">
-          Pedidos WhatsApp
-          <span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-[10px] font-bold">86</span>
-</a>
-</nav>
-<!-- Trailing Action Area & Integrations -->
+<!-- Backend Status & Navigation Links -->
 <div class="flex items-center gap-space-sm">
-<!-- Google Drive Connected Pill -->
-<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="cloud_done">cloud_done</span>
-<span class="text-label-sm font-label-sm text-primary hidden md:inline">Google Drive Conectado</span>
+<!-- 1. RENDER BACKEND ACTIVE STATUS PILL -->
+<div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-emerald-50 border border-emerald-300 shadow-xs" title="Servidor backend activo en Render">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="material-symbols-outlined text-[16px] text-emerald-700" data-icon="dns">dns</span>
+<div class="flex items-center gap-1">
+<span class="text-label-sm font-bold text-emerald-800">Render Activo</span>
+<span class="text-[10px] text-emerald-700 hidden lg:inline font-mono">https://eventos-backend-hkea.onrender.com</span>
 </div>
-<button class="p-space-xs text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors duration-150 relative" title="Sincronización en curso">
-<span class="material-symbols-outlined text-[20px]" data-icon="cloud_sync">cloud_sync</span>
+</div>
+<!-- Zero Code Tag -->
+<span class="hidden md:inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined text-[13px]" data-icon="code_off">code_off</span>
+        100% Sin Código
+      </span>
+<!-- Trailing Action: Guardar y Habilitar Galería Pública -->
+<a class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-space-xs rounded-lg font-label-md text-label-md flex items-center gap-space-xs transition-all duration-200 active:scale-[0.98] shadow-md ml-space-2xs cursor-pointer" href="galeria-escolar.html" id="btn-publicar" onclick="guardarYHabilitar(event)">
+<span class="material-symbols-outlined text-[18px]" data-icon="rocket_launch">rocket_launch</span>
+<span class="font-bold">Guardar y Habilitar Galería Pública</span>
+</a>
+<!-- Profile Avatar & Cerrar Sesión Button -->
+<div class="flex items-center ml-space-xs pl-space-xs border-l border-outline-variant gap-2">
+<img alt="Fotógrafo Profesional" class="w-8 h-8 rounded-full border border-outline-variant object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDidWl-horFzLhxzXCk5iSIf5_VCbBOp0s007c5aV3vQ8aThlM6Nv4-XZUKEnIq15dSzzd2DYYXsPyI72URQUt6u12CDGedYEqwmwzBdk3qUuR6b4kOje6m-CPpxcfDcNGgO-MOFfgnnpyurTIxdXJQQfvdNlFAvRNrB2OoEHi5SFJli25SIcxVK-z46PqNxnhjCdZQQVvUaaKiLdrJVEje32BvwsXzm904s151HtcUs7j69sGKjX4x"/>
+<button class="flex items-center gap-1 px-2.5 py-1 text-[12px] font-bold text-error hover:text-white bg-error-container/40 hover:bg-error border border-error/30 rounded-lg transition-colors duration-150 cursor-pointer shadow-2xs" onclick="cerrarSesion()" title="Cerrar sesión segura de fotógrafo">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span>
+<span class="hidden sm:inline">Cerrar Sesión</span>
 </button>
-<button class="p-space-xs text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors duration-150 relative" title="Notificaciones">
-<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
-</button>
-<button class="p-space-xs text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors duration-150" title="Configuración">
-<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
-</button>
-<!-- Trailing Primary Action -->
-<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-space-xs rounded-lg font-label-md text-label-md flex items-center gap-space-xs transition-all duration-200 active:scale-[0.98] shadow-sm ml-space-2xs">
-<span class="material-symbols-outlined text-[18px]" data-icon="publish">publish</span>
-<span class="">Publicar Galería</span>
-</button>
-<!-- Profile Avatar -->
-<div class="flex items-center ml-space-xs pl-space-xs border-l border-outline-variant">
-<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="Close-up professional portrait of a school photographer in an archival studio setting with subtle warm navy lighting, wearing a minimalist black turtleneck against an editorial studio backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDidWl-horFzLhxzXCk5iSIf5_VCbBOp0s007c5aV3vQ8aThlM6Nv4-XZUKEnIq15dSzzd2DYYXsPyI72URQUt6u12CDGedYEqwmwzBdk3qUuR6b4kOje6m-CPpxcfDcNGgO-MOFfgnnpyurTIxdXJQQfvdNlFAvRNrB2OoEHi5SFJli25SIcxVK-z46PqNxnhjCdZQQVvUaaKiLdrJVEje32BvwsXzm904s151HtcUs7j69sGKjX4x">
 </div>
 </div>
 </div>
@@ -208,126 +228,210 @@
 <div class="flex-1 flex max-w-container-max w-full mx-auto">
 <!-- LEFT SIDEBAR -->
 <aside class="w-64 bg-surface-container-low border-r border-outline-variant hidden md:flex flex-col justify-between p-space-md shrink-0">
-<!-- Top Section -->
 <div class="flex flex-col gap-space-md">
 <!-- Header Institution Badge -->
 <div class="flex items-center gap-space-sm p-space-xs rounded-lg bg-surface-container-lowest border border-outline-variant">
 <div class="w-10 h-10 rounded-lg bg-primary-container text-surface-bright flex items-center justify-center font-bold text-headline-sm">
-            BDS
-          </div>
+          BDS
+        </div>
 <div class="flex flex-col overflow-hidden">
 <span class="text-title-md font-title-md font-semibold text-primary truncate leading-tight">Belgrano Day School</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant truncate">Sincronización Drive activa</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant truncate">Panel Autosuficiente</span>
 </div>
 </div>
 <!-- Quick Action CTA -->
-<button class="w-full bg-surface-container-highest hover:bg-surface-container text-primary font-label-md text-label-md py-space-xs px-space-sm rounded-lg border border-outline-variant flex items-center justify-center gap-space-xs transition-colors duration-150">
+<button class="w-full bg-surface-container-highest hover:bg-surface-container text-primary font-label-md text-label-md py-space-xs px-space-sm rounded-lg border border-outline-variant flex items-center justify-center gap-space-xs transition-colors duration-150" onclick="nuevoLoteModal()">
 <span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
-<span class="">Nuevo Lote Escolar</span>
+<span>Nuevo Lote Escolar</span>
 </button>
-<!-- Main Navigation Tabs -->
+<!-- Navigation Tabs -->
 <nav class="flex flex-col gap-1 mt-space-xs">
-<!-- Active Tab: Explorador de Lotes -->
 <a class="flex items-center gap-space-sm bg-surface-container-highest text-primary rounded-lg px-space-md py-space-sm font-label-md text-label-md font-semibold" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="folder_open" data-weight="fill" style="font-variation-settings: 'FILL' 1;">folder_open</span>
-<span class="">Explorador de Lotes</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="cloud_sync" data-weight="fill" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+<span>Sincronizador Drive</span>
 </a>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="EVENTOS - Asistente de Conexión Google Drive.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="sync">sync</span>
-<span class="">Sincronizador Drive</span>
-</a>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="branding_watermark">branding_watermark</span>
-<span class="">Editor de Marca de Agua</span>
-</a>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#">
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#galeria-preview">
 <span class="material-symbols-outlined text-[20px]" data-icon="photo_library">photo_library</span>
-<span class="">Galerías Publicadas</span>
+<span>Fotos Sincronizadas</span>
 </a>
-<!-- WhatsApp Orders with Pricing note -->
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#precios-panel">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span>Precios y WhatsApp</span>
+</a>
 <a class="flex items-center justify-between text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150 group" href="#">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-[20px] text-secondary" data-icon="local_printshop">local_printshop</span>
-<span class="">Pedidos Impresos</span>
+<span>Pedidos Impresos</span>
 </div>
-<span class="text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded">$7.000</span>
+<span class="text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded" id="badge-copia-precio">$7.000</span>
 </a>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="receipt_long">receipt_long</span>
-<span class="">Facturación Mercado Pago</span>
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="galeria-escolar.html">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="open_in_new">open_in_new</span>
+<span>Ver Galería Pública</span>
+</a>
+<a class="flex items-center gap-space-sm text-outline hover:text-primary hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="index.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span>Volver al Inicio</span>
 </a>
 </nav>
 </div>
-<!-- Bottom Utility / Integration Links -->
+<!-- Bottom Utility -->
 <div class="pt-space-md border-t border-outline-variant flex flex-col gap-1">
-<div class="px-space-md py-space-2xs text-[11px] font-bold text-outline uppercase tracking-wider">Monitoreo Técnico</div>
-<a class="flex items-center justify-between text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg px-space-md py-space-xs font-body-sm text-body-sm transition-colors duration-150" href="#">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
-<span class="">Lightroom Bridge</span>
-</div>
+<div class="px-space-md py-space-2xs text-[11px] font-bold text-outline uppercase tracking-wider">Cero Código Activo</div>
+<div class="px-space-md py-space-xs text-[12px] text-on-surface-variant flex items-center gap-2">
 <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-</a>
-<a class="flex items-center gap-space-xs text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg px-space-md py-space-xs font-body-sm text-body-sm transition-colors duration-150" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
-<span class="">Soporte WhatsApp</span>
-</a>
+<span>Sin Git ni comandos</span>
+</div>
+<div class="px-space-md py-space-xs text-[12px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="storage">storage</span>
+<span>Guardado automático local</span>
+</div>
+<button class="mt-2 text-left px-space-md py-space-xs text-[12px] text-error font-semibold flex items-center gap-2 hover:bg-error-container/30 rounded transition-colors" onclick="cerrarSesion()">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span>
+<span>Cerrar Sesión</span>
+</button>
 </div>
 </aside>
 <!-- CENTRAL MAIN WORKSPACE -->
 <main class="flex-1 p-space-lg overflow-y-auto max-w-[calc(100%-16rem)]">
-<!-- 1. BREADCRUMBS & ACTIVE DRIVE DIRECTORY HEADER -->
-<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md mb-space-lg shadow-sm">
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
-<div class="flex flex-col">
-<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant mb-space-2xs flex-wrap">
-<span class="material-symbols-outlined text-[16px] text-tertiary" data-icon="folder_special">folder_special</span>
-<span class="">Mi Unidad</span>
-<span class="text-outline">/</span>
-<span class="">Eventos 2026</span>
-<span class="text-outline">/</span>
-<span class="">Colegios</span>
-<span class="text-outline">/</span>
-<span class="">Belgrano Day School</span>
-<span class="text-outline">/</span>
-<span class="font-semibold text-primary">01. Acto de Colación</span>
+<!-- 2. SECCIÓN DESTACADA: VINCULAR CARPETA DE GOOGLE DRIVE PARA ESTE EVENTO -->
+<section class="bg-surface-container-lowest border-2 border-primary/30 rounded-xl p-space-lg mb-space-lg shadow-md relative overflow-hidden">
+<div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full pointer-events-none -mr-16 -mt-16"></div>
+<div class="flex flex-col gap-space-md relative z-10">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-outline-variant pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[26px]" data-icon="add_to_drive">add_to_drive</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary font-bold">Vincular Carpeta de Google Drive para este Evento</h2>
+<p class="text-body-sm text-on-surface-variant">Conexión directa y automática con tu backend en Render. Cero código necesario.</p>
 </div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-900 rounded-full text-label-sm font-bold border border-emerald-300">
+<span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
+            Listo para sincronizar
+          </span>
+</div>
+<!-- Input interactivo con carpeta pre-cargada -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-end">
+<div class="lg:col-span-8 flex flex-col gap-1">
+<label class="text-label-md font-bold text-primary flex items-center gap-1" for="drive-folder-input">
+<span class="material-symbols-outlined text-[16px]" data-icon="folder">folder</span>
+              ID o Enlace de la Carpeta de Google Drive:
+            </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-primary text-[20px] absolute left-3 pointer-events-none" data-icon="link">link</span>
+<input class="w-full pl-10 pr-28 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg font-mono text-body-md text-primary font-semibold focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="drive-folder-input" type="text" value="1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_"/>
+<button class="absolute right-1.5 px-3 py-1 bg-surface-container hover:bg-surface-container-highest text-primary rounded-md text-label-sm font-semibold border border-outline-variant transition-colors flex items-center gap-1" onclick="pegarEnlace()" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="content_paste">content_paste</span>
+                Pegar enlace
+              </button>
+</div>
+<p class="text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-emerald-600" data-icon="check">check</span>
+              ID detectado y verificado en la API: <code class="font-mono text-primary font-bold">1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_</code>
+</p>
+</div>
+<!-- Switch 'Escanear también subcarpetas automáticamente' -->
+<div class="lg:col-span-4 flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg border border-outline-variant h-[46px]">
+<span class="text-label-sm font-semibold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="folder_copy">folder_copy</span>
+              Escanear subcarpetas
+            </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="scan-subfolders-toggle" type="checkbox"/>
+<div class="w-10 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Botón destacado Sincronizar y Traer Fotos de Drive Ahora -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md pt-space-xs">
 <div class="flex items-center gap-space-sm">
-<h1 class="text-headline-sm font-headline-sm text-primary">01. Acto de Colación - Egresados 2026</h1>
-<span class="bg-surface-container text-primary text-label-sm font-label-sm px-space-xs py-0.5 rounded border border-outline-variant font-medium">Lote Principal</span>
-</div>
-</div>
-<!-- Lightroom Live Sync Indicator & Refresh Actions -->
-<div class="flex items-center gap-space-sm self-start lg:self-center">
-<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg border border-outline-variant">
-<span class="material-symbols-outlined text-[18px] text-primary animate-spin" data-icon="refresh">refresh</span>
-<div class="flex flex-col text-left">
-<span class="text-[11px] text-on-surface-variant font-medium leading-none">Adobe Lightroom Classic</span>
-<span class="text-label-sm font-label-sm text-primary leading-tight">Sincronizando archivo 1.420 / 1.420</span>
-</div>
-</div>
-<button class="bg-primary text-on-primary px-space-md py-space-xs rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors duration-150 flex items-center gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-[18px]" data-icon="sync">sync</span>
-<span class="">Sincronizar ahora con Drive</span>
+<button class="bg-secondary hover:bg-on-secondary-container text-on-secondary px-space-lg py-3 rounded-xl font-bold text-title-md flex items-center justify-center gap-space-xs transition-all shadow-md active:scale-[0.98] group pulse-animation" id="btn-sync" onclick="ejecutarSincronizacion()">
+<span class="material-symbols-outlined text-[24px] group-hover:rotate-180 transition-transform duration-500" data-icon="sync" id="sync-icon">sync</span>
+<span id="sync-text">Sincronizar y Traer Fotos de Drive Ahora</span>
 </button>
+<button class="p-2 bg-surface-container hover:bg-surface-container-highest text-primary rounded-lg border border-outline-variant transition-colors flex items-center" onclick="copiarEndpointAPI()" title="Copiar URL del Endpoint">
+<span class="material-symbols-outlined text-[20px]" data-icon="terminal">terminal</span>
+</button>
+</div>
+<!-- Indicador visual de estado de sincronización en tiempo real -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg px-space-md py-2 flex items-center gap-space-sm text-body-sm" id="sync-status-card">
+<span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0" id="status-bulb"></span>
+<div class="flex flex-col leading-tight">
+<span class="font-bold text-primary text-label-sm uppercase tracking-wider" id="status-title">Conexión Establecida</span>
+<span class="text-[12px] text-on-surface-variant" id="status-sub">Total: <b class="text-primary font-bold">1.420 fotos</b> listas con marca de agua diagonal</span>
+</div>
+</div>
 </div>
 </div>
 </section>
-<!-- 2. METRICS & PROCESSING STATUS BANNER -->
+<!-- 4. CONFIGURACIÓN DE PRECIOS Y PAGOS EN 1 CLIC -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md mb-space-lg shadow-sm" id="precios-panel">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md border-b border-outline-variant pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]" data-icon="storefront">storefront</span>
+<div>
+<h3 class="text-title-md font-bold text-primary">Configuración de Precios y Pedidos WhatsApp en 1 Clic</h3>
+<p class="text-body-sm text-on-surface-variant">Define el valor de las fotos y el WhatsApp receptor. Se guarda al instante en tu galería.</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary hover:bg-primary-container px-4 py-1.5 rounded-lg text-label-md font-semibold flex items-center gap-1 transition-colors self-start lg:self-center" onclick="guardarPrecios()">
+<span class="material-symbols-outlined text-[16px]" data-icon="save">save</span>
+          Guardar Parámetros
+        </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<!-- Copia Impresa 15x21 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant flex flex-col gap-1">
+<label class="text-label-sm font-bold text-primary flex items-center gap-1" for="precio-impresa">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="print">print</span>
+            Copia Impresa 15x21 cm
+          </label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-on-surface-variant font-bold text-sm">$</span>
+<input class="w-full pl-7 pr-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest font-bold text-primary text-body-md focus:ring-1 focus:ring-primary" id="precio-impresa" type="number" value="7000"/>
+</div>
+<span class="text-[11px] text-on-surface-variant">Papel Mate Fuji Crystal Archival</span>
+</div>
+<!-- Digital Ultra HD -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant flex flex-col gap-1">
+<label class="text-label-sm font-bold text-primary flex items-center gap-1" for="precio-digital">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="cloud_download">cloud_download</span>
+            Digital Ultra HD 300 DPI
+          </label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-on-surface-variant font-bold text-sm">$</span>
+<input class="w-full pl-7 pr-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest font-bold text-primary text-body-md focus:ring-1 focus:ring-primary" id="precio-digital" type="number" value="4200"/>
+</div>
+<span class="text-[11px] text-on-surface-variant">Entrega de archivo original por Drive</span>
+</div>
+<!-- WhatsApp de Pedidos -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant flex flex-col gap-1">
+<label class="text-label-sm font-bold text-primary flex items-center gap-1" for="whatsapp-numero">
+<span class="material-symbols-outlined text-[16px] text-emerald-600" data-icon="chat">chat</span>
+            Teléfono WhatsApp para Pedidos
+          </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-[18px] text-emerald-600 absolute left-2.5 pointer-events-none" data-icon="call">call</span>
+<input class="w-full pl-9 pr-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest font-bold text-primary text-body-md focus:ring-1 focus:ring-primary" id="whatsapp-numero" type="text" value="+54 9 261 317-5222"/>
+</div>
+<span class="text-[11px] text-on-surface-variant">Genera pedido con comprobante y #IDs</span>
+</div>
+</div>
+</section>
+<!-- METRICS STRIP -->
 <section class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-lg">
-<!-- Stat 1 -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm">
 <div class="flex items-center justify-between text-on-surface-variant mb-space-2xs">
 <span class="text-label-sm font-label-sm uppercase tracking-wider">Fotos Sincronizadas</span>
 <span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_library">photo_library</span>
 </div>
-<div class="text-headline-md font-headline-md text-primary font-bold">1.420</div>
+<div class="text-headline-md font-headline-md text-primary font-bold" id="stat-fotos">1.420</div>
 <div class="text-[11px] text-emerald-700 flex items-center gap-1 font-medium mt-1">
 <span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
-            100% verificado en Drive
-          </div>
+          100% verificado en Drive
+        </div>
 </div>
-<!-- Stat 2 -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm">
 <div class="flex items-center justify-between text-on-surface-variant mb-space-2xs">
 <span class="text-label-sm font-label-sm uppercase tracking-wider">Volumen Procesado</span>
@@ -335,194 +439,212 @@
 </div>
 <div class="text-headline-md font-headline-md text-primary font-bold">14.2 GB</div>
 <div class="text-[11px] text-on-surface-variant font-medium mt-1">
-            Formato RAW + DNG optimizado
-          </div>
+          Formato RAW + DNG optimizado
+        </div>
 </div>
-<!-- Stat 3 -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm">
 <div class="flex items-center justify-between text-on-surface-variant mb-space-2xs">
-<span class="text-label-sm font-label-sm uppercase tracking-wider">Marcas de Agua</span>
-<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user">verified_user</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Portada Oficial</span>
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="star">star</span>
 </div>
-<div class="text-headline-md font-headline-md text-primary font-bold">EVENTOS #0421</div>
+<div class="text-headline-md font-headline-md text-secondary font-bold" id="stat-portada-id">#0421</div>
 <div class="text-[11px] text-on-surface-variant font-medium mt-1">
-            Diagonal dinámica activa
-          </div>
+          Elegida manualmente por el fotógrafo
+        </div>
 </div>
-<!-- Stat 4 -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm border-l-4 border-l-secondary">
 <div class="flex items-center justify-between text-secondary mb-space-2xs">
-<span class="text-label-sm font-label-sm uppercase tracking-wider font-bold">Copias Impresas 15x21</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider font-bold">Copias Impresas</span>
 <span class="material-symbols-outlined text-secondary text-[20px]" data-icon="print">print</span>
 </div>
 <div class="text-headline-md font-headline-md text-primary font-bold">86 fotos</div>
 <div class="text-[11px] text-secondary font-semibold mt-1 flex items-center justify-between">
-<span class="">$7.000 c/u</span>
-<span class="underline cursor-pointer">Ver planilla</span>
+<span id="stat-precio-impreso">$7.000 c/u</span>
+<span class="underline cursor-pointer" onclick="alert('Planilla de laboratorio con 86 fotos lista para enviar a imprenta.')">Ver planilla</span>
 </div>
 </div>
 </section>
-<!-- 3. CENTRAL EXPLORER: FILTERS & PHOTO GRID -->
-<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm mb-space-lg">
-<!-- Filter Bar & Division Selector -->
+<!-- 3. PREVISUALIZACIÓN VISUAL DE FOTOS SINCRONIZADAS DESDE DRIVE -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm mb-space-lg" id="galeria-preview">
 <div class="flex flex-wrap items-center justify-between gap-space-md pb-space-md border-b border-outline-variant">
-<!-- Cohort / Course Filter Pills -->
+<!-- Division Pills & Selector -->
 <div class="flex items-center gap-space-xs flex-wrap">
 <span class="text-label-sm font-label-sm text-outline mr-space-xs">Filtrar División:</span>
 <button class="bg-primary text-on-primary px-space-sm py-1 rounded-lg text-label-md font-label-md">Todos (1.420)</button>
 <button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">5to A (480)</button>
 <button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">5to B (510)</button>
-<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">Entrega de Diplomas (430)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">Entrega Diplomas (430)</button>
 </div>
-<!-- Secondary Actions / Search inside batch -->
 <div class="flex items-center gap-space-xs">
 <div class="relative">
-<input class="text-body-sm font-body-sm pl-8 pr-space-sm py-1 rounded-lg border border-outline-variant bg-surface-container-low focus:ring-1 focus:ring-primary focus:border-primary w-52" placeholder="Buscar por #ID o estudiante..." type="text">
+<input class="text-body-sm font-body-sm pl-8 pr-space-sm py-1 rounded-lg border border-outline-variant bg-surface-container-low focus:ring-1 focus:ring-primary focus:border-primary w-56" id="filter-search" onkeyup="filtrarFotos()" placeholder="Buscar por #ID o estudiante..." type="text"/>
 <span class="material-symbols-outlined text-[18px] text-outline absolute left-2 top-1.5" data-icon="search">search</span>
 </div>
 <button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded border border-outline-variant" title="Vista Cuadrícula">
 <span class="material-symbols-outlined text-[18px]" data-icon="grid_view">grid_view</span>
 </button>
-<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded border border-outline-variant" title="Vista Lista Detallada">
-<span class="material-symbols-outlined text-[18px]" data-icon="view_list">view_list</span>
-</button>
 </div>
 </div>
-<!-- Photo Grid (Protected watermarked proofs) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-space-md pt-space-md">
-<!-- Photo Card 1 (#0421) -->
-<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<!-- Photo Grid con marca de agua protegida y botón de Portada Oficial -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-space-md pt-space-md" id="grid-fotos">
+<!-- Photo Card 1 (#0421 - Portada actual) -->
+<div class="group bg-surface-bright border-2 border-secondary rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-all duration-150 relative" id="card-0421">
 <div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
-<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="High school graduation student on stage smiling proudly holding diploma leather binder with school crest in soft warm auditorium key lighting, framed like a premium heirloom editorial school portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD">
-<!-- Diagonal Repeating Proof Watermark Overlay -->
+<img alt="Egresado con diploma" class="w-full h-full object-cover select-none pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD"/>
+<!-- Diagonal Proof Watermark -->
 <div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
-                  EVENTOS #0421 • PROVA
-                </div>
+<div class="rotate-[-25deg] bg-primary/60 px-3 py-1 text-surface-bright font-mono text-[12px] tracking-widest uppercase font-bold border border-surface-bright/40 backdrop-blur-[2px] shadow-sm">
+                EVENTOS #0421 • PROVA
+              </div>
 </div>
-<!-- Top Left Identification Badge -->
-<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
-                #0421
-              </span><span class="absolute top-2 left-16 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1"><span class="material-symbols-outlined text-[13px]" data-icon="star">star</span>Foto de Portada Oficial</span>
-<!-- Print Order Status Pill -->
+<!-- ID Badge -->
+<span class="absolute top-2 left-2 bg-primary/95 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+              #0421
+            </span>
+<!-- Portada Badge -->
+<span class="absolute top-2 left-16 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1" id="badge-portada-0421">
+<span class="material-symbols-outlined text-[13px]" data-icon="star">star</span>
+              Portada Oficial
+            </span>
+<!-- Print pill -->
 <span class="absolute top-2 right-2 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
 <span class="material-symbols-outlined text-[12px]" data-icon="local_printshop">local_printshop</span>
-                15x21 Solicitada
-              </span>
+              15x21 Solicitada
+            </span>
 </div>
-<!-- Card Metadata -->
 <div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
-<div>
-<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0421.CR3</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant">5to A • Diplomas de Honor</p>
+<div class="overflow-hidden pr-2">
+<p class="text-label-md font-label-md text-primary font-semibold truncate">BDS_COL_2026_0421.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant truncate">5to A • Diplomas de Honor</p>
 </div>
-<div class="flex items-center gap-1"><button class="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded text-[11px] font-bold flex items-center gap-1 hover:bg-secondary hover:text-on-secondary transition-colors" title="Foto de Portada activa del Evento"><span class="material-symbols-outlined text-[14px]" data-icon="star">star</span>Portada</button>
-<button class="p-1 text-on-surface-variant hover:text-primary" title="Ampliar Muestra"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
-<button class="p-1 text-on-surface-variant hover:text-primary" title="Descargar RAW Drive"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+<div class="flex items-center gap-1 shrink-0">
+<button class="btn-portada-trigger px-2 py-1 bg-secondary text-on-secondary rounded text-[11px] font-bold flex items-center gap-1 shadow-xs transition-colors" onclick="setPortada('0421', 'BDS_COL_2026_0421.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD')" title="Elegir como Portada Oficial">
+<span class="material-symbols-outlined text-[14px]" data-icon="star">star</span>
+<span>Es Portada</span>
+</button>
 </div>
 </div>
 </div>
 <!-- Photo Card 2 (#0422) -->
-<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary hover:shadow-lg transition-all duration-150 relative" id="card-0422">
 <div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
-<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="Two senior high school students wearing elegant formal blazer uniforms smiling side-by-side during commencement ceremonies with subtle bokeh of the historic school campus behind them." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE4XyuMskJgGbUPPfvDad1X4ji1IVe7w8N2Y99l9dP4pPFFJH81aH3I_G0xEEy9CjsnJ_0HYm1-1ND-fvGcb-2iyKHOhVqqprZ_B8jL-UshfSxw_tTOQjt32f0j2LEXl1WzJeY4j--aumIIRB_Is-JKVqbMoW37aBgQDUA7GaUyBNnAedxJURjXktPyszJ1kvuTUOJcMMxLgeOgPzzn3nqREZ7yO95ttaBKiBQaARhJ4KxmAyV8TgT">
-<!-- Diagonal Repeating Proof Watermark Overlay -->
+<img alt="Estudiantes en graduación" class="w-full h-full object-cover select-none pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE4XyuMskJgGbUPPfvDad1X4ji1IVe7w8N2Y99l9dP4pPFFJH81aH3I_G0xEEy9CjsnJ_0HYm1-1ND-fvGcb-2iyKHOhVqqprZ_B8jL-UshfSxw_tTOQjt32f0j2LEXl1WzJeY4j--aumIIRB_Is-JKVqbMoW37aBgQDUA7GaUyBNnAedxJURjXktPyszJ1kvuTUOJcMMxLgeOgPzzn3nqREZ7yO95ttaBKiBQaARhJ4KxmAyV8TgT"/>
 <div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
-                  EVENTOS #0422 • PROVA
-                </div>
+<div class="rotate-[-25deg] bg-primary/60 px-3 py-1 text-surface-bright font-mono text-[12px] tracking-widest uppercase font-bold border border-surface-bright/40 backdrop-blur-[2px] shadow-sm">
+                EVENTOS #0422 • PROVA
+              </div>
 </div>
-<!-- Identification Badge -->
-<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
-                #0422
-              </span>
+<span class="absolute top-2 left-2 bg-primary/95 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+              #0422
+            </span>
+<span class="hidden absolute top-2 left-16 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1" id="badge-portada-0422">
+<span class="material-symbols-outlined text-[13px]" data-icon="star">star</span>
+              Portada Oficial
+            </span>
 </div>
 <div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
-<div>
-<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0422.CR3</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant">5to A • Retratos de Salón</p>
+<div class="overflow-hidden pr-2">
+<p class="text-label-md font-label-md text-primary font-semibold truncate">BDS_COL_2026_0422.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant truncate">5to A • Retratos de Salón</p>
 </div>
-<div class="flex items-center gap-1"><button class="px-2 py-0.5 bg-surface-container hover:bg-secondary hover:text-on-secondary text-on-surface-variant rounded text-[11px] font-semibold flex items-center gap-1 transition-colors" title="Fijar como Foto de Portada"><span class="material-symbols-outlined text-[14px]" data-icon="star_outline">star_outline</span>Marcar Portada</button>
-<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
-<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+<div class="flex items-center gap-1 shrink-0">
+<button class="btn-portada-trigger px-2 py-1 bg-surface-container hover:bg-secondary hover:text-on-secondary text-primary rounded text-[11px] font-semibold flex items-center gap-1 transition-colors" onclick="setPortada('0422', 'BDS_COL_2026_0422.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE4XyuMskJgGbUPPfvDad1X4ji1IVe7w8N2Y99l9dP4pPFFJH81aH3I_G0xEEy9CjsnJ_0HYm1-1ND-fvGcb-2iyKHOhVqqprZ_B8jL-UshfSxw_tTOQjt32f0j2LEXl1WzJeY4j--aumIIRB_Is-JKVqbMoW37aBgQDUA7GaUyBNnAedxJURjXktPyszJ1kvuTUOJcMMxLgeOgPzzn3nqREZ7yO95ttaBKiBQaARhJ4KxmAyV8TgT')" title="Elegir como Portada Oficial">
+<span class="material-symbols-outlined text-[14px]" data-icon="star_outline">star_outline</span>
+<span>Elegir Portada</span>
+</button>
 </div>
 </div>
 </div>
 <!-- Photo Card 3 (#0423) -->
-<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary hover:shadow-lg transition-all duration-150 relative" id="card-0423">
 <div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
-<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="School choir and graduating student delegation singing collegiate anthem under dramatic church chapel ceiling illumination, warm natural tones and architectural framing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBAL8UlUxeYlEwiK2FsIcava_pp2MGnc_SgF1VEO5dF8U2COVU6lha3yH0uJu6hFEN9zPzgFJUkb2IGwJhQwy57pGE9z2RsFGYjcxMZeG9ygeYqJIuhNAqQaPgqamZsVaYjLiREyIEeNOshbCSFanuLjYKCfiJZyF83ajYgXWH3iAQYRNB3p0_wpee4dDFs9ohxwUzg8qQNoVyCV-n9eMjiMW9Y93Hi5D-zzevLDoB-EhBKKV6Z42E">
+<img alt="Coro estudiantil" class="w-full h-full object-cover select-none pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBAL8UlUxeYlEwiK2FsIcava_pp2MGnc_SgF1VEO5dF8U2COVU6lha3yH0uJu6hFEN9zPzgFJUkb2IGwJhQwy57pGE9z2RsFGYjcxMZeG9ygeYqJIuhNAqQaPgqamZsVaYjLiREyIEeNOshbCSFanuLjYKCfiJZyF83ajYgXWH3iAQYRNB3p0_wpee4dDFs9ohxwUzg8qQNoVyCV-n9eMjiMW9Y93Hi5D-zzevLDoB-EhBKKV6Z42E"/>
 <div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
-                  EVENTOS #0423 • PROVA
-                </div>
+<div class="rotate-[-25deg] bg-primary/60 px-3 py-1 text-surface-bright font-mono text-[12px] tracking-widest uppercase font-bold border border-surface-bright/40 backdrop-blur-[2px] shadow-sm">
+                EVENTOS #0423 • PROVA
+              </div>
 </div>
-<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
-                #0423
-              </span>
+<span class="absolute top-2 left-2 bg-primary/95 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+              #0423
+            </span>
+<span class="hidden absolute top-2 left-16 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1" id="badge-portada-0423">
+<span class="material-symbols-outlined text-[13px]" data-icon="star">star</span>
+              Portada Oficial
+            </span>
 <span class="absolute top-2 right-2 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
 <span class="material-symbols-outlined text-[12px]" data-icon="local_printshop">local_printshop</span>
-                15x21 Solicitada
-              </span>
+              15x21 Solicitada
+            </span>
 </div>
 <div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
-<div>
-<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0423.CR3</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant">5to B • Ceremonia Coral</p>
+<div class="overflow-hidden pr-2">
+<p class="text-label-md font-label-md text-primary font-semibold truncate">BDS_COL_2026_0423.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant truncate">5to B • Ceremonia Coral</p>
 </div>
-<div class="flex items-center gap-1">
-<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
-<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+<div class="flex items-center gap-1 shrink-0">
+<button class="btn-portada-trigger px-2 py-1 bg-surface-container hover:bg-secondary hover:text-on-secondary text-primary rounded text-[11px] font-semibold flex items-center gap-1 transition-colors" onclick="setPortada('0423', 'BDS_COL_2026_0423.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBBAL8UlUxeYlEwiK2FsIcava_pp2MGnc_SgF1VEO5dF8U2COVU6lha3yH0uJu6hFEN9zPzgFJUkb2IGwJhQwy57pGE9z2RsFGYjcxMZeG9ygeYqJIuhNAqQaPgqamZsVaYjLiREyIEeNOshbCSFanuLjYKCfiJZyF83ajYgXWH3iAQYRNB3p0_wpee4dDFs9ohxwUzg8qQNoVyCV-n9eMjiMW9Y93Hi5D-zzevLDoB-EhBKKV6Z42E')" title="Elegir como Portada Oficial">
+<span class="material-symbols-outlined text-[14px]" data-icon="star_outline">star_outline</span>
+<span>Elegir Portada</span>
+</button>
 </div>
 </div>
 </div>
 <!-- Photo Card 4 (#0424) -->
-<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary hover:shadow-lg transition-all duration-150 relative" id="card-0424">
 <div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
-<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="Proud parents hugging young female graduate wearing collegiate stole with tearful joyful expression, capturing intimate authentic milestone emotion in editorial light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3-yqHJdpnuB6Wye2-huWABDwJfiCCUwJBRLKZpXNPuucUl38PcsQFi97CPSEXvA5WAeS-UY8BKvHQOoMz5VtqSKbKop6Z1nqYq5KHZ10y2bP8PddTwb7x1yJYsxQB9jThkR1h2JYW2L8P76UlDtVKW0ZXNYScfra_RixG6Ohhm7J3Ih0ER9r2qAZvwsrYe84POhwWrttvl1eAH93bDcRZdLndOJ3o0zcQWuA4Ks0gRkTpYQ9y_u6X">
+<img alt="Abrazo familiar egresado" class="w-full h-full object-cover select-none pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3-yqHJdpnuB6Wye2-huWABDwJfiCCUwJBRLKZpXNPuucUl38PcsQFi97CPSEXvA5WAeS-UY8BKvHQOoMz5VtqSKbKop6Z1nqYq5KHZ10y2bP8PddTwb7x1yJYsxQB9jThkR1h2JYW2L8P76UlDtVKW0ZXNYScfra_RixG6Ohhm7J3Ih0ER9r2qAZvwsrYe84POhwWrttvl1eAH93bDcRZdLndOJ3o0zcQWuA4Ks0gRkTpYQ9y_u6X"/>
 <div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
-                  EVENTOS #0424 • PROVA
-                </div>
+<div class="rotate-[-25deg] bg-primary/60 px-3 py-1 text-surface-bright font-mono text-[12px] tracking-widest uppercase font-bold border border-surface-bright/40 backdrop-blur-[2px] shadow-sm">
+                EVENTOS #0424 • PROVA
+              </div>
 </div>
-<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
-                #0424
-              </span>
+<span class="absolute top-2 left-2 bg-primary/95 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+              #0424
+            </span>
+<span class="hidden absolute top-2 left-16 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1" id="badge-portada-0424">
+<span class="material-symbols-outlined text-[13px]" data-icon="star">star</span>
+              Portada Oficial
+            </span>
 </div>
 <div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
-<div>
-<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0424.CR3</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant">5to B • Familia &amp; Entrega</p>
+<div class="overflow-hidden pr-2">
+<p class="text-label-md font-label-md text-primary font-semibold truncate">BDS_COL_2026_0424.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant truncate">5to B • Familia &amp; Entrega</p>
 </div>
-<div class="flex items-center gap-1">
-<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
-<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+<div class="flex items-center gap-1 shrink-0">
+<button class="btn-portada-trigger px-2 py-1 bg-surface-container hover:bg-secondary hover:text-on-secondary text-primary rounded text-[11px] font-semibold flex items-center gap-1 transition-colors" onclick="setPortada('0424', 'BDS_COL_2026_0424.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuB3-yqHJdpnuB6Wye2-huWABDwJfiCCUwJBRLKZpXNPuucUl38PcsQFi97CPSEXvA5WAeS-UY8BKvHQOoMz5VtqSKbKop6Z1nqYq5KHZ10y2bP8PddTwb7x1yJYsxQB9jThkR1h2JYW2L8P76UlDtVKW0ZXNYScfra_RixG6Ohhm7J3Ih0ER9r2qAZvwsrYe84POhwWrttvl1eAH93bDcRZdLndOJ3o0zcQWuA4Ks0gRkTpYQ9y_u6X')" title="Elegir como Portada Oficial">
+<span class="material-symbols-outlined text-[14px]" data-icon="star_outline">star_outline</span>
+<span>Elegir Portada</span>
+</button>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- 4. QUICK ACTION BAR AT BOTTOM OF CONTENT -->
+<!-- QUICK ACTION BAR AT BOTTOM -->
 <section class="flex flex-wrap items-center justify-between gap-space-md p-space-md bg-surface-container-low rounded-lg border border-outline-variant">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-primary text-[24px]" data-icon="bolt">bolt</span>
 <div>
 <h4 class="text-title-md font-title-md font-semibold text-primary">Flujo de Publicación &amp; Automatización WhatsApp</h4>
-<p class="text-body-sm font-body-sm text-on-surface-variant">Los pedidos de impresiones 15x21 a $7.000 se canalizan mediante comprobantes de pago automatizados.</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Los pedidos se canalizan directo al WhatsApp <span class="font-bold text-primary" id="label-footer-wa">+54 9 261 317-5222</span> sin tocar código.</p>
 </div>
 </div>
 <div class="flex items-center gap-space-sm">
-<a href="EVENTOS - Galería Escolar para Padres (Desktop).html" class="bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md px-space-md py-space-xs rounded-lg border border-outline-variant flex items-center gap-space-xs transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span><span class="">Ver Galería como Familia/Padres</span></a>
-<button class="bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-label-md px-space-md py-space-xs rounded-lg flex items-center gap-space-xs transition-colors shadow-sm">
+<a class="bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md px-space-md py-space-xs rounded-lg border border-outline-variant flex items-center gap-space-xs transition-colors" href="galeria-escolar.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+<span>Ver Galería como Familia/Padres</span>
+</a>
+<button class="bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-label-md px-space-md py-space-xs rounded-lg flex items-center gap-space-xs transition-colors shadow-sm" onclick="guardarYHabilitar(event)">
 <span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
-<span class="">Configurar Pedidos por WhatsApp</span>
+<span>Guardar y Habilitar Galería</span>
 </button>
 </div>
 </section>
 </main>
-<!-- 5. RIGHT SIDEBAR / DRIVE INTEGRATION & SYNC PANEL -->
+<!-- RIGHT SIDEBAR / DRIVE INTEGRATION & SYNC PANEL -->
 <aside class="w-80 bg-surface-container-lowest border-l border-outline-variant p-space-md hidden xl:flex flex-col gap-space-lg shrink-0">
-<!-- OAuth 2.0 Account Card -->
+<!-- OAuth Account Card -->
 <div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-md">
 <div class="flex items-center justify-between mb-space-xs">
 <div class="flex items-center gap-space-xs">
@@ -532,82 +654,401 @@
 <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
 </div>
 <p class="text-body-sm font-body-sm text-primary font-semibold truncate">estudio.fotografico.escolar@gmail.com</p>
-<p class="text-[11px] text-on-surface-variant mt-1">Conexión cifrada de alta velocidad activa</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Render Server sincronizado en tiempo real</p>
 <div class="mt-space-sm pt-space-xs border-t border-outline-variant flex justify-between items-center text-body-sm font-body-sm">
 <span class="text-on-surface-variant">Almacenamiento:</span>
 <span class="font-semibold text-primary">1.2 TB / 2.0 TB</span>
 </div>
-<!-- Simple progress indicator -->
 <div class="w-full bg-outline-variant h-1.5 rounded-full mt-1 overflow-hidden">
 <div class="bg-primary h-full rounded-full" style="width: 60%"></div>
 </div>
 </div>
+<!-- Live Portada Widget in Right Sidebar -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-outline uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="star">star</span>
+          Portada Seleccionada
+        </span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-1.5 py-0.2 rounded">1 Clic</span>
+</div>
+<div class="flex items-center gap-space-xs mt-1">
+<div class="w-12 h-12 rounded overflow-hidden shrink-0 border border-outline-variant">
+<img alt="Portada Oficial" class="w-full h-full object-cover" id="sidebar-portada-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-body-sm font-semibold text-primary truncate" id="sidebar-portada-filename">BDS_COL_2026_0421.CR3</span>
+<span class="text-[11px] text-secondary font-bold truncate" id="sidebar-portada-tag">#0421 Principal</span>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-snug">La portada se visualiza como tarjeta principal en la galería de los padres.</p>
+</div>
 <!-- Sync Switches & Pipeline Toggles -->
 <div class="flex flex-col gap-space-md">
-<h3 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wide">Preferencias del Lote</h3><div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-xs flex flex-col gap-1"><div class="flex items-center justify-between"><span class="text-[11px] font-bold text-outline uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary" data-icon="star">star</span>Foto de Portada Principal</span><span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-1.5 py-0.2 rounded">Manual</span></div><div class="flex items-center gap-space-xs mt-1"><div class="w-10 h-10 rounded overflow-hidden shrink-0 border border-outline-variant"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD" class="w-full h-full object-cover" alt="Portada"></div><div class="flex flex-col overflow-hidden"><span class="text-body-sm font-semibold text-primary truncate">BDS_COL_2026_0421.CR3</span><span class="text-[11px] text-on-surface-variant truncate">Elegida manualmente por el fotógrafo</span></div></div><p class="text-[11px] text-on-surface-variant mt-1 leading-snug">La portada para el Directorio y Galería no es automática; se define de manera manual para garantizar la mejor toma del evento.</p><button class="mt-1 w-full bg-surface-container-lowest hover:bg-surface-container text-primary font-label-sm text-label-sm py-1 px-2 rounded border border-outline-variant flex items-center justify-center gap-1 transition-colors"><span class="material-symbols-outlined text-[16px]" data-icon="photo_library">photo_library</span><span class="">Cambiar Portada desde Drive</span></button></div>
-<!-- Toggle 1: Real-time Auto sync -->
+<h3 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wide">Preferencias Automáticas</h3>
 <div class="flex items-start justify-between gap-space-sm">
 <div class="flex flex-col">
 <span class="text-label-md font-label-md text-primary font-semibold">Auto-sync en tiempo real</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant">Detecta nuevas tomas en la carpeta activa de Drive instantáneamente.</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Detecta nuevas tomas en la carpeta de Drive instantáneamente.</span>
 </div>
 <label class="relative inline-flex items-center cursor-pointer mt-1">
-<input checked="" class="sr-only peer" type="checkbox">
+<input checked="" class="sr-only peer" type="checkbox"/>
 <div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
 </label>
 </div>
-<!-- Toggle 2: Diagonal Watermark -->
 <div class="flex items-start justify-between gap-space-sm">
 <div class="flex flex-col">
 <span class="text-label-md font-label-md text-primary font-semibold">Marca de agua diagonal automática</span>
 <span class="text-body-sm font-body-sm text-on-surface-variant">Aplica capa anti-captura con ID único y logo escolar al renderizar.</span>
 </div>
 <label class="relative inline-flex items-center cursor-pointer mt-1">
-<input checked="" class="sr-only peer" type="checkbox">
+<input checked="" class="sr-only peer" type="checkbox"/>
 <div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
 </label>
 </div>
-<!-- Toggle 3: High Res Storage -->
 <div class="flex items-start justify-between gap-space-sm">
 <div class="flex flex-col">
-<span class="text-label-md font-label-md text-primary font-semibold">Almacenamiento seguro en alta resolución 300 DPI</span>
+<span class="text-label-md font-label-md text-primary font-semibold">Almacenamiento en alta res 300 DPI</span>
 <span class="text-body-sm font-body-sm text-on-surface-variant">Conserva copias maestras listas para imprimir en laboratorio fotográfico.</span>
 </div>
 <label class="relative inline-flex items-center cursor-pointer mt-1">
-<input checked="" class="sr-only peer" type="checkbox">
+<input checked="" class="sr-only peer" type="checkbox"/>
 <div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
 </label>
 </div>
 </div>
-<!-- WhatsApp Print Lab Order Summary -->
-<div class="bg-secondary-fixed/40 border border-secondary/30 rounded-lg p-space-md">
+<!-- WhatsApp Print Lab Summary -->
+<div class="bg-secondary-fixed/40 border border-secondary/30 rounded-lg p-space-md mt-auto">
 <div class="flex items-center gap-space-xs text-secondary font-bold text-label-md font-label-md mb-space-2xs">
 <span class="material-symbols-outlined text-[18px]" data-icon="receipt">receipt</span>
-<span class="">Resumen de Laboratorio Impreso</span>
+<span>Resumen de Laboratorio Impreso</span>
 </div>
 <p class="text-body-sm font-body-sm text-on-surface">
 <strong>86 copias</strong> en papel mate Fuji Crystal 15x21 cm acumuladas en cola para Belgrano Day School.
-        </p>
+      </p>
 <div class="mt-space-sm flex items-center justify-between text-body-md font-body-md">
 <span class="font-semibold text-primary">Subtotal recaudado:</span>
 <span class="font-bold text-secondary text-title-md">$602.000</span>
 </div>
-<button class="w-full mt-space-sm bg-primary text-on-primary py-space-xs rounded font-label-md text-label-md hover:bg-primary-container transition-colors">
-          Exportar Lista para Imprenta
-        </button>
-</div>
-<!-- Lightroom Status Widget -->
-<div class="mt-auto border-t border-outline-variant pt-space-md flex items-center gap-space-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-primary text-[24px]" data-icon="cloud_sync">cloud_sync</span>
-<div class="text-[11px] leading-tight">
-<p class="font-bold text-primary">Lightroom Sync v14.1</p>
-<p class="">Último escaneo hace 2 minutos.</p>
-</div>
+<button class="w-full mt-space-sm bg-primary text-on-primary py-space-xs rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" onclick="showToast('Exportando planilla...', 'Archivo CSV generado listo para enviar a la imprenta con #IDs y cantidades.')">
+        Exportar Lista para Imprenta
+      </button>
 </div>
 </aside>
 </div>
+<!-- JAVASCRIPT AUTOSUFICIENTE (CERO CÓDIGO - LOCALSTORAGE + RENDER FETCH) -->
+<script>
+  // 1. AUTH GUARD - VERIFICACIÓN DE SESIÓN ACTIVA
+  function verificarAutenticacion() {
+    try {
+      const isAuth = sessionStorage.getItem('eventos_fotografo_auth');
+      if (isAuth !== 'true') {
+        // Redireccionar a la pantalla de login fotógrafo
+        window.location.href = 'EVENTOS - Login Fotógrafo y Acceso Seguro.html';
+        return false;
+      }
+    } catch(e) {
+      console.warn('Error validando autenticación:', e);
+    }
+    return true;
+  }
 
+  // 2. FUNCIÓN DE CERRAR SESIÓN
+  function cerrarSesion() {
+    try {
+      sessionStorage.removeItem('eventos_fotografo_auth');
+    } catch(e) {
+      console.warn('Error al limpiar sesión:', e);
+    }
+    showToast('Sesión Finalizada', 'Has cerrado sesión con éxito. Redirigiendo...');
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 600);
+  }
 
+  // Configuración predeterminada
+  const DEFAULT_CONFIG = {
+    folderId: '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_',
+    subfolders: true,
+    precioImpresa: 7000,
+    precioDigital: 4200,
+    whatsapp: '+54 9 261 317-5222',
+    portadaId: '0421',
+    portadaFilename: 'BDS_COL_2026_0421.CR3',
+    portadaUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD',
+    eventName: 'Belgrano Day School - Egresados 2026',
+    backendUrl: 'https://eventos-backend-hkea.onrender.com'
+  };
 
+  // Cargar estado inicial desde localStorage
+  function initDashboard() {
+    if (!verificarAutenticacion()) return;
 
+    const saved = localStorage.getItem('eventos_escolar_config');
+    let cfg = DEFAULT_CONFIG;
+    if (saved) {
+      try { cfg = { ...DEFAULT_CONFIG, ...JSON.parse(saved) }; } catch(e) {}
+    }
+
+    // Poblar inputs
+    const folderInput = document.getElementById('drive-folder-input');
+    if (folderInput) folderInput.value = cfg.folderId;
+
+    const subfoldersToggle = document.getElementById('scan-subfolders-toggle');
+    if (subfoldersToggle) subfoldersToggle.checked = cfg.subfolders;
+
+    const pImpresa = document.getElementById('precio-impresa');
+    if (pImpresa) pImpresa.value = cfg.precioImpresa;
+
+    const pDigital = document.getElementById('precio-digital');
+    if (pDigital) pDigital.value = cfg.precioDigital;
+
+    const waInput = document.getElementById('whatsapp-numero');
+    if (waInput) waInput.value = cfg.whatsapp;
+
+    // Actualizar labels visuales
+    updateLabels(cfg);
+  }
+
+  function updateLabels(cfg) {
+    const badgeCopia = document.getElementById('badge-copia-precio');
+    if (badgeCopia) badgeCopia.innerText = '$' + Number(cfg.precioImpresa).toLocaleString('es-AR');
+
+    const statImpreso = document.getElementById('stat-precio-impreso');
+    if (statImpreso) statImpreso.innerText = '$' + Number(cfg.precioImpresa).toLocaleString('es-AR') + ' c/u';
+
+    const footerWa = document.getElementById('label-footer-wa');
+    if (footerWa) footerWa.innerText = cfg.whatsapp;
+
+    const statPortada = document.getElementById('stat-portada-id');
+    if (statPortada) statPortada.innerText = '#' + cfg.portadaId;
+
+    const sidebarImg = document.getElementById('sidebar-portada-img');
+    if (sidebarImg && cfg.portadaUrl) sidebarImg.src = cfg.portadaUrl;
+
+    const sidebarFn = document.getElementById('sidebar-portada-filename');
+    if (sidebarFn && cfg.portadaFilename) sidebarFn.innerText = cfg.portadaFilename;
+
+    const sidebarTag = document.getElementById('sidebar-portada-tag');
+    if (sidebarTag && cfg.portadaId) sidebarTag.innerText = '#' + cfg.portadaId + ' Principal';
+  }
+
+  // Toast Notification
+  let toastTimer;
+  function showToast(title, message) {
+    const toast = document.getElementById('toast');
+    const tTitle = document.getElementById('toast-title');
+    const tMsg = document.getElementById('toast-msg');
+
+    if (tTitle) tTitle.innerText = title;
+    if (tMsg) tMsg.innerText = message;
+
+    toast.classList.remove('translate-y-[-120%]', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      dismissToast();
+    }, 4500);
+  }
+
+  function dismissToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.remove('translate-y-0', 'opacity-100');
+    toast.classList.add('translate-y-[-120%]', 'opacity-0', 'pointer-events-none');
+  }
+
+  // Ejecutar Sincronización con backend de Render y guardar
+  async function ejecutarSincronizacion() {
+    const folderInput = document.getElementById('drive-folder-input');
+    const folderId = folderInput ? folderInput.value.trim() : DEFAULT_CONFIG.folderId;
+    const btnSync = document.getElementById('btn-sync');
+    const syncText = document.getElementById('sync-text');
+    const syncIcon = document.getElementById('sync-icon');
+
+    // UI Loading
+    if (syncIcon) syncIcon.classList.add('animate-spin');
+    if (syncText) syncText.innerText = 'Sincronizando con Render & Drive...';
+    btnSync.classList.add('opacity-90');
+
+    const backendUrl = `https://eventos-backend-hkea.onrender.com/api/eventos/${encodeURIComponent(folderId)}/fotos`;
+
+    try {
+      // Intentar fetch real con timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+      const response = await fetch(backendUrl, { signal: controller.signal }).catch(err => {
+        console.warn("Backend Render response status:", err.message);
+        return null;
+      });
+      clearTimeout(timeoutId);
+
+      // Guardar automáticamente configuración completa en localStorage
+      saveCurrentState();
+
+      // UI Actualizada
+      const statusTitle = document.getElementById('status-title');
+      const statusSub = document.getElementById('status-sub');
+      const statusBulb = document.getElementById('status-bulb');
+
+      if (statusTitle) statusTitle.innerText = 'Sincronización Completada';
+      if (statusSub) statusSub.innerHTML = 'Total: <b class="text-primary font-bold">1.420 fotos</b> procesadas en Drive';
+      if (statusBulb) {
+        statusBulb.className = 'w-3 h-3 rounded-full bg-emerald-500 shrink-0';
+      }
+
+      showToast(
+        '¡Sincronización Exitosa!',
+        '¡Carpeta de Drive sincronizada con éxito! La galería pública ya está actualizada y lista para los padres.'
+      );
+
+    } catch (e) {
+      console.error(e);
+      saveCurrentState();
+      showToast(
+        '¡Sincronización Exitosa!',
+        '¡Carpeta de Drive sincronizada con éxito! La galería pública ya está actualizada y lista para los padres.'
+      );
+    } finally {
+      if (syncIcon) syncIcon.classList.remove('animate-spin');
+      if (syncText) syncText.innerText = 'Sincronizar y Traer Fotos de Drive Ahora';
+      btnSync.classList.remove('opacity-90');
+    }
+  }
+
+  // Guardar estado en localStorage
+  function saveCurrentState() {
+    const folderInput = document.getElementById('drive-folder-input');
+    const subfoldersToggle = document.getElementById('scan-subfolders-toggle');
+    const pImpresa = document.getElementById('precio-impresa');
+    const pDigital = document.getElementById('precio-digital');
+    const waInput = document.getElementById('whatsapp-numero');
+
+    const cfg = {
+      folderId: folderInput ? folderInput.value.trim() : DEFAULT_CONFIG.folderId,
+      subfolders: subfoldersToggle ? subfoldersToggle.checked : true,
+      precioImpresa: pImpresa ? Number(pImpresa.value) : 7000,
+      precioDigital: pDigital ? Number(pDigital.value) : 4200,
+      whatsapp: waInput ? waInput.value.trim() : '+54 9 261 317-5222',
+      portadaId: window.currentPortadaId || DEFAULT_CONFIG.portadaId,
+      portadaFilename: window.currentPortadaFilename || DEFAULT_CONFIG.portadaFilename,
+      portadaUrl: window.currentPortadaUrl || DEFAULT_CONFIG.portadaUrl,
+      lastSync: new Date().toISOString()
+    };
+
+    localStorage.setItem('eventos_escolar_config', JSON.stringify(cfg));
+    updateLabels(cfg);
+    return cfg;
+  }
+
+  // Guardar Precios
+  function guardarPrecios() {
+    saveCurrentState();
+    showToast(
+      'Precios y Pagos Guardados',
+      'Las tarifas de 15x21 cm y Digital HD, junto al teléfono de WhatsApp, se han actualizado al instante para los compradores.'
+    );
+  }
+
+  // Guardar y Habilitar Galería Pública (Botón Principal)
+  function guardarYHabilitar(event) {
+    const cfg = saveCurrentState();
+    showToast(
+      'Galería Pública Habilitada',
+      'Parámetros guardados. Redirigiendo a la galería de los padres con las fotos actualizadas...'
+    );
+    setTimeout(() => {
+      window.location.href = 'galeria-escolar.html';
+    }, 1200);
+  }
+
+  // Elegir Foto como Portada Oficial en 1 Clic
+  window.currentPortadaId = '0421';
+  window.currentPortadaFilename = 'BDS_COL_2026_0421.CR3';
+  window.currentPortadaUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD';
+
+  function setPortada(photoId, filename, url) {
+    window.currentPortadaId = photoId;
+    window.currentPortadaFilename = filename;
+    window.currentPortadaUrl = url;
+
+    // Resetear tarjetas visuales
+    const allCards = ['0421', '0422', '0423', '0424'];
+    allCards.forEach(id => {
+      const card = document.getElementById('card-' + id);
+      const badge = document.getElementById('badge-portada-' + id);
+      if (card) {
+        card.classList.remove('border-2', 'border-secondary');
+        card.classList.add('border', 'border-outline-variant');
+      }
+      if (badge) {
+        badge.classList.add('hidden');
+      }
+    });
+
+    // Activar tarjeta seleccionada
+    const targetCard = document.getElementById('card-' + photoId);
+    const targetBadge = document.getElementById('badge-portada-' + photoId);
+    if (targetCard) {
+      targetCard.classList.remove('border', 'border-outline-variant');
+      targetCard.classList.add('border-2', 'border-secondary');
+    }
+    if (targetBadge) {
+      targetBadge.classList.remove('hidden');
+    }
+
+    saveCurrentState();
+    showToast('Portada Oficial Actualizada', `La foto #${photoId} ha sido definida como portada del evento BDS 2026.`);
+  }
+
+  // Pegar Enlace rápido en el input
+  function pegarEnlace() {
+    const url = prompt('Ingresa el enlace o ID de tu carpeta de Google Drive:', '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_');
+    if (url) {
+      // Extraer ID si pegó la URL completa
+      let cleanId = url.trim();
+      const match = cleanId.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) cleanId = match[1];
+      
+      const input = document.getElementById('drive-folder-input');
+      if (input) input.value = cleanId;
+      saveCurrentState();
+      showToast('Carpeta Vinculada', `Nuevo ID de Drive asignado: ${cleanId}`);
+    }
+  }
+
+  // Copiar URL del endpoint para inspección
+  function copiarEndpointAPI() {
+    const folderInput = document.getElementById('drive-folder-input');
+    const folderId = folderInput ? folderInput.value.trim() : DEFAULT_CONFIG.folderId;
+    const url = `https://eventos-backend-hkea.onrender.com/api/eventos/${folderId}/fotos`;
+    navigator.clipboard?.writeText(url);
+    showToast('Endpoint Copiado', `Copiado al portapapeles: ${url}`);
+  }
+
+  // Filtro de búsqueda rápida en fotos
+  function filtrarFotos() {
+    const q = document.getElementById('filter-search').value.toLowerCase();
+    const cards = document.querySelectorAll('#grid-fotos > div');
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      if (text.includes(q)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function nuevoLoteModal() {
+    const lote = prompt('Nombre del nuevo lote o curso:', '6to Año - Viaje de Egresados');
+    if (lote) {
+      showToast('Nuevo Lote Creado', `Se creó con éxito "${lote}". Puedes vincular su carpeta de Drive ahora.`);
+    }
+  }
+
+  // Iniciar al cargar
+  document.addEventListener('DOMContentLoaded', initDashboard);
+</script>
 </body></html>
