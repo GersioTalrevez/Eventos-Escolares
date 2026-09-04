@@ -4,23 +4,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>panel</title>
-<!-- Auth Guard inmediato para evitar parpadeo -->
-<script>
-  (function() {
-    try {
-      const isAuth = sessionStorage.getItem('eventos_fotografo_auth');
-      if (isAuth !== 'true') {
-        // Redirección con fallback
-        window.location.href = 'EVENTOS - Login Fotógrafo y Acceso Seguro.html';
-      }
-    } catch(e) {
-      console.warn('Auth check error:', e);
-    }
-  })();
-</script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
