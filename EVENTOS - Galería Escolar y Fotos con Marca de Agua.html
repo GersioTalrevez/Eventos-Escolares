@@ -610,4 +610,126 @@
     });
   })();
 </script>
+    <script>
+  const CONFIG = {
+    backendUrl: "https://eventos-backend-hkea.onrender.com",
+    folderId: "1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_",
+    whatsapp: "5492613175222",
+    precioImpresa: 7000,
+    precioDigital: 4200
+  };
+
+  const seleccionadas = new Map();
+
+  async function sincronizarFotosDrive() {
+    const contenedor = document.getElementById("contenedor-fotos-dinamicas");
+    const estadoCarga = document.getElementById("estado-carga-drive");
+    const contadorBadge = document.getElementById("badge-total-fotos");
+
+    if (estadoCarga) {
+      estadoCarga.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-10 text-center">
+          <div class="w-10 h-10 border-4 border-blue-900 border-t-transparent rounded-full animate-spin mb-3"></div>
+          <p class="font-bold text-gray-800 text-sm">Sincronizando con Google Drive...</p>
+          <p class="text-xs text-gray-500 mt-0.5">Consultando carpeta: ${CONFIG.folderId.slice(0, 8)}...</p>
+        </div>
+      `;
+    }
+
+    try {
+      const response = await fetch(`${CONFIG.backendUrl}/api/eventos/${CONFIG.folderId}/fotos`);
+      if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+      
+      const fotos = await response.json();
+
+      if (!Array.isArray(fotos) || fotos.length === 0) {
+        if (estadoCarga) {
+          estadoCarga.innerHTML = `
+            <div class="p-6 bg-amber-50 border border-amber-200 rounded-2xl text-center text-amber-900 my-6">
+              <p class="font-bold text-base">Conexión con Drive exitosa ✅</p>
+              <p class="text-xs text-amber-800 mt-2">No se encontraron fotos directamente sueltas en la carpeta raíz.</p>
+              <p class="text-xs text-amber-700 mt-1">Si tus fotos están dentro de una subcarpeta, arrastralas a la raíz de Drive.</p>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      if (estadoCarga) estadoCarga.style.display = "none";
+      if (contadorBadge) contadorBadge.textContent = `${fotos.length} fotos`;
+
+      if (contenedor) {
+        contenedor.innerHTML = "";
+        fotos.forEach(foto => {
+          const urlProtegida = `${CONFIG.backendUrl}/api/foto-con-marca/${foto.id}`;
+          const card = document.createElement("div");
+          card.className = "relative bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group";
+          card.innerHTML = `
+            <div class="relative aspect-[3/2] bg-gray-100 overflow-hidden select-none" oncontextmenu="return false;">
+              <img 
+                src="${urlProtegida}" 
+                alt="${foto.name}"
+                loading="lazy"
+                draggable="false"
+                class="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute bottom-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-white tracking-wide">
+                #${foto.name.replace(/\.[^/.]+$/, "")}
+              </div>
+              <button 
+                onclick="toggleFoto('${foto.id}', '${foto.name}')" 
+                id="btn-${foto.id}"
+                class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 shadow flex items-center justify-center text-gray-700 hover:bg-blue-900 hover:text-white transition"
+              >
+                +
+              </button>
+            </div>
+            <div class="p-3 flex items-center justify-between text-xs">
+              <span class="font-medium text-gray-800 truncate max-w-[120px]">${foto.name}</span>
+              <span class="font-bold text-blue-900">$4.200 / $7.000</span>
+            </div>
+          `;
+          contenedor.appendChild(card);
+        });
+      }
+
+    } catch (err) {
+      console.warn("Aviso:", err);
+      if (estadoCarga) {
+        estadoCarga.innerHTML = `
+          <div class="p-5 bg-blue-50 border border-blue-200 rounded-xl text-center text-blue-950 my-6">
+            <p class="font-bold text-sm">El servidor en Render está despertando...</p>
+            <p class="text-xs text-blue-800 mt-1">Los servidores gratuitos tardan ~45 segundos en iniciar si estaban inactivos.</p>
+            <button onclick="sincronizarFotosDrive()" class="mt-3 px-4 py-1.5 bg-blue-900 text-white rounded-lg text-xs font-semibold hover:bg-blue-800 transition">
+              Reintentar ahora
+            </button>
+          </div>
+        `;
+      }
+    }
+  }
+
+  function toggleFoto(id, nombre) {
+    const btn = document.getElementById(`btn-${id}`);
+    if (seleccionadas.has(id)) {
+      seleccionadas.delete(id);
+      if (btn) {
+        btn.textContent = "+";
+        btn.classList.remove("bg-blue-900", "text-white");
+        btn.classList.add("bg-white/90", "text-gray-700");
+      }
+    } else {
+      seleccionadas.set(id, nombre);
+      if (btn) {
+        btn.textContent = "✓";
+        btn.classList.remove("bg-white/90", "text-gray-700");
+        btn.classList.add("bg-blue-900", "text-white");
+      }
+    }
+    const badge = document.getElementById("cant-seleccionadas");
+    if (badge) badge.textContent = `${seleccionadas.size} seleccionadas`;
+  }
+
+  document.addEventListener("DOMContentLoaded", sincronizarFotosDrive);
+</script>
 </body></html>
