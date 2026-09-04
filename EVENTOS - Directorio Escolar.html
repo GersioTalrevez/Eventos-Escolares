@@ -1,0 +1,477 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EVENTOS - Fotografía Escolar</title>
+<!-- Google Fonts: Manrope & Source Serif 4 -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined (Literal transcription) -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#001626",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#ffb68e",
+            "tertiary-container": "#002b45",
+            "surface-container-highest": "#d5e3fc",
+            "primary": "#000f3f",
+            "on-error": "#ffffff",
+            "primary-fixed": "#dce1ff",
+            "primary-fixed-dim": "#b7c4fd",
+            "tertiary-fixed": "#cce5ff",
+            "surface-dim": "#ccdbf3",
+            "secondary": "#9b4500",
+            "surface-bright": "#f8f9ff",
+            "secondary-container": "#fd8a42",
+            "outline-variant": "#c6c5d0",
+            "on-secondary-fixed-variant": "#763300",
+            "surface-tint": "#4f5c8e",
+            "on-tertiary-container": "#2f96db",
+            "on-secondary-container": "#682c00",
+            "surface": "#f8f9ff",
+            "surface-container-low": "#eff4ff",
+            "on-tertiary-fixed": "#001d31",
+            "tertiary-fixed-dim": "#93ccff",
+            "surface-variant": "#d5e3fc",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-container-high": "#dce9ff",
+            "on-primary-container": "#808dc2",
+            "on-primary": "#ffffff",
+            "on-surface": "#0d1c2e",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#233144",
+            "error": "#ba1a1a",
+            "primary-container": "#172554",
+            "on-primary-fixed-variant": "#374475",
+            "background": "#f8f9ff",
+            "outline": "#767680",
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-secondary-fixed": "#331200",
+            "on-secondary": "#ffffff",
+            "surface-container": "#e6eeff",
+            "on-background": "#0d1c2e",
+            "error-container": "#ffdad6",
+            "inverse-primary": "#b7c4fd",
+            "secondary-fixed": "#ffdbca",
+            "on-surface-variant": "#45464f",
+            "on-primary-fixed": "#071747"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-3xl": "4rem",
+            "gutter-desktop": "1.5rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "gutter-mobile": "1rem",
+            "container-max": "80rem",
+            "space-3xs": "0.125rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "body-md": ["Manrope", "sans-serif"],
+            "headline-sm": ["Source Serif 4", "serif"],
+            "label-sm": ["Manrope", "sans-serif"],
+            "headline-md": ["Source Serif 4", "serif"],
+            "headline-lg-mobile": ["Source Serif 4", "serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "display-hero": ["Source Serif 4", "serif"],
+            "title-md": ["Manrope", "sans-serif"],
+            "headline-lg": ["Source Serif 4", "serif"],
+            "display-hero-mobile": ["Source Serif 4", "serif"],
+            "body-lg": ["Manrope", "sans-serif"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    
+    /* Diagonal subtle proof watermark simulation for protected galleries */
+    .proof-watermark-overlay {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.12) 0,
+        rgba(255, 255, 255, 0.12) 1px,
+        transparent 0,
+        transparent 28px
+      );
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pb-24 selection:bg-primary-container selection:text-white">
+<!-- 1. TopAppBar (Mapped from Shared Component JSON) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest dark:bg-surface-container-lowest shadow-sm dark:shadow-none w-full border-b border-outline-variant">
+<div class="w-full px-gutter-mobile md:px-gutter-desktop mx-auto max-w-container-max flex justify-between items-center py-space-sm">
+<!-- Brand & Leading Icon -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]" data-icon="camera_roll">camera_roll</span>
+<span class="text-headline-md font-headline-md tracking-tight text-primary">EVENTOS</span>
+</div>
+<!-- Trailing Action: Quick PIN Key access -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low text-primary border border-outline-variant hover:bg-surface-container-high transition-colors duration-150 active:scale-95" onclick="document.getElementById('pin-section').scrollIntoView({behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="vpn_key">vpn_key</span>
+<span class="font-label-md text-label-md hidden xs:inline">Ingresar código</span>
+</button><a href="EVENTOS - Login Fotógrafo y Acceso Seguro.html" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-white font-label-md text-label-md hover:bg-primary-container transition-colors duration-150 active:scale-95"><span class="material-symbols-outlined text-[18px]" data-icon="cloud_sync">cloud_sync</span><span class="">Panel Fotógrafo</span></a>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-desktop space-y-space-xl pt-space-lg">
+<!-- 2. Hero Section: Editorial & Warmth for Families -->
+<section class="relative bg-surface-container-lowest rounded-xl p-space-lg border border-outline-variant shadow-sm overflow-hidden">
+<!-- Decorative archival vignette accent -->
+<div class="absolute -right-8 -top-8 w-40 h-40 bg-surface-container-high rounded-full blur-2xl opacity-60 pointer-events-none"></div>
+<div class="relative z-10 max-w-xl space-y-space-sm">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="school">school</span>
+<span class="">Plataforma Oficial Escolar 2026</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight font-headline-lg">
+          Las memorias escolares de tus hijos, a un toque.
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Buscá las fotos del acto o evento de tu colegio y pedilas en Impresas o Digital sin marca de agua.</p>
+<!-- Search Bar -->
+<form class="pt-space-xs" onsubmit="event.preventDefault();">
+<div class="flex flex-col sm:flex-row gap-2">
+<div class="relative flex-1">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</span>
+<input class="w-full pl-10 pr-3 py-2.5 bg-surface rounded-lg border border-outline-variant font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition" placeholder="Ingresá el nombre del colegio o código..." type="text">
+</div>
+<button class="px-5 py-2.5 rounded-lg bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-primary-container active:scale-98 transition shadow-sm" type="submit">
+<span class="">Buscar</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="flex items-center gap-3 pt-1 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm">Privacidad escolar garantizada</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="photo_prints">photo_prints</span>
+<span class="font-label-sm text-label-sm">Papel fotográfico de Laboratorio</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Quick Access Pin Gateway Banner -->
+<section class="bg-primary-container text-on-primary rounded-xl p-space-md md:p-space-lg shadow-sm border border-outline-variant/30 relative overflow-hidden" id="pin-section">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="space-y-1 max-w-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-icon="pin">pin</span>
+<h2 class="font-title-md text-title-md text-white font-semibold">
+              ¿Tenés el código de la credencial del alumno?
+            </h2>
+</div>
+<p class="font-body-sm text-body-sm text-surface-variant/80">
+            Ingresá el PIN alfanumérico impreso en la tarjeta que entregó la escuela para desbloquear la galería privada y retratos individuales.
+          </p>
+</div>
+<div class="w-full md:w-auto flex flex-col sm:flex-row gap-2 items-stretch">
+<div class="relative">
+<input class="w-full sm:w-48 text-center uppercase tracking-widest font-mono font-bold bg-surface text-primary rounded-lg px-3 py-2.5 border-2 border-transparent focus:border-secondary-container focus:outline-none" maxlength="14" placeholder="Ej: SJ-2026-9A" type="text">
+</div>
+<a href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html" class="px-4 py-2.5 rounded-lg bg-secondary text-white font-label-md text-label-md hover:opacity-95 active:scale-95 transition flex items-center justify-center gap-1.5 whitespace-nowrap"><span class="material-symbols-outlined text-[18px]" data-icon="lock_open">lock_open</span><span class="">Ver galería privada</span></a>
+</div>
+</div>
+</section>
+<!-- 4. Interactive Category Filters (Horizontal scroll on mobile) -->
+<section class="space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-primary">Explorar por Nivel Educativo</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 eventos activos</span>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar -mx-gutter-mobile px-gutter-mobile md:mx-0 md:px-0">
+<!-- Active Pill -->
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-primary text-white font-label-md text-label-md flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="grid_view">grid_view</span>
+<span class="">Todos los niveles</span>
+</button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant font-label-md text-label-md transition flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="child_care">child_care</span>
+<span class="">Nivel Inicial / Jardín</span>
+</button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant font-label-md text-label-md transition flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="menu_book">menu_book</span>
+<span class="">Primaria</span>
+</button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant font-label-md text-label-md transition flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="history_edu">history_edu</span>
+<span class="">Secundaria</span>
+</button>
+
+</div>
+</section>
+<!-- 5. Recent School Events Directory (Detailed Cards) -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-primary">Eventos Escolares Recientes</h2>
+<a class="font-label-md text-label-md text-secondary hover:underline flex items-center gap-0.5" href="#">
+<span class="">Ver archivo histórico</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Card 1: San Martín de Tours -->
+<article class="group bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary-container transition-all duration-200 flex flex-col">
+<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Editorial photograph of an elegant high school graduation ceremony in Buenos Aires Argentina. Students wearing formal academic uniform blue blazers and graduation sashes are sitting neatly in an ornate classic school theatre with warm golden stage lighting and soft bokeh effect. High key, warm archival tone, authentic candid atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVBX7barufST8Q2Z90ou_mRrCUjhamacfvt5vgmo1z22X9dwkWgJ5Iv8NcpQor7b3o49zKw7RY1NKUKpFm317b91sRx-WUq0jh6KV9wMiq2u4aCcN1zkp0MALPdw8tOP2_B2Wzc69vS-F8XPIWmKuSbTqT_-vpMrHtAqRid5q8CEPda2Bkd7zlLrV6gn9AkkIPx_c1PJVNKM1h4b6GaqoJZbzOMOtWoagNllISCilBdEdowYvwF5rO">
+<div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary font-label-sm text-label-sm border border-outline-variant/40 shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+<span class="">Disponible</span>
+</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2 py-0.5 rounded text-body-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="photo_camera">photo_camera</span>
+<span class="">1.420 fotos</span>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="location_on">location_on</span>
+<span class="">Belgrano, CABA</span>
+<span class="">•</span>
+<span class="">Estudio Lumière Escolar</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">
+                Acto de Colación y Graduación 2026
+              </h3>
+<p class="font-title-md text-title-md text-on-surface-variant mt-0.5">
+                Colegio San Martín de Tours
+              </p>
+</div>
+<div class="pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                Actualizado ayer
+              </span>
+<a href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html" class="px-4 py-2 rounded-lg bg-primary text-white font-label-md text-label-md flex items-center gap-1 hover:bg-primary-container active:scale-95 transition"><span class="">Ingresar a Galería</span><span class="material-symbols-outlined text-[16px]" data-icon="login">login</span></a>
+</div>
+</div>
+</article>
+<!-- Card 2: Instituto Belgrano Day -->
+<article class="group bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary-container transition-all duration-200 flex flex-col">
+<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Vibrant school concert performance on an outdoor stage at dusk in San Isidro. Children singing in a school choir with microphones and acoustic instruments surrounded by warm festival fairy lights. High-end candid school reportage photograph, soft warm ambient lighting, elegant composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADZQv4PUE1mh11DVovrSOGW6fE_UEkGCNJr_jEBYkE5N2gadEH1On7csObaIRnUzcHH-domsJSSMFTRwwjg_XUXcDK4niZFsYbxJ21QOCSCzbD4DnkASZeWkd5vR-Wf34zn9J5xNfJbDnixgM0xO7TQi-lUUy-zP3E8-kgx2kLpQ7lQhpaM0xi32rkxmqVFFT9-g97FmalNomX023Rzws2aDFPQNDYQHoL65bEJHEEX9fLo2zEl5QT">
+<div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="star">star</span>
+<span class="">Nuevo</span>
+</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2 py-0.5 rounded text-body-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="photo_camera">photo_camera</span>
+<span class="">890 fotos</span>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="location_on">location_on</span>
+<span class="">San Isidro, GBA Norte</span>
+<span class="">•</span>
+<span class="">Turno Tarde</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">
+                Fiesta de Fin de Año &amp; Concert
+              </h3>
+<p class="font-title-md text-title-md text-on-surface-variant mt-0.5">
+                Instituto Belgrano Day
+              </p>
+</div>
+<div class="pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                Subido hoy
+              </span>
+<a href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html" class="px-4 py-2 rounded-lg bg-primary text-white font-label-md text-label-md flex items-center gap-1 hover:bg-primary-container active:scale-95 transition"><span class="">Ingresar a Galería</span><span class="material-symbols-outlined text-[16px]" data-icon="login">login</span></a>
+</div>
+</div>
+</article>
+<!-- Card 3: Champagnat -->
+
+<!-- Card 4: Colegio Santa Inés -->
+<article class="group bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary-container transition-all duration-200 flex flex-col">
+<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Children in an elementary school art studio exhibiting colorful handmade ceramic sculptures and watercolor canvas paintings. Sunlight streaming through large school windows, illuminating children smiling proudly next to their artistic works. Warm tones, clean editorial fine art portraiture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzbmbpVBJorfNoOLXiMw8zvCnkkyo4KPlolFsHvJw9aVas9GtOSlFKHMW0pi1-8iSJz5oVs2MhsF2fgLF5sZ7kyKr97LjYvuKGZs5uRGSc8ryKZ_8PUhXTWPvHcQXquR0Y9ynmSKN3RBc8OFZXwOc7iozUnYkaw4k04OTwW1zwv-zKqArQ6683nF5o4Y0L_9VgxQPyITJn1GDBvVK-HxHtW6lpjePV3DtnJm9ot73jdL2xGin3CQt8">
+<div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary font-label-sm text-label-sm border border-outline-variant/40 shadow-sm flex items-center gap-1">
+<span class="">Nivel Primario</span>
+</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2 py-0.5 rounded text-body-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="photo_camera">photo_camera</span>
+<span class="">640 fotos</span>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-space-sm">
+<div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="location_on">location_on</span>
+<span class="">Palermo, CABA</span>
+<span class="">•</span>
+<span class="">Salas 1º a 7º Grado</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">
+                Muestra Anual de Arte y Música
+              </h3>
+<p class="font-title-md text-title-md text-on-surface-variant mt-0.5">
+                Colegio Santa Inés
+              </p>
+</div>
+<div class="pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                Hace 5 días
+              </span>
+<a href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html" class="px-4 py-2 rounded-lg bg-primary text-white font-label-md text-label-md flex items-center gap-1 hover:bg-primary-container active:scale-95 transition"><span class="">Ingresar a Galería</span><span class="material-symbols-outlined text-[16px]" data-icon="login">login</span></a>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- 6. How It Works For Families Section -->
+<section class="bg-surface-container-low rounded-xl p-space-lg border border-outline-variant/60 space-y-space-md">
+<div class="text-center max-w-lg mx-auto space-y-1">
+<h2 class="font-headline-sm text-headline-sm text-primary">
+          Cómo funciona para familias
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Diseñado con estándares de archivo y protección integral de menores.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-2">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant/50 space-y-2 relative">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-label-md">
+            1
+          </div>
+<h3 class="font-title-md text-title-md text-primary">Elegí tu colegio o evento</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Buscá la institución de tu hijo y seleccioná el año lectivo o acto correspondiente.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant/50 space-y-2 relative">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-label-md">
+            2
+          </div>
+<h3 class="font-title-md text-title-md text-primary">Encontrá a tu hijo/a</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Filtrá ágilmente por curso, división o activá la búsqueda facial segura por reconocimiento.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant/50 space-y-2 relative">
+<div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-label-md">
+            3
+          </div>
+<h3 class="font-title-md text-title-md text-primary">Descargá o pedí copias impresas</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Pago seguro con Mercado Pago o tarjetas. Envíos a domicilio o retiro directo en el colegio.
+          </p>
+</div>
+</div>
+<!-- Trust signals bar -->
+<div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-on-surface-variant text-body-sm font-label-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="lock">lock</span>
+<span class="">Galerías encriptadas con acceso restringido</span>
+</span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="payments">payments</span>
+<span class="">Procesado por Mercado Pago</span>
+</span>
+</div>
+</section>
+</main>
+<!-- 7. BottomNavBar (Mapped from Shared Component JSON) -->
+<!-- Contextual Lock: Active Tab is 'Inicio' (Home) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile py-space-xs bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-1px_3px_0_rgba(23,37,84,0.05)]">
+<!-- Item 1: Inicio (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-3 py-1.5 active:scale-95 transition-transform duration-100 ease-out" href="#">
+<span class="material-symbols-outlined text-[20px] text-white" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm text-white font-bold">Inicio</span>
+</a>
+<!-- Item 2: Mis Pedidos (INACTIVE) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-label-sm font-label-sm">Mis Pedidos</span>
+</a>
+<!-- Item 3: Favoritos (INACTIVE) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+<span class="text-label-sm font-label-sm">Favoritos</span>
+</a>
+<!-- Item 4: Ayuda (INACTIVE) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_center">help_center</span>
+<span class="text-label-sm font-label-sm">Ayuda</span>
+</a>
+</nav>
+
+
+
+
+
+
+
+
+</body></html>

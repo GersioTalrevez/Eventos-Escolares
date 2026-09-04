@@ -1,0 +1,421 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sincronizar con Google Drive | EVENTOS</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<!-- Google Fonts: Source Serif 4 & Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#767680",
+            "outline-variant": "#c6c5d0",
+            "tertiary": "#001626",
+            "on-tertiary-container": "#2f96db",
+            "on-background": "#0d1c2e",
+            "on-secondary": "#ffffff",
+            "surface-tint": "#4f5c8e",
+            "secondary": "#9b4500",
+            "surface-dim": "#ccdbf3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "on-tertiary": "#ffffff",
+            "background": "#f8f9ff",
+            "on-primary-fixed": "#071747",
+            "surface-container-high": "#dce9ff",
+            "tertiary-fixed-dim": "#93ccff",
+            "primary-fixed-dim": "#b7c4fd",
+            "inverse-surface": "#233144",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-variant": "#d5e3fc",
+            "secondary-fixed-dim": "#ffb68e",
+            "surface-bright": "#f8f9ff",
+            "on-surface-variant": "#45464f",
+            "secondary-fixed": "#ffdbca",
+            "on-primary-container": "#808dc2",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed-variant": "#004b73",
+            "primary-fixed": "#dce1ff",
+            "primary-container": "#172554",
+            "on-tertiary-fixed": "#001d31",
+            "on-primary": "#ffffff",
+            "on-secondary-container": "#682c00",
+            "inverse-primary": "#b7c4fd",
+            "surface-container-highest": "#d5e3fc",
+            "secondary-container": "#fd8a42",
+            "on-secondary-fixed": "#331200",
+            "error": "#ba1a1a",
+            "primary": "#000f3f",
+            "on-secondary-fixed-variant": "#763300",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#cce5ff",
+            "surface": "#f8f9ff",
+            "on-surface": "#0d1c2e",
+            "on-primary-fixed-variant": "#374475",
+            "surface-container": "#e6eeff",
+            "tertiary-container": "#002b45"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "space-xl": "2rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "container-max": "80rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-3xs": "0.125rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Source Serif 4", "serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "headline-lg": ["Source Serif 4", "serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "headline-lg-mobile": ["Source Serif 4", "serif"],
+            "headline-md": ["Source Serif 4", "serif"],
+            "title-md": ["Manrope", "sans-serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "display-hero-mobile": ["Source Serif 4", "serif"],
+            "headline-sm": ["Source Serif 4", "serif"],
+            "label-sm": ["Manrope", "sans-serif"]
+          },
+          "fontSize": {
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-surface-container-highest">
+<!-- TopAppBar Component (from Shared Components JSON blueprint) -->
+<header class="bg-surface-container-lowest shadow-sm docked full-width top-0 z-30 sticky">
+<div class="w-full px-gutter-mobile md:px-gutter-desktop mx-auto max-w-container-max flex justify-between items-center h-16">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="camera_roll">camera_roll</span>
+<span class="text-headline-md font-headline-md tracking-tight text-primary">EVENTOS</span>
+<span class="hidden md:inline-flex items-center ml-space-sm px-2 py-0.5 rounded-lg text-label-sm font-label-sm bg-surface-container-low text-primary border border-outline-variant">PORTAL FOTÓGRAFO</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="text-label-md font-label-md text-on-surface-variant hidden sm:inline-block">Acceso Seguro Administrador</span>
+<button class="p-space-xs rounded-lg hover:bg-surface-container-high transition-colors duration-150 text-primary active:scale-95" title="Llave de autenticación">
+<span class="material-symbols-outlined" data-icon="vpn_key">vpn_key</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Modal / Wizard Backdrop & Canvas Container -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-desktop py-space-md md:py-space-xl flex justify-center items-start">
+<!-- Modal Card Frame: Level 2 tactile elevation with crisp border -->
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_-2px_rgba(23,37,84,0.08),0_2px_6px_-2px_rgba(23,37,84,0.04)] border border-outline-variant flex flex-col overflow-hidden mb-12">
+<!-- 1. Header del Asistente -->
+<div class="px-space-md md:px-space-xl py-space-lg bg-surface-container-lowest border-b border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-container text-on-primary text-label-sm font-label-sm">2</span>
+<span class="text-label-sm font-label-sm tracking-wider uppercase text-outline">Paso 2 de 3: Selección de Carpeta y Permisos</span>
+</div>
+<h1 class="text-headline-sm font-headline-sm text-primary mt-1">Sincronizar con Google Drive</h1>
+</div>
+<!-- Botón Cancelar / Cerrar (X) -->
+<button class="self-start sm:self-center flex items-center gap-1 text-on-surface-variant hover:text-primary p-space-xs rounded-lg hover:bg-surface-container-high transition-colors text-label-md font-label-md" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+<span class="text-label-md font-label-md">Cancelar</span>
+</button>
+</div>
+<div class="p-space-md md:p-space-xl flex flex-col gap-space-xl">
+<!-- 2. Cuenta de Google Conectada (Banner) -->
+<section class="bg-surface-container-low rounded-lg p-space-md border border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<!-- Google Workspace Avatar -->
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-title-md border-2 border-surface-container-lowest shadow-sm">
+                EF
+              </div>
+<span class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-surface-container-lowest flex items-center justify-center text-white" title="Activo">
+<span class="material-symbols-outlined text-[10px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-md text-title-md text-on-surface">estudio.fotografico.escolar@gmail.com</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-800 border border-emerald-300">
+<span class="material-symbols-outlined text-xs" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                  Conexión verificada OAuth 2.0
+                </span>
+</div>
+<span class="text-body-sm font-body-sm text-outline">Almacenamiento institucional Google Workspace for Education &amp; Business</span>
+</div>
+</div>
+<button class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-150 self-start md:self-center" type="button">
+<span class="material-symbols-outlined text-base" data-icon="switch_account">switch_account</span>
+            Cambiar cuenta
+          </button>
+</section>
+<!-- 3. Explorador / Selector de Carpetas de Drive -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<h2 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="cloud">cloud</span>
+              Explorador de Google Drive
+            </h2>
+<span class="text-label-sm font-label-sm text-outline">Seleccione la carpeta raíz que contiene los retratos del evento</span>
+</div>
+<!-- Navegador Panel -->
+<div class="border border-outline-variant rounded-xl overflow-hidden bg-surface-container-lowest">
+<!-- Breadcrumbs + Search Toolbar -->
+<div class="p-space-sm bg-surface-container border-b border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<!-- Breadcrumbs -->
+<nav aria-label="Migas de pan" class="flex items-center gap-1 text-label-md font-label-md text-on-surface-variant overflow-x-auto py-1">
+<span class="material-symbols-outlined text-base text-outline flex-shrink-0" data-icon="home">home</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Mi Unidad</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Eventos 2026</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Colegios</span>
+<span class="text-outline-variant">/</span>
+<span class="font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+                  Belgrano Day School
+                </span>
+</nav>
+<!-- Buscador Rápido -->
+<div class="relative w-full md:w-64 flex-shrink-0">
+<input class="w-full text-body-sm font-body-sm py-1.5 pl-8 pr-3 rounded-lg border border-outline-variant bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline" placeholder="Buscar carpeta en Drive..." type="text">
+<span class="material-symbols-outlined absolute left-2 top-2 text-outline text-lg pointer-events-none" data-icon="search">search</span>
+</div>
+</div>
+<!-- Lista de Carpetas -->
+<div class="divide-y divide-outline-variant overflow-y-auto max-h-72">
+<!-- Carpeta 1: Seleccionada activamente -->
+<div class="group flex items-center justify-between p-space-md bg-surface-container-high/60 border-l-4 border-l-primary cursor-pointer hover:bg-surface-container-high transition-colors duration-150">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="folder" style="font-variation-settings: 'FILL' 1;">folder</span>
+</div>
+<div class="flex flex-col">
+<span class="text-title-md font-title-md text-primary flex items-center gap-1.5">
+                      01. Acto de Colación - Turno Mañana
+                      <span class="inline-flex items-center px-2 py-0.2 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary">Activa</span>
+</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="">1.420 fotos</span>
+<span class="text-outline-variant">•</span>
+<span class="">Modificado ayer por Fotografía Belgrano</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</span>
+</div>
+</div>
+<!-- Carpeta 2 -->
+<div class="group flex items-center justify-between p-space-md bg-surface-container-lowest border-l-4 border-l-transparent hover:bg-surface-container-low cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-surface-container text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-xl" data-icon="folder">folder</span>
+</div>
+<div class="flex flex-col">
+<span class="text-title-md font-title-md text-on-surface group-hover:text-primary transition-colors">02. Misa de Egresados y Familia</span>
+<span class="text-body-sm font-body-sm text-outline flex items-center gap-2">
+<span class="">630 fotos</span>
+<span class="text-outline-variant">•</span>
+<span class="">Modificado el 12 oct 2026</span>
+</span>
+</div>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Carpeta 3 -->
+<div class="group flex items-center justify-between p-space-md bg-surface-container-lowest border-l-4 border-l-transparent hover:bg-surface-container-low cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-surface-container text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-xl" data-icon="folder">folder</span>
+</div>
+<div class="flex flex-col">
+<span class="text-title-md font-title-md text-on-surface group-hover:text-primary transition-colors">03. Fiesta de Egresados - Noche</span>
+<span class="text-body-sm font-body-sm text-outline flex items-center gap-2">
+<span class="">980 fotos</span>
+<span class="text-outline-variant">•</span>
+<span class="">Modificado el 08 oct 2026</span>
+</span>
+</div>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Carpeta 4 -->
+<div class="group flex items-center justify-between p-space-md bg-surface-container-lowest border-l-4 border-l-transparent hover:bg-surface-container-low cursor-pointer transition-colors duration-150">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-surface-container text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-xl" data-icon="folder">folder</span>
+</div>
+<div class="flex flex-col">
+<span class="text-title-md font-title-md text-on-surface group-hover:text-primary transition-colors">04. Entrega de Medallas Primaria</span>
+<span class="text-body-sm font-body-sm text-outline flex items-center gap-2">
+<span class="">410 fotos</span>
+<span class="text-outline-variant">•</span>
+<span class="">Modificado el 28 sep 2026</span>
+</span>
+</div>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Barra inferior con acciones secundarias del explorador -->
+<div class="p-space-sm bg-surface-container-low border-t border-outline-variant flex flex-wrap items-center justify-between gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-outline-variant text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-base" data-icon="create_new_folder">create_new_folder</span>
+                Crear nueva subcarpeta
+              </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-outline-variant text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-base" data-icon="link">link</span>
+                Pegar link compartido de Google Drive
+              </button>
+</div>
+</div>
+</section>
+<!-- 4. Opciones de Sincronización y Procesamiento Automático -->
+<section class="flex flex-col gap-space-sm">
+<h2 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="tune">tune</span>
+            Opciones de Sincronización y Procesamiento Automático
+          </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Switch 1: Auto-sync -->
+<label class="relative flex items-start gap-space-md p-space-md rounded-xl border border-outline-variant hover:border-outline bg-surface-container-lowest cursor-pointer transition-colors">
+<input checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary border-outline-variant" type="checkbox">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Sincronización en tiempo real (Auto-sync)</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">
+                  Las fotos exportadas desde Lightroom a esta carpeta se subirán e indexarán automáticamente.
+                </span>
+</div>
+</label>
+<!-- Switch 2: Watermark -->
+<label class="relative flex items-start gap-space-md p-space-md rounded-xl border border-outline-variant hover:border-outline bg-surface-container-lowest cursor-pointer transition-colors">
+<input checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary border-outline-variant" type="checkbox">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Aplicar marca de agua diagonal automática</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">
+                  Inserta watermark de seguridad institucional: <span class="font-semibold text-primary">"EVENTOS + ID correlativo"</span> sobre las muestras web.
+                </span>
+</div>
+</label>
+<!-- Switch 3: Estructura subcarpetas -->
+<label class="relative flex items-start gap-space-md p-space-md rounded-xl border border-outline-variant hover:border-outline bg-surface-container-lowest cursor-pointer transition-colors">
+<input checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary border-outline-variant" type="checkbox">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Conservar estructura de subcarpetas</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">
+                  Agrupa automáticamente por divisiones o tandas (Ej. Turno Mañana / Tarde / Entrega de Diplomas).
+                </span>
+</div>
+</label>
+<!-- Switch 4: Calidad y Master RAW -->
+<label class="relative flex items-start gap-space-md p-space-md rounded-xl border border-outline-variant hover:border-outline bg-surface-container-lowest cursor-pointer transition-colors">
+<input checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary border-outline-variant" type="checkbox">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Calidad de lectura y almacenamiento seguro</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">
+                  Mantener archivos originales RAW/JPG 300 DPI en bóveda encriptada para descarga post-pago de las familias.
+                </span>
+</div>
+</label>
+<label class="relative flex items-start gap-space-md p-space-md rounded-xl border border-outline-variant hover:border-outline bg-surface-container-lowest cursor-pointer transition-colors md:col-span-2"><input type="checkbox" checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary border-outline-variant"><div class="flex flex-col flex-1"><div class="flex items-center gap-2 flex-wrap"><span class="font-title-md text-title-md text-on-surface">Selección manual de foto de portada</span><span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary border border-outline-variant">Recomendado</span></div><span class="text-body-sm font-body-sm text-outline mt-0.5">Elegirás manualmente la imagen de portada desde el explorador de Drive una vez leídas las tomas (no se asignará automáticamente).</span></div></label></div>
+</section>
+<!-- 5. Resumen de recursos y almacenamiento -->
+<section class="bg-surface-container p-space-md rounded-xl border border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="storage">storage</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-primary">1.420 archivos JPG detectados (14.2 GB)</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Conexión de alta velocidad establecida vía Google Workspace API v3.</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest px-3 py-1.5 rounded-lg border border-outline-variant self-start sm:self-center">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="schedule">schedule</span>
+<span class="text-label-md font-label-md text-on-surface">Tiempo estimado: <span class="font-bold text-primary">~3 minutos</span></span>
+</div>
+</section>
+</div>
+<!-- 6. Acciones inferiores fijas / Sticky footer dentro del modal -->
+<div class="p-space-md md:p-space-lg bg-surface-container-lowest border-t border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<!-- Botón Secundario Volver Atrás -->
+<button class="order-2 sm:order-1 inline-flex items-center justify-center gap-2 px-space-lg py-2.5 rounded-lg border border-outline-variant text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="arrow_back">arrow_back</span>
+          Volver atrás
+        </button>
+<!-- Botón Primario Institucional: Confirmar e Iniciar Sincronización -->
+<button class="order-1 sm:order-2 inline-flex items-center justify-center gap-2 px-space-xl py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm text-label-md font-label-md tracking-wide active:scale-95" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="sync">sync</span>
+          Confirmar e Iniciar Sincronización
+        </button>
+</div>
+</div>
+</main>
+<!-- Nota al pie de seguridad institucional -->
+<footer class="w-full text-center py-space-sm text-body-sm font-body-sm text-outline border-t border-outline-variant bg-surface-container-lowest mt-auto">
+<div class="max-w-container-max mx-auto px-gutter-mobile flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-emerald-700" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="">Cumplimiento estricto de privacidad escolar y encriptación en tránsito TLS 1.3</span>
+</div>
+<span class="">EVENTOS © 2026 • Plataforma de Fotografía Escolar y Colegiada</span>
+</div>
+</footer>
+
+
+</body></html>

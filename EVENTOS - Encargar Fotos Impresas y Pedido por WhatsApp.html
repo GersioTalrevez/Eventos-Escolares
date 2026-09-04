@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EVENTOS - Encargar Copias Impresas &amp; Pedido por WhatsApp</title>
+<!-- Material Symbols Outlined font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Editorial Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-secondary-fixed": "#331200",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#d5e3fc",
+            "on-background": "#0d1c2e",
+            "primary-fixed": "#dce1ff",
+            "secondary-container": "#fd8a42",
+            "on-primary-fixed-variant": "#374475",
+            "surface-container-low": "#eff4ff",
+            "outline-variant": "#c6c5d0",
+            "on-primary-container": "#808dc2",
+            "secondary-fixed-dim": "#ffb68e",
+            "tertiary-fixed-dim": "#93ccff",
+            "surface-tint": "#4f5c8e",
+            "on-error-container": "#93000a",
+            "primary-container": "#172554",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#002b45",
+            "error": "#ba1a1a",
+            "outline": "#767680",
+            "surface-container-high": "#dce9ff",
+            "tertiary": "#001626",
+            "on-secondary": "#ffffff",
+            "surface-container": "#e6eeff",
+            "on-tertiary-container": "#2f96db",
+            "inverse-primary": "#b7c4fd",
+            "on-secondary-container": "#682c00",
+            "surface-bright": "#f8f9ff",
+            "primary": "#000f3f",
+            "surface-dim": "#ccdbf3",
+            "surface-container-highest": "#d5e3fc",
+            "secondary-fixed": "#ffdbca",
+            "on-secondary-fixed-variant": "#763300",
+            "tertiary-fixed": "#cce5ff",
+            "surface": "#f8f9ff",
+            "inverse-surface": "#233144",
+            "on-surface": "#0d1c2e",
+            "on-primary-fixed": "#071747",
+            "inverse-on-surface": "#eaf1ff",
+            "primary-fixed-dim": "#b7c4fd",
+            "on-surface-variant": "#45464f",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "secondary": "#9b4500",
+            "on-tertiary-fixed": "#001d31",
+            "background": "#f8f9ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-xl": "2rem",
+            "space-3xl": "4rem",
+            "space-3xs": "0.125rem",
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-2xs": "0.25rem",
+            "container-max": "80rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Source Serif 4", "serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "headline-sm": ["Source Serif 4", "serif"],
+            "title-md": ["Manrope", "sans-serif"],
+            "headline-md": ["Source Serif 4", "serif"],
+            "headline-lg-mobile": ["Source Serif 4", "serif"],
+            "display-hero-mobile": ["Source Serif 4", "serif"],
+            "headline-lg": ["Source Serif 4", "serif"],
+            "label-sm": ["Manrope", "sans-serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "label-md": ["Manrope", "sans-serif"]
+          },
+          "fontSize": {
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .watermark-overlay {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0) 38px,
+        rgba(255, 255, 255, 0.4) 40px,
+        rgba(255, 255, 255, 0) 42px
+      );
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-32">
+<!-- TOP APP BAR -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<div class="w-full px-gutter-mobile py-space-xs mx-auto max-w-container-max flex justify-between items-center">
+<div class="flex items-center space-x-2">
+<a class="flex items-center text-on-surface-variant hover:text-primary transition-colors p-1 rounded" href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html">
+<span class="material-symbols-outlined text-primary text-xl">arrow_back</span>
+</a>
+<div class="flex items-center space-x-1.5 pl-1"><a class="flex items-center space-x-1.5 hover:opacity-80 transition-opacity" href="EVENTOS - Directorio Escolar.html"><span class="material-symbols-outlined text-primary text-2xl">camera_roll</span><span class="font-headline-md text-headline-md tracking-tight text-primary font-bold">EVENTOS</span></a></div>
+</div>
+<div class="flex items-center space-x-1.5 bg-surface-container px-2.5 py-1 rounded-full border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-xs" style='font-variation-settings: "FILL" 1;'>verified</span>
+<span class="font-label-sm text-label-sm text-primary uppercase">Lab Fotográfico</span>
+</div>
+</div>
+</header>
+<!-- SUB-HEADER NAV BREADCRUMB / STATUS -->
+<div class="bg-surface-container-low px-gutter-mobile py-2 border-b border-outline-variant">
+<div class="max-w-container-max mx-auto flex items-center justify-between">
+<a class="inline-flex items-center text-primary hover:underline font-label-md text-label-md" href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html">
+<span class="material-symbols-outlined text-sm mr-1">arrow_back_ios</span>
+        Volver a Galería Escolar
+      </a>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant">
+        Pedido #2026-IMP
+      </span>
+</div>
+</div>
+<main class="max-w-container-max mx-auto px-gutter-mobile py-space-md space-y-space-lg">
+<!-- SECCIÓN 2: ENCABEZADO EDITORIAL & FICHA DEL ALUMNO -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-[0_1px_3px_0_rgba(23,37,84,0.05)]">
+<div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 mb-2 bg-primary-container text-surface-container-lowest rounded text-xs font-semibold tracking-wide">
+<span class="material-symbols-outlined text-sm">print</span>
+<span class="">LABORATORIO QUÍMICO TRADICIONAL</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold mb-1.5">
+        Encargá tus Copias Fotográficas Impresas
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+        Papel fotográfico satinado/mate 260g de calidad archivo, revelado tonal profesional y entrega lista para enmarcar.
+      </p>
+<!-- Ficha de Identificación Institucional -->
+<div class="bg-surface-container-low rounded-lg p-3 border border-surface-variant flex flex-col space-y-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-lg">school</span>
+<div>
+<span class="font-label-md text-label-md text-primary font-bold">Colegio Belgrano Day School</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Acto de Colación &amp; Entrega de Diplomas 2026</span>
+</div>
+</div>
+<div class="h-px bg-outline-variant w-full opacity-60"></div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">badge</span>
+<span class="font-label-md text-label-md text-on-surface">Alumno: <strong class="text-primary font-bold">Mateo Fernández</strong></span>
+</div>
+<span class="bg-surface-container-lowest text-primary font-mono text-[11px] px-2 py-0.5 rounded border border-outline-variant font-semibold">
+            5to B • Ref: #0421
+          </span>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 3: SELECCIÓN DE FOTOS IMPRESAS (TARJETAS EDITORIALES) -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Copias Seleccionadas (3 fotos)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Formato único oficial 15x21 cm en papel fotográfico profesional. Configurá cantidades y acabado.</p>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-primary px-2.5 py-1 rounded-full font-bold">
+          4 Copias Totales
+        </span>
+</div>
+<!-- FOTO 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-3 shadow-sm flex flex-col gap-3">
+<div class="flex gap-3">
+<!-- Thumbnail con watermark institucional -->
+<div class="relative w-24 h-32 flex-shrink-0 bg-surface-container-high rounded overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A distinguished school portrait photograph of a polite high school male student wearing a navy formal school uniform blazer and striped tie. Soft studio photographic strobe lighting, pristine warm-toned neutral background, authentic heirloom school memory aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDpfU1iBz9X-fDngGKWdM08dNjAQyhmeFRIediVK1qQB5o-nTDJCNxJ5yG_4XTnzhq1M3l45jtSAjreCwZ8eQWzakciH14Jw-g6KcT6KGmWRLZZ8a79hE9AoVRV8YlNptP1qcLtadfiluedTzkx_NEKl1TAZ5glsWRlcRkGaFq-JZFs2qPGsCJ54sE7OLIR7EwQveVnVLJYVo4eQ5arA1Udp-e2DYfeLD0Iul0BcbdBzoh6MOjDlwt"/>
+<div class="absolute inset-0 watermark-overlay flex items-center justify-center">
+<span class="text-[9px] text-white/70 font-mono tracking-widest rotate-[-30deg] uppercase font-bold drop-shadow">BDS 2026 #0421</span>
+</div>
+<span class="absolute top-1 left-1 bg-primary text-surface-container-lowest text-[10px] font-mono px-1 rounded">#0421</span>
+</div>
+<!-- Controles de la Foto 1 -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">Retrato Oficial con Toga &amp; Beca</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Toma en set de estudio institucional</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Medida oficial</span>
+<div class="w-full text-xs font-semibold bg-surface-container-low border border-outline-variant rounded p-1.5 text-primary flex items-center justify-between">
+<span class="">15x21 cm</span>
+<span class="font-mono text-[11px] text-secondary">$7.000 c/u</span>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Acabado</label>
+<select class="w-full text-xs font-body-sm bg-surface-bright border border-outline-variant rounded p-1.5 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="">Mate Heirloom</option>
+<option>Brillo Clásico</option>
+</select>
+</div>
+</div>
+<!-- Cantidad & Precio parcial -->
+<div class="flex items-center justify-between pt-2 border-t border-surface-container mt-2">
+<div class="flex items-center space-x-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cantidad:</span>
+<div class="flex items-center border border-outline-variant rounded bg-surface-bright">
+<button class="w-6 h-6 flex items-center justify-center text-primary hover:bg-surface-container text-sm font-bold" type="button">-</button>
+<span class="w-6 text-center text-xs font-bold text-primary">2</span>
+<button class="w-6 h-6 flex items-center justify-center text-primary hover:bg-surface-container text-sm font-bold" type="button">+</button>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">$14.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- FOTO 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-3 shadow-sm flex flex-col gap-3">
+<div class="flex gap-3">
+<div class="relative w-24 h-32 flex-shrink-0 bg-surface-container-high rounded overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="An authentic ceremonial moment capturing the school student receiving a graduation diploma scroll on stage from the headmaster. Rich deep stage curtains, warm ambient stage lighting, elegant high school graduation ceremony." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDchsoBTU7GC-1U9hzTfyEf26V7lW8DuThKAsp6-nG4Si_YTgO8zP1Hn_dsmBxG1F-gXMHI1syMjBX-Rw7AuP887uMhJg0BYfAsiy5lPZa9Rn1dSH22_BaK3k7RHBUauhjHPNkceaqt9gAWR6rBiIOYxzL5n2VtymSmub-kmnCSSCHjco8jWYTGaPD6tuqfNbPBX8napbmgCSGgeLinmWG57Yxw_e80yVJGKVFVBbDOwev2RaIN8PFY"/>
+<div class="absolute inset-0 watermark-overlay flex items-center justify-center">
+<span class="text-[9px] text-white/70 font-mono tracking-widest rotate-[-30deg] uppercase font-bold drop-shadow">BDS 2026 #0422</span>
+</div>
+<span class="absolute top-1 left-1 bg-primary text-surface-container-lowest text-[10px] font-mono px-1 rounded">#0422</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">Entrega de Diploma en Escenario</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Momento formal con directivos</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Medida oficial</span>
+<div class="w-full text-xs font-semibold bg-surface-container-low border border-outline-variant rounded p-1.5 text-primary flex items-center justify-between">
+<span class="">15x21 cm</span>
+<span class="font-mono text-[11px] text-secondary">$7.000</span>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Acabado</label>
+<select class="w-full text-xs font-body-sm bg-surface-bright border border-outline-variant rounded p-1.5 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="">Mate Heirloom</option>
+<option>Brillo Clásico</option>
+</select>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-container mt-2">
+<div class="flex items-center space-x-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cantidad:</span>
+<div class="flex items-center border border-outline-variant rounded bg-surface-bright">
+<button class="w-6 h-6 flex items-center justify-center text-primary hover:bg-surface-container text-sm font-bold" type="button">-</button>
+<span class="w-6 text-center text-xs font-bold text-primary">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-primary hover:bg-surface-container text-sm font-bold" type="button">+</button>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">$7.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- FOTO 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-3 shadow-sm flex flex-col gap-3">
+<div class="flex gap-3">
+<div class="relative w-24 h-32 flex-shrink-0 bg-surface-container-high rounded overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="An emotional family moment after the graduation ceremony, showing the student smiling while embracing proud parents in the decorated school courtyard. Natural late afternoon warm sunlight, heartfelt candid celebratory expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIq-7oZhDL3gSHEokCygq7iJjIv_f09eBEQgX_np5qrm2NsxtPBpF8pR2xprkRKfy45qR0IFYOJTVdbg_1zkegeXILG4U5NMh5XH1Ar0wLMKcM3a73mpTE5dLR3kzU1ss7H7lXEXfzuB3agqbjj5eu8F0D8z747sV69xb-jcCQkrrOSalCQIb9T5ec9HzMsAQ96OXiGqLKo_YrZsIO36TFQJRHVgatfwj-8nhEay9xUqdR4cbWEUQ"/>
+<div class="absolute inset-0 watermark-overlay flex items-center justify-center">
+<span class="text-[9px] text-white/70 font-mono tracking-widest rotate-[-30deg] uppercase font-bold drop-shadow">BDS 2026 #0425</span>
+</div>
+<span class="absolute top-1 left-1 bg-primary text-surface-container-lowest text-[10px] font-mono px-1 rounded">#0425</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">Abrazo Emocional con Familia</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Patio central tras la ceremonia</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Medida oficial</span>
+<div class="w-full text-xs font-semibold bg-surface-container-low border border-outline-variant rounded p-1.5 text-primary flex items-center justify-between">
+<span class="">15x21 cm</span>
+<span class="font-mono text-[11px] text-secondary">$7.000</span>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Acabado</label>
+<select class="w-full text-xs font-body-sm bg-surface-bright border border-outline-variant rounded p-1.5 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="">Mate Heirloom</option>
+<option>Brillo Clásico</option>
+</select>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-container mt-2">
+<div class="flex items-center space-x-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cantidad:</span>
+<div class="flex items-center border border-outline-variant rounded bg-surface-bright">
+<button class="w-6 h-6 flex items-center justify-center text-primary hover:bg-surface-container text-sm font-bold" type="button">-</button>
+<span class="w-6 text-center text-xs font-bold text-primary">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-primary hover:bg-surface-container text-sm font-bold" type="button">+</button>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">$7.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Botón Agregar Más Fotos -->
+<a class="w-full py-2.5 px-4 bg-surface-container-lowest border border-dashed border-outline hover:border-primary text-primary rounded-lg flex items-center justify-center space-x-2 font-label-md text-label-md transition-colors" href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html"><span class="material-symbols-outlined text-base">add_photo_alternate</span><span class="">Sumar más fotos de la galería</span></a>
+</section>
+<!-- SECCIÓN 4: DATOS DEL CLIENTE / TUTOR Y ENTREGA -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-4">
+<div class="border-b border-surface-container pb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Datos de Contacto &amp; Entrega</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Para rotular el sobre de laboratorio y coordinar entrega</p>
+</div>
+<div class="space-y-3">
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1">Nombre y Apellido del Tutor Responsable</label>
+<div class="relative">
+<input class="w-full font-body-md text-body-md bg-surface-bright border border-outline-variant rounded px-3 py-2 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary pl-9" id="inputTutor" type="text" value="Mariana Gómez"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-lg">person</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1">WhatsApp de Contacto</label>
+<div class="relative">
+<input class="w-full font-body-md text-body-md bg-surface-bright border border-outline-variant rounded px-3 py-2 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary pl-9" id="inputTel" type="tel" value="+54 9 261 317-5222"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-lg">phone_android</span>
+</div>
+</div>
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1">Correo Electrónico</label>
+<div class="relative">
+<input class="w-full font-body-md text-body-md bg-surface-bright border border-outline-variant rounded px-3 py-2 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary pl-9" type="email" value="mariana.gomez@gmail.com"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-lg">mail</span>
+</div>
+</div>
+</div>
+<!-- Opciones de Entrega -->
+<div class="pt-2">
+<label class="font-label-md text-label-md text-on-surface block mb-2 font-bold">Modalidad de Recepción</label>
+<div class="space-y-2">
+<!-- Opción A: Colegio (Seleccionada) -->
+<label class="flex items-start p-3 bg-surface-container-low border-2 border-primary-container rounded-lg cursor-pointer transition-all">
+<input checked="" class="mt-1 text-primary focus:ring-primary h-4 w-4" name="modalidad_entrega" type="radio"/>
+<div class="ml-3 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">Retiro en Secretaría del Colegio</span>
+<span class="bg-surface-container text-primary font-bold text-[11px] px-2 py-0.5 rounded">GRATIS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Sobre lacrado con nombre del alumno listo en 5 días hábiles.</p>
+<div class="mt-2 bg-surface-container-lowest p-2 rounded border border-outline-variant">
+<span class="font-label-sm text-label-sm text-primary block">Turno escolar asignado:</span>
+<p class="font-body-sm text-body-sm text-on-surface">Turno Mañana (Lunes a Viernes de 8:00 a 13:00 hs)</p>
+</div>
+</div>
+</label>
+<!-- Opción B: A Domicilio -->
+<label class="flex items-start p-3 bg-surface-bright border border-outline-variant hover:border-outline rounded-lg cursor-pointer transition-all opacity-80">
+<input class="mt-1 text-primary focus:ring-primary h-4 w-4" name="modalidad_entrega" type="radio"/>
+<div class="ml-3 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Envío Seguro a Domicilio</span>
+<span class="text-on-surface-variant font-mono text-xs">+$2.800</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Despacho postal con carpeta rígida protectora antiflexión.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Notas al fotógrafo -->
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1">
+            Dedicatoria en dorso o nota para el fotógrafo <span class="text-outline text-xs font-normal">(Opcional)</span>
+</label>
+<textarea class="w-full font-body-sm text-body-sm bg-surface-bright border border-outline-variant rounded p-2.5 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Ej: Imprimir sin recorte en los bordes. Agregar inscripción 'Colación 2026'..." rows="2"></textarea>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 5: CÓDIGO PROMOCIONAL / CUPÓN APLICADO (ESTILO MERCADO LIBRE) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary text-xl">loyalty</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Cupón de Descuento</h2>
+</div>
+<!-- Input form container -->
+<div class="flex space-x-2" id="cuponFormContainer">
+<div class="relative flex-1">
+<input autocomplete="off" class="w-full uppercase font-mono font-semibold tracking-wider text-sm bg-surface-bright border border-outline-variant rounded px-3 py-2 text-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary pl-9 placeholder:normal-case placeholder:font-sans placeholder:font-normal placeholder:tracking-normal placeholder:text-on-surface-variant/60" id="inputCupon" placeholder="Ingresá tu cupón (ej: PROMO-FAMILIA-20)" type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-secondary text-lg">local_activity</span>
+</div>
+<button class="bg-primary text-surface-container-lowest px-4 py-2 rounded font-label-md text-label-md hover:bg-primary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed" id="btnAplicarCupon" onclick="aplicarCupon()" type="button">
+  Aplicar
+</button>
+</div>
+<!-- Feedback de cupón activo (estilo Mercado Libre) -->
+<div class="hidden flex items-center justify-between bg-emerald-50 text-emerald-900 p-3 rounded-lg border border-emerald-300" id="cuponSuccessBox">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-emerald-600 text-lg flex-shrink-0" style='font-variation-settings: "FILL" 1;'>check_circle</span>
+<span class="font-body-sm text-body-sm font-medium">
+      ¡Cupón aplicado con éxito! <strong class="text-emerald-800 font-bold">20% de descuento (-$5.600)</strong>
+</span>
+</div>
+<button class="text-xs font-semibold text-emerald-800 hover:text-emerald-950 underline ml-2 flex-shrink-0" onclick="eliminarCupon()" type="button">
+    Eliminar
+  </button>
+</div>
+<!-- Feedback de cupón erróneo / expirado (estilo Mercado Libre) -->
+<div class="hidden flex items-center space-x-2 bg-red-50 text-red-800 p-2.5 rounded-lg border border-red-200" id="cuponErrorBox">
+<span class="material-symbols-outlined text-red-600 text-base flex-shrink-0" style='font-variation-settings: "FILL" 1;'>error</span>
+<span class="font-body-sm text-body-sm font-medium">
+    El cupón ingresado no es válido o ha vencido. Verificá que esté bien escrito.
+  </span>
+</div>
+</section>
+<!-- SECCIÓN 6: RESUMEN DE COTIZACIÓN EN TIEMPO REAL -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<div class="flex items-center justify-between border-b border-surface-container pb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Resumen de Cotización</h2>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-mono">Valores Oficiales</span>
+</div>
+<div class="space-y-2 font-body-sm text-body-sm"><div class="flex justify-between text-on-surface">
+<span class="">Subtotal Copias de Laboratorio (4 copias a $7.000)</span>
+<span class="font-mono font-medium">$28.000</span>
+</div>
+<!-- Fila de Descuento (dinámica) -->
+<div class="hidden flex justify-between text-secondary" id="filaDescuento">
+<span class="flex items-center">
+<span class="material-symbols-outlined text-xs mr-1">sell</span>
+  Descuento Cupón PROMO-FAMILIA-20 (-20%)
+</span>
+<span class="font-mono font-bold">-$5.600</span>
+</div>
+<div class="flex justify-between text-on-surface">
+<span class="">Costo de Entrega (Retiro en Secretaría)</span>
+<span class="font-mono text-primary font-bold uppercase text-[11px] bg-surface-container px-1.5 py-0.5 rounded">Gratis</span>
+</div>
+<div class="h-px bg-outline-variant my-2"></div>
+<div class="flex justify-between items-baseline pt-1">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary font-bold block">Total Final a Pagar</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sin recargos ocultos • Precio final</span>
+</div>
+<div class="text-right">
+<span class="text-xs text-on-surface-variant block uppercase font-mono">ARS</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-extrabold tracking-tight" id="labelPrecioTotal">$28.000</span>
+</div>
+</div></div>
+</section>
+<!-- SECCIÓN 7: VISTA PREVIA DEL MENSAJE DE WHATSAPP -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-emerald-600 text-xl">chat</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Vista Previa de tu Pedido</h2>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded">Formato WhatsApp</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Este es el mensaje verificado que se transferirá directamente a la línea del estudio fotográfico:
+      </p>
+<!-- Simulación de Burbuja de WhatsApp -->
+<div class="bg-[#e7fedb] border border-[#bbf7a3] rounded-lg p-3.5 shadow-sm text-[#0d1c2e] font-mono text-[12px] leading-relaxed relative"><div class="absolute -top-2 left-4 w-3 h-3 bg-[#e7fedb] border-t border-l border-[#bbf7a3] transform rotate-45"></div>
+<p class="mb-2">¡Hola! Quiero encargar copias impresas para el acto de <strong>Belgrano Day School</strong>.</p>
+<p class="mb-1"><strong>*Alumno:*</strong> Mateo Fernández (#0421 - 5to B)</p>
+<div class="my-2 py-1.5 border-y border-dashed border-[#86efac]">
+<p class="font-bold text-primary mb-1">*Fotos seleccionadas (Formato 15x21 cm - $7.000 c/u):*</p>
+<ul class="space-y-0.5 pl-2">
+<li class="">• #0421: 2x Copia 15x21cm Mate ($14.000)</li>
+<li class="">• #0422: 1x Copia 15x21cm Mate ($7.000)</li>
+<li class="">• #0425: 1x Copia 15x21cm Mate ($7.000)</li>
+</ul>
+</div>
+<p class=""><strong>*Tutor:*</strong> <span id="previewTutor">Mariana Gómez</span> (<span id="previewTel">+54 9 261 317-5222</span>)</p>
+<p class=""><strong>*Entrega:*</strong> Retiro en Secretaría (Turno Mañana)</p>
+<p class="hidden text-secondary font-bold" id="previewCuponRow"><strong>*Cupón:*</strong> PROMO-FAMILIA-20 (-20%)</p>
+<div class="mt-2 pt-1 border-t border-[#86efac] flex justify-between items-center text-primary font-bold">
+<span class="">*Total a Pagar:*</span>
+<span class="text-sm" id="previewTotalVal">$28.000 ARS</span>
+</div>
+<div class="text-right text-[10px] text-gray-500 mt-1 flex items-center justify-end space-x-1">
+<span class="">Listo para enviar</span>
+<span class="material-symbols-outlined text-[12px] text-emerald-600">done_all</span>
+</div></div>
+</section>
+<!-- SECCIÓN 8: BOTONES DE ACCIÓN PRINCIPAL (CALL TO ACTION) -->
+<section class="space-y-3 pt-2">
+<!-- Botón Primario: WhatsApp Oficial -->
+<a class="w-full bg-[#15803d] hover:bg-[#166534] text-white p-3.5 rounded-lg font-title-md text-title-md flex items-center justify-center space-x-2.5 shadow-md active:scale-[0.98] transition-transform cursor-pointer" href="https://wa.me/5492613175222" id="btnWhatsAppMain" onclick="enviarPedidoWhatsApp(event)" target="_blank">
+<span class="material-symbols-outlined text-2xl">send</span>
+<span class="font-bold">Enviar Pedido por WhatsApp</span>
+</a>
+<p class="font-body-sm text-body-sm text-center text-on-surface-variant px-4">
+        Se abrirá tu app con el mensaje listo. El fotógrafo te responderá inmediatamente con el link de pago o confirmación de entrega en secretaría.
+      </p>
+<!-- Botón Secundario Alternativo -->
+<div class="pt-2 text-center">
+<button class="w-full bg-surface-container-lowest border border-outline hover:border-primary text-primary py-2.5 px-4 rounded font-label-md text-label-md flex items-center justify-center space-x-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">credit_card</span>
+<span class="">O pagar directamente con Tarjeta / Mercado Pago</span>
+</button>
+</div>
+</section>
+<!-- SECCIÓN 9: SELLO DE GARANTÍA EDITORIAL & PRIVACIDAD -->
+<section class="bg-surface-container-low border border-surface-variant rounded-lg p-4 text-center space-y-2">
+<div class="flex justify-center items-center space-x-1.5 text-primary">
+<span class="material-symbols-outlined text-xl" style='font-variation-settings: "FILL" 1;'>workspace_premium</span>
+<span class="font-headline-sm text-headline-sm font-bold">Garantía de Laboratorio Escolar</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md mx-auto">
+        Revelado químico auténtico garantizado por 100 años sin pérdida de color ni decoloración ultravioleta. Control de calidad individual por fotógrafos matriculados.
+      </p>
+<div class="flex justify-center space-x-4 pt-1 text-xs text-outline font-body-sm">
+<span class="flex items-center"><span class="material-symbols-outlined text-sm mr-1">lock</span> Privacidad Estudiantil</span>
+<span class="flex items-center"><span class="material-symbols-outlined text-sm mr-1">verified_user</span> Protocolo Escolar Oficial</span>
+</div>
+</section>
+</main>
+<!-- BARRA DE COMPRA RÁPIDA / BOTTOM DOCKED ACTION BAR (MOBILE FOCUS) -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant shadow-[0_-2px_10px_rgba(23,37,84,0.08)] px-gutter-mobile py-2.5 md:hidden">
+<div class="flex items-center justify-between gap-3">
+<div>
+<span class="text-[11px] text-on-surface-variant block font-body-sm">Total (4 fotos):</span>
+<span class="font-title-md text-title-md text-primary font-bold leading-tight" id="bottomBarTotal">$28.000</span>
+</div>
+<a class="flex-1 bg-[#15803d] text-white py-2.5 px-3 rounded-lg flex items-center justify-center space-x-2 font-label-md text-label-md shadow active:scale-95 transition-transform cursor-pointer" href="https://wa.me/5492613175222" id="btnWhatsAppBottom" onclick="enviarPedidoWhatsApp(event)" target="_blank">
+<span class="material-symbols-outlined text-lg">chat</span>
+<span class="">Pedir por WhatsApp</span>
+</a>
+</div>
+</div>
+<script>
+  // Estado global del cupón
+  var cuponAplicado = false;
+  var codigoCuponActivo = '';
+  var cuponesValidos = ['PROMO-FAMILIA-20', 'PROMO20', 'FAMILIA20'];
+
+  function normalizarCodigo(str) {
+    return (str || '').replace(/\s+/g, '').toUpperCase();
+  }
+
+  function aplicarCupon() {
+    var input = document.getElementById('inputCupon');
+    var errorBox = document.getElementById('cuponErrorBox');
+    var successBox = document.getElementById('cuponSuccessBox');
+    var formContainer = document.getElementById('cuponFormContainer');
+
+    var rawValue = input ? input.value : '';
+    var code = normalizarCodigo(rawValue);
+
+    if (cuponesValidos.indexOf(code) !== -1) {
+      // Cupón Válido
+      cuponAplicado = true;
+      codigoCuponActivo = 'PROMO-FAMILIA-20';
+      
+      // Limpiar clases de error
+      input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+      input.classList.add('border-outline-variant');
+      errorBox.classList.add('hidden');
+      
+      // Mostrar éxito y ocultar input
+      formContainer.classList.add('hidden');
+      successBox.classList.remove('hidden');
+
+      actualizarTodo();
+    } else {
+      // Cupón Inválido
+      cuponAplicado = false;
+      codigoCuponActivo = '';
+      
+      input.classList.remove('border-outline-variant');
+      input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+      errorBox.classList.remove('hidden');
+      successBox.classList.add('hidden');
+      
+      actualizarTodo();
+    }
+  }
+
+  function eliminarCupon() {
+    cuponAplicado = false;
+    codigoCuponActivo = '';
+
+    var input = document.getElementById('inputCupon');
+    var errorBox = document.getElementById('cuponErrorBox');
+    var successBox = document.getElementById('cuponSuccessBox');
+    var formContainer = document.getElementById('cuponFormContainer');
+
+    if (input) {
+      input.value = '';
+      input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+      input.classList.add('border-outline-variant');
+    }
+    errorBox.classList.add('hidden');
+    successBox.classList.add('hidden');
+    formContainer.classList.remove('hidden');
+
+    actualizarTodo();
+    if (input) input.focus();
+  }
+
+  function actualizarTodo() {
+    var filaDescuento = document.getElementById('filaDescuento');
+    var labelPrecioTotal = document.getElementById('labelPrecioTotal');
+    var bottomBarTotal = document.getElementById('bottomBarTotal');
+    var previewCuponRow = document.getElementById('previewCuponRow');
+    var previewTotalVal = document.getElementById('previewTotalVal');
+    var previewTutor = document.getElementById('previewTutor');
+    var previewTel = document.getElementById('previewTel');
+
+    var tutorInput = document.getElementById('inputTutor');
+    var telInput = document.getElementById('inputTel');
+    var tutorNombre = tutorInput && tutorInput.value.trim() ? tutorInput.value.trim() : 'Mariana Gómez';
+    var tutorTel = telInput && telInput.value.trim() ? telInput.value.trim() : '+54 9 261 317-5222';
+
+    if (previewTutor) previewTutor.textContent = tutorNombre;
+    if (previewTel) previewTel.textContent = tutorTel;
+
+    if (cuponAplicado) {
+      if (filaDescuento) filaDescuento.classList.remove('hidden');
+      if (labelPrecioTotal) labelPrecioTotal.textContent = '$22.400';
+      if (bottomBarTotal) bottomBarTotal.textContent = '$22.400';
+      if (previewCuponRow) previewCuponRow.classList.remove('hidden');
+      if (previewTotalVal) previewTotalVal.textContent = '$22.400 ARS';
+    } else {
+      if (filaDescuento) filaDescuento.classList.add('hidden');
+      if (labelPrecioTotal) labelPrecioTotal.textContent = '$28.000';
+      if (bottomBarTotal) bottomBarTotal.textContent = '$28.000';
+      if (previewCuponRow) previewCuponRow.classList.add('hidden');
+      if (previewTotalVal) previewTotalVal.textContent = '$28.000 ARS';
+    }
+
+    actualizarEnlacesWhatsApp();
+  }
+
+  function generarMensajeWhatsApp() {
+    var tutorInput = document.getElementById('inputTutor');
+    var telInput = document.getElementById('inputTel');
+
+    var tutorNombre = tutorInput && tutorInput.value.trim() ? tutorInput.value.trim() : 'Mariana Gómez';
+    var tutorTel = telInput && telInput.value.trim() ? telInput.value.trim() : '+54 9 261 317-5222';
+
+    var lineas = [
+      '¡Hola! Quiero encargar copias impresas para el acto de Belgrano Day School.',
+      '*Alumno:* Mateo Fernández (#0421 - 5to B)',
+      '',
+      '*Fotos seleccionadas (Formato 15x21 cm - $7.000 c/u):*',
+      '• #0421: 2x Copia 15x21cm Mate ($14.000)',
+      '• #0422: 1x Copia 15x21cm Mate ($7.000)',
+      '• #0425: 1x Copia 15x21cm Mate ($7.000)',
+      '',
+      '*Tutor:* ' + tutorNombre + ' (' + tutorTel + ')',
+      '*Entrega:* Retiro en Secretaría (Turno Mañana)'
+    ];
+
+    if (cuponAplicado) {
+      lineas.push('*Cupón:* PROMO-FAMILIA-20 (-20%)');
+      lineas.push('*Total a Pagar:* $22.400 ARS');
+    } else {
+      lineas.push('*Total a Pagar:* $28.000 ARS');
+    }
+
+    var texto = lineas.join('\n');
+    return 'https://wa.me/5492613175222?text=' + encodeURIComponent(texto);
+  }
+
+  function enviarPedidoWhatsApp(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    var url = generarMensajeWhatsApp();
+    window.open(url, '_blank');
+  }
+
+  function actualizarEnlacesWhatsApp() {
+    var url = generarMensajeWhatsApp();
+    var btnMain = document.getElementById('btnWhatsAppMain');
+    var btnBottom = document.getElementById('btnWhatsAppBottom');
+    if (btnMain) btnMain.href = url;
+    if (btnBottom) btnBottom.href = url;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var inputTutor = document.getElementById('inputTutor');
+    var inputTel = document.getElementById('inputTel');
+    var inputCupon = document.getElementById('inputCupon');
+
+    if (inputTutor) inputTutor.addEventListener('input', actualizarTodo);
+    if (inputTel) inputTel.addEventListener('input', actualizarTodo);
+
+    if (inputCupon) {
+      inputCupon.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          aplicarCupon();
+        }
+      });
+      // Limpiar estilo rojo al tipear de nuevo
+      inputCupon.addEventListener('input', function() {
+        var errorBox = document.getElementById('cuponErrorBox');
+        if (errorBox && !errorBox.classList.contains('hidden')) {
+          errorBox.classList.add('hidden');
+          inputCupon.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+          inputCupon.classList.add('border-outline-variant');
+        }
+      });
+    }
+
+    actualizarTodo();
+  });
+</script>
+</body></html>

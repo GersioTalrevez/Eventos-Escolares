@@ -1,0 +1,613 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EVENTOS Escolar - Panel de Fotógrafo Profesional</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#ffb68e",
+            "surface-container-lowest": "#ffffff",
+            "secondary-container": "#fd8a42",
+            "secondary-fixed": "#ffdbca",
+            "on-surface": "#0d1c2e",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#071747",
+            "on-tertiary-fixed": "#001d31",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#eff4ff",
+            "surface-dim": "#ccdbf3",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "primary": "#000f3f",
+            "inverse-on-surface": "#eaf1ff",
+            "outline-variant": "#c6c5d0",
+            "tertiary": "#001626",
+            "tertiary-container": "#002b45",
+            "on-background": "#0d1c2e",
+            "outline": "#767680",
+            "on-error": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#2f96db",
+            "tertiary-fixed": "#cce5ff",
+            "on-secondary-fixed-variant": "#763300",
+            "surface-container": "#e6eeff",
+            "primary-container": "#172554",
+            "secondary": "#9b4500",
+            "on-primary-fixed-variant": "#374475",
+            "on-secondary-container": "#682c00",
+            "background": "#f8f9ff",
+            "on-primary-container": "#808dc2",
+            "surface-container-high": "#dce9ff",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#b7c4fd",
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-surface-variant": "#45464f",
+            "on-secondary-fixed": "#331200",
+            "surface-container-highest": "#d5e3fc",
+            "surface-tint": "#4f5c8e",
+            "tertiary-fixed-dim": "#93ccff",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#dce1ff",
+            "inverse-surface": "#233144",
+            "surface": "#f8f9ff",
+            "inverse-primary": "#b7c4fd",
+            "surface-variant": "#d5e3fc"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-2xs": "0.25rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "space-3xs": "0.125rem",
+            "space-xs": "0.5rem",
+            "space-xl": "2rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-3xl": "4rem",
+            "gutter-desktop": "1.5rem",
+            "space-md": "1rem",
+            "container-max": "80rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Manrope", "sans-serif"],
+            "display-hero-mobile": ["Source Serif 4", "serif"],
+            "headline-lg-mobile": ["Source Serif 4", "serif"],
+            "headline-sm": ["Source Serif 4", "serif"],
+            "display-hero": ["Source Serif 4", "serif"],
+            "label-sm": ["Manrope", "sans-serif"],
+            "headline-lg": ["Source Serif 4", "serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "headline-md": ["Source Serif 4", "serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "title-md": ["Manrope", "sans-serif"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .watermark-grid {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.15) 0,
+        rgba(255, 255, 255, 0.15) 15px,
+        transparent 15px,
+        transparent 70px
+      );
+    }
+    /* Anti right click context styling */
+    .proof-layer {
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TOP APP BAR -->
+<header class="bg-surface sticky top-0 z-40 shadow-sm border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
+<!-- Left Anchor & Institution Selector -->
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="photo_camera_back" data-weight="fill" style="font-variation-settings: 'FILL' 1;">photo_camera_back</span>
+<span class="text-title-md font-title-md font-bold tracking-tight text-primary">EVENTOS Escolar</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant hidden lg:block"></div>
+<!-- College / Event Selector Dropdown -->
+<div class="hidden sm:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-2xs rounded-lg border border-outline-variant hover:bg-surface-container transition-colors duration-150 cursor-pointer">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="school">school</span>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant leading-none">Institución Activa</span>
+<span class="text-body-md font-body-md font-semibold text-primary leading-tight">Belgrano Day School - Egresados 2026</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] ml-space-xs" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+<!-- Navigation Links from JSON (Lotes y Drive is mapped active for this screen) -->
+<nav class="hidden xl:flex items-center gap-space-lg">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors duration-150" href="EVENTOS - Directorio Escolar.html">Colegios</a>
+<a class="border-b-2 border-primary text-primary font-label-md text-label-md pb-1 flex items-center gap-1" href="#">
+          Lotes y Drive
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors duration-150" href="#">Marcas de Agua</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors duration-150 flex items-center gap-1" href="#">
+          Pedidos WhatsApp
+          <span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-[10px] font-bold">86</span>
+</a>
+</nav>
+<!-- Trailing Action Area & Integrations -->
+<div class="flex items-center gap-space-sm">
+<!-- Google Drive Connected Pill -->
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="cloud_done">cloud_done</span>
+<span class="text-label-sm font-label-sm text-primary hidden md:inline">Google Drive Conectado</span>
+</div>
+<button class="p-space-xs text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors duration-150 relative" title="Sincronización en curso">
+<span class="material-symbols-outlined text-[20px]" data-icon="cloud_sync">cloud_sync</span>
+</button>
+<button class="p-space-xs text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors duration-150 relative" title="Notificaciones">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="p-space-xs text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors duration-150" title="Configuración">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+<!-- Trailing Primary Action -->
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-space-xs rounded-lg font-label-md text-label-md flex items-center gap-space-xs transition-all duration-200 active:scale-[0.98] shadow-sm ml-space-2xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="publish">publish</span>
+<span class="">Publicar Galería</span>
+</button>
+<!-- Profile Avatar -->
+<div class="flex items-center ml-space-xs pl-space-xs border-l border-outline-variant">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="Close-up professional portrait of a school photographer in an archival studio setting with subtle warm navy lighting, wearing a minimalist black turtleneck against an editorial studio backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDidWl-horFzLhxzXCk5iSIf5_VCbBOp0s007c5aV3vQ8aThlM6Nv4-XZUKEnIq15dSzzd2DYYXsPyI72URQUt6u12CDGedYEqwmwzBdk3qUuR6b4kOje6m-CPpxcfDcNGgO-MOFfgnnpyurTIxdXJQQfvdNlFAvRNrB2OoEHi5SFJli25SIcxVK-z46PqNxnhjCdZQQVvUaaKiLdrJVEje32BvwsXzm904s151HtcUs7j69sGKjX4x">
+</div>
+</div>
+</div>
+</header>
+<!-- BODY CONTENT AREA (SIDEBAR + MAIN CANVAS + RIGHT DETAIL PANEL) -->
+<div class="flex-1 flex max-w-container-max w-full mx-auto">
+<!-- LEFT SIDEBAR -->
+<aside class="w-64 bg-surface-container-low border-r border-outline-variant hidden md:flex flex-col justify-between p-space-md shrink-0">
+<!-- Top Section -->
+<div class="flex flex-col gap-space-md">
+<!-- Header Institution Badge -->
+<div class="flex items-center gap-space-sm p-space-xs rounded-lg bg-surface-container-lowest border border-outline-variant">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-surface-bright flex items-center justify-center font-bold text-headline-sm">
+            BDS
+          </div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-title-md font-title-md font-semibold text-primary truncate leading-tight">Belgrano Day School</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant truncate">Sincronización Drive activa</span>
+</div>
+</div>
+<!-- Quick Action CTA -->
+<button class="w-full bg-surface-container-highest hover:bg-surface-container text-primary font-label-md text-label-md py-space-xs px-space-sm rounded-lg border border-outline-variant flex items-center justify-center gap-space-xs transition-colors duration-150">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+<span class="">Nuevo Lote Escolar</span>
+</button>
+<!-- Main Navigation Tabs -->
+<nav class="flex flex-col gap-1 mt-space-xs">
+<!-- Active Tab: Explorador de Lotes -->
+<a class="flex items-center gap-space-sm bg-surface-container-highest text-primary rounded-lg px-space-md py-space-sm font-label-md text-label-md font-semibold" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="folder_open" data-weight="fill" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="">Explorador de Lotes</span>
+</a>
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="EVENTOS - Asistente de Conexión Google Drive.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="sync">sync</span>
+<span class="">Sincronizador Drive</span>
+</a>
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="branding_watermark">branding_watermark</span>
+<span class="">Editor de Marca de Agua</span>
+</a>
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="photo_library">photo_library</span>
+<span class="">Galerías Publicadas</span>
+</a>
+<!-- WhatsApp Orders with Pricing note -->
+<a class="flex items-center justify-between text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150 group" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary" data-icon="local_printshop">local_printshop</span>
+<span class="">Pedidos Impresos</span>
+</div>
+<span class="text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded">$7.000</span>
+</a>
+<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg px-space-md py-space-sm font-body-md text-body-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="receipt_long">receipt_long</span>
+<span class="">Facturación Mercado Pago</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Utility / Integration Links -->
+<div class="pt-space-md border-t border-outline-variant flex flex-col gap-1">
+<div class="px-space-md py-space-2xs text-[11px] font-bold text-outline uppercase tracking-wider">Monitoreo Técnico</div>
+<a class="flex items-center justify-between text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg px-space-md py-space-xs font-body-sm text-body-sm transition-colors duration-150" href="#">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
+<span class="">Lightroom Bridge</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+</a>
+<a class="flex items-center gap-space-xs text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg px-space-md py-space-xs font-body-sm text-body-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+<span class="">Soporte WhatsApp</span>
+</a>
+</div>
+</aside>
+<!-- CENTRAL MAIN WORKSPACE -->
+<main class="flex-1 p-space-lg overflow-y-auto max-w-[calc(100%-16rem)]">
+<!-- 1. BREADCRUMBS & ACTIVE DRIVE DIRECTORY HEADER -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md mb-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant mb-space-2xs flex-wrap">
+<span class="material-symbols-outlined text-[16px] text-tertiary" data-icon="folder_special">folder_special</span>
+<span class="">Mi Unidad</span>
+<span class="text-outline">/</span>
+<span class="">Eventos 2026</span>
+<span class="text-outline">/</span>
+<span class="">Colegios</span>
+<span class="text-outline">/</span>
+<span class="">Belgrano Day School</span>
+<span class="text-outline">/</span>
+<span class="font-semibold text-primary">01. Acto de Colación</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<h1 class="text-headline-sm font-headline-sm text-primary">01. Acto de Colación - Egresados 2026</h1>
+<span class="bg-surface-container text-primary text-label-sm font-label-sm px-space-xs py-0.5 rounded border border-outline-variant font-medium">Lote Principal</span>
+</div>
+</div>
+<!-- Lightroom Live Sync Indicator & Refresh Actions -->
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-[18px] text-primary animate-spin" data-icon="refresh">refresh</span>
+<div class="flex flex-col text-left">
+<span class="text-[11px] text-on-surface-variant font-medium leading-none">Adobe Lightroom Classic</span>
+<span class="text-label-sm font-label-sm text-primary leading-tight">Sincronizando archivo 1.420 / 1.420</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-space-md py-space-xs rounded-lg text-label-md font-label-md hover:bg-primary-container transition-colors duration-150 flex items-center gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="sync">sync</span>
+<span class="">Sincronizar ahora con Drive</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. METRICS & PROCESSING STATUS BANNER -->
+<section class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-2xs">
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Fotos Sincronizadas</span>
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_library">photo_library</span>
+</div>
+<div class="text-headline-md font-headline-md text-primary font-bold">1.420</div>
+<div class="text-[11px] text-emerald-700 flex items-center gap-1 font-medium mt-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+            100% verificado en Drive
+          </div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-2xs">
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Volumen Procesado</span>
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="hard_drive">hard_drive</span>
+</div>
+<div class="text-headline-md font-headline-md text-primary font-bold">14.2 GB</div>
+<div class="text-[11px] text-on-surface-variant font-medium mt-1">
+            Formato RAW + DNG optimizado
+          </div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-2xs">
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Marcas de Agua</span>
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user">verified_user</span>
+</div>
+<div class="text-headline-md font-headline-md text-primary font-bold">EVENTOS #0421</div>
+<div class="text-[11px] text-on-surface-variant font-medium mt-1">
+            Diagonal dinámica activa
+          </div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm border-l-4 border-l-secondary">
+<div class="flex items-center justify-between text-secondary mb-space-2xs">
+<span class="text-label-sm font-label-sm uppercase tracking-wider font-bold">Copias Impresas 15x21</span>
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="print">print</span>
+</div>
+<div class="text-headline-md font-headline-md text-primary font-bold">86 fotos</div>
+<div class="text-[11px] text-secondary font-semibold mt-1 flex items-center justify-between">
+<span class="">$7.000 c/u</span>
+<span class="underline cursor-pointer">Ver planilla</span>
+</div>
+</div>
+</section>
+<!-- 3. CENTRAL EXPLORER: FILTERS & PHOTO GRID -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md shadow-sm mb-space-lg">
+<!-- Filter Bar & Division Selector -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pb-space-md border-b border-outline-variant">
+<!-- Cohort / Course Filter Pills -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="text-label-sm font-label-sm text-outline mr-space-xs">Filtrar División:</span>
+<button class="bg-primary text-on-primary px-space-sm py-1 rounded-lg text-label-md font-label-md">Todos (1.420)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">5to A (480)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">5to B (510)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-primary px-space-sm py-1 rounded-lg text-label-md font-label-md border border-outline-variant transition-colors">Entrega de Diplomas (430)</button>
+</div>
+<!-- Secondary Actions / Search inside batch -->
+<div class="flex items-center gap-space-xs">
+<div class="relative">
+<input class="text-body-sm font-body-sm pl-8 pr-space-sm py-1 rounded-lg border border-outline-variant bg-surface-container-low focus:ring-1 focus:ring-primary focus:border-primary w-52" placeholder="Buscar por #ID o estudiante..." type="text">
+<span class="material-symbols-outlined text-[18px] text-outline absolute left-2 top-1.5" data-icon="search">search</span>
+</div>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded border border-outline-variant" title="Vista Cuadrícula">
+<span class="material-symbols-outlined text-[18px]" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded border border-outline-variant" title="Vista Lista Detallada">
+<span class="material-symbols-outlined text-[18px]" data-icon="view_list">view_list</span>
+</button>
+</div>
+</div>
+<!-- Photo Grid (Protected watermarked proofs) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-space-md pt-space-md">
+<!-- Photo Card 1 (#0421) -->
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
+<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="High school graduation student on stage smiling proudly holding diploma leather binder with school crest in soft warm auditorium key lighting, framed like a premium heirloom editorial school portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD">
+<!-- Diagonal Repeating Proof Watermark Overlay -->
+<div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
+<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
+                  EVENTOS #0421 • PROVA
+                </div>
+</div>
+<!-- Top Left Identification Badge -->
+<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+                #0421
+              </span><span class="absolute top-2 left-16 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1"><span class="material-symbols-outlined text-[13px]" data-icon="star">star</span>Foto de Portada Oficial</span>
+<!-- Print Order Status Pill -->
+<span class="absolute top-2 right-2 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="local_printshop">local_printshop</span>
+                15x21 Solicitada
+              </span>
+</div>
+<!-- Card Metadata -->
+<div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
+<div>
+<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0421.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">5to A • Diplomas de Honor</p>
+</div>
+<div class="flex items-center gap-1"><button class="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded text-[11px] font-bold flex items-center gap-1 hover:bg-secondary hover:text-on-secondary transition-colors" title="Foto de Portada activa del Evento"><span class="material-symbols-outlined text-[14px]" data-icon="star">star</span>Portada</button>
+<button class="p-1 text-on-surface-variant hover:text-primary" title="Ampliar Muestra"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary" title="Descargar RAW Drive"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+</div>
+</div>
+</div>
+<!-- Photo Card 2 (#0422) -->
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
+<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="Two senior high school students wearing elegant formal blazer uniforms smiling side-by-side during commencement ceremonies with subtle bokeh of the historic school campus behind them." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE4XyuMskJgGbUPPfvDad1X4ji1IVe7w8N2Y99l9dP4pPFFJH81aH3I_G0xEEy9CjsnJ_0HYm1-1ND-fvGcb-2iyKHOhVqqprZ_B8jL-UshfSxw_tTOQjt32f0j2LEXl1WzJeY4j--aumIIRB_Is-JKVqbMoW37aBgQDUA7GaUyBNnAedxJURjXktPyszJ1kvuTUOJcMMxLgeOgPzzn3nqREZ7yO95ttaBKiBQaARhJ4KxmAyV8TgT">
+<!-- Diagonal Repeating Proof Watermark Overlay -->
+<div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
+<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
+                  EVENTOS #0422 • PROVA
+                </div>
+</div>
+<!-- Identification Badge -->
+<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+                #0422
+              </span>
+</div>
+<div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
+<div>
+<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0422.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">5to A • Retratos de Salón</p>
+</div>
+<div class="flex items-center gap-1"><button class="px-2 py-0.5 bg-surface-container hover:bg-secondary hover:text-on-secondary text-on-surface-variant rounded text-[11px] font-semibold flex items-center gap-1 transition-colors" title="Fijar como Foto de Portada"><span class="material-symbols-outlined text-[14px]" data-icon="star_outline">star_outline</span>Marcar Portada</button>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+</div>
+</div>
+</div>
+<!-- Photo Card 3 (#0423) -->
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
+<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="School choir and graduating student delegation singing collegiate anthem under dramatic church chapel ceiling illumination, warm natural tones and architectural framing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBAL8UlUxeYlEwiK2FsIcava_pp2MGnc_SgF1VEO5dF8U2COVU6lha3yH0uJu6hFEN9zPzgFJUkb2IGwJhQwy57pGE9z2RsFGYjcxMZeG9ygeYqJIuhNAqQaPgqamZsVaYjLiREyIEeNOshbCSFanuLjYKCfiJZyF83ajYgXWH3iAQYRNB3p0_wpee4dDFs9ohxwUzg8qQNoVyCV-n9eMjiMW9Y93Hi5D-zzevLDoB-EhBKKV6Z42E">
+<div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
+<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
+                  EVENTOS #0423 • PROVA
+                </div>
+</div>
+<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+                #0423
+              </span>
+<span class="absolute top-2 right-2 bg-secondary text-surface-bright text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="local_printshop">local_printshop</span>
+                15x21 Solicitada
+              </span>
+</div>
+<div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
+<div>
+<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0423.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">5to B • Ceremonia Coral</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+</div>
+</div>
+</div>
+<!-- Photo Card 4 (#0424) -->
+<div class="group bg-surface-bright border border-outline-variant rounded-lg overflow-hidden flex flex-col hover:border-primary transition-all duration-150 shadow-sm relative">
+<div class="relative aspect-[3/2] overflow-hidden bg-surface-dim proof-layer">
+<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="Proud parents hugging young female graduate wearing collegiate stole with tearful joyful expression, capturing intimate authentic milestone emotion in editorial light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3-yqHJdpnuB6Wye2-huWABDwJfiCCUwJBRLKZpXNPuucUl38PcsQFi97CPSEXvA5WAeS-UY8BKvHQOoMz5VtqSKbKop6Z1nqYq5KHZ10y2bP8PddTwb7x1yJYsxQB9jThkR1h2JYW2L8P76UlDtVKW0ZXNYScfra_RixG6Ohhm7J3Ih0ER9r2qAZvwsrYe84POhwWrttvl1eAH93bDcRZdLndOJ3o0zcQWuA4Ks0gRkTpYQ9y_u6X">
+<div class="absolute inset-0 watermark-grid pointer-events-none flex items-center justify-center">
+<div class="rotate-[-25deg] bg-primary/40 px-3 py-1 text-surface-bright font-mono text-[13px] tracking-widest uppercase font-bold border border-surface-bright/30 backdrop-blur-[2px] shadow-sm">
+                  EVENTOS #0424 • PROVA
+                </div>
+</div>
+<span class="absolute top-2 left-2 bg-primary/90 text-surface-bright font-mono text-[11px] font-bold px-2 py-0.5 rounded shadow">
+                #0424
+              </span>
+</div>
+<div class="p-space-xs flex items-center justify-between bg-surface-container-lowest border-t border-outline-variant">
+<div>
+<p class="text-label-md font-label-md text-primary font-semibold">BDS_COL_2026_0424.CR3</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">5to B • Familia &amp; Entrega</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="download">download</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. QUICK ACTION BAR AT BOTTOM OF CONTENT -->
+<section class="flex flex-wrap items-center justify-between gap-space-md p-space-md bg-surface-container-low rounded-lg border border-outline-variant">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]" data-icon="bolt">bolt</span>
+<div>
+<h4 class="text-title-md font-title-md font-semibold text-primary">Flujo de Publicación &amp; Automatización WhatsApp</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Los pedidos de impresiones 15x21 a $7.000 se canalizan mediante comprobantes de pago automatizados.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a href="EVENTOS - Galería Escolar para Padres (Desktop).html" class="bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md px-space-md py-space-xs rounded-lg border border-outline-variant flex items-center gap-space-xs transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span><span class="">Ver Galería como Familia/Padres</span></a>
+<button class="bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-label-md px-space-md py-space-xs rounded-lg flex items-center gap-space-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+<span class="">Configurar Pedidos por WhatsApp</span>
+</button>
+</div>
+</section>
+</main>
+<!-- 5. RIGHT SIDEBAR / DRIVE INTEGRATION & SYNC PANEL -->
+<aside class="w-80 bg-surface-container-lowest border-l border-outline-variant p-space-md hidden xl:flex flex-col gap-space-lg shrink-0">
+<!-- OAuth 2.0 Account Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-tertiary-container" data-icon="cloud">cloud</span>
+<span class="text-label-sm font-label-sm font-bold text-primary uppercase">Google Drive OAuth 2.0</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+</div>
+<p class="text-body-sm font-body-sm text-primary font-semibold truncate">estudio.fotografico.escolar@gmail.com</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Conexión cifrada de alta velocidad activa</p>
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant flex justify-between items-center text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Almacenamiento:</span>
+<span class="font-semibold text-primary">1.2 TB / 2.0 TB</span>
+</div>
+<!-- Simple progress indicator -->
+<div class="w-full bg-outline-variant h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Sync Switches & Pipeline Toggles -->
+<div class="flex flex-col gap-space-md">
+<h3 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wide">Preferencias del Lote</h3><div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-xs flex flex-col gap-1"><div class="flex items-center justify-between"><span class="text-[11px] font-bold text-outline uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary" data-icon="star">star</span>Foto de Portada Principal</span><span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-1.5 py-0.2 rounded">Manual</span></div><div class="flex items-center gap-space-xs mt-1"><div class="w-10 h-10 rounded overflow-hidden shrink-0 border border-outline-variant"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD" class="w-full h-full object-cover" alt="Portada"></div><div class="flex flex-col overflow-hidden"><span class="text-body-sm font-semibold text-primary truncate">BDS_COL_2026_0421.CR3</span><span class="text-[11px] text-on-surface-variant truncate">Elegida manualmente por el fotógrafo</span></div></div><p class="text-[11px] text-on-surface-variant mt-1 leading-snug">La portada para el Directorio y Galería no es automática; se define de manera manual para garantizar la mejor toma del evento.</p><button class="mt-1 w-full bg-surface-container-lowest hover:bg-surface-container text-primary font-label-sm text-label-sm py-1 px-2 rounded border border-outline-variant flex items-center justify-center gap-1 transition-colors"><span class="material-symbols-outlined text-[16px]" data-icon="photo_library">photo_library</span><span class="">Cambiar Portada desde Drive</span></button></div>
+<!-- Toggle 1: Real-time Auto sync -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-primary font-semibold">Auto-sync en tiempo real</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Detecta nuevas tomas en la carpeta activa de Drive instantáneamente.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle 2: Diagonal Watermark -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-primary font-semibold">Marca de agua diagonal automática</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Aplica capa anti-captura con ID único y logo escolar al renderizar.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle 3: High Res Storage -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-primary font-semibold">Almacenamiento seguro en alta resolución 300 DPI</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Conserva copias maestras listas para imprimir en laboratorio fotográfico.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- WhatsApp Print Lab Order Summary -->
+<div class="bg-secondary-fixed/40 border border-secondary/30 rounded-lg p-space-md">
+<div class="flex items-center gap-space-xs text-secondary font-bold text-label-md font-label-md mb-space-2xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt">receipt</span>
+<span class="">Resumen de Laboratorio Impreso</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+<strong>86 copias</strong> en papel mate Fuji Crystal 15x21 cm acumuladas en cola para Belgrano Day School.
+        </p>
+<div class="mt-space-sm flex items-center justify-between text-body-md font-body-md">
+<span class="font-semibold text-primary">Subtotal recaudado:</span>
+<span class="font-bold text-secondary text-title-md">$602.000</span>
+</div>
+<button class="w-full mt-space-sm bg-primary text-on-primary py-space-xs rounded font-label-md text-label-md hover:bg-primary-container transition-colors">
+          Exportar Lista para Imprenta
+        </button>
+</div>
+<!-- Lightroom Status Widget -->
+<div class="mt-auto border-t border-outline-variant pt-space-md flex items-center gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[24px]" data-icon="cloud_sync">cloud_sync</span>
+<div class="text-[11px] leading-tight">
+<p class="font-bold text-primary">Lightroom Sync v14.1</p>
+<p class="">Último escaneo hace 2 minutos.</p>
+</div>
+</div>
+</aside>
+</div>
+
+
+
+
+</body></html>

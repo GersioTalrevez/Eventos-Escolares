@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EVENTOS - Login Fotógrafo | Acceso Seguro</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Manrope (Sans) & Source Serif 4 (Serif) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#0d1c2e",
+            "primary-fixed-dim": "#b7c4fd",
+            "surface-container-highest": "#d5e3fc",
+            "on-error": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "primary": "#000f3f",
+            "surface-bright": "#f8f9ff",
+            "on-secondary-fixed": "#331200",
+            "error-container": "#ffdad6",
+            "outline-variant": "#c6c5d0",
+            "secondary": "#9b4500",
+            "on-background": "#0d1c2e",
+            "surface-container": "#e6eeff",
+            "on-primary-fixed": "#071747",
+            "inverse-surface": "#233144",
+            "background": "#f8f9ff",
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#d5e3fc",
+            "on-secondary-container": "#682c00",
+            "secondary-fixed": "#ffdbca",
+            "on-primary-container": "#808dc2",
+            "secondary-fixed-dim": "#ffb68e",
+            "surface-container-low": "#eff4ff",
+            "inverse-primary": "#b7c4fd",
+            "on-primary-fixed-variant": "#374475",
+            "tertiary-fixed-dim": "#93ccff",
+            "primary-fixed": "#dce1ff",
+            "on-tertiary-container": "#2f96db",
+            "surface": "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#45464f",
+            "tertiary": "#001626",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#cce5ff",
+            "outline": "#767680",
+            "inverse-on-surface": "#eaf1ff",
+            "on-tertiary-fixed": "#001d31",
+            "primary-container": "#172554",
+            "error": "#ba1a1a",
+            "surface-tint": "#4f5c8e",
+            "secondary-container": "#fd8a42",
+            "tertiary-container": "#002b45",
+            "on-secondary-fixed-variant": "#763300",
+            "surface-dim": "#ccdbf3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-2xs": "0.25rem",
+            "space-xs": "0.5rem",
+            "space-xl": "2rem",
+            "space-3xs": "0.125rem",
+            "space-2xl": "3rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "container-max": "80rem",
+            "space-3xl": "4rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["manrope"],
+            "headline-md": ["sourceSerif4"],
+            "body-md": ["manrope"],
+            "headline-lg": ["sourceSerif4"],
+            "headline-lg-mobile": ["sourceSerif4"],
+            "label-sm": ["manrope"],
+            "headline-sm": ["sourceSerif4"],
+            "display-hero-mobile": ["sourceSerif4"],
+            "label-md": ["manrope"],
+            "title-md": ["manrope"],
+            "display-hero": ["sourceSerif4"],
+            "body-sm": ["manrope"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Subtle camera watermark lines for editorial tone */
+    .proof-grid-texture {
+      background-image: radial-gradient(rgba(23, 37, 84, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col justify-between proof-grid-texture selection:bg-primary-container selection:text-white">
+<!-- Top Navigation Header (Shared Component: TopAppBar docked top-0) -->
+<header class="bg-surface-container-lowest text-primary docked full-width top-0 shadow-sm border-b border-outline-variant z-40 sticky">
+<div class="w-full px-gutter-mobile md:px-gutter-desktop mx-auto max-w-container-max flex justify-between items-center h-16">
+<!-- Brand & Identity Cluster -->
+<div class="flex items-center space-x-space-sm">
+<a class="flex items-center space-x-space-xs text-primary group active:scale-98 transition-transform duration-150 ease-out" href="EVENTOS - Directorio Escolar.html" title="Directorio Escolar">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="camera_roll">camera_roll</span>
+<span class="font-headline-md text-headline-md tracking-tight text-primary font-bold">EVENTOS</span>
+</a>
+<span class="hidden sm:inline-block text-outline-variant">|</span>
+<span class="hidden sm:inline-flex items-center text-on-surface-variant font-label-md text-label-md">
+          Fotografía Escolar &amp; Archivo
+        </span>
+</div>
+<!-- Institutional Verification Anchor -->
+<div class="flex items-center space-x-space-xs">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 bg-surface-container-low rounded border border-outline-variant text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="vpn_key" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
+<span class="hidden md:inline">Acceso Fotógrafos</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas Journey (Linear / Focused Login) -->
+<main class="flex-grow flex items-center justify-center px-gutter-mobile py-space-xl md:py-space-3xl">
+<div class="w-full max-w-[480px]">
+<!-- Elevated Administrative Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_20px_-2px_rgba(23,37,84,0.08)] p-6 md:p-8 relative">
+<!-- Private & Encrypted Badge -->
+<div class="flex justify-center mb-space-md">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-primary rounded-full border border-primary/20 shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-sm text-label-sm tracking-wider uppercase font-bold text-primary">Acceso privado y encriptado</span>
+</div>
+</div>
+<!-- Section Title & Subtitle -->
+<div class="text-center mb-space-xl">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-1">
+            Portal de Fotógrafo
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Administración de sesiones escolares, sincronización de tomas en alta resolución y control comercial.
+          </p>
+</div>
+<!-- Google Workspace Fast OAuth Anchor -->
+<div class="mb-space-lg">
+<button class="w-full flex items-center justify-center gap-3 py-2.5 px-4 bg-surface-container-lowest border border-outline rounded-lg text-on-surface hover:bg-surface-container-low hover:border-primary transition-colors duration-150 shadow-sm active:scale-98" onclick="window.location.href='EVENTOS - Carga y Sync con Google Drive.html'" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="font-title-md text-title-md font-semibold text-on-surface">Iniciar sesión con Google</span>
+</button>
+<div class="mt-1.5 text-center">
+<span class="font-label-sm text-label-sm text-outline">Vincular cuenta directa de Google Drive para carga de lotes</span>
+</div>
+</div>
+<!-- Elegant Horizontal Divider -->
+<div class="relative flex py-2 items-center mb-space-lg">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-3 text-on-surface-variant font-label-sm text-label-sm tracking-wide text-outline">o continuar con credenciales</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Authentication Form -->
+<form class="space-y-space-md" id="loginForm" onsubmit="handleFormSubmit(event)">
+<!-- Email / Drive Address -->
+<div>
+<label class="block font-label-md text-label-md font-semibold text-primary mb-1.5" for="photographerEmail">
+              Correo Electrónico Profesional / Drive
+            </label>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="mail">mail</span>
+</div>
+<input autocomplete="email" class="block w-full pl-10 pr-3 py-2.5 bg-surface-container-lowest border border-outline rounded text-on-surface font-body-md text-body-md placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="photographerEmail" name="photographerEmail" placeholder="fotografo@estudio.com" required="" type="email"/>
+</div>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Usa la casilla autorizada por el colegio o tu estudio asociado.</p>
+</div>
+<!-- Master Password Field -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="block font-label-md text-label-md font-semibold text-primary" for="masterPassword">
+                Contraseña Maestra
+              </label>
+<a class="font-label-md text-label-md text-primary font-semibold hover:underline decoration-1 underline-offset-2" href="#">
+                ¿Olvidaste tu contraseña?
+              </a>
+</div>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock_open">lock_open</span>
+</div>
+<input autocomplete="current-password" class="block w-full pl-10 pr-10 py-2.5 bg-surface-container-lowest border border-outline rounded text-on-surface font-body-md text-body-md placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="masterPassword" name="masterPassword" placeholder="••••••••••••" required="" type="password"/>
+<button aria-label="Alternar visibilidad de contraseña" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-primary transition-colors focus:outline-none" id="togglePasswordBtn" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Session persistence checkbox -->
+<div class="flex items-center pt-1">
+<input checked="" class="h-4 w-4 rounded border-outline text-primary focus:ring-primary/20 cursor-pointer" id="rememberSession" name="rememberSession" type="checkbox"/>
+<label class="ml-2.5 block font-body-md text-body-md text-on-surface cursor-pointer select-none" for="rememberSession">
+              Recordar mi sesión en este dispositivo seguro
+            </label>
+</div>
+<!-- Primary Submit Action -->
+<div class="pt-2">
+<button class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary text-white font-title-md text-title-md rounded hover:bg-primary-container transition-all duration-150 shadow-[0_2px_8px_-1px_rgba(23,37,84,0.35)] active:scale-98 group cursor-pointer" type="submit">
+<span>Ingresar al Panel de Control</span>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-150 group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Institutional Security Notice Box -->
+<div class="mt-space-lg p-3.5 bg-surface-container-low border border-outline-variant rounded-lg flex items-start space-x-3 text-left">
+<span class="material-symbols-outlined text-secondary text-[22px] flex-shrink-0 mt-0.5" data-icon="shield">shield</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong class="text-primary font-semibold">Aviso de Integridad Institucional:</strong> Solo personal fotográfico acreditado tiene acceso a la carga de lotes originales sin marca de agua y facturación Mercado Pago. Los accesos son monitoreados criptográficamente.
+          </p>
+</div>
+</div>
+<!-- Footer Anchor Backlink -->
+<div class="mt-space-lg text-center">
+<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-1.5 px-3 rounded hover:bg-surface-container-high" href="EVENTOS - Directorio Escolar.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+<span>Volver al Directorio Escolar</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Editorial Institutional Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-4 px-gutter-mobile md:px-gutter-desktop">
+<div class="max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">EVENTOS</span>
+<span>• Archivo Fotográfico &amp; Retratos Familiares</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="font-label-sm text-label-sm text-outline">Soporte Técnico de Estudio: fotógrafos@eventos.edu.ar</span>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('masterPassword');
+      const eyeIcon = document.getElementById('eyeIcon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+        eyeIcon.setAttribute('data-icon', 'visibility_off');
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+        eyeIcon.setAttribute('data-icon', 'visibility');
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      // Smooth redirect to desktop photographer hub
+      window.location.href = 'EVENTOS - Panel de Fotógrafo y Sync Drive (Desktop).html';
+    }
+  </script>
+</body></html>

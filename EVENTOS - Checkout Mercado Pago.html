@@ -1,0 +1,474 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Resumen de Compra - EVENTOS Escolares</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with custom config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#ccdbf3",
+            "outline-variant": "#c6c5d0",
+            "secondary-fixed-dim": "#ffb68e",
+            "surface-container-low": "#eff4ff",
+            "on-tertiary": "#ffffff",
+            "primary": "#000f3f",
+            "surface-tint": "#4f5c8e",
+            "on-primary-fixed-variant": "#374475",
+            "on-secondary-fixed": "#331200",
+            "secondary-container": "#fd8a42",
+            "surface-container-highest": "#d5e3fc",
+            "error-container": "#ffdad6",
+            "surface-variant": "#d5e3fc",
+            "surface-container-high": "#dce9ff",
+            "on-secondary": "#ffffff",
+            "background": "#f8f9ff",
+            "on-surface-variant": "#45464f",
+            "on-error": "#ffffff",
+            "on-surface": "#0d1c2e",
+            "primary-container": "#172554",
+            "tertiary-container": "#002b45",
+            "surface-container": "#e6eeff",
+            "outline": "#767680",
+            "inverse-on-surface": "#eaf1ff",
+            "tertiary-fixed": "#cce5ff",
+            "on-primary-fixed": "#071747",
+            "on-background": "#0d1c2e",
+            "primary-fixed-dim": "#b7c4fd",
+            "tertiary": "#001626",
+            "on-primary-container": "#808dc2",
+            "on-error-container": "#93000a",
+            "secondary": "#9b4500",
+            "inverse-primary": "#b7c4fd",
+            "on-tertiary-container": "#2f96db",
+            "inverse-surface": "#233144",
+            "on-secondary-container": "#682c00",
+            "tertiary-fixed-dim": "#93ccff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed": "#001d31",
+            "secondary-fixed": "#ffdbca",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#763300",
+            "surface": "#f8f9ff",
+            "primary-fixed": "#dce1ff",
+            "surface-bright": "#f8f9ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-3xs": "0.125rem",
+            "space-md": "1rem",
+            "space-2xl": "3rem",
+            "space-3xl": "4rem",
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.5rem",
+            "container-max": "80rem",
+            "space-xl": "2rem",
+            "gutter-mobile": "1rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Source Serif 4", "serif"],
+            "headline-md": ["Source Serif 4", "serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "headline-lg": ["Source Serif 4", "serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "headline-lg-mobile": ["Source Serif 4", "serif"],
+            "label-sm": ["Manrope", "sans-serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "headline-sm": ["Source Serif 4", "serif"],
+            "title-md": ["Manrope", "sans-serif"],
+            "display-hero-mobile": ["Source Serif 4", "serif"]
+          },
+          "fontSize": {
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-white pb-36">
+<!-- TOP APP BAR (Transactional Linear Flow: Back + Title + SSL Trust Anchor) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+<div class="w-full px-gutter-mobile mx-auto max-w-container-max flex justify-between items-center h-16">
+<div class="flex items-center gap-space-sm">
+<a aria-label="Volver a la galería" href="EVENTOS - Galería Escolar y Fotos con Marca de Agua.html" class="p-2 rounded text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150 inline-flex items-center justify-center"><span class="material-symbols-outlined text-primary text-xl">arrow_back</span></a>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">camera_roll</span>
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">EVENTOS</span>
+</div>
+<h1 class="font-title-md text-title-md text-on-surface">Resumen de Compra</h1>
+</div>
+</div>
+<!-- Verified SSL Security Badge -->
+<div class="flex items-center gap-1 px-2.5 py-1 bg-surface-container-low rounded-full border border-surface-dim">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">SSL 256-BIT</span>
+</div>
+</div>
+</header>
+<main class="w-full px-gutter-mobile mx-auto max-w-lg pt-space-md space-y-space-md">
+<!-- INSTITUTION & STUDENT CONTEXT HERO CARD -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-surface-container rounded-full opacity-40 pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold bg-secondary-fixed/50 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs">school</span>
+<span class="">GALERÍA OFICIAL VALIDADA</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold mt-1">Colegio Belgrano Day School</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Acto de Colación 2026 • Promoción LXII</p>
+</div>
+<div class="w-11 h-11 shrink-0 rounded-lg bg-primary-container text-white flex items-center justify-center font-headline-sm text-base shadow-sm">
+          BDS
+        </div>
+</div>
+<!-- Student metadata pill container -->
+<div class="mt- space-sm pt-space-xs border-t border-surface-container flex flex-wrap items-center justify-between gap-2 text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-on-surface-variant text-base">face</span>
+<span class="font-title-md text-title-md font-semibold">Mateo Fernández</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">(5to Año B)</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded font-mono text-label-sm text-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-xs">qr_code</span>
+<span class="">BDS-0421</span>
+</div>
+</div>
+</section>
+<!-- ORDER SUMMARY / ITEMS PURCHASED -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">Detalle del Pedido</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">2 ARTÍCULOS</span>
+</div>
+<!-- Item 1: Digital Pack -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<div class="flex gap-space-sm">
+<div class="w-16 h-20 shrink-0 rounded overflow-hidden relative border border-outline-variant bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A portrait photograph of a secondary school graduating student in classic dark blue institutional blazer smiling warmly in a soft studio portrait lighting setup with pristine light background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0WOadpGQjDxP7XYxqPIeBV8spW-oYmY5Dm_kgfU1eWq5DLecBZWYho3A5-dDfzOrxgoa7I5oxDIUDBj5ES8xoa3uRBL-cJQbvkM-zDU5tX1n4poKp_hf1rIHe7x3IcXKT-C6OUJj6H5R-90IfowhS8h42I9YjaPiOD9NyNnHTbrQsFs3ZKBX1l6bjg7ytl66yZ7GQtg_gHGjAbe0SXrHTrf9WR0ggVzdZVCxUnuiZqeDegyvKyHa6">
+<div class="absolute inset-0 bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">cloud_done</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-xs">electric_bolt</span>
+                ENTREGA DIGITAL INMEDIATA
+              </span>
+<span class="font-title-md text-title-md font-bold text-primary whitespace-nowrap">ARS $14.900</span>
+</div>
+<h4 class="font-title-md text-title-md text-primary font-bold">Pack Completo Digital</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              18 fotos en alta resolución sin marca de agua, licencia de uso familiar y descarga directa a Google Drive privado.
+            </p>
+</div>
+</div>
+<div class="bg-surface-container-low px-2.5 py-1.5 rounded flex items-center gap-2 text-primary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary">verified</span>
+<span class="">Archivos RAW procesados en perfil de color sRGB 300 DPI</span>
+</div>
+</div>
+<!-- Item 2: Physical Heirloom Prints -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<div class="flex gap-space-sm">
+<div class="w-16 h-20 shrink-0 rounded overflow-hidden relative border border-outline-variant bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Two premium archival photographic prints on matte fine art paper lying gently on a polished wooden surface under bright natural studio light showing delicate texture and rich tonal graduation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLoGFGd9eMl7L8PD7L39Ao6Xrd__2__9_MR1TwWUcKLlZswvzP-lMxFtdMSZ9yjQs7ZAqgMLaKIWG0cU3teFrBEJ2Uc_oga824vwwAyxFEk9yQ_o1izFjsRgLMD3yGz4rT0-TbH9f6c1uUS2ysNkDNqf3Q7yx8Lcqa1Co2tF43I-ziKCBTqxH8CawmpepOFUs98L7pliJNPBZQPOf5dfXjZBkKLK9U3FjXfmJhLdRWvuNfLd_4l86m">
+<span class="absolute bottom-1 right-1 bg-primary text-white text-[10px] font-bold px-1 rounded">2x</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-xs">photo_camera</span>
+                IMPRESIÓN EDITORIAL
+              </span>
+<span class="font-title-md text-title-md font-bold text-primary whitespace-nowrap">ARS $8.400</span>
+</div>
+<h4 class="font-title-md text-title-md text-primary font-bold">2x Copia Impresa 15x21cm</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Papel Heirloom Mate 260g libre de ácido. Seleccionadas: <strong class="text-on-surface">Foto #0421</strong> (Diploma) y <strong class="text-on-surface">Foto #0422</strong> (Retrato).
+            </p>
+<div class="text-right mt-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">ARS $4.200 c/u</span>
+</div>
+</div>
+</div>
+<!-- Physical Delivery Selection Segment -->
+<div class="pt-2 border-t border-surface-container space-y-2">
+<span class="font-label-md text-label-md text-primary font-bold block">Modalidad de Entrega de Copias Físicas:</span>
+<div class="grid grid-cols-1 gap-2">
+<!-- Option 1: School Pickup (Selected) -->
+<label class="flex items-center justify-between p-3 rounded-lg border-2 border-primary bg-surface-container-low cursor-pointer transition-all">
+<div class="flex items-center gap-2.5">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary border-outline-variant" name="delivery_mode" type="radio">
+<div>
+<div class="flex items-center gap-1">
+<span class="font-title-md text-title-md text-primary font-bold">Retiro en Secretaría del Colegio</span>
+<span class="bg-surface-container text-primary font-label-sm text-label-sm px-1.5 py-0.2 rounded font-bold">RECOMENDADO</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sin costo adicional • Disponible desde el 15/12</p>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-primary">GRATIS</span>
+</label>
+<!-- Option 2: Home Courier -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-all opacity-75">
+<div class="flex items-center gap-2.5">
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant" name="delivery_mode" type="radio">
+<div>
+<span class="font-title-md text-title-md text-on-surface font-medium">Envío a domicilio por Correo</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 a 5 días hábiles a todo el país</p>
+</div>
+</div>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">+$2.850</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT & DELIVERY NOTIFICATIONS FORM -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">contact_mail</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Datos del Titular y Entrega</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Información del adulto tutor que autoriza y recibe los archivos protegidos.
+      </p>
+<form class="space-y-3">
+<!-- Email Input -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-primary font-bold" for="email">
+            Email de Entrega Digital <span class="text-error">*</span>
+</label>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" id="email" required="" type="email" value="mariana.gomez@gmail.com">
+</div>
+<div class="flex items-center gap-1.5 text-secondary font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-xs">info</span>
+<span class="">A este correo recibirás de inmediato el link seguro para descargar tus fotos limpias.</span>
+</div>
+</div>
+<!-- Responsible Parent Name -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-primary font-bold" for="parent_name">
+            Nombre y Apellido del Adulto Responsable <span class="text-error">*</span>
+</label>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" id="parent_name" required="" type="text" value="Mariana Gómez de Fernández">
+</div>
+</div>
+<!-- WhatsApp Phone -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-primary font-bold" for="phone">
+            Teléfono WhatsApp para Avisos de Retiro <span class="text-error">*</span>
+</label>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg">chat</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" id="phone" required="" type="tel" value="+54 9 11 5849-2311">
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Te notificaremos por WhatsApp cuando tus copias impresas estén en secretaría.</span>
+</div>
+</form>
+</section>
+<!-- PRICE BREAKDOWN -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<h3 class="font-headline-sm text-headline-sm text-primary">Desglose de Pago</h3>
+<div class="space-y-2 font-body-md text-body-md text-on-surface">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Subtotal fotos digitales (18 fotos HD)</span>
+<span class="">ARS $14.900</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Subtotal fotos impresas (2 copias 15x21)</span>
+<span class="">ARS $8.400</span>
+</div>
+<div class="flex justify-between items-center text-secondary font-medium">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">loyalty</span>
+            Descuento Pack Familiar / Hermanos (-10%)
+          </span>
+<span class="">- ARS $2.330</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Costo de entrega (Retiro en colegio)</span>
+<span class="text-primary font-bold font-label-md text-label-md">Gratis</span>
+</div>
+<div class="pt-3 border-t border-outline-variant flex justify-between items-baseline">
+<div>
+<span class="font-title-md text-title-md font-bold text-primary block">Total Final a Pagar</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">IVA incluido • Precio final garantizado</span>
+</div>
+<div class="text-right">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight">ARS $20.970</span>
+</div>
+</div>
+</div>
+</section>
+<!-- PAYMENT METHOD SECTION (MERCADO PAGO PROMINENT) -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">Método de Pago Seguro</h3>
+<span class="font-label-sm text-label-sm text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span>
+          CHECKOUT DIRECTO
+        </span>
+</div>
+<!-- Mercado Pago Featured Container Card -->
+<div class="rounded-xl border-2 border-primary bg-surface-container-lowest p-space-md shadow-sm space-y-3 relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<!-- Simulated MP Handshake / Badge -->
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-surface-dim flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-primary text-2xl">account_balance_wallet</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md font-bold text-primary">Mercado Pago</span>
+<span class="bg-[#009ee3]/10 text-[#009ee3] font-bold text-[10px] px-1.5 py-0.5 rounded tracking-wide uppercase">Oficial</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dinero en cuenta, tarjetas o débito inmediato</p>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+</div>
+</div>
+<!-- MP Payment Method Pills Supported -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-low text-primary px-2 py-0.5 rounded border border-surface-dim flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">payments</span> Dinero en cuenta
+          </span>
+<span class="font-label-sm text-label-sm bg-surface-container-low text-primary px-2 py-0.5 rounded border border-surface-dim flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">credit_card</span> Hasta 3 cuotas s/interés
+          </span>
+<span class="font-label-sm text-label-sm bg-surface-container-low text-primary px-2 py-0.5 rounded border border-surface-dim flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">sync_alt</span> DEBIN / Transferencia
+          </span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg border border-surface-container text-on-surface-variant font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">savings</span>
+<span class="">Aprovechá promociones vigentes con bancos y billetera virtual en el siguiente paso.</span>
+</div>
+</div>
+<!-- Secondary Payment Pill: Direct Card Entry (collapsed option) -->
+<div class="rounded-xl border border-outline-variant bg-surface-container-lowest p-3 flex items-center justify-between opacity-75 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-lg">credit_score</span>
+</div>
+<div>
+<span class="font-title-md text-title-md text-on-surface font-medium">Tarjeta de Débito o Crédito bancaria</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visa, Mastercard, Cabal o American Express directa</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</section>
+<!-- INSTITUTIONAL TRUST & GUARANTEE BADGES -->
+<section class="bg-surface-container-low rounded-xl p-space-md border border-surface-dim space-y-2.5">
+<div class="flex items-center gap-2 text-primary font-bold font-title-md text-title-md">
+<span class="material-symbols-outlined text-primary">policy</span>
+<span class="">Garantía Institucional de Archivo</span>
+</div>
+<div class="grid grid-cols-1 gap-2 pt-1 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="">Transacción encriptada con estándar bancario de 256 bits</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="">Garantía de reembolso escolar: satisfacción total o reintegro</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">download_done</span>
+<span class="">Entrega digital garantizada al instante tras confirmar el pago</span>
+</div>
+</div>
+</section>
+</main>
+<!-- STICKY BOTTOM CHECKOUT ACTION PANEL -->
+<aside class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_16px_rgba(23,37,84,0.08)] py-3 px-gutter-mobile">
+<div class="max-w-lg mx-auto space-y-2">
+<div class="flex items-center justify-between text-on-surface px-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total a pagar hoy:</span>
+<div class="flex items-baseline gap-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">ARS</span>
+<span class="font-title-md text-title-md font-bold text-primary text-xl">$20.970</span>
+</div>
+</div>
+<!-- Main Action Primary Button -->
+<a href="EVENTOS - Confirmación de Pago y Descarga.html" class="w-full py-3.5 px-4 bg-primary hover:bg-[#1e3a8a] active:scale-[0.98] transition-all duration-150 rounded-lg text-white font-title-md text-title-md font-bold flex items-center justify-center gap-2 shadow-md"><span class="material-symbols-outlined text-xl">payments</span><span class="">Pagar $20.970 con Mercado Pago</span></a>
+<!-- Reassuring Redirection Microcopy -->
+<p class="text-center font-body-sm text-[11px] text-on-surface-variant leading-tight px-2">
+        Al hacer clic serás redirigido a la pasarela segura de <strong class="text-on-surface">Mercado Pago</strong> para completar tu compra de manera confiable.
+      </p>
+</div>
+</aside>
+
+
+</body></html>

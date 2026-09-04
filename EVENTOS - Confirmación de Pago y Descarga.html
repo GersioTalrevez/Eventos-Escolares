@@ -1,0 +1,466 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Confirmación de Pago - EVENTOS</title>
+<!-- Material Symbols Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Typography (Google Fonts: Source Serif 4 & Manrope) -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#f8f9ff",
+            "surface-bright": "#f8f9ff",
+            "on-error-container": "#93000a",
+            "background": "#f8f9ff",
+            "tertiary-fixed": "#cce5ff",
+            "surface-tint": "#4f5c8e",
+            "on-tertiary-fixed-variant": "#004b73",
+            "surface-dim": "#ccdbf3",
+            "on-secondary-container": "#682c00",
+            "error": "#ba1a1a",
+            "inverse-surface": "#233144",
+            "error-container": "#ffdad6",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#2f96db",
+            "secondary-fixed": "#ffdbca",
+            "surface-container-low": "#eff4ff",
+            "inverse-on-surface": "#eaf1ff",
+            "primary-container": "#172554",
+            "on-background": "#0d1c2e",
+            "primary": "#000f3f",
+            "inverse-primary": "#b7c4fd",
+            "surface-container": "#e6eeff",
+            "secondary-fixed-dim": "#ffb68e",
+            "outline-variant": "#c6c5d0",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#b7c4fd",
+            "on-primary-fixed-variant": "#374475",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#dce1ff",
+            "surface-container-high": "#dce9ff",
+            "on-primary-fixed": "#071747",
+            "outline": "#767680",
+            "on-primary-container": "#808dc2",
+            "on-surface": "#0d1c2e",
+            "on-primary": "#ffffff",
+            "tertiary": "#001626",
+            "on-secondary-fixed-variant": "#763300",
+            "on-surface-variant": "#45464f",
+            "surface-variant": "#d5e3fc",
+            "tertiary-container": "#002b45",
+            "surface-container-highest": "#d5e3fc",
+            "surface-container-lowest": "#ffffff",
+            "secondary": "#9b4500",
+            "tertiary-fixed-dim": "#93ccff",
+            "on-secondary-fixed": "#331200",
+            "secondary-container": "#fd8a42",
+            "on-tertiary-fixed": "#001d31"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-2xs": "0.25rem",
+            "container-max": "80rem",
+            "space-2xl": "3rem",
+            "space-3xl": "4rem",
+            "space-3xs": "0.125rem",
+            "space-xs": "0.5rem",
+            "space-md": "1rem",
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Manrope", "sans-serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "headline-lg-mobile": ["Source Serif 4", "serif"],
+            "display-hero-mobile": ["Source Serif 4", "serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "headline-md": ["Source Serif 4", "serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "headline-sm": ["Source Serif 4", "serif"],
+            "headline-lg": ["Source Serif 4", "serif"],
+            "title-md": ["Manrope", "sans-serif"],
+            "display-hero": ["Source Serif 4", "serif"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c6c5d0;
+      border-radius: 4px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen pb-24 antialiased selection:bg-primary-container selection:text-white">
+<!-- TopAppBar (Based on Shared Components JSON) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<div class="w-full px-gutter-mobile md:px-gutter-desktop mx-auto max-w-container-max flex justify-between items-center py-3">
+<a href="EVENTOS - Directorio Escolar.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity"><span class="material-symbols-outlined text-primary text-2xl" data-icon="camera_roll">camera_roll</span><span class="text-headline-md font-headline-md tracking-tight text-primary font-bold">EVENTOS</span></a>
+<div class="flex items-center space-x-3">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-lg active:scale-95" onclick="shareTicket()" title="Compartir comprobante">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-lg active:scale-95" title="Seguridad Verificada">
+<span class="material-symbols-outlined text-primary" data-icon="vpn_key">vpn_key</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-gutter-mobile pt-space-md space-y-space-md">
+<!-- 1. Estado de Éxito y Mercado Pago Voucher -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm relative overflow-hidden">
+<!-- Decorative Trust Watermark Ribbon -->
+<div class="absolute top-0 right-0 translate-x-3 -translate-y-2 transform rotate-12 opacity-5 pointer-events-none select-none">
+<span class="material-symbols-outlined text-9xl text-primary" data-icon="verified">verified</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-space-sm shadow-sm">
+<span class="material-symbols-outlined text-emerald-700 text-3xl font-bold" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-800 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+          Acreditación Inmediata • Mercado Pago
+        </span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold mb-1">
+          ¡Pago confirmado con éxito!
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">
+          Tu pedido <strong class="text-on-surface font-semibold">#EV-2026-0421</strong> ya fue registrado en el archivo oficial.
+        </p>
+<!-- MP Mini Receipt Card -->
+<div class="w-full bg-surface-container-low rounded-lg p-space-sm border border-outline-variant/60 flex items-center justify-between text-left">
+<div class="flex items-center space-x-2.5">
+<div class="w-7 h-7 rounded-md bg-[#009ee3]/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#009ee3] text-lg" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Operación MP</p>
+<p class="font-body-sm text-body-sm font-semibold text-primary">#8492019482</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Monto Abonado</p>
+<p class="font-title-md text-title-md font-bold text-primary">ARS $20.970</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Ficha Institucional del Alumno -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm">
+<div class="flex items-start justify-between border-b border-outline-variant/50 pb-space-sm mb-space-sm">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-white flex items-center justify-center font-serif font-bold text-base shadow-sm">
+            BDS
+          </div>
+<div>
+<h2 class="font-title-md text-title-md font-bold text-primary leading-tight">Belgrano Day School</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Acto de Colación 2026 • Promoción LXII</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-primary font-semibold">
+          VERIFICADO
+        </span>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">ALUMNO / EGRESADO</p>
+<p class="font-title-md text-title-md font-semibold text-on-surface">Mateo Fernández</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">5to Año B • Turno Mañana</p>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">CÓDIGO DE ARCHIVO</p>
+<p class="font-title-md text-title-md font-mono font-bold text-primary">BDS-0421</p>
+<p class="font-body-sm text-body-sm text-emerald-700 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="lock_open">lock_open</span> Bóveda Desbloqueada
+          </p>
+</div>
+</div>
+</section>
+<!-- 3. Entrega Digital Inmediata (Hero Card) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border-2 border-primary-container shadow-md relative overflow-hidden">
+<!-- Top banner strip -->
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/60">
+<span class="inline-flex items-center gap-1.5 text-label-sm font-label-sm font-bold text-amber-900 bg-secondary-fixed px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-sm" data-icon="workspace_premium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+          SIN MARCA DE AGUA • LISTO
+        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">18 Fotografías Master</span>
+</div>
+<div class="mt-3 mb-4">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Pack Completo Digital HD</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Archivos RAW procesados a 300 DPI (sRGB) con revelado tonal editorial. Listos para impresión familiar y custodia digital.
+        </p>
+</div>
+<!-- Action CTAs -->
+<div class="space-y-2.5 mb-4">
+<button class="w-full bg-primary-container text-white py-3.5 px-4 rounded-lg font-title-md text-title-md font-semibold flex items-center justify-center gap-2 shadow hover:bg-primary transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+          Descargar Todo (.ZIP - 185 MB)
+        </button>
+<button class="w-full bg-surface-container text-primary py-2.5 px-4 rounded-lg font-title-md text-title-md font-semibold flex items-center justify-center gap-2 border border-outline-variant/80 hover:bg-surface-container-high transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-xl text-[#0F9D58]" data-icon="add_to_drive">add_to_drive</span>
+          Guardar en mi Google Drive
+        </button>
+</div>
+<!-- Informative email delivery note -->
+<div class="bg-surface-container-low p-2.5 rounded-lg flex items-start gap-2 border border-outline-variant/40 mb-4">
+<span class="material-symbols-outlined text-primary text-lg shrink-0 mt-0.5" data-icon="mark_email_read">mark_email_read</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Enviamos una copia con enlace directo permanente y sin vencimiento a <strong class="text-on-surface">mariana.gomez@gmail.com</strong>.
+        </p>
+</div>
+<!-- Desbloqueadas Gallery Previews Slider -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<p class="font-label-md text-label-md font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="photo_library">photo_library</span>
+            Vistas Previas Desbloqueadas
+          </p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Deslizar →</span>
+</div>
+<div class="flex gap-2.5 overflow-x-auto pb-2 custom-scrollbar snap-x">
+<!-- Photo 1: Formal Graduation Portrait -->
+<div class="shrink-0 w-32 snap-start bg-surface-container-lowest border border-outline-variant rounded-lg p-1 relative shadow-sm">
+<div class="aspect-[3/4] overflow-hidden rounded bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="A formal senior high school graduation studio portrait of an Argentinian male student wearing a dark collegiate graduation gown and classic navy tie with pristine natural lighting. High-end editorial school photography aesthetics, sharp details, gentle neutral studio backdrop, calm confident warm expression, archival heirloom quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNojpDNIiCDv0aFkTQD6rH_HY8cyk2b16sMMtmPgaX1GTuZoks0I9jykeQc3XjnMad4lsmxCuvknfqv9d0jXpzyPoPs8B_Ba1sve0yWWk2vMAcCJQX2EyHd1LlLvGj3zNg3IInnArysiHpnaK5xhFWWcUqcj76SllmBC-8bDkvSeTRGA0OMFwCu6g8shZTKzkTNwj7maoh6WWZYmaKU3idYm9GnI4nzC6grAd_7s34TFZ1EvdVtOp">
+<span class="absolute bottom-1 right-1 bg-primary-container/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">#0421</span>
+</div>
+<p class="font-label-sm text-label-sm text-center text-on-surface truncate mt-1">Retrato Oficial</p>
+</div>
+<!-- Photo 2: Diploma Ceremony Handshake -->
+<div class="shrink-0 w-32 snap-start bg-surface-container-lowest border border-outline-variant rounded-lg p-1 relative shadow-sm">
+<div class="aspect-[3/4] overflow-hidden rounded bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="A warm candid shot of a high school graduate receiving his honors diploma on stage from the school headmaster at Belgrano Day School auditorium. Natural warm theater spotlighting, celebratory applause in the soft blurred background, genuine proud smiles, crisp heirloom documentary style portraiture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4s_s--sIm_yHLrWhhdcdQeRAM0-wJpEkOnVU2rnoJeskwKDpDaZ93SlzUUnfjchN_WuNHnv7gFbJaBKqdTK17XQrgeaO1eBx3gOZPHTHO2u8ktGirJeE-_CAE12Qdv9Gy3fhA_ouJXZ5b2VSCTKWGfruBpEO3dljtRy2a7Gw7BP28P9eZaLqgoNnwgPjrHol_htR4s4V80woYRnSsmzmRxNhJQx7lzWnYMFtfsEKMAXWteFwfIVuC">
+<span class="absolute bottom-1 right-1 bg-primary-container/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">#0422</span>
+</div>
+<p class="font-label-sm text-label-sm text-center text-on-surface truncate mt-1">Entrega Diploma</p>
+</div>
+<!-- Photo 3: Family Warm Milestone Portrait -->
+<div class="shrink-0 w-32 snap-start bg-surface-container-lowest border border-outline-variant rounded-lg p-1 relative shadow-sm">
+<div class="aspect-[3/4] overflow-hidden rounded bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="An elegant celebratory family portrait outdoors in the school courtyard garden with lush greenery, showing proud parents embracing their graduating son holding his degree certificate. Soft afternoon golden light, stylish editorial framing, joyful emotional family heirloom composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHUnLOFADtL57n0w6d2bkcXFCEIEtrFREhlcp3FnIQhjwRZ-w85bp0-1xRQkeiofdShreP0T8zbTvu0laxUl4SZjnYuAgG-a4H_NGKi53OpdehezZLgzphVPT0rqVxNeDfrTqQZPdhvvrH-5qSysmAK_UFwJOJ3BnZuZW4cb_lFLNOc_i9XKkpBlihKEJqyVwtLGWsiEqoaf_iScMzcCFm5ZQW3qNDC7qpgVzwJNKyG9FXTYjUUB4c">
+<span class="absolute bottom-1 right-1 bg-primary-container/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">#0423</span>
+</div>
+<p class="font-label-sm text-label-sm text-center text-on-surface truncate mt-1">Con la Familia</p>
+</div>
+<!-- Photo 4: Classmates Throwing Caps -->
+<div class="shrink-0 w-32 snap-start bg-surface-container-lowest border border-outline-variant rounded-lg p-1 relative shadow-sm">
+<div class="aspect-[3/4] overflow-hidden rounded bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="Dynamic outdoor graduation milestone moment with high school classmates laughing together in traditional academic caps and gowns outside the historic school brick facade. Brilliant morning sunshine, joyous group energy, ultra clean and crisp archival photographic composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvnBfr2_y1qI2XbJqFi4nxtngUQQ8--wDvetbsmEyjcrC0_LthN9ta5x3pixUt6L5C2tvGCWXHleH3XKQGv3AztYmMiC6xFInDgwt8Mz3slzuYYR-79MCliZMg6QGMhtlKrzhjvrFLNxBEugbdJjqJXwW-33RlBHR0jnk0Bl-YMDGOfLiIET0ukuSDvSd-D7nX_0NV3GrHgLpH3qGxf5-4Eq6a1PQ5xtrfL6FZTXEeLUSqo7AHzixw">
+<span class="absolute bottom-1 right-1 bg-primary-container/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">#0424</span>
+</div>
+<p class="font-label-sm text-label-sm text-center text-on-surface truncate mt-1">Compañeros LXII</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Seguimiento de Copias Físicas Impresas y Retiro -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/60">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="print">print</span>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-primary">Copias Físicas en Proceso</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">2x Copias 15x21 cm • Papel Heirloom Mate 260g</p>
+</div>
+</div>
+</div>
+<!-- Production Stepper Timeline -->
+<div class="py-4">
+<div class="relative flex items-center justify-between">
+<!-- Background Line -->
+<div class="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-1 bg-surface-container-highest -z-0"></div>
+<!-- Active Line Progress -->
+<div class="absolute left-4 w-1/2 top-1/2 -translate-y-1/2 h-1 bg-primary-container -z-0"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center bg-surface-container-lowest px-1 z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center ring-4 ring-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold mt-1.5">Pago</span>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex flex-col items-center bg-surface-container-lowest px-1 z-10">
+<div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center ring-4 ring-surface-container-lowest shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-sm" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-bold mt-1.5">En Imprenta</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center bg-surface-container-lowest px-1 z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-outline flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-sm" data-icon="storefront">storefront</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1.5">En Secretaría</span>
+</div>
+</div>
+</div>
+<!-- Ticket de Retiro Físico -->
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-lg p-space-sm mt-1">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">CÓDIGO DE RETIRO</span>
+<span class="font-headline-sm text-headline-sm font-mono font-bold text-primary tracking-wider">BDS-RET-8842</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Disponible desde: <strong class="text-on-surface">Lunes 15 de Diciembre</strong>
+</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Lugar: Secretaría Belgrano Day School (8 a 16 hs)
+            </p>
+</div>
+<!-- Simulated High-Density QR code presentation -->
+<div class="w-20 h-20 bg-white p-1.5 rounded-md border border-outline-variant/80 flex flex-col items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="qr_code_2">qr_code_2</span>
+<span class="text-[9px] font-mono font-semibold text-on-surface-variant mt-[-4px]">MOSTRAR EN CAJA</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Resumen Financiero y Comprobante Fiscal -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant shadow-sm space-y-3">
+<h3 class="font-title-md text-title-md font-bold text-primary">Detalle de Compra y Facturación</h3>
+<div class="divide-y divide-outline-variant/40 font-body-sm text-body-sm">
+<div class="py-2 flex justify-between">
+<span class="text-on-surface-variant">1x Pack Digital Completo HD (18 fotos)</span>
+<span class="font-medium text-on-surface">ARS $14.500</span>
+</div>
+<div class="py-2 flex justify-between">
+<span class="text-on-surface-variant">2x Copias Fotográficas 15x21 Heirloom Matte</span>
+<span class="font-medium text-on-surface">ARS $6.470</span>
+</div>
+<div class="py-2 flex justify-between">
+<span class="text-on-surface-variant">Medio de Pago: Mercado Pago (Débito)</span>
+<span class="text-emerald-700 font-medium">Aprobado</span>
+</div>
+<div class="py-2.5 flex justify-between font-title-md text-title-md font-bold text-primary">
+<span class="">Total Pagado</span>
+<span class="">ARS $20.970</span>
+</div>
+</div>
+<div class="pt-2 flex flex-col sm:flex-row gap-2">
+<button class="flex-1 inline-flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container transition-colors text-body-sm font-semibold active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg" data-icon="receipt_long">receipt_long</span>
+          Factura Electrónica B
+        </button>
+<button class="flex-1 inline-flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#25D366]/15 text-[#128C7E] hover:bg-[#25D366]/25 transition-colors text-body-sm font-semibold active:scale-[0.98]" onclick="shareWhatsApp()">
+<span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+          Avisar por WhatsApp
+        </button>
+</div>
+</section>
+<!-- 6. Soporte y Atención al Cliente Oficial -->
+<section class="bg-surface-container-low rounded-xl p-space-md border border-outline-variant shadow-sm flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md font-bold text-primary">¿Dudas con tu entrega o retiro?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 mb-2">
+          El equipo del estudio fotográfico oficial de Belgrano Day School está disponible para coordinar envíos o reimpresiones.
+        </p>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-primary hover:underline" href="https://wa.me/">
+<span class="material-symbols-outlined text-sm" data-icon="chat">chat</span>
+          Contactar Soporte Institucional
+        </a>
+</div>
+</section>
+<!-- 7. Botón de Cierre / Volver al Directorio -->
+<div class="pt-2 pb-6 text-center">
+<a class="inline-block text-on-surface-variant hover:text-primary font-body-sm text-body-sm underline font-medium" href="EVENTOS - Directorio Escolar.html">
+        Volver a la Galería General del Colegio Belgrano Day School
+      </a>
+</div>
+</main>
+<!-- BottomNavBar (Shared Component from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile py-space-xs bg-surface-container-lowest border-t border-outline-variant shadow-[0_-1px_3px_0_rgba(23,37,84,0.05)] md:hidden">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-colors duration-150 active:scale-95" href="EVENTOS - Directorio Escolar.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<!-- Mis Pedidos (Active Match for this Confirmation Screen) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1.5 active:scale-95" href="#">
+<span class="material-symbols-outlined text-white" data-icon="shopping_bag" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-label-sm text-label-sm text-white font-bold">Mis Pedidos</span>
+</a>
+<!-- Favoritos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-sm text-label-sm">Favoritos</span>
+</a>
+<!-- Ayuda -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+<span class="font-label-sm text-label-sm">Ayuda</span>
+</a>
+</nav>
+<!-- Lightweight Toast / Share Interactivity Script -->
+<script>
+    function shareWhatsApp() {
+      const msg = encodeURIComponent("¡Hola! Ya descargué las fotos oficiales del Acto de Colación 2026 de Mateo Fernández en Belgrano Day School (Pedido #EV-2026-0421). Retiro físico desde el 15/12 con código BDS-RET-8842.");
+      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+    }
+
+    function shareTicket() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Pedido #EV-2026-0421 - Belgrano Day School',
+          text: 'Comprobante de compra y código de retiro de fotografías: BDS-RET-8842',
+          url: window.location.href,
+        }).catch(() => {});
+      } else {
+        alert('Enlace copiado al portapapeles: Pedido #EV-2026-0421');
+      }
+    }
+  </script>
+
+
+</body></html>
