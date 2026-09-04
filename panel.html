@@ -721,32 +721,14 @@
 </div>
 <!-- JAVASCRIPT AUTOSUFICIENTE (CERO CÓDIGO - LOCALSTORAGE + RENDER FETCH) -->
 <script>
-  // 1. AUTH GUARD - VERIFICACIÓN DE SESIÓN ACTIVA
+  // 1. AUTH GUARD - VERIFICACIÓN DE SESIÓN ELIMINADA PARA ACCESO LIBRE
   function verificarAutenticacion() {
-    try {
-      const isAuth = sessionStorage.getItem('eventos_fotografo_auth');
-      if (isAuth !== 'true') {
-        // Redireccionar a la pantalla de login fotógrafo
-        window.location.href = 'EVENTOS - Login Fotógrafo y Acceso Seguro.html';
-        return false;
-      }
-    } catch(e) {
-      console.warn('Error validando autenticación:', e);
-    }
     return true;
   }
 
-  // 2. FUNCIÓN DE CERRAR SESIÓN
+  // 2. FUNCIÓN DE CERRAR SESIÓN (Adaptada para no requerir login)
   function cerrarSesion() {
-    try {
-      sessionStorage.removeItem('eventos_fotografo_auth');
-    } catch(e) {
-      console.warn('Error al limpiar sesión:', e);
-    }
-    showToast('Sesión Finalizada', 'Has cerrado sesión con éxito. Redirigiendo...');
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 600);
+    showToast('Sesión', 'Acceso libre activo sin verificación de login.');
   }
 
   // Configuración predeterminada
