@@ -3,7 +3,7 @@
 <html class="light" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>EVENTOS - Login Fotógrafo | Acceso Seguro</title>
+<title>EVENTOS - Acceso Fotógrafo Autorizado | Google OAuth</title>
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Google Fonts: Manrope (Sans) & Source Serif 4 (Serif) -->
@@ -138,7 +138,7 @@
   </style>
 </head>
 <body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col justify-between proof-grid-texture selection:bg-primary-container selection:text-white">
-<!-- Top Navigation Header (Shared Component: TopAppBar docked top-0) -->
+<!-- Top Navigation Header -->
 <header class="bg-surface-container-lowest text-primary docked full-width top-0 shadow-sm border-b border-outline-variant z-40 sticky">
 <div class="w-full px-gutter-mobile md:px-gutter-desktop mx-auto max-w-container-max flex justify-between items-center h-16">
 <!-- Brand & Identity Cluster -->
@@ -156,130 +156,77 @@
 <div class="flex items-center space-x-space-xs">
 <div class="inline-flex items-center gap-1.5 px-space-sm py-1 bg-surface-container-low rounded border border-outline-variant text-primary font-label-md text-label-md">
 <span class="material-symbols-outlined text-primary text-[18px]" data-icon="vpn_key" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
-<span class="hidden md:inline">Acceso Fotógrafos</span>
+<span class="text-xs font-semibold">Acceso Exclusivo</span>
 </div>
 </div>
 </div>
 </header>
-<!-- Main Canvas Journey (Linear / Focused Login) -->
+<!-- Main Canvas Journey (Clean Exclusive Google OAuth) -->
 <main class="flex-grow flex items-center justify-center px-gutter-mobile py-space-xl md:py-space-3xl">
 <div class="w-full max-w-[480px]">
 <!-- Elevated Administrative Card -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_20px_-2px_rgba(23,37,84,0.08)] p-6 md:p-8 relative">
-<!-- Private & Encrypted Badge -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_24px_-2px_rgba(23,37,84,0.09)] p-6 md:p-8 relative">
+<!-- Resticted & Private Badge -->
 <div class="flex justify-center mb-space-md">
 <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-primary rounded-full border border-primary/20 shadow-sm">
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
-<span class="font-label-sm text-label-sm tracking-wider uppercase font-bold text-primary">Acceso privado y encriptado</span>
+<span class="font-label-sm text-label-sm tracking-wider uppercase font-bold text-primary">ACCESO RESTRINGIDO &amp; PRIVADO</span>
 </div>
 </div>
 <!-- Section Title & Subtitle -->
-<div class="text-center mb-space-xl">
-<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-1">
+<div class="text-center mb-space-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-2">
             Portal de Fotógrafo
           </h1>
-<p class="font-body-md text-body-md text-on-surface-variant">
-            Administración de sesiones escolares, sincronización de tomas en alta resolución y control comercial.
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Administración de sesiones escolares, sincronización de tomas en alta resolución y control comercial directo con Google Drive.
           </p>
 </div>
-<!-- Google Workspace Fast OAuth Anchor -->
-<div class="mb-space-lg">
-<button class="w-full flex items-center justify-center gap-3 py-2.5 px-4 bg-surface-container-lowest border border-outline rounded-lg text-on-surface hover:bg-surface-container-low hover:border-primary transition-colors duration-150 shadow-sm active:scale-98" onclick="window.location.href='EVENTOS - Carga y Sync con Google Drive.html'" type="button">
-<svg class="w-5 h-5" viewbox="0 0 24 24">
+<!-- Authorized Account Card / Identity Banner -->
+<div class="mb-space-lg p-3.5 bg-surface-container-low border border-primary/20 rounded-lg flex items-center gap-3 text-left">
+<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-base flex-shrink-0 shadow-sm">
+          SO
+        </div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">Fotógrafo Autorizado</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span> Propietario
+            </span>
+</div>
+<p class="font-mono font-semibold text-primary text-xs sm:text-sm truncate select-all">molinaoksergio@gmail.com</p>
+</div>
+</div>
+<!-- Google Authentication Block -->
+<div class="space-y-space-sm">
+<button class="w-full flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest border-2 border-primary/20 rounded-lg text-on-surface hover:bg-surface-container-low hover:border-primary transition-all duration-150 shadow-sm active:scale-98 cursor-pointer group disabled:opacity-75 disabled:cursor-not-allowed" id="googleAuthBtn" onclick="handleGoogleSignIn()" type="button">
+<svg class="w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110 duration-150" viewbox="0 0 24 24">
 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
 </svg>
-<span class="font-title-md text-title-md font-semibold text-on-surface">Iniciar sesión con Google</span>
+<span class="font-title-md text-title-md font-bold text-primary group-hover:text-primary-container transition-colors" id="btnLabel">Iniciar sesión con Google</span>
 </button>
-<div class="mt-1.5 text-center">
-<span class="font-label-sm text-label-sm text-outline">Vincular cuenta directa de Google Drive para carga de lotes</span>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant">
+          Autenticación segura federada mediante Google Workspace &amp; Drive Sync
+        </p>
 </div>
-</div>
-<!-- Elegant Horizontal Divider -->
-<div class="relative flex py-2 items-center mb-space-lg">
-<div class="flex-grow border-t border-outline-variant"></div>
-<span class="flex-shrink mx-3 text-on-surface-variant font-label-sm text-label-sm tracking-wide text-outline">o continuar con credenciales</span>
-<div class="flex-grow border-t border-outline-variant"></div>
-</div>
-<!-- Configurable Demo Credentials Banner -->
-<div class="mb-4 p-3 bg-surface-container-low border border-outline-variant rounded-lg flex items-start gap-2.5">
-<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0 mt-0.5" data-icon="info">info</span>
-<div class="text-left">
-<p class="font-label-md text-label-md text-primary font-semibold">Credenciales del Sistema</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Clave maestra por defecto: <code class="font-mono font-bold text-primary bg-surface-container-highest px-1.5 py-0.5 rounded text-xs">eventos2026</code> <span class="text-outline text-xs">(podés cambiarla en el código)</span></p>
-</div>
-</div>
-<!-- Dynamic Error Alert Box (Hidden by default) -->
-<div class="hidden mb-4 p-3 bg-error-container border border-error/40 text-on-error-container rounded-lg flex items-start gap-2.5 transition-all duration-200" id="loginErrorMessage" role="alert">
-<span class="material-symbols-outlined text-error text-[20px] flex-shrink-0 mt-0.5" data-icon="error">error</span>
-<p class="font-body-sm text-body-sm font-semibold leading-snug" id="loginErrorText">Contraseña incorrecta. Verificá tus credenciales de acceso</p>
-</div>
-<!-- Dynamic Success / Verifying Alert Box (Hidden by default) -->
-<div class="hidden mb-4 p-3 bg-surface-container border border-primary/30 text-primary rounded-lg flex items-center gap-3 transition-all duration-200" id="loginLoadingMessage" role="status">
-<svg class="animate-spin h-5 w-5 text-primary flex-shrink-0" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<!-- Dynamic Status Feedback Box (Hidden by default) -->
+<div class="hidden mt-space-md p-3.5 bg-surface-container border border-primary/30 text-primary rounded-lg flex items-center gap-3 transition-all duration-200" id="statusBox" role="status">
+<svg class="animate-spin h-5 w-5 text-primary flex-shrink-0" fill="none" id="statusSpinner" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
 <path class="opacity-75" d="M4 12a8 8 0 018-8v8H4z" fill="currentColor"></path>
 </svg>
-<p class="font-body-sm text-body-sm font-semibold" id="loginLoadingText">Verificando credenciales autorizadas...</p>
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 hidden" data-icon="check_circle" id="statusCheck" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<p class="font-body-sm text-body-sm font-semibold text-primary" id="statusMessage">Conectando con Google...</p>
 </div>
-<!-- Authentication Form -->
-<form class="space-y-space-md" id="loginForm" novalidate="" onsubmit="handleFormSubmit(event)">
-<!-- Email / Drive Address -->
-<div>
-<label class="block font-label-md text-label-md font-semibold text-primary mb-1.5" for="photographerEmail">
-              Correo Electrónico Profesional / Drive <span class="text-error">*</span>
-</label>
-<div class="relative rounded-lg shadow-sm">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline" id="emailIconContainer">
-<span class="material-symbols-outlined text-[20px]" data-icon="mail">mail</span>
-</div>
-<input autocomplete="email" class="block w-full pl-10 pr-3 py-2.5 bg-surface-container-lowest border border-outline rounded text-on-surface font-body-md text-body-md placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="photographerEmail" name="photographerEmail" placeholder="fotografo@estudio.com" required="" type="email"/>
-</div>
-<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Usa la casilla autorizada por el colegio o tu estudio asociado.</p>
-</div>
-<!-- Master Password Field -->
-<div>
-<div class="flex items-center justify-between mb-1.5">
-<label class="block font-label-md text-label-md font-semibold text-primary" for="masterPassword">
-                Contraseña Maestra <span class="text-error">*</span>
-</label>
-<a class="font-label-md text-label-md text-primary font-semibold hover:underline decoration-1 underline-offset-2" href="#">
-                ¿Olvidaste tu contraseña?
-              </a>
-</div>
-<div class="relative rounded-lg shadow-sm">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline" id="passwordIconContainer">
-<span class="material-symbols-outlined text-[20px]" data-icon="lock_open">lock_open</span>
-</div>
-<input autocomplete="current-password" class="block w-full pl-10 pr-10 py-2.5 bg-surface-container-lowest border border-outline rounded text-on-surface font-body-md text-body-md placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="masterPassword" name="masterPassword" placeholder="••••••••••••" required="" type="password"/>
-<button aria-label="Alternar visibilidad de contraseña" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-primary transition-colors focus:outline-none cursor-pointer" id="togglePasswordBtn" onclick="togglePasswordVisibility()" type="button">
-<span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="eyeIcon">visibility</span>
-</button>
-</div>
-</div>
-<!-- Session persistence checkbox -->
-<div class="flex items-center pt-1">
-<input checked="" class="h-4 w-4 rounded border-outline text-primary focus:ring-primary/20 cursor-pointer" id="rememberSession" name="rememberSession" type="checkbox"/>
-<label class="ml-2.5 block font-body-md text-body-md text-on-surface cursor-pointer select-none" for="rememberSession">
-              Recordar mi sesión en este dispositivo seguro
-            </label>
-</div>
-<!-- Primary Submit Action -->
-<div class="pt-2">
-<button class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary text-white font-title-md text-title-md rounded hover:bg-primary-container transition-all duration-150 shadow-[0_2px_8px_-1px_rgba(23,37,84,0.35)] active:scale-98 group cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed" id="submitBtn" type="submit">
-<span id="submitBtnText">Ingresar al Panel de Control</span>
-<span class="material-symbols-outlined text-[20px] transition-transform duration-150 group-hover:translate-x-1" data-icon="arrow_forward" id="submitBtnIcon">arrow_forward</span>
-</button>
-</div>
-</form>
 <!-- Institutional Security Notice Box -->
 <div class="mt-space-lg p-3.5 bg-surface-container-low border border-outline-variant rounded-lg flex items-start space-x-3 text-left">
 <span class="material-symbols-outlined text-secondary text-[22px] flex-shrink-0 mt-0.5" data-icon="shield">shield</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-<strong class="text-primary font-semibold">Aviso de Integridad Institucional:</strong> Solo personal fotográfico acreditado tiene acceso a la carga de lotes originales sin marca de agua y facturación Mercado Pago. Los accesos son monitoreados criptográficamente.
-          </p>
+<strong class="text-primary font-semibold">Aviso de Seguridad:</strong> Este portal está restringido exclusivamente a la cuenta autorizada (<strong class="text-primary font-mono text-xs">molinaoksergio@gmail.com</strong>). El acceso habilita la sincronización completa de lotes y galerías escolares.
+        </p>
 </div>
 </div>
 <!-- Footer Anchor Backlink -->
@@ -303,106 +250,43 @@
 </div>
 </div>
 </footer>
-<!-- Micro-interactions & Strict Validation Script -->
+<!-- Google Single-Sign-On Simulation Script -->
 <script>
-    // Clave maestra autorizada por defecto (configurable)
-    const MASTER_PASSWORD_AUTH = 'eventos2026';
+    const AUTHORIZED_GOOGLE_EMAIL = 'molinaoksergio@gmail.com';
 
-    function togglePasswordVisibility() {
-      const passwordInput = document.getElementById('masterPassword');
-      const eyeIcon = document.getElementById('eyeIcon');
-      
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeIcon.textContent = 'visibility_off';
-        eyeIcon.setAttribute('data-icon', 'visibility_off');
-      } else {
-        passwordInput.type = 'password';
-        eyeIcon.textContent = 'visibility';
-        eyeIcon.setAttribute('data-icon', 'visibility');
-      }
+    function handleGoogleSignIn() {
+      const btn = document.getElementById('googleAuthBtn');
+      const btnLabel = document.getElementById('btnLabel');
+      const statusBox = document.getElementById('statusBox');
+      const statusMessage = document.getElementById('statusMessage');
+      const statusSpinner = document.getElementById('statusSpinner');
+      const statusCheck = document.getElementById('statusCheck');
+
+      // 1. Bloquear botón y mostrar feedback de conexión inicial
+      btn.disabled = true;
+      btnLabel.textContent = 'Conectando con Google...';
+      statusBox.classList.remove('hidden');
+      statusSpinner.classList.remove('hidden');
+      statusCheck.classList.add('hidden');
+      statusMessage.textContent = 'Verificando autorización para ' + AUTHORIZED_GOOGLE_EMAIL + '...';
+
+      // 2. Simulación de autenticación OAuth exitosa de Sergio Molina
+      setTimeout(() => {
+        statusSpinner.classList.add('hidden');
+        statusCheck.classList.remove('hidden');
+        statusMessage.textContent = 'Autenticado con éxito como ' + AUTHORIZED_GOOGLE_EMAIL;
+        btnLabel.textContent = 'Redirigiendo al Panel...';
+
+        // 3. Guardar estado de sesión fotógrafo en sessionStorage
+        sessionStorage.setItem('eventos_fotografo_auth', 'true');
+        sessionStorage.setItem('eventos_fotografo_email', AUTHORIZED_GOOGLE_EMAIL);
+        sessionStorage.setItem('eventos_fotografo_name', 'Sergio Molina');
+
+        // 4. Redirección al panel del fotógrafo
+        setTimeout(() => {
+          window.location.href = 'EVENTOS - Panel de Control Fotógrafo (Gestión Drive 100% Visual).html';
+        }, 800);
+      }, 950);
     }
-
-    function clearErrors() {
-      const emailInput = document.getElementById('photographerEmail');
-      const passwordInput = document.getElementById('masterPassword');
-      const errorBox = document.getElementById('loginErrorMessage');
-      
-      // Reset inputs styling
-      emailInput.classList.remove('border-error', 'ring-2', 'ring-error/20');
-      emailInput.classList.add('border-outline');
-      passwordInput.classList.remove('border-error', 'ring-2', 'ring-error/20');
-      passwordInput.classList.add('border-outline');
-
-      // Hide error box
-      errorBox.classList.add('hidden');
-    }
-
-    function showError(message, targetInput) {
-      const errorBox = document.getElementById('loginErrorMessage');
-      const errorText = document.getElementById('loginErrorText');
-      
-      errorText.textContent = message;
-      errorBox.classList.remove('hidden');
-
-      if (targetInput) {
-        targetInput.classList.remove('border-outline');
-        targetInput.classList.add('border-error', 'ring-2', 'ring-error/20');
-        targetInput.focus();
-      }
-    }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      clearErrors();
-
-      const emailInput = document.getElementById('photographerEmail');
-      const passwordInput = document.getElementById('masterPassword');
-      const emailValue = emailInput.value.trim();
-      const passwordValue = passwordInput.value;
-      const loadingBox = document.getElementById('loginLoadingMessage');
-      const submitBtn = document.getElementById('submitBtn');
-
-      // 1. Validar campos requeridos
-      if (!emailValue) {
-        showError('Por favor ingresá tu correo electrónico profesional.', emailInput);
-        return;
-      }
-
-      // Validación de formato de email básico
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailValue)) {
-        showError('El formato de correo electrónico no es válido.', emailInput);
-        return;
-      }
-
-      if (!passwordValue) {
-        showError('Por favor ingresá tu Contraseña Maestra de acceso.', passwordInput);
-        return;
-      }
-
-      // 2. Validar contraseña maestra obligatoria
-      if (passwordValue !== MASTER_PASSWORD_AUTH) {
-        showError('Contraseña incorrecta. Verificá tus credenciales de acceso', passwordInput);
-        return;
-      }
-
-      // 3. Credenciales válidas: bloqueo de UI y feedback de carga
-      submitBtn.disabled = true;
-      loadingBox.classList.remove('hidden');
-
-      // Guardar sesión autorizada en sessionStorage
-      sessionStorage.setItem('eventos_fotografo_auth', 'true');
-      sessionStorage.setItem('eventos_fotografo_email', emailValue);
-
-      // Simular verificación criptográfica y redirigir
-      setTimeout(function() {
-        window.location.href = 'EVENTOS - Panel de Control Fotógrafo (Gestión Drive 100% Visual).html';
-      }, 1000);
-    }
-
-    // Limpiar alertas al escribir
-    document.getElementById('photographerEmail').addEventListener('input', clearErrors);
-    document.getElementById('masterPassword').addEventListener('input', clearErrors);
   </script>
 </body></html>
