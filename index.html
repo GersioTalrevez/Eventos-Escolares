@@ -1,13 +1,17 @@
-<!DOCTYPE html><html class="light" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>EVENTOS - Directorio Escolar</title>
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EVENTOS - Sergio Molina Fotógrafo</title>
+<!-- Favicon Sergio Molina -->
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/jpeg"/>
 <!-- Google Fonts: Manrope & Source Serif 4 -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -16,32 +20,25 @@
       theme: {
         extend: {
           colors: {
-            "primary": "#000f3f",
-            "primary-container": "#172554",
-            "secondary": "#9b4500",
-            "secondary-container": "#fd8a42",
-            "surface": "#f8f9ff",
-            "surface-dim": "#ccdbf3",
-            "surface-bright": "#f8f9ff",
-            "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#eff4ff",
-            "surface-container": "#e6eeff",
-            "surface-container-high": "#dce9ff",
-            "surface-container-highest": "#d5e3fc",
-            "on-surface": "#0d1c2e",
-            "on-surface-variant": "#45464f",
-            "outline": "#767680",
-            "outline-variant": "#c6c5d0",
-            "tertiary": "#001626"
+            "page-bg": "#111111",
+            "surface-card": "#222222",
+            "surface-card-hover": "#282828",
+            "card-border": "#333333",
+            "primary-blue": "#004466",
+            "primary-blue-border": "#005580",
+            "primary-blue-hover": "#005580",
+            "text-main": "#ffffff",
+            "text-muted": "#aaaaaa",
+            "text-subtle": "#777777"
           },
           fontFamily: {
             "body-md": ["Manrope", "sans-serif"],
             "headline-sm": ["Source Serif 4", "serif"],
             "headline-md": ["Source Serif 4", "serif"],
-            "headline-lg": ["Source Serif 4", "serif"],
-            "title-md": ["Manrope", "sans-serif"],
-            "label-sm": ["Manrope", "sans-serif"],
-            "label-md": ["Manrope", "sans-serif"]
+            "headline-lg": ["Source Serif 4", "serif"]
+          },
+          boxShadow: {
+            "dark-card": "0 4px 10px rgba(0,0,0,0.3)"
           }
         }
       }
@@ -60,134 +57,164 @@
     .proof-watermark-overlay {
       background-image: repeating-linear-gradient(
         -45deg,
-        rgba(255, 255, 255, 0.12) 0,
-        rgba(255, 255, 255, 0.12) 1px,
+        rgba(255, 255, 255, 0.08) 0,
+        rgba(255, 255, 255, 0.08) 1px,
         transparent 0,
         transparent 28px
       );
     }
     body {
       min-height: max(884px, 100dvh);
+      background-color: #111111;
+      color: #ffffff;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col pb-24 selection:bg-primary-container selection:text-white">
+<body class="bg-[#111111] text-[#ffffff] font-body-md antialiased min-h-screen flex flex-col pb-28 selection:bg-[#004466] selection:text-white">
 <!-- Header / Barra Superior -->
-<header class="sticky top-0 z-40 bg-surface-container-lowest shadow-sm w-full border-b border-outline-variant">
+<header class="sticky top-0 z-40 bg-[#111111]/95 backdrop-blur-md w-full border-b border-[#333333] shadow-md">
 <div class="w-full px-4 md:px-6 mx-auto max-w-6xl flex justify-between items-center py-3">
-<!-- Marca -->
-<a class="flex items-center gap-2" href="index.html"><span class="material-symbols-outlined text-primary text-[24px]">camera_roll</span><div class="flex flex-col"><span class="text-base md:text-lg font-bold tracking-tight text-primary font-headline-sm leading-tight">Eventos Escolares y Sesiones Fotográficas</span><span class="text-[12px] text-on-surface-variant font-medium">de Sergio Molina, Fotógrafo</span></div></a>
+<!-- Marca con Avatar de Sergio Ricardo Molina -->
+<a class="flex items-center gap-3 group" href="https://sergiomolina-fotografia.netlify.app/">
+<img alt="Sergio Ricardo Molina" class="w-10 h-10 rounded-full object-cover border-2 border-[#005580] shadow-sm flex-shrink-0 group-hover:border-[#91cdfe] transition-all" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
+<div class="flex flex-col">
+<span class="text-sm md:text-base font-bold tracking-tight text-[#ffffff] font-headline-sm leading-tight group-hover:text-[#91cdfe] transition-colors">Eventos Escolares y Sesiones Fotográficas</span>
+<span class="text-[12px] text-[#aaaaaa] font-medium">de Sergio Molina, Fotógrafo</span>
+</div>
+</a>
 <!-- Acciones de Cabecera -->
 <div class="flex items-center gap-2">
-<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low text-primary border border-outline-variant hover:bg-surface-container-high transition text-xs font-semibold" onclick="document.getElementById('pin-section').scrollIntoView({behavior: 'smooth'})">
-<span class="material-symbols-outlined text-[18px] text-secondary">vpn_key</span>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-[#222222] text-[#ffffff] border border-[#333333] hover:border-[#005580] hover:bg-[#282828] transition text-xs font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.3)]" onclick="document.getElementById('pin-section').scrollIntoView({behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[18px] text-[#ffb878]">vpn_key</span>
 <span class="hidden xs:inline">Ingresar código</span>
 </button>
-<!-- Enlace 100% corregido a login.html -->
+<a class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-[#004466] text-white border border-[#005580] hover:bg-[#005580] transition text-xs font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.3)]" href="https://sergiomolina-fotografia.netlify.app/" rel="noopener noreferrer" target="_blank" title="Sitio Web de Sergio Molina">
+<span class="material-symbols-outlined text-[17px]">language</span>
+<span>Portfolio</span>
+</a>
 </div>
 </div>
 </header>
 <!-- Contenido Principal -->
 <main class="flex-1 w-full max-w-6xl mx-auto px-4 md:px-6 space-y-8 pt-6">
 <!-- Hero Section -->
-<section class="relative bg-surface-container-lowest rounded-2xl p-6 md:p-8 border border-outline-variant shadow-sm overflow-hidden">
-<div class="relative z-10 max-w-xl space-y-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-[14px]">school</span>
-<span class="">Plataforma Oficial Escolar 2026</span>
+<section class="relative bg-[#222222] rounded-[12px] p-6 md:p-8 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] overflow-hidden">
+<div class="relative z-10 max-w-2xl space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#111111] text-[#91cdfe] border border-[#333333] text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[15px] text-[#ffb878]">school</span>
+<span>Plataforma Oficial Escolar 2026</span>
 </div>
-<h1 class="text-2xl sm:text-3xl md:text-4xl text-primary tracking-tight font-headline-lg font-bold">
-          Las memorias escolares de tus hijos, a un toque.
-        </h1>
-<p class="text-sm md:text-base text-on-surface-variant">
-          Buscá las fotos del acto o evento de tu colegio y pedilas en Impresas o Digital sin marca de agua.
-        </p>
+<h1 class="text-2xl sm:text-3xl md:text-4xl text-[#ffffff] tracking-tight font-headline-lg font-bold leading-tight">
+  Las memorias escolares de tus hijos, a un toque.
+</h1>
+<p class="text-sm md:text-base text-[#aaaaaa] leading-relaxed">
+  Buscá las fotos del acto o evento de tu colegio y pedilas en Papel Fotográfico de Laboratorio o Digital en alta resolución sin marca de agua.
+</p>
 <!-- Buscador -->
 <form class="pt-2" onsubmit="event.preventDefault();">
-<div class="flex flex-col sm:flex-row gap-2">
+<div class="flex flex-col sm:flex-row gap-2.5">
 <div class="relative flex-1">
-<span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-outline">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-[#aaaaaa]">
 <span class="material-symbols-outlined text-[20px]">search</span>
 </span>
-<input class="w-full pl-10 pr-3 py-2.5 bg-surface rounded-lg border border-outline-variant text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition" placeholder="Ingresá el nombre del colegio o evento..." type="text">
+<input class="w-full pl-10 pr-3 py-2.5 bg-[#111111] rounded-[10px] border border-[#333333] text-sm text-[#ffffff] placeholder:text-[#777777] focus:outline-none focus:border-[#005580] focus:ring-1 focus:ring-[#005580] transition" placeholder="Ingresá el nombre del colegio o evento..." type="text"/>
 </div>
-<button class="px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold flex items-center justify-center gap-2 hover:bg-primary-container active:scale-95 transition shadow-sm" type="submit">
-<span class="">Buscar</span>
+<button class="px-5 py-2.5 rounded-[10px] bg-[#004466] hover:bg-[#005580] text-white text-sm font-semibold flex items-center justify-center gap-2 border border-[#005580] active:scale-95 transition shadow-[0_4px_10px_rgba(0,0,0,0.3)]" type="submit">
+<span>Buscar</span>
 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </button>
 </div>
 </form>
-<div class="flex items-center gap-3 pt-1 text-on-surface-variant text-xs font-medium">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
-<span class="">Privacidad escolar garantizada</span>
+<div class="flex flex-wrap items-center gap-4 pt-1 text-[#aaaaaa] text-xs font-medium">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#91cdfe]">verified_user</span>
+<span>Privacidad escolar garantizada</span>
 </div>
-<span class="text-outline-variant">•</span>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px] text-secondary">photo_prints</span>
-<span class="">Papel fotográfico de Laboratorio</span>
+<span class="text-[#444444]">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#ffb878]">photo_prints</span>
+<span>Papel fotográfico de Laboratorio</span>
+</div>
+<span class="text-[#444444]">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#91cdfe]">camera_alt</span>
+<span>Sergio Ricardo Molina Fotografía</span>
 </div>
 </div>
 </div>
 </section>
 <!-- Banner Acceso PIN Alumno -->
-<section class="bg-primary-container text-white rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/30" id="pin-section">
+<section class="bg-[#222222] text-[#ffffff] rounded-[12px] p-5 md:p-6 shadow-[0_4px_10px_rgba(0,0,0,0.3)] border border-[#333333]" id="pin-section">
 <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-<div class="space-y-1 max-w-md">
+<div class="space-y-1.5 max-w-md">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-secondary-container">pin</span>
-<h2 class="text-base md:text-lg text-white font-bold">
-              ¿Tenés el código de la credencial del alumno?
-            </h2>
+<span class="material-symbols-outlined text-[#ffb878] text-[22px]">pin</span>
+<h2 class="text-base md:text-lg text-[#ffffff] font-bold">
+  ¿Tenés el código de la credencial del alumno?
+</h2>
 </div>
-<p class="text-xs text-blue-200">
-            Ingresá el PIN impreso en la tarjeta que entregó la escuela para desbloquear la galería privada y retratos individuales.
-          </p>
+<p class="text-xs text-[#aaaaaa] leading-relaxed">
+  Ingresá el PIN impreso en la tarjeta que entregó la escuela para desbloquear la galería privada y retratos individuales protegidos.
+</p>
 </div>
-<div class="w-full md:w-auto flex flex-col sm:flex-row gap-2 items-stretch">
-<input class="w-full sm:w-48 text-center uppercase tracking-widest font-mono font-bold bg-surface text-primary rounded-lg px-3 py-2 border-2 border-transparent focus:border-secondary-container focus:outline-none text-sm" maxlength="14" placeholder="Ej: SJ-2026-9A" type="text">
-<!-- Enlace 100% corregido a galeria.html -->
-<a class="px-4 py-2 rounded-lg bg-secondary text-white text-xs font-bold hover:opacity-95 active:scale-95 transition flex items-center justify-center gap-1.5 whitespace-nowrap" href="galeria.html">
+<div class="w-full md:w-auto flex flex-col sm:flex-row gap-2.5 items-stretch">
+<input class="w-full sm:w-48 text-center uppercase tracking-widest font-mono font-bold bg-[#111111] text-[#ffffff] rounded-[10px] px-3.5 py-2 border border-[#333333] focus:border-[#005580] focus:outline-none text-sm placeholder:text-[#666666]" maxlength="14" placeholder="EJ: SJ-2026-9A" type="text"/>
+<a class="px-4 py-2 rounded-[10px] bg-[#004466] hover:bg-[#005580] text-white text-xs font-bold border border-[#005580] active:scale-95 transition flex items-center justify-center gap-1.5 whitespace-nowrap shadow-[0_4px_10px_rgba(0,0,0,0.3)]" href="galeria.html">
 <span class="material-symbols-outlined text-[18px]">lock_open</span>
-<span class="">Ver galería privada</span>
+<span>Ver galería privada</span>
 </a>
 </div>
 </div>
 </section>
 <!-- Filtros por Nivel -->
-<section class="space-y-2">
+<section class="space-y-3">
 <div class="flex items-center justify-between">
-<h3 class="text-base font-bold text-primary">Explorar por Nivel Educativo</h3>
-<span class="text-xs text-on-surface-variant">3 eventos activos</span>
+<h3 class="text-sm font-bold uppercase tracking-wider text-[#aaaaaa]">Explorar por Nivel Educativo</h3>
+<span class="text-xs text-[#777777]">Galerías activas 2026</span>
 </div>
 <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-primary text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm">
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#004466] text-white border border-[#005580] text-xs font-semibold flex items-center gap-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
 <span class="material-symbols-outlined text-[16px]">grid_view</span>
-<span class="">Todos los niveles</span>
+<span>Todos los niveles</span>
 </button>
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant text-xs font-semibold transition flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px]">child_care</span>
-<span class="">Nivel Inicial / Jardín</span>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#222222] text-[#aaaaaa] hover:text-[#ffffff] hover:bg-[#282828] border border-[#333333] text-xs font-semibold transition flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#ffb878]">child_care</span>
+<span>Nivel Inicial / Jardín</span>
 </button>
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant text-xs font-semibold transition flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px]">menu_book</span>
-<span class="">Primaria</span>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#222222] text-[#aaaaaa] hover:text-[#ffffff] hover:bg-[#282828] border border-[#333333] text-xs font-semibold transition flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#91cdfe]">menu_book</span>
+<span>Primaria</span>
 </button>
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant text-xs font-semibold transition flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px]">history_edu</span>
-<span class="">Secundaria</span>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#222222] text-[#aaaaaa] hover:text-[#ffffff] hover:bg-[#282828] border border-[#333333] text-xs font-semibold transition flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#ffb878]">history_edu</span>
+<span>Secundaria</span>
 </button>
 </div>
 </section>
 <!-- Directorio de Eventos (Colegios) -->
 <section class="space-y-4">
-<div class="flex items-center justify-between"><h2 class="text-xl font-bold font-headline-sm text-primary">Eventos Escolares Recientes</h2><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-xs font-semibold text-primary border border-outline-variant/40" id="supabase-live-indicator"><span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span><span class="text-[11px] font-medium text-on-surface-variant">Sincronizado con Supabase</span></div></div>
-<div class="w-full" id="galerias-dinamicas-container"><div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="events-grid-container">
-  <div class="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm" id="events-loading-indicator">
-    <div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
-    <p class="text-sm font-semibold text-primary">Cargando galerías disponibles desde Supabase...</p>
-    <p class="text-xs text-on-surface-variant mt-1">Conectando con el directorio oficial de eventos escolares</p>
-  </div>
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold font-headline-sm text-[#ffffff]">Eventos Escolares Recientes</h2>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#222222] text-xs font-semibold text-[#ffffff] border border-[#333333] shadow-sm" id="supabase-live-indicator">
+<span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+<span class="text-[11px] font-medium text-[#aaaaaa]">Sincronizado con Supabase</span>
+</div>
+</div>
+<div class="w-full" id="galerias-dinamicas-container">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="events-grid-container">
+<div class="col-span-full py-14 px-6 flex flex-col items-center justify-center text-center bg-[#222222] rounded-[12px] border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)]" id="events-loading-indicator">
+<div class="w-10 h-10 border-4 border-[#005580] border-t-transparent rounded-full animate-spin mb-3"></div>
+<p class="text-sm font-semibold text-[#ffffff]">Cargando galerías disponibles desde Supabase...</p>
+<p class="text-xs text-[#aaaaaa] mt-1">Conectando con el catálogo de Sergio Molina Fotografía</p>
+</div>
+</div>
 </div>
 <script>
   (function() {
@@ -197,12 +224,12 @@
 
     function renderEmptyMessage(container) {
       container.innerHTML = `
-        <div class="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm">
-          <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3">
-            <span class="material-symbols-outlined text-[28px]">event_busy</span>
+        <div class="col-span-full py-14 px-6 flex flex-col items-center justify-center text-center bg-[#222222] rounded-[12px] border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
+          <div class="w-14 h-14 rounded-full bg-[#111111] border border-[#333333] flex items-center justify-center text-[#aaaaaa] mb-3">
+            <span class="material-symbols-outlined text-[28px] text-[#ffb878]">event_busy</span>
           </div>
-          <h3 class="text-base font-bold text-primary mb-1">No hay eventos publicados por el momento</h3>
-          <p class="text-xs text-on-surface-variant max-w-md">Las nuevas galerías y fotos escolares aparecerán aquí ni bien sean publicadas.</p>
+          <h3 class="text-base font-bold text-[#ffffff] mb-1">No hay eventos publicados por el momento</h3>
+          <p class="text-xs text-[#aaaaaa] max-w-md">Las nuevas galerías y fotos escolares de Sergio Molina aparecerán aquí ni bien sean publicadas.</p>
         </div>
       `;
     }
@@ -243,7 +270,7 @@
       container.innerHTML = '';
       galerias.forEach(function(item) {
         var title = item.nombre || item.titulo || item.eventName || 'Galería Escolar';
-        var subtitle = item.descripcion || item.subtitle || 'Fotografías escolares';
+        var subtitle = item.descripcion || item.subtitle || 'Fotografías escolares profesionales';
         var loc = item.ubicacion || item.location || 'Sede Escolar';
         var cover = item.cover_url || item.portada_url || item.coverImage || DEFAULT_COVER;
         var count = item.total_fotos || item.photoCount || (item.photos ? item.photos.length : null);
@@ -251,42 +278,42 @@
         var link = 'galeria.html?' + (item.id ? ('id=' + encodeURIComponent(item.id)) : ('drive_id=' + encodeURIComponent(driveId)));
 
         var card = document.createElement('article');
-        card.className = 'group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col';
+        card.className = 'group bg-[#222222] rounded-[12px] border border-[#333333] overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.3)] hover:border-[#005580] transition-all flex flex-col';
         card.innerHTML = `
-          <div class="relative h-56 w-full bg-surface-dim overflow-hidden">
-            <img src="${cover}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='${DEFAULT_COVER}'" />
+          <div class="relative h-56 w-full bg-[#111111] overflow-hidden">
+            <img src="${cover}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100" onerror="this.src='${DEFAULT_COVER}'" />
             <div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
-            <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-              <span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary text-[11px] font-bold border border-outline-variant/40 shadow-sm flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
+            <div class="absolute top-3 left-3 flex items-center gap-1.5">
+              <span class="px-2.5 py-1 rounded-full bg-[#111111]/85 backdrop-blur-md text-[#ffffff] text-[11px] font-bold border border-[#333333] shadow-sm flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
                 <span>Galería en Vivo</span>
               </span>
             </div>
-            <div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-              <span class="material-symbols-outlined text-[14px]">photo_camera</span>
+            <div class="absolute bottom-3 right-3 bg-[#111111]/90 backdrop-blur-sm text-white px-2.5 py-1 rounded-[8px] border border-[#333333] text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[14px] text-[#91cdfe]">photo_camera</span>
               <span>${count ? (count + ' fotos') : 'Sincronizado'}</span>
             </div>
           </div>
-          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center gap-1.5 text-on-surface-variant text-xs mb-1">
-                <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
+              <div class="flex items-center gap-1.5 text-[#aaaaaa] text-xs mb-1.5">
+                <span class="material-symbols-outlined text-[15px] text-[#ffb878]">location_on</span>
                 <span>${loc}</span>
-                ${driveId ? '<span>•</span><span class="font-mono text-[11px] truncate max-w-[140px]">ID: ' + driveId + '</span>' : ''}
+                ${driveId ? '<span class="text-[#555555]">•</span><span class="font-mono text-[11px] text-[#888888] truncate max-w-[140px]">ID: ' + driveId + '</span>' : ''}
               </div>
-              <h3 class="text-xl font-bold font-headline-sm text-primary group-hover:text-secondary transition-colors leading-snug">
+              <h3 class="text-xl font-bold font-headline-sm text-[#ffffff] group-hover:text-[#91cdfe] transition-colors leading-snug">
                 ${title}
               </h3>
-              <p class="text-xs text-on-surface-variant mt-1 font-medium">
+              <p class="text-xs text-[#aaaaaa] mt-1.5 font-normal leading-relaxed line-clamp-2">
                 ${subtitle}
               </p>
             </div>
-            <div class="pt-3 border-t border-surface-container flex items-center justify-between">
-              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
-                <span class="material-symbols-outlined text-[15px] text-emerald-600">sync</span>
-                <span>Conectado a Supabase</span>
+            <div class="pt-3.5 border-t border-[#333333] flex items-center justify-between">
+              <div class="flex items-center gap-1 text-xs text-[#aaaaaa]">
+                <span class="material-symbols-outlined text-[15px] text-emerald-400">sync</span>
+                <span>Supabase Activo</span>
               </div>
-              <a class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1.5 hover:bg-primary-container active:scale-95 transition shadow-sm" href="${link}">
+              <a class="px-4 py-2 rounded-[8px] bg-[#004466] hover:bg-[#005580] text-white text-xs font-bold border border-[#005580] flex items-center gap-1.5 active:scale-95 transition shadow-[0_4px_10px_rgba(0,0,0,0.3)]" href="${link}">
                 <span>Ingresar a Galería</span>
                 <span class="material-symbols-outlined text-[16px]">login</span>
               </a>
@@ -303,24 +330,63 @@
       loadEvents();
     }
   })();
-</script></div>
+</script>
+</section>
+<!-- Sección: Cómo funciona para familias -->
+<section class="space-y-4 pt-2">
+<div class="flex items-center justify-between">
+<h2 class="text-lg md:text-xl font-bold font-headline-sm text-[#ffffff]">Cómo funciona para familias</h2>
+<span class="text-xs text-[#aaaaaa]">Proceso simple y seguro</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Paso 1 -->
+<div class="bg-[#222222] rounded-[12px] p-5 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] space-y-2">
+<div class="w-10 h-10 rounded-[10px] bg-[#111111] border border-[#005580] text-[#91cdfe] flex items-center justify-center font-bold text-sm">
+      01
+    </div>
+<h3 class="text-base font-bold text-[#ffffff]">Encontrá tu evento</h3>
+<p class="text-xs text-[#aaaaaa] leading-relaxed">
+      Buscá el colegio, curso o acto escolar en este directorio oficial o ingresá con el código PIN provisto por el establecimiento.
+    </p>
+</div>
+<!-- Paso 2 -->
+<div class="bg-[#222222] rounded-[12px] p-5 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] space-y-2">
+<div class="w-10 h-10 rounded-[10px] bg-[#111111] border border-[#005580] text-[#91cdfe] flex items-center justify-center font-bold text-sm">
+      02
+    </div>
+<h3 class="text-base font-bold text-[#ffffff]">Elegí tus fotos favoritas</h3>
+<p class="text-xs text-[#aaaaaa] leading-relaxed">
+      Navegá la muestra digital protegida con marca de agua y seleccioná las tomas grupales e individuales que quieras conservar.
+    </p>
+</div>
+<!-- Paso 3 -->
+<div class="bg-[#222222] rounded-[12px] p-5 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] space-y-2">
+<div class="w-10 h-10 rounded-[10px] bg-[#111111] border border-[#005580] text-[#91cdfe] flex items-center justify-center font-bold text-sm">
+      03
+    </div>
+<h3 class="text-base font-bold text-[#ffffff]">Pedí impresas o digitales</h3>
+<p class="text-xs text-[#aaaaaa] leading-relaxed">
+      Recibí copias en papel fotográfico de alta durabilidad en el colegio o descargá al instante las versiones digitales en alta definición.
+    </p>
+</div>
+</div>
 </section>
 </main>
 <!-- Barra Inferior Mobile -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-outline-variant shadow-lg">
-<a class="flex flex-col items-center justify-center bg-primary-container text-white rounded-xl px-3 py-1.5 active:scale-95 transition" href="index.html">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-[#111111]/95 backdrop-blur-md border-t border-[#333333] shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center bg-[#004466] text-white rounded-[10px] px-3 py-1.5 border border-[#005580] active:scale-95 transition" href="index.html">
 <span class="material-symbols-outlined text-[20px]">home</span>
 <span class="text-[11px] font-bold">Inicio</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition" href="carrito.html">
+<a class="flex flex-col items-center justify-center text-[#aaaaaa] px-3 py-1.5 hover:text-[#ffffff] transition" href="carrito.html">
 <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
 <span class="text-[11px]">Mis Pedidos</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition" href="galeria.html">
+<a class="flex flex-col items-center justify-center text-[#aaaaaa] px-3 py-1.5 hover:text-[#ffffff] transition" href="galeria.html">
 <span class="material-symbols-outlined text-[20px]">photo_library</span>
 <span class="text-[11px]">Galería</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition" href="login.html">
+<a class="flex flex-col items-center justify-center text-[#aaaaaa] px-3 py-1.5 hover:text-[#91cdfe] transition" href="https://sergiomolina-fotografia.netlify.app/" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[20px]">person</span>
 <span class="text-[11px]">Fotógrafo</span>
 </a>
@@ -367,5 +433,4 @@
     }
   })();
 </script>
-
 </body></html>
