@@ -184,91 +184,151 @@
 <!-- Directorio de Eventos (Colegios) -->
 <section class="space-y-4">
 <div class="flex items-center justify-between"><h2 class="text-xl font-bold font-headline-sm text-primary">Eventos Escolares Recientes</h2><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-xs font-semibold text-primary border border-outline-variant/40" id="supabase-live-indicator"><span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span><span class="text-[11px] font-medium text-on-surface-variant">Sincronizado con Supabase</span></div></div>
+<div class="w-full" id="galerias-dinamicas-container">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="events-grid-container">
-<!-- Tarjeta 1: San Martín de Tours -->
-<article class="group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col" id="featured-event-card">
-<div class="relative h-56 w-full bg-surface-dim overflow-hidden">
-<img alt="Belgrano Day School · Egresados 2026" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" id="featured-event-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD"/>
-<div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
-<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-<span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary text-[11px] font-bold border border-outline-variant/40 shadow-sm flex items-center gap-1.5">
-<span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
-<span id="featured-event-status">Galería en Vivo</span>
-</span>
-</div>
-<div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-<span class="material-symbols-outlined text-[14px]">photo_camera</span>
-<span id="featured-event-photos-badge">1.420 fotos sincronizadas</span>
+<div class="col-span-full py-12 flex flex-col items-center justify-center text-center p-6 bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm" id="events-loading-indicator">
+<div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
+<p class="text-sm font-semibold text-primary">Cargando galerías disponibles desde Supabase...</p>
+<p class="text-xs text-on-surface-variant mt-1">Conectando con el directorio oficial de eventos escolares</p>
 </div>
 </div>
-<div class="p-5 flex-1 flex flex-col justify-between space-y-3">
-<div>
-<div class="flex items-center gap-1.5 text-on-surface-variant text-xs mb-1">
-<span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
-<span id="featured-event-location">Belgrano, CABA</span>
-<span>•</span>
-<span id="featured-event-session">Sede Olazábal</span>
-</div>
-<h3 class="text-xl font-bold font-headline-sm text-primary group-hover:text-secondary transition-colors leading-snug" id="featured-event-title">
-Belgrano Day School · Egresados 2026
-</h3>
-<p class="text-xs text-on-surface-variant mt-1 font-medium" id="featured-event-subtitle">
-Acto de Graduación, Retratos Individuales &amp; Muestra Anual
-</p>
-</div>
-<div class="pt-3 border-t border-surface-container flex items-center justify-between">
-<div class="flex items-center gap-1 text-xs text-on-surface-variant">
-<span class="material-symbols-outlined text-[15px] text-emerald-600">sync</span>
-<span id="featured-event-updated">Sincronizado con panel</span>
-</div>
-<a class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1.5 hover:bg-primary-container active:scale-95 transition shadow-sm" href="galeria.html">
-<span>Ingresar a Galería</span>
-<span class="material-symbols-outlined text-[16px]">login</span>
-</a>
-</div>
-</div>
-</article>
-<!-- Tarjeta 2: Instituto Belgrano Day -->
-<article class="group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col">
-<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
-<img alt="Fiesta de Fin de Año" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYrSf-6etbLtjoqkkhkNu36tHfM0OLM_xMUCbuIFf7Hjro5O_VApRIyODztgsh3HWFC57NiTiO5hhfy814lgBFgbHYIQZd7bqZ23w3SjWcOwcf0nJXRCMD7FdcU-s3ZdlKgZkq7AA35H2Qoc3ER_eXlp9c2zpEOVbZVf09KPGjxeUXafdoif6_WdQXnlNZU21tcFG8X-7DfK4r14cBd8Ho-e2PD-42oqGcqIai6Y1Vfb_dvp_Oe6dQ"/>
-<div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
-<div class="absolute top-2.5 left-2.5">
-<span class="px-2.5 py-1 rounded-full bg-secondary text-white text-[11px] font-bold shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">star</span>
-<span class="">Nuevo</span>
-</span>
-</div>
-<div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[11px] font-semibold flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">photo_camera</span>
-<span class="">890 fotos</span>
-</div>
-</div>
-<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-<div>
-<div class="flex items-center gap-1.5 text-on-surface-variant text-xs mb-1">
-<span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
-<span class="">San Isidro, GBA Norte</span>
-<span class="">•</span>
-<span class="">Turno Tarde</span>
-</div>
-<h3 class="text-lg font-bold font-headline-sm text-primary group-hover:text-secondary transition-colors">
-                Fiesta de Fin de Año &amp; Concert
-              </h3>
-<p class="text-xs text-on-surface-variant mt-0.5 font-medium">
-                Instituto Belgrano Day
-              </p>
-</div>
-<div class="pt-3 border-t border-surface-container flex items-center justify-between">
-<span class="text-xs text-on-surface-variant">Subido hoy</span>
-<!-- Enlace 100% corregido a galeria.html -->
-<a class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1 hover:bg-primary-container active:scale-95 transition" href="galeria.html">
-<span class="">Ingresar a Galería</span>
-<span class="material-symbols-outlined text-[16px]">login</span>
-</a>
-</div>
-</div>
-</article>
+<script>
+    (function() {
+      const SUPABASE_URL = 'https://lcszbfyvkhvvyirvhvsv.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxjc3piZnl2a2h2dnlpcnZodnN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMTgwOTUsImV4cCI6MjA1Njc5NDA5NX0.tJ8fUqK04-5KqfsqgU0_3tKqgZt-Q4-5KqfsqgU0_3t';
+      var DEFAULT_COVER = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
+
+      async function loadEvents() {
+        var container = document.getElementById('events-grid-container');
+        if (!container) return;
+
+        var supabaseClient = null;
+        if (window.supabase && typeof window.supabase.createClient === 'function') {
+          try {
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          } catch (err) {
+            console.warn('Error inicializando Supabase client:', err);
+          }
+        }
+
+        var galerias = [];
+        var fetchedFromDb = false;
+
+        if (supabaseClient) {
+          try {
+            var res = await supabaseClient.from('galerias').select('*').order('created_at', { ascending: false });
+            if (!res.error && res.data) {
+              galerias = res.data;
+              fetchedFromDb = true;
+            }
+          } catch (e) {
+            console.warn('Fallo consulta a Supabase galerias:', e);
+          }
+        }
+
+        if (!fetchedFromDb || galerias.length === 0) {
+          try {
+            var saved = localStorage.getItem('eventos_escolar_config');
+            if (saved) {
+              var parsed = JSON.parse(saved);
+              if (parsed.eventName || parsed.colegio || parsed.folderId || parsed.driveFolderId) {
+                galerias.push({
+                  id: parsed.id || 'local-event',
+                  nombre: parsed.eventName || parsed.colegio || 'Colegio Escolar 2026',
+                  descripcion: parsed.subtitle || parsed.descripcion || 'Muestra Anual y Acto de Graduación',
+                  ubicacion: parsed.location || 'Buenos Aires',
+                  drive_url: parsed.driveFolderId || parsed.folderId || '',
+                  cover_url: parsed.coverUrl || parsed.coverImage || '',
+                  total_fotos: parsed.photoCount || 0,
+                  activo: true
+                });
+              }
+            }
+          } catch (e) {}
+        }
+
+        container.innerHTML = '';
+
+        if (!galerias || galerias.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm">
+              <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3">
+                <span class="material-symbols-outlined text-[28px]">folder_off</span>
+              </div>
+              <h3 class="text-base font-bold text-primary mb-1">No hay galerías activas por el momento</h3>
+              <p class="text-xs text-on-surface-variant max-w-md mb-4">Podés crear y sincronizar nuevas galerías desde el Panel de Fotógrafo para que aparezcan aquí.</p>
+              <a href="login.html" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary-container transition shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                <span>Ir al Panel de Fotógrafo</span>
+              </a>
+            </div>
+          `;
+          return;
+        }
+
+        galerias.forEach(function(item) {
+          var title = item.nombre || item.titulo || item.eventName || 'Galería Escolar';
+          var subtitle = item.descripcion || item.subtitle || 'Fotografías escolares';
+          var loc = item.ubicacion || item.location || 'Sede Escolar';
+          var cover = item.cover_url || item.portada_url || item.coverImage || DEFAULT_COVER;
+          var count = item.total_fotos || item.photoCount || (item.photos ? item.photos.length : null);
+          var driveId = item.drive_url || item.folder_id || item.driveFolderId || '';
+          var link = 'galeria.html?' + (item.id ? ('id=' + encodeURIComponent(item.id)) : ('drive_id=' + encodeURIComponent(driveId)));
+
+          var card = document.createElement('article');
+          card.className = 'group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col';
+          card.innerHTML = `
+            <div class="relative h-56 w-full bg-surface-dim overflow-hidden">
+              <img src="${cover}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='${DEFAULT_COVER}'" />
+              <div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary text-[11px] font-bold border border-outline-variant/40 shadow-sm flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
+                  <span>Galería en Vivo</span>
+                </span>
+              </div>
+              <div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
+                <span class="material-symbols-outlined text-[14px]">photo_camera</span>
+                <span>${count ? (count + ' fotos') : 'Sincronizado'}</span>
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+              <div>
+                <div class="flex items-center gap-1.5 text-on-surface-variant text-xs mb-1">
+                  <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
+                  <span>${loc}</span>
+                  ${driveId ? '<span>•</span><span class="font-mono text-[11px] truncate max-w-[140px]">ID: ' + driveId + '</span>' : ''}
+                </div>
+                <h3 class="text-xl font-bold font-headline-sm text-primary group-hover:text-secondary transition-colors leading-snug">
+                  ${title}
+                </h3>
+                <p class="text-xs text-on-surface-variant mt-1 font-medium">
+                  ${subtitle}
+                </p>
+              </div>
+              <div class="pt-3 border-t border-surface-container flex items-center justify-between">
+                <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                  <span class="material-symbols-outlined text-[15px] text-emerald-600">sync</span>
+                  <span>Conectado a Supabase</span>
+                </div>
+                <a class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1.5 hover:bg-primary-container active:scale-95 transition shadow-sm" href="${link}">
+                  <span>Ingresar a Galería</span>
+                  <span class="material-symbols-outlined text-[16px]">login</span>
+                </a>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadEvents);
+      } else {
+        loadEvents();
+      }
+    })();
+  </script>
 </div>
 </section>
 </main>
