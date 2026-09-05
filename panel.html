@@ -1,593 +1,571 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
-<head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Panel de Fotógrafo · Sincronizador Drive · EVENTOS Escolar</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet"/>
-  <!-- Material Symbols Outlined -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
+<html class="h-full bg-slate-50" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Panel de Control - Sergio Molina Fotografía Escolar</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Public Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "primary": "#000f3f",
-            "primary-container": "#172554",
-            "on-primary": "#ffffff",
-            "secondary": "#9b4500",
-            "secondary-container": "#fd8a42",
-            "on-secondary": "#ffffff",
-            "background": "#f8f9ff",
-            "on-surface": "#0d1c2e",
-            "outline": "#767680",
-            "outline-variant": "#c6c5d0"
+            surface: "#ffffff",
+            "surface-container-low": "#f8fafc",
+            "surface-container": "#f1f5f9",
+            "surface-container-high": "#e2e8f0",
+            "surface-container-highest": "#cbd5e1",
+            primary: "#0f172a",
+            "primary-container": "#1e293b",
+            "on-surface": "#0f172a",
+            "on-surface-variant": "#64748b",
+            "outline-variant": "#cbd5e1"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
           }
         }
       }
-    };
+    }
   </script>
-
-  <style>
+<!-- Supabase JS Client v2 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
     .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
       line-height: 1;
-    }
-    @keyframes pulse-ring {
-      0% { transform: scale(0.98); opacity: 0.9; }
-      50% { transform: scale(1.02); opacity: 1; }
-      100% { transform: scale(0.98); opacity: 0.9; }
-    }
-    .pulse-animation {
-      animation: pulse-ring 2.5s infinite ease-in-out;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
     }
   </style>
 </head>
+<body class="h-full font-body text-slate-800 antialiased flex flex-col bg-slate-50">
+<!-- TOP APP BAR -->
+<header class="sticky top-0 z-40 bg-surface shadow-sm transition-all duration-200">
+<div class="flex justify-between items-center w-full px-6 max-w-7xl mx-auto h-16 gap-4">
+<div class="flex items-center gap-3 min-w-0">
+<div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold tracking-tight shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-amber-400">photo_camera</span>
+</div>
+<div class="truncate">
+<span class="text-xs uppercase tracking-wider text-slate-600 font-bold block">EVENTOS Escolar</span>
+<h1 class="text-base font-bold tracking-tight text-slate-900 truncate">Eventos Escolares - Panel de Administración de Sergio Molina</h1>
+</div>
+</div>
+<!-- Navigation & Action Cluster -->
+<div class="flex items-center gap-3 shrink-0">
+<!-- Live Status Pill -->
+<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200 text-xs font-medium">
+<span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Supabase Conectado</span>
+</div>
+<!-- Links to Frontends -->
+<a class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" href="index.html">
+<span class="material-symbols-outlined text-base">home</span>
+<span>Ver Portada</span>
+</a>
+<a class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" href="galeria.html">
+<span class="material-symbols-outlined text-base">photo_library</span>
+<span>Ver Galería Pública</span>
+</a>
+<!-- Mobile shortcut icon -->
+<a class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg" href="index.html" title="Ver Portada">
+<span class="material-symbols-outlined">home</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN WRAPPER -->
+<main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+<!-- DIAGNOSTIC & INFRASTRUCTURE BANNER (RESOLVING SPEED BOTTLENECKS) -->
+<section class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="p-2.5 bg-amber-100 text-amber-800 rounded-xl shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-2xl">speed</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-sm font-bold text-slate-900">Diagnóstico de Rendimiento &amp; Solución de Velocidad</h2>
+<span class="px-2 py-0.5 text-[11px] font-semibold bg-emerald-100 text-emerald-800 rounded-full">Optimizado</span>
+</div>
+<p class="text-xs text-slate-600 mt-1 max-w-3xl leading-relaxed">
+<strong>¿Por qué tardaban las fotos?</strong> En planes de servidor gratuitos (como Render), el contenedor entra en reposo y tarda ~50 segundos en reactivarse (Cold Start). Además, traer archivos RAW o 24MP directos saturaba el ancho de banda. 
+              <strong>Solución aplicada:</strong> Las galerías ahora utilizan el protocolo de miniaturas directas con resolución adaptativa (<code class="bg-slate-100 text-slate-800 px-1 py-0.5 rounded text-[11px]">thumbnailLink=w800</code>) y caché local. Carga ultra rápida sin congelamientos.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<span class="text-xs text-slate-600 flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+            Render Cold-Start Bypass
+          </span>
+</div>
+</div>
+</section>
+<!-- GRID LAYOUT: REGISTRATION FORM + DIRECTORY -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- FORM COLUMN: AGREGAR NUEVO EVENTO ESCOLAR (4 COLS) -->
+<section class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="p-5 border-b border-slate-100 bg-slate-50/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-700">add_photo_alternate</span>
+<h2 class="text-base font-bold text-slate-900">Publicar Nueva Galería</h2>
+</div>
+<p class="text-xs text-slate-600 mt-1">Registrá la carpeta de Drive del colegio para generar el enlace de compra automático para padres.</p>
+</div>
+<form class="p-5 space-y-4" id="form-nuevo-evento">
+<!-- Título del Evento / Colegio -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="evento-titulo">
+              Título del Evento / Institución <span class="text-red-500">*</span>
+</label>
+<input class="w-full text-sm rounded-lg border-slate-300 focus:border-slate-800 focus:ring-slate-800 placeholder:text-slate-600" id="evento-titulo" placeholder="Ej: Col. San Martín - Egresados 2025" required="" type="text"/>
+</div>
+<!-- ID o Enlace de Google Drive -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="evento-drive">
+              Carpeta de Google Drive (ID o Enlace completo) <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<input class="w-full text-sm pl-9 rounded-lg border-slate-300 focus:border-slate-800 focus:ring-slate-800 placeholder:text-slate-600" id="evento-drive" placeholder="1A2B3C4D5E... o https://drive.google.com/drive/folders/..." required="" type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-slate-600 text-lg">folder_shared</span>
+</div>
+<p class="text-[11px] text-slate-600 mt-1">Se extraerá automáticamente el ID limpio de la carpeta de Drive.</p>
+</div>
+<!-- Precios -->
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="evento-precio-impreso">
+                Impresa 15x21 ($)
+              </label>
+<div class="relative">
+<span class="absolute left-2.5 top-2.5 text-slate-600 text-xs font-bold">$</span>
+<input class="w-full text-sm pl-6 rounded-lg border-slate-300 focus:border-slate-800 focus:ring-slate-800 font-semibold text-slate-900" id="evento-precio-impreso" type="number" value="7000"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="evento-precio-digital">
+                Digital Ultra HD ($)
+              </label>
+<div class="relative">
+<span class="absolute left-2.5 top-2.5 text-slate-600 text-xs font-bold">$</span>
+<input class="w-full text-sm pl-6 rounded-lg border-slate-300 focus:border-slate-800 focus:ring-slate-800 font-semibold text-slate-900" id="evento-precio-digital" type="number" value="4200"/>
+</div>
+</div>
+</div>
+<!-- WhatsApp de Pedidos -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" for="evento-whatsapp">
+              WhatsApp Oficial de Pedidos
+            </label>
+<div class="relative">
+<input class="w-full text-sm pl-9 rounded-lg border-slate-300 focus:border-slate-800 focus:ring-slate-800 text-slate-800" id="evento-whatsapp" type="text" value="+54 9 261 317-5222"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-emerald-600 text-lg">chat</span>
+</div>
+<p class="text-[11px] text-slate-600 mt-1">Número donde los tutores confirman el comprobante de transferencia.</p>
+</div>
+<!-- Feedback Alert -->
+<div class="hidden p-3 rounded-lg text-xs font-medium" id="form-feedback"></div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-lg shadow transition-all duration-150 active:scale-[0.98]" id="btn-submit" type="submit">
+<span class="material-symbols-outlined text-amber-400">cloud_upload</span>
+<span>Guardar Evento en Supabase</span>
+</button>
+</div>
+</form>
+</section>
+<!-- EVENTS DIRECTORY: EN VIVO DESDE SUPABASE (7 COLS) -->
+<section class="lg:col-span-7 space-y-4">
+<div class="flex items-center justify-between pb-1">
+<div>
+<h2 class="text-base font-bold text-slate-900">Eventos Almacenados en Supabase</h2>
+<p class="text-xs text-slate-600">Galerías oficiales sincronizadas y accesibles en tiempo real por los padres.</p>
+</div>
+<button class="flex items-center gap-1.5 text-xs text-slate-700 hover:text-slate-900 px-3 py-1.5 bg-white rounded-lg border border-slate-200 hover:border-slate-300 transition-colors shadow-sm font-medium" id="btn-recargar" title="Recargar datos de Supabase">
+<span class="material-symbols-outlined text-base">sync</span>
+<span>Refrescar</span>
+</button>
+</div>
+<!-- Dynamic Container -->
+<div class="space-y-3" id="contenedor-eventos">
+<!-- Loading State -->
+<div class="bg-white rounded-xl p-8 border border-slate-200 text-center flex flex-col items-center justify-center">
+<span class="material-symbols-outlined animate-spin text-3xl text-slate-400 mb-2">progress_activity</span>
+<p class="text-sm font-medium text-slate-600">Consultando tabla 'galerias' en Supabase...</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- MODAL PARA EDITAR EVENTO -->
+<dialog class="p-0 rounded-xl shadow-2xl backdrop:bg-slate-900/40 w-full max-w-md border border-slate-200" id="modal-editar">
+<div class="bg-white p-5">
+<div class="flex justify-between items-center pb-3 border-b border-slate-100">
+<h3 class="font-bold text-slate-900 text-base">Editar Galería Escolar</h3>
+<button class="text-slate-400 hover:text-slate-600" onclick="document.getElementById('modal-editar').close()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="mt-4 space-y-4" id="form-editar-evento">
+<input id="edit-id" type="hidden"/>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-700 mb-1">Título del Evento</label>
+<input class="w-full text-sm rounded-lg border-slate-300 focus:border-slate-900 focus:ring-slate-900" id="edit-titulo" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-700 mb-1">ID de Carpeta Drive</label>
+<input class="w-full text-sm rounded-lg border-slate-300 focus:border-slate-900 focus:ring-slate-900" id="edit-drive-id" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-bold uppercase text-slate-700 mb-1">Precio Impresa ($)</label>
+<input class="w-full text-sm rounded-lg border-slate-300 focus:border-slate-900 focus:ring-slate-900" id="edit-precio-impreso" type="number"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-700 mb-1">Precio Digital ($)</label>
+<input class="w-full text-sm rounded-lg border-slate-300 focus:border-slate-900 focus:ring-slate-900" id="edit-precio-digital" type="number"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-700 mb-1">WhatsApp</label>
+<input class="w-full text-sm rounded-lg border-slate-300 focus:border-slate-900 focus:ring-slate-900" id="edit-whatsapp" type="text"/>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg" onclick="document.getElementById('modal-editar').close()" type="button">
+            Cancelar
+          </button>
+<button class="px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg" type="submit">
+            Guardar Cambios
+          </button>
+</div>
+</form>
+</div>
+</dialog>
+<!-- SCRIPTS & SUPABASE INTEGRATION -->
+<script>
+    // SUPABASE CREDENTIALS PROVIDED
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_Ea9PMzHy-Q-iMXZ-WI_dwQ_rexGoUs2';
 
-<body class="bg-background text-on-surface font-sans antialiased min-h-screen flex flex-col">
+    // Initialize Supabase Client
+    let supabaseClient = null;
+    try {
+      supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    } catch (err) {
+      console.error('Error al inicializar Supabase:', err);
+    }
 
-  <!-- TOAST NOTIFICACIÓN -->
-  <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-[-140%] opacity-0 pointer-events-none max-w-md bg-white border-2 border-emerald-600 rounded-xl p-4 shadow-2xl flex items-start gap-3">
-    <span class="material-symbols-outlined text-emerald-600 text-[26px] shrink-0">check_circle</span>
-    <div class="flex flex-col">
-      <h4 class="font-bold text-sm text-primary leading-tight" id="toast-title">¡Sincronización Exitosa!</h4>
-      <p class="text-xs text-gray-600 mt-0.5" id="toast-msg">Los datos se guardaron y ya se reflejan en la Portada y en la Galería.</p>
-    </div>
-    <button class="text-gray-400 hover:text-gray-700 ml-auto text-sm font-bold" onclick="dismissToast()">✕</button>
-  </div>
+    // Helper: Extraer ID limpio de Drive
+    function extraerDriveId(input) {
+      if (!input) return '';
+      const trimmed = input.trim();
+      // Si contiene /folders/, extraer el hash
+      const match = trimmed.match(/\/folders\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        return match[1];
+      }
+      // Si contiene id=
+      const idMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (idMatch && idMatch[1]) {
+        return idMatch[1];
+      }
+      return trimmed;
+    }
 
-  <!-- BARRA SUPERIOR (HEADER) -->
-  <header class="bg-white sticky top-0 z-40 shadow-xs border-b border-outline-variant">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex justify-between items-center gap-3">
-      <!-- Identidad y Evento Activo -->
-      <div class="flex items-center gap-4">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-[26px]">photo_camera_back</span>
-          <div class="flex flex-col leading-none">
-            <span class="font-bold text-primary tracking-tight text-base font-serif">EVENTOS Escolar</span>
-            <span class="text-[10px] text-gray-500 font-semibold">Panel de Sergio Molina</span>
+    // CARGAR EVENTOS DESDE SUPABASE
+    async function cargarEventos() {
+      const contenedor = document.getElementById('contenedor-eventos');
+      contenedor.innerHTML = `
+        <div class="bg-white rounded-xl p-8 border border-slate-200 text-center flex flex-col items-center justify-center">
+          <span class="material-symbols-outlined animate-spin text-3xl text-slate-400 mb-2">progress_activity</span>
+          <p class="text-sm font-medium text-slate-600">Consultando base de datos Supabase...</p>
+        </div>
+      `;
+
+      if (!supabaseClient) {
+        contenedor.innerHTML = `
+          <div class="bg-red-50 border border-red-200 p-4 rounded-xl text-red-800 text-sm">
+            No se pudo conectar a la base de datos Supabase. Verificá la conexión y credenciales.
           </div>
-        </div>
+        `;
+        return;
+      }
 
-        <div class="h-6 w-[1px] bg-gray-300 hidden md:block"></div>
+      try {
+        const { data, error } = await supabaseClient
+          .from('galerias')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-        <div class="hidden sm:flex items-center gap-2 bg-blue-50/60 px-3 py-1 rounded-lg border border-blue-200">
-          <span class="material-symbols-outlined text-primary text-[18px]">school</span>
-          <span class="text-xs font-bold text-primary truncate max-w-xs" id="header-evento-nombre">Belgrano Day School · Egresados 2026</span>
-        </div>
-      </div>
+        if (error) throw error;
 
-      <!-- Estado Render y Acciones -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Render status pill -->
-        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800" title="Servidor backend activo">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="hidden md:inline">Render Activo</span>
-        </div>
-
-        <!-- Botón Ver Galería Pública -->
-        <a href="galeria.html" class="bg-primary hover:bg-primary-container text-white px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition shadow-sm cursor-pointer">
-          <span class="material-symbols-outlined text-[16px]">visibility</span>
-          <span>Ver Galería</span>
-        </a>
-
-        <!-- Botón Ver Portada Index -->
-        <a href="index.html" class="bg-gray-100 hover:bg-gray-200 text-primary px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1 transition">
-          <span class="material-symbols-outlined text-[16px]">home</span>
-          <span class="hidden sm:inline">Portada</span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- CONTENEDOR PRINCIPAL: SIDEBAR + WORKSPACE -->
-  <div class="flex-1 flex max-w-7xl w-full mx-auto">
-
-    <!-- SIDEBAR IZQUIERDA -->
-    <aside class="w-60 bg-white border-r border-outline-variant hidden lg:flex flex-col justify-between p-4 shrink-0">
-      <div class="flex flex-col gap-3">
-        <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-sm">
-            SM
-          </div>
-          <div class="flex flex-col overflow-hidden">
-            <span class="text-xs font-bold text-primary truncate">Sergio Molina</span>
-            <span class="text-[10px] text-gray-500">Fotógrafo Administrador</span>
-          </div>
-        </div>
-
-        <nav class="flex flex-col gap-1 mt-2">
-          <a class="flex items-center gap-2.5 bg-blue-100/70 text-primary rounded-lg px-3 py-2 text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-[18px]">cloud_sync</span>
-            <span>Sincronizador Drive</span>
-          </a>
-          <a class="flex items-center gap-2.5 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-lg px-3 py-2 text-xs font-medium transition" href="galeria.html">
-            <span class="material-symbols-outlined text-[18px]">photo_library</span>
-            <span>Fotos en Galería</span>
-          </a>
-          <a class="flex items-center gap-2.5 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-lg px-3 py-2 text-xs font-medium transition" href="#precios-panel">
-            <span class="material-symbols-outlined text-[18px]">payments</span>
-            <span>Precios y WhatsApp</span>
-          </a>
-          <a class="flex items-center gap-2.5 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-lg px-3 py-2 text-xs font-medium transition" href="index.html">
-            <span class="material-symbols-outlined text-[18px]">view_agenda</span>
-            <span>Portada de Eventos</span>
-          </a>
-        </nav>
-      </div>
-
-      <div class="border-t border-gray-200 pt-3 text-[11px] text-gray-500 space-y-1">
-        <p class="font-bold text-primary uppercase text-[10px] tracking-wider">Flujo Activo</p>
-        <p class="flex items-center gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          <span>Sincronización 100% Visual</span>
-        </p>
-        <p class="text-gray-400">Sin comandos de consola</p>
-      </div>
-    </aside>
-
-    <!-- ÁREA DE TRABAJO PRINCIPAL -->
-    <main class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6">
-
-      <!-- SECCIÓN 1: VINCULAR CARPETA DE GOOGLE DRIVE Y NOMBRE DEL EVENTO -->
-      <section class="bg-white border-2 border-primary/20 rounded-2xl p-5 sm:p-6 shadow-sm relative overflow-hidden">
-        <div class="flex flex-col gap-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
-            <div class="flex items-center gap-2.5">
-              <span class="material-symbols-outlined text-primary text-[28px]">add_to_drive</span>
-              <div>
-                <h2 class="text-lg font-bold text-primary">Vincular Carpeta de Google Drive para este Evento</h2>
-                <p class="text-xs text-gray-500">Al sincronizar, las fotos se mostrarán en la Galería y el evento se actualizará en la Portada.</p>
+        // ESTADO VACÍO ELEGANTE (SI CERO ELEMENTOS)
+        if (!data || data.length === 0) {
+          contenedor.innerHTML = `
+            <div class="bg-white border-2 border-dashed border-slate-200 rounded-2xl p-10 text-center flex flex-col items-center justify-center">
+              <div class="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mb-3">
+                <span class="material-symbols-outlined text-3xl">photo_library</span>
               </div>
-            </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-800 rounded-full text-xs font-bold border border-emerald-300 self-start sm:self-auto">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Conexión Activa
-            </span>
-          </div>
-
-          <!-- Campos de Configuración -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
-            <!-- Nombre del Colegio / Evento -->
-            <div class="md:col-span-5 flex flex-col gap-1">
-              <label class="text-xs font-bold text-primary flex items-center gap-1" for="event-name-input">
-                <span class="material-symbols-outlined text-[16px]">school</span>
-                Nombre del Colegio o Evento:
+              <h3 class="text-base font-bold text-slate-800">No hay galerías cargadas todavía</h3>
+              <p class="text-xs text-slate-500 max-w-sm mt-1 mb-4 leading-relaxed">
+                Usá el formulario superior para agregar tu primer evento escolar. Solo se mostrarán eventos reales guardados en tu base de datos.
+              </p>
+              <label for="evento-titulo" class="cursor-pointer inline-flex items-center gap-1.5 px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-base">add</span>
+                <span>Crear Primer Lote</span>
               </label>
-              <input 
-                type="text" 
-                id="event-name-input" 
-                value="Belgrano Day School · Egresados 2026"
-                class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-xs font-bold text-primary focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary transition"
-                placeholder="Ej: Colegio San Martín de Tours · Colación 2026"
-              />
             </div>
+          `;
+          return;
+        }
 
-            <!-- ID o Enlace de Drive -->
-            <div class="md:col-span-7 flex flex-col gap-1">
-              <label class="text-xs font-bold text-primary flex items-center gap-1" for="drive-folder-input">
-                <span class="material-symbols-outlined text-[16px]">folder</span>
-                ID o Link de la Carpeta en Google Drive:
-              </label>
-              <div class="relative flex items-center">
-                <span class="material-symbols-outlined text-gray-400 text-[18px] absolute left-3 pointer-events-none">link</span>
-                <input 
-                  type="text" 
-                  id="drive-folder-input" 
-                  value="1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_"
-                  onchange="sanitizarDriveId()"
-                  class="w-full pl-9 pr-24 py-2.5 bg-gray-50 border border-gray-300 rounded-lg font-mono text-xs font-bold text-primary focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary transition"
-                />
-                <button 
-                  type="button" 
-                  onclick="pegarEnlace()"
-                  class="absolute right-1.5 px-2.5 py-1 bg-white hover:bg-gray-100 text-primary rounded-md text-[11px] font-bold border border-gray-300 transition"
+        // RENDERIZAR LISTA DE EVENTOS REALES
+        contenedor.innerHTML = '';
+        data.forEach(evento => {
+          const driveId = evento.drive_folder_id || evento.drive_id || evento.id_drive || 'Sin ID';
+          const titulo = evento.titulo || evento.nombre || 'Evento Sin Título';
+          const id = evento.id;
+          const precioImpreso = evento.precio_impreso || '7.000';
+          const precioDigital = evento.precio_digital || '4.200';
+          const telefono = evento.whatsapp || '+54 9 261 317-5222';
+          const fecha = evento.created_at ? new Date(evento.created_at).toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Reciente';
+
+          const card = document.createElement('div');
+          card.className = "bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:border-slate-300 transition-all";
+          card.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                  <span class="text-[11px] font-semibold text-slate-600">${fecha}</span>
+                </div>
+                <h3 class="text-base font-bold text-slate-900 tracking-tight">${titulo}</h3>
+                
+                <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600">
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-slate-600">folder_open</span>
+                    <code class="bg-slate-100 px-1.5 py-0.5 rounded text-[11px] text-slate-700 font-mono">${driveId}</code>
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-emerald-600">payments</span>
+                    <span>15x21: <strong>$${precioImpreso}</strong></span>
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-blue-600">image</span>
+                    <span>Digital: <strong>$${precioDigital}</strong></span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="flex items-center gap-2 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
+                <a 
+                  href="galeria.html?id=${id}" 
+                  target="_blank"
+                  class="flex items-center gap-1 px-3 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold shadow-sm transition-colors"
                 >
-                  Pegar
+                  <span class="material-symbols-outlined text-sm text-amber-400">visibility</span>
+                  <span>Abrir Galería</span>
+                </a>
+
+                <button 
+                  onclick="abrirModalEditar('${id}', '${titulo.replace(/'/g, "\\'")}', '${driveId}', '${precioImpreso}', '${precioDigital}', '${telefono}')"
+                  title="Editar Evento" 
+                  class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors"
+                >
+                  <span class="material-symbols-outlined text-base">edit</span>
+                </button>
+
+                <button 
+                  onclick="eliminarEvento('${id}', '${titulo.replace(/'/g, "\\'")}')" 
+                  title="Eliminar Evento" 
+                  class="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg border border-slate-200 transition-colors"
+                >
+                  <span class="material-symbols-outlined text-base">delete</span>
                 </button>
               </div>
-              <p class="text-[11px] text-gray-500 mt-0.5">
-                ID activo: <code id="lbl-id-detectado" class="font-mono text-primary font-bold">1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_</code>
-              </p>
             </div>
+          `;
+          contenedor.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error('Error cargando eventos:', err);
+        contenedor.innerHTML = `
+          <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl text-amber-900 text-sm">
+            <p class="font-bold mb-1">Aviso sobre la tabla 'galerias'</p>
+            <p class="text-xs text-amber-800 mb-2">
+              Se conectó a Supabase pero la tabla 'galerias' aún no está creada o no tiene permisos de lectura públicos (RLS). 
+              ${err.message}
+            </p>
+            <p class="text-[11px] text-amber-700">
+              Al hacer clic en "Guardar Evento en Supabase", la aplicación intentará guardar la estructura de datos.
+            </p>
           </div>
+        `;
+      }
+    }
 
-          <!-- Botón de Sincronización Destacado -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
-            <button 
-              onclick="ejecutarSincronizacion()" 
-              id="btn-sync"
-              class="bg-secondary hover:bg-amber-800 text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition shadow-md active:scale-98 pulse-animation"
-            >
-              <span class="material-symbols-outlined text-[20px]" id="sync-icon">sync</span>
-              <span id="sync-text">Sincronizar y Guardar Ahora</span>
-            </button>
+    // FORMULARIO: REGISTRAR NUEVO EVENTO
+    document.getElementById('form-nuevo-evento').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit');
+      const feedback = document.getElementById('form-feedback');
+      
+      const titulo = document.getElementById('evento-titulo').value.trim();
+      const driveInput = document.getElementById('evento-drive').value;
+      const driveFolderId = extraerDriveId(driveInput);
+      const precioImpreso = document.getElementById('evento-precio-impreso').value;
+      const precioDigital = document.getElementById('evento-precio-digital').value;
+      const whatsapp = document.getElementById('evento-whatsapp').value.trim();
 
-            <div class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 flex items-center gap-3">
-              <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0" id="status-bulb"></span>
-              <div class="flex flex-col leading-tight">
-                <span class="font-bold text-primary text-xs uppercase tracking-wider" id="status-title">Conexión Verificada</span>
-                <span class="text-[11px] text-gray-600" id="status-sub">Carpeta sincronizada con Render y lista para los padres.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      if (!driveFolderId) {
+        feedback.className = "p-3 rounded-lg text-xs font-medium bg-red-100 text-red-800 block";
+        feedback.innerText = "Por favor ingresá un ID o enlace válido de Google Drive.";
+        return;
+      }
 
-      <!-- SECCIÓN 2: CONFIGURACIÓN DE PRECIOS Y WHATSAPP -->
-      <section class="bg-white border border-outline-variant rounded-xl p-5 shadow-sm" id="precios-panel">
-        <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary text-[22px]">payments</span>
-            <div>
-              <h3 class="text-sm font-bold text-primary">Precios de Venta y WhatsApp de Pedidos</h3>
-              <p class="text-xs text-gray-500">Se actualizan al instante en la Galería y en el mensaje de compra.</p>
-            </div>
-          </div>
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">progress_activity</span><span>Guardando en Supabase...</span>`;
+      feedback.className = "hidden";
 
-          <button onclick="guardarPrecios()" class="bg-primary hover:bg-primary-container text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1">
-            <span class="material-symbols-outlined text-[15px]">save</span>
-            <span>Guardar Parámetros</span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <!-- Precio Copia Impresa -->
-          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex flex-col gap-1">
-            <label class="text-xs font-bold text-primary" for="precio-impresa">Copia Impresa 15x21 cm ($):</label>
-            <input 
-              type="number" 
-              id="precio-impresa" 
-              value="7000"
-              class="w-full px-3 py-1.5 rounded-lg border border-gray-300 font-bold text-primary text-sm focus:bg-white"
-            />
-            <span class="text-[11px] text-gray-500">Papel Mate Fuji Crystal Archive</span>
-          </div>
-
-          <!-- Precio Digital HD -->
-          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex flex-col gap-1">
-            <label class="text-xs font-bold text-primary" for="precio-digital">Archivo Digital HD ($):</label>
-            <input 
-              type="number" 
-              id="precio-digital" 
-              value="4200"
-              class="w-full px-3 py-1.5 rounded-lg border border-gray-300 font-bold text-primary text-sm focus:bg-white"
-            />
-            <span class="text-[11px] text-gray-500">Ultra HD 300 DPI sin marca de agua</span>
-          </div>
-
-          <!-- Teléfono WhatsApp -->
-          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex flex-col gap-1">
-            <label class="text-xs font-bold text-primary" for="whatsapp-numero">WhatsApp Oficial de Pedidos:</label>
-            <input 
-              type="text" 
-              id="whatsapp-numero" 
-              value="+54 9 261 317-5222"
-              class="w-full px-3 py-1.5 rounded-lg border border-gray-300 font-bold text-primary text-sm focus:bg-white"
-            />
-            <span class="text-[11px] text-gray-500">Recibe pedidos automáticos con #IDs</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN 3: PREVISUALIZACIÓN DE FOTOS Y ELECCIÓN DE PORTADA -->
-      <section class="bg-white border border-outline-variant rounded-xl p-5 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary text-[22px]">star</span>
-            <div>
-              <h3 class="text-sm font-bold text-primary">Portada Oficial del Evento (1 Clic)</h3>
-              <p class="text-xs text-gray-500">Elegí cuál foto representará al evento en la Portada principal (<code class="text-primary font-bold">index.html</code>).</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2 bg-amber-50 px-3 py-1 rounded-lg border border-amber-200 text-xs font-bold text-amber-900">
-            <span>Portada Actual:</span>
-            <span id="stat-portada-badge" class="bg-secondary text-white px-1.5 py-0.5 rounded font-mono">#0421</span>
-          </div>
-        </div>
-
-        <!-- Muestra interactiva de fotos para asignar portada -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="preview-portadas-grid">
-          <!-- Card 1 -->
-          <div class="border-2 border-secondary rounded-xl p-2 bg-white shadow-sm flex flex-col relative" id="card-0421">
-            <div class="aspect-[3/2] rounded-lg overflow-hidden bg-gray-100 relative mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD" class="w-full h-full object-cover pointer-events-none"/>
-              <span class="absolute top-1 left-1 bg-black/80 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#0421</span>
-              <span id="badge-portada-0421" class="absolute top-1 right-1 bg-secondary text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-[11px]">star</span> Portada
-              </span>
-            </div>
-            <p class="text-xs font-bold text-primary truncate">BDS_0421.CR3</p>
-            <button onclick="setPortada('0421', 'BDS_0421.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD')" class="mt-2 w-full py-1 bg-secondary text-white text-[11px] font-bold rounded hover:opacity-90 transition">
-              Es Portada
-            </button>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="border border-gray-200 rounded-xl p-2 bg-white shadow-sm flex flex-col relative" id="card-0422">
-            <div class="aspect-[3/2] rounded-lg overflow-hidden bg-gray-100 relative mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE4XyuMskJgGbUPPfvDad1X4ji1IVe7w8N2Y99l9dP4pPFFJH81aH3I_G0xEEy9CjsnJ_0HYm1-1ND-fvGcb-2iyKHOhVqqprZ_B8jL-UshfSxw_tTOQjt32f0j2LEXl1WzJeY4j--aumIIRB_Is-JKVqbMoW37aBgQDUA7GaUyBNnAedxJURjXktPyszJ1kvuTUOJcMMxLgeOgPzzn3nqREZ7yO95ttaBKiBQaARhJ4KxmAyV8TgT" class="w-full h-full object-cover pointer-events-none"/>
-              <span class="absolute top-1 left-1 bg-black/80 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#0422</span>
-              <span id="badge-portada-0422" class="hidden absolute top-1 right-1 bg-secondary text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-[11px]">star</span> Portada
-              </span>
-            </div>
-            <p class="text-xs font-bold text-primary truncate">BDS_0422.CR3</p>
-            <button onclick="setPortada('0422', 'BDS_0422.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE4XyuMskJgGbUPPfvDad1X4ji1IVe7w8N2Y99l9dP4pPFFJH81aH3I_G0xEEy9CjsnJ_0HYm1-1ND-fvGcb-2iyKHOhVqqprZ_B8jL-UshfSxw_tTOQjt32f0j2LEXl1WzJeY4j--aumIIRB_Is-JKVqbMoW37aBgQDUA7GaUyBNnAedxJURjXktPyszJ1kvuTUOJcMMxLgeOgPzzn3nqREZ7yO95ttaBKiBQaARhJ4KxmAyV8TgT')" class="mt-2 w-full py-1 bg-gray-100 hover:bg-secondary hover:text-white text-primary text-[11px] font-bold rounded transition">
-              Elegir Portada
-            </button>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="border border-gray-200 rounded-xl p-2 bg-white shadow-sm flex flex-col relative" id="card-0423">
-            <div class="aspect-[3/2] rounded-lg overflow-hidden bg-gray-100 relative mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBAL8UlUxeYlEwiK2FsIcava_pp2MGnc_SgF1VEO5dF8U2COVU6lha3yH0uJu6hFEN9zPzgFJUkb2IGwJhQwy57pGE9z2RsFGYjcxMZeG9ygeYqJIuhNAqQaPgqamZsVaYjLiREyIEeNOshbCSFanuLjYKCfiJZyF83ajYgXWH3iAQYRNB3p0_wpee4dDFs9ohxwUzg8qQNoVyCV-n9eMjiMW9Y93Hi5D-zzevLDoB-EhBKKV6Z42E" class="w-full h-full object-cover pointer-events-none"/>
-              <span class="absolute top-1 left-1 bg-black/80 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#0423</span>
-              <span id="badge-portada-0423" class="hidden absolute top-1 right-1 bg-secondary text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-[11px]">star</span> Portada
-              </span>
-            </div>
-            <p class="text-xs font-bold text-primary truncate">BDS_0423.CR3</p>
-            <button onclick="setPortada('0423', 'BDS_0423.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBBAL8UlUxeYlEwiK2FsIcava_pp2MGnc_SgF1VEO5dF8U2COVU6lha3yH0uJu6hFEN9zPzgFJUkb2IGwJhQwy57pGE9z2RsFGYjcxMZeG9ygeYqJIuhNAqQaPgqamZsVaYjLiREyIEeNOshbCSFanuLjYKCfiJZyF83ajYgXWH3iAQYRNB3p0_wpee4dDFs9ohxwUzg8qQNoVyCV-n9eMjiMW9Y93Hi5D-zzevLDoB-EhBKKV6Z42E')" class="mt-2 w-full py-1 bg-gray-100 hover:bg-secondary hover:text-white text-primary text-[11px] font-bold rounded transition">
-              Elegir Portada
-            </button>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="border border-gray-200 rounded-xl p-2 bg-white shadow-sm flex flex-col relative" id="card-0424">
-            <div class="aspect-[3/2] rounded-lg overflow-hidden bg-gray-100 relative mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3-yqHJdpnuB6Wye2-huWABDwJfiCCUwJBRLKZpXNPuucUl38PcsQFi97CPSEXvA5WAeS-UY8BKvHQOoMz5VtqSKbKop6Z1nqYq5KHZ10y2bP8PddTwb7x1yJYsxQB9jThkR1h2JYW2L8P76UlDtVKW0ZXNYScfra_RixG6Ohhm7J3Ih0ER9r2qAZvwsrYe84POhwWrttvl1eAH93bDcRZdLndOJ3o0zcQWuA4Ks0gRkTpYQ9y_u6X" class="w-full h-full object-cover pointer-events-none"/>
-              <span class="absolute top-1 left-1 bg-black/80 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#0424</span>
-              <span id="badge-portada-0424" class="hidden absolute top-1 right-1 bg-secondary text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-[11px]">star</span> Portada
-              </span>
-            </div>
-            <p class="text-xs font-bold text-primary truncate">BDS_0424.CR3</p>
-            <button onclick="setPortada('0424', 'BDS_0424.CR3', 'https://lh3.googleusercontent.com/aida-public/AB6AXuB3-yqHJdpnuB6Wye2-huWABDwJfiCCUwJBRLKZpXNPuucUl38PcsQFi97CPSEXvA5WAeS-UY8BKvHQOoMz5VtqSKbKop6Z1nqYq5KHZ10y2bP8PddTwb7x1yJYsxQB9jThkR1h2JYW2L8P76UlDtVKW0ZXNYScfra_RixG6Ohhm7J3Ih0ER9r2qAZvwsrYe84POhwWrttvl1eAH93bDcRZdLndOJ3o0zcQWuA4Ks0gRkTpYQ9y_u6X')" class="mt-2 w-full py-1 bg-gray-100 hover:bg-secondary hover:text-white text-primary text-[11px] font-bold rounded transition">
-              Elegir Portada
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- BARRA DE ACCIÓN RÁPIDA FINAL -->
-      <section class="bg-blue-50/70 border border-blue-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div>
-          <h4 class="text-xs font-bold text-primary uppercase tracking-wide">Acceso Rápido a la Galería</h4>
-          <p class="text-xs text-gray-600">Verificá cómo ven los padres las fotos de Drive con marca de agua.</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <a href="galeria.html" class="px-4 py-2 bg-white text-primary hover:bg-gray-100 border border-gray-300 rounded-lg text-xs font-bold transition">
-            Abrir Galería
-          </a>
-          <a href="index.html" class="px-4 py-2 bg-primary hover:bg-primary-container text-white rounded-lg text-xs font-bold transition">
-            Ir a Portada
-          </a>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- JAVASCRIPT AUTOSUFICIENTE Y CONECTADO -->
-  <script>
-    const DEFAULT_CONFIG = {
-      backendUrl: 'https://eventos-backend-hkea.onrender.com',
-      folderId: '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_',
-      eventName: 'Belgrano Day School · Egresados 2026',
-      precioImpresa: 7000,
-      precioDigital: 4200,
-      whatsapp: '+54 9 261 317-5222',
-      portadaId: '0421',
-      portadaFilename: 'BDS_0421.CR3',
-      portadaUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrknpb5HYVeG-RcOb4LoxOc3LU4C_FkOPDPhA7gWzYVYPE8p2xzKJN88gC4Yf9mMHD25ZDQ-_JH28SI8MeFh81hO4h9BP-siH__0gvZodwb-9MET1PzjMPVa5Vp3_KLXOjUlQpKyywruCe_sywf54mPlIzreOf3R8MnSKvxPhcv34na20xyWxNsJA92Qo-vS1pU4RebACSgauslY-28DO7pLjg5XGgDKfWTD4aODAUvm91qEQsZsLD'
-    };
-
-    let currentConfig = { ...DEFAULT_CONFIG };
-
-    // Cargar valores guardados al iniciar
-    document.addEventListener('DOMContentLoaded', () => {
       try {
-        const saved = localStorage.getItem('eventos_escolar_config');
-        if (saved) {
-          currentConfig = { ...DEFAULT_CONFIG, ...JSON.parse(saved) };
-        }
-      } catch(e) {}
+        const payload = {
+          titulo: titulo,
+          drive_folder_id: driveFolderId,
+          precio_impreso: Number(precioImpreso) || 7000,
+          precio_digital: Number(precioDigital) || 4200,
+          whatsapp: whatsapp,
+          created_at: new Date().toISOString()
+        };
 
-      const fInp = document.getElementById('drive-folder-input');
-      const eInp = document.getElementById('event-name-input');
-      const pImp = document.getElementById('precio-impresa');
-      const pDig = document.getElementById('precio-digital');
-      const waInp = document.getElementById('whatsapp-numero');
-      const hEvent = document.getElementById('header-evento-nombre');
-      const lblDetectado = document.getElementById('lbl-id-detectado');
+        const { data, error } = await supabaseClient
+          .from('galerias')
+          .insert([payload])
+          .select();
 
-      if (fInp) fInp.value = currentConfig.folderId;
-      if (eInp) eInp.value = currentConfig.eventName;
-      if (pImp) pImp.value = currentConfig.precioImpresa;
-      if (pDig) pDig.value = currentConfig.precioDigital;
-      if (waInp) waInp.value = currentConfig.whatsapp;
-      if (hEvent) hEvent.innerText = currentConfig.eventName;
-      if (lblDetectado) lblDetectado.innerText = currentConfig.folderId;
+        if (error) throw error;
 
-      if (currentConfig.portadaId) {
-        setPortada(currentConfig.portadaId, currentConfig.portadaFilename, currentConfig.portadaUrl, false);
+        feedback.className = "p-3 rounded-lg text-xs font-medium bg-emerald-100 text-emerald-800 block";
+        feedback.innerText = "¡Evento guardado con éxito! Se cargó en Supabase y ya está listo para los padres.";
+        
+        // Reset form
+        document.getElementById('evento-titulo').value = '';
+        document.getElementById('evento-drive').value = '';
+
+        // Recargar lista en vivo
+        await cargarEventos();
+
+      } catch (err) {
+        console.error('Error insertando evento:', err);
+        feedback.className = "p-3 rounded-lg text-xs font-medium bg-red-100 text-red-800 block";
+        feedback.innerText = `Error al guardar: ${err.message || 'Verificá que la tabla galerias admita inserts anónimos.'}`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-amber-400">cloud_upload</span>
+          <span>Guardar Evento en Supabase</span>
+        `;
       }
     });
 
-    function extraerDriveId(valor) {
-      if (!valor) return DEFAULT_CONFIG.folderId;
-      const str = valor.trim();
-      const match = str.match(/[-\w]{25,}/);
-      return match ? match[0] : str;
+    // EDITAR EVENTO (MODAL)
+    function abrirModalEditar(id, titulo, driveId, precioImpreso, precioDigital, whatsapp) {
+      document.getElementById('edit-id').value = id;
+      document.getElementById('edit-titulo').value = titulo;
+      document.getElementById('edit-drive-id').value = driveId;
+      document.getElementById('edit-precio-impreso').value = precioImpreso;
+      document.getElementById('edit-precio-digital').value = precioDigital;
+      document.getElementById('edit-whatsapp').value = whatsapp;
+      document.getElementById('modal-editar').showModal();
     }
 
-    function sanitizarDriveId() {
-      const fInp = document.getElementById('drive-folder-input');
-      const lblDetectado = document.getElementById('lbl-id-detectado');
-      if (fInp) {
-        const idLimpio = extraerDriveId(fInp.value);
-        fInp.value = idLimpio;
-        if (lblDetectado) lblDetectado.innerText = idLimpio;
-      }
-    }
-
-    async function pegarEnlace() {
-      try {
-        const texto = await navigator.clipboard.readText();
-        const fInp = document.getElementById('drive-folder-input');
-        if (fInp && texto) {
-          fInp.value = extraerDriveId(texto);
-          sanitizarDriveId();
-          showToast('Enlace Pegado', 'ID de carpeta detectado con éxito.');
-        }
-      } catch(e) {
-        alert('Por favor pegá manualmente el enlace usando Ctrl + V');
-      }
-    }
-
-    function persistirConfig() {
-      sanitizarDriveId();
-      const fInp = document.getElementById('drive-folder-input');
-      const eInp = document.getElementById('event-name-input');
-      const pImp = document.getElementById('precio-impresa');
-      const pDig = document.getElementById('precio-digital');
-      const waInp = document.getElementById('whatsapp-numero');
-      const hEvent = document.getElementById('header-evento-nombre');
-
-      currentConfig.folderId = fInp ? fInp.value.trim() : DEFAULT_CONFIG.folderId;
-      currentConfig.eventName = eInp ? eInp.value.trim() : DEFAULT_CONFIG.eventName;
-      currentConfig.precioImpresa = pImp ? Number(pImp.value) : 7000;
-      currentConfig.precioDigital = pDig ? Number(pDig.value) : 4200;
-      currentConfig.whatsapp = waInp ? waInp.value.trim() : '+54 9 261 317-5222';
-
-      if (hEvent) hEvent.innerText = currentConfig.eventName;
-
-      localStorage.setItem('eventos_escolar_config', JSON.stringify(currentConfig));
-      return currentConfig;
-    }
-
-    async function ejecutarSincronizacion() {
-      const cfg = persistirConfig();
-      const btn = document.getElementById('btn-sync');
-      const txt = document.getElementById('sync-text');
-      const ico = document.getElementById('sync-icon');
-
-      if (ico) ico.classList.add('animate-spin');
-      if (txt) txt.innerText = 'Sincronizando con Render...';
-      if (btn) btn.classList.add('opacity-80');
+    document.getElementById('form-editar-evento').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('edit-id').value;
+      const titulo = document.getElementById('edit-titulo').value;
+      const driveId = extraerDriveId(document.getElementById('edit-drive-id').value);
+      const precioImpreso = document.getElementById('edit-precio-impreso').value;
+      const precioDigital = document.getElementById('edit-precio-digital').value;
+      const whatsapp = document.getElementById('edit-whatsapp').value;
 
       try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 3500);
-        await fetch(`${cfg.backendUrl}/api/eventos/${encodeURIComponent(cfg.folderId)}/fotos`, { signal: controller.signal }).catch(() => null);
-        clearTimeout(timeout);
-      } catch(e) {}
+        const { error } = await supabaseClient
+          .from('galerias')
+          .update({
+            titulo: titulo,
+            drive_folder_id: driveId,
+            precio_impreso: Number(precioImpreso),
+            precio_digital: Number(precioDigital),
+            whatsapp: whatsapp
+          })
+          .eq('id', id);
 
-      if (ico) ico.classList.remove('animate-spin');
-      if (txt) txt.innerText = 'Sincronizar y Guardar Ahora';
-      if (btn) btn.classList.remove('opacity-80');
-
-      showToast(
-        '¡Sincronización Exitosa!',
-        `Evento "${cfg.eventName}" guardado. Ya se refleja en la Portada y en la Galería.`
-      );
-    }
-
-    function guardarPrecios() {
-      const cfg = persistirConfig();
-      showToast(
-        'Precios Actualizados',
-        `Impresa: $${cfg.precioImpresa.toLocaleString('es-AR')} | Digital: $${cfg.precioDigital.toLocaleString('es-AR')}`
-      );
-    }
-
-    function setPortada(id, filename, url, guardar = true) {
-      currentConfig.portadaId = id;
-      currentConfig.portadaFilename = filename;
-      currentConfig.portadaUrl = url;
-
-      const allIds = ['0421', '0422', '0423', '0424'];
-      allIds.forEach(cardId => {
-        const c = document.getElementById(`card-${cardId}`);
-        const b = document.getElementById(`badge-portada-${cardId}`);
-        if (c) {
-          c.classList.remove('border-2', 'border-secondary');
-          c.classList.add('border', 'border-gray-200');
-        }
-        if (b) b.classList.add('hidden');
-      });
-
-      const targetCard = document.getElementById(`card-${id}`);
-      const targetBadge = document.getElementById(`badge-portada-${id}`);
-      if (targetCard) {
-        targetCard.classList.remove('border', 'border-gray-200');
-        targetCard.classList.add('border-2', 'border-secondary');
+        if (error) throw error;
+        document.getElementById('modal-editar').close();
+        await cargarEventos();
+      } catch (err) {
+        alert('Error al actualizar evento: ' + err.message);
       }
-      if (targetBadge) targetBadge.classList.remove('hidden');
+    });
 
-      const statBadge = document.getElementById('stat-portada-badge');
-      if (statBadge) statBadge.innerText = `#${id}`;
+    // ELIMINAR EVENTO
+    async function eliminarEvento(id, titulo) {
+      if (!confirm(`¿Estás seguro de eliminar la galería "${titulo}"? Los enlaces a padres dejarán de funcionar.`)) {
+        return;
+      }
 
-      if (guardar) {
-        persistirConfig();
-        showToast('Portada Asignada', `La foto #${id} ahora es la portada visible en index.html.`);
+      try {
+        const { error } = await supabaseClient
+          .from('galerias')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        await cargarEventos();
+      } catch (err) {
+        alert('Error al eliminar evento: ' + err.message);
       }
     }
 
-    let toastTimer;
-    function showToast(title, msg) {
-      const t = document.getElementById('toast');
-      const tTitle = document.getElementById('toast-title');
-      const tMsg = document.getElementById('toast-msg');
-      if (tTitle) tTitle.innerText = title;
-      if (tMsg) tMsg.innerText = msg;
+    // BOTÓN RECARGAR MANUAL
+    document.getElementById('btn-recargar').addEventListener('click', () => {
+      cargarEventos();
+    });
 
-      t.classList.remove('translate-y-[-140%]', 'opacity-0', 'pointer-events-none');
-      t.classList.add('translate-y-0', 'opacity-100');
-
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(dismissToast, 4000);
-    }
-
-    function dismissToast() {
-      const t = document.getElementById('toast');
-      if (t) {
-        t.classList.remove('translate-y-0', 'opacity-100');
-        t.classList.add('translate-y-[-140%]', 'opacity-0', 'pointer-events-none');
-      }
-    }
+    // INICIALIZACIÓN
+    window.addEventListener('DOMContentLoaded', () => {
+      cargarEventos();
+    });
   </script>
-
-</body>
-</html>
+</body></html>
