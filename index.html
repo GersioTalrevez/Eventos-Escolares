@@ -48,7 +48,7 @@
         }
       }
     }
-  </script>
+  </script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     .material-symbols-outlined {
       font-family: 'Material Symbols Outlined';
@@ -183,10 +183,8 @@
 </section>
 <!-- Directorio de Eventos (Colegios) -->
 <section class="space-y-4">
-<div class="flex items-center justify-between">
-<h2 class="text-xl font-bold font-headline-sm text-primary">Eventos Escolares Recientes</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-center justify-between"><h2 class="text-xl font-bold font-headline-sm text-primary">Eventos Escolares Recientes</h2><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-xs font-semibold text-primary border border-outline-variant/40" id="supabase-live-indicator"><span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span><span class="text-[11px] font-medium text-on-surface-variant">Sincronizado con Supabase</span></div></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="events-grid-container">
 <!-- Tarjeta 1: San Martín de Tours -->
 <article class="group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col" id="featured-event-card">
 <div class="relative h-56 w-full bg-surface-dim overflow-hidden">
