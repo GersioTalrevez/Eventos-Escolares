@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 
-<html class="light" lang="es"><head>
+<html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Galería Oficial de Fotos - EVENTOS Escolar</title>
+<title>Galería Oficial de Fotos - Sergio Molina Fotógrafo</title>
+<!-- Favicon oficial -->
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Supabase JS CDN -->
@@ -20,16 +22,22 @@
       theme: {
         extend: {
           colors: {
-            "primary": "#000f3f",
-            "primary-container": "#172554",
-            "on-primary": "#ffffff",
-            "secondary": "#9b4500",
-            "secondary-container": "#fd8a42",
-            "on-secondary": "#ffffff",
-            "background": "#f8f9ff",
-            "on-surface": "#0d1c2e",
-            "outline": "#767680",
-            "outline-variant": "#c6c5d0"
+            "dark-bg": "#111111",
+            "dark-card": "#222222",
+            "dark-card-hover": "#282828",
+            "dark-border": "#333333",
+            "dark-border-light": "#444444",
+            "petrol": "#004466",
+            "petrol-hover": "#005580",
+            "petrol-border": "#005580",
+            "petrol-light": "#0e5a84",
+            "text-main": "#ffffff",
+            "text-muted": "#aaaaaa",
+            "accent-gold": "#d4af37"
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            display: ['Raleway', 'sans-serif']
           }
         }
       }
@@ -56,181 +64,232 @@
       pointer-events: none;
     }
 
-    /* Marca de agua diagonal de seguridad */
+    /* Marca de agua diagonal de seguridad Darkroom */
     .watermark-pattern {
       background-image: repeating-linear-gradient(
         -45deg,
-        rgba(255, 255, 255, 0.18) 0,
-        rgba(255, 255, 255, 0.18) 12px,
-        transparent 12px,
-        transparent 55px
+        rgba(255, 255, 255, 0.08) 0,
+        rgba(255, 255, 255, 0.08) 14px,
+        transparent 14px,
+        transparent 60px
       );
     }
   </style>
 </head>
-<body class="bg-background text-on-surface font-sans antialiased min-h-screen pb-36 selection:bg-blue-100">
+<body class="bg-[#111111] text-[#ffffff] font-sans antialiased min-h-screen pb-36 selection:bg-[#004466] selection:text-white">
 <!-- AVISO TOAST ANTIRROBO -->
-<div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 bg-primary/95 text-white backdrop-blur-md px-4 py-2.5 rounded-full shadow-2xl border border-white/20 text-xs font-bold" id="toast-proteccion">
+<div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 bg-[#222222]/95 text-white backdrop-blur-md px-5 py-2.5 rounded-full shadow-2xl border border-[#333333] text-xs font-bold" id="toast-proteccion">
 <span class="material-symbols-outlined text-[18px] text-amber-400">lock</span>
-<span>Galería protegida · EVENTOS Escolar (Fotos de muestra)</span>
+<span>Galería protegida · Sergio Molina Fotógrafo (Muestras protegidas)</span>
 </div>
-<!-- BARRA SUPERIOR -->
-<header class="sticky top-0 z-40 bg-white border-b border-outline-variant shadow-sm">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-<!-- Marca -->
-<a class="flex items-center gap-2 hover:opacity-90 transition" href="index.html">
-<span class="material-symbols-outlined text-primary text-[26px]">camera_roll</span>
+<!-- BARRA SUPERIOR (HEADER ESTILO ATELIER DARKROOM) -->
+<header class="sticky top-0 z-40 bg-[#111111]/95 backdrop-blur-md border-b border-[#333333] shadow-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
+<!-- Marca y Avatar Oficial -->
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-3 group" href="https://sergiomolina-fotografia.netlify.app/" title="Ir al Portfolio oficial de Sergio Molina">
+<img alt="Sergio Molina" class="w-10 h-10 rounded-full border border-[#005580] object-cover shadow group-hover:border-[#0088cc] transition duration-200" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
 <div class="flex flex-col leading-tight">
-<span class="font-serif text-xl tracking-tight text-primary font-bold">EVENTOS</span>
-<span class="text-[10px] text-gray-500 font-semibold hidden sm:inline">Fotografía Escolar · Sergio Molina</span>
+<span class="font-display font-bold text-base sm:text-lg tracking-wide text-white group-hover:text-blue-200 transition">Eventos Escolares y Sesiones</span>
+<span class="text-xs text-[#aaaaaa] font-medium">de Sergio Molina, Fotógrafo</span>
 </div>
 </a>
-<!-- Estado y Carrito -->
-<div class="flex items-center gap-2 sm:gap-3">
-<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800 shadow-2xs" id="badge-supabase" title="Base de datos Supabase conectada en tiempo real"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>Supabase Conectado</span></div><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800" id="badge-drive" title="Galería conectada con Drive">
-<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" id="dot-drive"></span>
+</div>
+<!-- Enlaces, Estado y Carrito -->
+<div class="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
+<a class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#222222] border border-[#333333] text-xs font-semibold text-[#aaaaaa] hover:text-white hover:border-[#005580] transition" href="https://sergiomolina-fotografia.netlify.app/" target="_blank">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+<span>Portfolio Principal</span>
+</a>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18261e] border border-emerald-700/60 text-xs font-semibold text-emerald-300 shadow-sm" id="badge-supabase" title="Base de datos Supabase conectada en tiempo real">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span>Supabase Conectado</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18261e] border border-emerald-700/60 text-xs font-semibold text-emerald-300 shadow-sm" id="badge-drive" title="Galería conectada con Drive">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" id="dot-drive"></span>
 <span id="label-drive">Drive Activo</span>
 </div>
-<button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition shadow-sm" onclick="abrirModalPedido()">
+<button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#004466] border border-[#005580] text-white text-xs font-bold hover:bg-[#005580] transition shadow" onclick="abrirModalPedido()">
 <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
 <span id="badge-top-seleccionadas">0 seleccionadas</span>
 </button>
 </div>
 </div>
-<!-- Cinta Institucional -->
-<div class="bg-blue-50/70 border-t border-blue-100 px-4 py-1.5">
+<!-- Cinta Institucional Dark -->
+<div class="bg-[#181818] border-t border-[#2a2a2a] px-4 py-2">
 <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
-<div class="flex items-center gap-1.5 text-primary font-semibold truncate">
-<span class="material-symbols-outlined text-[16px] text-secondary">school</span>
-<span id="label-evento">Colegio Belgrano Day School · Egresados 2026</span>
+<div class="flex items-center gap-2 text-white font-medium truncate">
+<span class="material-symbols-outlined text-[16px] text-[#91cdfe]">school</span>
+<span class="text-sm font-semibold tracking-wide" id="label-evento">Colegio Belgrano Day School · Egresados 2026</span>
 </div>
-<div class="flex items-center gap-1 text-[11px] text-gray-600 shrink-0">
-<span class="material-symbols-outlined text-[14px] text-emerald-600">verified_user</span>
-<span class="hidden sm:inline">Protección anticopia activa</span>
+<div class="flex items-center gap-1.5 text-[11px] text-[#aaaaaa] shrink-0">
+<span class="material-symbols-outlined text-[14px] text-emerald-400">verified_user</span>
+<span class="hidden sm:inline">Protección anticopia y revelado calibrado</span>
 </div>
 </div>
 </div>
 </header>
 <!-- CONTENIDO PRINCIPAL -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 pt-7">
 <!-- ENCABEZADO DE LA GALERÍA -->
-<section class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-200 pb-5">
+<section class="mb-7 flex flex-col sm:flex-row sm:items-end justify-between gap-5 border-b border-[#2b2b2b] pb-6">
 <div>
-<div class="flex items-center gap-2">
-<h1 class="font-serif text-2xl sm:text-3xl text-primary font-bold tracking-tight">Galería Oficial de Fotos</h1>
-<span class="hidden text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-md border border-amber-300" id="badge-modo-demo">Modo previsualización</span><span class="text-xs bg-emerald-50 text-emerald-800 font-bold px-2.5 py-0.5 rounded-md border border-emerald-300 flex items-center gap-1.5 shadow-2xs" id="badge-contador-galeria"><span class="material-symbols-outlined text-[14px] text-emerald-600">photo_library</span><span id="contador-fotos-total">Cargando fotos...</span></span>
+<div class="flex flex-wrap items-center gap-3">
+<h1 class="font-display text-2xl sm:text-3xl text-white font-bold tracking-tight">Galería Oficial de Fotos</h1>
+<span class="hidden text-xs bg-amber-950/80 text-amber-300 font-bold px-2.5 py-0.5 rounded-md border border-amber-600/50" id="badge-modo-demo">Modo previsualización</span>
+<span class="text-xs bg-[#18261e] text-emerald-300 font-bold px-3 py-1 rounded-md border border-emerald-700/60 flex items-center gap-1.5 shadow-sm" id="badge-contador-galeria">
+<span class="material-symbols-outlined text-[14px] text-emerald-400">photo_library</span>
+<span id="contador-fotos-total">Cargando fotos...</span>
+</span>
 </div>
-<p class="text-xs sm:text-sm text-gray-600 mt-1 max-w-2xl">
-          Elegí las fotos de tu hijo/a tocando el botón <strong class="text-primary font-bold">+</strong>. Podés encargarlas en 
-          <strong class="text-primary font-semibold">Copia Impresa 15x21 cm</strong> en papel mate de laboratorio o en <strong class="text-primary font-semibold">Descarga Digital HD</strong> sin marca de agua.
+<p class="text-xs sm:text-sm text-[#aaaaaa] mt-2 max-w-2xl leading-relaxed">
+          Elegí las fotos de tu hijo/a tocando el botón <strong class="text-white font-bold bg-[#333333] px-1.5 py-0.5 rounded">+</strong>. Podés encargarlas en 
+          <strong class="text-[#91cdfe] font-semibold">Copia Impresa 15x21 cm</strong> en papel mate de laboratorio o en <strong class="text-[#91cdfe] font-semibold">Descarga Digital HD</strong> sin marca de agua con pago por WhatsApp o Mercado Pago.
         </p>
 </div>
 <!-- Tarifas vigentes configuradas -->
-<div class="flex items-center gap-2 bg-white border border-gray-200 rounded-xl p-2.5 shadow-sm self-start sm:self-auto shrink-0">
-<div class="flex flex-col pr-3 border-r border-gray-200 text-left">
-<span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Impresa 15x21</span>
-<span class="text-sm font-extrabold text-primary" id="tarifa-impresa-display">$7.000</span>
+<div class="flex items-center gap-3 bg-[#222222] border border-[#333333] rounded-xl p-3 shadow-lg self-start sm:self-auto shrink-0">
+<div class="flex flex-col pr-4 border-r border-[#333333] text-left">
+<span class="text-[10px] text-[#aaaaaa] font-bold uppercase tracking-wider">Impresa 15x21</span>
+<span class="text-base font-extrabold text-white" id="tarifa-impresa-display">$7.000</span>
 </div>
 <div class="flex flex-col pl-2 text-left">
-<span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Digital HD</span>
-<span class="text-sm font-extrabold text-secondary" id="tarifa-digital-display">$4.200</span>
+<span class="text-[10px] text-[#aaaaaa] font-bold uppercase tracking-wider">Digital HD</span>
+<span class="text-base font-extrabold text-[#91cdfe]" id="tarifa-digital-display">$4.200</span>
 </div>
 </div>
 </section>
 <!-- CONTENEDOR DINÁMICO INTERACTIVO DE FOTOS -->
 <div class="w-full" id="grid-fotos">
 <!-- Estado inicial animado de sincronización -->
-<div class="w-full py-10 px-4 bg-white rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center justify-center text-center" id="estado-carga-drive"><div class="flex items-center gap-2 mb-3"><span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span><span class="text-xs font-bold text-emerald-800 uppercase tracking-wider">Carga Ultra Rápida Activa</span></div><h3 class="text-lg font-bold text-primary mb-1">Cargando miniaturas optimizadas de Drive</h3><p class="text-xs text-gray-500 max-w-md mb-4">Generando previsualizaciones web ligeras con marca de agua y protección anticopia.</p><div class="w-full max-w-xs bg-gray-100 rounded-full h-2 mb-2 overflow-hidden border border-gray-200"><div class="bg-primary h-full rounded-full transition-all duration-300" id="barra-progreso-fotos" style="width: 65%;"></div></div><p class="text-[11px] font-mono text-gray-500 font-semibold" id="contador-carga-fotos">Sincronizando fotos...</p></div>
+<div class="w-full py-14 px-4 bg-[#222222] rounded-2xl border border-[#333333] shadow-md flex flex-col items-center justify-center text-center" id="estado-carga-drive">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="text-xs font-bold text-emerald-300 uppercase tracking-wider">Carga Rápida Activa · Darkroom</span>
 </div>
-<!-- BANNER DE GARANTÍA EDITORIAL -->
-<section class="mt-10 bg-white rounded-2xl border border-gray-200 p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center shrink-0 border border-blue-100">
-<span class="material-symbols-outlined text-[24px]">verified</span>
+<h3 class="text-lg font-bold text-white mb-1">Cargando fotos del evento desde Google Drive</h3>
+<p class="text-xs text-[#aaaaaa] max-w-md mb-4">Generando previsualizaciones web con marca de agua editorial y protección anticopia.</p>
+<div class="w-full max-w-xs bg-[#111111] rounded-full h-2 mb-2 overflow-hidden border border-[#333333]">
+<div class="bg-[#005580] h-full rounded-full transition-all duration-300" id="barra-progreso-fotos" style="width: 70%;"></div>
+</div>
+<p class="text-[11px] font-mono text-[#aaaaaa] font-semibold" id="contador-carga-fotos">Sincronizando fotos de Sergio Molina...</p>
+</div>
+</div>
+<!-- BANNER DE GARANTÍA EDITORIAL DARK -->
+<section class="mt-10 bg-[#222222] rounded-2xl border border-[#333333] p-5 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-xl bg-[#111111] text-[#91cdfe] flex items-center justify-center shrink-0 border border-[#333333]">
+<span class="material-symbols-outlined text-[26px]">verified</span>
 </div>
 <div>
-<h4 class="font-bold text-primary text-sm">Garantía de Laboratorio Fotográfico</h4>
-<p class="text-xs text-gray-600 mt-0.5">Todas las copias impresas se revelan en papel mate Fuji Crystal Archive de máxima durabilidad.</p>
+<h4 class="font-bold text-white text-sm">Garantía de Laboratorio Profesional</h4>
+<p class="text-xs text-[#aaaaaa] mt-0.5">Todas las copias impresas se revelan en papel mate Fuji Crystal Archive de máxima durabilidad y calibración de color Sergio Molina.</p>
 </div>
 </div>
-<a class="text-xs font-bold text-secondary hover:underline flex items-center gap-1.5 shrink-0 bg-orange-50/70 border border-orange-200/60 px-3 py-1.5 rounded-lg" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20las%20fotos%20escolares" target="_blank">
-<span class="material-symbols-outlined text-[16px]">chat</span>
-<span>¿Dudas? Consultar a Sergio Molina</span>
+<a class="text-xs font-bold text-white hover:text-white flex items-center gap-1.5 shrink-0 bg-[#004466] hover:bg-[#005580] border border-[#005580] px-4 py-2.5 rounded-xl transition shadow" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20las%20fotos%20escolares" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">chat</span>
+<span>Consultar a Sergio Molina</span>
 </a>
 </section>
 </main>
-<!-- BARRA FIJA FLOTANTE INFERIOR -->
-<div class="fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl px-4 py-3">
+<!-- BARRA FIJA FLOTANTE INFERIOR DARK -->
+<div class="fixed bottom-0 left-0 w-full z-40 bg-[#181818]/95 backdrop-blur-md border-t border-[#333333] shadow-2xl px-4 py-3.5">
 <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
 <div>
-<p class="text-xs sm:text-sm font-bold text-primary" id="bar-resumen">0 fotos seleccionadas</p>
-<p class="text-[11px] text-gray-500" id="bar-subtotal">Tocá el botón (+) en cada foto para encargar</p>
+<p class="text-xs sm:text-sm font-bold text-white" id="bar-resumen">0 fotos seleccionadas</p>
+<p class="text-[11px] text-[#aaaaaa]" id="bar-subtotal">Tocá el botón (+) en cada foto para encargar</p>
 </div>
-<div class="flex items-center gap-2">
-<button class="hidden text-xs text-gray-500 hover:text-gray-800 px-2 py-1 font-semibold transition" id="btn-limpiar" onclick="limpiarSeleccion()">
+<div class="flex items-center gap-2.5">
+<button class="hidden text-xs text-[#aaaaaa] hover:text-white px-2 py-1 font-semibold transition" id="btn-limpiar" onclick="limpiarSeleccion()">
           Limpiar
         </button>
-<button class="bg-primary hover:bg-primary-container text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition shadow" id="btn-continuar" onclick="abrirModalPedido()">
+<button class="bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition shadow-lg" id="btn-continuar" onclick="abrirModalPedido()">
 <span>Encargar Pedido</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </button>
 </div>
 </div>
 </div>
-<!-- MODAL DE PEDIDO POR WHATSAPP / CHECKOUT -->
-<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" id="modal-pedido">
-<div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl transform scale-95 transition-all duration-300 border border-gray-200" id="modal-card">
-<div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[24px]">shopping_cart_checkout</span>
-<h3 class="font-bold text-primary text-base">Confirmar Pedido de Fotos</h3>
+<!-- MODAL VISUALIZADOR DE FOTO EN TAMAÑO COMPLETO (DARKROOM ZOOM) -->
+<div class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300" id="modal-zoom">
+<div class="relative max-w-4xl w-full flex flex-col items-center">
+<button class="absolute -top-10 right-0 sm:top-2 sm:right-2 z-10 w-9 h-9 rounded-full bg-[#222222] border border-[#444444] text-white hover:bg-[#333333] flex items-center justify-center font-bold text-sm" onclick="cerrarModalZoom()">✕</button>
+<div class="relative w-full rounded-xl overflow-hidden border border-[#333333] bg-[#111111] flex items-center justify-center max-h-[80vh]">
+<img alt="Previsualización de Foto" class="max-h-[75vh] w-auto object-contain select-none pointer-events-none" id="zoom-img" src=""/>
+<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
+<div class="rotate-[-25deg] bg-[#111111]/80 backdrop-blur-xs px-5 py-2 text-white font-mono text-xs sm:text-sm tracking-widest uppercase font-bold border border-white/30 shadow-2xl">
+          MUESTRA · SERGIO MOLINA
+        </div>
 </div>
-<button class="text-gray-400 hover:text-gray-700 p-1 text-base font-bold" onclick="cerrarModalPedido()">✕</button>
+</div>
+<div class="w-full mt-3 flex items-center justify-between px-2 text-xs">
+<span class="text-white font-mono font-bold" id="zoom-caption">#Foto</span>
+<button class="bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white px-4 py-1.5 rounded-lg font-bold flex items-center gap-1.5" id="zoom-toggle-btn">
+<span>Sumar al pedido</span>
+</button>
+</div>
+</div>
+</div>
+<!-- MODAL DE PEDIDO POR WHATSAPP / CHECKOUT DARK -->
+<div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" id="modal-pedido">
+<div class="bg-[#222222] rounded-2xl max-w-md w-full p-6 shadow-2xl transform scale-95 transition-all duration-300 border border-[#333333] text-white" id="modal-card">
+<div class="flex items-center justify-between border-b border-[#333333] pb-3.5 mb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#91cdfe] text-[24px]">shopping_cart_checkout</span>
+<h3 class="font-bold text-white text-base">Confirmar Pedido de Fotos</h3>
+</div>
+<button class="text-[#aaaaaa] hover:text-white p-1 text-base font-bold" onclick="cerrarModalPedido()">✕</button>
 </div>
 <!-- Resumen de items -->
 <div class="mb-4">
-<p class="text-xs text-gray-500 mb-2">Fotos seleccionadas (<span id="modal-cant-fotos">0</span>):</p>
-<div class="max-h-28 overflow-y-auto bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-xs font-mono font-bold text-primary flex flex-wrap gap-1.5" id="modal-lista-ids">
+<p class="text-xs text-[#aaaaaa] mb-2">Fotos seleccionadas (<span class="text-white font-bold" id="modal-cant-fotos">0</span>):</p>
+<div class="max-h-28 overflow-y-auto bg-[#111111] border border-[#333333] rounded-lg p-2.5 text-xs font-mono font-bold text-[#91cdfe] flex flex-wrap gap-1.5" id="modal-lista-ids">
 </div>
 </div>
 <!-- Tipo de Entrega -->
 <div class="mb-4">
-<label class="text-xs font-bold text-primary block mb-1.5">Elegí el formato deseado:</label>
+<label class="text-xs font-bold text-white block mb-1.5">Elegí el formato deseado:</label>
 <div class="grid grid-cols-2 gap-2">
-<label class="border border-primary bg-blue-50/50 rounded-xl p-2.5 flex flex-col cursor-pointer transition">
+<label class="border border-[#005580] bg-[#004466]/30 rounded-xl p-3 flex flex-col cursor-pointer transition">
 <div class="flex items-center justify-between mb-1">
-<span class="text-xs font-bold text-primary">Copia Impresa</span>
-<input checked="" class="text-primary focus:ring-primary" name="formato-pedido" onchange="recalcularTotalModal()" type="radio" value="impresa"/>
+<span class="text-xs font-bold text-white">Copia Impresa</span>
+<input checked="" class="text-[#005580] focus:ring-[#005580] bg-[#111111] border-[#444444]" name="formato-pedido" onchange="recalcularTotalModal()" type="radio" value="impresa"/>
 </div>
-<span class="text-[11px] text-gray-600">15x21 cm Papel Mate</span>
-<span class="text-xs font-bold text-primary mt-1" id="modal-precio-impr">$7.000 c/u</span>
+<span class="text-[11px] text-[#aaaaaa]">15x21 cm Papel Mate</span>
+<span class="text-xs font-bold text-[#91cdfe] mt-1" id="modal-precio-impr">$7.000 c/u</span>
 </label>
-<label class="border border-gray-200 rounded-xl p-2.5 flex flex-col cursor-pointer hover:border-gray-300 transition">
+<label class="border border-[#333333] bg-[#1a1a1a] rounded-xl p-3 flex flex-col cursor-pointer hover:border-[#444444] transition">
 <div class="flex items-center justify-between mb-1">
-<span class="text-xs font-bold text-primary">Digital HD</span>
-<input class="text-primary focus:ring-primary" name="formato-pedido" onchange="recalcularTotalModal()" type="radio" value="digital"/>
+<span class="text-xs font-bold text-white">Digital HD</span>
+<input class="text-[#005580] focus:ring-[#005580] bg-[#111111] border-[#444444]" name="formato-pedido" onchange="recalcularTotalModal()" type="radio" value="digital"/>
 </div>
-<span class="text-[11px] text-gray-600">Ultra HD sin marcas</span>
-<span class="text-xs font-bold text-secondary mt-1" id="modal-precio-dig">$4.200 c/u</span>
+<span class="text-[11px] text-[#aaaaaa]">Ultra HD sin marcas</span>
+<span class="text-xs font-bold text-emerald-400 mt-1" id="modal-precio-dig">$4.200 c/u</span>
 </label>
 </div>
 </div>
 <!-- Nombre del Alumno / Padre -->
 <div class="mb-4">
-<label class="text-xs font-bold text-primary block mb-1" for="modal-input-alumno">Nombre del Alumno / Familia (Opcional):</label>
-<input class="w-full px-3 py-2 text-xs rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary" id="modal-input-alumno" placeholder="Ej: Mateo Gómez - 5to A" type="text"/>
+<label class="text-xs font-bold text-white block mb-1" for="modal-input-alumno">Nombre del Alumno / Familia (Opcional):</label>
+<input class="w-full px-3 py-2 text-xs rounded-lg bg-[#111111] border border-[#444444] text-white placeholder-[#666666] focus:border-[#005580] focus:ring-1 focus:ring-[#005580]" id="modal-input-alumno" placeholder="Ej: Mateo Gómez - 5to A" type="text"/>
 </div>
 <!-- Total -->
-<div class="bg-gray-50 border border-gray-200 rounded-xl p-3 flex items-center justify-between mb-5">
-<span class="text-xs font-bold text-gray-600">Total estimado:</span>
-<span class="text-lg font-bold text-primary" id="modal-total-calculado">$0</span>
+<div class="bg-[#111111] border border-[#333333] rounded-xl p-3.5 flex items-center justify-between mb-5">
+<span class="text-xs font-bold text-[#aaaaaa]">Total estimado:</span>
+<span class="text-lg font-bold text-white" id="modal-total-calculado">$0</span>
 </div>
-<!-- Botón WhatsApp -->
-<button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg" onclick="enviarPedidoWhatsApp()">
+<!-- Acciones de Pago y Envío: WhatsApp y Mercado Pago -->
+<div class="space-y-2">
+<button class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg" onclick="enviarPedidoWhatsApp()">
 <span class="material-symbols-outlined text-[20px]">chat</span>
 <span>Enviar Pedido por WhatsApp Ahora</span>
 </button>
-<p class="text-[10px] text-gray-400 text-center mt-2">Se abrirá WhatsApp con el listado exacto de las fotos para coordinar entrega y pago.</p>
+<button class="w-full bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition" onclick="coordinarMercadoPago()">
+<span class="material-symbols-outlined text-[18px] text-[#91cdfe]">credit_card</span>
+<span>Pagar con Mercado Pago / Transferencia</span>
+</button>
+</div>
+<p class="text-[10px] text-[#888888] text-center mt-2.5">Se enviará el detalle exacto a Sergio Molina para coordinar pago y entrega oficial.</p>
 </div>
 </div>
 <!-- SCRIPT COMPLETO DE INTEGRACIÓN SUPABASE, DRIVE Y SELECCIÓN -->
@@ -259,10 +318,10 @@
       }
     }
 
-    // Mapa dinámico de fotos seleccionadas (inicia vacío)
+    // Mapa dinámico de fotos seleccionadas
     const seleccionadas = new Map();
 
-    // Galería demo institucional como fallback claro si Render duerme o no responde
+    // Galería demo como fallback si el backend de render no responde
     const DEMO_FOTOS = [
       { id: '0421', name: 'Foto_Graduacion_0421.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD9YydndI5YSL2oWAbOgroDeP4Fah9hdAwc4GmORSUnyx_OejllDbYmVOuki6c9lGL1V0yMY8i8ppM84vGtFuvPd6z7R0_k-MwVBXImL9hm7auep0xIHGHi4fSb0O4BlBaOfCbJm0ngVAM1QtNRJINk3cbu6iiyOlRLhpPu-XKCsIhbFAChbMt_WqkQQtnlYown0GZv8-lq1jIVLRPb_ICFUtDa2PfcnBzVjEY7GdqLHNvf0MtA3pcW' },
       { id: '0422', name: 'Foto_Grupal_0422.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWdWFUIuPKUuGVAm446oYaqYAVzDCkXsN81ZetbGlFFPyXimebJLhLt1qkAJchV_E2R2ybLrsWHj6lOP0KzAdBFgB7Ky_j5VJvCUwKpMXkmFTSIoIHRfpVlkQSSQaEituT1NmQ7rUGi9EIbX0lyeEtprF8FUYcxvtuKmnpJmFo5hRYE6fNu-417VS6kCdDPN582VPuveSSWAggUigUh-KbuF7KRS7zbRXCOLBlR-yhcDJl5qbJcVrs' },
@@ -315,7 +374,7 @@
 
           const badgeSupa = document.getElementById('badge-supabase');
           if (badgeSupa) {
-            badgeSupa.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>Supabase Sincronizado</span>';
+            badgeSupa.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Supabase Sincronizado</span>';
           }
         }
       } catch (err) {
@@ -361,10 +420,10 @@
       if (badgeDemo) badgeDemo.classList.add('hidden');
 
       grid.innerHTML = `
-        <div id="estado-carga-drive" class="w-full py-16 px-4 bg-white rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center justify-center text-center">
-          <div class="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
-          <h3 class="text-base font-bold text-primary mb-1">${esReintento ? 'Reintentando conexión con Google Drive...' : 'Sincronizando fotos reales de Google Drive...'}</h3>
-          <p class="text-xs text-gray-500 max-w-md">Consultando el servidor de Render y leyendo los archivos originales de la carpeta escolar de Google Drive.</p>
+        <div id="estado-carga-drive" class="w-full py-16 px-4 bg-[#222222] rounded-2xl border border-[#333333] shadow-lg flex flex-col items-center justify-center text-center">
+          <div class="w-10 h-10 border-4 border-[#004466] border-t-[#91cdfe] rounded-full animate-spin mb-4"></div>
+          <h3 class="text-base font-bold text-white mb-1">${esReintento ? 'Reintentando conexión con Google Drive...' : 'Sincronizando fotos reales de Google Drive...'}</h3>
+          <p class="text-xs text-[#aaaaaa] max-w-md">Consultando el servidor de Sergio Molina y leyendo los archivos originales de la carpeta de Drive.</p>
         </div>
       `;
 
@@ -374,7 +433,6 @@
         try {
           response = await fetchConTimeout(endpoint, {}, 8000);
         } catch (firstErr) {
-          // Reintento automático
           console.warn('Primer intento con Render demorado, reintentando...', firstErr);
           response = await fetchConTimeout(endpoint, {}, 9000);
         }
@@ -389,7 +447,6 @@
           actualizarEstadoDrive(true);
           renderizarFotos(fotos, false);
         } else {
-          // Respuesta exitosa pero arreglo vacío
           mostrarAvisoVacio();
         }
       } catch (err) {
@@ -408,7 +465,9 @@
         else badgeDemo.classList.add('hidden');
       }
 
-      // Creamos contenedor grid
+      const totalBadge = document.getElementById('contador-fotos-total');
+      if (totalBadge) totalBadge.textContent = `${lista.length} fotos disponibles`;
+
       const gridInner = document.createElement('div');
       gridInner.className = "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4";
       gridInner.id = "contenedor-fotos-dinamicas";
@@ -419,39 +478,42 @@
         const isSelected = seleccionadas.has(foto.id);
 
         const card = document.createElement('div');
-        card.className = `photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm ${isSelected ? 'border-2 border-primary' : 'border border-gray-200'} group flex flex-col transition hover:shadow-md`;
+        card.className = `photo-proof relative bg-[#222222] rounded-xl overflow-hidden shadow-md ${isSelected ? 'border-2 border-[#0088cc]' : 'border border-[#333333]'} group flex flex-col transition duration-200 hover:border-[#555555]`;
         card.id = `card-${foto.id}`;
         card.innerHTML = `
-          <div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
+          <div class="relative aspect-[3/2] bg-[#0c0c0c] overflow-hidden select-none cursor-pointer" onclick="abrirModalZoom('${fotoUrl}', '${fotoIdLimpio}', '${foto.id}')">
             <img 
               src="${fotoUrl}" 
               alt="${foto.name || foto.id}" 
               loading="lazy"
-              class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300"
+              class="w-full h-full object-cover select-none pointer-events-none brightness-90 group-hover:brightness-100 group-hover:scale-105 transition duration-300"
             />
             <div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-              <div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-                MUESTRA · EVENTOS
+              <div class="rotate-[-25deg] bg-[#111111]/85 backdrop-blur-[2px] px-3 py-1 text-white/90 font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/20 shadow-xl select-none">
+                MUESTRA · SERGIO MOLINA
               </div>
             </div>
-            <div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
+            <div class="absolute bottom-2 left-2 bg-[#111111]/90 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider border border-[#333333] shadow">
               #${fotoIdLimpio}
             </div>
+            <div class="absolute bottom-2 right-2 bg-[#111111]/80 hover:bg-[#222222] text-[#aaaaaa] hover:text-white px-1.5 py-0.5 rounded text-[10px] flex items-center gap-1 border border-[#333333] transition" title="Ver tamaño ampliado">
+              <span class="material-symbols-outlined text-[13px]">zoom_in</span>
+            </div>
             <button 
-              onclick="toggleFoto('${foto.id}', '${fotoIdLimpio}')" 
+              onclick="event.stopPropagation(); toggleFoto('${foto.id}', '${fotoIdLimpio}')" 
               id="btn-${foto.id}" 
-              class="absolute top-2 right-2 w-8 h-8 rounded-full ${isSelected ? 'bg-primary text-white' : 'bg-white/95 text-primary'} shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105"
+              class="absolute top-2 right-2 w-8 h-8 rounded-full ${isSelected ? 'bg-[#004466] border border-[#005580] text-white' : 'bg-[#111111]/90 border border-[#444444] text-white hover:bg-[#004466]'} shadow-lg flex items-center justify-center transition font-bold text-sm hover:scale-105"
               title="${isSelected ? 'Seleccionada' : 'Sumar al pedido'}"
             >
               ${isSelected ? '✓' : '+'}
             </button>
           </div>
-          <div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
+          <div class="p-2.5 flex items-center justify-between text-xs bg-[#222222] mt-auto border-t border-[#333333]">
             <div class="flex items-center gap-1.5 truncate">
-              <span class="w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-500' : 'bg-gray-300'} shrink-0"></span>
-              <span class="font-semibold text-gray-800 truncate">${foto.name || foto.id}</span>
+              <span class="w-2 h-2 rounded-full ${isSelected ? 'bg-[#91cdfe]' : 'bg-[#555555]'} shrink-0"></span>
+              <span class="font-medium text-white truncate text-[11px] sm:text-xs">${foto.name || foto.id}</span>
             </div>
-            <span class="font-bold text-primary text-[11px] shrink-0 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">15x21 cm</span>
+            <span class="font-bold text-[#91cdfe] text-[10px] sm:text-[11px] shrink-0 bg-[#111111] px-1.5 py-0.5 rounded border border-[#333333]">15x21 cm</span>
           </div>
         `;
         gridInner.appendChild(card);
@@ -467,18 +529,18 @@
       actualizarEstadoDrive(true);
 
       grid.innerHTML = `
-        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center max-w-2xl mx-auto my-6 shadow-sm">
-          <span class="material-symbols-outlined text-amber-600 text-4xl mb-2">folder_open</span>
-          <h3 class="font-bold text-amber-900 text-base mb-1">Conexión con Drive establecida</h3>
-          <p class="text-xs sm:text-sm text-amber-800 mb-4 leading-relaxed">
+        <div class="bg-[#222222] border border-[#333333] rounded-2xl p-6 text-center max-w-2xl mx-auto my-6 shadow-xl">
+          <span class="material-symbols-outlined text-[#91cdfe] text-4xl mb-2">folder_open</span>
+          <h3 class="font-bold text-white text-base mb-1">Conexión con Drive establecida</h3>
+          <p class="text-xs sm:text-sm text-[#aaaaaa] mb-4 leading-relaxed">
             Si no ves fotos, verificá que las fotos estén sueltas en la raíz de la carpeta de Drive (no dentro de otra subcarpeta) o que el servidor de Render esté despierto.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-2">
-            <button onclick="sincronizarFotosDrive(true)" class="bg-primary hover:bg-primary-container text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+            <button onclick="sincronizarFotosDrive(true)" class="bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
               <span class="material-symbols-outlined text-sm">sync</span>
               Reintentar sincronización
             </button>
-            <button onclick="activarModoDemo()" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 px-4 py-2 rounded-xl text-xs font-semibold transition">
+            <button onclick="activarModoDemo()" class="bg-[#111111] hover:bg-[#282828] text-white border border-[#444444] px-4 py-2 rounded-xl text-xs font-semibold transition">
               Ver fotos de previsualización
             </button>
           </div>
@@ -492,25 +554,25 @@
       actualizarEstadoDrive(false);
 
       grid.innerHTML = `
-        <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center max-w-2xl mx-auto my-6 shadow-sm">
-          <div class="w-12 h-12 rounded-full bg-blue-50 text-primary flex items-center justify-center mx-auto mb-3">
+        <div class="bg-[#222222] border border-[#333333] rounded-2xl p-6 text-center max-w-2xl mx-auto my-6 shadow-xl">
+          <div class="w-12 h-12 rounded-full bg-[#111111] border border-[#333333] text-[#91cdfe] flex items-center justify-center mx-auto mb-3">
             <span class="material-symbols-outlined text-2xl">cloud_sync</span>
           </div>
-          <h3 class="font-bold text-primary text-base mb-1">El servidor de Render está iniciando o sincronizando</h3>
-          <p class="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
-            Conexión con Drive establecida. Si no ves fotos, verificá que las fotos estén sueltas en la raíz de la carpeta de Drive (no dentro de otra subcarpeta) o que el servidor de Render esté despierto.
+          <h3 class="font-bold text-white text-base mb-1">Iniciando servidor de sincronización</h3>
+          <p class="text-xs sm:text-sm text-[#aaaaaa] mb-4 leading-relaxed">
+            Conexión con Drive establecida. Si el servidor de Render estaba en reposo, demorará unos segundos en responder. Podés reintentar o cargar la muestra inmediata.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-2">
-            <button onclick="sincronizarFotosDrive(true)" class="bg-primary hover:bg-primary-container text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+            <button onclick="sincronizarFotosDrive(true)" class="bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
               <span class="material-symbols-outlined text-sm">sync</span>
               Reintentar sincronización
             </button>
-            <button onclick="activarModoDemo()" class="bg-blue-50 hover:bg-blue-100 text-primary border border-blue-200 px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+            <button onclick="activarModoDemo()" class="bg-[#111111] hover:bg-[#2a2a2a] text-[#91cdfe] border border-[#444444] px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
               <span class="material-symbols-outlined text-sm">visibility</span>
               Cargar Modo Previsualización
             </button>
           </div>
-          <p class="text-[10px] text-gray-400 mt-4 font-mono">Carpeta ID: ${config.folderId}</p>
+          <p class="text-[10px] text-[#777777] mt-4 font-mono">Carpeta ID: ${config.folderId}</p>
         </div>
       `;
     }
@@ -526,13 +588,13 @@
       if (!dot || !label || !badge) return;
 
       if (activo) {
-        dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
         label.textContent = "Drive Conectado";
-        badge.className = "flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800";
+        badge.className = "flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18261e] border border-emerald-700/60 text-xs font-semibold text-emerald-300 shadow-sm";
       } else {
-        dot.className = "w-2 h-2 rounded-full bg-amber-500";
+        dot.className = "w-2 h-2 rounded-full bg-amber-400";
         label.textContent = "Drive Iniciando";
-        badge.className = "flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-xs font-semibold text-amber-800";
+        badge.className = "flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-600/50 text-xs font-semibold text-amber-300 shadow-sm";
       }
     }
 
@@ -544,27 +606,28 @@
         seleccionadas.delete(id);
         if (btn) {
           btn.textContent = "+";
-          btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 text-primary shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105";
+          btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-[#111111]/90 border border-[#444444] text-white hover:bg-[#004466] shadow-lg flex items-center justify-center transition font-bold text-sm hover:scale-105";
           btn.title = "Sumar al pedido";
         }
         if (card) {
-          card.classList.remove('border-2', 'border-primary');
-          card.classList.add('border', 'border-gray-200');
+          card.classList.remove('border-2', 'border-[#0088cc]');
+          card.classList.add('border', 'border-[#333333]');
         }
       } else {
         seleccionadas.set(id, nombre);
         if (btn) {
           btn.textContent = "✓";
-          btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-primary text-white shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105";
+          btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-[#004466] border border-[#005580] text-white shadow-lg flex items-center justify-center transition font-bold text-sm hover:scale-105";
           btn.title = "Seleccionada";
         }
         if (card) {
-          card.classList.remove('border', 'border-gray-200');
-          card.classList.add('border-2', 'border-primary');
+          card.classList.remove('border', 'border-[#333333]');
+          card.classList.add('border-2', 'border-[#0088cc]');
         }
       }
 
       actualizarBarraResumen();
+      actualizarZoomBtnSiAbierto(id, nombre);
     }
 
     function actualizarBarraResumen() {
@@ -591,17 +654,66 @@
       seleccionadas.clear();
       document.querySelectorAll('[id^="btn-"]').forEach(btn => {
         btn.textContent = "+";
-        btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 text-primary shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105";
+        btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-[#111111]/90 border border-[#444444] text-white hover:bg-[#004466] shadow-lg flex items-center justify-center transition font-bold text-sm hover:scale-105";
         btn.title = "Sumar al pedido";
       });
       document.querySelectorAll('.photo-proof').forEach(card => {
-        card.classList.remove('border-2', 'border-primary');
-        card.classList.add('border', 'border-gray-200');
+        card.classList.remove('border-2', 'border-[#0088cc]');
+        card.classList.add('border', 'border-[#333333]');
       });
       actualizarBarraResumen();
     }
 
-    // Modal y Checkout por WhatsApp
+    // Modal de zoom ampliado
+    let zoomCurrentFotoId = null;
+    let zoomCurrentNombre = null;
+
+    function abrirModalZoom(url, nombre, id) {
+      zoomCurrentFotoId = id;
+      zoomCurrentNombre = nombre;
+
+      const modal = document.getElementById('modal-zoom');
+      const img = document.getElementById('zoom-img');
+      const cap = document.getElementById('zoom-caption');
+      if (img) img.src = url;
+      if (cap) cap.textContent = `#${nombre}`;
+
+      actualizarZoomBtnSiAbierto(id, nombre);
+
+      if (modal) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+      }
+    }
+
+    function cerrarModalZoom() {
+      const modal = document.getElementById('modal-zoom');
+      if (modal) {
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    function actualizarZoomBtnSiAbierto(id, nombre) {
+      if (zoomCurrentFotoId !== id) return;
+      const zBtn = document.getElementById('zoom-toggle-btn');
+      if (!zBtn) return;
+
+      const isSel = seleccionadas.has(id);
+      if (isSel) {
+        zBtn.textContent = "✓ Foto en el pedido";
+        zBtn.className = "bg-emerald-700 hover:bg-emerald-600 border border-emerald-500 text-white px-4 py-1.5 rounded-lg font-bold flex items-center gap-1.5";
+      } else {
+        zBtn.textContent = "+ Sumar al pedido";
+        zBtn.className = "bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white px-4 py-1.5 rounded-lg font-bold flex items-center gap-1.5";
+      }
+
+      zBtn.onclick = () => {
+        toggleFoto(id, nombre);
+      };
+    }
+
+    // Modal y Checkout
     function abrirModalPedido() {
       if (seleccionadas.size === 0) {
         alert('Por favor seleccioná al menos una foto haciendo clic en el botón (+) antes de encargar.');
@@ -617,7 +729,7 @@
         modalLista.innerHTML = '';
         seleccionadas.forEach((nombre, id) => {
           const badge = document.createElement('span');
-          badge.className = 'bg-white px-2 py-0.5 rounded border border-gray-300 shadow-2xs';
+          badge.className = 'bg-[#1e1e1e] border border-[#333333] text-white px-2 py-0.5 rounded shadow-sm';
           badge.textContent = `#${nombre}`;
           modalLista.appendChild(badge);
         });
@@ -652,7 +764,7 @@
     function enviarPedidoWhatsApp() {
       const radioImpresa = document.querySelector('input[name="formato-pedido"][value="impresa"]');
       const esImpresa = radioImpresa ? radioImpresa.checked : true;
-      const formatoTexto = esImpresa ? 'Copias Impresas 15x21 cm en Papel Mate' : 'Archivos Digitales Ultra HD (sin marca de agua)';
+      const formatoTexto = esImpresa ? 'Copias Impresas 15x21 cm en Papel Mate de Laboratorio' : 'Archivos Digitales Ultra HD (sin marca de agua)';
       const precioUnitario = esImpresa ? config.precioImpresa : config.precioDigital;
       const total = seleccionadas.size * precioUnitario;
 
@@ -669,7 +781,35 @@
         `• Cantidad de fotos: ${seleccionadas.size}\n` +
         `• Códigos de fotos: ${listaIdsTexto}\n` +
         `• Total a abonar: $${total.toLocaleString('es-AR')}\n\n` +
-        `¿Me confirmás los datos de transferencia bancaria para abonar y enviar el comprobante? ¡Muchas gracias!`;
+        `¿Me confirmás los datos de transferencia bancaria / alias para abonar y enviar el comprobante? ¡Muchas gracias!`;
+
+      const telLimpio = config.whatsapp.replace(/[^0-9]/g, '');
+      const urlWa = `https://wa.me/${telLimpio}?text=${encodeURIComponent(mensaje)}`;
+
+      window.open(urlWa, '_blank');
+      cerrarModalPedido();
+    }
+
+    function coordinarMercadoPago() {
+      const radioImpresa = document.querySelector('input[name="formato-pedido"][value="impresa"]');
+      const esImpresa = radioImpresa ? radioImpresa.checked : true;
+      const formatoTexto = esImpresa ? 'Copias Impresas 15x21 cm' : 'Archivos Digitales HD';
+      const precioUnitario = esImpresa ? config.precioImpresa : config.precioDigital;
+      const total = seleccionadas.size * precioUnitario;
+
+      const inputAlumno = document.getElementById('modal-input-alumno');
+      const alumno = inputAlumno && inputAlumno.value.trim() ? inputAlumno.value.trim() : 'Familia';
+
+      const arrayIds = Array.from(seleccionadas.values()).map(n => `#${n}`);
+      const listaIdsTexto = arrayIds.join(', ');
+
+      const mensaje = `¡Hola Sergio! Deseo coordinar el pago por Mercado Pago / Transferencia para mi pedido:\n\n` +
+        `• Alumno / Familia: ${alumno}\n` +
+        `• Evento: ${config.tituloEvento}\n` +
+        `• Formato: ${formatoTexto}\n` +
+        `• Fotos (${seleccionadas.size}): ${listaIdsTexto}\n` +
+        `• Total a transferir: $${total.toLocaleString('es-AR')}\n\n` +
+        `¿Me pasás el Alias o Link de cobro de Mercado Pago? Gracias!`;
 
       const telLimpio = config.whatsapp.replace(/[^0-9]/g, '');
       const urlWa = `https://wa.me/${telLimpio}?text=${encodeURIComponent(mensaje)}`;
