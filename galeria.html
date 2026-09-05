@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Supabase JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -85,13 +87,13 @@
 </a>
 <!-- Estado y Carrito -->
 <div class="flex items-center gap-2 sm:gap-3">
-<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800 shadow-2xs" id="badge-supabase" title="Base de datos Supabase conectada en tiempo real"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>Supabase Conectado</span></div><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800" title="Galería conectada con Drive y protegida">
-<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-<span>Drive Activo</span>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800 shadow-2xs" id="badge-supabase" title="Base de datos Supabase conectada en tiempo real"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>Supabase Conectado</span></div><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800" id="badge-drive" title="Galería conectada con Drive">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" id="dot-drive"></span>
+<span id="label-drive">Drive Activo</span>
 </div>
 <button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition shadow-sm" onclick="abrirModalPedido()">
 <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
-<span id="badge-top-seleccionadas">2 seleccionadas</span>
+<span id="badge-top-seleccionadas">0 seleccionadas</span>
 </button>
 </div>
 </div>
@@ -114,7 +116,10 @@
 <!-- ENCABEZADO DE LA GALERÍA -->
 <section class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-200 pb-5">
 <div>
+<div class="flex items-center gap-2">
 <h1 class="font-serif text-2xl sm:text-3xl text-primary font-bold tracking-tight">Galería Oficial de Fotos</h1>
+<span class="hidden text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-md border border-amber-300" id="badge-modo-demo">Modo previsualización</span>
+</div>
 <p class="text-xs sm:text-sm text-gray-600 mt-1 max-w-2xl">
           Elegí las fotos de tu hijo/a tocando el botón <strong class="text-primary font-bold">+</strong>. Podés encargarlas en 
           <strong class="text-primary font-semibold">Copia Impresa 15x21 cm</strong> en papel mate de laboratorio o en <strong class="text-primary font-semibold">Descarga Digital HD</strong> sin marca de agua.
@@ -132,191 +137,13 @@
 </div>
 </div>
 </section>
-<!-- ESTADO DE SINCRONIZACIÓN / CARGA DE DRIVE -->
-<div class="hidden w-full my-4" id="estado-carga-drive">
-<div class="flex flex-col items-center justify-center py-8 px-4 text-center bg-white rounded-2xl border border-gray-200 shadow-sm">
-<div class="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mb-2"></div>
-<p class="text-xs text-gray-600">Sincronizando fotos de Google Drive con Render...</p>
-</div>
-</div>
-<!-- CONTENEDOR DINÁMICO DE FOTOS (CUADRÍCULA EN VIVO) -->
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4" id="contenedor-fotos-dinamicas">
-<!-- Foto #0421 (Seleccionada por defecto como muestra) -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border-2 border-primary group flex flex-col transition hover:shadow-md" id="card-0421">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0421" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9YydndI5YSL2oWAbOgroDeP4Fah9hdAwc4GmORSUnyx_OejllDbYmVOuki6c9lGL1V0yMY8i8ppM84vGtFuvPd6z7R0_k-MwVBXImL9hm7auep0xIHGHi4fSb0O4BlBaOfCbJm0ngVAM1QtNRJINk3cbu6iiyOlRLhpPu-XKCsIhbFAChbMt_WqkQQtnlYown0GZv8-lq1jIVLRPb_ICFUtDa2PfcnBzVjEY7GdqLHNvf0MtA3pcW"/>
-<!-- Marca de agua diagonal de seguridad repetida -->
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<!-- ID badge -->
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0421
-          </div>
-<!-- Botón de selección activo -->
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-primary text-white shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105" id="btn-0421" onclick="toggleFoto('0421', '0421')" title="Seleccionada">
-            ✓
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<div class="flex items-center gap-1.5 truncate">
-<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-<span class="font-semibold text-gray-800 truncate">Foto_Graduacion_0421.jpg</span>
-</div>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0422 (Seleccionada) -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border-2 border-primary group flex flex-col transition hover:shadow-md" id="card-0422">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0422" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWdWFUIuPKUuGVAm446oYaqYAVzDCkXsN81ZetbGlFFPyXimebJLhLt1qkAJchV_E2R2ybLrsWHj6lOP0KzAdBFgB7Ky_j5VJvCUwKpMXkmFTSIoIHRfpVlkQSSQaEituT1NmQ7rUGi9EIbX0lyeEtprF8FUYcxvtuKmnpJmFo5hRYE6fNu-417VS6kCdDPN582VPuveSSWAggUigUh-KbuF7KRS7zbRXCOLBlR-yhcDJl5qbJcVrs"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0422
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-primary text-white shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105" id="btn-0422" onclick="toggleFoto('0422', '0422')" title="Seleccionada">
-            ✓
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<div class="flex items-center gap-1.5 truncate">
-<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-<span class="font-semibold text-gray-800 truncate">Foto_Grupal_0422.jpg</span>
-</div>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0423 -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group flex flex-col transition hover:shadow-md" id="card-0423">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0423" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQchunVvxz2i1n_mHwivdz6foFDcNtH85ZNA8MsWRR99CCYWgWJ1BqAvKl3Heova9F-0ASV_t-urions5YBXm_nB43c8V_MHlSJf6IX55i0OCaV1hqqu3lZEBuvYg-vLsO8sUN-li9jn8jhYlgi3ywcZ4J_L8pUriXxESaXeVLaMSGU0F_mtLghuRQprH12v8IJNM4ATrRjJwizThKXgFVLxck0OFcWBBuh8Dx6IGDV6Duj3tM029M"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0423
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition font-bold text-sm" id="btn-0423" onclick="toggleFoto('0423', '0423')" title="Sumar al pedido">
-            +
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<span class="font-semibold text-gray-800 truncate">Foto_Aula_0423.jpg</span>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0424 -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group flex flex-col transition hover:shadow-md" id="card-0424">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0424" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv-jruHJyphh2wnijWpAwLeTN200PLOdVXy9b6lVYoCwBMOUUfkB8MeFT7rpPPgyZemExE-VAuAHjucy9zkvUDyFlps2IyCAQvXPTNczymVxR3YLEqvYMHsSXluMEge4aSLwPSm3G9WJF1kJkbuktqb9bIHwEHZeDLJomUlAMSp484ZhE19JQUOMrJy6d1t65q0je2hz6ZzBgcRbw4t-NFFJcea22OG2SzZORk4RUQB4gG-lKwFmf-"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0424
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition font-bold text-sm" id="btn-0424" onclick="toggleFoto('0424', '0424')" title="Sumar al pedido">
-            +
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<span class="font-semibold text-gray-800 truncate">Foto_Patio_0424.jpg</span>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0425 -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group flex flex-col transition hover:shadow-md" id="card-0425">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0425" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX2aWr01eqPhRTpmTefvAQh821SwBMM-1DlhLR5moyAMEpwS7yUBHujb_YToaI_sC8RBUj3mSNPvxY5iks3cyt6IcHRy_-txZrf1ij_VLTn1KjYoXqPxxgxAn-MOqZRviQnv7U-4FzgkPAi-W9V-fVOMLN8NE0FKP6VmbUftGfn9jakJWF3p2lEb0OZfezbuZTti0HA-J_6O2hJiUugjdFa06AMQ7SuTIyoTPM7v4WZ-18lZCVnBor"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0425
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition font-bold text-sm" id="btn-0425" onclick="toggleFoto('0425', '0425')" title="Sumar al pedido">
-            +
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<span class="font-semibold text-gray-800 truncate">Foto_Retrato_0425.jpg</span>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0426 -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group flex flex-col transition hover:shadow-md" id="card-0426">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0426" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCXW8fB4Er8Ygf22RPa03NMgzuJfbyHw4-qKxofYpJFuL9y1hEmO2gWSVa03SqLxdWzhKfCRP3ye5Fg7OVx-j1kvFlv3eLY4qGlB10Tm5wB_12ut_R34snkHuTYdJWhJpQkZ4hcDU9dVbs4qU7W9DbP2RM5ZQr0UVXnLtiRSp6xOGgWbe7P8GcDPm9d_PQGNJx00AzTqvlQaH_QkxuEl_6CLDKVZJafA1De7_DF0zjB_oOTiEu7zhQ"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0426
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition font-bold text-sm" id="btn-0426" onclick="toggleFoto('0426', '0426')" title="Sumar al pedido">
-            +
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<span class="font-semibold text-gray-800 truncate">Foto_Deportes_0426.jpg</span>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0427 -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group flex flex-col transition hover:shadow-md" id="card-0427">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0427" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDynEHtTe1EWjKOrbzHLR7Djl1gl17NzM_DAQjO3c6rBaKOANuI0mrkfW_mlA-YiEgKl3yO_3M7womz2oORHgWL5xIFpl_AZ6gyqZSBmrPdctAKf72TBLJ0HU9gnctONXEAP7ubv9DAwxU6prEg7J1KxOd8stUNZNyFct6hVU5WIgDysW5bgfgdPiDr57LO1IvcpwapkYrqpDoeNAbgFzNyrdJmHbGcApqQsw-ma3Su-3FJSd1WrBKa"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0427
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition font-bold text-sm" id="btn-0427" onclick="toggleFoto('0427', '0427')" title="Sumar al pedido">
-            +
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<span class="font-semibold text-gray-800 truncate">Foto_Compañeros_0427.jpg</span>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">15x21 cm</span>
-</div>
-</div>
-<!-- Foto #0428 -->
-<div class="photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group flex flex-col transition hover:shadow-md" id="card-0428">
-<div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-<img alt="Foto Escolar #0428" class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Gvt9jM-1MW6fcdWdaudi7RY-VdAWi8oBvYZS2B9obCJo4123BH0SeFu_s5bRq5q95lRySFTvFSpWBlIL-iSZCpSVYkfWaHjymc7mU-Kwcol6iEhgvMdLH9VdDMSF8bHEKd9cjhdWGCUB0dx7lcYJHTTvW0eYRgeub4Qt783AB7mfcbbZqROMZz-l-UrM6dYqt6xFM2k6HfrSBHxZtO3dw9Ny7K18ina_Iq52puBJOEwOZ-oyg6x8"/>
-<div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-<div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-              MUESTRA · EVENTOS
-            </div>
-</div>
-<div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-            #0428
-          </div>
-<button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition font-bold text-sm" id="btn-0428" onclick="toggleFoto('0428', '0428')" title="Sumar al pedido">
-            +
-          </button>
-</div>
-<div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-<span class="font-semibold text-gray-800 truncate">Foto_Diplomatura_0428.jpg</span>
-<span class="font-bold text-primary text-[11px] shrink-0 bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">15x21 cm</span>
-</div>
+<!-- CONTENEDOR DINÁMICO INTERACTIVO DE FOTOS -->
+<div class="w-full" id="grid-fotos">
+<!-- Estado inicial animado de sincronización -->
+<div class="w-full py-16 px-4 bg-white rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center justify-center text-center" id="estado-carga-drive">
+<div class="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
+<h3 class="text-base font-bold text-primary mb-1">Sincronizando fotos reales de Google Drive...</h3>
+<p class="text-xs text-gray-500 max-w-md">Consultando el servidor de Render y leyendo los archivos originales de la carpeta escolar de Google Drive.</p>
 </div>
 </div>
 <!-- BANNER DE GARANTÍA EDITORIAL -->
@@ -340,11 +167,11 @@
 <div class="fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl px-4 py-3">
 <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
 <div>
-<p class="text-xs sm:text-sm font-bold text-primary" id="bar-resumen">2 fotos seleccionadas</p>
-<p class="text-[11px] text-gray-500" id="bar-subtotal">Subtotal: $14.000 (Impresas 15x21 cm)</p>
+<p class="text-xs sm:text-sm font-bold text-primary" id="bar-resumen">0 fotos seleccionadas</p>
+<p class="text-[11px] text-gray-500" id="bar-subtotal">Tocá el botón (+) en cada foto para encargar</p>
 </div>
 <div class="flex items-center gap-2">
-<button class="text-xs text-gray-500 hover:text-gray-800 px-2 py-1 font-semibold transition" id="btn-limpiar" onclick="limpiarSeleccion()">
+<button class="hidden text-xs text-gray-500 hover:text-gray-800 px-2 py-1 font-semibold transition" id="btn-limpiar" onclick="limpiarSeleccion()">
           Limpiar
         </button>
 <button class="bg-primary hover:bg-primary-container text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition shadow" id="btn-continuar" onclick="abrirModalPedido()">
@@ -366,11 +193,8 @@
 </div>
 <!-- Resumen de items -->
 <div class="mb-4">
-<p class="text-xs text-gray-500 mb-2">Fotos seleccionadas (<span id="modal-cant-fotos">2</span>):</p>
+<p class="text-xs text-gray-500 mb-2">Fotos seleccionadas (<span id="modal-cant-fotos">0</span>):</p>
 <div class="max-h-28 overflow-y-auto bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-xs font-mono font-bold text-primary flex flex-wrap gap-1.5" id="modal-lista-ids">
-<!-- IDs de fotos -->
-<span class="bg-white px-2 py-0.5 rounded border border-gray-300 shadow-2xs">#0421</span>
-<span class="bg-white px-2 py-0.5 rounded border border-gray-300 shadow-2xs">#0422</span>
 </div>
 </div>
 <!-- Tipo de Entrega -->
@@ -403,7 +227,7 @@
 <!-- Total -->
 <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 flex items-center justify-between mb-5">
 <span class="text-xs font-bold text-gray-600">Total estimado:</span>
-<span class="text-lg font-bold text-primary" id="modal-total-calculado">$14.000</span>
+<span class="text-lg font-bold text-primary" id="modal-total-calculado">$0</span>
 </div>
 <!-- Botón WhatsApp -->
 <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg" onclick="enviarPedidoWhatsApp()">
@@ -413,11 +237,12 @@
 <p class="text-[10px] text-gray-400 text-center mt-2">Se abrirá WhatsApp con el listado exacto de las fotos para coordinar entrega y pago.</p>
 </div>
 </div>
-<!-- SCRIPT COMPLETO DE LECTURA DE DRIVE Y SELECCIÓN -->
+<!-- SCRIPT COMPLETO DE INTEGRACIÓN SUPABASE, DRIVE Y SELECCIÓN -->
 <script>
     const DEFAULT_CONFIG = {
       backendUrl: 'https://eventos-backend-hkea.onrender.com',
       folderId: '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_',
+      tituloEvento: 'Colegio Belgrano Day School · Egresados 2026',
       precioImpresa: 7000,
       precioDigital: 4200,
       whatsapp: '+54 9 261 317-5222'
@@ -425,22 +250,89 @@
 
     let config = { ...DEFAULT_CONFIG };
 
-    // Cargar config persistida desde el panel
-    try {
-      const saved = localStorage.getItem('eventos_escolar_config');
-      if (saved) {
-        config = { ...DEFAULT_CONFIG, ...JSON.parse(saved) };
+    // Configuración de Supabase
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    
+    let supabaseClient = null;
+    if (typeof window.supabase !== 'undefined') {
+      try {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      } catch (e) {
+        console.warn('Error inicializando Supabase Client:', e);
       }
-    } catch(e) {}
+    }
 
-    // Mapa de fotos seleccionadas (iniciamos con las dos fotos activas de demostración)
-    const seleccionadas = new Map([
-      ['0421', '0421'],
-      ['0422', '0422']
-    ]);
+    // Mapa dinámico de fotos seleccionadas (inicia vacío)
+    const seleccionadas = new Map();
 
-    // Actualizar etiquetas de precios iniciales
-    document.addEventListener('DOMContentLoaded', () => {
+    // Galería demo institucional como fallback claro si Render duerme o no responde
+    const DEMO_FOTOS = [
+      { id: '0421', name: 'Foto_Graduacion_0421.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD9YydndI5YSL2oWAbOgroDeP4Fah9hdAwc4GmORSUnyx_OejllDbYmVOuki6c9lGL1V0yMY8i8ppM84vGtFuvPd6z7R0_k-MwVBXImL9hm7auep0xIHGHi4fSb0O4BlBaOfCbJm0ngVAM1QtNRJINk3cbu6iiyOlRLhpPu-XKCsIhbFAChbMt_WqkQQtnlYown0GZv8-lq1jIVLRPb_ICFUtDa2PfcnBzVjEY7GdqLHNvf0MtA3pcW' },
+      { id: '0422', name: 'Foto_Grupal_0422.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWdWFUIuPKUuGVAm446oYaqYAVzDCkXsN81ZetbGlFFPyXimebJLhLt1qkAJchV_E2R2ybLrsWHj6lOP0KzAdBFgB7Ky_j5VJvCUwKpMXkmFTSIoIHRfpVlkQSSQaEituT1NmQ7rUGi9EIbX0lyeEtprF8FUYcxvtuKmnpJmFo5hRYE6fNu-417VS6kCdDPN582VPuveSSWAggUigUh-KbuF7KRS7zbRXCOLBlR-yhcDJl5qbJcVrs' },
+      { id: '0423', name: 'Foto_Aula_0423.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBQchunVvxz2i1n_mHwivdz6foFDcNtH85ZNA8MsWRR99CCYWgWJ1BqAvKl3Heova9F-0ASV_t-urions5YBXm_nB43c8V_MHlSJf6IX55i0OCaV1hqqu3lZEBuvYg-vLsO8sUN-li9jn8jhYlgi3ywcZ4J_L8pUriXxESaXeVLaMSGU0F_mtLghuRQprH12v8IJNM4ATrRjJwizThKXgFVLxck0OFcWBBuh8Dx6IGDV6Duj3tM029M' },
+      { id: '0424', name: 'Foto_Patio_0424.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAv-jruHJyphh2wnijWpAwLeTN200PLOdVXy9b6lVYoCwBMOUUfkB8MeFT7rpPPgyZemExE-VAuAHjucy9zkvUDyFlps2IyCAQvXPTNczymVxR3YLEqvYMHsSXluMEge4aSLwPSm3G9WJF1kJkbuktqb9bIHwEHZeDLJomUlAMSp484ZhE19JQUOMrJy6d1t65q0je2hz6ZzBgcRbw4t-NFFJcea22OG2SzZORk4RUQB4gG-lKwFmf-' },
+      { id: '0425', name: 'Foto_Retrato_0425.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDX2aWr01eqPhRTpmTefvAQh821SwBMM-1DlhLR5moyAMEpwS7yUBHujb_YToaI_sC8RBUj3mSNPvxY5iks3cyt6IcHRy_-txZrf1ij_VLTn1KjYoXqPxxgxAn-MOqZRviQnv7U-4FzgkPAi-W9V-fVOMLN8NE0FKP6VmbUftGfn9jakJWF3p2lEb0OZfezbuZTti0HA-J_6O2hJiUugjdFa06AMQ7SuTIyoTPM7v4WZ-18lZCVnBor' },
+      { id: '0426', name: 'Foto_Deportes_0426.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDCXW8fB4Er8Ygf22RPa03NMgzuJfbyHw4-qKxofYpJFuL9y1hEmO2gWSVa03SqLxdWzhKfCRP3ye5Fg7OVx-j1kvFlv3eLY4qGlB10Tm5wB_12ut_R34snkHuTYdJWhJpQkZ4hcDU9dVbs4qU7W9DbP2RM5ZQr0UVXnLtiRSp6xOGgWbe7P8GcDPm9d_PQGNJx00AzTqvlQaH_QkxuEl_6CLDKVZJafA1De7_DF0zjB_oOTiEu7zhQ' },
+      { id: '0427', name: 'Foto_Compañeros_0427.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDynEHtTe1EWjKOrbzHLR7Djl1gl17NzM_DAQjO3c6rBaKOANuI0mrkfW_mlA-YiEgKl3yO_3M7womz2oORHgWL5xIFpl_AZ6gyqZSBmrPdctAKf72TBLJ0HU9gnctONXEAP7ubv9DAwxU6prEg7J1KxOd8stUNZNyFct6hVU5WIgDysW5bgfgdPiDr57LO1IvcpwapkYrqpDoeNAbgFzNyrdJmHbGcApqQsw-ma3Su-3FJSd1WrBKa' },
+      { id: '0428', name: 'Foto_Diplomatura_0428.jpg', url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA0Gvt9jM-1MW6fcdWdaudi7RY-VdAWi8oBvYZS2B9obCJo4123BH0SeFu_s5bRq5q95lRySFTvFSpWBlIL-iSZCpSVYkfWaHjymc7mU-Kwcol6iEhgvMdLH9VdDMSF8bHEKd9cjhdWGCUB0dx7lcYJHTTvW0eYRgeub4Qt783AB7mfcbbZqROMZz-l-UrM6dYqt6xFM2k6HfrSBHxZtO3dw9Ny7K18ina_Iq52puBJOEwOZ-oyg6x8' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      cargarConfiguracionLocal();
+      await cargarConfiguracionSupabase();
+      actualizarTextosTarifas();
+      actualizarBarraResumen();
+      iniciarProteccion();
+      sincronizarFotosDrive();
+    });
+
+    function cargarConfiguracionLocal() {
+      try {
+        const saved = localStorage.getItem('eventos_escolar_config');
+        if (saved) {
+          config = { ...DEFAULT_CONFIG, ...JSON.parse(saved) };
+        }
+      } catch(e) {}
+    }
+
+    async function cargarConfiguracionSupabase() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient
+          .from('galerias')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(1);
+
+        if (!error && data && data.length > 0) {
+          const gal = data[0];
+          if (gal.folder_id || gal.drive_folder_id) {
+            config.folderId = gal.folder_id || gal.drive_folder_id;
+          }
+          if (gal.titulo || gal.nombre_evento) {
+            config.tituloEvento = gal.titulo || gal.nombre_evento;
+          }
+          if (gal.precio_impresa) config.precioImpresa = Number(gal.precio_impresa);
+          if (gal.precio_digital) config.precioDigital = Number(gal.precio_digital);
+          if (gal.whatsapp) config.whatsapp = gal.whatsapp;
+
+          const badgeSupa = document.getElementById('badge-supabase');
+          if (badgeSupa) {
+            badgeSupa.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>Supabase Sincronizado</span>';
+          }
+        }
+      } catch (err) {
+        console.warn('Supabase no pudo devolver configuración de galerias:', err);
+      }
+
+      const labelEv = document.getElementById('label-evento');
+      if (labelEv && config.tituloEvento) {
+        labelEv.textContent = config.tituloEvento;
+      }
+    }
+
+    function actualizarTextosTarifas() {
       const tImp = document.getElementById('tarifa-impresa-display');
       const tDig = document.getElementById('tarifa-digital-display');
       const mImp = document.getElementById('modal-precio-impr');
@@ -450,82 +342,201 @@
       if (tDig) tDig.innerText = '$' + Number(config.precioDigital).toLocaleString('es-AR');
       if (mImp) mImp.innerText = '$' + Number(config.precioImpresa).toLocaleString('es-AR') + ' c/u';
       if (mDig) mDig.innerText = '$' + Number(config.precioDigital).toLocaleString('es-AR') + ' c/u';
+    }
 
-      actualizarBarraResumen();
-      iniciarProteccion();
-      sincronizarFotosDrive();
-    });
+    async function fetchConTimeout(url, opciones = {}, ms = 8000) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), ms);
+      try {
+        const respuesta = await fetch(url, { ...opciones, credentials: 'omit', signal: controller.signal });
+        clearTimeout(timeoutId);
+        return respuesta;
+      } catch (error) {
+        clearTimeout(timeoutId);
+        throw error;
+      }
+    }
 
-    async function sincronizarFotosDrive() {
-      const contenedor = document.getElementById('contenedor-fotos-dinamicas');
-      const estadoCarga = document.getElementById('estado-carga-drive');
+    async function sincronizarFotosDrive(esReintento = false) {
+      const grid = document.getElementById('grid-fotos');
+      if (!grid) return;
+
+      const badgeDemo = document.getElementById('badge-modo-demo');
+      if (badgeDemo) badgeDemo.classList.add('hidden');
+
+      grid.innerHTML = `
+        <div id="estado-carga-drive" class="w-full py-16 px-4 bg-white rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center justify-center text-center">
+          <div class="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
+          <h3 class="text-base font-bold text-primary mb-1">${esReintento ? 'Reintentando conexión con Google Drive...' : 'Sincronizando fotos reales de Google Drive...'}</h3>
+          <p class="text-xs text-gray-500 max-w-md">Consultando el servidor de Render y leyendo los archivos originales de la carpeta escolar de Google Drive.</p>
+        </div>
+      `;
 
       try {
-        if (estadoCarga) estadoCarga.classList.remove('hidden');
+        const endpoint = `${config.backendUrl}/api/eventos/${encodeURIComponent(config.folderId)}/fotos`;
+        let response;
+        try {
+          response = await fetchConTimeout(endpoint, {}, 8000);
+        } catch (firstErr) {
+          // Reintento automático
+          console.warn('Primer intento con Render demorado, reintentando...', firstErr);
+          response = await fetchConTimeout(endpoint, {}, 9000);
+        }
 
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 9000);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} de Render`);
+        }
 
-        const response = await fetch(`${config.backendUrl}/api/eventos/${encodeURIComponent(config.folderId)}/fotos`, {
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-
-        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
         const fotos = await response.json();
 
         if (Array.isArray(fotos) && fotos.length > 0) {
-          if (contenedor) {
-            contenedor.innerHTML = '';
-            fotos.forEach(foto => {
-              const fotoIdLimpio = foto.name.replace(/\.[^/.]+$/, "");
-              const urlConMarca = `${config.backendUrl}/api/foto-con-marca/${foto.id}`;
-              const isSelected = seleccionadas.has(foto.id);
-
-              const card = document.createElement('div');
-              card.className = `photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm ${isSelected ? 'border-2 border-primary' : 'border border-gray-200'} group flex flex-col transition hover:shadow-md`;
-              card.id = `card-${foto.id}`;
-              card.innerHTML = `
-                <div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
-                  <img 
-                    src="${urlConMarca}" 
-                    alt="${foto.name}" 
-                    loading="lazy"
-                    class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300"
-                  />
-                  <!-- Marca de agua diagonal de seguridad -->
-                  <div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
-                    <div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
-                      MUESTRA · EVENTOS
-                    </div>
-                  </div>
-                  <!-- ID badge -->
-                  <div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
-                    #${fotoIdLimpio}
-                  </div>
-                  <!-- Botón de selección -->
-                  <button 
-                    onclick="toggleFoto('${foto.id}', '${fotoIdLimpio}')" 
-                    id="btn-${foto.id}" 
-                    class="absolute top-2 right-2 w-8 h-8 rounded-full ${isSelected ? 'bg-primary text-white' : 'bg-white/95 text-primary'} shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105"
-                    title="${isSelected ? 'Seleccionada' : 'Sumar al pedido'}"
-                  >
-                    ${isSelected ? '✓' : '+'}
-                  </button>
-                </div>
-                <div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
-                  <span class="font-semibold text-gray-800 truncate max-w-[130px]">${foto.name}</span>
-                  <span class="font-bold text-primary text-[11px] shrink-0 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">15x21 cm</span>
-                </div>
-              `;
-              contenedor.appendChild(card);
-            });
-          }
+          actualizarEstadoDrive(true);
+          renderizarFotos(fotos, false);
+        } else {
+          // Respuesta exitosa pero arreglo vacío
+          mostrarAvisoVacio();
         }
       } catch (err) {
-        console.log('Información de conexión a Render / Drive:', err.message);
-      } finally {
-        if (estadoCarga) estadoCarga.classList.add('hidden');
+        console.warn('Error al conectar con Render / Drive:', err.message);
+        mostrarAvisoDiagnostico(err.message);
+      }
+    }
+
+    function renderizarFotos(lista, esDemo = false) {
+      const grid = document.getElementById('grid-fotos');
+      if (!grid) return;
+
+      const badgeDemo = document.getElementById('badge-modo-demo');
+      if (badgeDemo) {
+        if (esDemo) badgeDemo.classList.remove('hidden');
+        else badgeDemo.classList.add('hidden');
+      }
+
+      // Creamos contenedor grid
+      const gridInner = document.createElement('div');
+      gridInner.className = "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4";
+      gridInner.id = "contenedor-fotos-dinamicas";
+
+      lista.forEach(foto => {
+        const fotoIdLimpio = foto.name ? foto.name.replace(/\.[^/.]+$/, "") : foto.id;
+        const fotoUrl = foto.url ? foto.url : `${config.backendUrl}/api/foto-con-marca/${foto.id}`;
+        const isSelected = seleccionadas.has(foto.id);
+
+        const card = document.createElement('div');
+        card.className = `photo-proof relative bg-white rounded-xl overflow-hidden shadow-sm ${isSelected ? 'border-2 border-primary' : 'border border-gray-200'} group flex flex-col transition hover:shadow-md`;
+        card.id = `card-${foto.id}`;
+        card.innerHTML = `
+          <div class="relative aspect-[3/2] bg-slate-900 overflow-hidden select-none">
+            <img 
+              src="${fotoUrl}" 
+              alt="${foto.name || foto.id}" 
+              loading="lazy"
+              class="w-full h-full object-cover select-none pointer-events-none brightness-95 group-hover:scale-105 transition duration-300"
+            />
+            <div class="absolute inset-0 watermark-pattern pointer-events-none flex items-center justify-center">
+              <div class="rotate-[-25deg] bg-primary/75 backdrop-blur-[2px] px-3 py-1 text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase font-bold border border-white/40 shadow-lg select-none">
+                MUESTRA · EVENTOS
+              </div>
+            </div>
+            <div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-mono font-bold text-white tracking-wider shadow">
+              #${fotoIdLimpio}
+            </div>
+            <button 
+              onclick="toggleFoto('${foto.id}', '${fotoIdLimpio}')" 
+              id="btn-${foto.id}" 
+              class="absolute top-2 right-2 w-8 h-8 rounded-full ${isSelected ? 'bg-primary text-white' : 'bg-white/95 text-primary'} shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105"
+              title="${isSelected ? 'Seleccionada' : 'Sumar al pedido'}"
+            >
+              ${isSelected ? '✓' : '+'}
+            </button>
+          </div>
+          <div class="p-2.5 flex items-center justify-between text-xs bg-white mt-auto border-t border-gray-100">
+            <div class="flex items-center gap-1.5 truncate">
+              <span class="w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-500' : 'bg-gray-300'} shrink-0"></span>
+              <span class="font-semibold text-gray-800 truncate">${foto.name || foto.id}</span>
+            </div>
+            <span class="font-bold text-primary text-[11px] shrink-0 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">15x21 cm</span>
+          </div>
+        `;
+        gridInner.appendChild(card);
+      });
+
+      grid.innerHTML = '';
+      grid.appendChild(gridInner);
+    }
+
+    function mostrarAvisoVacio() {
+      const grid = document.getElementById('grid-fotos');
+      if (!grid) return;
+      actualizarEstadoDrive(true);
+
+      grid.innerHTML = `
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center max-w-2xl mx-auto my-6 shadow-sm">
+          <span class="material-symbols-outlined text-amber-600 text-4xl mb-2">folder_open</span>
+          <h3 class="font-bold text-amber-900 text-base mb-1">Conexión con Drive establecida</h3>
+          <p class="text-xs sm:text-sm text-amber-800 mb-4 leading-relaxed">
+            Si no ves fotos, verificá que las fotos estén sueltas en la raíz de la carpeta de Drive (no dentro de otra subcarpeta) o que el servidor de Render esté despierto.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button onclick="sincronizarFotosDrive(true)" class="bg-primary hover:bg-primary-container text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+              <span class="material-symbols-outlined text-sm">sync</span>
+              Reintentar sincronización
+            </button>
+            <button onclick="activarModoDemo()" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 px-4 py-2 rounded-xl text-xs font-semibold transition">
+              Ver fotos de previsualización
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function mostrarAvisoDiagnostico(detalleError) {
+      const grid = document.getElementById('grid-fotos');
+      if (!grid) return;
+      actualizarEstadoDrive(false);
+
+      grid.innerHTML = `
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center max-w-2xl mx-auto my-6 shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-blue-50 text-primary flex items-center justify-center mx-auto mb-3">
+            <span class="material-symbols-outlined text-2xl">cloud_sync</span>
+          </div>
+          <h3 class="font-bold text-primary text-base mb-1">El servidor de Render está iniciando o sincronizando</h3>
+          <p class="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+            Conexión con Drive establecida. Si no ves fotos, verificá que las fotos estén sueltas en la raíz de la carpeta de Drive (no dentro de otra subcarpeta) o que el servidor de Render esté despierto.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button onclick="sincronizarFotosDrive(true)" class="bg-primary hover:bg-primary-container text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+              <span class="material-symbols-outlined text-sm">sync</span>
+              Reintentar sincronización
+            </button>
+            <button onclick="activarModoDemo()" class="bg-blue-50 hover:bg-blue-100 text-primary border border-blue-200 px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">visibility</span>
+              Cargar Modo Previsualización
+            </button>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-4 font-mono">Carpeta ID: ${config.folderId}</p>
+        </div>
+      `;
+    }
+
+    function activarModoDemo() {
+      renderizarFotos(DEMO_FOTOS, true);
+    }
+
+    function actualizarEstadoDrive(activo) {
+      const dot = document.getElementById('dot-drive');
+      const label = document.getElementById('label-drive');
+      const badge = document.getElementById('badge-drive');
+      if (!dot || !label || !badge) return;
+
+      if (activo) {
+        dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        label.textContent = "Drive Conectado";
+        badge.className = "flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800";
+      } else {
+        dot.className = "w-2 h-2 rounded-full bg-amber-500";
+        label.textContent = "Drive Iniciando";
+        badge.className = "flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-xs font-semibold text-amber-800";
       }
     }
 
@@ -537,7 +548,7 @@
         seleccionadas.delete(id);
         if (btn) {
           btn.textContent = "+";
-          btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 text-primary shadow-md flex items-center justify-center transition font-bold text-sm hover:bg-primary hover:text-white";
+          btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 text-primary shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105";
           btn.title = "Sumar al pedido";
         }
         if (card) {
@@ -568,14 +579,14 @@
       const bLimpiar = document.getElementById('btn-limpiar');
 
       if (bTop) bTop.textContent = `${cant} seleccionadas`;
-      if (bBar) bBar.textContent = `${cant} fotos seleccionadas`;
+      if (bBar) bBar.textContent = `${cant} foto${cant === 1 ? '' : 's'} seleccionada${cant === 1 ? '' : 's'}`;
 
       if (cant > 0) {
         const subtotalImpresa = cant * config.precioImpresa;
         if (bSub) bSub.textContent = `Subtotal: $${subtotalImpresa.toLocaleString('es-AR')} (Impresas 15x21 cm)`;
         if (bLimpiar) bLimpiar.classList.remove('hidden');
       } else {
-        if (bSub) bSub.textContent = 'Tocá el botón (+) para armar tu pedido';
+        if (bSub) bSub.textContent = 'Tocá el botón (+) en cada foto para encargar';
         if (bLimpiar) bLimpiar.classList.add('hidden');
       }
     }
@@ -584,7 +595,7 @@
       seleccionadas.clear();
       document.querySelectorAll('[id^="btn-"]').forEach(btn => {
         btn.textContent = "+";
-        btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 text-primary shadow-md flex items-center justify-center transition font-bold text-sm hover:bg-primary hover:text-white";
+        btn.className = "absolute top-2 right-2 w-8 h-8 rounded-full bg-white/95 text-primary shadow-md flex items-center justify-center transition font-bold text-sm hover:scale-105";
         btn.title = "Sumar al pedido";
       });
       document.querySelectorAll('.photo-proof').forEach(card => {
@@ -594,7 +605,7 @@
       actualizarBarraResumen();
     }
 
-    // Modal y WhatsApp
+    // Modal y Checkout por WhatsApp
     function abrirModalPedido() {
       if (seleccionadas.size === 0) {
         alert('Por favor seleccioná al menos una foto haciendo clic en el botón (+) antes de encargar.');
@@ -656,7 +667,7 @@
       const listaIdsTexto = arrayIds.join(', ');
 
       const mensaje = `¡Hola Sergio! Quiero encargar un pedido de fotos escolares:\n\n` +
-        `• Colegio / Evento: Colegio Belgrano Day School · Egresados 2026\n` +
+        `• Colegio / Evento: ${config.tituloEvento}\n` +
         `• Alumno / Familia: ${alumno}\n` +
         `• Formato: ${formatoTexto}\n` +
         `• Cantidad de fotos: ${seleccionadas.size}\n` +
@@ -671,7 +682,7 @@
       cerrarModalPedido();
     }
 
-    // Protección antirrobo
+    // Bloqueo de clic derecho y protección anticopia
     function iniciarProteccion() {
       let toastTimer = null;
       function showAviso() {
