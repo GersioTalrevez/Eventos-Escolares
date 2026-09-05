@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-
-<html class="light" lang="es" style=""><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>EVENTOS - Directorio Escolar</title>
 <!-- Google Fonts: Manrope & Source Serif 4 -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet">
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -111,7 +109,7 @@
 <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-outline">
 <span class="material-symbols-outlined text-[20px]">search</span>
 </span>
-<input class="w-full pl-10 pr-3 py-2.5 bg-surface rounded-lg border border-outline-variant text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition" placeholder="Ingresá el nombre del colegio o evento..." type="text"/>
+<input class="w-full pl-10 pr-3 py-2.5 bg-surface rounded-lg border border-outline-variant text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition" placeholder="Ingresá el nombre del colegio o evento..." type="text">
 </div>
 <button class="px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold flex items-center justify-center gap-2 hover:bg-primary-container active:scale-95 transition shadow-sm" type="submit">
 <span class="">Buscar</span>
@@ -147,7 +145,7 @@
           </p>
 </div>
 <div class="w-full md:w-auto flex flex-col sm:flex-row gap-2 items-stretch">
-<input class="w-full sm:w-48 text-center uppercase tracking-widest font-mono font-bold bg-surface text-primary rounded-lg px-3 py-2 border-2 border-transparent focus:border-secondary-container focus:outline-none text-sm" maxlength="14" placeholder="Ej: SJ-2026-9A" type="text"/>
+<input class="w-full sm:w-48 text-center uppercase tracking-widest font-mono font-bold bg-surface text-primary rounded-lg px-3 py-2 border-2 border-transparent focus:border-secondary-container focus:outline-none text-sm" maxlength="14" placeholder="Ej: SJ-2026-9A" type="text">
 <!-- Enlace 100% corregido a galeria.html -->
 <a class="px-4 py-2 rounded-lg bg-secondary text-white text-xs font-bold hover:opacity-95 active:scale-95 transition flex items-center justify-center gap-1.5 whitespace-nowrap" href="galeria.html">
 <span class="material-symbols-outlined text-[18px]">lock_open</span>
@@ -184,152 +182,128 @@
 <!-- Directorio de Eventos (Colegios) -->
 <section class="space-y-4">
 <div class="flex items-center justify-between"><h2 class="text-xl font-bold font-headline-sm text-primary">Eventos Escolares Recientes</h2><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-xs font-semibold text-primary border border-outline-variant/40" id="supabase-live-indicator"><span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span><span class="text-[11px] font-medium text-on-surface-variant">Sincronizado con Supabase</span></div></div>
-<div class="w-full" id="galerias-dinamicas-container">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="events-grid-container">
-<div class="col-span-full py-12 flex flex-col items-center justify-center text-center p-6 bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm" id="events-loading-indicator">
-<div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
-<p class="text-sm font-semibold text-primary">Cargando galerías disponibles desde Supabase...</p>
-<p class="text-xs text-on-surface-variant mt-1">Conectando con el directorio oficial de eventos escolares</p>
-</div>
+<div class="w-full" id="galerias-dinamicas-container"><div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="events-grid-container">
+  <div class="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm" id="events-loading-indicator">
+    <div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
+    <p class="text-sm font-semibold text-primary">Cargando galerías disponibles desde Supabase...</p>
+    <p class="text-xs text-on-surface-variant mt-1">Conectando con el directorio oficial de eventos escolares</p>
+  </div>
 </div>
 <script>
-    (function() {
-      const SUPABASE_URL = 'https://lcszbfyvkhvvyirvhvsv.supabase.co';
-      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxjc3piZnl2a2h2dnlpcnZodnN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMTgwOTUsImV4cCI6MjA1Njc5NDA5NX0.tJ8fUqK04-5KqfsqgU0_3tKqgZt-Q4-5KqfsqgU0_3t';
-      var DEFAULT_COVER = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
+  (function() {
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    var DEFAULT_COVER = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
 
-      async function loadEvents() {
-        var container = document.getElementById('events-grid-container');
-        if (!container) return;
+    function renderEmptyMessage(container) {
+      container.innerHTML = `
+        <div class="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm">
+          <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3">
+            <span class="material-symbols-outlined text-[28px]">event_busy</span>
+          </div>
+          <h3 class="text-base font-bold text-primary mb-1">No hay eventos publicados por el momento</h3>
+          <p class="text-xs text-on-surface-variant max-w-md">Las nuevas galerías y fotos escolares aparecerán aquí ni bien sean publicadas.</p>
+        </div>
+      `;
+    }
 
-        var supabaseClient = null;
-        if (window.supabase && typeof window.supabase.createClient === 'function') {
-          try {
-            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-          } catch (err) {
-            console.warn('Error inicializando Supabase client:', err);
-          }
+    async function loadEvents() {
+      var container = document.getElementById('events-grid-container');
+      if (!container) return;
+
+      var supabaseClient = null;
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        try {
+          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch (err) {
+          console.warn('Error inicializando Supabase client:', err);
         }
+      }
 
-        var galerias = [];
-        var fetchedFromDb = false;
+      if (!supabaseClient) {
+        renderEmptyMessage(container);
+        return;
+      }
 
-        if (supabaseClient) {
-          try {
-            var res = await supabaseClient.from('galerias').select('*').order('created_at', { ascending: false });
-            if (!res.error && res.data) {
-              galerias = res.data;
-              fetchedFromDb = true;
-            }
-          } catch (e) {
-            console.warn('Fallo consulta a Supabase galerias:', e);
-          }
+      var galerias = [];
+      try {
+        var res = await supabaseClient.from('galerias').select('*').order('created_at', { ascending: false });
+        if (!res.error && res.data && res.data.length > 0) {
+          galerias = res.data;
         }
+      } catch (e) {
+        console.warn('Fallo consulta a Supabase galerias:', e);
+      }
 
-        if (!fetchedFromDb || galerias.length === 0) {
-          try {
-            var saved = localStorage.getItem('eventos_escolar_config');
-            if (saved) {
-              var parsed = JSON.parse(saved);
-              if (parsed.eventName || parsed.colegio || parsed.folderId || parsed.driveFolderId) {
-                galerias.push({
-                  id: parsed.id || 'local-event',
-                  nombre: parsed.eventName || parsed.colegio || 'Colegio Escolar 2026',
-                  descripcion: parsed.subtitle || parsed.descripcion || 'Muestra Anual y Acto de Graduación',
-                  ubicacion: parsed.location || 'Buenos Aires',
-                  drive_url: parsed.driveFolderId || parsed.folderId || '',
-                  cover_url: parsed.coverUrl || parsed.coverImage || '',
-                  total_fotos: parsed.photoCount || 0,
-                  activo: true
-                });
-              }
-            }
-          } catch (e) {}
-        }
+      if (!galerias || galerias.length === 0) {
+        renderEmptyMessage(container);
+        return;
+      }
 
-        container.innerHTML = '';
+      container.innerHTML = '';
+      galerias.forEach(function(item) {
+        var title = item.nombre || item.titulo || item.eventName || 'Galería Escolar';
+        var subtitle = item.descripcion || item.subtitle || 'Fotografías escolares';
+        var loc = item.ubicacion || item.location || 'Sede Escolar';
+        var cover = item.cover_url || item.portada_url || item.coverImage || DEFAULT_COVER;
+        var count = item.total_fotos || item.photoCount || (item.photos ? item.photos.length : null);
+        var driveId = item.drive_url || item.folder_id || item.driveFolderId || '';
+        var link = 'galeria.html?' + (item.id ? ('id=' + encodeURIComponent(item.id)) : ('drive_id=' + encodeURIComponent(driveId)));
 
-        if (!galerias || galerias.length === 0) {
-          container.innerHTML = `
-            <div class="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm">
-              <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3">
-                <span class="material-symbols-outlined text-[28px]">folder_off</span>
+        var card = document.createElement('article');
+        card.className = 'group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col';
+        card.innerHTML = `
+          <div class="relative h-56 w-full bg-surface-dim overflow-hidden">
+            <img src="${cover}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='${DEFAULT_COVER}'" />
+            <div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
+            <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+              <span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary text-[11px] font-bold border border-outline-variant/40 shadow-sm flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
+                <span>Galería en Vivo</span>
+              </span>
+            </div>
+            <div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">photo_camera</span>
+              <span>${count ? (count + ' fotos') : 'Sincronizado'}</span>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-center gap-1.5 text-on-surface-variant text-xs mb-1">
+                <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
+                <span>${loc}</span>
+                ${driveId ? '<span>•</span><span class="font-mono text-[11px] truncate max-w-[140px]">ID: ' + driveId + '</span>' : ''}
               </div>
-              <h3 class="text-base font-bold text-primary mb-1">No hay galerías activas por el momento</h3>
-              <p class="text-xs text-on-surface-variant max-w-md mb-4">Podés crear y sincronizar nuevas galerías desde el Panel de Fotógrafo para que aparezcan aquí.</p>
-              <a href="login.html" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary-container transition shadow-sm">
-                <span class="material-symbols-outlined text-[18px]">add_circle</span>
-                <span>Ir al Panel de Fotógrafo</span>
+              <h3 class="text-xl font-bold font-headline-sm text-primary group-hover:text-secondary transition-colors leading-snug">
+                ${title}
+              </h3>
+              <p class="text-xs text-on-surface-variant mt-1 font-medium">
+                ${subtitle}
+              </p>
+            </div>
+            <div class="pt-3 border-t border-surface-container flex items-center justify-between">
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-[15px] text-emerald-600">sync</span>
+                <span>Conectado a Supabase</span>
+              </div>
+              <a class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1.5 hover:bg-primary-container active:scale-95 transition shadow-sm" href="${link}">
+                <span>Ingresar a Galería</span>
+                <span class="material-symbols-outlined text-[16px]">login</span>
               </a>
             </div>
-          `;
-          return;
-        }
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
 
-        galerias.forEach(function(item) {
-          var title = item.nombre || item.titulo || item.eventName || 'Galería Escolar';
-          var subtitle = item.descripcion || item.subtitle || 'Fotografías escolares';
-          var loc = item.ubicacion || item.location || 'Sede Escolar';
-          var cover = item.cover_url || item.portada_url || item.coverImage || DEFAULT_COVER;
-          var count = item.total_fotos || item.photoCount || (item.photos ? item.photos.length : null);
-          var driveId = item.drive_url || item.folder_id || item.driveFolderId || '';
-          var link = 'galeria.html?' + (item.id ? ('id=' + encodeURIComponent(item.id)) : ('drive_id=' + encodeURIComponent(driveId)));
-
-          var card = document.createElement('article');
-          card.className = 'group bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm hover:border-primary transition-all flex flex-col';
-          card.innerHTML = `
-            <div class="relative h-56 w-full bg-surface-dim overflow-hidden">
-              <img src="${cover}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='${DEFAULT_COVER}'" />
-              <div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
-              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                <span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary text-[11px] font-bold border border-outline-variant/40 shadow-sm flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
-                  <span>Galería en Vivo</span>
-                </span>
-              </div>
-              <div class="absolute bottom-2.5 right-2.5 bg-tertiary/80 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-                <span class="material-symbols-outlined text-[14px]">photo_camera</span>
-                <span>${count ? (count + ' fotos') : 'Sincronizado'}</span>
-              </div>
-            </div>
-            <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
-              <div>
-                <div class="flex items-center gap-1.5 text-on-surface-variant text-xs mb-1">
-                  <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
-                  <span>${loc}</span>
-                  ${driveId ? '<span>•</span><span class="font-mono text-[11px] truncate max-w-[140px]">ID: ' + driveId + '</span>' : ''}
-                </div>
-                <h3 class="text-xl font-bold font-headline-sm text-primary group-hover:text-secondary transition-colors leading-snug">
-                  ${title}
-                </h3>
-                <p class="text-xs text-on-surface-variant mt-1 font-medium">
-                  ${subtitle}
-                </p>
-              </div>
-              <div class="pt-3 border-t border-surface-container flex items-center justify-between">
-                <div class="flex items-center gap-1 text-xs text-on-surface-variant">
-                  <span class="material-symbols-outlined text-[15px] text-emerald-600">sync</span>
-                  <span>Conectado a Supabase</span>
-                </div>
-                <a class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold flex items-center gap-1.5 hover:bg-primary-container active:scale-95 transition shadow-sm" href="${link}">
-                  <span>Ingresar a Galería</span>
-                  <span class="material-symbols-outlined text-[16px]">login</span>
-                </a>
-              </div>
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadEvents);
-      } else {
-        loadEvents();
-      }
-    })();
-  </script>
-</div>
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadEvents);
+    } else {
+      loadEvents();
+    }
+  })();
+</script></div>
 </section>
 </main>
 <!-- Barra Inferior Mobile -->
@@ -392,4 +366,6 @@
       syncFeaturedEvent();
     }
   })();
-</script></body></html>
+</script>
+
+</body></html>
