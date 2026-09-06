@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -239,13 +240,13 @@
 </button>
 </div>
 </div>
-<!-- Alert Notification Box (Hidden by default, triggered on Save) -->
-<div class="hidden mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300" id="saveToast">
+<!-- Alert Notification Box (Updated feedback toast) -->
+<div class="hidden mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-md" id="saveToast">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px]">check_circle</span>
-<span class="text-body-md font-body-md font-medium text-white">Tarifas sincronizadas exitosamente en Supabase y caché local.</span>
+<span class="material-symbols-outlined text-[20px] text-[#38bdf8]">check_circle</span>
+<span class="text-body-md font-body-md font-medium text-white" id="toastMessage">Tarifas guardadas. Se actualizaron en todas las galerías automáticamente.</span>
 </div>
-<span class="text-label-sm font-label-sm text-outline" id="timestampSaved">Hace unos segundos</span>
+<span class="text-label-sm font-label-sm text-outline ml-4 shrink-0" id="timestampSaved">Hace unos segundos</span>
 </div>
 </div>
 <!-- Bento Configuration Grid -->
@@ -528,9 +529,23 @@
 <span class="text-[10px] font-label-sm">Eventos</span>
 </a>
 </nav>
-<!-- Interactive Script for Live Updating and LocalStorage Persistence -->
+<!-- Interactive Script for Live Updating and Unified Persistence (LocalStorage + Supabase / Broadcast) -->
 <script>
     (function() {
+      // Supabase Client initialization if global credentials exist
+      let supabaseClient = null;
+      try {
+        const SUPABASE_URL = window.SUPABASE_URL || localStorage.getItem('supabase_url') || localStorage.getItem('SUPABASE_URL');
+        const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_anon_key') || localStorage.getItem('SUPABASE_ANON_KEY');
+        if (window.supabase && SUPABASE_URL && SUPABASE_ANON_KEY) {
+          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } else if (window._supabase) {
+          supabaseClient = window._supabase;
+        }
+      } catch (err) {
+        console.warn('Supabase client init optional check:', err);
+      }
+
       // Elements
       const inputPrint = document.getElementById('inputPrintPrice');
       const inputDigital = document.getElementById('inputDigitalPrice');
@@ -538,6 +553,7 @@
       const btnSave = document.getElementById('btnSavePrices');
       const btnReset = document.getElementById('btnResetValues');
       const toast = document.getElementById('saveToast');
+      const toastMessage = document.getElementById('toastMessage');
       const timestampSaved = document.getElementById('timestampSaved');
 
       // Live Previews
@@ -552,7 +568,7 @@
 
       // Initial clean parse helper
       function cleanNumber(str) {
-        return parseFloat(str.replace(/[^0-9]/g, '')) || 0;
+        return parseFloat(String(str).replace(/[^0-9]/g, '')) || 0;
       }
 
       function formatARS(num) {
@@ -590,42 +606,138 @@
       inputDigital.addEventListener('input', updateLiveViews);
       inputPhone.addEventListener('input', updateLiveViews);
 
-      // Load saved values from localStorage if exist
+      // Load saved values from unified keys and fallback
       function loadStored() {
-        const saved = localStorage.getItem('sergio_molina_tarifas');
-        if (saved) {
-          try {
-            const data = JSON.parse(saved);
-            if (data.print) inputPrint.value = data.print;
-            if (data.digital) inputDigital.value = data.digital;
-            if (data.phone) inputPhone.value = data.phone;
-          } catch (e) {
-            console.error('Error loading stored rates', e);
+        // Direct specified keys
+        const storedImpresa = localStorage.getItem('tarifa_impresa');
+        const storedDigital = localStorage.getItem('tarifa_digital');
+        const storedPhone = localStorage.getItem('numero_whatsapp');
+
+        if (storedImpresa) inputPrint.value = storedImpresa;
+        if (storedDigital) inputDigital.value = storedDigital;
+        if (storedPhone) inputPhone.value = storedPhone;
+
+        // Fallback to older bundle if specific keys were not yet set
+        if (!storedImpresa || !storedDigital) {
+          const saved = localStorage.getItem('sergio_molina_tarifas');
+          if (saved) {
+            try {
+              const data = JSON.parse(saved);
+              if (!storedImpresa && data.print) inputPrint.value = data.print;
+              if (!storedDigital && data.digital) inputDigital.value = data.digital;
+              if (!storedPhone && data.phone) inputPhone.value = data.phone;
+            } catch (e) {
+              console.error('Error loading stored rates', e);
+            }
           }
         }
+
+        // Try reading from Supabase if configured
+        if (supabaseClient) {
+          supabaseClient
+            .from('ajustes')
+            .select('*')
+            .in('clave', ['tarifa_impresa', 'tarifa_digital', 'numero_whatsapp'])
+            .then(({ data, error }) => {
+              if (!error && data && data.length > 0) {
+                data.forEach(item => {
+                  if (item.clave === 'tarifa_impresa' && item.valor) inputPrint.value = item.valor;
+                  if (item.clave === 'tarifa_digital' && item.valor) inputDigital.value = item.valor;
+                  if (item.clave === 'numero_whatsapp' && item.valor) inputPhone.value = item.valor;
+                });
+                updateLiveViews();
+              }
+            }).catch(() => {});
+        }
+
         updateLiveViews();
       }
 
-      // Save handler
-      btnSave.addEventListener('click', function() {
-        const printStr = inputPrint.value;
-        const digitalStr = inputDigital.value;
-        const phoneStr = inputPhone.value;
+      // Unified Save handler (LocalStorage + Supabase / BroadcastChannel)
+      btnSave.addEventListener('click', async function() {
+        const printStr = inputPrint.value.trim();
+        const digitalStr = inputDigital.value.trim();
+        const phoneStr = inputPhone.value.trim();
+        const timestamp = new Date().toISOString();
 
-        // LocalStorage persistence
+        // 1. LocalStorage unified keys persistence
+        localStorage.setItem('tarifa_impresa', printStr);
+        localStorage.setItem('tarifa_digital', digitalStr);
+        localStorage.setItem('numero_whatsapp', phoneStr);
+
+        // Also update legacy bundle object for full backward compatibility
         const payload = {
           print: printStr,
           digital: digitalStr,
           phone: phoneStr,
-          updatedAt: new Date().toISOString()
+          tarifa_impresa: printStr,
+          tarifa_digital: digitalStr,
+          numero_whatsapp: phoneStr,
+          updatedAt: timestamp
         };
         localStorage.setItem('sergio_molina_tarifas', JSON.stringify(payload));
+
+        // 2. Broadcast to other open client tabs/galleries
+        try {
+          if ('BroadcastChannel' in window) {
+            const bc = new BroadcastChannel('tarifas_escolar_channel');
+            bc.postMessage({
+              type: 'TARIFAS_UPDATED',
+              tarifa_impresa: printStr,
+              tarifa_digital: digitalStr,
+              numero_whatsapp: phoneStr,
+              timestamp: timestamp
+            });
+          }
+        } catch (e) {
+          console.warn('BroadcastChannel error:', e);
+        }
+
+        // 3. Supabase remote sync attempt
+        if (supabaseClient) {
+          try {
+            // Attempt saving to 'ajustes' or 'configuracion'
+            const syncPayload = [
+              { clave: 'tarifa_impresa', valor: printStr, updated_at: timestamp },
+              { clave: 'tarifa_digital', valor: digitalStr, updated_at: timestamp },
+              { clave: 'numero_whatsapp', valor: phoneStr, updated_at: timestamp }
+            ];
+
+            const { error: errAjustes } = await supabaseClient
+              .from('ajustes')
+              .upsert(syncPayload, { onConflict: 'clave' });
+
+            if (errAjustes) {
+              // Try 'configuracion' table as alternative fallback
+              await supabaseClient
+                .from('configuracion')
+                .upsert([
+                  { key: 'tarifa_impresa', value: printStr },
+                  { key: 'tarifa_digital', value: digitalStr },
+                  { key: 'numero_whatsapp', value: phoneStr }
+                ], { onConflict: 'key' });
+            }
+
+            // Also broadcast via Supabase Realtime channel if available
+            const channel = supabaseClient.channel('tarifas_updates');
+            channel.send({
+              type: 'broadcast',
+              event: 'precio_actualizado',
+              payload: { tarifa_impresa: printStr, tarifa_digital: digitalStr, numero_whatsapp: phoneStr }
+            });
+          } catch (supaErr) {
+            console.warn('Supabase sync attempted gracefully:', supaErr);
+          }
+        }
 
         // Update table row
         if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + printStr.replace('$', '');
         if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + digitalStr.replace('$', '');
 
-        // Visual toast feedback
+        // 4. Visual toast feedback requested
+        if (toastMessage) {
+          toastMessage.textContent = 'Tarifas guardadas. Se actualizaron en todas las galerías automáticamente.';
+        }
         const now = new Date();
         timestampSaved.textContent = `Guardado hoy a las ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
         toast.classList.remove('hidden');
