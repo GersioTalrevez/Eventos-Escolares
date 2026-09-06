@@ -183,7 +183,7 @@
 <h2 class="font-headline-sm text-headline-sm text-white tracking-tight uppercase">Colegios e Instituciones Registradas</h2>
 <span class="hidden items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-emerald-950/60 border border-emerald-500/40 text-emerald-400" id="realtimeBadge">
 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          En vivo
+          Sincronizado
         </span>
 </div>
 <p class="font-body-md text-body-md text-outline text-sm">Galerías públicas disponibles en tiempo real para descarga y visualización de familias y alumnos.</p>
@@ -223,13 +223,17 @@
 </div>
 </div>
 </div>
-<!-- Realtime Dynamic Grid Container (no fixed mock cards) -->
+<!-- Realtime Dynamic Grid Container (Only real database galleries) -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg hidden" id="eventsGrid"></div>
-<!-- Empty State -->
-<div class="hidden text-center py-space-3xl border border-[#333333] rounded-xl bg-[#181818]/60 p-space-xl" id="emptyState">
-<span class="material-symbols-outlined text-outline text-5xl mb-space-sm" data-icon="folder_off">folder_off</span>
-<h3 class="font-headline-sm text-headline-sm text-white">No se encontraron galerías públicas</h3>
-<p class="font-body-md text-body-md text-outline mt-space-2xs max-w-md mx-auto">No hay eventos escolares públicos disponibles en la base de datos o están protegidos con contraseña en la sección inferior.</p>
+<!-- Sobrio & Minimal Darkroom Empty State -->
+<div class="hidden text-center py- space-2xl md:py-space-3xl border border-[#262626] rounded-xl bg-[#141414]/70 p-space-xl" id="emptyState">
+<div class="w-14 h-14 mx-auto rounded-full bg-[#1c1b1b] border border-[#333333] flex items-center justify-center text-outline mb-space-md">
+<span class="material-symbols-outlined text-2xl" data-icon="photo_library">photo_library</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white tracking-tight">No hay galerías públicas disponibles actualmente</h3>
+<p class="font-body-md text-sm text-outline mt-space-2xs max-w-md mx-auto leading-relaxed">
+Las nuevas coberturas institucionales se publican una vez concluido el proceso de edición y sincronización. Si cuentas con código de acceso privado, puedes ingresarlo a continuación.
+</p>
 </div>
 </section>
 <!-- PRIVATE ACCESS WITH PASSWORD SECTION (Acceso Privado con Clave) -->
@@ -300,7 +304,7 @@
 </div>
 </div>
 </footer>
-<!-- JAVASCRIPT: Realtime Supabase Integration & Dynamic Cover Resolution -->
+<!-- JAVASCRIPT: Realtime Supabase Connection, Strict Public Filter, and Drive Fallback -->
 <script>
   // Supabase Configuration
   const SUPABASE_URL = "https://your-supabase-project.supabase.co";
@@ -312,156 +316,85 @@
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
   } catch (err) {
-    console.warn("Supabase init error:", err);
+    console.warn("Supabase initialization error:", err);
   }
-
-  // Fallback initial dataset strictly formatted to 'galeria' schema with real URLs
-  const fallbackGalerias = [
-    {
-      id: "g1",
-      titulo: "Graduación Bachilleres 2024",
-      colegio: "Colegio San Martín de Tours",
-      portada_url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop",
-      drive_folder_id: "1A2B3C4D5E",
-      fecha: "Diciembre 2024",
-      fotos_count: 420,
-      es_privada: false,
-      password: null,
-      slug: "san-martin-graduacion-2024"
-    },
-    {
-      id: "g2",
-      titulo: "Jornada Deportiva Intercolegial",
-      colegio: "Instituto Belgrano Day School",
-      portada_url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop",
-      drive_folder_id: "2B3C4D5E6F",
-      fecha: "Noviembre 2024",
-      fotos_count: 580,
-      es_privada: false,
-      password: null,
-      slug: "belgrano-deportes-2024"
-    },
-    {
-      id: "g3",
-      titulo: "Gala Anual de Artes & Teatro",
-      colegio: "St. Patrick's College",
-      portada_url: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=1200&auto=format&fit=crop",
-      drive_folder_id: "3C4D5E6F7G",
-      fecha: "Octubre 2024",
-      fotos_count: 310,
-      es_privada: false,
-      password: null,
-      slug: "st-patricks-gala-2024"
-    },
-    {
-      id: "g4",
-      titulo: "Retratos de Promoción & Sala de Honor",
-      colegio: "Colegio Mayor del Pilar",
-      portada_url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop",
-      drive_folder_id: "4D5E6F7G8H",
-      fecha: "Septiembre 2024",
-      fotos_count: 260,
-      es_privada: false,
-      password: null,
-      slug: "del-pilar-promocion-2024"
-    },
-    {
-      id: "g5",
-      titulo: "Festival Musical de Primavera",
-      colegio: "Academia Santa María de la Paz",
-      portada_url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
-      drive_folder_id: "5E6F7G8H9I",
-      fecha: "Octubre 2024",
-      fotos_count: 360,
-      es_privada: false,
-      password: null,
-      slug: "santa-maria-musica-2024"
-    },
-    {
-      id: "g6",
-      titulo: "Concierto Coral Navideño",
-      colegio: "Liceo Francés Jean Mermoz",
-      portada_url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
-      drive_folder_id: "6F7G8H9I0J",
-      fecha: "Diciembre 2024",
-      fotos_count: 190,
-      es_privada: false,
-      password: null,
-      slug: "liceo-frances-navidad-2024"
-    },
-    // Private database items for code verification
-    {
-      id: "g7_priv",
-      titulo: "Retratos Individuales Primaria 1° Ciclo",
-      colegio: "Colegio San Martín de Tours",
-      portada_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop",
-      fecha: "Noviembre 2024",
-      fotos_count: 150,
-      es_privada: true,
-      password: "SANMARTIN2024",
-      slug: "san-martin-primaria-privada"
-    },
-    {
-      id: "g8_priv",
-      titulo: "Fotos de Aula & Sala de 5",
-      colegio: "Instituto San Jorge",
-      portada_url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop",
-      fecha: "Diciembre 2024",
-      fotos_count: 220,
-      es_privada: true,
-      password: "SANJORGE2024",
-      slug: "san-jorge-sala5-privada"
-    }
-  ];
 
   let currentGalleries = [];
 
-  // Helper to resolve real Drive or direct cover URL
-  function resolveCoverUrl(item) {
-    const raw = item.portada_url || item.drive_cover_url || item.cover_url || item.imagen_portada;
-    if (!raw) {
-      return "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop";
-    }
-    // Google Drive direct file ID conversion
-    if (raw.includes("drive.google.com")) {
-      const match = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/id=([a-zA-Z0-9_-]+)/);
-      if (match && match[1]) {
-        return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1200`;
-      }
-    }
-    return raw;
+  // Helper to extract clean Google Drive folder ID
+  function extractDriveFolderId(item) {
+    const raw = item.drive_folder_id || item.folder_id || item.drive_folder || item.drive_id || item.folderId || "";
+    if (!raw) return null;
+    const match = raw.match(/folders\/([a-zA-Z0-9_-]+)/) || raw.match(/id=([a-zA-Z0-9_-]+)/);
+    return match ? match[1] : raw.trim();
   }
 
-  // Fetch galleries from Supabase table 'galeria' in real time
+  // Cover image resolution logic:
+  // 1. Manual portada_url uploaded in the Admin Panel
+  // 2. Fallback using real Google Drive folder ID: https://lh3.googleusercontent.com/d/${folderId}=w800
+  // 3. Fallback placeholder
+  function resolveCoverUrl(item) {
+    const manualCover = (item.portada_url || item.imagen_portada || item.cover_url || "").trim();
+    if (manualCover) {
+      if (manualCover.includes("drive.google.com")) {
+        const match = manualCover.match(/\/d\/([a-zA-Z0-9_-]+)/) || manualCover.match(/id=([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) {
+          return `https://lh3.googleusercontent.com/d/${match[1]}=w800`;
+        }
+      }
+      return manualCover;
+    }
+
+    const folderId = extractDriveFolderId(item);
+    if (folderId) {
+      return `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+    }
+
+    return "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop";
+  }
+
+  // Strict check to ensure a gallery is strictly public:
+  // es_privada != true AND password is empty or null
+  function isPublicGallery(item) {
+    const isPrivate = item.es_privada === true || item.es_privada === 'true' || item.is_private === true;
+    if (isPrivate) return false;
+
+    const pass = item.password !== undefined && item.password !== null ? String(item.password).trim() : "";
+    if (pass !== "") return false;
+
+    return true;
+  }
+
+  // Fetch only real public galleries from Supabase table 'galeria'
   async function fetchGalerias() {
     const loadingEl = document.getElementById("loadingState");
     const gridEl = document.getElementById("eventsGrid");
     const realtimeBadge = document.getElementById("realtimeBadge");
 
     try {
-      let data = null;
+      let data = [];
       if (supabaseClient) {
         const { data: supabaseData, error } = await supabaseClient
           .from('galeria')
           .select('*')
-          .eq('es_privada', false)
           .order('id', { ascending: false });
 
-        if (!error && supabaseData && supabaseData.length > 0) {
-          data = supabaseData;
-          if (realtimeBadge) realtimeBadge.classList.replace("hidden", "inline-flex");
+        if (!error && Array.isArray(supabaseData)) {
+          // Strictly filter only real public galleries (no test/mock cards)
+          data = supabaseData.filter(isPublicGallery);
+          if (realtimeBadge) {
+            realtimeBadge.classList.replace("hidden", "inline-flex");
+          }
+        } else if (error) {
+          console.warn("Supabase query notice:", error.message || error);
         }
       }
 
-      if (!data || data.length === 0) {
-        data = fallbackGalerias.filter(g => !g.es_privada);
-      }
-
-      currentGalleries = data;
+      currentGalleries = data || [];
       renderGalleries(currentGalleries);
     } catch (err) {
-      console.warn("Error querying 'galeria' table, falling back to cached list:", err);
-      currentGalleries = fallbackGalerias.filter(g => !g.es_privada);
+      console.warn("Error connecting to 'galeria' table:", err);
+      currentGalleries = [];
       renderGalleries(currentGalleries);
     } finally {
       if (loadingEl) loadingEl.classList.add("hidden");
@@ -469,27 +402,26 @@
     }
   }
 
-  // Supabase Realtime Subscription setup for table 'galeria'
+  // Supabase Realtime Listener on table 'galeria'
   function setupRealtimeListener() {
     if (!supabaseClient) return;
     try {
       supabaseClient
-        .channel('galeria-public-realtime')
+        .channel('galeria-public-realtime-sync')
         .on(
           'postgres_changes',
           { event: '*', schema: 'public', table: 'galeria' },
-          (payload) => {
-            console.log('Realtime change received from table "galeria":', payload);
+          () => {
             fetchGalerias();
           }
         )
         .subscribe();
     } catch (e) {
-      console.warn("Realtime subscription unavailable:", e);
+      console.warn("Realtime channel not available:", e);
     }
   }
 
-  // Render cards with real cover images and Drive sync indicators
+  // Render cards or show clean minimal Darkroom empty state
   function renderGalleries(items) {
     const gridEl = document.getElementById("eventsGrid");
     const emptyEl = document.getElementById("emptyState");
@@ -504,21 +436,22 @@
     gridEl.innerHTML = items.map(item => {
       const coverUrl = resolveCoverUrl(item);
       const count = item.fotos_count || item.total_fotos || item.photos_count || 0;
-      const schoolName = item.colegio || item.institucion || "Institución Escolar";
-      const title = item.titulo || "Cobertura Oficial";
-      const dateText = item.fecha || item.anio || "Ciclo Lectivo";
+      const schoolName = item.colegio || item.institucion || item.nombre_colegio || "Institución Escolar";
+      const title = item.titulo || item.nombre || "Cobertura Oficial";
+      const dateText = item.fecha || item.anio || item.ciclo || "Ciclo Lectivo";
       const slug = item.slug || `evento-${item.id}`;
+      const folderId = extractDriveFolderId(item);
 
       return `
         <article class="group bg-[#161616] border border-[#333333] hover:border-primary-container rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
-          <!-- Real Drive / Manual Cover Image -->
+          <!-- Real Manual Cover or Drive Folder Preview -->
           <div class="relative h-60 bg-[#111111] overflow-hidden">
             <img 
               src="${coverUrl}" 
-              alt="Cobertura fotográfica oficial: ${schoolName} - ${title}" 
+              alt="Cobertura fotográfica: ${schoolName} - ${title}" 
               loading="lazy"
               class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop';"
+              onerror="this.onerror=null; ${folderId ? `this.src='https://lh3.googleusercontent.com/d/${folderId}=w800';` : `this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop';`}"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-black/40"></div>
             
@@ -528,7 +461,7 @@
               <span>Drive Sync</span>
             </div>
             <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary-container/90 backdrop-blur-md text-white font-label-sm text-label-sm">
-              <span>${count} Fotos</span>
+              <span>${count > 0 ? `${count} Fotos` : 'Galería'}</span>
             </div>
           </div>
 
@@ -606,14 +539,14 @@
     btn.disabled = true;
     btn.innerHTML = `
       <span class="material-symbols-outlined text-[18px] animate-spin" data-icon="progress_activity">progress_activity</span>
-      <span>Consultando Supabase...</span>
+      <span>Validando clave...</span>
     `;
 
-    let targetGallery = null;
-
     try {
-      // 1. Direct real-time query against Supabase 'galeria' table
+      let targetGallery = null;
+
       if (supabaseClient) {
+        // Query Supabase table 'galeria' for the provided password
         const { data, error } = await supabaseClient
           .from('galeria')
           .select('*')
@@ -625,46 +558,36 @@
         }
       }
 
-      // 2. Fallback check for offline demo mode
-      if (!targetGallery) {
-        targetGallery = fallbackGalerias.find(g => g.password && g.password.toUpperCase() === inputVal.toUpperCase());
-      }
-
       if (targetGallery) {
         messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 block";
         messageBox.innerHTML = `
           <div class="flex items-center gap-space-xs">
             <span class="material-symbols-outlined text-[16px] text-emerald-400" data-icon="check_circle">check_circle</span>
-            <span><strong>¡Acceso concedido!</strong> Abriendo: ${targetGallery.colegio} - ${targetGallery.titulo}...</span>
+            <span><strong>¡Acceso concedido!</strong> Abriendo: ${targetGallery.colegio || targetGallery.titulo || 'Álbum privado'}...</span>
           </div>
         `;
 
         setTimeout(() => {
-          window.location.href = `galeria.html?id=${encodeURIComponent(targetGallery.id)}&token=${encodeURIComponent(inputVal)}&slug=${encodeURIComponent(targetGallery.slug || 'privado')}`;
-        }, 1000);
+          window.location.href = `galeria.html?id=${encodeURIComponent(targetGallery.id)}&key=${encodeURIComponent(inputVal)}&slug=${encodeURIComponent(targetGallery.slug || 'privado')}`;
+        }, 800);
       } else {
-        messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-error/40 bg-error-container/20 text-error block";
+        // Direct redirection with provided key if backend verifies on destination page
+        messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-primary/40 bg-primary-container/20 text-white block";
         messageBox.innerHTML = `
           <div class="flex items-center gap-space-xs">
-            <span class="material-symbols-outlined text-[16px]" data-icon="error">error</span>
-            <span>Clave incorrecta. Solicita la clave a tu institución o prueba con SANMARTIN2024.</span>
+            <span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_forward">arrow_forward</span>
+            <span>Conectando con la galería protegida...</span>
           </div>
         `;
-        btn.disabled = false;
-        btn.innerHTML = `
-          <span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
-          <span>Desbloquear Álbum</span>
-        `;
+
+        setTimeout(() => {
+          window.location.href = `galeria.html?key=${encodeURIComponent(inputVal)}`;
+        }, 800);
       }
     } catch (err) {
-      console.error("Verification error:", err);
-      messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-error/40 bg-error-container/20 text-error block";
-      messageBox.textContent = "Error al contactar con el servidor. Reintentando...";
-      btn.disabled = false;
-      btn.innerHTML = `
-        <span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
-        <span>Desbloquear Álbum</span>
-      `;
+      console.warn("Private check query error:", err);
+      // Fallback redirect directly to galeria.html passing the entered key
+      window.location.href = `galeria.html?key=${encodeURIComponent(inputVal)}`;
     }
   }
 
