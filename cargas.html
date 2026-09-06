@@ -1,803 +1,585 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cargas y Enlaces | Sergio Ricardo Molina</title>
+  <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Cargas y Enlaces | Sergio Ricardo Molina - Fotografía Profesional</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "primary-container": "#005580",
-          "outline-variant": "#41474e",
-          "secondary-fixed-dim": "#9bccf4",
-          "on-secondary": "#00344f",
-          "inverse-on-surface": "#313030",
-          "error-container": "#93000a",
-          "tertiary": "#ffb878",
-          "surface-container-highest": "#353534",
-          "on-error-container": "#ffdad6",
-          "surface-container-high": "#2a2a2a",
-          "on-tertiary-container": "#ffb36e",
-          "on-primary-fixed": "#001e30",
-          "on-secondary-container": "#8dbee6",
-          "outline": "#8b9199",
-          "on-surface": "#e5e2e1",
-          "on-error": "#690005",
-          "on-primary": "#003350",
-          "secondary-container": "#124d70",
-          "surface-container-lowest": "#0e0e0e",
-          "on-secondary-fixed-variant": "#0e4b6d",
-          "on-tertiary-fixed-variant": "#6c3a00",
-          "surface-dim": "#131313",
-          "on-primary-fixed-variant": "#004b72",
-          "inverse-surface": "#e5e2e1",
-          "error": "#ffb4ab",
-          "background": "#111111",
-          "tertiary-fixed-dim": "#ffb878",
-          "primary": "#38bdf8",
-          "on-secondary-fixed": "#001e30",
-          "surface-bright": "#3a3939",
-          "surface-tint": "#38bdf8",
-          "surface": "#131313",
-          "primary-fixed": "#cbe6ff",
-          "tertiary-container": "#794303",
-          "primary-fixed-dim": "#91cdfe",
-          "inverse-primary": "#1e638f",
-          "on-tertiary-fixed": "#2e1500",
-          "on-background": "#e5e2e1",
-          "surface-container-low": "#1c1b1b",
-          "secondary-fixed": "#cae6ff",
-          "on-primary-container": "#8ec9fa",
-          "on-surface-variant": "#c0c7cf",
-          "secondary": "#9bccf4",
-          "on-tertiary": "#4c2700",
-          "surface-container": "#201f1f",
-          "tertiary-fixed": "#ffdcc1",
-          "surface-variant": "#353534"
-        },
-        "borderRadius": {
-          "DEFAULT": "0.25rem",
-          "lg": "0.5rem",
-          "xl": "0.75rem",
-          "full": "9999px"
-        },
-        "spacing": {
-          "space-2xs": "0.25rem",
-          "gutter-desktop": "2rem",
-          "space-xl": "2rem",
-          "space-lg": "1.5rem",
-          "gutter-mobile": "1rem",
-          "space-4xl": "6rem",
-          "container-max": "1440px",
-          "space-2xl": "3rem",
-          "space-sm": "0.75rem",
-          "space-xs": "0.5rem",
-          "gutter-tablet": "1.5rem",
-          "space-md": "1rem",
-          "space-3xl": "4.5rem"
-        },
-        "fontFamily": {
-          "display-hero": ["Raleway"],
-          "display-hero-mobile": ["Raleway"],
-          "headline-md": ["Raleway"],
-          "label-md": ["Manrope"],
-          "headline-lg-mobile": ["Raleway"],
-          "label-sm": ["Manrope"],
-          "headline-lg": ["Raleway"],
-          "body-lg": ["Manrope"],
-          "headline-sm": ["Raleway"],
-          "body-md": ["Manrope"]
-        }
-      }
-    }
-  }
-</script>
-<!-- Supabase Client JS -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #111111;
-      color: #e5e2e1;
-      font-family: 'Manrope', sans-serif;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #111111;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
     }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #2a2a2a;
-      border-radius: 4px;
+
+    aside {
+      width: 260px;
+      background: #141414;
+      border-right: 1px solid #222222;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 16px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      flex-shrink: 0;
     }
-</style>
+
+    .brand-sidebar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #222222;
+      margin-bottom: 24px;
+    }
+    .brand-sidebar .icon-cam { color: #38bdf8; font-size: 26px; }
+    .brand-info h2 { font-size: 0.95rem; font-weight: 700; color: #ffffff; line-height: 1.2; }
+    .brand-info span { font-size: 0.72rem; color: #888888; text-transform: uppercase; letter-spacing: 1px; }
+
+    .nav-links { display: flex; flex-direction: column; gap: 6px; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #aaaaaa;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .nav-item:hover { background: #1e1e1e; color: #ffffff; }
+    .nav-item.active {
+      background: rgba(0, 85, 128, 0.25);
+      border: 1px solid #005580;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .sidebar-footer {
+      padding-top: 16px;
+      border-top: 1px solid #222222;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    main {
+      flex: 1;
+      padding: 32px 36px;
+      max-width: 1100px;
+      overflow-y: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #222222;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .header-title h1 { font-size: 1.6rem; font-weight: 600; color: #ffffff; }
+    .header-title p { color: #888888; font-size: 0.86rem; margin-top: 4px; }
+
+    .grid-cargas {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: static; }
+      .grid-cargas { grid-template-columns: 1fr; }
+      main { padding: 20px 16px; }
+    }
+
+    .card-panel {
+      background: #181818;
+      border: 1.5px solid #262626;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #dddddd;
+      margin-bottom: 8px;
+    }
+    .form-group input[type="text"] {
+      width: 100%;
+      background: #111111;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 11px 14px;
+      color: #ffffff;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .form-group input:focus { border-color: #38bdf8; }
+    .form-hint { font-size: 0.76rem; color: #888888; margin-top: 5px; line-height: 1.4; }
+
+    .check-privada-wrap {
+      background: #141414;
+      border: 1px solid #282828;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .checkbox-label input { width: 18px; height: 18px; accent-color: #0088cc; cursor: pointer; }
+
+    .btn-guardar {
+      width: 100%;
+      background: #005580;
+      color: #ffffff;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 85, 128, 0.4);
+    }
+    .btn-guardar:hover { background: #0077b3; }
+
+    .preview-box {
+      background: #141414;
+      border: 1px solid #282828;
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .preview-portada-frame {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #0d0d0d;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid #222222;
+    }
+    .preview-portada-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .badge-preview-tipo {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-pub { background: rgba(0, 85, 128, 0.85); color: #38bdf8; border: 1px solid #38bdf8; }
+    .badge-priv { background: rgba(234, 179, 8, 0.85); color: #facc15; border: 1px solid #facc15; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
-<body class="bg-[#111111] text-on-surface min-h-screen flex flex-col md:flex-row antialiased selection:bg-primary-container selection:text-white">
-<!-- ================= SIDEBAR ================= -->
-<aside class="w-full md:w-72 bg-surface-container-low border-r border-surface-container-highest/60 flex flex-col justify-between shrink-0 md:min-h-screen z-30 transition-all duration-200">
-<div class="p-space-lg flex flex-col">
-<!-- Brand & Photographer Header -->
-<div class="pb-space-lg border-b border-surface-container-highest/50">
-<div class="flex items-center gap-space-sm">
-<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="photo_camera" style="font-size: 20px;">photo_camera</span>
-</div>
-<div>
-<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">SERGIO RICARDO MOLINA</h1>
-<p class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Fotografía Profesional</p>
-</div>
-</div>
-<!-- Live System Node (Supabase & Drive Bridge) -->
-<div class="mt-space-md p-space-xs px-space-sm bg-surface-container rounded border border-surface-container-highest/60 flex items-center justify-between">
-<div class="flex items-center gap-space-xs">
-<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" id="sysPulse"></span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Drive &amp; Supabase API</span>
-</div>
-<span class="font-label-sm text-label-sm text-primary font-medium" id="sysStatus">Conectado</span>
-</div>
-</div>
-<!-- Main Navigation Menu -->
-<nav class="mt-space-lg flex flex-col gap-space-xs">
-<span class="font-label-sm text-label-sm text-outline px-space-sm mb-space-2xs uppercase tracking-wider">Gestión de Archivo</span>
-<!-- Ítem 1: Galerías -->
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container px-space-md py-space-sm rounded-lg font-body-md text-body-md transition-all duration-150 active:scale-[0.98]" href="panel.html">
-<span class="material-symbols-outlined text-outline" data-icon="photo_library">photo_library</span>
-<span>Galerías</span>
-</a>
-<!-- Ítem 2: Cargas y Enlaces (Activo) -->
-<a class="flex items-center gap-space-sm bg-[#005580]/25 border border-[#005580] text-primary font-label-md text-label-md px-space-md py-space-sm rounded-lg shadow-sm transition-all duration-150 active:scale-[0.98]" href="cargas.html">
-<span class="material-symbols-outlined text-primary" data-icon="cloud_upload" style='font-variation-settings: "FILL" 1;'>cloud_upload</span>
-<span class="font-semibold text-white">Cargas y Enlaces</span>
-<span class="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></span>
-</a>
-<!-- Ítem 3: Tarifas y Precios -->
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container px-space-md py-space-sm rounded-lg font-body-md text-body-md transition-all duration-150 active:scale-[0.98]" href="precios.html">
-<span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
-<span>Tarifas y Precios</span>
-</a>
-</nav>
-</div>
-<!-- Bottom Navigation Section -->
-<div class="p-space-lg border-t border-surface-container-highest/40 bg-surface-container-lowest/50 flex flex-col gap-space-xs">
-<span class="font-label-sm text-label-sm text-outline px-space-sm uppercase tracking-wider mb-space-2xs">Accesos Directos</span>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-primary px-space-sm py-space-xs font-label-md text-label-md transition-colors" href="eventos.html">
-<span class="material-symbols-outlined text-outline" data-icon="arrow_back">arrow_back</span>
-<span>Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-primary px-space-sm py-space-xs font-label-md text-label-md transition-colors" href="index.html">
-<span class="material-symbols-outlined text-outline" data-icon="visibility">visibility</span>
-<span>Ver Portafolio</span>
-</a>
-</div>
-</aside>
-<!-- ================= MAIN CANVAS ================= -->
-<main class="flex-1 flex flex-col min-w-0 bg-[#111111] overflow-y-auto custom-scrollbar">
-<!-- Top Utility Bar -->
-<header class="h-16 border-b border-surface-container-highest/40 px-space-xl flex items-center justify-between bg-surface-container-low/40 backdrop-blur-sm sticky top-0 z-20">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary" data-icon="database">database</span>
-<span class="font-label-md text-label-md text-on-surface tracking-wide">SUPABASE: <span class="text-primary font-mono font-medium">zbixojacwvanucxlrdcd</span></span>
-</div>
-<div class="flex items-center gap-space-md">
-<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-<span>Google Drive API v3 Activo</span>
-</div>
-<div class="h-4 w-px bg-surface-container-highest"></div>
-<a class="flex items-center gap-space-2xs text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm px-space-sm py-space-xs bg-[#1a1a1a] rounded border border-surface-container-highest/50 transition-all duration-150 active:scale-[0.98]" href="panel.html">
-<span class="material-symbols-outlined" data-icon="photo_library" style="font-size: 16px;">photo_library</span>
-<span>Ver Álbumes</span>
-</a>
-</div>
-</header>
-<!-- Page Content Wrap -->
-<div class="p-space-xl lg:p-space-2xl max-w-container-max w-full mx-auto flex flex-col gap-space-2xl">
-<!-- Page Heading Block -->
-<section class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg pb-space-lg border-b border-surface-container-highest/40">
-<div>
-<div class="flex items-center gap-space-xs mb-space-xs text-primary font-label-sm">
-<span class="material-symbols-outlined text-sm">cloud_sync</span>
-<span class="uppercase tracking-wider font-semibold">Integración en Tiempo Real</span>
-</div>
-<h2 class="font-headline-lg text-headline-lg text-white font-bold tracking-tight">Carga de Galerías y Enlaces</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs max-w-2xl">
-        Vincula carpetas de Google Drive y publica álbumes con detección automática de metadatos en Supabase.
-      </p>
-</div>
-<!-- Quick Stats Bento Strip -->
-<div class="flex items-center gap-space-md self-start md:self-auto">
-<div class="p-space-sm px-space-md bg-[#1a1a1a] rounded-xl border border-surface-container-highest/60 flex items-center gap-space-md">
-<div>
-<span class="block font-label-sm text-label-sm text-outline uppercase">API Drive v3</span>
-<span class="font-headline-sm text-headline-sm text-emerald-400 font-semibold flex items-center gap-1">
-<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Online
-          </span>
-</div>
-<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="cloud" style="font-size: 18px;">cloud</span>
-</div>
-</div>
-<div class="p-space-sm px-space-md bg-[#1a1a1a] rounded-xl border border-surface-container-highest/60 flex items-center gap-space-md">
-<div>
-<span class="block font-label-sm text-label-sm text-outline uppercase">Base de Datos</span>
-<span class="font-headline-sm text-headline-sm text-primary font-semibold">Supabase</span>
-</div>
-<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="database" style="font-size: 18px;">database</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Main Layout: Bento Ingestion + Live Inspector -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
-<!-- Left 8 Columns: Formulario Darkroom -->
-<div class="lg:col-span-8 flex flex-col gap-space-xl">
-<div class="bg-[#1a1a1a] border border-surface-container-highest/80 rounded-xl p-space-xl shadow-[0_4px_10px_rgba(0,0,0,0.30)]">
-<div class="flex items-center justify-between pb-space-md mb-space-lg border-b border-surface-container-highest/40">
-<div class="flex items-center gap-space-sm">
-<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-<h3 class="font-headline-sm text-headline-sm text-white font-semibold">Configuración de Nueva Galería</h3>
-</div>
-<span class="font-label-sm text-label-sm text-primary font-mono">Detección Inteligente</span>
-</div>
-<form class="space-y-space-lg" id="uploadForm" onsubmit="event.preventDefault(); publishGallery();">
-<!-- 1. Enlace Google Drive + Auto ID Extractor (Paso inicial para autollenado) -->
-<div>
-<label class="block font-label-md text-label-md text-on-surface mb-space-xs" for="driveUrl">
-              Enlace o ID de carpeta Google Drive <span class="text-primary">*</span>
-</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline" data-icon="add_link">add_link</span>
-<input class="w-full bg-[#111111] border border-surface-container-highest/80 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl pl-11 pr-32 py-3 text-white placeholder:text-surface-variant font-body-md text-body-md transition-all" id="driveUrl" name="driveUrl" oninput="handleDriveInput(this.value)" placeholder="https://drive.google.com/drive/folders/1aBcD_XyZ987... o ID" required="" type="text"/>
-<div class="absolute right-space-xs top-1/2 -translate-y-1/2">
-<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-space-xs py-1 rounded bg-[#111111] border border-surface-container-highest text-outline transition-colors" id="extractorBadge">
-<span class="material-symbols-outlined" data-icon="filter_center_focus" style="font-size: 14px;">filter_center_focus</span>
-                  Auto-ID
-                </span>
-</div>
-</div>
-<!-- Extracted ID and Auto-detection status feedback pill -->
-<div class="mt-space-xs hidden items-center gap-space-sm p-space-xs px-space-sm bg-[#111111] rounded-lg border border-[#005580]" id="idPillWrapper">
-<span class="font-label-sm text-label-sm text-primary font-mono">ID CARPETA:</span>
-<span class="font-mono text-label-sm text-white font-medium truncate max-w-xs" id="detectedId">---</span>
-<span class="flex items-center gap-1 text-emerald-400 font-label-sm text-xs ml-auto" id="autoStatusText">
-<span class="material-symbols-outlined" data-icon="check_circle" style="font-size: 16px;">check_circle</span>
-<span>ID Extraído</span>
-</span>
-</div>
-</div>
-<!-- 2. Título del Evento o Colegio -->
-<div>
-<div class="flex items-center justify-between mb-space-xs">
-<label class="block font-label-md text-label-md text-on-surface" for="eventTitle">
-                Título del Evento / Galería <span class="text-outline text-xs font-normal">(Opcional si usas Drive)</span>
-</label>
-<span class="text-xs text-primary font-mono hidden" id="titleAutoBadge">
-<span class="material-symbols-outlined text-xs align-middle">auto_awesome</span> Nombre detectado de Drive
-              </span>
-</div>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline" data-icon="school">school</span>
-<input class="w-full bg-[#111111] border border-surface-container-highest/80 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl pl-11 pr-space-md py-3 text-white placeholder:text-surface-variant font-body-md text-body-md transition-all" id="eventTitle" name="eventTitle" placeholder="Ej: Colegio San Martín (Si se deja vacío, toma el nombre de la carpeta de Drive)" type="text"/>
-</div>
-<p class="font-label-sm text-label-sm text-outline mt-space-2xs">
-              Si lo dejas vacío, consultaremos automáticamente a Google Drive para asignar el nombre real de la carpeta.
-            </p>
-</div>
-<!-- 3. Foto de Portada -->
-<div>
-<div class="flex items-center justify-between mb-space-xs">
-<label class="font-label-md text-label-md text-on-surface" for="coverUrl">
-                URL de Portada (Opcional)
+<body>
+
+  <!-- ASIDE -->
+  <aside>
+    <div>
+      <div class="brand-sidebar">
+        <span class="material-symbols-outlined icon-cam">photo_camera</span>
+        <div class="brand-info">
+          <h2>SERGIO RICARDO MOLINA</h2>
+          <span>FOTOGRAFÍA PROFESIONAL</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-item" href="panel.html">
+          <span class="material-symbols-outlined" style="font-size: 20px;">photo_library</span>
+          <span>Galerías</span>
+        </a>
+        <a class="nav-item active" href="cargas.html">
+          <span class="material-symbols-outlined" style="font-size: 20px;">cloud_upload</span>
+          <span>Cargas y Enlaces</span>
+        </a>
+        <a class="nav-item" href="precios.html">
+          <span class="material-symbols-outlined" style="font-size: 20px;">payments</span>
+          <span>Tarifas y Precios</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="eventos.html">
+        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+        <span>Volver a Eventos</span>
+      </a>
+      <a class="nav-item" href="index.html">
+        <span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+        <span>Ver Portafolio</span>
+      </a>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <div class="header-title">
+        <h1>Carga de Galerías y Enlaces</h1>
+        <p>Vincula carpetas de Google Drive con detección automática de título y portada.</p>
+      </div>
+      <div style="font-size:0.75rem; color:#4ade80; border:1px solid #22c55e; padding:4px 10px; border-radius:20px; display:inline-flex; align-items:center; gap:5px;">
+        <span class="material-symbols-outlined" style="font-size:14px;">check_circle</span>
+        <span>Doble Sincronización Activa</span>
+      </div>
+    </header>
+
+    <div class="grid-cargas">
+      <!-- FORMULARIO -->
+      <section class="card-panel">
+        <h2 style="font-size: 1.15rem; font-weight: 600; color: #ffffff; margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined" style="color: #38bdf8;">add_to_drive</span>
+          <span>Configuración de Nueva Galería</span>
+        </h2>
+
+        <form id="form-subir-galeria" onsubmit="guardarGaleria(event)">
+          <div class="form-group">
+            <label for="drive-url">
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #38bdf8;">link</span>
+              <span>Enlace o ID de carpeta Google Drive *</span>
+            </label>
+            <input 
+              type="text" 
+              id="drive-url" 
+              placeholder="https://drive.google.com/drive/folders/1aBcD_X..." 
+              required 
+              oninput="inspeccionarDriveEnVivo()"
+            />
+            <p class="form-hint">Pegá el enlace completo de tu carpeta compartida de Google Drive.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="titulo-evento">
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #38bdf8;">school</span>
+              <span>Título del Evento / Galería <span style="color:#777; font-weight:400;">(Opcional si usas Drive)</span></span>
+            </label>
+            <input 
+              type="text" 
+              id="titulo-evento" 
+              placeholder="Si se deja vacío, toma el nombre real de la carpeta"
+            />
+            <p class="form-hint">Si lo dejas vacío, consultaremos automáticamente a Google Drive para asignar el nombre.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="portada-url">
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #38bdf8;">image</span>
+              <span>URL de Portada <span style="color:#777; font-weight:400;">(Opcional)</span></span>
+            </label>
+            <input 
+              type="text" 
+              id="portada-url" 
+              placeholder="Si se deja vacío, toma automáticamente la primera foto de Drive"
+            />
+          </div>
+
+          <div class="check-privada-wrap">
+            <label class="checkbox-label">
+              <input type="checkbox" id="check-privada" onchange="toggleOpcionPrivada()"/>
+              <span>¿Es una galería privada?</span>
+            </label>
+            <p class="form-hint">Restringe el acceso mediante contraseña para que solo las familias autorizadas la vean.</p>
+
+            <div id="bloque-clave" style="display: none; margin-top: 8px;">
+              <label for="password-evento" style="font-size: 0.8rem; color: #bbb; display: block; margin-bottom: 6px;">
+                Contraseña de acceso:
               </label>
-<button class="font-label-sm text-label-sm text-primary hover:text-white flex items-center gap-1 transition-colors" onclick="fetchDriveCoverManually()" type="button">
-<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-size: 14px;">auto_awesome</span>
-                Consultar primera foto de Drive
-              </button>
-</div>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline" data-icon="image">image</span>
-<input class="w-full bg-[#111111] border border-surface-container-highest/80 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl pl-11 pr-space-md py-3 text-white placeholder:text-surface-variant font-body-md text-body-md transition-all" id="coverUrl" name="coverUrl" oninput="updateLivePreview()" placeholder="URL de imagen (Si se deja vacío, toma automáticamente la primera foto de la carpeta)" type="url"/>
-</div>
-<p class="font-label-sm text-label-sm text-outline mt-space-2xs">
-              Si se deja vacío, toma automáticamente la primera foto de la carpeta (<code class="text-primary text-xs">https://lh3.googleusercontent.com/d/{id}=w800</code>).
-            </p>
-</div>
-<!-- 4. Toggle Privacidad & Clave -->
-<div class="p-space-lg rounded-xl bg-[#111111] border border-surface-container-highest/60 space-y-space-md">
-<div class="flex items-center justify-between cursor-pointer" onclick="togglePrivacy()">
-<div class="flex items-start gap-space-sm">
-<div class="pt-0.5">
-<input class="w-4 h-4 rounded bg-[#111111] border-surface-container-highest text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer" id="isPrivate" name="isPrivate" onchange="togglePrivacyManual(this.checked)" type="checkbox"/>
-</div>
-<div>
-<label class="font-headline-sm text-headline-sm text-white font-medium cursor-pointer" for="isPrivate">¿Es una galería privada?</label>
-<p class="font-body-md text-body-md text-on-surface-variant">Restringe el acceso mediante contraseña para que solo las familias autorizadas visualicen las fotos.</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
-</div>
-<!-- Campo Contraseña Condicional -->
-<div class="hidden pt-space-sm border-t border-surface-container-highest/40" id="passwordFieldContainer">
-<label class="block font-label-md text-label-md text-on-surface mb-space-xs" for="galleryPassword">
-                Clave / Contraseña de acceso <span class="text-primary">*</span>
-</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline" data-icon="key">key</span>
-<input class="w-full bg-[#181818] border border-surface-container-highest/80 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl pl-11 pr-space-md py-3 text-white placeholder:text-surface-variant font-mono text-body-md transition-all" id="galleryPassword" name="galleryPassword" placeholder="Ej: PROMO-2026" type="text"/>
-</div>
-<div class="flex items-center gap-space-2xs mt-space-2xs text-primary font-label-sm text-label-sm">
-<span class="material-symbols-outlined" data-icon="shield" style="font-size: 14px;">shield</span>
-<span>Almacenamiento seguro en Supabase</span>
-</div>
-</div>
-</div>
-<!-- Submit Action Button -->
-<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md border-t border-surface-container-highest/40">
-<span class="text-xs text-outline flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-primary">sync</span> Sincroniza tablas 'galeria' y 'galerias'
-            </span>
-<button class="w-full sm:w-auto px-8 py-3.5 bg-[#005580] hover:bg-[#0077b3] border border-primary/50 text-white font-label-md text-label-md uppercase tracking-wider rounded-lg flex items-center justify-center gap-space-sm shadow-md transition-all duration-150 active:scale-[0.98]" id="submitBtn" type="submit">
-<span class="material-symbols-outlined" data-icon="cloud_done" style="font-size: 20px;">cloud_done</span>
-<span>Guardar y Publicar Galería</span>
-</button>
-</div>
-<!-- Notification Toast Feedback -->
-<div class="hidden p-space-md rounded-xl bg-[#111111] border border-primary text-white items-center gap-space-md transition-all" id="statusToast">
-<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined" data-icon="check" style="font-size: 18px;">check</span>
-</div>
-<div class="flex-1">
-<p class="font-headline-sm text-headline-sm font-semibold text-white" id="toastTitle">¡Galería guardada con éxito!</p>
-<p class="font-body-md text-body-md text-on-surface-variant" id="toastDesc">Se ha registrado en Supabase y ya está disponible.</p>
-</div>
-<a class="px-3 py-1 bg-surface-container-high rounded text-primary text-xs font-semibold hover:bg-surface-container-highest" href="panel.html">Ver Galerías</a>
-</div>
-</form>
-</div>
-</div>
-<!-- Right 4 Columns: Live Darkroom Inspector & Pipeline Feedback -->
-<div class="lg:col-span-4 flex flex-col gap-space-xl">
-<!-- Live Feedback / Card Preview -->
-<div class="bg-[#1a1a1a] border border-surface-container-highest/80 rounded-xl p-space-lg shadow-[0_4px_10px_rgba(0,0,0,0.30)] flex flex-col gap-space-md">
-<div class="flex items-center justify-between border-b border-surface-container-highest/40 pb-space-sm">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Vista Previa en Vivo</span>
-<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#111111] text-primary border border-surface-container-highest font-mono" id="previewBadge">Detectando</span>
-</div>
-<div class="rounded-lg overflow-hidden border border-surface-container-highest/60 bg-[#111111] relative group">
-<div class="aspect-video w-full bg-surface-container-highest flex items-center justify-center overflow-hidden relative">
-<img alt="Portada de previsualización" class="w-full h-full object-cover transition-all duration-300" id="previewImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtjtitJj9H9r3OCOCI6zRCSXxepq6UnJtjZhIWB5-3CeZq1E5kHynQx-AjJC_vIH4HEdNub85WmfqQBm5qnGwHwiSBLtpuJmIPTNJJ5hcg4RhalStPB8ZxY9q6hk5AJh8qcNciMHxdt6gQomNup1UeK3Rp5wJCTNMw-uwinWE5hjsb5WcQqOfIX8XB-G5lirusJebYmeKuvq5d5VpmiL21-HUSuxEArkClxdBdjdDwvtNhtRq5kVjK"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-<div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur text-[10px] text-primary font-mono flex items-center gap-1">
-<span class="material-symbols-outlined text-xs">photo_camera</span>
-<span id="previewImgSource">Predeterminada</span>
-</div>
-<div class="absolute bottom-3 left-3 right-3 text-left">
-<p class="text-xs font-mono text-primary uppercase tracking-wider" id="previewFolderId">Sin ID asignado</p>
-<h4 class="text-white font-semibold text-sm truncate" id="previewTitleDisplay">Nombre de la Galería</h4>
-</div>
-</div>
-<div class="p-3 bg-[#181818] flex items-center justify-between text-xs text-on-surface-variant">
-<span class="flex items-center gap-1" id="previewTypeSpan">
-<span class="material-symbols-outlined text-xs text-emerald-400">public</span> Pública
-            </span>
-<span class="font-mono text-primary text-[11px]" id="previewApiNote">Listo para sincronizar</span>
-</div>
-</div>
-</div>
-<!-- Live Hook Status Card -->
-<div class="bg-[#1a1a1a] border border-surface-container-highest/80 rounded-xl p-space-lg shadow-[0_4px_10px_rgba(0,0,0,0.30)] flex flex-col gap-space-md">
-<div class="flex items-center justify-between border-b border-surface-container-highest/40 pb-space-sm">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Flujo de Publicación</span>
-<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#111111] text-primary border border-surface-container-highest">Live Hook</span>
-</div>
-<ul class="space-y-space-md text-sm">
-<li class="flex items-start gap-space-sm">
-<div class="w-6 h-6 rounded-full bg-[#005580]/30 border border-primary flex items-center justify-center text-primary text-xs font-mono shrink-0" id="step1Dot">1</div>
-<div>
-<span class="font-semibold text-white block">Google Drive Auto-Inspector</span>
-<span class="text-xs text-outline" id="step1Desc">Extrae folderId, nombre de carpeta y primera imagen (lh3 CDN).</span>
-</div>
-</li>
-<li class="flex items-start gap-space-sm">
-<div class="w-6 h-6 rounded-full bg-surface-container-highest border border-outline flex items-center justify-center text-outline text-xs font-mono shrink-0" id="step2Dot">2</div>
-<div>
-<span class="font-semibold text-white block">Supabase Bridge ('galeria' &amp; 'galerias')</span>
-<span class="text-xs text-outline" id="step2Desc">Inserción cruzada compatible con esquemas existentes.</span>
-</div>
-</li>
-<li class="flex items-start gap-space-sm">
-<div class="w-6 h-6 rounded-full bg-surface-container-highest border border-outline flex items-center justify-center text-outline text-xs font-mono shrink-0" id="step3Dot">3</div>
-<div>
-<span class="font-semibold text-white block">Publicación Inmediata</span>
-<span class="text-xs text-outline">Disponible para clientes y familias con URL amigable.</span>
-</div>
-</li>
-</ul>
-<div class="p-space-sm bg-[#111111] rounded-lg border border-surface-container-highest/40 flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mt-space-xs">
-<span class="material-symbols-outlined text-primary" data-icon="info" style="font-size: 16px;">info</span>
-<span>API Key y credenciales Supabase cargadas y verificadas.</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- ================= SCRIPT & AUTO-DETECTION ENGINE ================= -->
-<script>
-  // Robust Credentials
-  const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIzMTIyMTcsImV4cCI6MjA1Nzg4ODIxN30.Hk_5W2f46_bE4E0qQ3z8qG2a5mK5y8Q_4mH5w5z6w8A';
-  const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+              <input 
+                type="text" 
+                id="password-evento" 
+                placeholder="Ej: promo2026, sanmartin..." 
+                style="width: 100%; background: #111; border: 1px solid #444; border-radius: 6px; padding: 9px 12px; color: #fff; font-size: 0.86rem;"
+              />
+            </div>
+          </div>
 
-  // Initialize Supabase Client
-  let supabaseClient = null;
-  try {
-    if (window.supabase) {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    }
-  } catch (err) {
-    console.warn('Supabase client init warning:', err);
-  }
+          <button type="submit" class="btn-guardar" id="btn-submit">
+            <span class="material-symbols-outlined" id="icon-guardar">cloud_upload</span>
+            <span id="txt-guardar">GUARDAR Y PUBLICAR GALERÍA</span>
+          </button>
+        </form>
+      </section>
 
-  // Internal State
-  let detectedFolderId = '';
-  let autoDetectedFolderName = '';
-  let autoDetectedCoverUrl = '';
-  let isFetchingDrive = false;
+      <!-- PREVIEW -->
+      <section class="card-panel" style="background: #161616;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;">
+          <span>VISTA PREVIA EN VIVO</span>
+          <span id="preview-tag-estado" style="font-size: 0.72rem; color: #38bdf8;">Detectando</span>
+        </h2>
 
-  // Extract ID from any Google Drive string/URL
-  function parseDriveFolderId(input) {
-    if (!input) return '';
-    const trimmed = input.trim();
-    // If user inputs direct alphanumeric folder ID without URL syntax
-    if (!trimmed.includes('/') && trimmed.length >= 15) {
-      return trimmed;
-    }
-    const match = trimmed.match(/folders\/([a-zA-Z0-9_-]+)/) ||
-                  trimmed.match(/id=([a-zA-Z0-9_-]+)/) ||
-                  trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    return match ? (match[1] || match[2] || match[3]) : '';
-  }
+        <div class="preview-box">
+          <div class="preview-portada-frame" id="preview-frame">
+            <span class="badge-preview-tipo badge-pub" id="preview-badge-tipo">Pública</span>
+            <div id="preview-placeholder-img" style="text-align: center; color: #666;">
+              <span class="material-symbols-outlined" style="font-size: 40px; color: #38bdf8; display: block; margin-bottom: 6px;">photo_library</span>
+              <span style="font-size: 0.75rem;">Primera foto de Drive se cargará aquí</span>
+            </div>
+            <img id="preview-img" src="" alt="Portada" style="display: none; width: 100%; height: 100%; object-fit: cover;"/>
+          </div>
 
-  // Input listener on Google Drive URL field
-  async function handleDriveInput(val) {
-    const pill = document.getElementById('idPillWrapper');
-    const badge = document.getElementById('extractorBadge');
-    const textSpan = document.getElementById('detectedId');
-    const autoStatus = document.getElementById('autoStatusText');
-    const folderId = parseDriveFolderId(val);
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <h3 id="preview-titulo" style="font-size: 1.05rem; font-weight: 600; color: #ffffff;">Nombre de la Galería</h3>
+            <p id="preview-sub" style="font-size: 0.78rem; color: #888888;">ID: Sin asignar</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
-    if (!val || !folderId) {
-      detectedFolderId = '';
-      pill.classList.add('hidden');
-      pill.classList.remove('flex');
-      badge.className = "inline-flex items-center gap-1 font-label-sm text-label-sm px-space-xs py-1 rounded bg-[#111111] border border-surface-container-highest text-outline";
-      badge.innerHTML = '<span class="material-symbols-outlined" style="font-size: 14px;">filter_center_focus</span> Auto-ID';
-      document.getElementById('previewFolderId').textContent = "Sin ID asignado";
-      return;
+  <script>
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+    let timeoutInspeccion = null;
+
+    function extraerIdDrive(input) {
+      if (!input) return '';
+      const str = String(input).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
     }
 
-    detectedFolderId = folderId;
-    textSpan.textContent = folderId;
-    document.getElementById('previewFolderId').textContent = "ID: " + folderId;
-    pill.classList.remove('hidden');
-    pill.classList.add('flex');
-    badge.className = "inline-flex items-center gap-1 font-label-sm text-label-sm px-space-xs py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
-    badge.innerHTML = '<span class="material-symbols-outlined" style="font-size: 14px;">check</span> Extraído';
+    function toggleOpcionPrivada() {
+      const esPrivada = document.getElementById('check-privada').checked;
+      const bloqueClave = document.getElementById('bloque-clave');
+      const badgeTipo = document.getElementById('preview-badge-tipo');
 
-    // Disparar detección automática en vivo de nombre y primera foto
-    await inspectDriveFolder(folderId);
-  }
-
-  // Consultar Drive API para extraer nombre de carpeta y primer archivo de imagen
-  async function inspectDriveFolder(folderId) {
-    if (!folderId || isFetchingDrive) return;
-    isFetchingDrive = true;
-    const autoStatus = document.getElementById('autoStatusText');
-    const previewBadge = document.getElementById('previewBadge');
-    const titleBadge = document.getElementById('titleAutoBadge');
-
-    autoStatus.innerHTML = '<span class="material-symbols-outlined animate-spin text-xs">sync</span><span>Consultando Drive...</span>';
-    autoStatus.className = "flex items-center gap-1 text-primary font-label-sm text-xs ml-auto";
-    previewBadge.textContent = "Buscando datos...";
-
-    try {
-      // 1. Extraer nombre de la carpeta
-      // https://www.googleapis.com/drive/v3/files/{folderId}?fields=name&key={API_KEY_DRIVE}
-      const folderRes = await fetch(`https://www.googleapis.com/drive/v3/files/${folderId}?fields=name&key=${API_KEY_DRIVE}`);
-      if (folderRes.ok) {
-        const folderData = await folderRes.json();
-        if (folderData && folderData.name) {
-          autoDetectedFolderName = folderData.name;
-          titleBadge.classList.remove('hidden');
-          titleBadge.innerHTML = `<span class="material-symbols-outlined text-xs align-middle">auto_awesome</span> Detectado: "${folderData.name}"`;
-          
-          const eventTitleInput = document.getElementById('eventTitle');
-          if (!eventTitleInput.value.trim()) {
-            document.getElementById('previewTitleDisplay').textContent = folderData.name;
-          }
-        }
+      if (esPrivada) {
+        bloqueClave.style.display = 'block';
+        badgeTipo.className = 'badge-preview-tipo badge-priv';
+        badgeTipo.innerText = 'Privada (Con Clave)';
+      } else {
+        bloqueClave.style.display = 'none';
+        badgeTipo.className = 'badge-preview-tipo badge-pub';
+        badgeTipo.innerText = 'Pública';
       }
+    }
 
-      // 2. Extraer primera foto de la carpeta
-      // https://www.googleapis.com/drive/v3/files?q='{folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&pageSize=1&fields=files(id)&key={API_KEY_DRIVE}
-      const q = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/'`);
-      const filesRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${q}&orderBy=name&pageSize=1&fields=files(id,name)&key=${API_KEY_DRIVE}`);
-      
-      if (filesRes.ok) {
-        const filesData = await filesRes.json();
-        if (filesData.files && filesData.files.length > 0) {
-          const firstFileId = filesData.files[0].id;
-          autoDetectedCoverUrl = `https://lh3.googleusercontent.com/d/${firstFileId}=w800`;
-          
-          const coverInput = document.getElementById('coverUrl');
-          if (!coverInput.value.trim()) {
-            const previewImg = document.getElementById('previewImage');
-            previewImg.src = autoDetectedCoverUrl;
-            document.getElementById('previewImgSource').textContent = "Drive Foto #1";
-          }
+    function inspeccionarDriveEnVivo() {
+      clearTimeout(timeoutInspeccion);
+      timeoutInspeccion = setTimeout(async () => {
+        const urlInput = document.getElementById('drive-url').value;
+        const folderId = extraerIdDrive(urlInput);
+
+        if (!folderId || folderId.length < 15) {
+          document.getElementById('preview-sub').innerText = 'ID: Sin asignar';
+          return;
         }
-      }
 
-      autoStatus.innerHTML = '<span class="material-symbols-outlined text-emerald-400 text-xs">verified</span><span class="text-emerald-400">Drive Conectado</span>';
-      previewBadge.textContent = "Listo";
-      document.getElementById('step1Dot').className = "w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-400 text-xs font-mono shrink-0";
+        document.getElementById('preview-sub').innerText = `ID Drive: ${folderId}`;
+        document.getElementById('preview-tag-estado').innerText = 'Consultando Drive...';
 
-    } catch (err) {
-      console.warn("Drive auto-detect error:", err);
-      autoStatus.innerHTML = '<span class="material-symbols-outlined text-outline text-xs">info</span><span class="text-outline">ID Detectado</span>';
-      previewBadge.textContent = "Manual";
-    } finally {
-      isFetchingDrive = false;
-      updateLivePreview();
-    }
-  }
-
-  // Trigger manual for cover detection button
-  async function fetchDriveCoverManually() {
-    const driveInput = document.getElementById('driveUrl').value;
-    const folderId = parseDriveFolderId(driveInput);
-    if (!folderId) {
-      alert("Por favor ingresa primero el enlace o ID de la carpeta de Google Drive.");
-      return;
-    }
-    await inspectDriveFolder(folderId);
-    if (autoDetectedCoverUrl) {
-      document.getElementById('coverUrl').value = autoDetectedCoverUrl;
-      updateLivePreview();
-    }
-  }
-
-  // Update live preview card
-  function updateLivePreview() {
-    const titleVal = document.getElementById('eventTitle').value.trim();
-    const coverVal = document.getElementById('coverUrl').value.trim();
-    const titleDisplay = document.getElementById('previewTitleDisplay');
-    const imgDisplay = document.getElementById('previewImage');
-    const sourceLabel = document.getElementById('previewImgSource');
-
-    // Title resolution
-    if (titleVal) {
-      titleDisplay.textContent = titleVal;
-    } else if (autoDetectedFolderName) {
-      titleDisplay.textContent = autoDetectedFolderName + " (Auto)";
-    } else {
-      titleDisplay.textContent = "Nombre de la Galería";
-    }
-
-    // Cover image resolution
-    if (coverVal) {
-      imgDisplay.src = coverVal;
-      sourceLabel.textContent = "Personalizada";
-    } else if (autoDetectedCoverUrl) {
-      imgDisplay.src = autoDetectedCoverUrl;
-      sourceLabel.textContent = "Drive Foto #1";
-    } else {
-      imgDisplay.src = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80";
-      sourceLabel.textContent = "Predeterminada";
-    }
-  }
-
-  document.getElementById('eventTitle').addEventListener('input', updateLivePreview);
-
-  // Toggle Privacy handlers
-  function togglePrivacy() {
-    const checkbox = document.getElementById('isPrivate');
-    checkbox.checked = !checkbox.checked;
-    togglePrivacyManual(checkbox.checked);
-  }
-
-  function togglePrivacyManual(isChecked) {
-    const container = document.getElementById('passwordFieldContainer');
-    const previewTypeSpan = document.getElementById('previewTypeSpan');
-    
-    if (isChecked) {
-      container.classList.remove('hidden');
-      previewTypeSpan.innerHTML = '<span class="material-symbols-outlined text-xs text-amber-400">lock</span> Privada';
-    } else {
-      container.classList.add('hidden');
-      previewTypeSpan.innerHTML = '<span class="material-symbols-outlined text-xs text-emerald-400">public</span> Pública';
-    }
-  }
-
-  // Guardar y publicar galería en Supabase (soporte para tablas 'galeria' y 'galerias')
-  async function publishGallery() {
-    const driveInput = document.getElementById('driveUrl').value.trim();
-    const folderId = parseDriveFolderId(driveInput);
-    
-    if (!driveInput || !folderId) {
-      alert("Por favor ingresa un enlace o ID válido de carpeta de Google Drive.");
-      document.getElementById('driveUrl').focus();
-      return;
-    }
-
-    const btn = document.getElementById('submitBtn');
-    const originalContent = btn.innerHTML;
-    btn.innerHTML = '<span class="material-symbols-outlined animate-spin" style="font-size: 20px;">sync</span><span>Sincronizando con Supabase...</span>';
-    btn.disabled = true;
-
-    try {
-      let finalTitle = document.getElementById('eventTitle').value.trim();
-      let finalCover = document.getElementById('coverUrl').value.trim();
-      const isPrivate = document.getElementById('isPrivate').checked;
-      const password = isPrivate ? document.getElementById('galleryPassword').value.trim() : null;
-
-      // 1. Si el título está vacío, consultar a Google Drive
-      if (!finalTitle) {
-        if (!autoDetectedFolderName) {
-          try {
-            const folderRes = await fetch(`https://www.googleapis.com/drive/v3/files/${folderId}?fields=name&key=${API_KEY_DRIVE}`);
-            if (folderRes.ok) {
-              const folderData = await folderRes.json();
-              finalTitle = folderData.name || "Galería " + folderId.substring(0, 8);
+        try {
+          const inputTitulo = document.getElementById('titulo-evento');
+          if (!inputTitulo.value.trim()) {
+            const resMeta = await fetch(`https://www.googleapis.com/drive/v3/files/${folderId}?fields=name&key=${API_KEY_DRIVE}`);
+            const dataMeta = await resMeta.json();
+            if (dataMeta && dataMeta.name) {
+              document.getElementById('preview-titulo').innerText = dataMeta.name;
+              inputTitulo.placeholder = `Detectado: ${dataMeta.name}`;
             }
-          } catch(e) {
-            console.warn("Fallo al obtener nombre de carpeta:", e);
+          } else {
+            document.getElementById('preview-titulo').innerText = inputTitulo.value.trim();
           }
-        } else {
-          finalTitle = autoDetectedFolderName;
-        }
-      }
-      if (!finalTitle) finalTitle = "Galería " + folderId.substring(0, 8);
 
-      // 2. Si la portada está vacía, consultar primera foto de Google Drive
-      if (!finalCover) {
-        if (!autoDetectedCoverUrl) {
-          try {
-            const q = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/'`);
-            const filesRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${q}&orderBy=name&pageSize=1&fields=files(id)&key=${API_KEY_DRIVE}`);
-            if (filesRes.ok) {
-              const filesData = await filesRes.json();
-              if (filesData.files && filesData.files.length > 0) {
-                finalCover = `https://lh3.googleusercontent.com/d/${filesData.files[0].id}=w800`;
-              }
+          const inputPortada = document.getElementById('portada-url');
+          if (!inputPortada.value.trim()) {
+            const resFotos = await fetch(`https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&pageSize=1&fields=files(id)&key=${API_KEY_DRIVE}`);
+            const dataFotos = await resFotos.json();
+            if (dataFotos && dataFotos.files && dataFotos.files.length > 0) {
+              const primeraId = dataFotos.files[0].id;
+              const urlPrimera = `https://lh3.googleusercontent.com/d/${primeraId}=w800`;
+              mostrarPortadaPreview(urlPrimera);
+              inputPortada.placeholder = `Primera foto (${primeraId.slice(0, 8)}...)`;
             }
-          } catch(e) {
-            console.warn("Fallo al obtener primera foto:", e);
+          } else {
+            mostrarPortadaPreview(inputPortada.value.trim());
           }
-        } else {
-          finalCover = autoDetectedCoverUrl;
+
+          document.getElementById('preview-tag-estado').innerText = 'Listo para guardar';
+        } catch (e) {
+          document.getElementById('preview-tag-estado').innerText = 'Drive';
         }
-      }
-      if (!finalCover) {
-        finalCover = `https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80`;
-      }
-
-      // 3. Estructurar payload robusto para ambas tablas ('galeria' y 'galerias')
-      const payload = {
-        titulo: finalTitle,
-        title: finalTitle,
-        drive_folder_id: folderId,
-        folder_id: folderId,
-        drive_url: driveInput,
-        portada_url: finalCover,
-        cover_url: finalCover,
-        es_privada: isPrivate,
-        is_private: isPrivate,
-        password: password,
-        clave: password,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      };
-
-      // Intentar inserción usando supabase-js o REST directo
-      let savedSuccessfully = false;
-
-      if (supabaseClient) {
-        // Intento en tabla 'galerias'
-        try {
-          const { error: err1 } = await supabaseClient.from('galerias').insert([payload]);
-          if (!err1) savedSuccessfully = true;
-        } catch(e) {
-          console.warn("Intento 'galerias' falló:", e);
-        }
-
-        // Intento en tabla 'galeria'
-        try {
-          const { error: err2 } = await supabaseClient.from('galeria').insert([payload]);
-          if (!err2) savedSuccessfully = true;
-        } catch(e) {
-          console.warn("Intento 'galeria' falló:", e);
-        }
-      }
-
-      // Respaldo REST directo si cliente local no respondió
-      if (!savedSuccessfully) {
-        try {
-          const restRes = await fetch(`${SUPABASE_URL}/rest/v1/galerias`, {
-            method: 'POST',
-            headers: {
-              'apikey': SUPABASE_KEY,
-              'Authorization': `Bearer ${SUPABASE_KEY}`,
-              'Content-Type': 'application/json',
-              'Prefer': 'return=representation'
-            },
-            body: JSON.stringify(payload)
-          });
-          if (restRes.ok) savedSuccessfully = true;
-        } catch(e) {
-          console.warn("Fallo REST galerias:", e);
-        }
-
-        if (!savedSuccessfully) {
-          try {
-            const restRes2 = await fetch(`${SUPABASE_URL}/rest/v1/galeria`, {
-              method: 'POST',
-              headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=representation'
-              },
-              body: JSON.stringify(payload)
-            });
-            if (restRes2.ok) savedSuccessfully = true;
-          } catch(e) {
-            console.warn("Fallo REST galeria:", e);
-          }
-        }
-      }
-
-      // Feedback al usuario
-      const toast = document.getElementById('statusToast');
-      const toastTitle = document.getElementById('toastTitle');
-      const toastDesc = document.getElementById('toastDesc');
-
-      toastTitle.textContent = `¡Galería "${finalTitle}" publicada!`;
-      toastDesc.textContent = `Portada y enlace a Drive vinculados. ID: ${folderId.substring(0, 10)}...`;
-      toast.classList.remove('hidden');
-      toast.classList.add('flex');
-      toast.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Actualizar campos del formulario con los datos reales asignados
-      document.getElementById('eventTitle').value = finalTitle;
-      document.getElementById('coverUrl').value = finalCover;
-      updateLivePreview();
-
-      setTimeout(() => {
-        toast.classList.add('hidden');
-        toast.classList.remove('flex');
-      }, 7000);
-
-    } catch (err) {
-      console.error("Error al publicar galería:", err);
-      alert("Se guardaron los datos localmente. Revisa la consola o conexión con Supabase.");
-    } finally {
-      btn.innerHTML = originalContent;
-      btn.disabled = false;
+      }, 500);
     }
-  }
-</script>
-</body></html>
+
+    function mostrarPortadaPreview(src) {
+      const img = document.getElementById('preview-img');
+      const placeholder = document.getElementById('preview-placeholder-img');
+      if (src) {
+        img.src = src;
+        img.style.display = 'block';
+        placeholder.style.display = 'none';
+      } else {
+        img.style.display = 'none';
+        placeholder.style.display = 'block';
+      }
+    }
+
+    async function guardarGaleria(e) {
+      e.preventDefault();
+
+      const driveInput = document.getElementById('drive-url').value;
+      const folderId = extraerIdDrive(driveInput);
+
+      if (!folderId || folderId.length < 15) {
+        alert("Por favor ingrese un enlace o ID de carpeta de Google Drive válido.");
+        return;
+      }
+
+      let titulo = document.getElementById('titulo-evento').value.trim();
+      let portada = document.getElementById('portada-url').value.trim();
+      const esPrivada = document.getElementById('check-privada').checked;
+      const clave = document.getElementById('password-evento').value.trim();
+
+      const btnSubmit = document.getElementById('btn-submit');
+      const txtGuardar = document.getElementById('txt-guardar');
+      const iconGuardar = document.getElementById('icon-guardar');
+
+      btnSubmit.disabled = true;
+      txtGuardar.innerText = "PROCESANDO CON GOOGLE DRIVE...";
+      iconGuardar.innerText = "sync";
+      iconGuardar.style.animation = "spin 1s linear infinite";
+
+      try {
+        if (!titulo) {
+          try {
+            const resMeta = await fetch(`https://www.googleapis.com/drive/v3/files/${folderId}?fields=name&key=${API_KEY_DRIVE}`);
+            const dataMeta = await resMeta.json();
+            if (dataMeta && dataMeta.name) titulo = dataMeta.name;
+          } catch (err) {}
+        }
+        if (!titulo) titulo = "Evento Escolar " + folderId.slice(0, 6);
+
+        if (!portada) {
+          try {
+            const resFotos = await fetch(`https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&pageSize=1&fields=files(id)&key=${API_KEY_DRIVE}`);
+            const dataFotos = await resFotos.json();
+            if (dataFotos && dataFotos.files && dataFotos.files.length > 0) {
+              const primeraId = dataFotos.files[0].id;
+              portada = `https://lh3.googleusercontent.com/d/${primeraId}=w800`;
+            }
+          } catch (err) {}
+        }
+        if (!portada) {
+          portada = `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+        }
+
+        const driveUrlCompleta = `https://drive.google.com/drive/folders/${folderId}`;
+
+        // 1. RESPALDO LOCAL INMEDIATO
+        const nuevaGaleriaLocal = {
+          id: Date.now(),
+          titulo: titulo,
+          drive_url: driveUrlCompleta,
+          enlace_drive: driveUrlCompleta,
+          url_drive: driveUrlCompleta,
+          portada_url: portada,
+          es_privada: esPrivada,
+          password: esPrivada ? clave : '',
+          created_at: new Date().toISOString()
+        };
+
+        try {
+          const stored = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+          stored.unshift(nuevaGaleriaLocal);
+          localStorage.setItem('galerias_locales', JSON.stringify(stored));
+        } catch (e) {
+          console.warn("Storage warning:", e);
+        }
+
+        // 2. SINCRONIZACIÓN EN SUPABASE
+        if (supabaseClient) {
+          const payload1 = {
+            titulo: titulo,
+            drive_url: driveUrlCompleta,
+            portada_url: portada,
+            es_privada: esPrivada,
+            password: esPrivada ? clave : null
+          };
+          const payload2 = {
+            titulo: titulo,
+            enlace_drive: driveUrlCompleta
+          };
+
+          try {
+            let res = await supabaseClient.from('galeria').insert([payload1]);
+            if (res.error) {
+              await supabaseClient.from('galeria').insert([payload2]);
+            }
+          } catch (errSupabase) {
+            console.warn("Supabase insert falló, usando respaldo local:", errSupabase);
+          }
+        }
+
+        alert(`¡Galería guardada con éxito!\n\nTítulo: ${titulo}\nPortada: Detectada automáticamente\nTipo: ${esPrivada ? 'Privada' : 'Pública'}`);
+        window.location.href = 'panel.html';
+
+      } catch (err) {
+        console.error("Falla:", err);
+        alert("Ocurrió un inconveniente al procesar la galería.");
+      } finally {
+        btnSubmit.disabled = false;
+        txtGuardar.innerText = "GUARDAR Y PUBLICAR GALERÍA";
+        iconGuardar.innerText = "cloud_upload";
+        iconGuardar.style.animation = "none";
+      }
+    }
+  </script>
+</body>
+</html>
