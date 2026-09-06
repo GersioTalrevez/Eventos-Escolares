@@ -7,9 +7,9 @@
 <!-- Google Fonts & Material Symbols -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&family=Raleway:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<!-- Supabase JS Client CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -17,102 +17,45 @@
       darkMode: "class",
       theme: {
         extend: {
-          "colors": {
-            "secondary-fixed-dim": "#9bccf4",
-            "on-background": "#e5e2e1",
-            "surface-container-low": "#1c1b1b",
-            "primary-fixed-dim": "#91cdfe",
-            "on-primary": "#003350",
-            "tertiary-container": "#794303",
-            "surface-tint": "#91cdfe",
-            "on-secondary-fixed": "#001e30",
-            "outline": "#8b9199",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "tertiary-fixed": "#ffdcc1",
-            "on-tertiary": "#4c2700",
-            "tertiary-fixed-dim": "#ffb878",
-            "secondary-container": "#124d70",
-            "surface-bright": "#3a3939",
-            "outline-variant": "#41474e",
-            "surface": "#131313",
-            "on-primary-fixed": "#001e30",
-            "secondary-fixed": "#cae6ff",
-            "background": "#131313",
-            "surface-container": "#201f1f",
-            "surface-container-high": "#2a2a2a",
-            "on-secondary": "#00344f",
-            "on-surface": "#e5e2e1",
-            "on-secondary-container": "#8dbee6",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-error-container": "#ffdad6",
-            "inverse-primary": "#1e638f",
-            "surface-variant": "#353534",
-            "on-error": "#690005",
-            "primary-container": "#005580",
-            "on-primary-fixed-variant": "#004b72",
-            "on-primary-container": "#8ec9fa",
-            "on-tertiary-container": "#ffb36e",
-            "on-tertiary-fixed": "#2e1500",
-            "error-container": "#93000a",
-            "inverse-surface": "#e5e2e1",
-            "surface-dim": "#131313",
-            "primary-fixed": "#cbe6ff",
-            "primary": "#91cdfe",
-            "inverse-on-surface": "#313030",
-            "surface-container-lowest": "#0e0e0e",
+          colors: {
+            "atelier-blue": "#005580",
+            "atelier-accent": "#38bdf8",
+            "darkroom-bg": "#111111",
+            "darkroom-card": "#1a1a1a",
             "secondary": "#9bccf4",
-            "on-surface-variant": "#c0c7cf",
-            "tertiary": "#ffb878",
+            "surface-bright": "#3a3939",
             "error": "#ffb4ab",
-            "surface-container-highest": "#353534"
+            "outline": "#8b9199",
+            "surface": "#111111",
+            "background": "#111111",
+            "surface-container": "#1a1a1a",
+            "surface-container-high": "#222222",
+            "surface-container-low": "#151515",
+            "surface-container-lowest": "#0b0b0b",
+            "surface-container-highest": "#2e2e2e",
+            "on-surface": "#e5e2e1",
+            "on-surface-variant": "#c0c7cf",
+            "primary": "#38bdf8",
+            "primary-container": "#005580",
+            "on-primary-container": "#cae6ff"
           },
-          "borderRadius": {
+          borderRadius: {
             "DEFAULT": "0.25rem",
             "lg": "0.5rem",
             "xl": "0.75rem",
+            "2xl": "1rem",
             "full": "9999px"
           },
-          "spacing": {
-            "space-4xl": "6rem",
-            "space-sm": "0.75rem",
-            "gutter-tablet": "1.5rem",
-            "space-xs": "0.5rem",
-            "space-2xl": "3rem",
-            "gutter-desktop": "2rem",
-            "container-max": "1440px",
-            "space-xl": "2rem",
-            "space-2xs": "0.25rem",
-            "space-3xl": "4.5rem",
-            "space-lg": "1.5rem",
-            "space-md": "1rem",
-            "gutter-mobile": "1rem"
-          },
-          "fontFamily": {
-            "body-md": ["Manrope"],
-            "headline-lg-mobile": ["Raleway"],
-            "label-md": ["Manrope"],
-            "headline-lg": ["Raleway"],
-            "display-hero": ["Raleway"],
-            "label-sm": ["Manrope"],
-            "body-lg": ["Manrope"],
-            "headline-sm": ["Raleway"],
-            "headline-md": ["Raleway"],
-            "display-hero-mobile": ["Raleway"]
-          },
-          "fontSize": {
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          fontFamily: {
+            "body-md": ["Manrope", "sans-serif"],
+            "headline-lg": ["Raleway", "sans-serif"],
+            "headline-md": ["Raleway", "sans-serif"],
+            "headline-sm": ["Raleway", "sans-serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "label-sm": ["Manrope", "sans-serif"]
           }
-        },
-      },
+        }
+      }
     }
   </script>
 <style>
@@ -124,15 +67,15 @@
       user-select: none;
       -webkit-user-drag: none;
     }
-    
-    /* Diagonal watermark watermark overlay */
+
+    /* Diagonal watermark overlay for public mode */
     .watermark-pattern {
       background: repeating-linear-gradient(
         -45deg,
-        rgba(255, 255, 255, 0.08) 0,
-        rgba(255, 255, 255, 0.08) 1px,
+        rgba(255, 255, 255, 0.07) 0,
+        rgba(255, 255, 255, 0.07) 1px,
         transparent 1px,
-        transparent 60px
+        transparent 65px
       );
     }
 
@@ -144,377 +87,186 @@
       justify-content: center;
       transform: rotate(-25deg);
       font-family: 'Raleway', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 0.22em;
-      color: rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.38);
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
       pointer-events: none;
       text-align: center;
+      padding: 1rem;
     }
 
     /* Micro-animations */
     .btn-press:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
       transition: transform 120ms cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    /* Custom subtle dark scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111111;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #005580;
     }
   </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-surface-bright unselectable" oncontextmenu="return false;">
-<!-- TOP APP BAR (Shared Components JSON Anchor) -->
-<header class="bg-surface dark:bg-primary text-primary dark:text-inverse-primary border-b border-outline-variant dark:border-primary-container shadow-sm sticky top-0 z-40">
-<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
-<!-- Brand & Event Identity -->
-<div class="flex items-center gap-space-md">
-<a class="text-title-md font-title-md font-bold tracking-tight text-primary dark:text-surface-bright flex items-center gap-2" href="#portfolio">
-<span class="material-symbols-outlined text-primary text-2xl">lens_blur</span>
-<span>EVENTOS Escolar</span>
+<body class="bg-[#111111] text-[#e5e2e1] font-body-md antialiased min-h-screen flex flex-col selection:bg-[#005580] selection:text-[#38bdf8] unselectable" oncontextmenu="return false;">
+<!-- TOP APP BAR / HEADER -->
+<header class="bg-[#111111]/95 backdrop-blur-md text-on-surface border-b border-[#005580]/40 sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-4 md:px-8 max-w-[1440px] mx-auto h-16">
+<!-- Left: Brand & Back Links -->
+<div class="flex items-center gap-3 sm:gap-4">
+<a class="flex items-center gap-2 text-sm md:text-base font-bold tracking-tight text-[#38bdf8] hover:text-white transition-colors" href="index.html">
+<span class="material-symbols-outlined text-xl text-[#38bdf8]">photo_camera</span>
+<span class="font-headline-md tracking-wider uppercase text-xs md:text-sm">Sergio Ricardo Molina</span>
 </a>
-<span class="hidden md:inline-block h-4 w-[1px] bg-outline-variant"></span>
-<div class="hidden lg:flex items-center gap-2">
-<span class="text-label-sm font-label-sm tracking-wider text-outline uppercase">Fotógrafo:</span>
-<span class="text-label-md font-label-md text-on-surface font-medium">Sergio Ricardo Molina</span>
+<span class="hidden sm:inline-block h-4 w-[1px] bg-[#005580]/60"></span>
+<a class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#1a1a1a] hover:bg-[#222222] border border-[#005580]/40 text-xs text-on-surface-variant hover:text-white transition-all" href="eventos.html">
+<span class="material-symbols-outlined text-sm text-[#38bdf8]">arrow_back</span>
+<span>Volver a Eventos</span>
+</a>
 </div>
-</div>
-<!-- Navigation Links (From JSON) -->
-<nav class="hidden md:flex items-center gap-space-lg">
-<a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors duration-150" href="#colegios">Colegios</a>
-<a class="border-b-2 border-primary dark:border-secondary-container text-primary dark:text-surface-bright font-label-md text-label-md pb-1" href="#lotes">Lotes y Drive</a>
-<a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors duration-150" href="#marcas">Marcas de Agua</a>
-<a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors duration-150" href="#pedidos">Pedidos WhatsApp</a>
+<!-- Center / Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-xs uppercase tracking-widest text-[#38bdf8] font-semibold border-b-2 border-[#38bdf8] pb-1" href="#">Galería Activa</a>
+<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="eventos.html#colegios">Colegios</a>
+<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="index.html#portafolio">Portafolio</a>
 </nav>
-<!-- Trailing Action Cluster & Mode Indicator -->
-<div class="flex items-center gap-space-sm">
-<!-- Interactive Mode Toggle Simulator for Testing (URL param switcher) -->
-<button class="px-space-sm py-1 rounded-lg border border-outline-variant bg-surface-container-high hover:bg-surface-variant text-label-sm font-label-sm text-secondary flex items-center gap-1.5 transition-all btn-press" id="mode-toggle-btn" onclick="toggleGalleryMode()" title="Cambiar entre modo público y privado con &key=...">
+<!-- Right: Direct WhatsApp Contact & Mode Simulation Badge -->
+<div class="flex items-center gap-2 sm:gap-3">
+<!-- Mode Switcher Pill (Interactive Simulator & Status) -->
+<button class="px-2.5 py-1 rounded-lg border border-[#005580]/60 bg-[#1a1a1a] hover:bg-[#222222] text-xs font-label-md text-[#38bdf8] flex items-center gap-1.5 transition-all btn-press" id="mode-toggle-btn" onclick="toggleGalleryMode()" title="Cambiar entre modo público y privado con &amp;key=...">
 <span class="material-symbols-outlined text-sm" id="mode-toggle-icon">lock</span>
-<span id="mode-toggle-text">Simular &key=...</span>
+<span id="mode-toggle-text">Simular &amp;key=...</span>
 </button>
-<a class="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant text-primary hover:border-primary transition-all text-label-md font-label-md" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
-<span class="material-symbols-outlined text-base">chat</span>
-<span>+54 9 261 317-5222</span>
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580]/60 text-[#38bdf8] hover:border-[#38bdf8] hover:text-white transition-all text-xs font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">chat</span>
+<span class="hidden sm:inline">+54 9 261 317-5222</span>
+<span class="sm:hidden">WhatsApp</span>
 </a>
-<div class="h-9 w-9 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center ml-1">
-<img class="w-full h-full object-cover" data-alt="Close up portrait photograph of professional photographer Sergio Ricardo Molina in high fashion darkroom studio with subtle rim lighting and Hasselblad camera backdrop in deep cyan tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJy5aL0k3egJKLvxq2usCBZE6cP8iWbSgrXXNfp6N305zp2AaJ8N-dzV2s8BeKF7En9b0rMSwTqlu9iHCxVHZ7no_29dN8zXFe0pJWrYL_3BbpN2OmW7PhCGPkbyqPJ56nG7vTWBB-BccHya9GHDlaGqeKT7kFn75RZu0bzW0gCxZnLjKcOBbEcl2ky4AMdrKdjSP1B8L8LYxPoi-plVuAyKSvEhqV_CvCgxbdCj7EnkGUEHywrXvE"/>
-</div>
 </div>
 </div>
 </header>
 <!-- MAIN CANVAS -->
-<main class="flex-1 max-w-container-max w-full mx-auto px-4 md:px-space-lg py-space-xl">
-<!-- GALLERY HEADER & CONTEXT ADAPTIVE HERO -->
-<section class="mb-space-xl pb-space-lg border-b border-surface-container-highest">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
-<div class="space-y-space-xs">
-<!-- Dynamic Badge -->
-<div class="flex items-center gap-space-xs">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm tracking-wider uppercase bg-primary-container text-on-primary-container border border-primary/30" id="gallery-badge">
+<main class="flex-1 max-w-[1440px] w-full mx-auto px-4 md:px-8 py-8">
+<!-- GALLERY CONTEXT HEADER -->
+<section class="mb-8 pb-6 border-b border-[#222222]">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<!-- Status Badge & Batch Code -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]" id="gallery-badge">
 <span class="material-symbols-outlined text-sm">verified</span>
 <span>Galería Oficial Pública</span>
 </span>
-<span class="px-2.5 py-0.5 rounded-md bg-surface-container-high border border-outline-variant text-outline text-label-sm font-label-sm" id="batch-code-badge">
-              LOTE: ESC-2025-STM-B
+<span class="px-2.5 py-1 rounded-md bg-[#1a1a1a] border border-[#333333] text-outline text-xs font-mono" id="batch-code-badge">
+              ID: DRIVE-COL-SANMARTIN
             </span>
 </div>
-<!-- Dynamic Title and School Name -->
-<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="gallery-title">
-            Col. San Martín de Tours • Acto de Graduación & Fiesta
+<!-- Dynamic Event Title -->
+<h1 class="font-headline-lg text-2xl md:text-4xl text-white font-bold tracking-tight" id="gallery-title">
+            Col. San Martín de Tours • Acto de Graduación &amp; Fiesta
           </h1>
-<!-- Description and Subtext -->
-<p class="text-on-surface-variant font-body-md text-body-md max-w-3xl" id="gallery-subtitle">
+<!-- Description / Subtext -->
+<p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">
             Muestra oficial para familias y egresados. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.
           </p>
 </div>
-<!-- Mode-Specific Quick Actions -->
-<div class="hidden flex items-center gap-space-sm" id="header-private-controls">
-<button class="px-space-lg py-space-sm rounded-lg bg-surface-container-high border border-outline-variant text-on-surface text-label-md font-label-md uppercase tracking-wider flex items-center gap-2 hover:bg-surface-variant btn-press" onclick="downloadAllArchive()">
+<!-- Controls for Private / Verified Mode -->
+<div class="hidden flex items-center gap-3" id="header-private-controls">
+<a class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs md:text-sm font-semibold tracking-wider uppercase flex items-center gap-2 transition-all btn-press shadow-md" href="eventos.html">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+<span>Volver a Eventos</span>
+</a>
+<button class="px-4 py-2 rounded-xl bg-[#1a1a1a] hover:bg-[#252525] border border-[#005580] text-[#38bdf8] text-xs md:text-sm font-semibold tracking-wider uppercase flex items-center gap-2 transition-all btn-press" onclick="downloadAllArchive()">
 <span class="material-symbols-outlined text-base">cloud_download</span>
-<span>Descargar Álbum Completo HD</span>
+<span>Descargar Lote Completo HD</span>
 </button>
 </div>
 </div>
-<!-- PUBLIC MODE: Pricing Banners -->
-<div class="mt-space-lg p-space-md rounded-xl bg-surface-container-low border border-outline-variant flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md" id="pricing-announcement">
-<div class="flex items-center gap-space-md">
-<div class="w-10 h-10 rounded-lg bg-primary-container/40 flex items-center justify-center text-primary">
+<!-- PUBLIC MODE ONLY: Official Pricing Banner -->
+<div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]">
 <span class="material-symbols-outlined">payments</span>
 </div>
 <div>
-<div class="text-label-md font-label-md text-on-surface">Tarifas Oficiales 2025:</div>
-<div class="flex items-center gap-3 text-body-md text-on-surface-variant">
-<span>Copia Impresa Premium 15x21 cm: <strong class="text-secondary font-semibold">$7.000</strong></span>
-<span class="text-outline-variant">•</span>
-<span>Archivo Digital HD Master: <strong class="text-secondary font-semibold">$4.200</strong></span>
+<div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2025:</div>
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface">
+<span>Copia Impresa Premium 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span>
+<span class="text-outline/40">•</span>
+<span>Archivo Digital HD Master: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span>
 </div>
 </div>
 </div>
-<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline">
-<span class="material-symbols-outlined text-sm">verified_user</span>
+<div class="flex items-center gap-2 text-xs text-outline font-medium">
+<span class="material-symbols-outlined text-sm text-[#38bdf8]">verified_user</span>
 <span>Entrega calibrada en papel fotográfico satinado</span>
 </div>
 </div>
 </section>
-<!-- FILTER & SORT TOOLBAR -->
-<div class="flex flex-wrap items-center justify-between gap-space-md mb-space-lg pb-space-sm">
-<div class="flex items-center gap-space-xs overflow-x-auto pb-1 max-w-full">
-<button class="px-space-md py-1.5 rounded-lg bg-primary-container text-on-primary-container text-label-md font-label-md whitespace-nowrap">Todas (36)</button>
-<button class="px-space-md py-1.5 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-on-surface text-label-md font-label-md whitespace-nowrap">Entrega de Diplomas (14)</button>
-<button class="px-space-md py-1.5 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-on-surface text-label-md font-label-md whitespace-nowrap">Retratos Familiares (12)</button>
-<button class="px-space-md py-1.5 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-on-surface text-label-md font-label-md whitespace-nowrap">Brindis & Celebración (10)</button>
+<!-- TOOLBAR & STATUS -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-base text-[#38bdf8]">photo_camera</span>
+<span id="gallery-counter-status">Cargando fotografías oficiales...</span>
 </div>
-<div class="flex items-center gap-space-sm text-label-sm font-label-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-base">photo_camera</span>
-<span>Mostrando 36 capturas</span>
+<div class="flex items-center gap-2">
+<span class="text-xs text-outline">Resolución:</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]/40">HD Web 800px / 1600px Master</span>
 </div>
 </div>
-<!-- GALLERY GRID (Bento & Responsive Masonry Frame) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-md" id="photos-grid">
-<!-- PHOTO CARD 1 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0401" data-name="Apertura Ceremonia Oficial" data-src="placeholder">
-<!-- Thumbnail Container -->
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="High school graduation ceremony opening with graduates in formal attire walking into dimly lit theater hall with subtle teal and navy spotlights and cinematic atmospheric haze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel"/>
-<!-- Watermark Layer (Dynamic) -->
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
+<!-- PHOTOS GRID (Dynamic Container) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="photos-grid">
+<!-- Cards will be populated dynamically from Drive API or fallback mock data -->
 </div>
-<!-- Selection Checkbox Overlay (Public Mode Only) -->
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0401', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<!-- Zoom Lightbox Trigger -->
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0401')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<!-- Meta Footer -->
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0401</div>
-<div class="text-label-sm font-label-sm text-outline">f/2.8 • 1/250s • ISO 800</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 2 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0402" data-name="Medalla de Honor Egresado" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="Emotional moment of student receiving honor diploma medal on illuminated school stage with warm spotlighting contrasted by cool ocean blue background tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0402', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0402')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0402</div>
-<div class="text-label-sm font-label-sm text-outline">f/2.0 • 1/400s • ISO 640</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 3 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0403" data-name="Discurso Directora y Alumnos" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="Headmistress delivering inspiring speech at lectern with high school seniors applauding in soft focus foreground under refined ambient theater lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0403', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0403')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0403</div>
-<div class="text-label-sm font-label-sm text-outline">f/2.8 • 1/200s • ISO 1000</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 4 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0404" data-name="Retrato Familiar Escenario" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="Elegant family group portrait on school auditorium stage with graduate holding diploma surrounded by smiling parents under calibrated studio flash illumination" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0404', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0404')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0404</div>
-<div class="text-label-sm font-label-sm text-outline">f/4.0 • 1/160s • ISO 400</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 5 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0405" data-name="Lanzamiento de Birretes" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="High energy shot of graduation caps flying in midair against auditorium chandeliers with students cheering in pure joy and celebration in darkroom aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0405', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0405')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0405</div>
-<div class="text-label-sm font-label-sm text-outline">f/3.2 • 1/500s • ISO 1250</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 6 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0406" data-name="Abrazo entre Compañeros" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="Candid intimate portrait of two graduating best friends hugging warmly after ceremony with soft bokeh lights and rich photographic dynamic range" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0406', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0406')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0406</div>
-<div class="text-label-sm font-label-sm text-outline">f/1.8 • 1/320s • ISO 500</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 7 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0407" data-name="Brindis de Honor Familiar" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="Champagne glasses toast during graduation gala dinner with warm ambient table candles and elegant dark room interior atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0407', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0407')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0407</div>
-<div class="text-label-sm font-label-sm text-outline">f/2.2 • 1/125s • ISO 1600</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
-<!-- PHOTO CARD 8 -->
-<div class="photo-card group relative bg-surface-container rounded-xl overflow-hidden border border-outline-variant shadow-sm transition-all duration-300 hover:border-primary/50" data-id="SRM-0408" data-name="Foto Grupal Promoción 2024" data-src="placeholder">
-<div class="relative aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" data-alt="Entire high school graduating cohort posed formally on sweeping auditorium steps with sharp multi-point architectural lighting and solemn editorial finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ"/>
-<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none">
-<div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
-</div>
-<div class="selection-overlay absolute top-3 right-3 z-20">
-<button class="select-btn w-9 h-9 rounded-lg bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant flex items-center justify-center text-on-surface hover:border-primary transition-all btn-press" onclick="togglePhotoSelection('SRM-0408', event)" title="Seleccionar fotografía">
-<span class="material-symbols-outlined text-lg select-icon">check_box_outline_blank</span>
-</button>
-</div>
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer" onclick="openLightbox('SRM-0408')">
-<span class="px-3 py-1.5 rounded-lg bg-surface/90 text-on-surface border border-outline-variant text-label-md font-label-md flex items-center gap-1.5">
-<span class="material-symbols-outlined text-base">zoom_in</span> Ampliar
-            </span>
-</div>
-</div>
-<div class="p-space-sm flex items-center justify-between bg-surface-container border-t border-surface-container-highest">
-<div>
-<div class="font-headline-sm text-sm text-on-surface font-semibold">SRM-0408</div>
-<div class="text-label-sm font-label-sm text-outline">f/5.6 • 1/125s • ISO 400</div>
-</div>
-<span class="text-label-sm font-label-sm text-secondary font-medium photo-status-tag">Muestra Web</span>
-</div>
-</div>
+<!-- LOADING SPINNER (Hidden after render) -->
+<div class="py-20 flex flex-col items-center justify-center gap-3" id="loading-spinner">
+<div class="w-10 h-10 border-2 border-[#005580] border-t-[#38bdf8] rounded-full animate-spin"></div>
+<p class="text-xs text-outline font-mono">Conectando con Supabase y Google Drive...</p>
 </div>
 </main>
-<!-- PUBLIC MODE: FLOATING SELECTION BAR & DIRECT WHATSAPP CHECKOUT -->
+<!-- PUBLIC MODE ONLY: FLOATING SELECTION BAR & DIRECT WHATSAPP CHECKOUT -->
 <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl z-40 transition-all duration-300 transform translate-y-0" id="public-floating-bar">
-<div class="p-space-md bg-surface-container-high/95 backdrop-blur-lg border border-primary/40 rounded-2xl shadow-[0_12px_32px_rgba(0,0,0,0.7)] flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="p-4 bg-[#1a1a1a]/95 backdrop-blur-xl border border-[#005580] rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.85)] flex flex-col md:flex-row items-center justify-between gap-4">
 <!-- Selection Counter -->
-<div class="flex items-center gap-space-md w-full md:w-auto justify-between md:justify-start">
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+<div class="flex items-center gap-2.5">
 <span class="flex h-3 w-3 relative">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38bdf8] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-[#38bdf8]"></span>
 </span>
-<span class="text-label-md font-label-md uppercase tracking-wider text-on-surface">Selección:</span>
-<span class="px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary-container font-headline-sm text-xs font-bold" id="selected-counter">0 fotos</span>
+<span class="text-xs uppercase tracking-wider font-semibold text-white">Selección:</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#005580] text-[#cae6ff] text-xs font-bold" id="selected-counter">0 fotos</span>
 </div>
-<button class="text-label-sm font-label-sm text-outline hover:text-on-surface underline" onclick="clearAllSelections()">Vaciar</button>
+<button class="text-xs text-outline hover:text-white underline cursor-pointer" onclick="clearAllSelections()">Vaciar</button>
 </div>
 <!-- Price Actions -->
-<div class="flex flex-wrap items-center gap-space-xs sm:gap-space-sm w-full md:w-auto justify-end">
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full md:w-auto justify-end">
 <!-- Option 1: Impresas 15x21 ($7.000) -->
-<button class="flex-1 sm:flex-none px-space-md py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-variant border border-outline-variant text-on-surface text-label-md font-label-md flex items-center justify-center gap-2 btn-press transition-all" onclick="orderViaWhatsApp('impresas')">
-<span class="material-symbols-outlined text-secondary text-base">print</span>
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] border border-[#005580]/50 text-white text-xs font-medium flex items-center justify-center gap-2 btn-press transition-all" onclick="orderViaWhatsApp('impresas')">
+<span class="material-symbols-outlined text-[#38bdf8] text-base">print</span>
 <div class="text-left leading-tight">
-<span class="block">Impresas 15x21</span>
-<span class="text-label-sm text-secondary font-bold">$7.000 c/u</span>
+<span class="block text-xs">Impresas 15x21</span>
+<span class="text-[11px] text-[#38bdf8] font-bold">$7.000 c/u</span>
 </div>
 </button>
 <!-- Option 2: Digital HD ($4.200) - Primary Action -->
-<button class="flex-1 sm:flex-none px-space-lg py-2.5 rounded-xl bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white text-label-md font-label-md font-semibold flex items-center justify-center gap-2 shadow-sm btn-press transition-all" onclick="orderViaWhatsApp('digital')">
+<button class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#005580] hover:bg-[#006ca3] border border-[#38bdf8]/40 text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#005580]/30 btn-press transition-all" onclick="orderViaWhatsApp('digital')">
 <span class="material-symbols-outlined text-base">cloud_download</span>
 <div class="text-left leading-tight">
-<span class="block">Digital HD</span>
-<span class="text-label-sm text-primary-fixed font-bold">$4.200 c/u</span>
+<span class="block text-xs">Digital HD</span>
+<span class="text-[11px] text-[#cae6ff] font-bold">$4.200 c/u</span>
 </div>
 </button>
 </div>
@@ -525,17 +277,17 @@
 <!-- Lightbox Top Controls -->
 <div class="flex items-center justify-between w-full max-w-7xl mx-auto z-20">
 <div class="flex items-center gap-3">
-<span class="text-label-md font-label-md px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant text-primary" id="modal-photo-id">SRM-0401</span>
-<span class="text-on-surface font-body-md text-sm hidden sm:inline" id="modal-photo-title">Apertura Ceremonia Oficial</span>
+<span class="text-xs font-mono px-2.5 py-1 rounded bg-[#1a1a1a] border border-[#005580]/50 text-[#38bdf8]" id="modal-photo-id">SRM-0401</span>
+<span class="text-on-surface text-xs md:text-sm font-medium hidden sm:inline" id="modal-photo-title">Foto en Alta Resolución</span>
 </div>
-<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-3">
 <!-- Modal Quick Select Button (Public mode only) -->
-<button class="px-3 py-1.5 rounded-lg bg-surface-container-high border border-outline-variant hover:border-primary text-on-surface text-label-md font-label-md flex items-center gap-1.5 btn-press" id="modal-select-btn" onclick="toggleModalSelection()">
-<span class="material-symbols-outlined text-base" id="modal-check-icon">add_circle</span>
+<button class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580] hover:border-[#38bdf8] text-on-surface text-xs font-semibold flex items-center gap-1.5 btn-press transition-all" id="modal-select-btn" onclick="toggleModalSelection()">
+<span class="material-symbols-outlined text-base text-[#38bdf8]" id="modal-check-icon">add_circle</span>
 <span id="modal-select-label">Añadir al Pedido</span>
 </button>
 <!-- Close Button -->
-<button class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-on-surface transition-all btn-press" onclick="closeLightbox()" title="Cerrar visor (Esc)">
+<button class="w-9 h-9 rounded-full bg-[#1a1a1a] hover:bg-[#252525] border border-[#333333] flex items-center justify-center text-on-surface transition-all btn-press" onclick="closeLightbox()" title="Cerrar visor (Esc)">
 <span class="material-symbols-outlined text-xl">close</span>
 </button>
 </div>
@@ -543,15 +295,15 @@
 <!-- Center Stage (Photo Frame with Adaptive Watermark) -->
 <div class="relative flex-1 flex items-center justify-center max-w-6xl w-full mx-auto my-2 overflow-hidden select-none" id="lightbox-canvas">
 <!-- Nav Arrows -->
-<button class="absolute left-2 md:left-4 z-30 w-12 h-12 rounded-full bg-surface-container-lowest/70 hover:bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface text-2xl transition-all btn-press" onclick="prevPhoto()">
+<button class="absolute left-2 md:left-4 z-30 w-12 h-12 rounded-full bg-[#111111]/80 hover:bg-[#1a1a1a] border border-[#005580]/50 flex items-center justify-center text-white text-2xl transition-all btn-press shadow-xl" onclick="prevPhoto()">
 <span class="material-symbols-outlined">chevron_left</span>
 </button>
-<button class="absolute right-2 md:right-4 z-30 w-12 h-12 rounded-full bg-surface-container-lowest/70 hover:bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface text-2xl transition-all btn-press" onclick="nextPhoto()">
+<button class="absolute right-2 md:right-4 z-30 w-12 h-12 rounded-full bg-[#111111]/80 hover:bg-[#1a1a1a] border border-[#005580]/50 flex items-center justify-center text-white text-2xl transition-all btn-press shadow-xl" onclick="nextPhoto()">
 <span class="material-symbols-outlined">chevron_right</span>
 </button>
-<!-- The Image -->
-<div class="relative max-h-[80vh] max-w-full flex items-center justify-center rounded-lg overflow-hidden border border-outline-variant/30 shadow-[0_12px_32px_rgba(0,0,0,0.8)]">
-<img class="max-h-[80vh] w-auto object-contain pointer-events-none unselectable" data-alt="High resolution detailed photography captured during the prestigious school graduation event by Sergio Ricardo Molina in artistic darkroom mood" id="modal-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO-AmlvKy0yKfGVRx5tsgckI3FVmSEb2Kz3gPljM0W9JOst5rB4ksGJ8nfQdVS7LyqjKNLX7X2Q0wmjXgrfCJGKTtOlYScz1kQywHMta0JtgjZpXIuMGfIcHYjN1XnOPltxhADvX0Ek06F4G_UfiuQCNpkwFpQ9Zo6xUbU3wvRyo8GK7A9HTPzC3kUXf13xxt5vj73qiDh7lW7BJEe3TOv5Wa613B7TDP9169HsWFUmdH4F9fS3i4p"/>
+<!-- The Image Frame -->
+<div class="relative max-h-[82vh] max-w-full flex items-center justify-center rounded-xl overflow-hidden border border-[#005580]/30 shadow-[0_16px_48px_rgba(0,0,0,0.9)] bg-[#0b0b0b]">
+<img alt="Fotografía en alta resolución" class="max-h-[82vh] w-auto object-contain pointer-events-none unselectable" id="modal-image" src=""/>
 <!-- Modal Watermark Overlay -->
 <div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none" id="modal-watermark">
 <div class="watermark-text text-base md:text-xl font-bold tracking-[0.25em]">
@@ -560,113 +312,295 @@
 </div>
 </div>
 </div>
-<!-- Lightbox Bottom Caption / Hint -->
-<div class="w-full max-w-7xl mx-auto flex items-center justify-between text-label-sm font-label-sm text-outline z-20">
+<!-- Lightbox Bottom Caption / Navigation Hint -->
+<div class="w-full max-w-7xl mx-auto flex items-center justify-between text-xs text-outline z-20">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">swipe</span>
-<span>Usa flechas ◀ ▶ del teclado o desliza en táctil para navegar</span>
+<span class="material-symbols-outlined text-sm text-[#38bdf8]">swipe</span>
+<span>Usa flechas ◀ ▶ del teclado o desliza en pantalla táctil para navegar</span>
 </div>
-<div class="text-on-surface-variant font-mono" id="modal-counter">1 / 8</div>
+<div class="text-[#38bdf8] font-mono font-semibold" id="modal-counter">1 / 8</div>
 </div>
 </div>
-<!-- FOOTER -->
-<footer class="mt-space-4xl border-t border-surface-container-high bg-surface-container-low py-space-xl text-on-surface-variant">
-<div class="max-w-container-max mx-auto px-4 md:px-space-lg flex flex-col md:flex-row items-center justify-between gap-space-lg">
-<div class="space-y-1 text-center md:text-left">
-<div class="font-headline-sm text-on-surface text-base">Sergio Ricardo Molina Fotografía Profesional</div>
-<p class="text-body-md text-outline text-xs">
+<!-- FOOTER (Darkroom aesthetic & Social Links) -->
+<footer class="mt-20 border-t border-[#222222] bg-[#1a1a1a] py-12 text-on-surface-variant">
+<div class="max-w-[1440px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="space-y-1.5 text-center md:text-left">
+<div class="font-headline-sm text-white text-base font-bold tracking-tight">
+          Sergio Ricardo Molina Fotografía Profesional
+        </div>
+<p class="text-xs text-outline max-w-md">
           Coberturas escolares, institucionales y eventos sociales de alta gama en Mendoza y cuyo.
         </p>
+<p class="text-[11px] text-outline/60">
+          © 2025 Sergio Ricardo Molina • Todos los derechos reservados.
+        </p>
 </div>
-<div class="flex flex-wrap items-center justify-center gap-space-md text-label-md font-label-md">
-<a class="text-on-surface hover:text-primary transition-colors flex items-center gap-1" href="#portafolio">
+<!-- Navigation & Social Links -->
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs">
+<a class="text-on-surface hover:text-[#38bdf8] transition-colors flex items-center gap-1" href="eventos.html">
 <span class="material-symbols-outlined text-sm">arrow_back</span>
+<span>Volver a Eventos</span>
+</a>
+<span class="hidden sm:inline text-outline/30">•</span>
+<a class="text-on-surface hover:text-[#38bdf8] transition-colors flex items-center gap-1" href="index.html">
+<span class="material-symbols-outlined text-sm">home</span>
 <span>Volver al Portafolio</span>
 </a>
-<span class="text-outline-variant">•</span>
-<a class="text-secondary hover:underline flex items-center gap-1" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
+<span class="hidden sm:inline text-outline/30">•</span>
+<a class="text-[#38bdf8] hover:underline flex items-center gap-1 font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
 <span class="material-symbols-outlined text-sm">chat</span>
 <span>WhatsApp Oficial: +54 9 261 317-5222</span>
 </a>
 </div>
 </div>
 </footer>
-<!-- SCRIPT: Smart Param Logic, Selection System & Lightbox Controller -->
+<!-- SCRIPT: Supabase Credentials, Drive API, State & Lightbox -->
 <script>
-    // State
-    const photoDatabase = [
-      { id: "SRM-0401", title: "Apertura Ceremonia Oficial", aperture: "f/2.8", shutter: "1/250s", iso: "800" },
-      { id: "SRM-0402", title: "Medalla de Honor Egresado", aperture: "f/2.0", shutter: "1/400s", iso: "640" },
-      { id: "SRM-0403", title: "Discurso Directora y Alumnos", aperture: "f/2.8", shutter: "1/200s", iso: "1000" },
-      { id: "SRM-0404", title: "Retrato Familiar Escenario", aperture: "f/4.0", shutter: "1/160s", iso: "400" },
-      { id: "SRM-0405", title: "Lanzamiento de Birretes", aperture: "f/3.2", shutter: "1/500s", iso: "1250" },
-      { id: "SRM-0406", title: "Abrazo entre Compañeros", aperture: "f/1.8", shutter: "1/320s", iso: "500" },
-      { id: "SRM-0407", title: "Brindis de Honor Familiar", aperture: "f/2.2", shutter: "1/125s", iso: "1600" },
-      { id: "SRM-0408", title: "Foto Grupal Promoción 2024", aperture: "f/5.6", shutter: "1/125s", iso: "400" }
+    // 1. CREDENCIALES EXACTAS Y DEFINITIVAS
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+    // Inicializar cliente Supabase seguro
+    const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
+      ? window.supabase.createClient(SUPABASE_URL.replace(/\/rest\/v1\/?$/, ''), SUPABASE_KEY)
+      : null;
+
+    // Base de datos de fallback / fotos predeterminadas con Google User Content
+    const defaultPhotos = [
+      { id: "SRM-0401", title: "Apertura Ceremonia Oficial", driveId: "AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel", meta: "f/2.8 • 1/250s • ISO 800" },
+      { id: "SRM-0402", title: "Medalla de Honor Egresado", driveId: "AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X", meta: "f/2.0 • 1/400s • ISO 640" },
+      { id: "SRM-0403", title: "Discurso Directora y Alumnos", driveId: "AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ", meta: "f/2.8 • 1/200s • ISO 1000" },
+      { id: "SRM-0404", title: "Retrato Familiar Escenario", driveId: "AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF", meta: "f/4.0 • 1/160s • ISO 400" },
+      { id: "SRM-0405", title: "Lanzamiento de Birretes", driveId: "AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W", meta: "f/3.2 • 1/500s • ISO 1250" },
+      { id: "SRM-0406", title: "Abrazo entre Compañeros", driveId: "AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU", meta: "f/1.8 • 1/320s • ISO 500" },
+      { id: "SRM-0407", title: "Brindis de Honor Familiar", driveId: "AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py", meta: "f/2.2 • 1/125s • ISO 1600" },
+      { id: "SRM-0408", title: "Foto Grupal Promoción", driveId: "AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ", meta: "f/5.6 • 1/125s • ISO 400" }
     ];
 
+    // State
+    let currentPhotos = [...defaultPhotos];
     let selectedPhotos = new Set();
     let currentLightboxIndex = 0;
     let isPrivateMode = false;
+    let galleryMetadata = {
+      titulo: 'Col. San Martín de Tours • Acto de Graduación & Fiesta',
+      id: 'DRIVE-COL-SANMARTIN'
+    };
 
-    // Detect URL params for Supabase / Drive key unlock
-    function initGalleryMode() {
+    // 2. LÓGICA INTELIGENTE SEGÚN EL TIPO DE GALERÍA (PÚBLICA VS PRIVADA)
+    async function initGallery() {
       const urlParams = new URLSearchParams(window.location.search);
-      const hasKey = urlParams.has('key') || urlParams.get('privada') === 'true';
-      setMode(hasKey);
+      const folderId = urlParams.get('id');
+      const paramTitle = urlParams.get('titulo');
+      const paramKey = urlParams.get('key');
+      const paramPrivada = urlParams.get('privada');
+
+      if (paramTitle) {
+        galleryMetadata.titulo = decodeURIComponent(paramTitle);
+        document.getElementById('gallery-title').innerText = galleryMetadata.titulo;
+      }
+
+      if (folderId) {
+        galleryMetadata.id = folderId;
+        document.getElementById('batch-code-badge').innerText = `ID: ${folderId}`;
+      }
+
+      // Verificación en Supabase si hay ID o Key
+      let verifiedPrivate = false;
+
+      if (folderId || paramKey) {
+        if (supabaseClient) {
+          try {
+            // Consulta la tabla singular 'galeria'
+            let query = supabaseClient.from('galeria').select('*');
+            if (folderId) query = query.eq('id', folderId);
+            const { data, error } = await query.maybeSingle();
+
+            if (!error && data) {
+              if (data.titulo) {
+                galleryMetadata.titulo = data.titulo;
+                document.getElementById('gallery-title').innerText = data.titulo;
+              }
+              // Verificar si es privada
+              if (data.es_privada === true || data.password) {
+                if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
+                  verifiedPrivate = true;
+                } else if (paramPrivada === 'true') {
+                  verifiedPrivate = true;
+                }
+              }
+            } else if (paramKey || paramPrivada === 'true') {
+              verifiedPrivate = true;
+            }
+          } catch (e) {
+            console.warn('Consulta Supabase:', e);
+            if (paramKey || paramPrivada === 'true') verifiedPrivate = true;
+          }
+        } else if (paramKey || paramPrivada === 'true') {
+          verifiedPrivate = true;
+        }
+      }
+
+      // 3. CARGA DESDE GOOGLE DRIVE SI HAY FOLDER ID
+      if (folderId && folderId.length > 5 && API_KEY_DRIVE) {
+        await loadPhotosFromDrive(folderId);
+      } else {
+        renderPhotosGrid();
+      }
+
+      applyMode(verifiedPrivate);
+      document.getElementById('loading-spinner').classList.add('hidden');
     }
 
-    function setMode(privateState) {
+    // Google Drive Fetcher con w800 y w1600
+    async function loadPhotosFromDrive(folderId) {
+      try {
+        const query = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/' and trashed = false`);
+        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name,mimeType,imageMediaMetadata)&key=${API_KEY_DRIVE}&pageSize=50`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data && data.files && data.files.length > 0) {
+          currentPhotos = data.files.map((file, idx) => {
+            const fileId = file.id;
+            const aperture = file.imageMediaMetadata?.aperture ? `f/${file.imageMediaMetadata.aperture}` : 'f/2.8';
+            const shutter = file.imageMediaMetadata?.exposureTime ? `${file.imageMediaMetadata.exposureTime}s` : '1/250s';
+            const iso = file.imageMediaMetadata?.isoSpeed ? `ISO ${file.imageMediaMetadata.isoSpeed}` : 'ISO 400';
+
+            return {
+              id: `SRM-${String(idx + 1).padStart(4, '0')}`,
+              title: file.name.replace(/\.[^/.]+$/, ""),
+              driveId: fileId,
+              // Miniaturas ultrarrápidas con w800
+              thumbUrl: `https://lh3.googleusercontent.com/d/${fileId}=w800`,
+              // Modal visor en alta resolución con w1600
+              highUrl: `https://lh3.googleusercontent.com/d/${fileId}=w1600`,
+              meta: `${aperture} • ${shutter} • ${iso}`
+            };
+          });
+        }
+      } catch (err) {
+        console.warn('Error cargando desde Google Drive, usando catálogo local:', err);
+      }
+      renderPhotosGrid();
+    }
+
+    function renderPhotosGrid() {
+      const grid = document.getElementById('photos-grid');
+      grid.innerHTML = '';
+
+      currentPhotos.forEach((photo, index) => {
+        const isSelected = selectedPhotos.has(photo.id);
+        const card = document.createElement('div');
+        card.className = `photo-card group relative bg-[#1a1a1a] rounded-xl overflow-hidden border ${isSelected ? 'border-[#38bdf8]' : 'border-[#005580]/40'} shadow-md transition-all duration-300 hover:border-[#38bdf8]`;
+        card.setAttribute('data-id', photo.id);
+
+        card.innerHTML = `
+          <div class="relative aspect-[4/3] bg-[#0b0b0b] overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" 
+                 src="${photo.thumbUrl}" 
+                 alt="${photo.title}" 
+                 loading="lazy"/>
+            
+            <!-- Marca de agua semitransparente -->
+            <div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none ${isPrivateMode ? 'hidden' : ''}">
+              <div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
+            </div>
+
+            <!-- Botón de selección rápida (Pública) -->
+            <div class="selection-overlay absolute top-3 right-3 z-20 ${isPrivateMode ? 'hidden' : ''}">
+              <button class="select-btn w-9 h-9 rounded-lg ${isSelected ? 'bg-[#38bdf8] text-[#111111]' : 'bg-[#111111]/80 text-white'} backdrop-blur-md border border-[#005580] flex items-center justify-center hover:border-[#38bdf8] transition-all btn-press" 
+                      onclick="togglePhotoSelection('${photo.id}', event)" title="Seleccionar fotografía">
+                <span class="material-symbols-outlined text-lg select-icon">${isSelected ? 'check_box' : 'check_box_outline_blank'}</span>
+              </button>
+            </div>
+
+            <!-- Trigger Lightbox -->
+            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 cursor-pointer" onclick="openLightbox('${photo.id}')">
+              <span class="px-3.5 py-1.5 rounded-lg bg-[#111111]/90 text-[#38bdf8] border border-[#005580] text-xs font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-sm">
+                <span class="material-symbols-outlined text-sm">zoom_in</span> Ampliar HD
+              </span>
+            </div>
+          </div>
+
+          <div class="p-3.5 flex items-center justify-between bg-[#1a1a1a] border-t border-[#262626]">
+            <div>
+              <div class="font-headline-sm text-xs font-bold text-white tracking-wide">${photo.id}</div>
+              <div class="text-[11px] font-mono text-outline">${photo.meta}</div>
+            </div>
+            <span class="text-[11px] font-semibold ${isPrivateMode ? 'text-[#38bdf8]' : 'text-secondary'} photo-status-tag">
+              ${isPrivateMode ? 'HD Master Privado' : 'Muestra Web'}
+            </span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.getElementById('gallery-counter-status').innerText = `Mostrando ${currentPhotos.length} capturas oficiales`;
+    }
+
+    // APLICAR MODO PÚBLICO O PRIVADO
+    function applyMode(privateState) {
       isPrivateMode = privateState;
+
       const watermarkLayers = document.querySelectorAll('.watermark-layer');
       const selectionOverlays = document.querySelectorAll('.selection-overlay');
       const photoStatusTags = document.querySelectorAll('.photo-status-tag');
       const floatingBar = document.getElementById('public-floating-bar');
       const pricingBanner = document.getElementById('pricing-announcement');
       const galleryBadge = document.getElementById('gallery-badge');
-      const galleryTitle = document.getElementById('gallery-title');
       const gallerySubtitle = document.getElementById('gallery-subtitle');
       const privateControls = document.getElementById('header-private-controls');
       const modalSelectBtn = document.getElementById('modal-select-btn');
+      const modalWatermark = document.getElementById('modal-watermark');
       const toggleBtnText = document.getElementById('mode-toggle-text');
       const toggleBtnIcon = document.getElementById('mode-toggle-icon');
 
       if (isPrivateMode) {
-        // 2. MODO PRIVADO (Sesiones privadas desbloqueadas con clave)
+        // MODO PRIVADO: Visor puro sin marcas de agua, sin barra flotante de compras, sin precios
         watermarkLayers.forEach(el => el.classList.add('hidden'));
         selectionOverlays.forEach(el => el.classList.add('hidden'));
+        if (modalWatermark) modalWatermark.classList.add('hidden');
+
         photoStatusTags.forEach(el => {
           el.innerText = 'HD Master Privado';
-          el.classList.replace('text-secondary', 'text-primary');
+          el.classList.remove('text-secondary');
+          el.classList.add('text-[#38bdf8]');
         });
+
         floatingBar.classList.add('translate-y-36', 'opacity-0');
         pricingBanner.classList.add('hidden');
         privateControls.classList.remove('hidden');
         modalSelectBtn.classList.add('hidden');
 
-        galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">lock</span><span>Álbum Privado Exclusivo 🔒</span>`;
-        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm tracking-wider uppercase bg-surface-container-highest text-secondary border border-outline-variant';
-        galleryTitle.innerText = 'Colección Privada Familiar • Sesión Egresados';
-        gallerySubtitle.innerText = 'Acceso concedido mediante token seguro de Supabase / Drive. Visualización completa de archivo en calidad nativa sin marcas de agua.';
+        // Insignia destacada
+        galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">lock</span><span>Álbum Privado · Acceso Verificado</span>`;
+        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]';
+        gallerySubtitle.innerText = 'Acceso exclusivo concedido para egresados y familias. Visualización completa en alta resolución calibrada sin marcas de agua.';
 
         toggleBtnText.innerText = 'Ver Modo Público';
         toggleBtnIcon.innerText = 'lock_open';
       } else {
-        // 1. MODO PÚBLICO (Venta con Marca de Agua)
+        // MODO PÚBLICO: Con marcas de agua, con selección y barra flotante de pedidos WhatsApp
         watermarkLayers.forEach(el => el.classList.remove('hidden'));
         selectionOverlays.forEach(el => el.classList.remove('hidden'));
+        if (modalWatermark) modalWatermark.classList.remove('hidden');
+
         photoStatusTags.forEach(el => {
           el.innerText = 'Muestra Web';
-          el.classList.replace('text-primary', 'text-secondary');
+          el.classList.remove('text-[#38bdf8]');
+          el.classList.add('text-secondary');
         });
+
         floatingBar.classList.remove('translate-y-36', 'opacity-0');
         pricingBanner.classList.remove('hidden');
         privateControls.classList.add('hidden');
         modalSelectBtn.classList.remove('hidden');
 
         galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">verified</span><span>Galería Oficial Pública</span>`;
-        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm tracking-wider uppercase bg-primary-container text-on-primary-container border border-primary/30';
-        galleryTitle.innerText = 'Col. San Martín de Tours • Acto de Graduación & Fiesta';
+        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]';
         gallerySubtitle.innerText = 'Muestra oficial para familias y egresados. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
 
         toggleBtnText.innerText = 'Simular &key=...';
@@ -675,28 +609,40 @@
     }
 
     function toggleGalleryMode() {
-      setMode(!isPrivateMode);
+      applyMode(!isPrivateMode);
     }
 
-    // Photo Selection Logic
+    // SELECCIÓN DE FOTOS (MODO PÚBLICO)
     function togglePhotoSelection(photoId, event) {
       if (event) event.stopPropagation();
       if (isPrivateMode) return;
 
       const card = document.querySelector(`.photo-card[data-id="${photoId}"]`);
-      const icon = card.querySelector('.select-icon');
-      const btn = card.querySelector('.select-btn');
+      const icon = card ? card.querySelector('.select-icon') : null;
+      const btn = card ? card.querySelector('.select-btn') : null;
 
       if (selectedPhotos.has(photoId)) {
         selectedPhotos.delete(photoId);
-        icon.innerText = 'check_box_outline_blank';
-        btn.classList.remove('bg-primary', 'text-on-primary');
-        card.classList.remove('border-primary');
+        if (icon) icon.innerText = 'check_box_outline_blank';
+        if (btn) {
+          btn.classList.remove('bg-[#38bdf8]', 'text-[#111111]');
+          btn.classList.add('bg-[#111111]/80', 'text-white');
+        }
+        if (card) {
+          card.classList.remove('border-[#38bdf8]');
+          card.classList.add('border-[#005580]/40');
+        }
       } else {
         selectedPhotos.add(photoId);
-        icon.innerText = 'check_box';
-        btn.classList.add('bg-primary', 'text-on-primary');
-        card.classList.add('border-primary');
+        if (icon) icon.innerText = 'check_box';
+        if (btn) {
+          btn.classList.remove('bg-[#111111]/80', 'text-white');
+          btn.classList.add('bg-[#38bdf8]', 'text-[#111111]');
+        }
+        if (card) {
+          card.classList.remove('border-[#005580]/40');
+          card.classList.add('border-[#38bdf8]');
+        }
       }
 
       updateSelectionUI();
@@ -706,20 +652,20 @@
       const counter = document.getElementById('selected-counter');
       counter.innerText = `${selectedPhotos.size} foto${selectedPhotos.size === 1 ? '' : 's'}`;
 
-      // Update modal sync if open
-      const currentPhoto = photoDatabase[currentLightboxIndex];
+      const currentPhoto = currentPhotos[currentLightboxIndex];
       if (currentPhoto) {
         const modalSelectLabel = document.getElementById('modal-select-label');
         const modalCheckIcon = document.getElementById('modal-check-icon');
         const modalBtn = document.getElementById('modal-select-btn');
+
         if (selectedPhotos.has(currentPhoto.id)) {
           modalSelectLabel.innerText = 'Quitar del Pedido';
           modalCheckIcon.innerText = 'check_circle';
-          modalBtn.classList.add('bg-primary-container', 'text-white');
+          modalBtn.classList.add('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
         } else {
           modalSelectLabel.innerText = 'Añadir al Pedido';
           modalCheckIcon.innerText = 'add_circle';
-          modalBtn.classList.remove('bg-primary-container', 'text-white');
+          modalBtn.classList.remove('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
         }
       }
     }
@@ -727,35 +673,50 @@
     function clearAllSelections() {
       selectedPhotos.clear();
       document.querySelectorAll('.select-icon').forEach(i => i.innerText = 'check_box_outline_blank');
-      document.querySelectorAll('.select-btn').forEach(b => b.classList.remove('bg-primary', 'text-on-primary'));
-      document.querySelectorAll('.photo-card').forEach(c => c.classList.remove('border-primary'));
+      document.querySelectorAll('.select-btn').forEach(b => {
+        b.classList.remove('bg-[#38bdf8]', 'text-[#111111]');
+        b.classList.add('bg-[#111111]/80', 'text-white');
+      });
+      document.querySelectorAll('.photo-card').forEach(c => {
+        c.classList.remove('border-[#38bdf8]');
+        c.classList.add('border-[#005580]/40');
+      });
       updateSelectionUI();
     }
 
-    // WhatsApp Dispatch
+    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222)
     function orderViaWhatsApp(type) {
       if (selectedPhotos.size === 0) {
-        alert('Por favor selecciona al menos una foto para encargar.');
+        alert('Por favor seleccione al menos una fotografía para armar su pedido.');
         return;
       }
 
       const list = Array.from(selectedPhotos).join(', ');
-      const typeLabel = type === 'impresas' ? 'Fotos Impresas 15x21 cm ($7.000 c/u)' : 'Archivos Digitales HD ($4.200 c/u)';
-      const totalEstimated = type === 'impresas' ? selectedPhotos.size * 7000 : selectedPhotos.size * 4200;
+      const title = galleryMetadata.titulo;
+      const typeLabel = type === 'impresas' ? 'Copia Impresa Premium 15x21 cm ($7.000 c/u)' : 'Archivos Digitales HD Master ($4.200 c/u)';
+      const unitPrice = type === 'impresas' ? 7000 : 4200;
+      const totalEstimated = selectedPhotos.size * unitPrice;
 
-      const message = `Hola Sergio Ricardo Molina, quiero encargar fotos del evento 'Col. San Martín de Tours (LOTE: ESC-2025-STM-B)'.%0A%0A*Tipo de Pedido:* ${typeLabel}%0A*Cantidad:* ${selectedPhotos.size}%0A*Fotos elegidas:* ${list}%0A*Total estimado:* $${totalEstimated.toLocaleString('es-AR')}%0A%0A¿Me confirmas los datos de pago y tiempo de entrega? Muchas gracias.`;
+      const message = `Hola Sergio Ricardo Molina, quiero encargar fotos del evento oficial:%0A` +
+        `*Evento:* ${encodeURIComponent(title)}%0A` +
+        `*ID / Lote:* ${encodeURIComponent(galleryMetadata.id)}%0A%0A` +
+        `*Tipo de Pedido:* ${encodeURIComponent(typeLabel)}%0A` +
+        `*Cantidad:* ${selectedPhotos.size}%0A` +
+        `*Fotos seleccionadas:* ${encodeURIComponent(list)}%0A` +
+        `*Total estimado:* $${totalEstimated.toLocaleString('es-AR')}%0A%0A` +
+        `¿Me confirmas los datos de pago y plazos de entrega? Muchas gracias.`;
 
       const waUrl = `https://wa.me/5492613175222?text=${message}`;
       window.open(waUrl, '_blank');
     }
 
     function downloadAllArchive() {
-      alert('Iniciando descarga segura de archivo ZIP comprimido con las 36 fotos en máxima resolución sin marcas de agua desde Supabase Storage.');
+      alert('Iniciando descarga del archivo ZIP HD sin marcas de agua desde el servidor de almacenamiento seguro.');
     }
 
-    // Lightbox Controls
+    // LIGHTBOX CONTROLLER CON RESOLUCIÓN W1600
     function openLightbox(photoId) {
-      const idx = photoDatabase.findIndex(p => p.id === photoId);
+      const idx = currentPhotos.findIndex(p => p.id === photoId);
       if (idx !== -1) {
         currentLightboxIndex = idx;
         renderLightboxPhoto();
@@ -772,29 +733,39 @@
     }
 
     function renderLightboxPhoto() {
-      const photo = photoDatabase[currentLightboxIndex];
+      const photo = currentPhotos[currentLightboxIndex];
       document.getElementById('modal-photo-id').innerText = photo.id;
       document.getElementById('modal-photo-title').innerText = photo.title;
-      document.getElementById('modal-counter').innerText = `${currentLightboxIndex + 1} / ${photoDatabase.length}`;
+      document.getElementById('modal-counter').innerText = `${currentLightboxIndex + 1} / ${currentPhotos.length}`;
+      
+      const img = document.getElementById('modal-image');
+      img.src = photo.highUrl || photo.thumbUrl;
+
+      const watermark = document.getElementById('modal-watermark');
+      if (watermark) {
+        if (isPrivateMode) watermark.classList.add('hidden');
+        else watermark.classList.remove('hidden');
+      }
+
       updateSelectionUI();
     }
 
     function prevPhoto() {
-      currentLightboxIndex = (currentLightboxIndex - 1 + photoDatabase.length) % photoDatabase.length;
+      currentLightboxIndex = (currentLightboxIndex - 1 + currentPhotos.length) % currentPhotos.length;
       renderLightboxPhoto();
     }
 
     function nextPhoto() {
-      currentLightboxIndex = (currentLightboxIndex + 1) % photoDatabase.length;
+      currentLightboxIndex = (currentLightboxIndex + 1) % currentPhotos.length;
       renderLightboxPhoto();
     }
 
     function toggleModalSelection() {
-      const currentPhoto = photoDatabase[currentLightboxIndex];
+      const currentPhoto = currentPhotos[currentLightboxIndex];
       togglePhotoSelection(currentPhoto.id);
     }
 
-    // Keyboard navigation
+    // Navegación por teclado (flechas y escape)
     window.addEventListener('keydown', (e) => {
       const modal = document.getElementById('lightbox-modal');
       if (!modal.classList.contains('hidden')) {
@@ -804,7 +775,7 @@
       }
     });
 
-    // Touch Swipe Navigation for mobile
+    // Navegación táctil Swipe (deslizar en móvil)
     let touchstartX = 0;
     let touchendX = 0;
     const canvas = document.getElementById('lightbox-canvas');
@@ -819,11 +790,11 @@
     }, false);
 
     function handleGesture() {
-      if (touchendX < touchstartX - 50) nextPhoto();
-      if (touchendX > touchstartX + 50) prevPhoto();
+      if (touchendX < touchstartX - 45) nextPhoto();
+      if (touchendX > touchstartX + 45) prevPhoto();
     }
 
-    // Initialize
-    window.addEventListener('DOMContentLoaded', initGalleryMode);
+    // Inicializar al cargar el DOM
+    window.addEventListener('DOMContentLoaded', initGallery);
   </script>
 </body></html>
