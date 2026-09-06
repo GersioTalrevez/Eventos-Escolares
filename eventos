@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 
-<html class="h-full bg-background text-on-background" lang="es" style=""><head>
+<html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>EVENTOS - Galería Escolar para Padres (Desktop)</title>
-<!-- Fonts -->
+<title>Eventos Escolares | Sergio Ricardo Molina</title>
+<!-- Fonts: Raleway & Manrope -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
+<!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -18,780 +18,290 @@
       theme: {
         extend: {
           "colors": {
-            "on-tertiary-fixed-variant": "#004b73",
-            "secondary-fixed": "#ffdbca",
-            "inverse-surface": "#233144",
-            "primary-container": "#172554",
-            "secondary": "#9b4500",
-            "on-tertiary-fixed": "#001d31",
-            "surface-container": "#e6eeff",
-            "inverse-primary": "#b7c4fd",
-            "on-background": "#0d1c2e",
-            "inverse-on-surface": "#eaf1ff",
-            "on-surface-variant": "#45464f",
-            "background": "#f8f9ff",
-            "surface-container-high": "#dce9ff",
-            "surface-bright": "#f8f9ff",
-            "on-error": "#ffffff",
-            "on-primary": "#ffffff",
-            "tertiary-container": "#002b45",
-            "surface": "#f8f9ff",
-            "on-primary-container": "#808dc2",
-            "surface-container-lowest": "#ffffff",
-            "surface-variant": "#d5e3fc",
-            "primary": "#000f3f",
-            "tertiary-fixed-dim": "#93ccff",
-            "surface-container-low": "#eff4ff",
-            "on-secondary-fixed": "#331200",
-            "surface-tint": "#4f5c8e",
-            "outline-variant": "#c6c5d0",
-            "primary-fixed": "#dce1ff",
-            "on-secondary": "#ffffff",
-            "primary-fixed-dim": "#b7c4fd",
-            "secondary-fixed-dim": "#ffb68e",
-            "on-secondary-fixed-variant": "#763300",
-            "on-primary-fixed": "#071747",
-            "surface-container-highest": "#d5e3fc",
-            "on-primary-fixed-variant": "#374475",
-            "surface-dim": "#ccdbf3",
-            "tertiary-fixed": "#cce5ff",
-            "error-container": "#ffdad6",
-            "on-tertiary-container": "#2f96db",
-            "on-secondary-container": "#682c00",
-            "error": "#ba1a1a",
-            "secondary-container": "#fd8a42",
-            "on-error-container": "#93000a",
-            "on-surface": "#0d1c2e",
-            "on-tertiary": "#ffffff",
-            "tertiary": "#001626",
-            "outline": "#767680"
+            "on-error-container": "#ffdad6",
+            "secondary-fixed": "#cae6ff",
+            "error-container": "#93000a",
+            "primary-fixed-dim": "#91cdfe",
+            "on-tertiary": "#4c2700",
+            "primary-fixed": "#cbe6ff",
+            "secondary": "#9bccf4",
+            "inverse-primary": "#1e638f",
+            "surface-tint": "#91cdfe",
+            "on-secondary": "#00344f",
+            "surface-dim": "#131313",
+            "on-primary-container": "#8ec9fa",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-container": "#8dbee6",
+            "outline-variant": "#41474e",
+            "on-tertiary-container": "#ffb36e",
+            "surface-container-low": "#1c1b1b",
+            "outline": "#8b9199",
+            "secondary-fixed-dim": "#9bccf4",
+            "on-primary": "#003350",
+            "surface-bright": "#3a3939",
+            "on-tertiary-fixed": "#2e1500",
+            "surface-variant": "#353534",
+            "primary": "#91cdfe",
+            "on-primary-fixed-variant": "#004b72",
+            "surface-container-highest": "#353534",
+            "tertiary-fixed": "#ffdcc1",
+            "on-surface": "#e5e2e1",
+            "surface": "#131313",
+            "tertiary-fixed-dim": "#ffb878",
+            "surface-container-lowest": "#0e0e0e",
+            "background": "#111111",
+            "on-surface-variant": "#c0c7cf",
+            "surface-container": "#222222",
+            "error": "#ffb4ab",
+            "surface-container-high": "#2a2a2a",
+            "on-primary-fixed": "#001e30",
+            "on-error": "#690005",
+            "tertiary-container": "#794303",
+            "on-secondary-fixed": "#001e30",
+            "primary-container": "#005580",
+            "on-background": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "secondary-container": "#124d70",
+            "on-secondary-fixed-variant": "#0e4b6d",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "tertiary": "#ffb878"
           },
           "borderRadius": {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
           },
           "spacing": {
-            "space-xs": "0.5rem",
-            "gutter-mobile": "1rem",
-            "space-3xl": "4rem",
-            "space-sm": "0.75rem",
-            "space-md": "1rem",
-            "space-3xs": "0.125rem",
-            "gutter-desktop": "1.5rem",
-            "container-max": "80rem",
-            "space-xl": "2rem",
+            "space-2xs": "0.25rem",
             "space-2xl": "3rem",
+            "space-xl": "2rem",
             "space-lg": "1.5rem",
-            "space-2xs": "0.25rem"
+            "gutter-mobile": "1rem",
+            "space-4xl": "6rem",
+            "space-md": "1rem",
+            "container-max": "1200px",
+            "gutter-desktop": "2rem",
+            "gutter-tablet": "1.5rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4.5rem",
+            "space-sm": "0.75rem"
           },
           "fontFamily": {
-            "body-md": ["Manrope", "sans-serif"],
-            "headline-lg": ["Source Serif 4", "serif"],
+            "headline-lg": ["Raleway", "sans-serif"],
             "label-md": ["Manrope", "sans-serif"],
-            "headline-md": ["Source Serif 4", "serif"],
-            "headline-lg-mobile": ["Source Serif 4", "serif"],
-            "title-md": ["Manrope", "sans-serif"],
-            "display-hero-mobile": ["Source Serif 4", "serif"],
-            "body-sm": ["Manrope", "sans-serif"],
+            "headline-md": ["Raleway", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
             "label-sm": ["Manrope", "sans-serif"],
-            "body-lg": ["Manrope", "sans-serif"],
-            "headline-sm": ["Source Serif 4", "serif"],
-            "display-hero": ["Source Serif 4", "serif"]
-          },
-          "fontSize": {
-            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
-            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
-            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
-            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
-            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
-            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
-            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
-            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+            "display-hero": ["Raleway", "sans-serif"],
+            "headline-sm": ["Raleway", "sans-serif"],
+            "body-lg": ["Manrope", "sans-serif"]
           }
         }
       }
     }
   </script>
 <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
+    .tactile-btn {
+      transition: transform 120ms cubic-bezier(0.2, 0, 0, 1), background-color 150ms ease, border-color 150ms ease;
     }
-    .watermark-pattern {
-      background-image: repeating-linear-gradient(
-        -35deg,
-        rgba(255, 255, 255, 0.22) 0px,
-        rgba(255, 255, 255, 0.22) 2px,
-        transparent 2px,
-        transparent 90px
-      );
-      pointer-events: none;
-    }
-    .watermark-stamp {
-      text-shadow: 0 1px 3px rgba(0, 15, 63, 0.8), 0 0 8px rgba(0, 0, 0, 0.6);
-      transform: rotate(-24deg);
-      user-select: none;
-      pointer-events: none;
-    }
-    .protected-photo {
-      user-select: none;
-      -webkit-user-select: none;
-      -webkit-touch-callout: none;
-      -webkit-user-drag: none;
-    }
-    .protected-photo img {
-      -webkit-user-drag: none;
-      user-select: none;
-      -webkit-user-select: none;
-      pointer-events: auto;
+    .tactile-btn:active {
+      transform: scale(0.98);
     }
   </style>
 </head>
-<body class="h-full flex flex-col font-body-md text-body-md bg-background antialiased selection:bg-surface-variant selection:text-primary">
-<!-- TOP APP BAR / BRAND HEADER -->
-<header class="bg-surface shadow-sm sticky top-0 z-40">
-<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
-<!-- Brand & School Crest Anchor -->
-<div class="flex items-center gap-space-md">
-<a class="flex items-center gap-space-xs text-title-md font-title-md font-bold tracking-tight text-primary" href="EVENTOS - Directorio Escolar.html">
-<span class="material-symbols-outlined text-primary text-[26px]">photo_camera</span>
-<span class="">EVENTOS Escolar</span>
+<body class="bg-[#111111] text-[#e5e2e1] antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-white">
+<!-- ================= 1. ENCABEZADO MINIMALISTA ================= -->
+<header class="sticky top-0 z-50 bg-[#111111]/90 border-b border-white/10 backdrop-blur-md">
+<div class="flex justify-between items-center w-full px-6 max-w-[1200px] mx-auto h-16">
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-white font-label-md text-sm transition-colors tactile-btn" href="portafolio.html">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver al Portafolio</span>
 </a>
-<div class="h-5 w-px bg-outline-variant"></div>
-<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-outline text-[18px]">verified_user</span>
-<span class="font-semibold text-on-surface">Colegio Belgrano Day School</span>
-<span class="text-outline">· Egresados 2026</span>
-</div>
-</div>
-<!-- Access Status & Quick Actions -->
-<div class="flex items-center gap-space-md">
-<!-- Verified Key Badge -->
-<div class="flex items-center gap-space-2xs bg-surface-container-low px-space-sm py-space-2xs rounded-lg border border-outline-variant/60">
-<span class="material-symbols-outlined text-[#059669] text-[16px]">check_circle</span>
-<span class="text-label-sm font-label-sm text-on-surface font-mono tracking-wider">CLAVE: BDS-2026-ACT</span>
-<span class="text-body-sm font-body-sm text-outline mx-space-3xs">•</span>
-<span class="text-body-sm font-body-sm text-outline hover:text-primary cursor-pointer transition-colors duration-150">Cambiar</span>
-</div>
-<!-- Return to School Index -->
-<a class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors duration-150 px-space-sm py-space-xs rounded-lg hover:bg-surface-container" href="EVENTOS - Directorio Escolar.html"><span class="material-symbols-outlined text-[18px]">school</span><span class="">Directorio</span></a>
-<div class="h-5 w-px bg-outline-variant"></div>
-<!-- Selected Count / Cart Indicator -->
-<div class="flex items-center gap-space-xs bg-surface-container-highest/60 text-primary px-space-md py-space-xs rounded-lg">
-<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-<span class="font-label-md text-label-md"><span class="font-bold text-secondary" id="cart-counter">3</span> seleccionadas</span>
-</div>
-<!-- Direct WhatsApp Quick Order Button -->
-<a class="flex items-center gap-space-2xs bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#128C7E] px-space-md py-space-xs rounded-lg font-label-md text-label-md border border-[#128C7E]/20 transition-all duration-150" href="https://wa.me/5492613175222?text=Hola%2C%20quisiera%20consultar%20por%20fotos%20de%20Belgrano%20Day%20School%202026" target="_blank">
-<span class="material-symbols-outlined text-[18px]">chat</span>
-<span class="">Pedir x WhatsApp</span>
-</a>
+<div class="text-sm font-medium tracking-wide text-on-surface-variant">
+<span class="text-white font-semibold">Sergio Ricardo Molina</span>
+<span class="mx-1.5 opacity-40">·</span>
+<span class="text-primary tracking-wider uppercase text-xs font-semibold">EVENTOS</span>
 </div>
 </div>
 </header>
-<!-- SUB-HEADER: EVENT OVERVIEW & HERO CONTEXT -->
-<section class="bg-surface-container-lowest border-b border-outline-variant/60 py-space-lg">
-<div class="max-w-container-max mx-auto px-space-lg flex flex-col md:flex-row md:items-center md:justify-between gap-space-md">
-<div>
-<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-outline mb-space-2xs">
-<a class="hover:text-primary hover:underline transition-colors" href="EVENTOS - Directorio Escolar.html">Colegios</a>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="">Belgrano Day School</span>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-on-surface font-semibold">Gala de Egresados &amp; Misa 2026</span>
-</div>
-<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Galería Oficial de Egresados</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-space-3xs">
-          Fotografías de estudio y cobertura fotoperiodística de entrega de diplomas, bendición y retratos protocolares.
-        </p>
-</div>
-<!-- Price Transparency Pill -->
-<div class="flex items-center gap-space-md bg-surface-container-low p-space-md rounded-xl border border-outline-variant/70">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined text-[24px]">local_printshop</span>
-</div>
-<div>
-<div class="font-label-sm text-label-sm text-outline">PAPEL MATE 15x21 CM</div>
-<div class="font-title-md text-title-md text-primary font-bold">$7.000 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">c/u</span></div>
-</div>
-</div>
-<div class="h-8 w-px bg-outline-variant"></div>
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[24px]">download</span>
-</div>
-<div>
-<div class="font-label-sm text-label-sm text-outline">DESCARGA DIGITAL ULTRA HD</div>
-<div class="font-title-md text-title-md text-primary font-bold">$4.200 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">c/u</span></div>
-</div>
-</div>
-</div>
-</div>
+<!-- ================= MAIN CONTENT ================= -->
+<main class="flex-1 max-w-[1200px] mx-auto w-full px-6 py-12 flex flex-col gap-12">
+<!-- ================= 2. TÍTULO SOBRIO Y LIMPIO ================= -->
+<section class="text-center max-w-2xl mx-auto pt-4">
+<h1 class="text-3xl md:text-4xl font-headline-lg font-semibold tracking-tight text-white mb-3">
+      Eventos Escolares
+    </h1>
+<p class="text-on-surface-variant text-base font-normal">
+      Acceso a galerías fotográficas institucionales y recuerdos de egresados.
+    </p>
 </section>
-<!-- CONTROLS, SEARCH, FACIAL RECOGNITION & FILTERS -->
-<section class="bg-surface sticky top-16 z-30 border-b border-outline-variant/70 shadow-sm py-space-sm">
-<div class="max-w-container-max mx-auto px-space-lg flex flex-col gap-space-sm">
-<!-- Primary Search and Filter Bar -->
-<div class="flex items-center justify-between gap-space-md">
-<!-- Search Correlative Number or Facial Selfie -->
-<div class="flex items-center gap-space-sm flex-1 max-w-xl">
+<!-- ================= 3. DESBLOQUEO POR CÓDIGO PIN SIMPLE ================= -->
+<!-- ================= 5. FILTROS DE CATEGORÍA ================= -->
+<section class="flex items-center justify-center gap-2 pt-2">
+<button class="px-4 py-1.5 rounded-full bg-[#004466] border border-[#005580] text-white text-xs font-semibold tactile-btn">
+      Todos
+    </button>
+<button class="px-4 py-1.5 rounded-full bg-[#222222] border border-white/10 text-on-surface-variant hover:text-white hover:border-white/30 text-xs font-medium tactile-btn transition-colors">
+      Egresados
+    </button>
+<button class="px-4 py-1.5 rounded-full bg-[#222222] border border-white/10 text-on-surface-variant hover:text-white hover:border-white/30 text-xs font-medium tactile-btn transition-colors">
+      Primaria
+    </button>
+</section>
+<!-- ================= 4. GRILLA LIMPIA DE COLEGIOS Y EVENTOS ================= -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Tarjeta 1: Belgrano Day School -->
+<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
+<img alt="Belgrano Day School Egresados" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="High-contrast editorial documentary photo of high school seniors during an elegant graduation ceremony at Belgrano Day School. Young students in formal blazer uniforms standing outdoors in soft twilight, holding diplomas. Deep blue color grading with authentic film grain and crisp darkroom aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsIFqo7dLhlv9BEWTawIWmIDeUmk2bJ0CKL9Nv76b6cp-52hN3Xx-7l4XnVE5g-UkNufASOwTECq8tSAlTx-Un72aEL6EXBsF8p9BYo_rOCYczCJ2etYD0V3er-e0KC7HB8yz8Fx4r2trpjLjSM1I2Oer1MXPgki6nfVpd9Xkp7mNMcyTpbujZRtVqZf2yBAHmEH3bPWmaVwyKNfpuAvDtaSvY9qc-P3AaUW4AklXWjhnws0MoE7hs"/>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
+            Belgrano Day School — Egresados 2026
+          </h3>
+<p class="text-xs text-outline mt-1 font-medium">
+            Nivel Secundario · Noviembre 2026
+          </p>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="bds-galeria.html">
+<span>Ver Galería</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Tarjeta 2: Colegio San Martín de Tours -->
+<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
+<img alt="Colegio San Martín de Tours" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Atmospheric documentary photography of a children's choir and primary school concert inside the historic auditorium of Colegio San Martín de Tours. Warm tungsten rim lighting cutting through dark deep ambient theater space, captured with artistic precision and fine detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzab9iyku_cNSJyn3TZR2gfXmIxg3qolpOMFwxccdlZ6LtFxl4J_-VU-y7VijSZWgpsUEd20Dxs-_lwSPLWyjJ6Z9-YXhNklEo_X6SSMRgwzOpazjHCvkh0S5rm-uywY9E1Vm---MGUfeWC84PdaFoGre6XC2-1vihRGF_2xVEl1p7Is_kLN_P0V-L03q7NLLKK__BuFHw3IscXpiERnqD6JuY9ATy3OVA54wjQjKmSNDBURD7MII_"/>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
+            Col. San Martín de Tours — Concierto Anual
+          </h3>
+<p class="text-xs text-outline mt-1 font-medium">
+            Nivel Primario · Diciembre 2025
+          </p>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="smt-galeria.html">
+<span>Ver Galería</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Tarjeta 3: St. George's College -->
+<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
+<img alt="St. George's College" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Dynamic athletic sports photograph during rugby and field hockey intercollegiate games at St. George's College. Action shot capturing raw emotion, grass droplets frozen in air, dramatic sunlight backlighting students in traditional striped school sports kits. Darkroom exhibition tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPm7Sh214xR_d_SNUV8AtfTaWQEkSUHEk4hdb97mCQ0V3C1Y-mOUiYOVGmmxG31tRXtsHkmy3Rg2ZQZH72XuNtHs01ZnDwDPIISOtTfz-nyA__r50Yo3vfgU8W0Qq-jwDKeYNtzZFxc25OpEQcfmiBM-8b2rrR_CLTA46dVCAhy11oP0Z-FN-6zv-s2q8XOytL_ljzux69bsiIhyKNmjSKy1NglR7tybq1Z3c9asC8ljhApZCIh0xu"/>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
+            St. George's College — Sports Day
+          </h3>
+<p class="text-xs text-outline mt-1 font-medium">
+            Intercolegiales · Octubre 2025
+          </p>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="stg-galeria.html">
+<span>Ver Galería</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Tarjeta 4: Colegio Marín -->
+<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
+<img alt="Colegio Marín" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Serene fine art school portraiture of elementary students in classroom uniforms during an outdoor science fair under mature oak trees. Soft natural sunlight filtered through green leaves, minimal shadows, darkroom tonality, professional color grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkjzSecMo6txlO0nv5vkheK9HlJgaVQqv3eGEBK15BjQd1KTtWYrfOg96PVfq9f0lGVyiKsAnDGa0yZLrEFmdexI1MeskzrZEf9hQJ_Bk4-UhXGoM6vU3Ttbt9UZhfzvmdMvJet0aVbCH-bTuLHsR_K1ZGhlpVG_1DiRAZ3-YGyMFsWv0aGlrhf1ddCad0feSsq9am0xvz3vOYpYGCy4ickbd6PZx1nG7u8TknNVzxXSdcEi_aRP6I"/>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
+            Colegio Marín — Feria Anual
+          </h3>
+<p class="text-xs text-outline mt-1 font-medium">
+            Nivel Primario y Secundario · Septiembre 2025
+          </p>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="#marin">
+<span>Ver Galería</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Tarjeta 5: Michael Ham Memorial College -->
+<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
+<img alt="Michael Ham Memorial College" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Sophisticated black and white archival portrait of schoolgirls during traditional badge ceremony at Michael Ham College. Elegant lighting, sharp focus on school crest embroidery, shallow depth of field, high-end gallery darkroom look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSXj67Xv67iPEZ52m7Nj3tPU6L7tvisarnR0oD8WqVJ-_8lOgNbhduJTaoUFLomfGv1QqSqTHSTqbzHOuRy7jFcHmGwBXzk0uzhjV5ljTpXGq3WqChh8WwdGmpULeB8ngBKpph-LdPFLHbYK2Qw3AQF3JHC7rsB0sf5c1j5RnjZTg33-zl4dBW_F_Y6U3BlHx9F2_8LG_ZcSRQvJMJFq3jsRpzvHlbnmchLIuO3tVPRyXT916Q22KC"/>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
+            Michael Ham — Entrega de Banderas
+          </h3>
+<p class="text-xs text-outline mt-1 font-medium">
+            Acto Institucional · Octubre 2025
+          </p>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="#michaelham">
+<span>Ver Galería</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Tarjeta 6: Northlands School -->
+<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
+<img alt="Northlands School Musical" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Vibrant theatrical musical stage performance at Northlands School. Secondary students in period costumes under moody blue and gold stage spotlights. Exceptional tonal latitude, deep velvety blacks, and razor sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Pxqz8EO-wSWLfH0npdSPT9cMFR0S9vjDDbbJaUQLbcwvKe6d7ufxSR6aSeKtvoR5Lq2ey2E-15yu4QKv-vPbT9L4hdmeWA7eAoaUr4qmRCz2vMOHGW9TMg4zA8ODffXTBiJo6NPnLWu6q8LLGizP_JEb2dMXrMZgDFa0RC2cOVvrSAI2RRErO4jSLzI3xmKUp9VdoRlqWDCZLRiUnXSnvYuc1TmeYNJnfsNJWA4HPJZcG-kvQi7m"/>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
+            Northlands School — Annual Musical
+          </h3>
+<p class="text-xs text-outline mt-1 font-medium">
+            Nivel Secundario · Noviembre 2025
+          </p>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="#northlands">
+<span>Ver Galería</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+</section><section class="w-full max-w-lg mx-auto">
+<div class="bg-[#222222] border-2 border-[#005580] rounded-xl p-5 shadow-lg">
+<form class="flex flex-col sm:flex-row gap-2.5" onsubmit="event.preventDefault();">
 <div class="relative flex-1">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
-<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-10 pr-space-md py-2 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Buscar por número de foto (ej. #0421, #0488)..." type="text"/>
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">key</span>
+<input class="w-full bg-[#161616] border border-white/10 rounded-lg pl-10 pr-3 py-2.5 text-sm text-white placeholder:text-outline/70 focus:outline-none focus:border-[#005580] focus:ring-1 focus:ring-[#005580] uppercase tracking-wider font-mono transition-colors" placeholder="Ingresá tu código o PIN" type="text"/>
 </div>
-<!-- Selfie / Face Matching button -->
-<button class="flex items-center gap-space-2xs bg-surface-container-high hover:bg-surface-container-highest text-primary border border-outline-variant/80 px-space-md py-2 rounded-lg font-label-md text-label-md transition-all duration-150 shrink-0">
-<span class="material-symbols-outlined text-[18px]">face</span>
-<span class="">Buscar por Selfie</span>
-<span class="bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded ml-1">IA</span>
+<button class="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-sm font-semibold tactile-btn transition-colors shrink-0" type="submit">
+<span>Ingresar</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </button>
-</div>
-<!-- Sorting and Preview Size controls -->
-<div class="flex items-center gap-space-md shrink-0">
-<!-- Sort Dropdown -->
-<div class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface-variant">
-<span class="text-outline">Ordenar:</span>
-<select class="bg-surface-container-lowest border border-outline-variant rounded-lg px-space-sm py-1.5 text-on-surface font-label-md text-label-md focus:outline-none focus:border-primary">
-<option>Número correlativo (# asc)</option>
-<option>Cronológico por acto</option>
-<option>Retratos individuales primero</option>
-<option>Fotos grupales primero</option>
-</select>
-</div>
-<!-- View Mode Toggle -->
-<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg p-0.5">
-<button class="p-1 rounded bg-primary-container text-surface-bright transition-colors" id="view-large-btn" title="Cuadrícula Grande">
-<span class="material-symbols-outlined text-[20px]">grid_view</span>
-</button>
-<button class="p-1 rounded text-outline hover:text-on-surface transition-colors" id="view-compact-btn" title="Cuadrícula Compacta">
-<span class="material-symbols-outlined text-[20px]">view_comfy</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Cohort Division / Event Category Pills -->
-<div class="flex items-center gap-space-xs overflow-x-auto pb-1 text-label-md font-label-md">
-<button class="bg-primary text-on-primary px-space-md py-1.5 rounded-full shrink-0 shadow-sm">
-          Todos los Retratos <span class="ml-1 opacity-80 text-body-sm font-normal">(1.420)</span>
-</button>
-<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-primary border border-outline-variant/80 px-space-md py-1.5 rounded-full shrink-0 transition-colors">
-          5to Año "A" <span class="ml-1 text-outline font-normal">(340)</span>
-</button>
-<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-primary border border-outline-variant/80 px-space-md py-1.5 rounded-full shrink-0 transition-colors">
-          5to Año "B" <span class="ml-1 text-outline font-normal">(325)</span>
-</button>
-<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-primary border border-outline-variant/80 px-space-md py-1.5 rounded-full shrink-0 transition-colors">
-          Entrega de Diplomas &amp; Medallas <span class="ml-1 text-outline font-normal">(410)</span>
-</button>
-<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-primary border border-outline-variant/80 px-space-md py-1.5 rounded-full shrink-0 transition-colors">
-          Misa de Egresados <span class="ml-1 text-outline font-normal">(215)</span>
-</button>
-<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-primary border border-outline-variant/80 px-space-md py-1.5 rounded-full shrink-0 transition-colors">
-          Retratos con Familiares <span class="ml-1 text-outline font-normal">(130)</span>
-</button>
-<div class="ml-auto flex items-center gap-space-xs text-body-sm font-body-sm text-outline shrink-0">
-<a class="hover:text-primary hover:underline transition-colors" href="EVENTOS - Directorio Escolar.html">Colegios</a>
-<span class="">Fotos protegidas con marca de agua previa</span>
-</div>
-</div>
+</form>
 </div>
 </section>
-<!-- MAIN GALLERY CANVAS -->
-<main class="flex-1 max-w-container-max mx-auto w-full px-space-lg py-space-xl pb-44 select-none">
-<!-- Photo Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-lg" id="gallery-grid">
-<!-- PHOTO CARD 1 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<!-- Photo Canvas with Security Overlay -->
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Editorial portrait of a high school graduate in formal academic uniform smiling warmly in front of an educational crest with soft natural studio lighting in an authoritative heirloom photography style." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh7qHw5expU0e-q_w2KlMhN30L42l9L0pSB0fqsiSZ6exBGhBNAcrvLSlD2IqKGItQJ4XuhJKumO1mMo64qII96YemL2QzXolpctC_ezwn-H_OfAWsMJaBCkKxX0D4VD0pg-dWfGGqQdPTgaK3nOFANKthZ-gmWRjMssrRUUoA-W6FMR9Onud2THMmMi0iQWb-gQ3FRmD2awvTQxaF2LSZ6hJBQj6R2gAprYlDPmspD8XNFpfCsHZQ"/>
-<!-- Watermark Layer -->
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0421
-            </div>
-</div>
-<!-- Favorite Quick Pin -->
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-primary flex items-center justify-center shadow transition-colors" title="Marcar como favorita">
-<span class="material-symbols-outlined text-[20px]">favorite_border</span>
-</button>
-<!-- Frame Code Identifier -->
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0421 · 5to A
-          </span>
-</div>
-<!-- Purchase & Selection Options -->
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Retrato Individual</span>
-<span class="text-on-surface font-medium">10:42 AM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Federico M. Rossi</div>
-</div>
-<!-- Selection Controls -->
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<!-- Digital Copy Checkbox -->
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<!-- Physical Print 15x21 Checkbox -->
-<label class="flex items-center justify-between p-space-2xs rounded bg-secondary-fixed/30 hover:bg-secondary-fixed/50 cursor-pointer transition-colors border border-secondary/20">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-secondary font-semibold">
-<input checked="" class="rounded text-secondary focus:ring-secondary border-secondary/40 h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 2 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Graduation ceremony moment capturing a female high school student receiving her diploma with solemn pride, classic warm collegiate lighting in pristine gallery composition." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOAKre8Uy9-qQSGF9Co58_NlFfymtBTh6DCjeQqtBxBMG-OEPIiLx5bPbf-dpXSgvPiDAbdM5jjSsshj5f8oKZsCyUSUV61hRN46Jfg4yVgpgMHAL2NIbdTsgENU6OXXrkxV6TUXF3FCQ8vH1qNaBDXMcSjnF-RK1Vrnb6QXeBpQqQ2oKGuMzm5FG1pwITztUz858o6hFmROPaejFFcfu1U8a-5CBmr49S6RKtji4zbqpdRIfSp0zR"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0422
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-secondary flex items-center justify-center shadow transition-colors" title="Favorita">
-<span class="material-symbols-outlined text-[20px]" style='font-variation-settings: "FILL" 1;'>favorite</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0422 · Diplomas
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Entrega de Diploma</span>
-<span class="text-on-surface font-medium">11:15 AM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Lucía Santillán</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input checked="" class="rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 3 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Group of secondary school students in formal blazers laughing together holding their graduation banners in a collegiate courtyard with balanced natural sunlight and crisp focus." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP2A8ZiSZbjtCLVN9HxpgeQU3UY2Kv-h1I8GMoUoys2PDdQZ_LHklVDW8MrJtQZpfb8ZyTN5d4j_XG-02HM_NgLvpg7lzRAgz9z2cFRQWevAI04wH-7gcIg0r6RQIrbU4AZ3Xw1Cw7d7R3OwdXgstoxhFcumkeEib_iD6kclud5v3oP1A37Xkex3KzDfCqgTD19eoMYUegZYpfeYgeRFzFr6KF62cA1wJwsEy_YzBZ_yfsAHP5H2K_"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0423
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-primary flex items-center justify-center shadow transition-colors" title="Marcar como favorita">
-<span class="material-symbols-outlined text-[20px]">favorite_border</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0423 · 5to B
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Grupal de Egresados</span>
-<span class="text-on-surface font-medium">11:50 AM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Grupo 5to B Amigos</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 4 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Solemn mass for graduating students inside an institutional chapel with stained glass filtered sunlight and warm reverent atmosphere captured in heirloom editorial photography." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLA4k30MnxQngGFVkBW3CIL3M9q_Yhq6UI1FTMFh2Of8dDItEmlDKfWSWMlqLY2xer9KND7UDRsvRgSNe8WXpmDzsp5Zh_raiVo460I8nEH_clER0mwcwmDHpRiZkJ5qyiC7ixRDzwAZHvDR1R2Inabg4I6lkyHCU8m_jwVUN20iGGChFHp-df4HpVnFB7oHw43STDAoZXOmBvWOCOFWoCWi3yyfoM2EZ8XR2ATuYg2UW4Qyl2yKOd"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0424
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-primary flex items-center justify-center shadow transition-colors" title="Marcar como favorita">
-<span class="material-symbols-outlined text-[20px]">favorite_border</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0424 · Misa
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Misa Solemne</span>
-<span class="text-on-surface font-medium">09:30 AM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Bendición de Egresados</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 5 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Emotional embrace between a graduating senior and proud parents after the ceremony with genuine sentimental feeling and natural light photography in deep institutional navy and ivory tones." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ze_2fn9bky96ombyuYGjUM7_ITv5Eq6Z7yLmYA418CMigA0RceVz7mE_AQN-lvDM0xhUGGn3hgVIazv1-q-5pqwH6yiS5IJqYcSpgNMa06vsBft9kp50B_6xisNv4Vw8BE3SXHaOYXEQuQUBYKKYOHSu2O2pAFnAVjP1H_bgVlViThGkT30dL6Bhkf7JW0lyLX4GSYk_K6emlncFgoxzoQ2yvTIsmEg5b7aWJhRmZN-LrMX0RM8C"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0425
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-secondary flex items-center justify-center shadow transition-colors" title="Favorita">
-<span class="material-symbols-outlined text-[20px]" style='font-variation-settings: "FILL" 1;'>favorite</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0425 · Familia
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Retrato con Familiares</span>
-<span class="text-on-surface font-medium">12:10 PM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Familia Morales Gómez</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded bg-secondary-fixed/30 hover:bg-secondary-fixed/50 cursor-pointer transition-colors border border-secondary/20">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-secondary font-semibold">
-<input checked="" class="rounded text-secondary focus:ring-secondary border-secondary/40 h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 6 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Close up academic portrait of a male graduate student fixing his necktie with calm confidence before going on stage in a classic school hall setting with warm directional light." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9jXbA6gwry9uG8xzZ5GBtcTtIFBB0kyJ5G7LD5RGSOGnhSxOj7d8hxIGRxWEXbkXIfm8ZHd1GM6WkQSvW8s_Vzv-g8IylhilzUI-JLh961t32WTQlgl0lgjhxMgksGCUzONRPVafptv-NY4-IzLvQbRZIeBmTQrER__oBK-vVDDg76bGNfOd_D5WqzvFfYDPTuYVY9nrzL9Yn5LM09L1Qpt77l7KMDnY48Ij831Q3KICE7-zoK_bc"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0426
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-primary flex items-center justify-center shadow transition-colors" title="Marcar como favorita">
-<span class="material-symbols-outlined text-[20px]">favorite_border</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0426 · 5to A
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Retrato Individual</span>
-<span class="text-on-surface font-medium">10:55 AM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Joaquín Álvarez</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 7 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Full division graduation group photo seated on the grand collegiate stairs of the school with ceremonial banners, prestigious architectural background and immaculate daylight clarity." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAND2DwH4txeYzu4Vsdh257rXmQbpCPSYdPwNxYEkK05n0nv6x6D-wDMtNmKVkpRAP_SoKjg1uldQsY09QUi6ucts00xaJ_188X48LIoS4bP-Y59BUtcMb8TXgBTKUfGqXYHDhr7Ts2ii4vTOARaifqLhCd13oXYK9iwsL5ehyenKxzdL3dZDFDX8FjtwcymHIayUwm7Gvm8mmZJlna1QcUNsYQ5OR2xG4hTyV0Yi9yiJlAPTEvjmy8"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0427
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-primary flex items-center justify-center shadow transition-colors" title="Marcar como favorita">
-<span class="material-symbols-outlined text-[20px]">favorite_border</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0427 · Cuadro General
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Cuadro Oficial Completo</span>
-<span class="text-on-surface font-medium">12:30 PM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Promoción 2026 Escalinatas</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-<!-- PHOTO CARD 8 -->
-<div class="group bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
-<div class="relative aspect-[3/4] bg-surface-container-high overflow-hidden protected-photo select-none" oncontextmenu="return false;">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" data-alt="Spontaneous celebratory moment with graduates throwing their mortarboard caps into the air outdoors in the school garden with genuine joy and dynamic high-speed shutter composition." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYGvbY9LKKu_CFQQKzMxYncxlVZYQ7TjwbL9VsHUjI8l87UHSmGIVzyOgygs5yM7uWxo7gsY9_RhzcQHFFalBhnzdug2-FKr1GFqS8f7z2D3Cs_CF_D3XyaVbP2ekN9M6Jktu_-OjKJF3ZiT54sIDmeFaUQNtit79W2SGzl4bc4rzoppkfpvgAlGwQzCicEStDUrKgtKqWcpA64boEE3UUvBTcQzcqUqo5bfmwkU4X_EwRC-MBf28d"/>
-<div class="absolute inset-0 watermark-pattern flex items-center justify-center">
-<div class="watermark-stamp font-headline-md text-headline-md font-bold text-white/50 tracking-widest uppercase">
-              EVENTOS #0428
-            </div>
-</div>
-<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-primary flex items-center justify-center shadow transition-colors" title="Marcar como favorita">
-<span class="material-symbols-outlined text-[20px]">favorite_border</span>
-</button>
-<span class="absolute bottom-3 left-3 bg-primary/85 text-surface-bright font-mono text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide backdrop-blur-sm">
-            #0428 · Festejos
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between bg-surface-container-lowest">
-<div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1">
-<span class="">Celebración Final</span>
-<span class="text-on-surface font-medium">12:45 PM</span>
-</div>
-<div class="text-title-md font-title-md font-bold text-primary">Lanzamiento de Birretes</div>
-</div>
-<div class="pt-space-xs border-t border-outline-variant/50 flex flex-col gap-space-2xs">
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Archivo Digital HD</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-primary">$4.200</span>
-</label>
-<label class="flex items-center justify-between p-space-2xs rounded hover:bg-surface-container-low cursor-pointer transition-colors">
-<span class="flex items-center gap-space-2xs text-body-sm font-body-sm text-on-surface">
-<input class="rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
-<span class="">Papel Mate 15x21 cm</span>
-</span>
-<span class="font-label-sm text-label-sm font-bold text-secondary">$7.000</span>
-</label>
-</div>
-</div>
-</div>
-</div>
-<!-- Pagination & Proof Integrity Notice -->
-<div class="mt-space-2xl pt-space-lg border-t border-outline-variant/70 flex flex-col sm:flex-row items-center justify-between gap-space-md text-body-sm font-body-sm text-outline">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[18px]">verified</span>
-<span class="">Fotografías calibradas para revelado químico Fuji Crystal Archive mate sin brillo residual.</span>
-</div>
-<!-- Pagination Buttons -->
-<div class="flex items-center gap-space-xs">
-<button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors disabled:opacity-40" disabled="">
-          Anterior
-        </button>
-<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-semibold">1</button>
-<button class="w-8 h-8 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">2</button>
-<button class="w-8 h-8 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">3</button>
-<span class="px-1">...</span>
-<button class="w-8 h-8 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">18</button>
-<button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">
-          Siguiente
-        </button>
-</div>
-</div>
+<!-- ================= 6. BOTONES TEMÁTICOS CON BORDES CROMÁTICOS ================= -->
+<section class="grid grid-cols-3 gap-3 max-w-lg mx-auto w-full pt-4">
+<a class="tactile-btn flex items-center justify-center py-2.5 px-3 bg-[#222222] border-2 border-[#4ade80] rounded-xl text-white text-[0.9rem] font-semibold tracking-wide hover:bg-[#252825] transition-all shadow-md" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
+<span>Chat 💬</span>
+</a>
+<a class="tactile-btn flex items-center justify-center py-2.5 px-3 bg-[#222222] border-2 border-[#facc15] rounded-xl text-white text-[0.9rem] font-semibold tracking-wide hover:bg-[#282722] transition-all shadow-md" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
+<span>Catálogo 📦</span>
+</a>
+<a class="tactile-btn flex items-center justify-center py-2.5 px-3 bg-[#222222] border-2 border-[#fb923c] rounded-xl text-white text-[0.9rem] font-semibold tracking-wide hover:bg-[#282422] transition-all shadow-md" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
+<span>IG 📷</span>
+</a>
+</section>
 </main>
-<!-- FLOATING ORDER SUMMARY / STICKY BOTTOM TRAY (CART & CHECKOUT) -->
-<aside class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant/80 shadow-[0_-8px_25px_rgba(23,37,84,0.08)] py-space-sm px-space-lg" id="summary-tray">
-<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
-<!-- Selection Breakdown Indicator -->
-<div class="flex items-center gap-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-primary-container text-surface-bright flex items-center justify-center">
-<span class="material-symbols-outlined text-[26px]">photo_library</span>
-</div>
-<div>
-<div class="flex items-center gap-space-xs">
-<span class="font-title-md text-title-md font-bold text-primary">3 fotos seleccionadas</span>
-<span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full">Pedido en curso</span>
-</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-space-md mt-0.5">
-<span class=""><strong class="text-primary font-semibold">1</strong> Digital HD ($4.200)</span>
-<span class="">•</span>
-<span class=""><strong class="text-secondary font-semibold">2</strong> Impresas 15x21 ($14.000)</span>
-</div>
-</div>
-</div>
-<div class="hidden lg:block h-10 w-px bg-outline-variant"></div>
-<!-- Subtotal calculation -->
-<div class="hidden lg:flex flex-col">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Subtotal estimado</span>
-<span class="font-headline-sm text-headline-sm font-bold text-primary">$18.200 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">ARS</span></span>
-</div>
-</div>
-<!-- Direct Action Buttons: WhatsApp & Mercado Pago -->
-<div class="flex items-center gap-space-sm w-full md:w-auto">
-<!-- WhatsApp Direct Print Order Button -->
-<a class="flex-1 md:flex-none flex items-center justify-center gap-space-xs bg-[#25D366] hover:bg-[#1EBE5D] text-white px-space-lg py-3 rounded-lg font-label-md text-label-md font-bold shadow transition-all duration-150 active:scale-[0.98]" href="https://wa.me/5492613175222?text=Hola%2C%20quiero%20encargar%20mis%20fotos%20impresas%20de%20Belgrano%20Day%20School%20(Colegio%20BDS-2026-ACT)" target="_blank"><span class="material-symbols-outlined text-[20px]">chat</span><span class="">Encargar Impresas por WhatsApp ($7.000 c/u)</span></a>
-<!-- Mercado Pago Digital Purchase Button -->
-<a class="flex-1 md:flex-none flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-lg py-3 rounded-lg font-label-md text-label-md font-bold shadow-md hover:shadow-lg transition-all duration-150 active:scale-[0.98]" href="EVENTOS - Checkout Mercado Pago.html"><span class="material-symbols-outlined text-[20px]">payment</span><span class="">Comprar Digitales con Mercado Pago</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
-</div>
-</div>
-</aside>
-<!-- TOAST DE PROTECCIÓN DE FOTOS -->
-<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 opacity-0 -translate-y-2" id="protection-toast">
-<div class="flex items-center gap-2.5 bg-primary/95 text-surface-bright px-4 py-2.5 rounded-full shadow-xl border border-white/20 backdrop-blur-md">
-<span class="material-symbols-outlined text-secondary text-[20px]">lock</span>
-<span class="text-label-md font-label-md font-semibold tracking-wide">Galería protegida · EVENTOS Escolar</span>
-</div>
-</div>
-<!-- MICRO-INTERACTIONS & SECURITY JAVASCRIPT -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Toggle Grid View Modes
-      const grid = document.getElementById('gallery-grid');
-      const largeBtn = document.getElementById('view-large-btn');
-      const compactBtn = document.getElementById('view-compact-btn');
-
-      if (largeBtn && compactBtn && grid) {
-        largeBtn.addEventListener('click', () => {
-          grid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-lg";
-          largeBtn.classList.add('bg-primary-container', 'text-surface-bright');
-          largeBtn.classList.remove('text-outline');
-          compactBtn.classList.remove('bg-primary-container', 'text-surface-bright');
-          compactBtn.classList.add('text-outline');
-        });
-
-        compactBtn.addEventListener('click', () => {
-          grid.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-space-sm";
-          compactBtn.classList.add('bg-primary-container', 'text-surface-bright');
-          compactBtn.classList.remove('text-outline');
-          largeBtn.classList.remove('bg-primary-container', 'text-surface-bright');
-          largeBtn.classList.add('text-outline');
-        });
-      }
-
-      // Elegant Protection Toast Functionality
-      const toast = document.getElementById('protection-toast');
-      let toastTimer;
-      function showProtectionToast() {
-        if (!toast) return;
-        toast.classList.remove('opacity-0', '-translate-y-2');
-        toast.classList.add('opacity-100', 'translate-y-0');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => {
-          toast.classList.remove('opacity-100', 'translate-y-0');
-          toast.classList.add('opacity-0', '-translate-y-2');
-        }, 2200);
-      }
-
-      // Security measure: prevent context menu (right click) on gallery and protected areas
-      const photoContainers = document.querySelectorAll('.protected-photo, #gallery-grid');
-      photoContainers.forEach(container => {
-        container.addEventListener('contextmenu', e => {
-          e.preventDefault();
-          showProtectionToast();
-          return false;
-        });
-      });
-
-      // Disable dragstart on all images and photos
-      document.querySelectorAll('img, .protected-photo').forEach(el => {
-        el.addEventListener('dragstart', e => {
-          e.preventDefault();
-          return false;
-        });
-      });
-
-      // Prevent save and inspection keyboard shortcuts (Ctrl+S, Ctrl+U, Ctrl+P, F12, Ctrl+Shift+I/J/C)
-      window.addEventListener('keydown', e => {
-        const isCtrlOrCmd = e.ctrlKey || e.metaKey;
-        const key = e.key.toLowerCase();
-        if (
-          (isCtrlOrCmd && (key === 's' || key === 'u' || key === 'p')) ||
-          (isCtrlOrCmd && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) ||
-          e.key === 'F12'
-        ) {
-          e.preventDefault();
-          showProtectionToast();
-          return false;
-        }
-      });
-    });
-  </script>
+<!-- ================= 7. COPYRIGHT MINIMALISTA ================= -->
+<footer class="border-t border-white/10 mt-12 py-8">
+<div class="max-w-[1200px] mx-auto px-6 text-center text-xs text-outline">
+    © 2025 Sergio Ricardo Molina. Todos los derechos reservados.
+  </div>
+</footer>
 </body></html>
