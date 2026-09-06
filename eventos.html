@@ -250,19 +250,11 @@
 </div>
 </div>
 </footer>
-<!-- JAVASCRIPT: Supabase directo, filtro estricto de eventos públicos reales y formateo de portadas -->
+<!-- JAVASCRIPT: Supabase directo con credenciales exactas y verificadas -->
 <script>
-    const SUPABASE_URL = "https://your-supabase-project.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummyKeyForPublicClientInterface";
-
-    let supabaseClient = null;
-    try {
-      if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      }
-    } catch (err) {
-      console.warn("Supabase initialization notice:", err);
-    }
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL.replace(/\/rest\/v1\/?$/, ''), SUPABASE_KEY) : null;
 
     let currentGalleries = [];
 
@@ -276,7 +268,7 @@
 
     // Regla de Portada:
     // 1. Si se cargó portada_url: la formatea (si es de Drive a lh3.googleusercontent.com/d/[ID]=w800; si es directa la usa)
-    // 2. Si no tiene portada manual, usa la primera foto de Drive lh3.googleusercontent.com/d/[folderId]=w800
+    // 2. Si no tiene portada manual, usa la primera foto o referencia de Drive lh3.googleusercontent.com/d/[folderId]=w800
     function resolveCoverUrl(item) {
       const manualCover = (item.portada_url || item.imagen_portada || item.cover_url || "").trim();
       if (manualCover) {
@@ -328,6 +320,8 @@
             if (realtimeBadge) {
               realtimeBadge.classList.replace("hidden", "inline-flex");
             }
+          } else if (error) {
+            console.warn("Supabase query note:", error.message);
           }
         }
 
@@ -362,7 +356,7 @@
       }
     }
 
-    // Renderizado dinámico de tarjetas públicas con enlace galeria.html?id=[folderId]&titulo=[titulo]
+    // Renderizado dinámico de tarjetas públicas con enlace galeria.html?id=FOLDER_ID
     function renderGalleries(items) {
       const gridEl = document.getElementById("eventsGrid");
       const emptyEl = document.getElementById("emptyState");
@@ -381,8 +375,8 @@
         const dateText = item.fecha || item.anio || item.ciclo || "Oficial";
         const coverUrl = resolveCoverUrl(item);
         
-        // Enlace exacto: galeria.html?id=[folderId]&titulo=[titulo]
-        const albumUrl = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titleText)}`;
+        // Enlace hacia galeria.html?id=FOLDER_ID
+        const albumUrl = `galeria.html?id=${encodeURIComponent(folderId)}`;
 
         return `
           <article class="group bg-[#161616] border border-[#262626] hover:border-[#005580] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
@@ -466,7 +460,7 @@
       }
     }
 
-    // Desbloqueo de eventos privados y redirección a galeria.html con parámetro key
+    // Desbloqueo de eventos privados y redirección a galeria.html
     async function verifyPrivateCode() {
       const codeInput = document.getElementById("galleryCode");
       const messageBox = document.getElementById("privateMessage");
@@ -498,7 +492,6 @@
 
         if (targetGallery) {
           const folderId = extractDriveFolderId(targetGallery) || targetGallery.id || "";
-          const titulo = targetGallery.titulo || targetGallery.nombre || targetGallery.colegio || "Privado";
 
           messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 block";
           messageBox.innerHTML = `
@@ -509,10 +502,9 @@
           `;
 
           setTimeout(() => {
-            window.location.href = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(inputVal)}`;
+            window.location.href = `galeria.html?id=${encodeURIComponent(folderId)}&key=${encodeURIComponent(inputVal)}`;
           }, 600);
         } else {
-          // Si no se verifica de antemano, redirige con el parámetro key para validación directa en galeria.html
           messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-primary/40 bg-[#005580]/20 text-white block";
           messageBox.innerHTML = `
             <div class="flex items-center gap-space-xs">
