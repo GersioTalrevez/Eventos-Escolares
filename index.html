@@ -1,396 +1,538 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>EVENTOS - Sergio Molina Fotógrafo</title>
-<!-- Favicon Sergio Molina -->
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/jpeg">
-<!-- Google Fonts: Manrope & Source Serif 4 -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "page-bg": "#111111",
-            "surface-card": "#222222",
-            "surface-card-hover": "#282828",
-            "card-border": "#333333",
-            "primary-blue": "#004466",
-            "primary-blue-border": "#005580",
-            "primary-blue-hover": "#005580",
-            "text-main": "#ffffff",
-            "text-muted": "#aaaaaa",
-            "text-subtle": "#777777"
-          },
-          fontFamily: {
-            "body-md": ["Manrope", "sans-serif"],
-            "headline-sm": ["Source Serif 4", "serif"],
-            "headline-md": ["Source Serif 4", "serif"],
-            "headline-lg": ["Source Serif 4", "serif"]
-          },
-          boxShadow: {
-            "dark-card": "0 4px 10px rgba(0,0,0,0.3)"
-          }
-        }
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sergio Ricardo Molina | Fotografía</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      padding: 20px 16px 40px;
+      max-width: 960px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    
+    header {
+      text-align: center;
+      padding: 24px 0 20px;
+    }
+    .avatar-header {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 12px;
+      border: 2px solid #005580;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      display: block;
+    }
+    h1 {
+      font-size: 1.65rem;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    h1 span {
+      display: block;
+      font-size: 0.95rem;
+      color: #aaaaaa;
+      margin-top: 5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    /* VISTA 1: GRID DE CATEGORÍAS */
+    .grid-categorias {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-categorias {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
       }
     }
-  </script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-    .material-symbols-outlined {
-      font-family: 'Material Symbols Outlined';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 20px;
-      line-height: 1;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .proof-watermark-overlay {
-      background-image: repeating-linear-gradient(
-        -45deg,
-        rgba(255, 255, 255, 0.08) 0,
-        rgba(255, 255, 255, 0.08) 1px,
-        transparent 0,
-        transparent 28px
-      );
-    }
-    body {
-      min-height: max(884px, 100dvh);
-      background-color: #111111;
+
+    .card-categoria {
+      background: #222222;
+      border: 2px solid #005580;
+      border-radius: 12px;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 1px;
       color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      text-decoration: none;
+      user-select: none;
     }
-    .no-scrollbar::-webkit-scrollbar {
+
+    .card-categoria:hover {
+      background: #282828;
+      border-color: #0077b3;
+    }
+
+    .card-categoria:active {
+      transform: scale(0.96);
+      background: #1f1f1f;
+    }
+
+    .card-icon {
+      font-size: 26px;
+      color: #0088cc;
+    }
+
+    /* BOTÓN ESPECIAL EVENTOS ESCOLARES DESTACADO */
+    .card-eventos {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
+      border: 2px solid #38bdf8;
+      box-shadow: inset 0 0 0 2px #111111, 0 6px 18px rgba(0,100,200,0.25);
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+    }
+    .card-eventos:hover {
+      background: linear-gradient(135deg, #22334f 0%, #112236 100%);
+      border-color: #7dd3fc;
+    }
+    .badge-destacado {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: #0284c7;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .card-eventos h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-eventos p {
+      font-size: 0.85rem;
+      color: #bae6fd;
+      margin-top: 4px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      text-align: center;
+    }
+
+    /* BOTÓN ESPECIAL CLIENTES CON DOBLE BORDE */
+    .btn-clientes {
+      grid-column: 1 / -1;
+      background: #004466;
+      border: 2px solid #005580;
+      box-shadow: inset 0 0 0 3px #222222, 0 4px 12px rgba(0,0,0,0.35);
+      min-height: 90px;
+    }
+    .btn-clientes:hover {
+      background: #005580;
+    }
+
+    /* SECCIÓN REDES Y CATÁLOGO */
+    .redes-sociales {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-red {
+      background: #222222;
+      border-radius: 12px;
+      padding: 14px 6px;
+      text-align: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-red:active {
+      transform: scale(0.96);
+      background: #2a2a2a;
+    }
+
+    /* BORDES DE REDES SOCIALES */
+    .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
+    .btn-cat { border: 2px solid #facc15; color: #facc15; }
+    .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
+
+    /* VISTA 2 y 3: GALERÍA Y SECCIONES INTERNAS */
+    .contenedor-galeria { display: none; }
+    .cabecera-galeria {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #282828;
+    }
+    .btn-volver {
+      background: #222222;
+      color: #ffffff;
+      border: 1px solid #005580;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-volver:hover { background: #2f2f2f; }
+    .titulo-categoria { font-size: 1.3rem; font-weight: 300; letter-spacing: 1px; }
+
+    /* GALERÍA DE FOTOS */
+    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    @media (min-width: 600px) {
+      .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    }
+    @media (min-width: 768px) {
+      .galeria { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    }
+    
+    .galeria img { 
+      width: 100%; 
+      aspect-ratio: 1 / 1; 
+      object-fit: cover; 
+      background: #000000; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: transform 0.2s ease, opacity 0.2s ease; 
+      border: 1px solid #2a2a2a;
+    }
+    
+    .galeria img:hover { transform: scale(1.02); opacity: 0.95; }
+    .galeria img:active { transform: scale(0.98); }
+
+    .cargando { text-align: center; color: #888888; grid-column: 1 / -1; padding: 50px 0; font-size: 0.95rem; }
+
+    /* MODAL VISOR */
+    .modal {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .modal img {
+      max-width: 92%;
+      max-height: 85vh;
+      object-fit: contain;
+      user-select: none;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    
+    .btn-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2.2rem;
+      padding: 14px 20px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      user-select: none;
+      z-index: 1001;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: background 0.2s ease;
+    }
+    .btn-nav:hover { background: rgba(0,85,128,0.7); }
+    .btn-prev { left: 16px; }
+    .btn-next { right: 16px; }
+    .btn-cerrar {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 4px 14px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      line-height: 1;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #222222;
+      color: #666666;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 600px) {
+      .btn-nav { display: none; }
     }
   </style>
 </head>
-<body class="bg-[#111111] text-[#ffffff] font-body-md antialiased min-h-screen flex flex-col pb-28 selection:bg-[#004466] selection:text-white">
-<!-- Header / Barra Superior -->
-<header class="sticky top-0 z-40 bg-[#111111]/95 backdrop-blur-md w-full border-b border-[#333333] shadow-md">
-<div class="w-full px-4 md:px-6 mx-auto max-w-6xl flex justify-between items-center py-3">
-<!-- Marca con Avatar de Sergio Ricardo Molina -->
-<a class="flex items-center gap-3 group" href="https://sergiomolina-fotografia.netlify.app/">
-<img alt="Sergio Ricardo Molina" class="w-10 h-10 rounded-full object-cover border-2 border-[#005580] shadow-sm flex-shrink-0 group-hover:border-[#91cdfe] transition-all" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
-<div class="flex flex-col">
-<span class="text-sm md:text-base font-bold tracking-tight text-[#ffffff] font-headline-sm leading-tight group-hover:text-[#91cdfe] transition-colors">Eventos Escolares y Sesiones Fotográficas</span>
-<span class="text-[12px] text-[#aaaaaa] font-medium">de Sergio Molina, Fotógrafo</span>
-</div>
-</a>
-<!-- Acciones de Cabecera -->
-<div class="flex items-center gap-2">
-<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-[#222222] text-[#ffffff] border border-[#333333] hover:border-[#005580] hover:bg-[#282828] transition text-xs font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.3)]" onclick="document.getElementById('pin-section').scrollIntoView({behavior: 'smooth'})">
-<span class="material-symbols-outlined text-[18px] text-[#ffb878]">vpn_key</span>
-<span class="hidden xs:inline">Ingresar código</span>
-</button>
-<a class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-[#004466] text-white border border-[#005580] hover:bg-[#005580] transition text-xs font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.3)]" href="https://sergiomolina-fotografia.netlify.app/" rel="noopener noreferrer" target="_blank" title="Sitio Web de Sergio Molina">
-<span class="material-symbols-outlined text-[17px]">language</span>
-<span class="">Portfolio</span>
-</a>
-</div>
-</div>
+<body>
+<!-- VISTA 1: MENÚ PRINCIPAL (PORTAFOLIO COMO HOME) -->
+<div id="vista-menu">
+<header>
+<img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
+<h1>Sergio Ricardo Molina<span>Fotografía Profesional</span></h1>
 </header>
-<!-- Contenido Principal -->
-<main class="flex-1 w-full max-w-6xl mx-auto px-4 md:px-6 space-y-8 pt-6">
-<!-- Hero Section -->
-
-<!-- Banner Acceso PIN Alumno -->
-<section class="space-y-4 pt-2" id="como-funciona-section">
-<div class="flex items-center justify-between">
-<h2 class="text-lg md:text-xl font-bold font-headline-sm text-[#ffffff]">Cómo funciona para familias</h2>
-<span class="text-xs text-[#aaaaaa]">Proceso simple y seguro</span>
+<main>
+<!-- ACCESO DESTACADO A EVENTOS ESCOLARES -->
+<div class="grid-categorias"><div class="card-categoria" onclick="abrirSeccionTexto()">
+<span class="material-symbols-outlined card-icon">person</span>
+<span>Sobre mí</span>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-<!-- Paso 1 -->
-<div class="bg-[#222222] rounded-[12px] p-5 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] space-y-2">
-<div class="w-10 h-10 rounded-[10px] bg-[#111111] border border-[#005580] text-[#91cdfe] flex items-center justify-center font-bold text-sm">
-      01
-    </div>
-<h3 class="text-base font-bold text-[#ffffff]">Encontrá tu evento</h3>
-<p class="text-xs text-[#aaaaaa] leading-relaxed">
-      Buscá el colegio, curso o acto escolar en este directorio oficial o ingresá con el código PIN provisto por el establecimiento.
-    </p>
+<div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
+<span class="material-symbols-outlined card-icon">auto_awesome</span>
+<span>Ensayos</span>
 </div>
-<!-- Paso 2 -->
-<div class="bg-[#222222] rounded-[12px] p-5 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] space-y-2">
-<div class="w-10 h-10 rounded-[10px] bg-[#111111] border border-[#005580] text-[#91cdfe] flex items-center justify-center font-bold text-sm">
-      02
-    </div>
-<h3 class="text-base font-bold text-[#ffffff]">Elegí tus fotos favoritas</h3>
-<p class="text-xs text-[#aaaaaa] leading-relaxed">
-      Navegá la muestra digital protegida con marca de agua y seleccioná las tomas grupales e individuales que quieras conservar.
-    </p>
+<div class="card-categoria" onclick="abrirGaleria('Paisajes', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
+<span class="material-symbols-outlined card-icon">landscape</span>
+<span>Paisajes</span>
 </div>
-<!-- Paso 3 -->
-<div class="bg-[#222222] rounded-[12px] p-5 border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)] space-y-2">
-<div class="w-10 h-10 rounded-[10px] bg-[#111111] border border-[#005580] text-[#91cdfe] flex items-center justify-center font-bold text-sm">
-      03
-    </div>
-<h3 class="text-base font-bold text-[#ffffff]">Pedí impresas o digitales</h3>
-<p class="text-xs text-[#aaaaaa] leading-relaxed">
-      Recibí copias en papel fotográfico de alta durabilidad en el colegio o descargá al instante las versiones digitales en alta definición.
-    </p>
+<div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
+<span class="material-symbols-outlined card-icon">face</span>
+<span>Retratos</span>
 </div>
+<div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
+<span class="material-symbols-outlined card-icon">photo_camera</span>
+<span>Sesiones</span>
 </div>
-</section><section class="bg-[#222222] text-[#ffffff] rounded-[12px] p-5 md:p-6 shadow-[0_4px_10px_rgba(0,0,0,0.3)] border border-[#333333]" id="pin-section">
-<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-<div class="space-y-1.5 max-w-md">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#ffb878] text-[22px]">pin</span>
-<h2 class="text-base md:text-lg text-[#ffffff] font-bold">
-  ¿Tenés el código de la credencial del alumno?
-</h2>
-</div>
-<p class="text-xs text-[#aaaaaa] leading-relaxed">
-  Ingresá el PIN impreso en la tarjeta que entregó la escuela para desbloquear la galería privada y retratos individuales protegidos.
-</p>
-</div>
-<div class="w-full md:w-auto flex flex-col sm:flex-row gap-2.5 items-stretch">
-<input class="w-full sm:w-48 text-center uppercase tracking-widest font-mono font-bold bg-[#111111] text-[#ffffff] rounded-[10px] px-3.5 py-2 border border-[#333333] focus:border-[#005580] focus:outline-none text-sm placeholder:text-[#666666]" maxlength="14" placeholder="EJ: SJ-2026-9A" type="text">
-<a class="px-4 py-2 rounded-[10px] bg-[#004466] hover:bg-[#005580] text-white text-xs font-bold border border-[#005580] active:scale-95 transition flex items-center justify-center gap-1.5 whitespace-nowrap shadow-[0_4px_10px_rgba(0,0,0,0.3)]" href="galeria.html">
-<span class="material-symbols-outlined text-[18px]">lock_open</span>
-<span class="">Ver galería privada</span>
+<a class="card-categoria" href="eventos-escolares.html" style="position: relative; overflow: hidden;">
+<span class="material-symbols-outlined card-icon" style="color: #38bdf8;">school</span>
+<span>Eventos</span>
+</a>
+<div class="card-categoria btn-clientes" onclick="pedirPassword()"><span class="material-symbols-outlined" style="font-size: 24px; color:#38bdf8;">lock</span><span style="font-size: 1.05rem; font-weight: 600;">Acceso Privado Clientes 🔒</span><span style="font-size: 0.78rem; color:#93c5fd; font-weight: 400;">Ingresá la clave de tu sesión o colegio</span></div></div>
+<!-- REDES SOCIALES Y CONTACTO -->
+<div class="redes-sociales">
+<a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
+<span class="material-symbols-outlined">chat</span>
+<span>Chat WhatsApp</span>
+</a>
+<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Catálogo</span>
+</a>
+<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
+<span class="material-symbols-outlined">photo_camera_back</span>
+<span>Instagram</span>
 </a>
 </div>
-</div>
-</section>
-<!-- Filtros por Nivel -->
-<section class="space-y-3">
-<div class="flex items-center justify-between">
-<h3 class="text-sm font-bold uppercase tracking-wider text-[#aaaaaa]">Explorar por Nivel Educativo</h3>
-<span class="text-xs text-[#777777]">Galerías activas 2026</span>
-</div>
-<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#004466] text-white border border-[#005580] text-xs font-semibold flex items-center gap-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
-<span class="material-symbols-outlined text-[16px]">grid_view</span>
-<span class="">Todos los niveles</span>
-</button>
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#222222] text-[#aaaaaa] hover:text-[#ffffff] hover:bg-[#282828] border border-[#333333] text-xs font-semibold transition flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px] text-[#ffb878]">child_care</span>
-<span class="">Nivel Inicial / Jardín</span>
-</button>
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#222222] text-[#aaaaaa] hover:text-[#ffffff] hover:bg-[#282828] border border-[#333333] text-xs font-semibold transition flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px] text-[#91cdfe]">menu_book</span>
-<span class="">Primaria</span>
-</button>
-<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full bg-[#222222] text-[#aaaaaa] hover:text-[#ffffff] hover:bg-[#282828] border border-[#333333] text-xs font-semibold transition flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px] text-[#ffb878]">history_edu</span>
-<span class="">Secundaria</span>
-</button>
-</div>
-</section>
-<!-- Directorio de Eventos (Colegios) -->
-<section class="space-y-4">
-<div class="flex items-center justify-between">
-<h2 class="text-xl font-bold font-headline-sm text-[#ffffff]">Eventos Escolares Recientes</h2>
-<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#222222] text-xs font-semibold text-[#ffffff] border border-[#333333] shadow-sm" id="supabase-live-indicator">
-<span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-<span class="text-[11px] font-medium text-[#aaaaaa]">Sincronizado con Supabase</span>
-</div>
-</div>
-<div class="w-full" id="galerias-dinamicas-container">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="events-grid-container">
-        <div class="col-span-full py-14 px-6 flex flex-col items-center justify-center text-center bg-[#222222] rounded-[12px] border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
-          <div class="w-14 h-14 rounded-full bg-[#111111] border border-[#333333] flex items-center justify-center text-[#aaaaaa] mb-3">
-            <span class="material-symbols-outlined text-[28px] text-[#ffb878]">event_busy</span>
-          </div>
-          <h3 class="text-base font-bold text-[#ffffff] mb-1">No hay eventos publicados por el momento</h3>
-          <p class="text-xs text-[#aaaaaa] max-w-md">Las nuevas galerías y fotos escolares de Sergio Molina aparecerán aquí ni bien sean publicadas.</p>
-        </div>
-      </div>
-</div>
-<script>
-  (function() {
-    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-    var DEFAULT_COVER = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
-
-    function renderEmptyMessage(container) {
-      container.innerHTML = `
-        <div class="col-span-full py-14 px-6 flex flex-col items-center justify-center text-center bg-[#222222] rounded-[12px] border border-[#333333] shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
-          <div class="w-14 h-14 rounded-full bg-[#111111] border border-[#333333] flex items-center justify-center text-[#aaaaaa] mb-3">
-            <span class="material-symbols-outlined text-[28px] text-[#ffb878]">event_busy</span>
-          </div>
-          <h3 class="text-base font-bold text-[#ffffff] mb-1">No hay eventos publicados por el momento</h3>
-          <p class="text-xs text-[#aaaaaa] max-w-md">Las nuevas galerías y fotos escolares de Sergio Molina aparecerán aquí ni bien sean publicadas.</p>
-        </div>
-      `;
-    }
-
-    async function loadEvents() {
-      var container = document.getElementById('events-grid-container');
-      if (!container) return;
-
-      var supabaseClient = null;
-      if (window.supabase && typeof window.supabase.createClient === 'function') {
-        try {
-          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } catch (err) {
-          console.warn('Error inicializando Supabase client:', err);
-        }
-      }
-
-      if (!supabaseClient) {
-        renderEmptyMessage(container);
-        return;
-      }
-
-      var galerias = [];
-      try {
-        var res = await supabaseClient.from('galerias').select('*').order('created_at', { ascending: false });
-        if (!res.error && res.data && res.data.length > 0) {
-          galerias = res.data;
-        }
-      } catch (e) {
-        console.warn('Fallo consulta a Supabase galerias:', e);
-      }
-
-      if (!galerias || galerias.length === 0) {
-        renderEmptyMessage(container);
-        return;
-      }
-
-      container.innerHTML = '';
-      galerias.forEach(function(item) {
-        var title = item.nombre || item.titulo || item.eventName || 'Galería Escolar';
-        var subtitle = item.descripcion || item.subtitle || 'Fotografías escolares profesionales';
-        var loc = item.ubicacion || item.location || 'Sede Escolar';
-        var cover = item.cover_url || item.portada_url || item.coverImage || DEFAULT_COVER;
-        var count = item.total_fotos || item.photoCount || (item.photos ? item.photos.length : null);
-        var driveId = item.drive_url || item.folder_id || item.driveFolderId || '';
-        var link = 'galeria.html?' + (item.id ? ('id=' + encodeURIComponent(item.id)) : ('drive_id=' + encodeURIComponent(driveId)));
-
-        var card = document.createElement('article');
-        card.className = 'group bg-[#222222] rounded-[12px] border border-[#333333] overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.3)] hover:border-[#005580] transition-all flex flex-col';
-        card.innerHTML = `
-          <div class="relative h-56 w-full bg-[#111111] overflow-hidden">
-            <img src="${cover}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100" onerror="this.src='${DEFAULT_COVER}'" />
-            <div class="absolute inset-0 proof-watermark-overlay pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex items-center gap-1.5">
-              <span class="px-2.5 py-1 rounded-full bg-[#111111]/85 backdrop-blur-md text-[#ffffff] text-[11px] font-bold border border-[#333333] shadow-sm flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
-                <span>Galería en Vivo</span>
-              </span>
-            </div>
-            <div class="absolute bottom-3 right-3 bg-[#111111]/90 backdrop-blur-sm text-white px-2.5 py-1 rounded-[8px] border border-[#333333] text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
-              <span class="material-symbols-outlined text-[14px] text-[#91cdfe]">photo_camera</span>
-              <span>${count ? (count + ' fotos') : 'Sincronizado'}</span>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <div class="flex items-center gap-1.5 text-[#aaaaaa] text-xs mb-1.5">
-                <span class="material-symbols-outlined text-[15px] text-[#ffb878]">location_on</span>
-                <span>${loc}</span>
-                ${driveId ? '<span class="text-[#555555]">•</span><span class="font-mono text-[11px] text-[#888888] truncate max-w-[140px]">ID: ' + driveId + '</span>' : ''}
-              </div>
-              <h3 class="text-xl font-bold font-headline-sm text-[#ffffff] group-hover:text-[#91cdfe] transition-colors leading-snug">
-                ${title}
-              </h3>
-              <p class="text-xs text-[#aaaaaa] mt-1.5 font-normal leading-relaxed line-clamp-2">
-                ${subtitle}
-              </p>
-            </div>
-            <div class="pt-3.5 border-t border-[#333333] flex items-center justify-between">
-              <div class="flex items-center gap-1 text-xs text-[#aaaaaa]">
-                <span class="material-symbols-outlined text-[15px] text-emerald-400">sync</span>
-                <span>Supabase Activo</span>
-              </div>
-              <a class="px-4 py-2 rounded-[8px] bg-[#004466] hover:bg-[#005580] text-white text-xs font-bold border border-[#005580] flex items-center gap-1.5 active:scale-95 transition shadow-[0_4px_10px_rgba(0,0,0,0.3)]" href="${link}">
-                <span>Ingresar a Galería</span>
-                <span class="material-symbols-outlined text-[16px]">login</span>
-              </a>
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadEvents);
-    } else {
-      loadEvents();
-    }
-  })();
-</script>
-</section>
-<!-- Sección: Cómo funciona para familias -->
-
 </main>
-<!-- Barra Inferior Mobile -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-[#111111]/95 backdrop-blur-md border-t border-[#333333] shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
-<a class="flex flex-col items-center justify-center bg-[#004466] text-white rounded-[10px] px-3 py-1.5 border border-[#005580] active:scale-95 transition" href="index.html">
-<span class="material-symbols-outlined text-[20px]">home</span>
-<span class="text-[11px] font-bold">Inicio</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#aaaaaa] px-3 py-1.5 hover:text-[#ffffff] transition" href="carrito.html">
-<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-<span class="text-[11px]">Mis Pedidos</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#aaaaaa] px-3 py-1.5 hover:text-[#ffffff] transition" href="galeria.html">
-<span class="material-symbols-outlined text-[20px]">photo_library</span>
-<span class="text-[11px]">Galería</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#aaaaaa] px-3 py-1.5 hover:text-[#91cdfe] transition" href="https://sergiomolina-fotografia.netlify.app/" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[20px]">person</span>
-<span class="text-[11px]">Fotógrafo</span>
-</a>
-</nav>
+<footer>
+<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+</footer>
+</div>
+<!-- VISTA 2: GALERÍA DE FOTOS -->
+<div class="contenedor-galeria" id="vista-galeria">
+<div class="cabecera-galeria">
+<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
+<h2 class="titulo-categoria" id="titulo-categoria">Categoría</h2>
+</div>
+<main class="galeria" id="galeria"></main>
+</div>
+<!-- VISTA 3: SOBRE MÍ -->
+<div class="contenedor-galeria" id="vista-sobre-mi">
+<div class="cabecera-galeria">
+<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
+<h2 class="titulo-categoria">Sobre mí</h2>
+</div>
+<div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
+<img alt="Sergio Ricardo Molina" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin-bottom: 25px; border: 2px solid #005580; box-shadow: 0 4px 20px rgba(0,0,0,0.6);"/>
+<p style="margin-bottom: 18px; color: #e5e5e5; font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
+<p style="color: #cccccc; font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
+<div style="margin-top: 30px;">
+<a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration:none; padding: 10px 20px; font-size: 0.95rem; border-color: #4ade80; color: #4ade80;" target="_blank">Consultar por Sesiones Privadas 💬</a>
+</div>
+</div>
+</div>
+<!-- VISOR MODAL EN ALTA RESOLUCIÓN -->
+<div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
+<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<img alt="Vista Previa" id="img-ampliada" src=""/>
+<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
 <script>
-  (function() {
-    function syncFeaturedEvent() {
-      try {
-        var savedConfig = localStorage.getItem('eventos_escolar_config');
-        if (!savedConfig) return;
-        var data = JSON.parse(savedConfig);
-        
-        if (data.eventName || data.colegio) {
-          var titleEl = document.getElementById('featured-event-title');
-          if (titleEl) titleEl.textContent = data.eventName || data.colegio;
-        }
-        if (data.subtitle || data.descripcion) {
-          var subEl = document.getElementById('featured-event-subtitle');
-          if (subEl) subEl.textContent = data.subtitle || data.descripcion;
-        }
-        if (data.coverUrl || data.coverImage) {
-          var imgEl = document.getElementById('featured-event-img');
-          if (imgEl) {
-            imgEl.src = data.coverUrl || data.coverImage;
-            imgEl.alt = data.eventName || 'Galería Escolar';
-          }
-        }
-        if (data.photoCount) {
-          var badgeEl = document.getElementById('featured-event-photos-badge');
-          if (badgeEl) badgeEl.textContent = data.photoCount + ' fotos sincronizadas';
-        }
-        if (data.location) {
-          var locEl = document.getElementById('featured-event-location');
-          if (locEl) locEl.textContent = data.location;
-        }
-      } catch (e) {
-        console.error('Error sincronizando portada:', e);
+    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM'; 
+    const clientes = {
+      "familia2026": "ID_CARPETA_FAMILIA_PEREZ",
+      "boda1234": "ID_CARPETA_BODA_JUAN_Y_MARIA",
+      "miprueba": "1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB" 
+    };
+
+    let fotosActuales = [];
+    let indiceFotoActual = 0;
+
+    history.pushState({ vista: 'inicio' }, '', '');
+
+    function pedirPassword() {
+      const pass = prompt("Por favor, ingresá la contraseña de tu evento o sesión privada:");
+      if (pass === null) return; 
+      const idCarpeta = clientes[pass.toLowerCase()]; 
+      if (idCarpeta) {
+        abrirGaleria('Tu Sesión Privada', idCarpeta);
+      } else {
+        alert("Contraseña incorrecta. Por favor, intentá de nuevo.");
       }
     }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', syncFeaturedEvent);
-    } else {
-      syncFeaturedEvent();
+
+    async function cargarFotos(folderId) {
+      const galeria = document.getElementById('galeria');
+      galeria.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
+      fotosActuales = []; 
+      
+      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
+
+      try {
+        const respuesta = await fetch(url);
+        const datos = await respuesta.json();
+        galeria.innerHTML = '';
+        if (datos.error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error al consultar Google Drive. Verificá permisos.</p>'; return; }
+        if (!datos.files || datos.files.length === 0) { galeria.innerHTML = '<p style="text-align:center; color:#aaaaaa; grid-column: 1/-1;">No hay fotos en esta carpeta.</p>'; return; }
+
+        datos.files.forEach((archivo, index) => {
+          const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+          fotosActuales.push(urlAltaRes);
+          const img = document.createElement('img');
+          img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+          img.alt = archivo.name || "Fotografía";
+          img.loading = "lazy"; 
+          img.onclick = () => abrirVisor(index);
+          galeria.appendChild(img);
+        });
+      } catch (error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error de conexión.</p>'; }
     }
-  })();
-</script>
 
+    function abrirGaleria(nombreCategoria, folderId) {
+      history.pushState({ vista: 'interior' }, '', '');
+      document.getElementById('vista-menu').style.display = 'none';
+      document.getElementById('vista-sobre-mi').style.display = 'none';
+      document.getElementById('vista-galeria').style.display = 'block';
+      document.getElementById('titulo-categoria').innerText = nombreCategoria;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      cargarFotos(folderId);
+    }
 
+    function abrirSeccionTexto() {
+      history.pushState({ vista: 'interior' }, '', '');
+      document.getElementById('vista-menu').style.display = 'none';
+      document.getElementById('vista-galeria').style.display = 'none';
+      document.getElementById('vista-sobre-mi').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
+    function mostrarMenu() {
+      if (window.history.state && window.history.state.vista === 'interior') {
+        window.history.back();
+      } else {
+        forzarVistaMenu();
+      }
+    }
 
-</body></html>
+    function forzarVistaMenu() {
+      document.getElementById('vista-galeria').style.display = 'none';
+      document.getElementById('vista-sobre-mi').style.display = 'none';
+      document.getElementById('vista-menu').style.display = 'block';
+      cerrarVisor();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('popstate', (event) => {
+      const modal = document.getElementById('modal');
+      if (modal.style.display === 'flex') {
+        cerrarVisor();
+        history.pushState({ vista: 'interior' }, '', '');
+      } else {
+        forzarVistaMenu();
+        history.pushState({ vista: 'inicio' }, '', '');
+      }
+    });
+
+    function abrirVisor(index) {
+      indiceFotoActual = index;
+      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function cerrarVisor() { document.getElementById('modal').style.display = 'none'; }
+    function cerrarVisorFondo(event) { if (event.target.id === 'modal') cerrarVisor(); }
+
+    function cambiarFoto(direccion, event) {
+      if (event) event.stopPropagation();
+      indiceFotoActual += direccion;
+      if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
+      else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
+      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+    }
+
+    // Teclado físico
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('modal');
+      if (modal.style.display === 'flex') {
+        if (e.key === 'Escape') cerrarVisor();
+        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
+        else if (e.key === 'ArrowRight') cambiarFoto(1);
+      }
+    });
+
+    // Touch Swipe en móvil
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const modal = document.getElementById('modal');
+    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    modal.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX + 50 < touchStartX) cambiarFoto(1);
+      else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
+    }, false);
+  </script>
+</body>
+</html>
