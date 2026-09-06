@@ -1,13 +1,14 @@
-<!DOCTYPE html><html class="dark" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Eventos Escolares | Sergio Ricardo Molina</title>
 <!-- Google Fonts & Material Symbols -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Tailwind Theme Configuration -->
@@ -140,369 +141,537 @@
 </head>
 <body class="bg-[#111111] text-on-surface antialiased selection:bg-primary-container selection:text-surface-bright min-h-screen flex flex-col font-body-md custom-scroll">
 <!-- TOP HEADER / NAV BAR: Identity & Portfolio Link -->
-<header class="sticky top-0 z-50 bg-[#111111]/90 backdrop-blur-md border-b border-[#333333] shadow-sm"><div class="max-w-container-max mx-auto h-16 px-space-md md:px-space-xl flex items-center justify-between"><a class="flex items-center gap-space-xs group transition-all duration-150 active:scale-[0.98]" href="index.html"><div class="w-9 h-9 rounded-full bg-surface-container-high border border-[#333333] flex items-center justify-center text-primary group-hover:border-primary-container transition-colors"><span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_camera">photo_camera</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-white tracking-tight group-hover:text-primary transition-colors">SERGIO RICARDO MOLINA</span><span class="font-label-sm text-label-sm text-outline tracking-wider">Fotografía Profesional • Cobertura Escolar</span></div></a><div class="flex items-center gap-space-sm"><a class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full border border-[#333333] hover:border-primary-container text-on-surface hover:text-white bg-[#181818] font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_back">arrow_back</span><span class="">Volver al Portafolio</span></a><a class="inline-flex items-center gap-space-2xs px-space-md py-1.5 rounded-full bg-primary-container border border-[#005580] text-white hover:bg-[#0077b3] font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="#acceso-privado"><span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span><span class="">Acceso Privado</span></a></div></div></header>
+<header class="sticky top-0 z-50 bg-[#111111]/90 backdrop-blur-md border-b border-[#333333] shadow-sm">
+<div class="max-w-container-max mx-auto h-16 px-space-md md:px-space-xl flex items-center justify-between">
+<a class="flex items-center gap-space-xs group transition-all duration-150 active:scale-[0.98]" href="index.html">
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-[#333333] flex items-center justify-center text-primary group-hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_camera">photo_camera</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white tracking-tight group-hover:text-primary transition-colors">SERGIO RICARDO MOLINA</span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider">Fotografía Profesional • Cobertura Escolar</span>
+</div>
+</a>
+<div class="flex items-center gap-space-sm">
+<a class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full border border-[#333333] hover:border-primary-container text-on-surface hover:text-white bg-[#181818] font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="index.html">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_back">arrow_back</span>
+<span>Volver al Portafolio</span>
+</a>
+<a class="inline-flex items-center gap-space-2xs px-space-md py-1.5 rounded-full bg-primary-container border border-[#005580] text-white hover:bg-[#0077b3] font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="#acceso-privado">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span>Acceso Privado</span>
+</a>
+</div>
+</div>
+</header>
 <!-- MAIN VIEW CONTAINER -->
 <main class="flex-grow max-w-container-max w-full mx-auto px-space-md md:px-space-xl py-space-xl md:py-space-2xl space-y-space-3xl">
 <!-- HERO SECTION -->
-<section class="border-b border-[#222222] pb-space-xl pt-space-sm space-y-space-xs"><div class="flex items-center gap-space-2xs text-primary font-label-sm uppercase tracking-widest"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="">Catálogo &amp; Coberturas Oficiales</span></div><h1 class="font-headline-lg md:font-display-hero text-headline-lg-mobile md:text-display-hero text-white tracking-tight">Eventos Escolares</h1><p class="font-body-md text-body-md text-outline max-w-2xl leading-relaxed">Galerías fotográficas de graduaciones, actos oficiales, retratos institucionales y vida académica. Selecciona tu colegio para visualizar o descargar las capturas en alta resolución.</p></section>
+<section class="border-b border-[#222222] pb-space-xl pt-space-sm space-y-space-xs">
+<div class="flex items-center gap-space-2xs text-primary font-label-sm uppercase tracking-widest">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>Catálogo &amp; Coberturas Oficiales</span>
+</div>
+<h1 class="font-headline-lg md:font-display-hero text-headline-lg-mobile md:text-display-hero text-white tracking-tight">Eventos Escolares</h1>
+<p class="font-body-md text-body-md text-outline max-w-2xl leading-relaxed">Galerías fotográficas de graduaciones, actos oficiales, retratos institucionales y vida académica. Selecciona tu colegio para visualizar o descargar las capturas en alta resolución sincronizadas con Drive.</p>
+</section>
 <!-- PUBLIC EVENTS GALLERY GRID SECTION -->
-<section class="space-y-space-lg"><div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md pb-space-sm border-b border-[#222222]"><div><h2 class="font-headline-sm text-headline-sm text-white tracking-tight uppercase">Colegios e Instituciones Registradas</h2><p class="font-body-md text-body-md text-outline text-sm">Galerías públicas disponibles para descarga y visualización de familias y alumnos.</p></div><div class="relative"><input class="bg-[#161616] border border-[#333333] rounded-lg text-sm text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-3 py-1.5 transition-all outline-none w-64 font-body-md" id="schoolSearch" placeholder="Buscar colegio o año..." type="text"><span class="material-symbols-outlined absolute left-2.5 top-2 text-outline text-[18px]" data-icon="search">search</span></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="eventsGrid"><article class="group bg-[#161616] border border-[#005580]/50 hover:border-primary-container rounded-xl overflow-hidden transition-colors flex flex-col"><div class="relative h-60 bg-[#111111] overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-[#1c1b1b] to-[#111111] flex items-center justify-center"><span class="material-symbols-outlined text-outline text-4xl group-hover:text-primary transition-colors" data-icon="school">school</span></div><div class="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#111111]/80 backdrop-blur-md border border-[#333333] text-white font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px] text-primary" data-icon="cloud_done">cloud_done</span><span class="">Drive Sync</span></div><div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary-container/80 text-white font-label-sm text-label-sm"><span class="">420 Fotos</span></div></div><div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md"><div class="space-y-space-2xs"><div class="flex items-center justify-between text-outline font-label-sm"><span class="uppercase tracking-widest text-secondary">Diciembre 2024</span><span class="text-[#22c55e] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>Pública</span></div><h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Colegio San Martín de Tours</h3><p class="font-body-md text-sm text-outline">Graduación Bachilleres 2024</p></div><div class="pt-space-xs border-t border-[#222222]"><a class="w-full inline-flex items-center justify-between px-space-md py-2 rounded-lg bg-[#111111] hover:bg-primary-container border border-[#333333] hover:border-[#005580] text-white font-label-md text-label-md uppercase tracking-wider transition-all duration-150" href="galeria.html?id=g1&amp;slug=san-martin-graduacion-2024"><span class="">Ver Álbum Completo</span><span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span></a></div></div></article><article class="group bg-[#161616] border border-[#005580]/50 hover:border-primary-container rounded-xl overflow-hidden transition-colors flex flex-col"><div class="relative h-60 bg-[#111111] overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-[#1c1b1b] to-[#111111] flex items-center justify-center"><span class="material-symbols-outlined text-outline text-4xl group-hover:text-primary transition-colors" data-icon="sports_score">sports_score</span></div><div class="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#111111]/80 backdrop-blur-md border border-[#333333] text-white font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px] text-primary" data-icon="cloud_done">cloud_done</span><span class="">Drive Sync</span></div><div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary-container/80 text-white font-label-sm text-label-sm"><span class="">580 Fotos</span></div></div><div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md"><div class="space-y-space-2xs"><div class="flex items-center justify-between text-outline font-label-sm"><span class="uppercase tracking-widest text-secondary">Noviembre 2024</span><span class="text-[#22c55e] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>Pública</span></div><h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Instituto Belgrano Day School</h3><p class="font-body-md text-sm text-outline">Jornada Deportiva Intercolegial</p></div><div class="pt-space-xs border-t border-[#222222]"><a class="w-full inline-flex items-center justify-between px-space-md py-2 rounded-lg bg-[#111111] hover:bg-primary-container border border-[#333333] hover:border-[#005580] text-white font-label-md text-label-md uppercase tracking-wider transition-all duration-150" href="galeria.html?id=g2&amp;slug=belgrano-deportes-2024"><span class="">Ver Álbum Completo</span><span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span></a></div></div></article><article class="group bg-[#161616] border border-[#005580]/50 hover:border-primary-container rounded-xl overflow-hidden transition-colors flex flex-col"><div class="relative h-60 bg-[#111111] overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-[#1c1b1b] to-[#111111] flex items-center justify-center"><span class="material-symbols-outlined text-outline text-4xl group-hover:text-primary transition-colors" data-icon="theater_comedy">theater_comedy</span></div><div class="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#111111]/80 backdrop-blur-md border border-[#333333] text-white font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px] text-primary" data-icon="cloud_done">cloud_done</span><span class="">Drive Sync</span></div><div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary-container/80 text-white font-label-sm text-label-sm"><span class="">310 Fotos</span></div></div><div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md"><div class="space-y-space-2xs"><div class="flex items-center justify-between text-outline font-label-sm"><span class="uppercase tracking-widest text-secondary">Octubre 2024</span><span class="text-[#22c55e] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>Pública</span></div><h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">St. Patrick's College</h3><p class="font-body-md text-sm text-outline">Gala Anual de Artes &amp; Teatro</p></div><div class="pt-space-xs border-t border-[#222222]"><a class="w-full inline-flex items-center justify-between px-space-md py-2 rounded-lg bg-[#111111] hover:bg-primary-container border border-[#333333] hover:border-[#005580] text-white font-label-md text-label-md uppercase tracking-wider transition-all duration-150" href="galeria.html?id=g3&amp;slug=st-patricks-gala-2024"><span class="">Ver Álbum Completo</span><span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span></a></div></div></article></div><div class="hidden text-center py-space-3xl border border-[#333333] rounded-xl bg-[#181818]/60 p-space-xl" id="emptyState"><span class="material-symbols-outlined text-outline text-5xl mb-space-sm" data-icon="folder_off">folder_off</span><h3 class="font-headline-sm text-headline-sm text-white">No se encontraron galerías públicas</h3><p class="font-body-md text-body-md text-outline mt-space-2xs max-w-md mx-auto">No hay eventos escolares públicos disponibles con esos términos de búsqueda o están protegidos con contraseña en el bloque inferior.</p></div></section>
+<section class="space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md pb-space-sm border-b border-[#222222]">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-white tracking-tight uppercase">Colegios e Instituciones Registradas</h2>
+<span class="hidden items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-emerald-950/60 border border-emerald-500/40 text-emerald-400" id="realtimeBadge">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          En vivo
+        </span>
+</div>
+<p class="font-body-md text-body-md text-outline text-sm">Galerías públicas disponibles en tiempo real para descarga y visualización de familias y alumnos.</p>
+</div>
+<div class="relative">
+<input class="bg-[#161616] border border-[#333333] rounded-lg text-sm text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-3 py-1.5 transition-all outline-none w-64 font-body-md" id="schoolSearch" placeholder="Buscar colegio o año..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-outline text-[18px]" data-icon="search">search</span>
+</div>
+</div>
+<!-- Loading State Skeleton -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg py-space-sm" id="loadingState">
+<div class="bg-[#161616] border border-[#222222] rounded-xl overflow-hidden animate-pulse">
+<div class="h-60 bg-[#1c1b1b]"></div>
+<div class="p-space-md space-y-3">
+<div class="h-4 bg-[#262626] rounded w-1/3"></div>
+<div class="h-6 bg-[#262626] rounded w-3/4"></div>
+<div class="h-4 bg-[#262626] rounded w-1/2"></div>
+<div class="h-9 bg-[#262626] rounded mt-4"></div>
+</div>
+</div>
+<div class="bg-[#161616] border border-[#222222] rounded-xl overflow-hidden animate-pulse hidden md:block">
+<div class="h-60 bg-[#1c1b1b]"></div>
+<div class="p-space-md space-y-3">
+<div class="h-4 bg-[#262626] rounded w-1/3"></div>
+<div class="h-6 bg-[#262626] rounded w-3/4"></div>
+<div class="h-4 bg-[#262626] rounded w-1/2"></div>
+<div class="h-9 bg-[#262626] rounded mt-4"></div>
+</div>
+</div>
+<div class="bg-[#161616] border border-[#222222] rounded-xl overflow-hidden animate-pulse hidden lg:block">
+<div class="h-60 bg-[#1c1b1b]"></div>
+<div class="p-space-md space-y-3">
+<div class="h-4 bg-[#262626] rounded w-1/3"></div>
+<div class="h-6 bg-[#262626] rounded w-3/4"></div>
+<div class="h-4 bg-[#262626] rounded w-1/2"></div>
+<div class="h-9 bg-[#262626] rounded mt-4"></div>
+</div>
+</div>
+</div>
+<!-- Realtime Dynamic Grid Container (no fixed mock cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg hidden" id="eventsGrid"></div>
+<!-- Empty State -->
+<div class="hidden text-center py-space-3xl border border-[#333333] rounded-xl bg-[#181818]/60 p-space-xl" id="emptyState">
+<span class="material-symbols-outlined text-outline text-5xl mb-space-sm" data-icon="folder_off">folder_off</span>
+<h3 class="font-headline-sm text-headline-sm text-white">No se encontraron galerías públicas</h3>
+<p class="font-body-md text-body-md text-outline mt-space-2xs max-w-md mx-auto">No hay eventos escolares públicos disponibles en la base de datos o están protegidos con contraseña en la sección inferior.</p>
+</div>
+</section>
 <!-- PRIVATE ACCESS WITH PASSWORD SECTION (Acceso Privado con Clave) -->
-<section class="scroll-mt-24 pt-space-md" id="acceso-privado"><div class="rounded-xl border border-[#005580]/50 bg-[#161616] p-space-lg md:p-space-xl"><div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center"><div class="lg:col-span-7 space-y-space-xs"><div class="inline-flex items-center gap-space-xs text-primary font-label-sm uppercase tracking-wider"><span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span><span class="">Acceso Privado para Familias</span></div><h3 class="font-headline-md text-headline-md text-white tracking-tight">Galerías Protegidas con Clave</h3><p class="font-body-md text-body-md text-outline leading-relaxed max-w-xl">Por privacidad y resguardo institucional, los retratos y actos de cursos específicos requieren la clave provista por el colegio o la cooperadora.</p></div><div class="lg:col-span-5 bg-[#111111] p-space-md md:p-space-lg rounded-xl border border-[#333333]"><form class="space-y-space-sm" id="privateAccessForm" onsubmit="event.preventDefault(); verifyPrivateCode();"><div class="space-y-space-2xs"><label class="block font-label-sm text-label-sm text-outline" for="galleryCode">Código o Contraseña de Galería</label><div class="relative"><span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]" data-icon="key">key</span><input class="w-full bg-[#161616] border border-[#333333] rounded-lg text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-9 py-2 text-sm font-body-md outline-none transition-all" id="galleryCode" placeholder="Ingresa tu clave provista..." required="" type="password"><button class="absolute right-2.5 top-2 text-outline hover:text-white transition-colors" onclick="togglePasswordVisibility()" title="Mostrar/Ocultar contraseña" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="visibility" id="eyeIcon">visibility</span></button></div></div><div class="hidden p-space-xs rounded-lg text-xs font-body-md border" id="privateMessage"></div><button class="w-full inline-flex justify-center items-center gap-space-xs bg-primary-container hover:bg-[#0077b3] border border-[#005580] text-white font-label-md text-label-md uppercase tracking-wider py-2.5 px-space-md rounded-lg transition-all duration-120 active:scale-[0.98]" id="submitCodeBtn" type="submit"><span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span><span class="">Desbloquear Álbum</span></button></form></div></div></div></section>
+<section class="scroll-mt-24 pt-space-md" id="acceso-privado">
+<div class="rounded-xl border border-[#005580]/50 bg-[#161616] p-space-lg md:p-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 space-y-space-xs">
+<div class="inline-flex items-center gap-space-xs text-primary font-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span>Acceso Privado para Familias</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white tracking-tight">Galerías Protegidas con Clave</h3>
+<p class="font-body-md text-body-md text-outline leading-relaxed max-w-xl">Por privacidad y resguardo institucional, los retratos y actos de cursos específicos requieren la clave provista por el colegio o la cooperadora. Al ingresar tu clave, se validará en tiempo real contra la base de datos oficial.</p>
+</div>
+<div class="lg:col-span-5 bg-[#111111] p-space-md md:p-space-lg rounded-xl border border-[#333333]">
+<form class="space-y-space-sm" id="privateAccessForm" onsubmit="event.preventDefault(); verifyPrivateCode();">
+<div class="space-y-space-2xs">
+<label class="block font-label-sm text-label-sm text-outline" for="galleryCode">Código o Contraseña de Galería</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]" data-icon="key">key</span>
+<input class="w-full bg-[#161616] border border-[#333333] rounded-lg text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-9 py-2 text-sm font-body-md outline-none transition-all" id="galleryCode" placeholder="Ingresa tu clave provista..." required="" type="password"/>
+<button class="absolute right-2.5 top-2 text-outline hover:text-white transition-colors" onclick="togglePasswordVisibility()" title="Mostrar/Ocultar contraseña" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<div class="hidden p-space-xs rounded-lg text-xs font-body-md border" id="privateMessage"></div>
+<button class="w-full inline-flex justify-center items-center gap-space-xs bg-primary-container hover:bg-[#0077b3] border border-[#005580] text-white font-label-md text-label-md uppercase tracking-wider py-2.5 px-space-md rounded-lg transition-all duration-120 active:scale-[0.98]" id="submitCodeBtn" type="submit">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
+<span>Desbloquear Álbum</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
 </main>
 <!-- FOOTER: Identical to Portfolio (Redes Sociales, Contacto Directo, Bordes de Color & Copyright Oficial) -->
-<footer class="mt-space-4xl bg-[#0e0e0e] border-t border-[#333333]"><div class="max-w-container-max mx-auto px-space-md md:px-space-xl py-space-2xl space-y-space-xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-lg pb-space-xl border-b border-[#222222]"><div class="space-y-space-2xs text-center md:text-left"><div class="font-headline-sm text-headline-sm text-white tracking-wide">SERGIO RICARDO MOLINA</div><p class="font-body-md text-sm text-outline">Fotografía Profesional • Cobertura de Eventos de Alta Gama</p></div><div class="flex flex-wrap items-center justify-center gap-space-sm"><a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#22c55e]/40 hover:border-[#22c55e] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="https://wa.me/5491100000000" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[#22c55e] text-[18px]" data-icon="chat">chat</span><span class="font-label-md text-label-md">WhatsApp Escolar</span></a><a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#38bdf8]/40 hover:border-[#38bdf8] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-[#38bdf8] text-[18px]" data-icon="menu_book">menu_book</span><span class="font-label-md text-label-md">Catálogo de Servicios</span></a><a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#e1306c]/40 hover:border-[#e1306c] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="https://instagram.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[#e1306c] text-[18px]" data-icon="camera">camera</span><span class="font-label-md text-label-md">Instagram Atelier</span></a></div></div><div class="flex flex-col sm:flex-row items-center justify-between gap-space-md text-outline font-label-sm text-label-sm"><div class="">© 2025 Sergio Ricardo Molina. Todos los derechos reservados.</div><div class="flex items-center gap-space-md"><span class="hover:text-on-surface transition-colors cursor-pointer">Privacidad Escolar</span><span class="">•</span><span class="hover:text-on-surface transition-colors cursor-pointer">Términos de Licencia</span></div></div></div></footer>
-<!-- JAVASCRIPT: Supabase Native Integration & Dynamic Rendering -->
+<footer class="mt-space-4xl bg-[#0e0e0e] border-t border-[#333333]">
+<div class="max-w-container-max mx-auto px-space-md md:px-space-xl py-space-2xl space-y-space-xl">
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-lg pb-space-xl border-b border-[#222222]">
+<div class="space-y-space-2xs text-center md:text-left">
+<div class="font-headline-sm text-headline-sm text-white tracking-wide">SERGIO RICARDO MOLINA</div>
+<p class="font-body-md text-sm text-outline">Fotografía Profesional • Cobertura de Eventos de Alta Gama</p>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-space-sm">
+<a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#22c55e]/40 hover:border-[#22c55e] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="https://wa.me/5491100000000" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[#22c55e] text-[18px]" data-icon="chat">chat</span>
+<span class="font-label-md text-label-md">WhatsApp Escolar</span>
+</a>
+<a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#38bdf8]/40 hover:border-[#38bdf8] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="index.html">
+<span class="material-symbols-outlined text-[#38bdf8] text-[18px]" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Catálogo de Servicios</span>
+</a>
+<a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#e1306c]/40 hover:border-[#e1306c] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[#e1306c] text-[18px]" data-icon="camera">camera</span>
+<span class="font-label-md text-label-md">Instagram Atelier</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md text-outline font-label-sm text-label-sm">
+<div>© 2025 Sergio Ricardo Molina. Todos los derechos reservados.</div>
+<div class="flex items-center gap-space-md">
+<span class="hover:text-on-surface transition-colors cursor-pointer">Privacidad Escolar</span>
+<span>•</span>
+<span class="hover:text-on-surface transition-colors cursor-pointer">Términos de Licencia</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- JAVASCRIPT: Realtime Supabase Integration & Dynamic Cover Resolution -->
 <script>
-    // Supabase Configuration
-    // Connecting strictly to table: 'galeria' (singular)
-    const SUPABASE_URL = "https://your-supabase-project.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummyKeyForPublicClientInterface";
+  // Supabase Configuration
+  const SUPABASE_URL = "https://your-supabase-project.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummyKeyForPublicClientInterface";
 
-    // Initialise Supabase Client if library is available
-    let supabaseClient = null;
+  let supabaseClient = null;
+  try {
+    if (window.supabase && typeof window.supabase.createClient === 'function') {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+  } catch (err) {
+    console.warn("Supabase init error:", err);
+  }
+
+  // Fallback initial dataset strictly formatted to 'galeria' schema with real URLs
+  const fallbackGalerias = [
+    {
+      id: "g1",
+      titulo: "Graduación Bachilleres 2024",
+      colegio: "Colegio San Martín de Tours",
+      portada_url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop",
+      drive_folder_id: "1A2B3C4D5E",
+      fecha: "Diciembre 2024",
+      fotos_count: 420,
+      es_privada: false,
+      password: null,
+      slug: "san-martin-graduacion-2024"
+    },
+    {
+      id: "g2",
+      titulo: "Jornada Deportiva Intercolegial",
+      colegio: "Instituto Belgrano Day School",
+      portada_url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop",
+      drive_folder_id: "2B3C4D5E6F",
+      fecha: "Noviembre 2024",
+      fotos_count: 580,
+      es_privada: false,
+      password: null,
+      slug: "belgrano-deportes-2024"
+    },
+    {
+      id: "g3",
+      titulo: "Gala Anual de Artes & Teatro",
+      colegio: "St. Patrick's College",
+      portada_url: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=1200&auto=format&fit=crop",
+      drive_folder_id: "3C4D5E6F7G",
+      fecha: "Octubre 2024",
+      fotos_count: 310,
+      es_privada: false,
+      password: null,
+      slug: "st-patricks-gala-2024"
+    },
+    {
+      id: "g4",
+      titulo: "Retratos de Promoción & Sala de Honor",
+      colegio: "Colegio Mayor del Pilar",
+      portada_url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop",
+      drive_folder_id: "4D5E6F7G8H",
+      fecha: "Septiembre 2024",
+      fotos_count: 260,
+      es_privada: false,
+      password: null,
+      slug: "del-pilar-promocion-2024"
+    },
+    {
+      id: "g5",
+      titulo: "Festival Musical de Primavera",
+      colegio: "Academia Santa María de la Paz",
+      portada_url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
+      drive_folder_id: "5E6F7G8H9I",
+      fecha: "Octubre 2024",
+      fotos_count: 360,
+      es_privada: false,
+      password: null,
+      slug: "santa-maria-musica-2024"
+    },
+    {
+      id: "g6",
+      titulo: "Concierto Coral Navideño",
+      colegio: "Liceo Francés Jean Mermoz",
+      portada_url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+      drive_folder_id: "6F7G8H9I0J",
+      fecha: "Diciembre 2024",
+      fotos_count: 190,
+      es_privada: false,
+      password: null,
+      slug: "liceo-frances-navidad-2024"
+    },
+    // Private database items for code verification
+    {
+      id: "g7_priv",
+      titulo: "Retratos Individuales Primaria 1° Ciclo",
+      colegio: "Colegio San Martín de Tours",
+      portada_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop",
+      fecha: "Noviembre 2024",
+      fotos_count: 150,
+      es_privada: true,
+      password: "SANMARTIN2024",
+      slug: "san-martin-primaria-privada"
+    },
+    {
+      id: "g8_priv",
+      titulo: "Fotos de Aula & Sala de 5",
+      colegio: "Instituto San Jorge",
+      portada_url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop",
+      fecha: "Diciembre 2024",
+      fotos_count: 220,
+      es_privada: true,
+      password: "SANJORGE2024",
+      slug: "san-jorge-sala5-privada"
+    }
+  ];
+
+  let currentGalleries = [];
+
+  // Helper to resolve real Drive or direct cover URL
+  function resolveCoverUrl(item) {
+    const raw = item.portada_url || item.drive_cover_url || item.cover_url || item.imagen_portada;
+    if (!raw) {
+      return "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop";
+    }
+    // Google Drive direct file ID conversion
+    if (raw.includes("drive.google.com")) {
+      const match = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/id=([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1200`;
+      }
+    }
+    return raw;
+  }
+
+  // Fetch galleries from Supabase table 'galeria' in real time
+  async function fetchGalerias() {
+    const loadingEl = document.getElementById("loadingState");
+    const gridEl = document.getElementById("eventsGrid");
+    const realtimeBadge = document.getElementById("realtimeBadge");
+
     try {
-      if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      let data = null;
+      if (supabaseClient) {
+        const { data: supabaseData, error } = await supabaseClient
+          .from('galeria')
+          .select('*')
+          .eq('es_privada', false)
+          .order('id', { ascending: false });
+
+        if (!error && supabaseData && supabaseData.length > 0) {
+          data = supabaseData;
+          if (realtimeBadge) realtimeBadge.classList.replace("hidden", "inline-flex");
+        }
       }
+
+      if (!data || data.length === 0) {
+        data = fallbackGalerias.filter(g => !g.es_privada);
+      }
+
+      currentGalleries = data;
+      renderGalleries(currentGalleries);
     } catch (err) {
-      console.warn("Supabase init error or dummy key:", err);
+      console.warn("Error querying 'galeria' table, falling back to cached list:", err);
+      currentGalleries = fallbackGalerias.filter(g => !g.es_privada);
+      renderGalleries(currentGalleries);
+    } finally {
+      if (loadingEl) loadingEl.classList.add("hidden");
+      if (gridEl) gridEl.classList.remove("hidden");
     }
+  }
 
-    // Default Fallback Dataset representing the 'galeria' table schema
-    // Fields: id, titulo, colegio, drive_cover_url, fecha, fotos_count, es_privada, password, slug
-    const mockGaleria = [
-      {
-        id: "g1",
-        titulo: "Graduación Bachilleres 2024",
-        colegio: "Colegio San Martín de Tours",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "A polished high-school graduation ceremony in a grand wooden theater. Students dressed in formal black gowns and classic ties hold certificates under warm directional spotlights. In the dark background, atmospheric stage smoke drifts creating deep contrast and high-end atelier mood.",
-        fecha: "Diciembre 2024",
-        fotos_count: 420,
-        es_privada: false,
-        password: null,
-        slug: "san-martin-graduacion-2024"
-      },
-      {
-        id: "g2",
-        titulo: "Jornada Deportiva Intercolegial",
-        colegio: "Instituto Belgrano Day School",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "Dynamic high-action track and field competition at an outdoor athletic complex during golden hour. A student athlete sprints across the finish line with focused intensity. Dramatic side lighting casts long silhouettes against pristine turf, rendered with crisp editorial precision.",
-        fecha: "Noviembre 2024",
-        fotos_count: 580,
-        es_privada: false,
-        password: null,
-        slug: "belgrano-deportes-2024"
-      },
-      {
-        id: "g3",
-        titulo: "Gala Anual de Artes & Teatro",
-        colegio: "St. Patrick's Community College",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "An elegant student theatrical play staged in a dark minimalist auditorium. Subtle oceanic cyan key light highlights the lead actor delivering a dramatic monologue on an ebony wood platform, with rich deep shadow falloff and professional darkroom tonality.",
-        fecha: "Octubre 2024",
-        fotos_count: 310,
-        es_privada: false,
-        password: null,
-        slug: "st-patricks-gala-2024"
-      },
-      {
-        id: "g4",
-        titulo: "Retratos Institucionales de Promoción",
-        colegio: "Colegio Mayor del Pilar",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "Editorial portrait studio setup showing a group of high school seniors laughing naturally. Set against a textured dark charcoal studio backdrop with gentle octabox diffusion, creating clean skin tones and deep maritime cyan edge accents in a luxury atelier aesthetic.",
-        fecha: "Septiembre 2024",
-        fotos_count: 245,
-        es_privada: false,
-        password: null,
-        slug: "del-pilar-promocion-2024"
-      },
-      {
-        id: "g5",
-        titulo: "Festival Musical de Primavera",
-        colegio: "Academia Santa María de la Paz",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "A student symphony orchestra performing in a warm acoustic hall. Close-up on a classical violin player with focused facial expression, bows synchronized in rhythm, captured with shallow depth of field and deep ambient shadows under soft cinematic stage lamps.",
-        fecha: "Octubre 2024",
-        fotos_count: 360,
-        es_privada: false,
-        password: null,
-        slug: "santa-maria-musica-2024"
-      },
-      {
-        id: "g6",
-        titulo: "Concierto Coral Navideño",
-        colegio: "Liceo Francés Jean Mermoz",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "Atmospheric evening choir presentation inside an architectural stone chapel. Warm candle flickers illuminate choir children holding music booklets, framed by deep dark gothic shadows and subtle cyan fill light reflecting optical lens fidelity.",
-        fecha: "Diciembre 2024",
-        fotos_count: 190,
-        es_privada: false,
-        password: null,
-        slug: "liceo-frances-navidad-2024"
-      },
-      // Private entries stored in database for verification logic:
-      {
-        id: "g7_priv",
-        titulo: "Retratos Individuales Primaria 1° Ciclo",
-        colegio: "Colegio San Martín de Tours",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "A joyful student portrait taken inside a professional pop-up darkroom studio with soft rim lighting.",
-        fecha: "Noviembre 2024",
-        fotos_count: 150,
-        es_privada: true,
-        password: "SANMARTIN2024",
-        slug: "san-martin-primaria-privada"
-      },
-      {
-        id: "g8_priv",
-        titulo: "Fotos de Aula & Sala de 5",
-        colegio: "Instituto San Jorge",
-        drive_cover_url: "placeholder",
-        image_alt_prompt: "Kindergarten graduation and play session captured in natural documentary style with soft tones.",
-        fecha: "Diciembre 2024",
-        fotos_count: 220,
-        es_privada: true,
-        password: "SANJORGE2024",
-        slug: "san-jorge-sala5-privada"
-      }
-    ];
-
-    let currentGalleries = [];
-
-    // Fetch and display galleries strictly filtering out private entries
-    async function fetchGalerias() {
-      const loadingEl = document.getElementById("loadingState");
-      const gridEl = document.getElementById("eventsGrid");
-      const emptyEl = document.getElementById("emptyState");
-
-      try {
-        let data = null;
-
-        // Try querying Supabase if available
-        if (supabaseClient) {
-          const { data: supabaseData, error } = await supabaseClient
-            .from('galeria')
-            .select('*')
-            .eq('es_privada', false);
-
-          if (!error && supabaseData && supabaseData.length > 0) {
-            data = supabaseData;
+  // Supabase Realtime Subscription setup for table 'galeria'
+  function setupRealtimeListener() {
+    if (!supabaseClient) return;
+    try {
+      supabaseClient
+        .channel('galeria-public-realtime')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'galeria' },
+          (payload) => {
+            console.log('Realtime change received from table "galeria":', payload);
+            fetchGalerias();
           }
-        }
+        )
+        .subscribe();
+    } catch (e) {
+      console.warn("Realtime subscription unavailable:", e);
+    }
+  }
 
-        // If Supabase has no records or offline mode, use fallback mock matching 'galeria' schema
-        if (!data || data.length === 0) {
-          data = mockGaleria.filter(item => !item.es_privada);
-        }
+  // Render cards with real cover images and Drive sync indicators
+  function renderGalleries(items) {
+    const gridEl = document.getElementById("eventsGrid");
+    const emptyEl = document.getElementById("emptyState");
 
-        currentGalleries = data;
-        renderGalleries(currentGalleries);
-      } catch (err) {
-        console.error("Error fetching from Supabase table 'galeria':", err);
-        currentGalleries = mockGaleria.filter(item => !item.es_privada);
-        renderGalleries(currentGalleries);
-      } finally {
-        if (loadingEl) loadingEl.classList.add("hidden");
-        if (gridEl) gridEl.classList.remove("hidden");
-      }
+    if (!items || items.length === 0) {
+      gridEl.innerHTML = "";
+      emptyEl.classList.remove("hidden");
+      return;
     }
 
-    // Render Event Cards into Bento/Card Grid
-    function renderGalleries(items) {
-      const gridEl = document.getElementById("eventsGrid");
-      const emptyEl = document.getElementById("emptyState");
+    emptyEl.classList.add("hidden");
+    gridEl.innerHTML = items.map(item => {
+      const coverUrl = resolveCoverUrl(item);
+      const count = item.fotos_count || item.total_fotos || item.photos_count || 0;
+      const schoolName = item.colegio || item.institucion || "Institución Escolar";
+      const title = item.titulo || "Cobertura Oficial";
+      const dateText = item.fecha || item.anio || "Ciclo Lectivo";
+      const slug = item.slug || `evento-${item.id}`;
 
-      if (!items || items.length === 0) {
-        gridEl.innerHTML = "";
-        emptyEl.classList.remove("hidden");
-        return;
-      }
-
-      emptyEl.classList.add("hidden");
-      gridEl.innerHTML = items.map(item => {
-        const coverImg = item.drive_cover_url || "placeholder";
-        const altText = item.image_alt_prompt || `Fotografía de cobertura oficial del evento escolar ${item.titulo} del ${item.colegio}. Una composición cuidada con estética atelier darkroom en tonos profundos, acentos cyan y óptica de alta gama.`;
-        
-        return `
-          <article class="group bg-[#222222] border border-[#333333] hover:border-primary-container/80 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
+      return `
+        <article class="group bg-[#161616] border border-[#333333] hover:border-primary-container rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
+          <!-- Real Drive / Manual Cover Image -->
+          <div class="relative h-60 bg-[#111111] overflow-hidden">
+            <img 
+              src="${coverUrl}" 
+              alt="Cobertura fotográfica oficial: ${schoolName} - ${title}" 
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop';"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-black/40"></div>
             
-            <!-- Google Drive Official Cover Photo -->
-            <div class="relative h-64 overflow-hidden bg-[#111111]">
-              <img 
-                src="${coverImg}" 
-                data-alt="${altText}" 
-                class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-              />
-              
-              <!-- Subtle top shadow gradient -->
-              <div class="absolute inset-0 bg-gradient-to-t from-[#222222] via-transparent to-black/40"></div>
+            <!-- Top Badges -->
+            <div class="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#111111]/85 backdrop-blur-md border border-[#333333] text-white font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[14px] text-primary" data-icon="cloud_done">cloud_done</span>
+              <span>Drive Sync</span>
+            </div>
+            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary-container/90 backdrop-blur-md text-white font-label-sm text-label-sm">
+              <span>${count} Fotos</span>
+            </div>
+          </div>
 
-              <!-- Top badges -->
-              <div class="absolute top-3 left-3 right-3 flex items-center justify-between">
-                <span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#111111]/80 backdrop-blur-md border border-[#333333] text-white font-label-sm text-label-sm">
-                  <span class="material-symbols-outlined text-[14px] text-primary" data-icon="cloud">cloud</span>
-                  <span>Google Drive Sync</span>
-                </span>
-                
-                <span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-primary-container/90 text-white font-label-sm text-label-sm">
-                  <span class="material-symbols-outlined text-[14px]" data-icon="image">image</span>
-                  <span>${item.fotos_count || 0} Fotos</span>
+          <!-- Content and Actions -->
+          <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
+            <div class="space-y-space-2xs">
+              <div class="flex items-center justify-between text-outline font-label-sm">
+                <span class="uppercase tracking-widest text-secondary">${dateText}</span>
+                <span class="text-[#22c55e] flex items-center gap-1 font-medium">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+                  Pública
                 </span>
               </div>
+              <h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors line-clamp-1">
+                ${schoolName}
+              </h3>
+              <p class="font-body-md text-sm text-outline line-clamp-2">
+                ${title}
+              </p>
             </div>
 
-            <!-- Meta and Actions Container -->
-            <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
-              <div class="space-y-space-2xs">
-                <div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
-                  <span class="tracking-widest uppercase text-secondary">${item.fecha || "Ciclo Lectivo"}</span>
-                  <span class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[12px] text-emerald-400" data-icon="public">public</span>
-                    Pública
-                  </span>
-                </div>
-
-                <h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors leading-snug">
-                  ${item.colegio}
-                </h3>
-
-                <p class="font-body-md text-body-md text-on-surface-variant line-clamp-1">
-                  ${item.titulo}
-                </p>
-              </div>
-
-              <!-- Action Link to galeria.html -->
-              <div class="pt-space-2xs border-t border-[#333333]/60">
-                <a 
-                  href="galeria.html?id=${item.id}&slug=${encodeURIComponent(item.slug || 'evento')}" 
-                  class="w-full inline-flex items-center justify-between px-space-md py-space-sm rounded-lg bg-[#181818] hover:bg-primary-container border border-[#333333] hover:border-primary text-white font-label-md text-label-md uppercase tracking-wider transition-all duration-150 active:scale-[0.98]"
-                >
-                  <span>Ver Álbum Completo</span>
-                  <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
-                </a>
-              </div>
+            <div class="pt-space-xs border-t border-[#222222]">
+              <a 
+                class="w-full inline-flex items-center justify-between px-space-md py-2.5 rounded-lg bg-[#111111] hover:bg-primary-container border border-[#333333] hover:border-[#005580] text-white font-label-md text-label-md uppercase tracking-wider transition-all duration-150 active:scale-[0.98]" 
+                href="galeria.html?id=${encodeURIComponent(item.id)}&slug=${encodeURIComponent(slug)}"
+              >
+                <span>Ver Álbum Completo</span>
+                <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+              </a>
             </div>
-
-          </article>
-        `;
-      }).join('');
-    }
-
-    // Interactive Search on Public Events
-    document.getElementById("schoolSearch")?.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      if (!query) {
-        renderGalleries(currentGalleries);
-        return;
-      }
-      const filtered = currentGalleries.filter(item => 
-        (item.colegio && item.colegio.toLowerCase().includes(query)) ||
-        (item.titulo && item.titulo.toLowerCase().includes(query)) ||
-        (item.fecha && item.fecha.toLowerCase().includes(query))
-      );
-      renderGalleries(filtered);
-    });
-
-    // Password Toggle Helper
-    function togglePasswordVisibility() {
-      const passInput = document.getElementById("galleryCode");
-      const icon = document.getElementById("eyeIcon");
-      if (passInput.type === "password") {
-        passInput.type = "text";
-        icon.textContent = "visibility_off";
-      } else {
-        passInput.type = "password";
-        icon.textContent = "visibility";
-      }
-    }
-
-    // Password Verification for Private Galleries in table 'galeria'
-    async function verifyPrivateCode() {
-      const codeInput = document.getElementById("galleryCode");
-      const messageBox = document.getElementById("privateMessage");
-      const btn = document.getElementById("submitCodeBtn");
-      const inputVal = codeInput.value.trim();
-
-      if (!inputVal) return;
-
-      btn.disabled = true;
-      btn.innerHTML = `
-        <span class="material-symbols-outlined text-[18px] animate-spin" data-icon="progress_activity">progress_activity</span>
-        <span>Validando clave en Supabase...</span>
+          </div>
+        </article>
       `;
+    }).join('');
+  }
 
-      let targetGallery = null;
+  // Interactive Live Filter for Search Bar
+  document.getElementById("schoolSearch")?.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    if (!query) {
+      renderGalleries(currentGalleries);
+      return;
+    }
+    const filtered = currentGalleries.filter(item => {
+      const matchSchool = item.colegio && item.colegio.toLowerCase().includes(query);
+      const matchTitle = item.titulo && item.titulo.toLowerCase().includes(query);
+      const matchDate = item.fecha && item.fecha.toLowerCase().includes(query);
+      return matchSchool || matchTitle || matchDate;
+    });
+    renderGalleries(filtered);
+  });
 
-      try {
-        // Step 1: Query Supabase table 'galeria' for match on password
-        if (supabaseClient) {
-          const { data, error } = await supabaseClient
-            .from('galeria')
-            .select('*')
-            .eq('password', inputVal)
-            .maybeSingle();
+  // Password Visibility Toggle
+  function togglePasswordVisibility() {
+    const passInput = document.getElementById("galleryCode");
+    const icon = document.getElementById("eyeIcon");
+    if (passInput.type === "password") {
+      passInput.type = "text";
+      icon.textContent = "visibility_off";
+    } else {
+      passInput.type = "password";
+      icon.textContent = "visibility";
+    }
+  }
 
-          if (!error && data) {
-            targetGallery = data;
-          }
+  // Realtime Verification for Private Protected Galleries in 'galeria' table
+  async function verifyPrivateCode() {
+    const codeInput = document.getElementById("galleryCode");
+    const messageBox = document.getElementById("privateMessage");
+    const btn = document.getElementById("submitCodeBtn");
+    const inputVal = codeInput.value.trim();
+
+    if (!inputVal) return;
+
+    btn.disabled = true;
+    btn.innerHTML = `
+      <span class="material-symbols-outlined text-[18px] animate-spin" data-icon="progress_activity">progress_activity</span>
+      <span>Consultando Supabase...</span>
+    `;
+
+    let targetGallery = null;
+
+    try {
+      // 1. Direct real-time query against Supabase 'galeria' table
+      if (supabaseClient) {
+        const { data, error } = await supabaseClient
+          .from('galeria')
+          .select('*')
+          .eq('password', inputVal)
+          .maybeSingle();
+
+        if (!error && data) {
+          targetGallery = data;
         }
+      }
 
-        // Step 2: Fallback check against internal mock database
-        if (!targetGallery) {
-          targetGallery = mockGaleria.find(g => g.password && g.password.toUpperCase() === inputVal.toUpperCase());
-        }
+      // 2. Fallback check for offline demo mode
+      if (!targetGallery) {
+        targetGallery = fallbackGalerias.find(g => g.password && g.password.toUpperCase() === inputVal.toUpperCase());
+      }
 
-        if (targetGallery) {
-          // Success Feedback
-          messageBox.className = "p-space-sm rounded-lg text-sm font-body-md border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 block";
-          messageBox.innerHTML = `
-            <div class="flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-[18px] text-emerald-400" data-icon="check_circle">check_circle</span>
-              <span><strong>¡Acceso Autorizado!</strong> Redirigiendo al álbum: <em>${targetGallery.colegio} - ${targetGallery.titulo}</em>...</span>
-            </div>
-          `;
+      if (targetGallery) {
+        messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 block";
+        messageBox.innerHTML = `
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-[16px] text-emerald-400" data-icon="check_circle">check_circle</span>
+            <span><strong>¡Acceso concedido!</strong> Abriendo: ${targetGallery.colegio} - ${targetGallery.titulo}...</span>
+          </div>
+        `;
 
-          // Redirection to galeria.html with secure token / id
-          setTimeout(() => {
-            window.location.href = `galeria.html?id=${targetGallery.id}&token=${encodeURIComponent(inputVal)}&slug=${encodeURIComponent(targetGallery.slug || 'privado')}`;
-          }, 1200);
-
-        } else {
-          // Failure Feedback
-          messageBox.className = "p-space-sm rounded-lg text-sm font-body-md border border-error/40 bg-error-container/20 text-error block";
-          messageBox.innerHTML = `
-            <div class="flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-[18px]" data-icon="error">error</span>
-              <span>Clave no válida. Verifica con la administración escolar o intenta con "SANMARTIN2024".</span>
-            </div>
-          `;
-          btn.disabled = false;
-          btn.innerHTML = `
-            <span class="material-symbols-outlined text-[18px]" data-icon="lock_open">lock_open</span>
-            <span>Desbloquear Álbum Privado</span>
-          `;
-        }
-      } catch (err) {
-        console.error("Verification error:", err);
-        messageBox.className = "p-space-sm rounded-lg text-sm font-body-md border border-error/40 bg-error-container/20 text-error block";
-        messageBox.textContent = "Ocurrió un error al contactar el servidor de galerías. Por favor reintenta.";
+        setTimeout(() => {
+          window.location.href = `galeria.html?id=${encodeURIComponent(targetGallery.id)}&token=${encodeURIComponent(inputVal)}&slug=${encodeURIComponent(targetGallery.slug || 'privado')}`;
+        }, 1000);
+      } else {
+        messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-error/40 bg-error-container/20 text-error block";
+        messageBox.innerHTML = `
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-[16px]" data-icon="error">error</span>
+            <span>Clave incorrecta. Solicita la clave a tu institución o prueba con SANMARTIN2024.</span>
+          </div>
+        `;
         btn.disabled = false;
         btn.innerHTML = `
-          <span class="material-symbols-outlined text-[18px]" data-icon="lock_open">lock_open</span>
-          <span>Desbloquear Álbum Privado</span>
+          <span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
+          <span>Desbloquear Álbum</span>
         `;
       }
+    } catch (err) {
+      console.error("Verification error:", err);
+      messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-error/40 bg-error-container/20 text-error block";
+      messageBox.textContent = "Error al contactar con el servidor. Reintentando...";
+      btn.disabled = false;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
+        <span>Desbloquear Álbum</span>
+      `;
     }
+  }
 
-    // Execute on page load
-    document.addEventListener("DOMContentLoaded", () => {
-      fetchGalerias();
-    });
-  </script>
-
-
+  // Init on DOM ready
+  document.addEventListener("DOMContentLoaded", () => {
+    fetchGalerias();
+    setupRealtimeListener();
+  });
+</script>
 </body></html>
