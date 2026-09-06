@@ -236,26 +236,7 @@
 <p class="text-xs text-outline font-mono" id="loading-text">Conectando con Google Drive API v3...</p>
 </div>
 <!-- EMPTY OR ERROR STATE -->
-<div class="hidden py-16 px-4 flex flex-col items-center justify-center text-center max-w-lg mx-auto bg-[#1a1a1a] border border-[#333333] rounded-2xl p-8" id="empty-state">
-<div class="w-14 h-14 rounded-full bg-[#262626] flex items-center justify-center text-[#38bdf8] mb-4">
-<span class="material-symbols-outlined text-3xl">image_not_supported</span>
-</div>
-<h3 class="text-lg font-bold text-white mb-2" id="empty-title">No se encontraron fotografías</h3>
-<p class="text-xs text-on-surface-variant mb-4 leading-relaxed" id="empty-desc">
-      No se hallaron imágenes en la carpeta de Google Drive indicada o no se especificó un ID de carpeta válido.
-    </p>
-<div class="p-3 bg-[#111111] border border-[#005580]/40 rounded-lg text-[11px] font-mono text-[#38bdf8] break-all max-w-full mb-5" id="empty-debug-info">
-      Folder ID: Ninguno
-    </div>
-<div class="flex flex-wrap items-center justify-center gap-3">
-<button class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs font-semibold flex items-center gap-2 btn-press transition-all" onclick="initGallery()">
-<span class="material-symbols-outlined text-sm">refresh</span> Reintentar Carga
-      </button>
-<a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html">
-<span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Eventos
-      </a>
-</div>
-</div>
+<div class="hidden py-16 px-4 flex flex-col items-center justify-center text-center max-w-lg mx-auto bg-[#1a1a1a] border border-[#333333] rounded-2xl p-8" id="empty-state"><div class="w-14 h-14 rounded-full bg-[#262626] flex items-center justify-center text-[#38bdf8] mb-4"><span class="material-symbols-outlined text-3xl">image_not_supported</span></div><h3 class="text-lg font-bold text-white mb-2" id="empty-title">No se encontraron fotografías</h3><p class="text-xs text-on-surface-variant mb-4 leading-relaxed" id="empty-desc">Consultando repositorio y verificando permisos de acceso...</p><div class="p-3 bg-[#111111] border border-[#005580]/40 rounded-lg text-[11px] font-mono text-[#38bdf8] break-all max-w-full mb-5" id="empty-debug-info">Folder ID Drive: Verificando...</div><div class="flex flex-wrap items-center justify-center gap-3"><button class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs font-semibold flex items-center gap-2 btn-press transition-all" onclick="initGallery()"><span class="material-symbols-outlined text-sm">refresh</span> Reintentar Carga</button><a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html"><span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Eventos</a></div></div>
 </main>
 <!-- PUBLIC MODE ONLY: FLOATING SELECTION BAR & DIRECT WHATSAPP CHECKOUT -->
 <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl z-40 transition-all duration-300 transform translate-y-0" id="public-floating-bar">
