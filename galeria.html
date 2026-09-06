@@ -158,12 +158,10 @@
 <!-- Status Badge & Batch Code -->
 <div class="flex flex-wrap items-center gap-2">
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]" id="gallery-badge"><span class="material-symbols-outlined text-sm">verified</span><span class="">Galería Oficial Pública</span></span>
-
 </div>
 <!-- Dynamic Event Title -->
-
 <!-- Description / Subtext -->
-<p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Selecciona tus fotografías</p>
+<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Memes compartidos</h1></div><p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.</p>
 </div>
 <!-- Controls for Private / Verified Mode -->
 <div class="flex items-center gap-3 hidden" id="header-private-controls">
@@ -178,7 +176,7 @@
 </div>
 </div>
 <!-- PUBLIC MODE ONLY: Official Pricing Banner -->
-<div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]"><span class="material-symbols-outlined">payments</span></div><div><div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2026:</div><div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface"><span class="">Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span><span class="text-outline/40">•</span><span class="">Archivo Digital HD: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span></div></div></div><div class="flex items-center gap-2 text-xs text-outline font-medium"><span class="material-symbols-outlined text-sm text-[#38bdf8]">verified_user</span><span class="">Entrega en papel fotográfico satinado de laboratorio</span></div></div>
+<div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]"><span class="material-symbols-outlined">payments</span></div><div><div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2026:</div><div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface"><span class="">Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span><span class="text-outline/40">•</span><span class="">Archivo Digital HD: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span></div></div></div><div class="flex items-center gap-2 text-xs text-outline font-medium"><span class="material-symbols-outlined text-sm text-[#38bdf8]">verified_user</span><span class="">Entrega en papel fotográfico de laboratorio</span></div></div>
 </section>
 <!-- TOOLBAR & STATUS -->
 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -186,10 +184,7 @@
 <span class="material-symbols-outlined text-base text-[#38bdf8]">photo_camera</span>
 <span class="" id="contador-fotos"><span class="" id="gallery-counter-status">0 fotografías disponibles</span></span>
 </div>
-<div class="flex items-center gap-2">
-<span class="text-xs text-outline">Resolución:</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]/40">HD Web 800px / 1600px Master</span>
-</div>
+
 </div>
 <!-- PHOTOS GRID (Dynamic Container) -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="galeria-fotos"><div class="contents" id="photos-grid"></div></div>
