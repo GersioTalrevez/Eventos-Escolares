@@ -142,9 +142,9 @@
 </nav>
 <!-- Right: Direct WhatsApp Contact & Mode Simulation Badge -->
 <div class="flex items-center gap-2 sm:gap-3">
-<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580]/60 text-[#38bdf8] hover:border-[#38bdf8] hover:text-white transition-all text-xs font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580]/60 text-[#38bdf8] hover:border-[#38bdf8] hover:text-white transition-all text-xs font-semibold" href="https://wa.me/5492613175222" id="header-wa-link" rel="noopener" target="_blank">
 <span class="material-symbols-outlined text-sm">chat</span>
-<span class="hidden sm:inline">+54 9 261 317-5222</span>
+<span class="hidden sm:inline" id="header-wa-label">+54 9 261 317-5222</span>
 <span class="sm:hidden">WhatsApp</span>
 </a>
 </div>
@@ -161,7 +161,7 @@
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]" id="gallery-badge"><span class="material-symbols-outlined text-sm">verified</span><span class="">Galería Oficial Pública</span></span>
 </div>
 <!-- Dynamic Event Title -->
-<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Galería Fotográfica </h1></div>
+<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Galería Fotográfica</h1></div>
 <!-- Description / Subtext -->
 <p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo al WhatsApp.</p>
 </div>
@@ -180,15 +180,15 @@
 <!-- PUBLIC MODE ONLY: Official Pricing Banner -->
 <div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]">
+<div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8] flex-shrink-0">
 <span class="material-symbols-outlined">payments</span>
 </div>
 <div>
-<div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2026:</div>
+<div class="text-xs uppercase tracking-wider text-outline font-semibold mb-0.5">Tarifas Oficiales 2026:</div>
 <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface">
-<span class="">Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span>
+<span class="inline-flex items-center gap-1">Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold" id="precio-banner-impresa">$7.000</strong></span>
 <span class="text-outline/40">•</span>
-<span class="">Archivo Digital HD: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span>
+<span class="inline-flex items-center gap-1">Archivo Digital HD: <strong class="text-[#38bdf8] font-bold" id="precio-banner-digital">$4.200</strong></span>
 </div>
 </div>
 </div>
@@ -229,7 +229,7 @@
 <a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] border border-[#005580]/30 text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html">
 <span class="material-symbols-outlined text-sm">arrow_back</span> Ver Otros Eventos
     </a>
-<a class="px-4 py-2 rounded-xl bg-[#111111] hover:bg-[#1a1a1a] border border-[#38bdf8]/40 text-[#38bdf8] text-xs font-semibold flex items-center gap-2 transition-all" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20el%20acceso%20a%20la%20galer%C3%ADa" rel="noopener" target="_blank">
+<a class="px-4 py-2 rounded-xl bg-[#111111] hover:bg-[#1a1a1a] border border-[#38bdf8]/40 text-[#38bdf8] text-xs font-semibold flex items-center gap-2 transition-all" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20el%20acceso%20a%20la%20galer%C3%ADa" id="empty-support-link" rel="noopener" target="_blank">
 <span class="material-symbols-outlined text-sm">support_agent</span> Soporte WhatsApp
     </a>
 </div>
@@ -252,20 +252,18 @@
 </div>
 <!-- Price Actions -->
 <div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full md:w-auto justify-end">
-<!-- Option 1: Impresas 15x21 ($7.000) -->
 <button class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] border border-[#005580]/50 text-white text-xs font-medium flex items-center justify-center gap-2 btn-press transition-all" onclick="pedirPorWhatsApp('impresas')">
 <span class="material-symbols-outlined text-[#38bdf8] text-base">print</span>
 <div class="text-left leading-tight">
 <span class="block text-xs">Impresas 15x21</span>
-<span class="text-[11px] text-[#38bdf8] font-bold">$7.000 c/u</span>
+<span class="text-[11px] text-[#38bdf8] font-bold" id="btn-precio-impresa">$7.000 c/u</span>
 </div>
 </button>
-<!-- Option 2: Digital HD ($4.200) - Primary Action -->
 <button class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#005580] hover:bg-[#006ca3] border border-[#38bdf8]/40 text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#005580]/30 btn-press transition-all" onclick="pedirPorWhatsApp('digital')">
 <span class="material-symbols-outlined text-base">cloud_download</span>
 <div class="text-left leading-tight">
 <span class="block text-xs">Digital HD</span>
-<span class="text-[11px] text-[#cae6ff] font-bold">$4.200 c/u</span>
+<span class="text-[11px] text-[#cae6ff] font-bold" id="btn-precio-digital">$4.200 c/u</span>
 </div>
 </button>
 </div>
@@ -344,9 +342,9 @@
 <span class="">Volver al Portafolio</span>
 </a>
 <span class="hidden sm:inline text-outline/30">•</span>
-<a class="text-[#38bdf8] hover:underline flex items-center gap-1 font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
+<a class="text-[#38bdf8] hover:underline flex items-center gap-1 font-semibold" href="https://wa.me/5492613175222" id="footer-wa-link" rel="noopener" target="_blank">
 <span class="material-symbols-outlined text-sm">chat</span>
-<span class="">WhatsApp Oficial: +54 9 261 317-5222</span>
+<span class="" id="footer-wa-label">WhatsApp Oficial: +54 9 261 317-5222</span>
 </a>
 </div>
 </div>
@@ -358,7 +356,103 @@
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
     const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
     const DEFAULT_FALLBACK_FOLDER = '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_';
-    const WHATSAPP_FOTOGRAFO = '5492613175222';
+    let WHATSAPP_FOTOGRAFO = '5492613175222';
+
+    // Gestor global reactivo de tarifas con sincronización en tiempo real
+    window.galeriaPrecios = {
+      impresa: 7000,
+      digital: 4200,
+      whatsapp: '5492613175222'
+    };
+
+    function formatMoneda(val) {
+      return '$' + Number(val).toLocaleString('es-AR');
+    }
+
+    function actualizarPreciosUI() {
+      const pImp = window.galeriaPrecios.impresa;
+      const pDig = window.galeriaPrecios.digital;
+      const bannerImp = document.getElementById('precio-banner-impresa');
+      const bannerDig = document.getElementById('precio-banner-digital');
+      const btnImp = document.getElementById('btn-precio-impresa');
+      const btnDig = document.getElementById('btn-precio-digital');
+
+      if (bannerImp) bannerImp.innerText = formatMoneda(pImp);
+      if (bannerDig) bannerDig.innerText = formatMoneda(pDig);
+      if (btnImp) btnImp.innerText = formatMoneda(pImp) + ' c/u';
+      if (btnDig) btnDig.innerText = formatMoneda(pDig) + ' c/u';
+
+      // Actualizar enlaces de WhatsApp dinámicos
+      if (window.galeriaPrecios.whatsapp) {
+        WHATSAPP_FOTOGRAFO = window.galeriaPrecios.whatsapp;
+        const cleanWa = WHATSAPP_FOTOGRAFO.replace(/\D/g, '');
+        const headerWa = document.getElementById('header-wa-link');
+        const emptyWa = document.getElementById('empty-support-link');
+        const footerWa = document.getElementById('footer-wa-link');
+
+        if (headerWa) headerWa.href = `https://wa.me/${cleanWa}`;
+        if (emptyWa) emptyWa.href = `https://wa.me/${cleanWa}?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20el%20acceso%20a%20la%20galer%C3%ADa`;
+        if (footerWa) footerWa.href = `https://wa.me/${cleanWa}`;
+      }
+    }
+
+    async function cargarTarifasVigentes() {
+      // 1. Leer primero localStorage (sincronización instantánea con precios.html y panel)
+      try {
+        const localImp = localStorage.getItem('tarifa_impresa') || localStorage.getItem('precio_impreso');
+        const localDig = localStorage.getItem('tarifa_digital') || localStorage.getItem('precio_digital');
+        const localWa = localStorage.getItem('numero_whatsapp') || localStorage.getItem('whatsapp');
+
+        if (localImp && !isNaN(Number(localImp))) window.galeriaPrecios.impresa = Number(localImp);
+        if (localDig && !isNaN(Number(localDig))) window.galeriaPrecios.digital = Number(localDig);
+        if (localWa && String(localWa).trim().length > 5) window.galeriaPrecios.whatsapp = String(localWa).trim();
+      } catch (err) {
+        console.warn('Lectura de localStorage omitida:', err);
+      }
+
+      actualizarPreciosUI();
+
+      // 2. Sincronizar desde base de datos Supabase con fallback tolerante
+      if (supabaseClient) {
+        try {
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000));
+          const queryPromise = (async () => {
+            // Probar tabla 'configuracion' o 'ajustes'
+            let res = await supabaseClient.from('configuracion').select('*').limit(1).maybeSingle();
+            if (!res.data || res.error) {
+              const resAlt = await supabaseClient.from('ajustes').select('*').limit(1).maybeSingle();
+              if (resAlt.data) res = resAlt;
+            }
+            return res;
+          })();
+
+          const { data } = await Promise.race([queryPromise, timeoutPromise]).catch(() => ({ data: null }));
+
+          if (data) {
+            const valImp = data.tarifa_impresa ?? data.precio_impreso ?? data.precio_copia_impresa;
+            const valDig = data.tarifa_digital ?? data.precio_digital ?? data.precio_archivo_digital;
+            const valWa = data.numero_whatsapp ?? data.whatsapp ?? data.telefono;
+
+            if (valImp && !isNaN(Number(valImp))) {
+              window.galeriaPrecios.impresa = Number(valImp);
+              localStorage.setItem('tarifa_impresa', String(valImp));
+            }
+            if (valDig && !isNaN(Number(valDig))) {
+              window.galeriaPrecios.digital = Number(valDig);
+              localStorage.setItem('tarifa_digital', String(valDig));
+            }
+            if (valWa && String(valWa).trim().length > 5) {
+              window.galeriaPrecios.whatsapp = String(valWa).trim();
+              localStorage.setItem('numero_whatsapp', String(valWa).trim());
+            }
+
+            actualizarPreciosUI();
+          }
+        } catch (e) {
+          console.log('Consulta remota de tarifas Supabase opcional terminada:', e);
+        }
+      }
+    }
 
     // Inicializar cliente Supabase seguro
     const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
@@ -396,6 +490,9 @@
 
     // 2. LÓGICA PRINCIPAL: CARGA Y VERIFICACIÓN HÍBRIDA
     async function initGallery() {
+      // Cargar tarifas de inmediato
+      cargarTarifasVigentes();
+
       const urlParams = new URLSearchParams(window.location.search);
       // Extraer params: 'folder', 'id', 'drive', 'key', 'privada' y 'titulo'
       const paramFolder = urlParams.get('folder');
@@ -800,28 +897,39 @@
       updateSelectionUI();
     }
 
-    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON PLANTILLA EXACTA
+    // PEDIDOS WHATSAPP DIRECTO CON SINCRONIZACIÓN DINÁMICA DE PRECIOS
     function pedirPorWhatsApp(tipo) {
-      if (selectedPhotos.size === 0) {
+      if (!selectedPhotos || selectedPhotos.size === 0) {
         alert('Por favor seleccione al menos una fotografía para armar su pedido.');
         return;
       }
 
-      const tituloEvento = galleryMetadata.titulo;
+      const tituloEvento = (galleryMetadata && galleryMetadata.titulo) ? galleryMetadata.titulo : 'Galería Fotográfica';
       const cantidad = selectedPhotos.size;
       const fotosArray = Array.from(selectedPhotos);
-      const precioUnitario = tipo === 'impresas' ? 7000 : 4200;
+      
+      const precioUnitario = tipo === 'impresas' 
+        ? (window.galeriaPrecios ? window.galeriaPrecios.impresa : 7000) 
+        : (window.galeriaPrecios ? window.galeriaPrecios.digital : 4200);
+      
       const total = cantidad * precioUnitario;
+      const descTipo = tipo === 'impresas' 
+        ? `Copia Impresa 15x21 cm (${formatMoneda(precioUnitario)} c/u)` 
+        : `Archivo Digital HD (${formatMoneda(precioUnitario)} c/u)`;
 
       const mensaje = `Hola Sergio Ricardo Molina, quiero encargarte estas fotos:\n` +
         `Evento: ${tituloEvento}\n` +
-        `Tipo de Pedido: ${tipo === 'impresas' ? 'Copia Impresa 15x21 cm ($7.000 c/u)' : 'Archivo Digital HD ($4.200 c/u)'}\n` +
+        `Tipo de Pedido: ${descTipo}\n` +
         `Cantidad: ${cantidad}\n` +
         `Fotos seleccionadas: ${fotosArray.join(', ')}\n` +
-        `Total estimado: $${total.toLocaleString('es-AR')}\n` +
+        `Total estimado: ${formatMoneda(total)}\n` +
         `¿Me confirmas los datos de pago y plazos de entrega? Muchas gracias.`;
 
-      const waUrl = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
+      const destinoWa = (window.galeriaPrecios && window.galeriaPrecios.whatsapp) 
+        ? window.galeriaPrecios.whatsapp.replace(/\D/g, '') 
+        : (WHATSAPP_FOTOGRAFO || '5492613175222').replace(/\D/g, '');
+
+      const waUrl = `https://wa.me/${destinoWa}?text=${encodeURIComponent(mensaje)}`;
       window.open(waUrl, '_blank');
     }
 
@@ -922,7 +1030,16 @@
       if (touchendX > touchstartX + 45) prevPhoto();
     }
 
-    // Inicializar al cargar el DOM
-    window.addEventListener('DOMContentLoaded', initGallery);
+    // Inicializar al cargar el DOM y escuchar cambios de storage entre pestañas
+    window.addEventListener('DOMContentLoaded', () => {
+      cargarTarifasVigentes();
+      initGallery();
+    });
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'tarifa_impresa' || e.key === 'tarifa_digital' || e.key === 'numero_whatsapp') {
+        cargarTarifasVigentes();
+      }
+    });
   </script>
 </body></html>
