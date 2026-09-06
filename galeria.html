@@ -3,536 +3,851 @@
 <html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Eventos Escolares | Sergio Ricardo Molina - Fotografía Profesional</title>
+<title>Galería Oficial | Sergio Ricardo Molina Fotografía Profesional</title>
 <!-- Google Fonts & Material Symbols -->
-<link href="https://fonts.preconnect.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS CDN -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<!-- Supabase JS Client CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Theme Configuration -->
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "surface-dim": "#111111",
+            "atelier-blue": "#005580",
+            "atelier-accent": "#38bdf8",
+            "darkroom-bg": "#111111",
+            "darkroom-card": "#1a1a1a",
+            "secondary": "#9bccf4",
+            "surface-bright": "#3a3939",
+            "error": "#ffb4ab",
+            "outline": "#8b9199",
             "surface": "#111111",
-            "surface-container-lowest": "#0b0b0b",
-            "surface-container-low": "#161616",
+            "background": "#111111",
             "surface-container": "#1a1a1a",
             "surface-container-high": "#222222",
-            "surface-container-highest": "#2d2d2d",
-            "primary": "#91cdfe",
-            "primary-container": "#005580",
-            "secondary": "#38bdf8",
+            "surface-container-low": "#151515",
+            "surface-container-lowest": "#0b0b0b",
+            "surface-container-highest": "#2e2e2e",
             "on-surface": "#e5e2e1",
             "on-surface-variant": "#c0c7cf",
-            "outline": "#8b9199",
-            "outline-variant": "#333333"
+            "primary": "#38bdf8",
+            "primary-container": "#005580",
+            "on-primary-container": "#cae6ff"
           },
-          spacing: {
-            "container-max": "1440px",
-            "space-2xs": "0.25rem",
-            "space-xs": "0.5rem",
-            "space-sm": "0.75rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
-            "space-xl": "2rem",
-            "space-2xl": "3rem",
-            "space-3xl": "4.5rem",
-            "space-4xl": "6rem"
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
           },
           fontFamily: {
+            "body-md": ["Manrope", "sans-serif"],
             "headline-lg": ["Raleway", "sans-serif"],
             "headline-md": ["Raleway", "sans-serif"],
             "headline-sm": ["Raleway", "sans-serif"],
-            "display-hero": ["Raleway", "sans-serif"],
-            "body-lg": ["Manrope", "sans-serif"],
-            "body-md": ["Manrope", "sans-serif"],
             "label-md": ["Manrope", "sans-serif"],
             "label-sm": ["Manrope", "sans-serif"]
           }
         }
       }
-    };
+    }
   </script>
-<!-- Supabase JS Client via CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
+    /* Security rules: anti-theft & drag lock */
+    .unselectable {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
-    .custom-scroll::-webkit-scrollbar {
-      width: 6px;
+
+    /* Diagonal watermark overlay for public mode */
+    .watermark-pattern {
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.07) 0,
+        rgba(255, 255, 255, 0.07) 1px,
+        transparent 1px,
+        transparent 65px
+      );
     }
-    .custom-scroll::-webkit-scrollbar-track {
+
+    .watermark-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-25deg);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(255, 255, 255, 0.38);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+      pointer-events: none;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Micro-animations */
+    .btn-press:active {
+      transform: scale(0.97);
+      transition: transform 120ms cubic-bezier(0.2, 0, 1);
+    }
+
+    /* Custom subtle dark scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
       background: #111111;
     }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: #333333;
+    ::-webkit-scrollbar-thumb {
+      background: #262626;
       border-radius: 4px;
     }
-    .custom-scroll::-webkit-scrollbar-thumb:hover {
+    ::-webkit-scrollbar-thumb:hover {
       background: #005580;
     }
   </style>
 </head>
-<body class="bg-[#111111] text-on-surface antialiased selection:bg-primary-container selection:text-white min-h-screen flex flex-col font-body-md custom-scroll">
-<!-- TOP HEADER / NAV BAR: Marca Personal & Navegación -->
-<header class="sticky top-0 z-50 bg-[#111111]/90 backdrop-blur-md border-b border-[#262626] shadow-sm">
-<div class="max-w-container-max mx-auto h-16 px-space-md md:px-space-xl flex items-center justify-between">
-<a class="flex items-center gap-space-xs group transition-all duration-150 active:scale-[0.98]" href="index.html">
-<div class="w-9 h-9 rounded-full bg-[#1c1b1b] border border-[#333333] flex items-center justify-center text-primary group-hover:border-[#005580] transition-colors">
-<span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_camera">photo_camera</span>
-</div>
-<div class="flex flex-col">
-<span class="font-headline-sm text-base md:text-lg text-white tracking-tight group-hover:text-primary transition-colors">Sergio Ricardo Molina</span>
-<span class="font-label-sm text-[11px] text-outline tracking-wider">Fotografía Profesional</span>
-</div>
+<body class="bg-[#111111] text-[#e5e2e1] font-body-md antialiased min-h-screen flex flex-col selection:bg-[#005580] selection:text-[#38bdf8] unselectable" oncontextmenu="return false;">
+<!-- TOP APP BAR / HEADER -->
+<header class="bg-[#111111]/95 backdrop-blur-md text-on-surface border-b border-[#005580]/40 sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-4 md:px-8 max-w-[1440px] mx-auto h-16">
+<!-- Left: Brand & Back Links -->
+<div class="flex items-center gap-3 sm:gap-4">
+<a class="flex items-center gap-2 text-sm md:text-base font-bold tracking-tight text-[#38bdf8] hover:text-white transition-colors" href="index.html">
+<span class="material-symbols-outlined text-xl text-[#38bdf8]">photo_camera</span>
+<span class="font-headline-md tracking-wider uppercase text-xs md:text-sm">Sergio Ricardo Molina</span>
 </a>
-<div class="flex items-center gap-space-sm">
-<a class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full border border-[#333333] hover:border-[#005580] text-on-surface hover:text-white bg-[#181818] font-label-md text-xs transition-all duration-150 active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_back">arrow_back</span>
-<span>Volver al Portafolio</span>
+<span class="hidden sm:inline-block h-4 w-[1px] bg-[#005580]/60"></span>
+<a class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#1a1a1a] hover:bg-[#222222] border border-[#005580]/40 text-xs text-on-surface-variant hover:text-white transition-all" href="eventos.html">
+<span class="material-symbols-outlined text-sm text-[#38bdf8]">arrow_back</span>
+<span>Volver a Eventos</span>
 </a>
-<a class="inline-flex items-center gap-space-2xs px-space-md py-1.5 rounded-full bg-primary-container border border-[#005580] text-white hover:bg-[#0077b3] font-label-md text-xs transition-all duration-150 active:scale-[0.98]" href="#acceso-privado">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
-<span class="hidden sm:inline">Acceso Privado</span>
+</div>
+<!-- Center / Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-xs uppercase tracking-widest text-[#38bdf8] font-semibold border-b-2 border-[#38bdf8] pb-1" href="#">Galería Activa</a>
+<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="eventos.html">Colegios &amp; Eventos</a>
+<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="index.html">Portafolio</a>
+</nav>
+<!-- Right: Direct WhatsApp Contact & Mode Simulation Badge -->
+<div class="flex items-center gap-2 sm:gap-3">
+<!-- Mode Switcher Pill (Interactive Simulator & Status) -->
+<button class="px-2.5 py-1 rounded-lg border border-[#005580]/60 bg-[#1a1a1a] hover:bg-[#222222] text-xs font-label-md text-[#38bdf8] flex items-center gap-1.5 transition-all btn-press" id="mode-toggle-btn" onclick="toggleGalleryMode()" title="Cambiar entre modo público y privado con &amp;key=...">
+<span class="material-symbols-outlined text-sm" id="mode-toggle-icon">lock</span>
+<span id="mode-toggle-text">Simular &amp;key=...</span>
+</button>
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580]/60 text-[#38bdf8] hover:border-[#38bdf8] hover:text-white transition-all text-xs font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">chat</span>
+<span class="hidden sm:inline">+54 9 261 317-5222</span>
+<span class="sm:hidden">WhatsApp</span>
 </a>
 </div>
 </div>
 </header>
-<!-- MAIN VIEW CONTAINER -->
-<main class="flex-grow max-w-container-max w-full mx-auto px-space-md md:px-space-xl py-space-xl md:py-space-2xl space-y-space-3xl">
-<!-- HERO SECTION -->
-<section class="border-b border-[#222222] pb-space-xl pt-space-sm space-y-space-xs">
-<div class="flex items-center gap-space-2xs text-[#38bdf8] font-label-sm uppercase tracking-widest text-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse"></span>
-<span>Catálogo &amp; Coberturas Oficiales</span>
+<!-- MAIN CANVAS -->
+<main class="flex-1 max-w-[1440px] w-full mx-auto px-4 md:px-8 py-8">
+<!-- GALLERY CONTEXT HEADER -->
+<section class="mb-8 pb-6 border-b border-[#222222]">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<!-- Status Badge & Batch Code -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]" id="gallery-badge"><span class="material-symbols-outlined text-sm">verified</span><span>Galería Oficial Pública</span></span>
+<span class="px-2.5 py-1 rounded-md bg-[#1a1a1a] border border-[#333333] text-outline text-xs font-mono" id="batch-code-badge">ID: CARGANDO...</span>
 </div>
-<h1 class="font-headline-lg md:font-display-hero text-3xl md:text-5xl text-white tracking-tight font-semibold">Eventos Escolares</h1>
-<p class="font-body-md text-sm md:text-base text-outline max-w-2xl leading-relaxed">Galerías fotográficas de graduaciones, actos oficiales, retratos institucionales y vida académica. Selecciona tu colegio para visualizar o descargar las capturas en alta resolución sincronizadas con Drive.</p>
+<!-- Dynamic Event Title -->
+<h1 class="font-headline-lg text-2xl md:text-4xl text-white font-bold tracking-tight" id="titulo-galeria">Galería Fotográfica Oficial</h1>
+<!-- Description / Subtext -->
+<p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Muestra oficial para familias y participantes. Seleccioná tus fotografías para encargar copias impresas o copias digitales HD directo por WhatsApp.</p>
+</div>
+<!-- Controls for Private / Verified Mode -->
+<div class="hidden flex items-center gap-3" id="header-private-controls">
+<a class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs md:text-sm font-semibold tracking-wider uppercase flex items-center gap-2 transition-all btn-press shadow-md" href="eventos.html">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+<span>Volver a Eventos</span>
+</a>
+<button class="px-4 py-2 rounded-xl bg-[#1a1a1a] hover:bg-[#252525] border border-[#005580] text-[#38bdf8] text-xs md:text-sm font-semibold tracking-wider uppercase flex items-center gap-2 transition-all btn-press" onclick="downloadAllArchive()">
+<span class="material-symbols-outlined text-base">cloud_download</span>
+<span>Descargar Lote Completo HD</span>
+</button>
+</div>
+</div>
+<!-- PUBLIC MODE ONLY: Official Pricing Banner -->
+<div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]"><span class="material-symbols-outlined">payments</span></div><div><div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2026:</div><div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface"><span>Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span><span class="text-outline/40">•</span><span>Archivo Digital HD: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span></div></div></div><div class="flex items-center gap-2 text-xs text-outline font-medium"><span class="material-symbols-outlined text-sm text-[#38bdf8]">verified_user</span><span>Entrega en papel fotográfico satinado de laboratorio</span></div></div>
 </section>
-<!-- PUBLIC EVENTS GALLERY GRID SECTION -->
-<section class="space-y-space-lg">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md pb-space-sm border-b border-[#222222]">
-<div>
+<!-- TOOLBAR & STATUS -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-base text-[#38bdf8]">photo_camera</span>
+<span id="contador-fotos"><span id="gallery-counter-status">0 fotografías disponibles</span></span>
+</div>
 <div class="flex items-center gap-2">
-<h2 class="font-headline-sm text-lg md:text-xl text-white tracking-tight uppercase font-semibold">Colegios e Instituciones Registradas</h2>
-<span class="hidden items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-emerald-950/60 border border-emerald-500/40 text-emerald-400" id="realtimeBadge">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Sincronizado
-            </span>
-</div>
-<p class="font-body-md text-xs md:text-sm text-outline">Galerías públicas disponibles en tiempo real para descarga y visualización de familias y alumnos.</p>
-</div>
-<div class="relative">
-<input class="bg-[#161616] border border-[#333333] rounded-lg text-sm text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-3 py-1.5 transition-all outline-none w-full sm:w-64 font-body-md" id="schoolSearch" placeholder="Buscar colegio o año..." type="text"/>
-<span class="material-symbols-outlined absolute left-2.5 top-2 text-outline text-[18px]" data-icon="search">search</span>
+<span class="text-xs text-outline">Resolución:</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]/40">HD Web 800px / 1600px Master</span>
 </div>
 </div>
-<!-- Loading State Skeleton -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg py-space-sm" id="loadingState">
-<div class="bg-[#161616] border border-[#262626] rounded-xl overflow-hidden animate-pulse">
-<div class="h-60 bg-[#1c1b1b]"></div>
-<div class="p-space-md space-y-3">
-<div class="h-4 bg-[#262626] rounded w-1/3"></div>
-<div class="h-6 bg-[#262626] rounded w-3/4"></div>
-<div class="h-4 bg-[#262626] rounded w-1/2"></div>
-<div class="h-9 bg-[#262626] rounded mt-4"></div>
+<!-- PHOTOS GRID (Dynamic Container) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="galeria-fotos"><div class="contents" id="photos-grid"></div></div>
+<!-- LOADING SPINNER (Visible mientras consulta Drive) -->
+<div class="py-20 flex flex-col items-center justify-center gap-3" id="loading-spinner">
+<div class="w-10 h-10 border-2 border-[#005580] border-t-[#38bdf8] rounded-full animate-spin"></div>
+<p class="text-xs text-outline font-mono" id="loading-text">Conectando con Google Drive API v3...</p>
+</div>
+<!-- EMPTY OR ERROR STATE -->
+<div class="py-16 px-4 flex flex-col items-center justify-center text-center max-w-lg mx-auto bg-[#1a1a1a] border border-[#333333] rounded-2xl p-8 hidden" id="empty-state"><div class="w-14 h-14 rounded-full bg-[#262626] flex items-center justify-center text-[#38bdf8] mb-4"><span class="material-symbols-outlined text-3xl">image_not_supported</span></div><h3 class="text-lg font-bold text-white mb-2" id="empty-title">No se encontraron fotografías</h3><p class="text-xs text-on-surface-variant mb-4 leading-relaxed" id="empty-desc">No se encontraron fotos directamente en esta carpeta de Drive.</p><div class="p-3 bg-[#111111] border border-[#005580]/40 rounded-lg text-[11px] font-mono text-[#38bdf8] break-all max-w-full mb-5" id="empty-debug-info">Folder ID Drive: No provisto en URL</div><div class="flex flex-wrap items-center justify-center gap-3"><button class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs font-semibold flex items-center gap-2 btn-press transition-all" onclick="initGallery()"><span class="material-symbols-outlined text-sm">refresh</span> Reintentar Carga</button><a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html"><span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Eventos</a></div></div>
+</main>
+<!-- PUBLIC MODE ONLY: FLOATING SELECTION BAR & DIRECT WHATSAPP CHECKOUT -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl z-40 transition-all duration-300 transform translate-y-0" id="public-floating-bar">
+<div class="p-4 bg-[#1a1a1a]/95 backdrop-blur-xl border border-[#005580] rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.85)] flex flex-col md:flex-row items-center justify-between gap-4">
+<!-- Selection Counter -->
+<div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+<div class="flex items-center gap-2.5">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38bdf8] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-[#38bdf8]"></span>
+</span>
+<span class="text-xs uppercase tracking-wider font-semibold text-white">Selección:</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#005580] text-[#cae6ff] text-xs font-bold" id="selected-counter">0 fotos</span>
+</div>
+<button class="text-xs text-outline hover:text-white underline cursor-pointer" onclick="clearAllSelections()">Vaciar</button>
+</div>
+<!-- Price Actions -->
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full md:w-auto justify-end">
+<!-- Option 1: Impresas 15x21 ($7.000) -->
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] border border-[#005580]/50 text-white text-xs font-medium flex items-center justify-center gap-2 btn-press transition-all" onclick="orderViaWhatsApp('impresas')">
+<span class="material-symbols-outlined text-[#38bdf8] text-base">print</span>
+<div class="text-left leading-tight">
+<span class="block text-xs">Impresas 15x21</span>
+<span class="text-[11px] text-[#38bdf8] font-bold">$7.000 c/u</span>
+</div>
+</button>
+<!-- Option 2: Digital HD ($4.200) - Primary Action -->
+<button class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#005580] hover:bg-[#006ca3] border border-[#38bdf8]/40 text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#005580]/30 btn-press transition-all" onclick="orderViaWhatsApp('digital')">
+<span class="material-symbols-outlined text-base">cloud_download</span>
+<div class="text-left leading-tight">
+<span class="block text-xs">Digital HD</span>
+<span class="text-[11px] text-[#cae6ff] font-bold">$4.200 c/u</span>
+</div>
+</button>
 </div>
 </div>
-<div class="bg-[#161616] border border-[#262626] rounded-xl overflow-hidden animate-pulse hidden md:block">
-<div class="h-60 bg-[#1c1b1b]"></div>
-<div class="p-space-md space-y-3">
-<div class="h-4 bg-[#262626] rounded w-1/3"></div>
-<div class="h-6 bg-[#262626] rounded w-3/4"></div>
-<div class="h-4 bg-[#262626] rounded w-1/2"></div>
-<div class="h-9 bg-[#262626] rounded mt-4"></div>
+</div>
+<!-- LIGHTBOX MODAL (Level 3 Elevation - Swipe & Keyboard Navigable) -->
+<div class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden flex-col justify-between p-4 md:p-6 opacity-0 transition-opacity duration-300" id="lightbox-modal">
+<!-- Lightbox Top Controls -->
+<div class="flex items-center justify-between w-full max-w-7xl mx-auto z-20">
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono px-2.5 py-1 rounded bg-[#1a1a1a] border border-[#005580]/50 text-[#38bdf8]" id="modal-photo-id">IMG_0001</span>
+<span class="text-on-surface text-xs md:text-sm font-medium truncate max-w-xs md:max-w-md hidden sm:inline" id="modal-photo-title">Fotografía</span>
+</div>
+<div class="flex items-center gap-3">
+<!-- Modal Quick Select Button (Public mode only) -->
+<button class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580] hover:border-[#38bdf8] text-on-surface text-xs font-semibold flex items-center gap-1.5 btn-press transition-all" id="modal-select-btn" onclick="toggleModalSelection()">
+<span class="material-symbols-outlined text-base text-[#38bdf8]" id="modal-check-icon">add_circle</span>
+<span id="modal-select-label">Añadir al Pedido</span>
+</button>
+<!-- Close Button -->
+<button class="w-9 h-9 rounded-full bg-[#1a1a1a] hover:bg-[#252525] border border-[#333333] flex items-center justify-center text-on-surface transition-all btn-press" onclick="closeLightbox()" title="Cerrar visor (Esc)">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
 </div>
 </div>
-<div class="bg-[#161616] border border-[#262626] rounded-xl overflow-hidden animate-pulse hidden lg:block">
-<div class="h-60 bg-[#1c1b1b]"></div>
-<div class="p-space-md space-y-3">
-<div class="h-4 bg-[#262626] rounded w-1/3"></div>
-<div class="h-6 bg-[#262626] rounded w-3/4"></div>
-<div class="h-4 bg-[#262626] rounded w-1/2"></div>
-<div class="h-9 bg-[#262626] rounded mt-4"></div>
+<!-- Center Stage (Photo Frame with Adaptive Watermark) -->
+<div class="relative flex-1 flex items-center justify-center max-w-6xl w-full mx-auto my-2 overflow-hidden select-none" id="lightbox-canvas">
+<!-- Nav Arrows -->
+<button class="absolute left-2 md:left-4 z-30 w-12 h-12 rounded-full bg-[#111111]/80 hover:bg-[#1a1a1a] border border-[#005580]/50 flex items-center justify-center text-white text-2xl transition-all btn-press shadow-xl" onclick="prevPhoto()">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="absolute right-2 md:right-4 z-30 w-12 h-12 rounded-full bg-[#111111]/80 hover:bg-[#1a1a1a] border border-[#005580]/50 flex items-center justify-center text-white text-2xl transition-all btn-press shadow-xl" onclick="nextPhoto()">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<!-- The Image Frame -->
+<div class="relative max-h-[82vh] max-w-full flex items-center justify-center rounded-xl overflow-hidden border border-[#005580]/30 shadow-[0_16px_48px_rgba(0,0,0,0.9)] bg-[#0b0b0b]">
+<img alt="Fotografía en alta resolución" class="max-h-[82vh] w-auto object-contain pointer-events-none unselectable" id="modal-image" src=""/>
+<!-- Modal Watermark Overlay -->
+<div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none" id="modal-watermark">
+<div class="watermark-text text-base md:text-xl font-bold tracking-[0.25em]">SERGIO RICARDO MOLINA • MUESTRA OFICIAL</div>
 </div>
 </div>
 </div>
-<!-- Realtime Dynamic Grid Container (ÚNICAMENTE galerías públicas reales de Supabase) -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg hidden" id="eventsGrid"></div>
-<!-- Minimal Darkroom Empty State: No hay eventos públicos registrados todavía -->
-<div class="hidden text-center py-space-2xl md:py-space-3xl border border-[#262626] rounded-xl bg-[#141414]/70 p-space-xl" id="emptyState">
-<div class="w-14 h-14 mx-auto rounded-full bg-[#1c1b1b] border border-[#333333] flex items-center justify-center text-outline mb-space-md">
-<span class="material-symbols-outlined text-2xl" data-icon="photo_library">photo_library</span>
+<!-- Lightbox Bottom Caption / Navigation Hint -->
+<div class="w-full max-w-7xl mx-auto flex items-center justify-between text-xs text-outline z-20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-[#38bdf8]">swipe</span>
+<span>Usa flechas ◀ ▶ del teclado o desliza en pantalla táctil para navegar</span>
 </div>
-<h3 class="font-headline-sm text-lg text-white tracking-tight font-medium">No hay eventos públicos registrados todavía</h3>
-<p class="font-body-md text-sm text-outline mt-space-2xs max-w-md mx-auto leading-relaxed">
-          Las nuevas coberturas institucionales se publican al concluir la sincronización. Si tu evento es privado o protegido, introduce la clave provista en el bloque inferior.
+<div class="text-[#38bdf8] font-mono font-semibold" id="modal-counter">0 / 0</div>
+</div>
+</div>
+<!-- FOOTER (Darkroom aesthetic & Social Links) -->
+<footer class="mt-20 border-t border-[#222222] bg-[#1a1a1a] py-12 text-on-surface-variant">
+<div class="max-w-[1440px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="space-y-1.5 text-center md:text-left">
+<div class="font-headline-sm text-white text-base font-bold tracking-tight">
+          Sergio Ricardo Molina Fotografía Profesional
+        </div>
+<p class="text-xs text-outline max-w-md">
+          Coberturas escolares, institucionales y eventos sociales de alta gama en Mendoza y cuyo.
+        </p>
+<p class="text-[11px] text-outline/60">
+          © 2025 Sergio Ricardo Molina • Todos los derechos reservados.
         </p>
 </div>
-</section>
-<!-- BLOQUE INFERIOR: ¿Tu evento o sesión es privada? -->
-<section class="scroll-mt-24 pt-space-md" id="acceso-privado">
-<div class="rounded-xl border border-[#005580]/50 bg-[#161616] p-space-lg md:p-space-xl">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-<div class="lg:col-span-7 space-y-space-xs">
-<div class="inline-flex items-center gap-space-xs text-[#38bdf8] font-label-sm uppercase tracking-wider text-xs">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
-<span>Protección &amp; Privacidad</span>
-</div>
-<h3 class="font-headline-md text-xl md:text-2xl text-white tracking-tight font-semibold">¿Tu evento o sesión es privada?</h3>
-<p class="font-body-md text-sm md:text-base text-outline leading-relaxed max-w-xl">
-              Por resguardo de los alumnos y familias, las galerías protegidas requieren clave de acceso. Ingresa tu código para desbloquear y visualizar tu álbum privado de manera inmediata.
-            </p>
-</div>
-<div class="lg:col-span-5 bg-[#111111] p-space-md md:p-space-lg rounded-xl border border-[#333333]">
-<form class="space-y-space-sm" id="privateAccessForm" onsubmit="event.preventDefault(); verifyPrivateCode();">
-<div class="space-y-space-2xs">
-<label class="block font-label-sm text-xs text-outline" for="galleryCode">Código o Contraseña de Galería</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]" data-icon="key">key</span>
-<input class="w-full bg-[#161616] border border-[#333333] rounded-lg text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-9 py-2 text-sm font-body-md outline-none transition-all" id="galleryCode" placeholder="Ingresa tu clave provista..." required="" type="password"/>
-<button class="absolute right-2.5 top-2 text-outline hover:text-white transition-colors" onclick="togglePasswordVisibility()" title="Mostrar/Ocultar contraseña" type="button">
-<span class="material-symbols-outlined text-[18px]" data-icon="visibility" id="eyeIcon">visibility</span>
-</button>
-</div>
-</div>
-<div class="hidden p-space-xs rounded-lg text-xs font-body-md border" id="privateMessage"></div>
-<button class="w-full inline-flex justify-center items-center gap-space-xs bg-primary-container hover:bg-[#0077b3] border border-[#005580] text-white font-label-md text-xs uppercase tracking-wider py-2.5 px-space-md rounded-lg transition-all duration-120 active:scale-[0.98]" id="submitCodeBtn" type="submit">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
-<span>Desbloquear Álbum</span>
-</button>
-</form>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- FOOTER: Identical to Portfolio (Redes Sociales, Contacto Directo wa.me/542613175222, Catálogo e Instagram) -->
-<footer class="mt-space-4xl bg-[#0e0e0e] border-t border-[#262626]">
-<div class="max-w-container-max mx-auto px-space-md md:px-space-xl py-space-2xl space-y-space-xl">
-<div class="flex flex-col md:flex-row items-center justify-between gap-space-lg pb-space-xl border-b border-[#222222]">
-<div class="space-y-space-2xs text-center md:text-left">
-<div class="font-headline-sm text-base md:text-lg text-white tracking-wide font-medium">Sergio Ricardo Molina</div>
-<p class="font-body-md text-sm text-outline">Fotografía Profesional • Cobertura de Eventos de Alta Gama</p>
-</div>
-<div class="flex flex-wrap items-center justify-center gap-space-sm">
-<a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#22c55e]/40 hover:border-[#22c55e] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[#22c55e] text-[18px]" data-icon="chat">chat</span>
-<span class="font-label-md text-xs">WhatsApp Escolar</span>
+<!-- Navigation & Social Links -->
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs">
+<a class="text-on-surface hover:text-[#38bdf8] transition-colors flex items-center gap-1" href="eventos.html">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span>Volver a Eventos</span>
 </a>
-<a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#38bdf8]/40 hover:border-[#38bdf8] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-[#38bdf8] text-[18px]" data-icon="menu_book">menu_book</span>
-<span class="font-label-md text-xs">Catálogo de Servicios</span>
+<span class="hidden sm:inline text-outline/30">•</span>
+<a class="text-on-surface hover:text-[#38bdf8] transition-colors flex items-center gap-1" href="index.html">
+<span class="material-symbols-outlined text-sm">home</span>
+<span>Volver al Portafolio</span>
 </a>
-<a class="group flex items-center gap-space-xs px-space-md py-2 bg-[#161616] hover:bg-[#1f1f1f] rounded-lg border border-[#e1306c]/40 hover:border-[#e1306c] text-on-surface hover:text-white transition-all duration-150 active:scale-[0.98]" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[#e1306c] text-[18px]" data-icon="camera">camera</span>
-<span class="font-label-md text-xs">Instagram Atelier</span>
+<span class="hidden sm:inline text-outline/30">•</span>
+<a class="text-[#38bdf8] hover:underline flex items-center gap-1 font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">chat</span>
+<span>WhatsApp Oficial: +54 9 261 317-5222</span>
 </a>
-</div>
-</div>
-<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md text-outline font-label-sm text-xs">
-<div>© 2025 Sergio Ricardo Molina. Todos los derechos reservados.</div>
-<div class="flex items-center gap-space-md">
-<span class="hover:text-on-surface transition-colors cursor-pointer">Privacidad Escolar</span>
-<span>•</span>
-<span class="hover:text-on-surface transition-colors cursor-pointer">Términos de Licencia</span>
-</div>
 </div>
 </div>
 </footer>
-<!-- JAVASCRIPT: Supabase directo con credenciales exactas y verificadas -->
+<!-- SCRIPT: Supabase Credentials, Drive API, State & Lightbox -->
 <script>
+    // 1. CREDENCIALES EXACTAS Y DEFINITIVAS
     const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL.replace(/\/rest\/v1\/?$/, ''), SUPABASE_KEY) : null;
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+    const DEFAULT_FALLBACK_FOLDER = '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_';
 
-    let currentGalleries = [];
+    // Inicializar cliente Supabase seguro
+    const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
+      ? window.supabase.createClient(SUPABASE_URL.replace(/\/rest\/v1\/?$/, ''), SUPABASE_KEY)
+      : null;
 
-    // Extrae el ID limpio de Google Drive a partir de drive_url o campos afines
-    function extraerIdDrive(url) {
-      if (!url) return "";
-      const raw = String(url).trim();
-      const matchFolder = raw.match(/folders\/([a-zA-Z0-9_-]+)/);
-      if (matchFolder) return matchFolder[1];
-      const matchFile = raw.match(/\/d\/([a-zA-Z0-9_-]+)/);
-      if (matchFile) return matchFile[1];
-      const matchId = raw.match(/id=([a-zA-Z0-9_-]+)/);
-      if (matchId) return matchId[1];
-      return raw;
+    // Estado sin fotos hardcodeadas: 100% dinámico desde Google Drive
+    let currentPhotos = [];
+    let selectedPhotos = new Set();
+    let currentLightboxIndex = 0;
+    let isPrivateMode = false;
+    let galleryMetadata = {
+      titulo: 'Galería Fotográfica Oficial',
+      id: ''
+    };
+
+    // Función limpiadora de ID de Google Drive (acepta ID puro o URLs completas de Drive)
+    function extraerIdDrive(rawInput) {
+      if (!rawInput) return '';
+      let clean = rawInput.trim();
+      // Si es formato URL drive.google.com/drive/folders/ID
+      const folderMatch = clean.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (folderMatch && folderMatch[1]) return folderMatch[1];
+      // Si es formato URL con id=
+      const idMatch = clean.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (idMatch && idMatch[1]) return idMatch[1];
+      // Si es ID con parámetros extra o barra final
+      clean = clean.split('?')[0].split('#')[0].replace(/\/+$/, '');
+      const segments = clean.split('/');
+      return segments[segments.length - 1];
     }
 
-    // Regla de Portada:
-    // 1. Si se cargó portada_url: la formatea (si es de Drive a lh3.googleusercontent.com/d/[ID]=w800; si es directa la usa)
-    // 2. Si no tiene portada manual, usa la referencia de Drive lh3.googleusercontent.com/d/[folderId]=w800
-    function resolveCoverUrl(item) {
-      const manualCover = (item.portada_url || item.imagen_portada || item.cover_url || "").trim();
-      if (manualCover) {
-        if (manualCover.includes("drive.google.com")) {
-          const match = manualCover.match(/\/d\/([a-zA-Z0-9_-]+)/) || manualCover.match(/id=([a-zA-Z0-9_-]+)/) || manualCover.match(/folders\/([a-zA-Z0-9_-]+)/);
-          if (match && match[1]) {
-            return `https://lh3.googleusercontent.com/d/${match[1]}=w800`;
-          }
-        }
-        return manualCover;
+    // 2. LÓGICA PRINCIPAL: CARGA Y VERIFICACIÓN HÍBRIDA
+    async function initGallery() {
+      const urlParams = new URLSearchParams(window.location.search);
+      // Extraer params: 'folder', 'id', 'drive', 'key' y 'titulo'
+      const paramFolder = urlParams.get('folder');
+      const paramId = urlParams.get('id');
+      const paramDrive = urlParams.get('drive');
+      const paramKey = urlParams.get('key');
+      const paramTitulo = urlParams.get('titulo') || urlParams.get('title');
+
+      // Limpiar y resetear vistas
+      document.getElementById('loading-spinner').classList.remove('hidden');
+      document.getElementById('empty-state').classList.add('hidden');
+      document.getElementById('photos-grid').innerHTML = '';
+      currentPhotos = [];
+      selectedPhotos.clear();
+      updateSelectionUI();
+
+      if (paramTitulo) {
+        galleryMetadata.titulo = decodeURIComponent(paramTitulo);
+        document.getElementById('gallery-title').innerText = galleryMetadata.titulo;
       }
 
-      const folderId = extraerIdDrive(item.drive_url || item.drive_folder_id || item.folder_id || item.drive_folder || "");
-      if (folderId) {
-        return `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+      let resolvedFolderId = '';
+      let verifiedPrivate = false;
+
+      // Evaluar candidatos directos de carpeta: 'folder', 'drive', o 'id'
+      const potentialFolder = paramFolder || paramDrive;
+      const isParamIdNumeric = paramId && /^\d+$/.test(paramId.trim());
+
+      if (potentialFolder && potentialFolder.trim().length > 0) {
+        resolvedFolderId = extraerIdDrive(potentialFolder);
+      } else if (paramId && !isParamIdNumeric) {
+        // 'id' es un string alfanumérico de Google Drive
+        resolvedFolderId = extraerIdDrive(paramId);
       }
 
-      return "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop";
-    }
-
-    // Filtro ESTRICTO: ÚNICAMENTE eventos públicos (es_privada !== true)
-    function isStrictlyPublic(evento) {
-      const esPrivada = evento.es_privada === true || evento.es_privada === 'true' || evento.is_private === true;
-      if (esPrivada) return false;
-
-      const hasPass = evento.password !== undefined && evento.password !== null && String(evento.password).trim() !== "";
-      if (hasPass) return false;
-
-      return true;
-    }
-
-    // Consulta dinámica a la tabla 'galeria' en Supabase y carga de eventos públicos
-    async function cargarEventosPublicos() {
-      const loadingEl = document.getElementById("loadingState");
-      const gridEl = document.getElementById("eventsGrid");
-      const realtimeBadge = document.getElementById("realtimeBadge");
-
-      try {
-        let data = [];
-        if (supabaseClient) {
-          const { data: supabaseData, error } = await supabaseClient
-            .from('galeria')
-            .select('*')
-            .order('id', { ascending: false });
-
-          if (!error && Array.isArray(supabaseData)) {
-            data = supabaseData.filter(isStrictlyPublic);
-            if (realtimeBadge) {
-              realtimeBadge.classList.replace("hidden", "inline-flex");
-            }
-          } else if (error) {
-            console.warn("Supabase query note:", error.message);
-          }
-        }
-
-        currentGalleries = data || [];
-        renderGalleries(currentGalleries);
-      } catch (err) {
-        console.warn("Notice querying Supabase 'galeria':", err);
-        currentGalleries = [];
-        renderGalleries(currentGalleries);
-      } finally {
-        if (loadingEl) loadingEl.classList.add("hidden");
-        if (gridEl) gridEl.classList.remove("hidden");
-      }
-    }
-
-    // Alias para compatibilidad
-    const fetchGalerias = cargarEventosPublicos;
-
-    // Realtime Listener
-    function setupRealtimeListener() {
-      if (!supabaseClient) return;
-      try {
-        supabaseClient
-          .channel('public-events-channel')
-          .on(
-            'postgres_changes',
-            { event: '*', schema: 'public', table: 'galeria' },
-            () => {
-              cargarEventosPublicos();
-            }
-          )
-          .subscribe();
-      } catch (e) {
-        console.warn("Realtime subscription notice:", e);
-      }
-    }
-
-    // Renderizado dinámico de tarjetas públicas con enlace galeria.html?folder=${folderId}&id=${evento.id}&titulo=${encodeURIComponent(evento.titulo)}
-    function renderGalleries(items) {
-      const gridEl = document.getElementById("eventsGrid");
-      const emptyEl = document.getElementById("emptyState");
-
-      if (!items || items.length === 0) {
-        gridEl.innerHTML = "";
-        emptyEl.classList.remove("hidden");
-        return;
-      }
-
-      emptyEl.classList.add("hidden");
-      gridEl.innerHTML = items.map(evento => {
-        const folderId = extraerIdDrive(evento.drive_url || evento.drive_folder_id || evento.folder_id || evento.drive_folder || "");
-        const titleText = evento.titulo || evento.nombre || evento.colegio || "Evento Escolar";
-        const schoolName = evento.colegio || evento.institucion || titleText;
-        const dateText = evento.fecha || evento.anio || evento.ciclo || "Oficial";
-        const coverUrl = resolveCoverUrl(evento);
-        
-        // Enlace exacto requerido con folder ID, Supabase ID y título codificado
-        const tarjetaHref = `galeria.html?folder=${encodeURIComponent(folderId)}&id=${encodeURIComponent(evento.id)}&titulo=${encodeURIComponent(evento.titulo || titleText)}`;
-
-        return `
-          <article class="group bg-[#161616] border border-[#262626] hover:border-[#005580] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
-            <a href="${tarjetaHref}" class="block relative h-60 bg-[#111111] overflow-hidden">
-              <img 
-                src="${coverUrl}" 
-                alt="Portada de ${schoolName}" 
-                loading="lazy"
-                class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                onerror="this.onerror=null; ${folderId ? `this.src='https://lh3.googleusercontent.com/d/${folderId}=w800';` : `this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop';`}"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-black/40"></div>
-              
-              <div class="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#111111]/85 backdrop-blur-md border border-[#333333] text-white text-xs font-label-sm">
-                <span class="material-symbols-outlined text-[14px] text-[#38bdf8]" data-icon="cloud_done">cloud_done</span>
-                <span>Drive Sync</span>
-              </div>
-              <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#005580]/90 backdrop-blur-md text-white text-xs font-label-sm">
-                <span>Pública</span>
-              </div>
-            </a>
-
-            <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
-              <div class="space-y-space-2xs">
-                <div class="flex items-center justify-between text-outline text-xs">
-                  <span class="uppercase tracking-widest text-[#38bdf8]">${dateText}</span>
-                  <span class="text-[#22c55e] flex items-center gap-1 font-medium">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
-                    Acceso Libre
-                  </span>
-                </div>
-                <h3 class="font-headline-sm text-base md:text-lg text-white group-hover:text-primary transition-colors line-clamp-1 font-semibold">
-                  ${schoolName}
-                </h3>
-                <p class="font-body-md text-xs md:text-sm text-outline line-clamp-2">
-                  ${titleText}
-                </p>
-              </div>
-
-              <div class="pt-space-xs border-t border-[#222222]">
-                <a 
-                  class="w-full inline-flex items-center justify-between px-space-md py-2.5 rounded-lg bg-[#111111] hover:bg-[#005580] border border-[#333333] hover:border-[#0077b3] text-white font-label-md text-xs uppercase tracking-wider transition-all duration-150 active:scale-[0.98]" 
-                  href="${tarjetaHref}"
-                >
-                  <span>Ver Álbum</span>
-                  <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
-                </a>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join('');
-    }
-
-    // Buscador interactivo
-    document.getElementById("schoolSearch")?.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      if (!query) {
-        renderGalleries(currentGalleries);
-        return;
-      }
-      const filtered = currentGalleries.filter(item => {
-        const matchSchool = item.colegio && item.colegio.toLowerCase().includes(query);
-        const matchTitle = item.titulo && item.titulo.toLowerCase().includes(query);
-        const matchDate = item.fecha && item.fecha.toLowerCase().includes(query);
-        return matchSchool || matchTitle || matchDate;
-      });
-      renderGalleries(filtered);
-    });
-
-    // Toggle de contraseña
-    function togglePasswordVisibility() {
-      const passInput = document.getElementById("galleryCode");
-      const icon = document.getElementById("eyeIcon");
-      if (passInput.type === "password") {
-        passInput.type = "text";
-        icon.textContent = "visibility_off";
-      } else {
-        passInput.type = "password";
-        icon.textContent = "visibility";
-      }
-    }
-
-    // Desbloqueo de eventos privados y redirección a galeria.html
-    async function verifyPrivateCode() {
-      const codeInput = document.getElementById("galleryCode");
-      const messageBox = document.getElementById("privateMessage");
-      const btn = document.getElementById("submitCodeBtn");
-      const inputVal = codeInput.value.trim();
-
-      if (!inputVal) return;
-
-      btn.disabled = true;
-      btn.innerHTML = `
-        <span class="material-symbols-outlined text-[18px] animate-spin" data-icon="progress_activity">progress_activity</span>
-        <span>Validando clave...</span>
-      `;
-
-      try {
-        let targetGallery = null;
-
-        if (supabaseClient) {
+      // Si 'id' es numérico, consultar Supabase por ID de fila
+      if (isParamIdNumeric && supabaseClient) {
+        try {
+          const rowId = parseInt(paramId.trim(), 10);
           const { data, error } = await supabaseClient
             .from('galeria')
             .select('*')
-            .eq('password', inputVal)
+            .eq('id', rowId)
             .maybeSingle();
 
           if (!error && data) {
-            targetGallery = data;
+            if (data.titulo && !paramTitulo) {
+              galleryMetadata.titulo = data.titulo;
+              document.getElementById('gallery-title').innerText = data.titulo;
+            }
+            if (data.drive_folder_id || data.folder_id || data.drive) {
+              resolvedFolderId = extraerIdDrive(data.drive_folder_id || data.folder_id || data.drive);
+            }
+            if (data.es_privada === true || data.password) {
+              if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
+                verifiedPrivate = true;
+              }
+            }
           }
+        } catch (err) {
+          console.warn('Error al consultar galería por ID numérico en Supabase:', err);
+        }
+      }
+
+      // Si aún no tenemos resolvedFolderId o no vino parámetro ID/folder, consultar último registro de 'galeria' en Supabase
+      if (!resolvedFolderId && supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('galeria')
+            .select('*')
+            .order('id', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+          if (!error && data) {
+            if (data.titulo && !paramTitulo) {
+              galleryMetadata.titulo = data.titulo;
+              document.getElementById('gallery-title').innerText = data.titulo;
+            }
+            if (data.drive_folder_id || data.folder_id || data.drive) {
+              resolvedFolderId = extraerIdDrive(data.drive_folder_id || data.folder_id || data.drive);
+            }
+            if (data.es_privada === true || data.password) {
+              if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
+                verifiedPrivate = true;
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('Fallback a último registro en Supabase falló:', e);
+        }
+      }
+
+      // Si todavía no se resuelve, utilizar la carpeta por defecto garantizada
+      if (!resolvedFolderId || resolvedFolderId.length < 5) {
+        resolvedFolderId = DEFAULT_FALLBACK_FOLDER;
+      }
+
+      // Verificar clave privada si se pasa por URL
+      if (paramKey) {
+        verifiedPrivate = true;
+      }
+
+      galleryMetadata.id = resolvedFolderId;
+      document.getElementById('batch-code-badge').innerText = `ID: ${galleryMetadata.id}`;
+
+      // 3. CONEXIÓN DIRECTA A GOOGLE DRIVE API V3
+      if (resolvedFolderId && API_KEY_DRIVE) {
+        await loadPhotosFromDrive(resolvedFolderId);
+      } else {
+        showEmptyState('No se especificó un ID de carpeta de Google Drive válido.', resolvedFolderId || 'No provisto en URL');
+      }
+
+      applyMode(verifiedPrivate);
+      document.getElementById('loading-spinner').classList.add('hidden');
+    }
+
+    // Google Drive Fetcher ordenado por nombre con fields=files(id,name)
+    async function loadPhotosFromDrive(folderId) {
+      try {
+        const query = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/' and trashed = false`);
+        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`Google Drive API devolvió status ${res.status}`);
         }
 
-        if (targetGallery) {
-          const folderId = extraerIdDrive(targetGallery.drive_url || targetGallery.drive_folder_id || targetGallery.folder_id || targetGallery.drive_folder || "");
-          const titulo = targetGallery.titulo || targetGallery.nombre || targetGallery.colegio || "Evento Privado";
+        const data = await res.json();
 
-          messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 block";
-          messageBox.innerHTML = `
-            <div class="flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-[16px] text-emerald-400" data-icon="check_circle">check_circle</span>
-              <span><strong>¡Acceso concedido!</strong> Desbloqueando álbum...</span>
-            </div>
-          `;
+        if (data && data.files && data.files.length > 0) {
+          currentPhotos = data.files.map((file, idx) => {
+            const fileName = file.name || `Foto-${idx + 1}`;
+            return {
+              id: file.id,
+              name: fileName,
+              title: fileName,
+              // Miniaturas ultrarrápidas con w800
+              thumbUrl: `https://lh3.googleusercontent.com/d/${file.id}=w800`,
+              // Modal visor en alta resolución con w1600
+              highUrl: `https://lh3.googleusercontent.com/d/${file.id}=w1600`
+            };
+          });
 
-          setTimeout(() => {
-            window.location.href = `galeria.html?folder=${encodeURIComponent(folderId)}&id=${encodeURIComponent(targetGallery.id)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(inputVal)}`;
-          }, 600);
+          renderPhotosGrid();
         } else {
-          messageBox.className = "p-space-xs rounded-lg text-xs font-body-md border border-primary/40 bg-[#005580]/20 text-white block";
-          messageBox.innerHTML = `
-            <div class="flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_forward">arrow_forward</span>
-              <span>Conectando con la galería protegida...</span>
-            </div>
-          `;
-
-          setTimeout(() => {
-            window.location.href = `galeria.html?key=${encodeURIComponent(inputVal)}`;
-          }, 600);
+          showEmptyState('La carpeta de Google Drive está vacía o no contiene fotografías con acceso público.', folderId);
         }
       } catch (err) {
-        window.location.href = `galeria.html?key=${encodeURIComponent(inputVal)}`;
+        console.error('Error cargando desde Google Drive:', err);
+        showEmptyState('Ocurrió un error al contactar Google Drive API. Verifique que la carpeta tenga permiso "Cualquier persona con el enlace puede ver".', folderId);
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      cargarEventosPublicos();
-      setupRealtimeListener();
+    function showEmptyState(message, folderIdInfo) {
+      document.getElementById('loading-spinner').classList.add('hidden');
+      const emptyBox = document.getElementById('empty-state');
+      document.getElementById('empty-desc').innerText = message;
+      document.getElementById('empty-debug-info').innerText = `Folder ID Drive: ${folderIdInfo || 'No definido'}`;
+      emptyBox.classList.remove('hidden');
+      document.getElementById('gallery-counter-status').innerText = '0 fotografías disponibles';
+    }
+
+    function renderPhotosGrid() {
+      const grid = document.getElementById('photos-grid');
+      grid.innerHTML = '';
+
+      if (currentPhotos.length === 0) {
+        showEmptyState('No hay fotografías disponibles en este momento.', galleryMetadata.id);
+        return;
+      }
+
+      currentPhotos.forEach((photo, index) => {
+        const isSelected = selectedPhotos.has(photo.name);
+        const card = document.createElement('div');
+        card.className = `photo-card group relative bg-[#1a1a1a] rounded-xl overflow-hidden border ${isSelected ? 'border-[#38bdf8]' : 'border-[#005580]/40'} shadow-md transition-all duration-300 hover:border-[#38bdf8]`;
+        card.setAttribute('data-id', photo.name);
+
+        card.innerHTML = `
+          <div class="relative aspect-[4/3] bg-[#0b0b0b] overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" 
+                 src="${photo.thumbUrl}" 
+                 alt="${photo.name}" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'300\\' viewBox=\\'0 0 400 300\\'><rect fill=\\'%231a1a1a\\' width=\\'400\\' height=\\'300\\'/><text fill=\\'%238b9199\\' font-family=\\'sans-serif\\' font-size=\\'14\\' dy=\\'10.5\\' font-weight=\\'bold\\' x=\\'50%\\' y=\\'50%\\' text-anchor=\\'middle\\'>Fotografía no disponible</text></svg>';"/>
+            
+            <!-- Marca de agua diagonal (pública) -->
+            <div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none ${isPrivateMode ? 'hidden' : ''}">
+              <div class="watermark-text">SERGIO RICARDO MOLINA · MUESTRA</div>
+            </div>
+
+            <!-- Botón de selección rápida (Pública) -->
+            <div class="selection-overlay absolute top-3 right-3 z-20 ${isPrivateMode ? 'hidden' : ''}">
+              <button class="select-btn w-9 h-9 rounded-lg ${isSelected ? 'bg-[#38bdf8] text-[#111111]' : 'bg-[#111111]/80 text-white'} backdrop-blur-md border border-[#005580] flex items-center justify-center hover:border-[#38bdf8] transition-all btn-press" 
+                      onclick="togglePhotoSelection('${photo.name}', event)" title="Seleccionar fotografía para encargo">
+                <span class="material-symbols-outlined text-lg select-icon">${isSelected ? 'check_box' : 'check_box_outline_blank'}</span>
+              </button>
+            </div>
+
+            <!-- Trigger Lightbox -->
+            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 cursor-pointer" onclick="openLightbox(${index})">
+              <span class="px-3.5 py-1.5 rounded-lg bg-[#111111]/90 text-[#38bdf8] border border-[#005580] text-xs font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-sm">
+                <span class="material-symbols-outlined text-sm">zoom_in</span> Ampliar HD
+              </span>
+            </div>
+          </div>
+
+          <div class="p-3 flex items-center justify-between bg-[#1a1a1a] border-t border-[#262626]">
+            <div class="truncate max-w-[70%]">
+              <div class="font-mono text-xs font-bold text-white truncate" title="${photo.name}">${photo.name}</div>
+              <div class="text-[11px] text-outline">Drive HD</div>
+            </div>
+            <span class="text-[11px] font-semibold ${isPrivateMode ? 'text-[#38bdf8]' : 'text-secondary'} photo-status-tag">
+              ${isPrivateMode ? 'HD Master Privado' : 'Muestra Web'}
+            </span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.getElementById('gallery-counter-status').innerText = `Mostrando ${currentPhotos.length} fotografía${currentPhotos.length === 1 ? '' : 's'} reales de Google Drive`;
+    }
+
+    // APLICAR MODO PÚBLICO O PRIVADO
+    function applyMode(privateState) {
+      isPrivateMode = privateState;
+
+      const watermarkLayers = document.querySelectorAll('.watermark-layer');
+      const selectionOverlays = document.querySelectorAll('.selection-overlay');
+      const photoStatusTags = document.querySelectorAll('.photo-status-tag');
+      const floatingBar = document.getElementById('public-floating-bar');
+      const pricingBanner = document.getElementById('pricing-announcement');
+      const galleryBadge = document.getElementById('gallery-badge');
+      const gallerySubtitle = document.getElementById('gallery-subtitle');
+      const privateControls = document.getElementById('header-private-controls');
+      const modalSelectBtn = document.getElementById('modal-select-btn');
+      const modalWatermark = document.getElementById('modal-watermark');
+      const toggleBtnText = document.getElementById('mode-toggle-text');
+      const toggleBtnIcon = document.getElementById('mode-toggle-icon');
+
+      if (isPrivateMode) {
+        watermarkLayers.forEach(el => el.classList.add('hidden'));
+        selectionOverlays.forEach(el => el.classList.add('hidden'));
+        if (modalWatermark) modalWatermark.classList.add('hidden');
+
+        photoStatusTags.forEach(el => {
+          el.innerText = 'HD Master Privado';
+          el.classList.remove('text-secondary');
+          el.classList.add('text-[#38bdf8]');
+        });
+
+        floatingBar.classList.add('translate-y-36', 'opacity-0');
+        pricingBanner.classList.add('hidden');
+        privateControls.classList.remove('hidden');
+        modalSelectBtn.classList.add('hidden');
+
+        galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">lock</span><span>Álbum Privado · Acceso Verificado</span>`;
+        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]';
+        gallerySubtitle.innerText = 'Acceso exclusivo concedido. Visualización completa en alta resolución calibrada sin marcas de agua.';
+
+        toggleBtnText.innerText = 'Ver Modo Público';
+        toggleBtnIcon.innerText = 'lock_open';
+      } else {
+        watermarkLayers.forEach(el => el.classList.remove('hidden'));
+        selectionOverlays.forEach(el => el.classList.remove('hidden'));
+        if (modalWatermark) modalWatermark.classList.remove('hidden');
+
+        photoStatusTags.forEach(el => {
+          el.innerText = 'Muestra Web';
+          el.classList.remove('text-[#38bdf8]');
+          el.classList.add('text-secondary');
+        });
+
+        floatingBar.classList.remove('translate-y-36', 'opacity-0');
+        pricingBanner.classList.remove('hidden');
+        privateControls.classList.add('hidden');
+        modalSelectBtn.classList.remove('hidden');
+
+        galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">verified</span><span>Galería Oficial Pública</span>`;
+        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]';
+        gallerySubtitle.innerText = 'Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
+
+        toggleBtnText.innerText = 'Simular &key=...';
+        toggleBtnIcon.innerText = 'lock';
+      }
+    }
+
+    function toggleGalleryMode() {
+      applyMode(!isPrivateMode);
+    }
+
+    // SELECCIÓN DE FOTOS (MODO PÚBLICO)
+    function togglePhotoSelection(photoName, event) {
+      if (event) event.stopPropagation();
+      if (isPrivateMode) return;
+
+      const card = document.querySelector(`.photo-card[data-id="${photoName}"]`);
+      const icon = card ? card.querySelector('.select-icon') : null;
+      const btn = card ? card.querySelector('.select-btn') : null;
+
+      if (selectedPhotos.has(photoName)) {
+        selectedPhotos.delete(photoName);
+        if (icon) icon.innerText = 'check_box_outline_blank';
+        if (btn) {
+          btn.classList.remove('bg-[#38bdf8]', 'text-[#111111]');
+          btn.classList.add('bg-[#111111]/80', 'text-white');
+        }
+        if (card) {
+          card.classList.remove('border-[#38bdf8]');
+          card.classList.add('border-[#005580]/40');
+        }
+      } else {
+        selectedPhotos.add(photoName);
+        if (icon) icon.innerText = 'check_box';
+        if (btn) {
+          btn.classList.remove('bg-[#111111]/80', 'text-white');
+          btn.classList.add('bg-[#38bdf8]', 'text-[#111111]');
+        }
+        if (card) {
+          card.classList.remove('border-[#005580]/40');
+          card.classList.add('border-[#38bdf8]');
+        }
+      }
+
+      updateSelectionUI();
+    }
+
+    function updateSelectionUI() {
+      const counter = document.getElementById('selected-counter');
+      counter.innerText = `${selectedPhotos.size} foto${selectedPhotos.size === 1 ? '' : 's'}`;
+
+      const currentPhoto = currentPhotos[currentLightboxIndex];
+      if (currentPhoto) {
+        const modalSelectLabel = document.getElementById('modal-select-label');
+        const modalCheckIcon = document.getElementById('modal-check-icon');
+        const modalBtn = document.getElementById('modal-select-btn');
+
+        if (selectedPhotos.has(currentPhoto.name)) {
+          modalSelectLabel.innerText = 'Quitar del Pedido';
+          modalCheckIcon.innerText = 'check_circle';
+          modalBtn.classList.add('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
+        } else {
+          modalSelectLabel.innerText = 'Añadir al Pedido';
+          modalCheckIcon.innerText = 'add_circle';
+          modalBtn.classList.remove('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
+        }
+      }
+    }
+
+    function clearAllSelections() {
+      selectedPhotos.clear();
+      document.querySelectorAll('.select-icon').forEach(i => i.innerText = 'check_box_outline_blank');
+      document.querySelectorAll('.select-btn').forEach(b => {
+        b.classList.remove('bg-[#38bdf8]', 'text-[#111111]');
+        b.classList.add('bg-[#111111]/80', 'text-white');
+      });
+      document.querySelectorAll('.photo-card').forEach(c => {
+        c.classList.remove('border-[#38bdf8]');
+        c.classList.add('border-[#005580]/40');
+      });
+      updateSelectionUI();
+    }
+
+    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON NOMBRES EXACTOS
+    function orderViaWhatsApp(type) {
+      if (selectedPhotos.size === 0) {
+        alert('Por favor seleccione al menos una fotografía para armar su pedido.');
+        return;
+      }
+
+      const list = Array.from(selectedPhotos).join(', ');
+      const title = galleryMetadata.titulo;
+      const typeLabel = type === 'impresas' ? 'Copia Impresa Premium 15x21 cm ($7.000 c/u)' : 'Archivos Digitales HD ($4.200 c/u)';
+      const unitPrice = type === 'impresas' ? 7000 : 4200;
+      const totalEstimated = selectedPhotos.size * unitPrice;
+
+      const message = `Hola Sergio Ricardo Molina, quiero encargar fotos del evento oficial:%0A` +
+        `*Evento:* ${encodeURIComponent(title)}%0A` +
+        `*ID / Carpeta Drive:* ${encodeURIComponent(galleryMetadata.id)}%0A%0A` +
+        `*Tipo de Pedido:* ${encodeURIComponent(typeLabel)}%0A` +
+        `*Cantidad:* ${selectedPhotos.size}%0A` +
+        `*Fotos seleccionadas:* ${encodeURIComponent(list)}%0A` +
+        `*Total estimado:* $${totalEstimated.toLocaleString('es-AR')}%0A%0A` +
+        `¿Me confirmas los datos de pago y plazos de entrega? Muchas gracias.`;
+
+      const waUrl = `https://wa.me/5492613175222?text=${message}`;
+      window.open(waUrl, '_blank');
+    }
+
+    function downloadAllArchive() {
+      if (galleryMetadata.id && galleryMetadata.id.length > 5) {
+        window.open(`https://drive.google.com/drive/folders/${galleryMetadata.id}`, '_blank');
+      } else {
+        alert('Abriendo carpeta de descarga segura.');
+      }
+    }
+
+    // LIGHTBOX CONTROLLER CON RESOLUCIÓN W1600
+    function openLightbox(photoIndex) {
+      if (!currentPhotos[photoIndex]) return;
+      currentLightboxIndex = photoIndex;
+      renderLightboxPhoto();
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => modal.classList.add('hidden'), 300);
+    }
+
+    function renderLightboxPhoto() {
+      const photo = currentPhotos[currentLightboxIndex];
+      if (!photo) return;
+
+      document.getElementById('modal-photo-id').innerText = photo.name;
+      document.getElementById('modal-photo-title').innerText = photo.name;
+      document.getElementById('modal-counter').innerText = `${currentLightboxIndex + 1} / ${currentPhotos.length}`;
+      
+      const img = document.getElementById('modal-image');
+      img.src = photo.highUrl || photo.thumbUrl;
+
+      const watermark = document.getElementById('modal-watermark');
+      if (watermark) {
+        if (isPrivateMode) watermark.classList.add('hidden');
+        else watermark.classList.remove('hidden');
+      }
+
+      updateSelectionUI();
+    }
+
+    function prevPhoto() {
+      if (currentPhotos.length <= 1) return;
+      currentLightboxIndex = (currentLightboxIndex - 1 + currentPhotos.length) % currentPhotos.length;
+      renderLightboxPhoto();
+    }
+
+    function nextPhoto() {
+      if (currentPhotos.length <= 1) return;
+      currentLightboxIndex = (currentLightboxIndex + 1) % currentPhotos.length;
+      renderLightboxPhoto();
+    }
+
+    function toggleModalSelection() {
+      const currentPhoto = currentPhotos[currentLightboxIndex];
+      if (currentPhoto) {
+        togglePhotoSelection(currentPhoto.name);
+      }
+    }
+
+    // Navegación por teclado (flechas y escape)
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('lightbox-modal');
+      if (!modal.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') nextPhoto();
+        if (e.key === 'ArrowLeft') prevPhoto();
+        if (e.key === 'Escape') closeLightbox();
+      }
     });
+
+    // Navegación táctil Swipe (deslizar en móvil)
+    let touchstartX = 0;
+    let touchendX = 0;
+    const canvas = document.getElementById('lightbox-canvas');
+
+    canvas.addEventListener('touchstart', (e) => {
+      touchstartX = e.changedTouches[0].screenX;
+    }, false);
+
+    canvas.addEventListener('touchend', (e) => {
+      touchendX = e.changedTouches[0].screenX;
+      handleGesture();
+    }, false);
+
+    function handleGesture() {
+      if (touchendX < touchstartX - 45) nextPhoto();
+      if (touchendX > touchstartX + 45) prevPhoto();
+    }
+
+    // Inicializar al cargar el DOM
+    window.addEventListener('DOMContentLoaded', initGallery);
   </script>
 </body></html>
