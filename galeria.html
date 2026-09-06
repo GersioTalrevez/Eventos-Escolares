@@ -139,8 +139,8 @@
 <!-- Center / Desktop Navigation Links -->
 <nav class="hidden md:flex items-center gap-6">
 <a class="text-xs uppercase tracking-widest text-[#38bdf8] font-semibold border-b-2 border-[#38bdf8] pb-1" href="#">Galería Activa</a>
-<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="eventos.html#colegios">Colegios</a>
-<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="index.html#portafolio">Portafolio</a>
+<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="eventos.html">Colegios &amp; Eventos</a>
+<a class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="index.html">Portafolio</a>
 </nav>
 <!-- Right: Direct WhatsApp Contact & Mode Simulation Badge -->
 <div class="flex items-center gap-2 sm:gap-3">
@@ -170,16 +170,16 @@
 <span>Galería Oficial Pública</span>
 </span>
 <span class="px-2.5 py-1 rounded-md bg-[#1a1a1a] border border-[#333333] text-outline text-xs font-mono" id="batch-code-badge">
-              ID: DRIVE-COL-SANMARTIN
+              ID: Conectando...
             </span>
 </div>
 <!-- Dynamic Event Title -->
 <h1 class="font-headline-lg text-2xl md:text-4xl text-white font-bold tracking-tight" id="gallery-title">
-            Col. San Martín de Tours • Acto de Graduación &amp; Fiesta
+            Galería Fotográfica Oficial
           </h1>
 <!-- Description / Subtext -->
 <p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">
-            Muestra oficial para familias y egresados. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.
+            Cargando el archivo fotográfico oficial directo desde el servidor de Google Drive.
           </p>
 </div>
 <!-- Controls for Private / Verified Mode -->
@@ -219,7 +219,7 @@
 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
 <div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium">
 <span class="material-symbols-outlined text-base text-[#38bdf8]">photo_camera</span>
-<span id="gallery-counter-status">Cargando fotografías oficiales...</span>
+<span id="gallery-counter-status">Consultando Google Drive...</span>
 </div>
 <div class="flex items-center gap-2">
 <span class="text-xs text-outline">Resolución:</span>
@@ -228,12 +228,33 @@
 </div>
 <!-- PHOTOS GRID (Dynamic Container) -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="photos-grid">
-<!-- Cards will be populated dynamically from Drive API or fallback mock data -->
+<!-- Cards se pueblan exclusivamente con fotos de Google Drive -->
 </div>
-<!-- LOADING SPINNER (Hidden after render) -->
+<!-- LOADING SPINNER (Visible mientras consulta Drive) -->
 <div class="py-20 flex flex-col items-center justify-center gap-3" id="loading-spinner">
 <div class="w-10 h-10 border-2 border-[#005580] border-t-[#38bdf8] rounded-full animate-spin"></div>
-<p class="text-xs text-outline font-mono">Conectando con Supabase y Google Drive...</p>
+<p class="text-xs text-outline font-mono" id="loading-text">Conectando con Google Drive API v3...</p>
+</div>
+<!-- EMPTY OR ERROR STATE -->
+<div class="hidden py-16 px-4 flex flex-col items-center justify-center text-center max-w-lg mx-auto bg-[#1a1a1a] border border-[#333333] rounded-2xl p-8" id="empty-state">
+<div class="w-14 h-14 rounded-full bg-[#262626] flex items-center justify-center text-[#38bdf8] mb-4">
+<span class="material-symbols-outlined text-3xl">image_not_supported</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2" id="empty-title">No se encontraron fotografías</h3>
+<p class="text-xs text-on-surface-variant mb-4 leading-relaxed" id="empty-desc">
+      No se hallaron imágenes en la carpeta de Google Drive indicada o no se especificó un ID de carpeta válido.
+    </p>
+<div class="p-3 bg-[#111111] border border-[#005580]/40 rounded-lg text-[11px] font-mono text-[#38bdf8] break-all max-w-full mb-5" id="empty-debug-info">
+      Folder ID: Ninguno
+    </div>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<button class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs font-semibold flex items-center gap-2 btn-press transition-all" onclick="initGallery()">
+<span class="material-symbols-outlined text-sm">refresh</span> Reintentar Carga
+      </button>
+<a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html">
+<span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Eventos
+      </a>
+</div>
 </div>
 </main>
 <!-- PUBLIC MODE ONLY: FLOATING SELECTION BAR & DIRECT WHATSAPP CHECKOUT -->
@@ -277,8 +298,8 @@
 <!-- Lightbox Top Controls -->
 <div class="flex items-center justify-between w-full max-w-7xl mx-auto z-20">
 <div class="flex items-center gap-3">
-<span class="text-xs font-mono px-2.5 py-1 rounded bg-[#1a1a1a] border border-[#005580]/50 text-[#38bdf8]" id="modal-photo-id">SRM-0401</span>
-<span class="text-on-surface text-xs md:text-sm font-medium hidden sm:inline" id="modal-photo-title">Foto en Alta Resolución</span>
+<span class="text-xs font-mono px-2.5 py-1 rounded bg-[#1a1a1a] border border-[#005580]/50 text-[#38bdf8]" id="modal-photo-id">IMG_0001</span>
+<span class="text-on-surface text-xs md:text-sm font-medium truncate max-w-xs md:max-w-md hidden sm:inline" id="modal-photo-title">Fotografía</span>
 </div>
 <div class="flex items-center gap-3">
 <!-- Modal Quick Select Button (Public mode only) -->
@@ -318,7 +339,7 @@
 <span class="material-symbols-outlined text-sm text-[#38bdf8]">swipe</span>
 <span>Usa flechas ◀ ▶ del teclado o desliza en pantalla táctil para navegar</span>
 </div>
-<div class="text-[#38bdf8] font-mono font-semibold" id="modal-counter">1 / 8</div>
+<div class="text-[#38bdf8] font-mono font-semibold" id="modal-counter">0 / 0</div>
 </div>
 </div>
 <!-- FOOTER (Darkroom aesthetic & Social Links) -->
@@ -366,145 +387,175 @@
       ? window.supabase.createClient(SUPABASE_URL.replace(/\/rest\/v1\/?$/, ''), SUPABASE_KEY)
       : null;
 
-    // Base de datos de fallback / fotos predeterminadas con Google User Content
-    const defaultPhotos = [
-      { id: "SRM-0401", title: "Apertura Ceremonia Oficial", driveId: "AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_PDrmhO9DCtQAXdrUL01phEokqO347w9KIitJXqgOM57bc-Iqf9K-Ymw4Dic1u-P0wM2F6axE_np78dOQd83qNCJ_n3QFoCkvfW_kcN9undl7fTujeAw_FCR-P6kCl-M8ZNMWtI4H5QbANP4UlvcZmBxEgVcKRZzUATRi6nul5k7ryu5ZYrOJj15224lw2yp9eNE8Olc_qFfasaS3t2WyMfbdnOtsTh7F8AFa6YKyKd6hz8TrVXel", meta: "f/2.8 • 1/250s • ISO 800" },
-      { id: "SRM-0402", title: "Medalla de Honor Egresado", driveId: "AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuANsXgByP399DTcykYp_xiVwVOdrcVVi7XRvBzBcrhhl6NKeAO8A5oZEZDyhmGnKAXOsxQ0wo-AEcDl_GpiYHBTHkAqbQDtDi5mPrIkS4duZHDbhlPR-8oK9cJfTRZYL4maDNEIZmOWhCLBG2TdeO7qfcW43aPUDdgox4niVRmhOGZgaTSne9xi7icvUU2HYp-BaB5zZv7coa8Q3swMPcJU1xKLndMsdgy5Lv8buImDFRvMBXQ1cn1X", meta: "f/2.0 • 1/400s • ISO 640" },
-      { id: "SRM-0403", title: "Discurso Directora y Alumnos", driveId: "AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXgwJPQS4ti5IMRW3pEferqmN2lcMj3tPB5EtWy6IVCJvElkdlWy_aUV2Fm4ZiQccImTs4YZRFGeouaz189cGByYYPnZ2A06SMOlvWnYbRh14uj-hxSXHLxSkxj5qOw6zTi5oHbMlfzkCb2KiBdPh2ts8KugmDQBC_ORHue4bWj0gJ1gfgJWBPgu-8at6jT588yw2RbwdSBj5blX3ufVm_e88rUIQpWwuD1j5Ux-5JDZcAB8oRGPQJ", meta: "f/2.8 • 1/200s • ISO 1000" },
-      { id: "SRM-0404", title: "Retrato Familiar Escenario", driveId: "AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeZEt1Itvc3J3tSu6i0LBWk0t2w-7jA29rRkQkshticsUErB6jl19rQAqxmdV9Wez6-ACe7zKT9U5ttmD-zLyYj84WlvQtPTcUcpy26FkxvuXS3QBS-O36HT4udThlaTzKIh7Oy8T8Q35KKwaigKR6w3K2s8Jz_L18lX7YgbIWiJvN05qPCbJWNt9moBe_O7qZEa1snnANBdEN7Uqfp9r5yRL4lEYK-Vwjyj5JEY7XNRBi6iebaCkF", meta: "f/4.0 • 1/160s • ISO 400" },
-      { id: "SRM-0405", title: "Lanzamiento de Birretes", driveId: "AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhkTKVj-Y78Vs1lFrWd-q9qtT9s46cDGhPxcXPL0RxKenaM_Cj2ecSWA6O2wK0IjFZQlzBNj0fVUydQKo2kYOtdA6X-QIsnB3mzu7aEIh3EA7CDjZP-LW7_aGWnJsERUpFE_GsWnwgEGH20C2lMNH3MapObOaS0kbF4LAywy2bA4QgIvU0UfzYhsGy-ta2tL_UpwV8mfr1r_0r9SQeTrecBYQnp6oZHkM2IReX4v2FqqHKswKCx50W", meta: "f/3.2 • 1/500s • ISO 1250" },
-      { id: "SRM-0406", title: "Abrazo entre Compañeros", driveId: "AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMPzLDWMaJJWBt-g9nXAx32ybU7_e8e24w1-MRRi90kYwxwQEMmPp7SCRE7pZNhIU1DxehAcTFTF5lxcrNjgVMEKjXSfZnYEAzLew_2NM85Zd24ZdJIvmNamIjLnpwrYzGN4SbWMgzJK3xEOPpEH0ype6ZCUl1XLUL_jFvo8H-75s4mfBHN6rf3pxaNtAMpysLXGEUe5v-gvA_ixgLR4TPYRY4cOXr1GtUcmEvowAScyz1AnjeQNaU", meta: "f/1.8 • 1/320s • ISO 500" },
-      { id: "SRM-0407", title: "Brindis de Honor Familiar", driveId: "AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9xFrepJUGGiUSdwrHe0lCeaQscvRuxKmJj9gK8CtlJNqVv78KFEC_rIT0P4LJgLUL27A-t4_eis69pwMg5KLrE7FTPTzorZKyAXxWbBJq97y7HEZctWHXhR9x9ei9EYs9c8ekkWdLXL6Gecqf59s_yeCGT-cgVLxleaF0D3Ce8RmTtQxkmRu2zEOG_bk_08I5hWxSaGmlfxq_UlCad0Kie2ljK37P3y97EReJ8FnOkhMSD1rMe9Py", meta: "f/2.2 • 1/125s • ISO 1600" },
-      { id: "SRM-0408", title: "Foto Grupal Promoción", driveId: "AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ", thumbUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ", highUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqXk8sVX2N7BVoqPQyTmJq7A3IuS77C3wBCc_axLDWhPtF80N-Y0bIngFPW0fpLtMVpd4gza1tcMI9OojFjg73TnFBQWeskz5W64jz5ji6vfXYge3FfqBJrWJ77dDEPXj8X43OskVtAsJTlgd1LDj7Gweyjpn3d8XBm7evWd6zULo7Z5UlL9-xpM6bIZNJccoJifiR6Nab5NQOsSoF0qgkPx-l2pukj7o1CTQETBS6VrgDsFZIf1dJ", meta: "f/5.6 • 1/125s • ISO 400" }
-    ];
-
-    // State
-    let currentPhotos = [...defaultPhotos];
+    // Estado sin fotos hardcodeadas: 100% dinámico desde Google Drive
+    let currentPhotos = [];
     let selectedPhotos = new Set();
     let currentLightboxIndex = 0;
     let isPrivateMode = false;
     let galleryMetadata = {
-      titulo: 'Col. San Martín de Tours • Acto de Graduación & Fiesta',
-      id: 'DRIVE-COL-SANMARTIN'
+      titulo: 'Galería Fotográfica Oficial',
+      id: ''
     };
 
-    // 2. LÓGICA INTELIGENTE SEGÚN EL TIPO DE GALERÍA (PÚBLICA VS PRIVADA)
+    // Función limpiadora de ID de Google Drive (acepta ID puro o URLs completas de Drive)
+    function cleanFolderId(rawInput) {
+      if (!rawInput) return '';
+      let clean = rawInput.trim();
+      // Si es formato URL drive.google.com/drive/folders/ID
+      const folderMatch = clean.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (folderMatch && folderMatch[1]) return folderMatch[1];
+      // Si es formato URL con id=
+      const idMatch = clean.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (idMatch && idMatch[1]) return idMatch[1];
+      // Si es ID con parámetros extra o barra final
+      clean = clean.split('?')[0].split('#')[0].replace(/\/+$/, '');
+      const segments = clean.split('/');
+      return segments[segments.length - 1];
+    }
+
+    // 2. LÓGICA PRINCIPAL: CARGA Y VERIFICACIÓN
     async function initGallery() {
       const urlParams = new URLSearchParams(window.location.search);
-      const folderId = urlParams.get('id');
-      const paramTitle = urlParams.get('titulo');
+      const rawParamId = urlParams.get('id') || urlParams.get('drive') || urlParams.get('folderId') || urlParams.get('folder');
+      const paramTitle = urlParams.get('titulo') || urlParams.get('title');
       const paramKey = urlParams.get('key');
       const paramPrivada = urlParams.get('privada');
+
+      // Limpiar y resetear vistas
+      document.getElementById('loading-spinner').classList.remove('hidden');
+      document.getElementById('empty-state').classList.add('hidden');
+      document.getElementById('photos-grid').innerHTML = '';
+      currentPhotos = [];
+      selectedPhotos.clear();
+      updateSelectionUI();
 
       if (paramTitle) {
         galleryMetadata.titulo = decodeURIComponent(paramTitle);
         document.getElementById('gallery-title').innerText = galleryMetadata.titulo;
       }
 
-      if (folderId) {
-        galleryMetadata.id = folderId;
-        document.getElementById('batch-code-badge').innerText = `ID: ${folderId}`;
-      }
-
-      // Verificación en Supabase si hay ID o Key
+      let resolvedFolderId = cleanFolderId(rawParamId);
       let verifiedPrivate = false;
 
-      if (folderId || paramKey) {
-        if (supabaseClient) {
-          try {
-            // Consulta la tabla singular 'galeria'
-            let query = supabaseClient.from('galeria').select('*');
-            if (folderId) query = query.eq('id', folderId);
-            const { data, error } = await query.maybeSingle();
-
-            if (!error && data) {
-              if (data.titulo) {
-                galleryMetadata.titulo = data.titulo;
-                document.getElementById('gallery-title').innerText = data.titulo;
-              }
-              // Verificar si es privada
-              if (data.es_privada === true || data.password) {
-                if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
-                  verifiedPrivate = true;
-                } else if (paramPrivada === 'true') {
-                  verifiedPrivate = true;
-                }
-              }
-            } else if (paramKey || paramPrivada === 'true') {
-              verifiedPrivate = true;
-            }
-          } catch (e) {
-            console.warn('Consulta Supabase:', e);
-            if (paramKey || paramPrivada === 'true') verifiedPrivate = true;
+      // Consultar en Supabase para obtener o resolver folderId y credenciales privadas si corresponde
+      if (supabaseClient && (rawParamId || paramKey)) {
+        try {
+          let query = supabaseClient.from('galeria').select('*');
+          if (rawParamId) {
+            query = query.or(`id.eq.${rawParamId},drive_folder_id.eq.${rawParamId}`);
           }
-        } else if (paramKey || paramPrivada === 'true') {
-          verifiedPrivate = true;
+          const { data, error } = await query.maybeSingle();
+
+          if (!error && data) {
+            if (data.titulo && !paramTitle) {
+              galleryMetadata.titulo = data.titulo;
+              document.getElementById('gallery-title').innerText = data.titulo;
+            }
+            if (data.drive_folder_id) {
+              resolvedFolderId = cleanFolderId(data.drive_folder_id);
+            }
+            if (data.es_privada === true || data.password) {
+              if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
+                verifiedPrivate = true;
+              } else if (paramPrivada === 'true') {
+                verifiedPrivate = true;
+              }
+            }
+          } else if (paramKey || paramPrivada === 'true') {
+            verifiedPrivate = true;
+          }
+        } catch (e) {
+          console.warn('Consulta Supabase fallida o tabla vacía:', e);
+          if (paramKey || paramPrivada === 'true') verifiedPrivate = true;
         }
+      } else if (paramKey || paramPrivada === 'true') {
+        verifiedPrivate = true;
       }
 
-      // 3. CARGA DESDE GOOGLE DRIVE SI HAY FOLDER ID
-      if (folderId && folderId.length > 5 && API_KEY_DRIVE) {
-        await loadPhotosFromDrive(folderId);
+      galleryMetadata.id = resolvedFolderId || 'SIN-ID';
+      document.getElementById('batch-code-badge').innerText = `ID: ${galleryMetadata.id || 'N/D'}`;
+
+      // 3. CONEXIÓN DIRECTA A GOOGLE DRIVE API V3
+      if (resolvedFolderId && resolvedFolderId.length > 5 && API_KEY_DRIVE) {
+        await loadPhotosFromDrive(resolvedFolderId);
       } else {
-        renderPhotosGrid();
+        showEmptyState('No se especificó un ID de carpeta de Google Drive.', resolvedFolderId || 'No provisto en URL');
       }
 
       applyMode(verifiedPrivate);
       document.getElementById('loading-spinner').classList.add('hidden');
     }
 
-    // Google Drive Fetcher con w800 y w1600
+    // Google Drive Fetcher ordenado por nombre con fields=files(id,name)
     async function loadPhotosFromDrive(folderId) {
       try {
         const query = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/' and trashed = false`);
-        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name,mimeType,imageMediaMetadata)&key=${API_KEY_DRIVE}&pageSize=50`;
+        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
 
         const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`Google Drive API devolvió status ${res.status}`);
+        }
+
         const data = await res.json();
 
         if (data && data.files && data.files.length > 0) {
           currentPhotos = data.files.map((file, idx) => {
-            const fileId = file.id;
-            const aperture = file.imageMediaMetadata?.aperture ? `f/${file.imageMediaMetadata.aperture}` : 'f/2.8';
-            const shutter = file.imageMediaMetadata?.exposureTime ? `${file.imageMediaMetadata.exposureTime}s` : '1/250s';
-            const iso = file.imageMediaMetadata?.isoSpeed ? `ISO ${file.imageMediaMetadata.isoSpeed}` : 'ISO 400';
-
+            const fileName = file.name || `Foto-${idx + 1}`;
             return {
-              id: `SRM-${String(idx + 1).padStart(4, '0')}`,
-              title: file.name.replace(/\.[^/.]+$/, ""),
-              driveId: fileId,
+              id: file.id,
+              name: fileName,
+              title: fileName,
               // Miniaturas ultrarrápidas con w800
-              thumbUrl: `https://lh3.googleusercontent.com/d/${fileId}=w800`,
+              thumbUrl: `https://lh3.googleusercontent.com/d/${file.id}=w800`,
               // Modal visor en alta resolución con w1600
-              highUrl: `https://lh3.googleusercontent.com/d/${fileId}=w1600`,
-              meta: `${aperture} • ${shutter} • ${iso}`
+              highUrl: `https://lh3.googleusercontent.com/d/${file.id}=w1600`
             };
           });
+
+          renderPhotosGrid();
+        } else {
+          showEmptyState('La carpeta de Google Drive está vacía o no contiene fotografías con acceso público.', folderId);
         }
       } catch (err) {
-        console.warn('Error cargando desde Google Drive, usando catálogo local:', err);
+        console.error('Error cargando desde Google Drive:', err);
+        showEmptyState('Ocurrió un error al contactar Google Drive API. Verifique que la carpeta tenga permiso "Cualquier persona con el enlace puede ver".', folderId);
       }
-      renderPhotosGrid();
+    }
+
+    function showEmptyState(message, folderIdInfo) {
+      document.getElementById('loading-spinner').classList.add('hidden');
+      const emptyBox = document.getElementById('empty-state');
+      document.getElementById('empty-desc').innerText = message;
+      document.getElementById('empty-debug-info').innerText = `Folder ID Drive: ${folderIdInfo || 'No definido'}`;
+      emptyBox.classList.remove('hidden');
+      document.getElementById('gallery-counter-status').innerText = '0 fotografías disponibles';
     }
 
     function renderPhotosGrid() {
       const grid = document.getElementById('photos-grid');
       grid.innerHTML = '';
 
+      if (currentPhotos.length === 0) {
+        showEmptyState('No hay fotografías disponibles en este momento.', galleryMetadata.id);
+        return;
+      }
+
       currentPhotos.forEach((photo, index) => {
-        const isSelected = selectedPhotos.has(photo.id);
+        const isSelected = selectedPhotos.has(photo.name);
         const card = document.createElement('div');
         card.className = `photo-card group relative bg-[#1a1a1a] rounded-xl overflow-hidden border ${isSelected ? 'border-[#38bdf8]' : 'border-[#005580]/40'} shadow-md transition-all duration-300 hover:border-[#38bdf8]`;
-        card.setAttribute('data-id', photo.id);
+        card.setAttribute('data-id', photo.name);
 
         card.innerHTML = `
           <div class="relative aspect-[4/3] bg-[#0b0b0b] overflow-hidden">
             <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none unselectable" 
                  src="${photo.thumbUrl}" 
-                 alt="${photo.title}" 
-                 loading="lazy"/>
+                 alt="${photo.name}" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'300\\' viewBox=\\'0 0 400 300\\'><rect fill=\\'%231a1a1a\\' width=\\'400\\' height=\\'300\\'/><text fill=\\'%238b9199\\' font-family=\\'sans-serif\\' font-size=\\'14\\' dy=\\'10.5\\' font-weight=\\'bold\\' x=\\'50%\\' y=\\'50%\\' text-anchor=\\'middle\\'>Fotografía no disponible</text></svg>';"/>
             
-            <!-- Marca de agua semitransparente -->
+            <!-- Marca de agua semitransparente cruzada (pública) -->
             <div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none ${isPrivateMode ? 'hidden' : ''}">
               <div class="watermark-text">SERGIO RICARDO MOLINA • MUESTRA</div>
             </div>
@@ -512,23 +563,23 @@
             <!-- Botón de selección rápida (Pública) -->
             <div class="selection-overlay absolute top-3 right-3 z-20 ${isPrivateMode ? 'hidden' : ''}">
               <button class="select-btn w-9 h-9 rounded-lg ${isSelected ? 'bg-[#38bdf8] text-[#111111]' : 'bg-[#111111]/80 text-white'} backdrop-blur-md border border-[#005580] flex items-center justify-center hover:border-[#38bdf8] transition-all btn-press" 
-                      onclick="togglePhotoSelection('${photo.id}', event)" title="Seleccionar fotografía">
+                      onclick="togglePhotoSelection('${photo.name}', event)" title="Seleccionar fotografía para encargo">
                 <span class="material-symbols-outlined text-lg select-icon">${isSelected ? 'check_box' : 'check_box_outline_blank'}</span>
               </button>
             </div>
 
             <!-- Trigger Lightbox -->
-            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 cursor-pointer" onclick="openLightbox('${photo.id}')">
+            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 cursor-pointer" onclick="openLightbox(${index})">
               <span class="px-3.5 py-1.5 rounded-lg bg-[#111111]/90 text-[#38bdf8] border border-[#005580] text-xs font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-sm">
                 <span class="material-symbols-outlined text-sm">zoom_in</span> Ampliar HD
               </span>
             </div>
           </div>
 
-          <div class="p-3.5 flex items-center justify-between bg-[#1a1a1a] border-t border-[#262626]">
-            <div>
-              <div class="font-headline-sm text-xs font-bold text-white tracking-wide">${photo.id}</div>
-              <div class="text-[11px] font-mono text-outline">${photo.meta}</div>
+          <div class="p-3 flex items-center justify-between bg-[#1a1a1a] border-t border-[#262626]">
+            <div class="truncate max-w-[70%]">
+              <div class="font-mono text-xs font-bold text-white truncate" title="${photo.name}">${photo.name}</div>
+              <div class="text-[11px] text-outline">Drive HD</div>
             </div>
             <span class="text-[11px] font-semibold ${isPrivateMode ? 'text-[#38bdf8]' : 'text-secondary'} photo-status-tag">
               ${isPrivateMode ? 'HD Master Privado' : 'Muestra Web'}
@@ -538,7 +589,7 @@
         grid.appendChild(card);
       });
 
-      document.getElementById('gallery-counter-status').innerText = `Mostrando ${currentPhotos.length} capturas oficiales`;
+      document.getElementById('gallery-counter-status').innerText = `Mostrando ${currentPhotos.length} fotografía${currentPhotos.length === 1 ? '' : 's'} reales de Google Drive`;
     }
 
     // APLICAR MODO PÚBLICO O PRIVADO
@@ -559,7 +610,7 @@
       const toggleBtnIcon = document.getElementById('mode-toggle-icon');
 
       if (isPrivateMode) {
-        // MODO PRIVADO: Visor puro sin marcas de agua, sin barra flotante de compras, sin precios
+        // MODO PRIVADO: Visor puro sin marcas de agua, sin barra flotante de compras
         watermarkLayers.forEach(el => el.classList.add('hidden'));
         selectionOverlays.forEach(el => el.classList.add('hidden'));
         if (modalWatermark) modalWatermark.classList.add('hidden');
@@ -575,10 +626,9 @@
         privateControls.classList.remove('hidden');
         modalSelectBtn.classList.add('hidden');
 
-        // Insignia destacada
         galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">lock</span><span>Álbum Privado · Acceso Verificado</span>`;
         galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]';
-        gallerySubtitle.innerText = 'Acceso exclusivo concedido para egresados y familias. Visualización completa en alta resolución calibrada sin marcas de agua.';
+        gallerySubtitle.innerText = 'Acceso exclusivo concedido. Visualización completa en alta resolución calibrada sin marcas de agua.';
 
         toggleBtnText.innerText = 'Ver Modo Público';
         toggleBtnIcon.innerText = 'lock_open';
@@ -601,7 +651,7 @@
 
         galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">verified</span><span>Galería Oficial Pública</span>`;
         galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]';
-        gallerySubtitle.innerText = 'Muestra oficial para familias y egresados. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
+        gallerySubtitle.innerText = 'Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
 
         toggleBtnText.innerText = 'Simular &key=...';
         toggleBtnIcon.innerText = 'lock';
@@ -613,16 +663,16 @@
     }
 
     // SELECCIÓN DE FOTOS (MODO PÚBLICO)
-    function togglePhotoSelection(photoId, event) {
+    function togglePhotoSelection(photoName, event) {
       if (event) event.stopPropagation();
       if (isPrivateMode) return;
 
-      const card = document.querySelector(`.photo-card[data-id="${photoId}"]`);
+      const card = document.querySelector(`.photo-card[data-id="${photoName}"]`);
       const icon = card ? card.querySelector('.select-icon') : null;
       const btn = card ? card.querySelector('.select-btn') : null;
 
-      if (selectedPhotos.has(photoId)) {
-        selectedPhotos.delete(photoId);
+      if (selectedPhotos.has(photoName)) {
+        selectedPhotos.delete(photoName);
         if (icon) icon.innerText = 'check_box_outline_blank';
         if (btn) {
           btn.classList.remove('bg-[#38bdf8]', 'text-[#111111]');
@@ -633,7 +683,7 @@
           card.classList.add('border-[#005580]/40');
         }
       } else {
-        selectedPhotos.add(photoId);
+        selectedPhotos.add(photoName);
         if (icon) icon.innerText = 'check_box';
         if (btn) {
           btn.classList.remove('bg-[#111111]/80', 'text-white');
@@ -658,7 +708,7 @@
         const modalCheckIcon = document.getElementById('modal-check-icon');
         const modalBtn = document.getElementById('modal-select-btn');
 
-        if (selectedPhotos.has(currentPhoto.id)) {
+        if (selectedPhotos.has(currentPhoto.name)) {
           modalSelectLabel.innerText = 'Quitar del Pedido';
           modalCheckIcon.innerText = 'check_circle';
           modalBtn.classList.add('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
@@ -684,7 +734,7 @@
       updateSelectionUI();
     }
 
-    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222)
+    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON NOMBRES EXACTOS
     function orderViaWhatsApp(type) {
       if (selectedPhotos.size === 0) {
         alert('Por favor seleccione al menos una fotografía para armar su pedido.');
@@ -699,7 +749,7 @@
 
       const message = `Hola Sergio Ricardo Molina, quiero encargar fotos del evento oficial:%0A` +
         `*Evento:* ${encodeURIComponent(title)}%0A` +
-        `*ID / Lote:* ${encodeURIComponent(galleryMetadata.id)}%0A%0A` +
+        `*ID / Carpeta Drive:* ${encodeURIComponent(galleryMetadata.id)}%0A%0A` +
         `*Tipo de Pedido:* ${encodeURIComponent(typeLabel)}%0A` +
         `*Cantidad:* ${selectedPhotos.size}%0A` +
         `*Fotos seleccionadas:* ${encodeURIComponent(list)}%0A` +
@@ -711,19 +761,21 @@
     }
 
     function downloadAllArchive() {
-      alert('Iniciando descarga del archivo ZIP HD sin marcas de agua desde el servidor de almacenamiento seguro.');
+      if (galleryMetadata.id && galleryMetadata.id.length > 5) {
+        window.open(`https://drive.google.com/drive/folders/${galleryMetadata.id}`, '_blank');
+      } else {
+        alert('Abriendo carpeta de descarga segura.');
+      }
     }
 
     // LIGHTBOX CONTROLLER CON RESOLUCIÓN W1600
-    function openLightbox(photoId) {
-      const idx = currentPhotos.findIndex(p => p.id === photoId);
-      if (idx !== -1) {
-        currentLightboxIndex = idx;
-        renderLightboxPhoto();
-        const modal = document.getElementById('lightbox-modal');
-        modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
-      }
+    function openLightbox(photoIndex) {
+      if (!currentPhotos[photoIndex]) return;
+      currentLightboxIndex = photoIndex;
+      renderLightboxPhoto();
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
     }
 
     function closeLightbox() {
@@ -734,8 +786,10 @@
 
     function renderLightboxPhoto() {
       const photo = currentPhotos[currentLightboxIndex];
-      document.getElementById('modal-photo-id').innerText = photo.id;
-      document.getElementById('modal-photo-title').innerText = photo.title;
+      if (!photo) return;
+
+      document.getElementById('modal-photo-id').innerText = photo.name;
+      document.getElementById('modal-photo-title').innerText = photo.name;
       document.getElementById('modal-counter').innerText = `${currentLightboxIndex + 1} / ${currentPhotos.length}`;
       
       const img = document.getElementById('modal-image');
@@ -751,18 +805,22 @@
     }
 
     function prevPhoto() {
+      if (currentPhotos.length <= 1) return;
       currentLightboxIndex = (currentLightboxIndex - 1 + currentPhotos.length) % currentPhotos.length;
       renderLightboxPhoto();
     }
 
     function nextPhoto() {
+      if (currentPhotos.length <= 1) return;
       currentLightboxIndex = (currentLightboxIndex + 1) % currentPhotos.length;
       renderLightboxPhoto();
     }
 
     function toggleModalSelection() {
       const currentPhoto = currentPhotos[currentLightboxIndex];
-      togglePhotoSelection(currentPhoto.id);
+      if (currentPhoto) {
+        togglePhotoSelection(currentPhoto.name);
+      }
     }
 
     // Navegación por teclado (flechas y escape)
