@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eventos Escolares | Sergio Ricardo Molina</title>
-  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <!-- SDK oficial de Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sergio Ricardo Molina | Fotografía</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -22,312 +18,154 @@
       margin: 0 auto;
       min-height: 100vh;
     }
-
+    
     header {
-      padding: 16px 0 24px;
-      border-bottom: 1px solid #222222;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
+      padding: 24px 0 20px;
+    }
+    .avatar-header {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 12px;
+      border: 2px solid #005580;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      display: block;
+    }
+    h1 {
+      font-size: 1.65rem;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    h1 span {
+      display: block;
+      font-size: 0.95rem;
+      color: #aaaaaa;
+      margin-top: 5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 300;
     }
 
-    .btn-volver-portafolio {
-      display: inline-flex;
+    /* VISTA 1: GRID DE CATEGORÍAS */
+    .grid-categorias {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-categorias {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .card-categoria {
+      background: #222222;
+      border: 2px solid #005580;
+      border-radius: 12px;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
       gap: 6px;
-      color: #bbbbbb;
-      text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       font-weight: 500;
-      background: #1c1c1c;
-      border: 1px solid #005580;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.2s ease;
-    }
-    .btn-volver-portafolio:hover {
-      background: #282828;
+      letter-spacing: 1px;
       color: #ffffff;
-      border-color: #0088cc;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      text-decoration: none;
+      user-select: none;
     }
 
-    .marca-personal {
-      text-align: right;
-      font-size: 0.82rem;
-      color: #777777;
+    .card-categoria:hover {
+      background: #282828;
+      border-color: #0077b3;
+    }
+
+    .card-categoria:active {
+      transform: scale(0.96);
+      background: #1f1f1f;
+    }
+
+    .card-icon {
+      font-size: 26px;
+      color: #0088cc;
+    }
+
+    /* BOTÓN ESPECIAL EVENTOS ESCOLARES DESTACADO */
+    .card-eventos {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
+      border: 2px solid #38bdf8;
+      box-shadow: inset 0 0 0 2px #111111, 0 6px 18px rgba(0,100,200,0.25);
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+    }
+    .card-eventos:hover {
+      background: linear-gradient(135deg, #22334f 0%, #112236 100%);
+      border-color: #7dd3fc;
+    }
+    .badge-destacado {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: #0284c7;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-    }
-    .marca-personal strong {
-      color: #38bdf8;
-      display: block;
-      font-size: 0.88rem;
-      letter-spacing: 0.5px;
-    }
-
-    .hero-seccion {
-      text-align: center;
-      padding: 32px 0 24px;
-    }
-    .hero-seccion h1 {
-      font-size: 1.85rem;
-      font-weight: 400;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-    .hero-seccion p {
-      color: #999999;
-      font-size: 0.95rem;
-      font-weight: 300;
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    /* GRID DINÁMICO DE EVENTOS PÚBLICOS */
-    .grid-eventos {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 18px;
-      margin-top: 10px;
-    }
-    @media (min-width: 600px) {
-      .grid-eventos {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 860px) {
-      .grid-eventos {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .tarjeta-evento {
-      background: #1a1a1a;
-      border: 1.5px solid #005580;
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-    .tarjeta-evento:hover {
-      transform: translateY(-3px);
-      border-color: #38bdf8;
-      box-shadow: 0 8px 20px rgba(0, 85, 128, 0.35);
-    }
-
-    .contenedor-portada {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      background: #0d0d0d;
-      overflow: hidden;
-    }
-    .contenedor-portada img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    .tarjeta-evento:hover .contenedor-portada img {
-      transform: scale(1.03);
-    }
-
-    .portada-fallback {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #112233 0%, #0d1722 100%);
-      color: #38bdf8;
-      gap: 8px;
-    }
-    .portada-fallback .material-symbols-outlined {
-      font-size: 40px;
-    }
-
-    .badge-fotos {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 600;
       padding: 3px 8px;
       border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
     }
-
-    .detalle-evento {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-    .titulo-evento {
-      font-size: 1.1rem;
+    .card-eventos h3 {
+      font-size: 1.25rem;
       font-weight: 600;
       color: #ffffff;
-      line-height: 1.35;
-      margin-bottom: 6px;
-    }
-    .fecha-evento {
-      font-size: 0.78rem;
-      color: #888888;
-      margin-bottom: 14px;
-    }
-
-    .btn-ver-galeria {
-      background: #004466;
-      color: #ffffff;
-      border: 1px solid #0077b3;
-      padding: 9px 14px;
-      border-radius: 8px;
-      font-size: 0.86rem;
-      font-weight: 600;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .tarjeta-evento:hover .btn-ver-galeria {
-      background: #005580;
-      border-color: #38bdf8;
-    }
-
-    /* ESTADOS DE CARGA Y VACÍO */
-    .estado-mensaje {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 20px;
-      background: #161616;
-      border: 1px dashed #333333;
-      border-radius: 12px;
-      color: #888888;
-    }
-    .estado-mensaje .material-symbols-outlined {
-      font-size: 42px;
-      color: #0088cc;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .estado-mensaje h3 {
-      font-size: 1.15rem;
-      color: #dddddd;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-    .estado-mensaje p {
-      font-size: 0.88rem;
-      color: #777777;
-    }
-
-    /* ACCESO PRIVADO CON CLAVE (UBICADO DEBAJO DE LOS EVENTOS) */
-    .bloque-privado {
-      margin-top: 36px;
-      background: #181818;
-      border: 1.5px solid #005580;
-      border-radius: 12px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-    }
-    @media (min-width: 640px) {
-      .bloque-privado {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-    .bloque-privado-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .bloque-privado-icono {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #00334d;
-      color: #38bdf8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-    .bloque-privado-texto h4 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    .bloque-privado-texto p {
-      font-size: 0.8rem;
-      color: #999999;
-    }
-    .form-clave {
-      display: flex;
       gap: 8px;
-      width: 100%;
-      max-width: 340px;
     }
-    .input-clave {
-      flex: 1;
-      background: #111111;
-      border: 1px solid #333333;
-      border-radius: 8px;
-      padding: 10px 14px;
-      color: #ffffff;
-      font-size: 0.88rem;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-    .input-clave:focus {
-      border-color: #38bdf8;
-    }
-    .btn-ingresar-clave {
-      background: #005580;
-      color: #ffffff;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: background 0.2s ease;
-      white-space: nowrap;
-    }
-    .btn-ingresar-clave:hover {
-      background: #0077b3;
+    .card-eventos p {
+      font-size: 0.85rem;
+      color: #bae6fd;
+      margin-top: 4px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      text-align: center;
     }
 
-    /* REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) */
+    /* BOTÓN ESPECIAL CLIENTES CON DOBLE BORDE */
+    .btn-clientes {
+      grid-column: 1 / -1;
+      background: #004466;
+      border: 2px solid #005580;
+      box-shadow: inset 0 0 0 3px #222222, 0 4px 12px rgba(0,0,0,0.35);
+      min-height: 90px;
+    }
+    .btn-clientes:hover {
+      background: #005580;
+    }
+
+    /* SECCIÓN REDES Y CATÁLOGO */
     .redes-sociales {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-top: 36px;
+      margin-top: 24px;
     }
+
     .btn-red {
-      background: #1f1f1f;
+      background: #222222;
       border-radius: 12px;
       padding: 14px 6px;
       text-align: center;
@@ -336,20 +174,129 @@
       font-size: 0.88rem;
       font-weight: 600;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 4px;
     }
+
     .btn-red:active {
       transform: scale(0.96);
       background: #2a2a2a;
     }
+
+    /* BORDES DE REDES SOCIALES */
     .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
     .btn-cat { border: 2px solid #facc15; color: #facc15; }
     .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
+
+    /* VISTA 2 y 3: GALERÍA Y SECCIONES INTERNAS */
+    .contenedor-galeria { display: none; }
+    .cabecera-galeria {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #282828;
+    }
+    .btn-volver {
+      background: #222222;
+      color: #ffffff;
+      border: 1px solid #005580;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-volver:hover { background: #2f2f2f; }
+    .titulo-categoria { font-size: 1.3rem; font-weight: 300; letter-spacing: 1px; }
+
+    /* GALERÍA DE FOTOS */
+    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    @media (min-width: 600px) {
+      .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    }
+    @media (min-width: 768px) {
+      .galeria { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    }
+    
+    .galeria img { 
+      width: 100%; 
+      aspect-ratio: 1 / 1; 
+      object-fit: cover; 
+      background: #000000; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: transform 0.2s ease, opacity 0.2s ease; 
+      border: 1px solid #2a2a2a;
+    }
+    
+    .galeria img:hover { transform: scale(1.02); opacity: 0.95; }
+    .galeria img:active { transform: scale(0.98); }
+
+    .cargando { text-align: center; color: #888888; grid-column: 1 / -1; padding: 50px 0; font-size: 0.95rem; }
+
+    /* MODAL VISOR */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal img {
+      max-width: 92%;
+      max-height: 85vh;
+      object-fit: contain;
+      user-select: none;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    
+    .btn-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2.2rem;
+      padding: 14px 20px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      user-select: none;
+      z-index: 1001;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: background 0.2s ease;
+    }
+    .btn-nav:hover { background: rgba(0,85,128,0.7); }
+    .btn-prev { left: 16px; }
+    .btn-next { right: 16px; }
+    .btn-cerrar {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 4px 14px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      line-height: 1;
+    }
 
     footer {
       text-align: center;
@@ -360,239 +307,233 @@
       font-size: 0.8rem;
       letter-spacing: 0.5px;
     }
+
+    @media (max-width: 600px) {
+      .btn-nav { display: none; }
+    }
   </style>
 </head>
 <body>
+<!-- VISTA 1: MENÚ PRINCIPAL (PORTAFOLIO COMO HOME) -->
+<div id="vista-menu">
+<header>
+<img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+<h1 class="">Sergio Ricardo Molina<span class="">Fotografía Profesional</span></h1>
+</header>
+<main>
+<!-- ACCESO DESTACADO A EVENTOS ESCOLARES -->
+<div class="grid-categorias"><div class="card-categoria" onclick="abrirSeccionTexto()">
+<span class="material-symbols-outlined card-icon">person</span>
+<span class="">Sobre mí</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
+<span class="material-symbols-outlined card-icon">auto_awesome</span>
+<span class="">Ensayos</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Paisajes', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
+<span class="material-symbols-outlined card-icon">landscape</span>
+<span class="">Paisajes</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
+<span class="material-symbols-outlined card-icon">face</span>
+<span class="">Retratos</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
+<span class="material-symbols-outlined card-icon">photo_camera</span>
+<span class="">Sesiones</span>
+</div>
+<a class="card-categoria" href="eventos.html" style="position: relative; overflow: hidden;">
+<span class="material-symbols-outlined card-icon" style="color: #38bdf8;">school</span>
+<span class="">Eventos</span>
+</a>
+<div class="card-categoria btn-clientes" onclick="pedirPassword()"><span class="material-symbols-outlined" style="font-size: 24px; color:#38bdf8;">lock</span><span style="font-size: 1.05rem; font-weight: 600;" class="">Acceso Privado Clientes 🔒</span><span style="font-size: 0.78rem; color:#93c5fd; font-weight: 400;" class="">Ingresá la clave de tu sesión o colegio</span></div></div>
+<!-- REDES SOCIALES Y CONTACTO -->
+<div class="redes-sociales">
+<a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
+<span class="material-symbols-outlined">chat</span>
+<span class="">Chat WhatsApp</span>
+</a>
+<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="">Catálogo</span>
+</a>
+<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
+<span class="material-symbols-outlined">photo_camera_back</span>
+<span class="">Instagram</span>
+</a>
+</div>
+</main>
+<footer>
+<p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+</footer>
+</div>
+<!-- VISTA 2: GALERÍA DE FOTOS -->
+<div class="contenedor-galeria" id="vista-galeria">
+<div class="cabecera-galeria">
+<button class="btn-volver" onclick="mostrarMenu()">← Volver al Portafolio</button>
+<h2 class="titulo-categoria" id="titulo-categoria">Categoría</h2>
+</div>
+<main class="galeria" id="galeria"></main>
+</div>
+<!-- VISTA 3: SOBRE MÍ -->
+<div class="contenedor-galeria" id="vista-sobre-mi">
+<div class="cabecera-galeria">
+<button class="btn-volver" onclick="mostrarMenu()">← Volver al Portafolio</button>
+<h2 class="titulo-categoria">Sobre mí</h2>
+</div>
+<div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
+<img alt="Sergio Ricardo Molina" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin-bottom: 25px; border: 2px solid #005580; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+<p style="margin-bottom: 18px; color: #e5e5e5; font-size: 1.05rem;" class="">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
+<p style="color: #cccccc; font-size: 1rem;" class="">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
+<div style="margin-top: 30px;">
+<a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration:none; padding: 10px 20px; font-size: 0.95rem; border-color: #4ade80; color: #4ade80;" target="_blank">Consultar por Sesiones Privadas 💬</a>
+</div>
+</div>
+</div>
+<!-- VISOR MODAL EN ALTA RESOLUCIÓN -->
+<div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
+<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<img alt="Vista Previa" id="img-ampliada" src="">
+<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
+<script>
+    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM'; 
+    const clientes = {
+      "familia2026": "ID_CARPETA_FAMILIA_PEREZ",
+      "boda1234": "ID_CARPETA_BODA_JUAN_Y_MARIA",
+      "miprueba": "1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB" 
+    };
 
-  <!-- ENCABEZADO CON RETORNO AL PORTAFOLIO -->
-  <header>
-    <a href="index.html" class="btn-volver-portafolio">
-      <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
-      <span>Volver al Portafolio</span>
-    </a>
-    <div class="marca-personal">
-      Fotografía Profesional
-      <strong>Sergio Ricardo Molina</strong>
-    </div>
-  </header>
+    let fotosActuales = [];
+    let indiceFotoActual = 0;
 
-  <!-- TÍTULO HERO -->
-  <section class="hero-seccion">
-    <h1>Eventos Escolares</h1>
-    <p>Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio.</p>
-  </section>
+    history.pushState({ vista: 'inicio' }, '', '');
 
-  <!-- CONTENEDOR PRINCIPAL: SOLO EVENTOS PÚBLICOS DE SUPABASE -->
-  <main>
-    <div id="contenedor-eventos" class="grid-eventos">
-      <div class="estado-mensaje">
-        <span class="material-symbols-outlined">cloud_sync</span>
-        <h3>Cargando eventos oficiales...</h3>
-        <p>Conectando con Supabase y Google Drive.</p>
-      </div>
-    </div>
-
-    <!-- ACCESO PRIVADO CON CLAVE (POR DEBAJO DE LOS EVENTOS) -->
-    <div class="bloque-privado">
-      <div class="bloque-privado-info">
-        <div class="bloque-privado-icono">
-          <span class="material-symbols-outlined">lock</span>
-        </div>
-        <div class="bloque-privado-texto">
-          <h4>¿Tu evento o sesión es privada?</h4>
-          <p>Ingresá la clave de tu curso o colegio para desbloquear tu álbum.</p>
-        </div>
-      </div>
-      <form class="form-clave" onsubmit="validarClavePrivada(event)">
-        <input type="password" id="input-clave" class="input-clave" placeholder="Ingresá tu clave..." required autocomplete="off">
-        <button type="submit" class="btn-ingresar-clave">
-          <span>Ingresar</span>
-          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
-        </button>
-      </form>
-    </div>
-
-    <!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) -->
-    <div class="redes-sociales">
-      <a href="https://wa.me/542613175222" target="_blank" class="btn-red btn-wsp">
-        <span class="material-symbols-outlined">chat</span>
-        <span>Chat WhatsApp</span>
-      </a>
-      <a href="https://wa.me/c/5492613175222" target="_blank" class="btn-red btn-cat">
-        <span class="material-symbols-outlined">inventory_2</span>
-        <span>Catálogo</span>
-      </a>
-      <a href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank" class="btn-red btn-ig">
-        <span class="material-symbols-outlined">photo_camera_back</span>
-        <span>Instagram</span>
-      </a>
-    </div>
-  </main>
-
-  <footer>
-    <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-  </footer>
-
-  <script>
-    // CREDENCIALES DE SUPABASE
-    const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
-
-    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
-
-    // Extraer ID limpio de carpeta de Google Drive
-    function extraerIdDrive(input) {
-      if (!input) return '';
-      const match = input.match(/folders\/([a-zA-Z0-9_-]+)/);
-      if (match && match[1]) return match[1];
-      const matchId = input.match(/id=([a-zA-Z0-9_-]+)/);
-      if (matchId && matchId[1]) return matchId[1];
-      return input.trim().split('?')[0];
+    function pedirPassword() {
+      const pass = prompt("Por favor, ingresá la contraseña de tu evento o sesión privada:");
+      if (pass === null) return; 
+      const idCarpeta = clientes[pass.toLowerCase()]; 
+      if (idCarpeta) {
+        abrirGaleria('Tu Sesión Privada', idCarpeta);
+      } else {
+        alert("Contraseña incorrecta. Por favor, intentá de nuevo.");
+      }
     }
 
-    // CARGAR EXCLUSIVAMENTE EVENTOS PÚBLICOS DESDE SUPABASE
-    async function cargarEventosPublicos() {
-      const contenedor = document.getElementById('contenedor-eventos');
-      if (!supabaseClient) {
-        contenedor.innerHTML = `
-          <div class="estado-mensaje">
-            <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
-            <h3>Error de conexión</h3>
-            <p>No se pudo inicializar la base de datos de Supabase.</p>
-          </div>
-        `;
-        return;
-      }
+    async function cargarFotos(folderId) {
+      const galeria = document.getElementById('galeria');
+      galeria.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
+      fotosActuales = []; 
+      
+      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
 
       try {
-        // Consultar galerías públicas: es_privada = false o NULL (por compatibilidad hacia atrás)
-        const { data: galerias, error } = await supabaseClient
-          .from('galerias')
-          .select('*')
-          .order('created_at', { ascending: false });
+        const respuesta = await fetch(url);
+        const datos = await respuesta.json();
+        galeria.innerHTML = '';
+        if (datos.error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error al consultar Google Drive. Verificá permisos.</p>'; return; }
+        if (!datos.files || datos.files.length === 0) { galeria.innerHTML = '<p style="text-align:center; color:#aaaaaa; grid-column: 1/-1;">No hay fotos en esta carpeta.</p>'; return; }
 
-        if (error) {
-          console.error("Error Supabase:", error);
-          contenedor.innerHTML = `
-            <div class="estado-mensaje">
-              <span class="material-symbols-outlined" style="color: #ef4444;">cloud_off</span>
-              <h3>No se pudieron cargar los eventos</h3>
-              <p>Revisá la tabla 'galerias' en Supabase.</p>
-            </div>
-          `;
-          return;
-        }
-
-        // FILTRO CRÍTICO: Excluir eventos privados. Solo mostrar públicos con portada.
-        const eventosPublicos = (galerias || []).filter(item => {
-          // Si tiene flag es_privada true, o si tiene password no vacía, es privado -> no mostrar en la lista pública
-          const esPrivada = item.es_privada === true || item.es_privada === 'true' || (item.password && String(item.password).trim().length > 0);
-          return !esPrivada;
+        datos.files.forEach((archivo, index) => {
+          const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+          fotosActuales.push(urlAltaRes);
+          const img = document.createElement('img');
+          img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+          img.alt = archivo.name || "Fotografía";
+          img.loading = "lazy"; 
+          img.onclick = () => abrirVisor(index);
+          galeria.appendChild(img);
         });
+      } catch (error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error de conexión.</p>'; }
+    }
 
-        if (eventosPublicos.length === 0) {
-          contenedor.innerHTML = `
-            <div class="estado-mensaje">
-              <span class="material-symbols-outlined">school</span>
-              <h3>No hay eventos escolares públicos disponibles</h3>
-              <p>Los eventos que cargues como públicos desde el Panel de Control aparecerán aquí automáticamente.</p>
-            </div>
-          `;
-          return;
-        }
+    function abrirGaleria(nombreCategoria, folderId) {
+      history.pushState({ vista: 'interior' }, '', '');
+      document.getElementById('vista-menu').style.display = 'none';
+      document.getElementById('vista-sobre-mi').style.display = 'none';
+      document.getElementById('vista-galeria').style.display = 'block';
+      document.getElementById('titulo-categoria').innerText = nombreCategoria;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      cargarFotos(folderId);
+    }
 
-        contenedor.innerHTML = '';
+    function abrirSeccionTexto() {
+      history.pushState({ vista: 'interior' }, '', '');
+      document.getElementById('vista-menu').style.display = 'none';
+      document.getElementById('vista-galeria').style.display = 'none';
+      document.getElementById('vista-sobre-mi').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-        for (const evento of eventosPublicos) {
-          const folderId = extraerIdDrive(evento.drive_url);
-          const tarjeta = document.createElement('a');
-          tarjeta.className = 'tarjeta-evento';
-          tarjeta.href = `galeria.html?id=${folderId}&titulo=${encodeURIComponent(evento.titulo)}`;
-
-          let portadaSrc = evento.portada_url || '';
-          
-          // Si no tiene portada guardada manual, buscar la primera foto del drive para mostrar de portada
-          if (!portadaSrc && folderId) {
-            portadaSrc = `https://lh3.googleusercontent.com/d/${folderId}=w800`;
-          }
-
-          const fechaTexto = evento.created_at ? new Date(evento.created_at).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }) : 'Ciclo Lectivo';
-
-          tarjeta.innerHTML = `
-            <div class="contenedor-portada">
-              ${portadaSrc ? `
-                <img src="${portadaSrc}" alt="${evento.titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'portada-fallback\\'><span class=\\'material-symbols-outlined\\'>school</span><span>${evento.titulo}</span></div>'">
-              ` : `
-                <div class="portada-fallback">
-                  <span class="material-symbols-outlined">school</span>
-                  <span>${evento.titulo}</span>
-                </div>
-              `}
-              <div class="badge-fotos">
-                <span class="material-symbols-outlined" style="font-size: 14px;">photo_library</span>
-                <span>Galería Oficial</span>
-              </div>
-            </div>
-            <div class="detalle-evento">
-              <div>
-                <h2 class="titulo-evento">${evento.titulo}</h2>
-                <div class="fecha-evento">Publicado · ${fechaTexto}</div>
-              </div>
-              <div class="btn-ver-galeria">
-                <span>Ver Álbum Completo</span>
-                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-              </div>
-            </div>
-          `;
-
-          contenedor.appendChild(tarjeta);
-        }
-
-      } catch (err) {
-        console.error("Error al cargar eventos:", err);
-        contenedor.innerHTML = `
-          <div class="estado-mensaje">
-            <span class="material-symbols-outlined" style="color: #ef4444;">warning</span>
-            <h3>Error de conexión</h3>
-            <p>Ocurrió una falla al procesar la lista de eventos.</p>
-          </div>
-        `;
+    function mostrarMenu() {
+      if (window.history.state && window.history.state.vista === 'interior') {
+        window.history.back();
+      } else {
+        forzarVistaMenu();
       }
     }
 
-    // VALIDAR CLAVE DE EVENTOS PRIVADOS DESDE EL FORMULARIO INFERIOR
-    async function validarClavePrivada(e) {
-      e.preventDefault();
-      const input = document.getElementById('input-clave');
-      const pass = input.value.trim().toLowerCase();
-      if (!pass) return;
-
-      if (!supabaseClient) {
-        alert("No se pudo conectar a la base de datos.");
-        return;
-      }
-
-      try {
-        const { data, error } = await supabaseClient
-          .from('galerias')
-          .select('*')
-          .ilike('password', pass);
-
-        if (!error && data && data.length > 0) {
-          const evento = data[0];
-          const folderId = extraerIdDrive(evento.drive_url);
-          window.location.href = `galeria.html?id=${folderId}&titulo=${encodeURIComponent(evento.titulo)}&key=${encodeURIComponent(pass)}`;
-        } else {
-          alert("Contraseña no válida. Verificá con el fotógrafo o el colegio.");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Error al verificar la clave. Intente nuevamente.");
-      }
+    function forzarVistaMenu() {
+      document.getElementById('vista-galeria').style.display = 'none';
+      document.getElementById('vista-sobre-mi').style.display = 'none';
+      document.getElementById('vista-menu').style.display = 'block';
+      cerrarVisor();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    document.addEventListener('DOMContentLoaded', cargarEventosPublicos);
+    window.addEventListener('popstate', (event) => {
+      const modal = document.getElementById('modal');
+      if (modal.style.display === 'flex') {
+        cerrarVisor();
+        history.pushState({ vista: 'interior' }, '', '');
+      } else {
+        forzarVistaMenu();
+        history.pushState({ vista: 'inicio' }, '', '');
+      }
+    });
+
+    function abrirVisor(index) {
+      indiceFotoActual = index;
+      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function cerrarVisor() { document.getElementById('modal').style.display = 'none'; }
+    function cerrarVisorFondo(event) { if (event.target.id === 'modal') cerrarVisor(); }
+
+    function cambiarFoto(direccion, event) {
+      if (event) event.stopPropagation();
+      indiceFotoActual += direccion;
+      if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
+      else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
+      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+    }
+
+    // Teclado físico
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('modal');
+      if (modal.style.display === 'flex') {
+        if (e.key === 'Escape') cerrarVisor();
+        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
+        else if (e.key === 'ArrowRight') cambiarFoto(1);
+      }
+    });
+
+    // Touch Swipe en móvil
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const modal = document.getElementById('modal');
+    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    modal.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX + 50 < touchStartX) cambiarFoto(1);
+      else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
+    }, false);
   </script>
-</body>
-</html>
+
+
+
+
+
+</body></html>
