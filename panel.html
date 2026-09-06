@@ -746,4 +746,152 @@
     cargarGaleriasReal();
   });
 </script>
-</body></html>
+<script>
+  // Redefinición mejorada de renderGalerias para construir la URL exacta de visualización solicitada
+  (function() {
+    const originalRenderGalerias = window.renderGalerias;
+    window.renderGalerias = function(items) {
+      const grid = document.getElementById('grid-galerias');
+      const totalCount = document.getElementById('total-count');
+      const privateCount = document.getElementById('private-count');
+      const publicCount = document.getElementById('public-count');
+
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const total = items ? items.length : 0;
+      let privates = 0;
+      let publics = 0;
+
+      if (!items || total === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 px-4 text-center rounded-xl bg-[#161616] border border-[#005580]/40 space-y-3">
+            <div class="w-12 h-12 rounded-full bg-[#1c1c1c] border border-[#005580]/40 mx-auto flex items-center justify-center text-gray-400">
+              <span class="material-symbols-outlined text-[24px]">folder_off</span>
+            </div>
+            <h3 class="text-base font-semibold text-white font-['Raleway']">No hay galerías registradas</h3>
+            <p class="text-gray-400 max-w-md mx-auto text-[13px]">
+              La tabla <code class="text-[#38bdf8] font-mono bg-[#111111] px-1.5 py-0.5 rounded border border-[#005580]/30">galeria</code> está vacía. Registre la primera galería de Google Drive arriba.
+            </p>
+          </div>
+        `;
+        if (totalCount) totalCount.textContent = '0';
+        if (privateCount) privateCount.textContent = '0';
+        if (publicCount) publicCount.textContent = '0';
+        return;
+      }
+
+      items.forEach((item) => {
+        const isPrivada = Boolean(item.es_privada || item.privada);
+        if (isPrivada) privates++;
+        else publics++;
+
+        const titulo = item.titulo || item.nombre || 'Galería Sin Título';
+        const rawDrive = item.drive_url || item.drive_id || '';
+        const folderId = typeof extractDriveId === 'function' ? extractDriveId(rawDrive) : rawDrive;
+        const password = item.password || item.clave || '';
+        const portadaVisual = typeof formatImageCoverUrl === 'function' ? formatImageCoverUrl(item.portada_url || item.portada || rawDrive) : (item.portada_url || '');
+        const id = item.id;
+        const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Reciente';
+
+        // URL exacta con folder, id, titulo y key si corresponde
+        let viewUrl = `galeria.html?folder=${encodeURIComponent(folderId)}&id=${encodeURIComponent(id)}&titulo=${encodeURIComponent(titulo)}`;
+        if (isPrivada && password) {
+          viewUrl += `&key=${encodeURIComponent(password)}`;
+        }
+
+        const card = document.createElement('article');
+        card.className = "bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]";
+        card.id = `galeria-card-${id}`;
+
+        const badge = isPrivada 
+          ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
+               <span>🔒</span> PRIVADA
+             </span>`
+          : `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#38bdf8]/60 text-[#38bdf8] font-mono text-[10px] font-bold tracking-wider">
+               <span>🌐</span> PÚBLICA
+             </span>`;
+
+        const credentialsDisplay = isPrivada
+          ? `<div class="flex items-center justify-between text-[11px] font-mono">
+               <span class="text-gray-400 flex items-center gap-1">
+                 <span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
+               </span>
+               <span class="text-[#ffb878] font-bold tracking-wider">${password || 'PROTEGIDA'}</span>
+             </div>`
+          : `<div class="flex items-center justify-between text-[11px] font-mono">
+               <span class="text-gray-400 flex items-center gap-1">
+                 <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">lock_open</span> Acceso:
+               </span>
+               <span class="text-[#38bdf8] font-semibold">Público Libre</span>
+             </div>`;
+
+        card.innerHTML = `
+          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
+            <img 
+              src="${portadaVisual}" 
+              alt="Portada de ${titulo}" 
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80'"
+            />
+            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+              ${badge}
+              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
+                ID: ${id}
+              </span>
+            </div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-[11px] text-gray-400">
+                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
+                <span class="font-mono">${fecha}</span>
+              </div>
+              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
+                ${titulo}
+              </h3>
+            </div>
+            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
+              ${credentialsDisplay}
+              <div class="flex items-center justify-between truncate">
+                <span class="text-gray-400 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
+                </span>
+                <span class="text-gray-200 truncate max-w-[140px]" title="${folderId}">${folderId || 'Sin ID'}</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 pt-1">
+              <a 
+                href="${viewUrl}"
+                class="flex-1 py-2 px-3 rounded-lg bg-[#005580]/40 hover:bg-[#005580] border border-[#005580] hover:border-[#38bdf8] text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all"
+              >
+                <span class="material-symbols-outlined text-[16px] text-[#38bdf8]">visibility</span>
+                <span>Ver Galería</span>
+              </a>
+              <button 
+                type="button" 
+                onclick="eliminarEvento('${id}', '${titulo.replace(/'/g, "\\'")}')" 
+                class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]"
+                title="Borrar de Supabase"
+              >
+                <span class="material-symbols-outlined text-[16px]">delete</span>
+                <span class="text-[11px]">Borrar</span>
+              </button>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      if (totalCount) totalCount.textContent = total;
+      if (privateCount) privateCount.textContent = privates;
+      if (publicCount) publicCount.textContent = publics;
+    };
+
+    // Recargar inmediatamente para aplicar el render correcto
+    if (typeof cargarGaleriasReal === 'function') {
+      cargarGaleriasReal();
+    }
+  })();
+</script></body></html>
