@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eventos Escolares | Sergio Ricardo Molina</title>
-  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <!-- SDK oficial de Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eventos Escolares | Sergio Ricardo Molina</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- SDK oficial de Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -231,7 +230,7 @@
     .estado-mensaje {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
       background: #161616;
       border: 1px dashed #333333;
       border-radius: 12px;
@@ -255,6 +254,19 @@
     .estado-mensaje p {
       font-size: 0.88rem;
       color: #777777;
+    }
+
+    .estado-mensaje code {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: #0c0c0c;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #ffb4ab;
+      font-size: 0.8rem;
+      max-width: 100%;
+      word-break: break-all;
     }
 
     /* ACCESO PRIVADO CON CLAVE */
@@ -396,134 +408,177 @@
       font-size: 0.8rem;
       letter-spacing: 0.5px;
     }
+
+    .spin {
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
-
-  <!-- ENCABEZADO CON RETORNO AL PORTAFOLIO -->
-  <header>
-    <a href="index.html" class="btn-volver-portafolio">
-      <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
-      <span>Volver al Portafolio</span>
-    </a>
-    <div class="marca-personal">
+<!-- ENCABEZADO CON RETORNO AL PORTAFOLIO -->
+<header>
+<a class="btn-volver-portafolio" href="index.html">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+<span>Volver al Portafolio</span>
+</a>
+<div class="marca-personal">
       Fotografía Profesional
       <strong>Sergio Ricardo Molina</strong>
-    </div>
-  </header>
-
-  <!-- TÍTULO HERO -->
-  <section class="hero-seccion">
-    <h1>Eventos Escolares</h1>
-    <p>Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio.</p>
-  </section>
-
-  <!-- CONTENEDOR PRINCIPAL: SOLO EVENTOS PÚBLICOS DE SUPABASE -->
-  <main>
-    <div id="contenedor-eventos" class="grid-eventos">
-      <div class="estado-mensaje">
-        <span class="material-symbols-outlined">sync</span>
-        <h3>Cargando eventos oficiales...</h3>
-        <p>Conectando con base de datos y Google Drive.</p>
-      </div>
-    </div>
-
-    <!-- ACCESO PRIVADO CON CLAVE (POR DEBAJO DE LOS EVENTOS) -->
-    <div class="bloque-privado">
-      <div class="bloque-privado-info">
-        <div class="bloque-privado-icono">
-          <span class="material-symbols-outlined">lock</span>
-        </div>
-        <div class="bloque-privado-texto">
-          <h4>¿Tu evento o sesión es privada?</h4>
-          <p>Ingresá la clave de tu curso o colegio para desbloquear tu álbum.</p>
-        </div>
-      </div>
-      <form class="form-clave" onsubmit="validarClavePrivada(event)">
-        <input type="password" id="input-clave" class="input-clave" placeholder="Ingresá tu clave..." required autocomplete="off">
-        <button type="submit" class="btn-ingresar-clave">
-          <span>Ingresar</span>
-          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
-        </button>
-      </form>
-    </div>
-
-    <!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) -->
-    <div class="redes-sociales">
-      <a href="https://wa.me/542613175222" target="_blank" class="btn-red btn-wsp">
-        <span class="material-symbols-outlined">chat</span>
-        <span>Chat WhatsApp</span>
-      </a>
-      <a href="https://wa.me/c/5492613175222" target="_blank" class="btn-red btn-cat">
-        <span class="material-symbols-outlined">inventory_2</span>
-        <span>Catálogo</span>
-      </a>
-      <a href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank" class="btn-red btn-ig">
-        <span class="material-symbols-outlined">photo_camera_back</span>
-        <span>Instagram</span>
-      </a>
-    </div>
-  </main>
-
-  <footer>
-    <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-  </footer>
-
-  <script>
-    // CREDENCIALES OFICIALES DE SUPABASE (Tabla 'galeria')
+</div>
+</header>
+<!-- TÍTULO HERO -->
+<section class="hero-seccion">
+<h1>Eventos Escolares</h1>
+<p>Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio.</p>
+</section>
+<!-- CONTENEDOR PRINCIPAL: SOLO EVENTOS PÚBLICOS DE SUPABASE -->
+<main>
+<div class="grid-eventos" id="contenedor-eventos">
+<div class="estado-mensaje">
+<span class="material-symbols-outlined spin">sync</span>
+<h3>Cargando eventos oficiales...</h3>
+<p>Conectando con base de datos y Google Drive.</p>
+</div>
+</div>
+<!-- ACCESO PRIVADO CON CLAVE (POR DEBAJO DE LOS EVENTOS) -->
+<div class="bloque-privado">
+<div class="bloque-privado-info">
+<div class="bloque-privado-icono">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="bloque-privado-texto">
+<h4>¿Tu evento o sesión es privada?</h4>
+<p>Ingresá la clave de tu curso o colegio para desbloquear tu álbum.</p>
+</div>
+</div>
+<form class="form-clave" onsubmit="validarClavePrivada(event)">
+<input autocomplete="off" class="input-clave" id="input-clave" placeholder="Ingresá tu clave..." required="" type="password"/>
+<button class="btn-ingresar-clave" type="submit">
+<span>Ingresar</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) -->
+<div class="redes-sociales">
+<a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
+<span class="material-symbols-outlined">chat</span>
+<span>Chat WhatsApp</span>
+</a>
+<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Catálogo</span>
+</a>
+<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
+<span class="material-symbols-outlined">photo_camera_back</span>
+<span>Instagram</span>
+</a>
+</div>
+</main>
+<footer>
+<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+</footer>
+<script>
+    // CREDENCIALES OFICIALES DE SUPABASE (Tabla 'galeria' / fallback 'galerias')
     const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
     const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-    // Extractor infalible de ID de Google Drive (Soporta carpetas, enlaces compartidos y IDs directos)
+    // Tabla activa detectada (para reutilizar en la búsqueda por clave privada)
+    let tablaActivaGaleria = 'galeria';
+
+    // Extractor infalible y robusto de ID de Google Drive
     function extraerIdDrive(input) {
       if (!input) return '';
       const str = String(input).trim();
+      // Enlace de carpetas: /folders/ID
       const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
       if (matchFolder && matchFolder[1]) return matchFolder[1];
+      // Parámetro de id: ?id=ID o &id=ID
       const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
       if (matchId && matchId[1]) return matchId[1];
+      // Enlace directo de archivo: /d/ID
       const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
       if (matchD && matchD[1]) return matchD[1];
-      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+      // Limpieza de URL residual o si viene el ID directo limpio
+      const clean = str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').replace(/^id=/, '').trim();
+      return clean;
     }
 
-    // CARGAR EXCLUSIVAMENTE EVENTOS PÚBLICOS DESDE TABLA 'galeria'
+    // CARGAR EXCLUSIVAMENTE EVENTOS PÚBLICOS DESDE TABLA 'galeria' CON FALLBACK A 'galerias'
     async function cargarEventosPublicos() {
       const contenedor = document.getElementById('contenedor-eventos');
       if (!supabaseClient) {
         contenedor.innerHTML = `
           <div class="estado-mensaje">
-            <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
-            <h3>Error de conexión</h3>
-            <p>No se pudo inicializar la conexión con Supabase.</p>
+            <span class="material-symbols-outlined" style="color: #ffb4ab;">error</span>
+            <h3>Error de inicialización</h3>
+            <p>No se pudo inicializar la librería de Supabase en el navegador.</p>
           </div>
         `;
         return;
       }
 
       try {
-        // Consultar la tabla oficial 'galeria'
-        const { data: galerias, error } = await supabaseClient
+        // Intento 1: Tabla principal 'galeria'
+        let resultado = await supabaseClient
           .from('galeria')
           .select('*')
           .order('created_at', { ascending: false });
 
-        if (error) {
-          console.error("Error Supabase:", error);
+        let errorPrincipal = resultado.error;
+        let data = resultado.data;
+
+        // Fallback: Si falla o no existe, probar con tabla en plural 'galerias'
+        if (errorPrincipal) {
+          console.warn("Intento con 'galeria' falló:", errorPrincipal.message, ". Probando fallback a 'galerias'...");
+          const resFallback = await supabaseClient
+            .from('galerias')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!resFallback.error) {
+            tablaActivaGaleria = 'galerias';
+            data = resFallback.data;
+            errorPrincipal = null;
+          } else {
+            // Guardar el error final para diagnóstico detallado
+            errorPrincipal = {
+              galeriaError: errorPrincipal,
+              galeriasError: resFallback.error
+            };
+          }
+        } else {
+          tablaActivaGaleria = 'galeria';
+        }
+
+        if (errorPrincipal) {
+          console.error("Error definitivo en Supabase:", errorPrincipal);
+          const errorMsg = errorPrincipal.message || 
+            (errorPrincipal.galeriaError ? `galeria: ${errorPrincipal.galeriaError.message} | galerias: ${errorPrincipal.galeriasError?.message}` : JSON.stringify(errorPrincipal));
           contenedor.innerHTML = `
             <div class="estado-mensaje">
-              <span class="material-symbols-outlined" style="color: #ef4444;">cloud_off</span>
+              <span class="material-symbols-outlined" style="color: #ffb4ab;">cloud_off</span>
               <h3>No se pudieron cargar los eventos</h3>
-              <p>Revisá la tabla 'galeria' en Supabase.</p>
+              <p>Ocurrió un error al consultar Supabase:</p>
+              <code>${errorMsg}</code>
             </div>
           `;
           return;
         }
 
-        // FILTRO ESTRICTO: Excluir eventos privados. Solo mostrar públicos.
-        const eventosPublicos = (galerias || []).filter(item => {
-          const esPrivada = item.es_privada === true || item.es_privada === 'true' || (item.password && String(item.password).trim().length > 0);
+        const rawList = data || [];
+
+        // FILTRADO ESTRICTO DE PÚBLICOS CUBRIENDO TODAS LAS VARIANTES GUARDADAS EN PANEL.HTML:
+        // Considerar privado SOLO si es_privada es estrictamente true o string 'true',
+        // o si existe password no vacío. Si es false, null, undefined, 0, o 'false' -> ES PÚBLICO!
+        const eventosPublicos = rawList.filter(item => {
+          const pass = (item.password || item.clave || item.codigo || '').toString().trim();
+          const esPrivada = (item.es_privada === true || item.es_privada === 'true' || item.privada === true || item.privada === 'true') || pass.length > 0;
           return !esPrivada;
         });
 
@@ -539,32 +594,43 @@
         }
 
         contenedor.innerHTML = '';
-        for (const evento of eventosPublicos) {
-          const folderId = extraerIdDrive(evento.drive_url);
-          
-          // CONSTRUCCIÓN DEL ENLACE UNIVERSAL A galeria.html:
-          // Enviamos tanto el id de Supabase como el folder ID de Drive para garantizar compatibilidad 100%
-          const urlDestino = `galeria.html?id=${encodeURIComponent(evento.id)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(evento.titulo)}`;
+        for (const item of eventosPublicos) {
+          // Soporte amplio a nombres de campos guardados desde panel.html
+          const titulo = item.titulo || item.title || item.nombre || 'Galería Escolar';
+          const driveUrl = item.drive_url || item.url_drive || item.enlace_drive || item.drive || '';
+          let coverPhoto = item.portada_url || item.url_portada || item.portada || '';
+          const folderId = extraerIdDrive(driveUrl);
+          const idReferencia = item.id || folderId || 'evento';
+
+          // Enlace a galeria.html con id, folder y título codificados
+          const urlDestino = `galeria.html?id=${encodeURIComponent(idReferencia)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
+
+          if (!coverPhoto && folderId) {
+            coverPhoto = `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+          }
+
+          const fechaRaw = item.created_at || item.fecha || item.creado_el;
+          let fechaTexto = 'Ciclo Lectivo';
+          if (fechaRaw) {
+            try {
+              fechaTexto = new Date(fechaRaw).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
+            } catch (e) {
+              fechaTexto = 'Ciclo Lectivo';
+            }
+          }
 
           const tarjeta = document.createElement('a');
           tarjeta.className = 'tarjeta-evento';
           tarjeta.href = urlDestino;
 
-          let portadaSrc = evento.portada_url || '';
-          if (!portadaSrc && folderId) {
-            portadaSrc = `https://lh3.googleusercontent.com/d/${folderId}=w800`;
-          }
-
-          const fechaTexto = evento.created_at ? new Date(evento.created_at).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }) : 'Ciclo Lectivo';
-
           tarjeta.innerHTML = `
             <div class="contenedor-portada">
-              ${portadaSrc ? `
-                <img src="${portadaSrc}" alt="${evento.titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\\'portada-fallback\\\'><span class=\\\'material-symbols-outlined\\\'>school</span><span>${evento.titulo}</span></div>'">
+              ${coverPhoto ? `
+                <img src="${coverPhoto}" alt="${titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\\'portada-fallback\\\'><span class=\\\'material-symbols-outlined\\\'>school</span><span>${titulo.replace(/'/g, "\\'")}</span></div>'">
               ` : `
                 <div class="portada-fallback">
                   <span class="material-symbols-outlined">school</span>
-                  <span>${evento.titulo}</span>
+                  <span>${titulo}</span>
                 </div>
               `}
               <div class="badge-fotos">
@@ -574,7 +640,7 @@
             </div>
             <div class="detalle-evento">
               <div>
-                <h2 class="titulo-evento">${evento.titulo}</h2>
+                <h2 class="titulo-evento">${titulo}</h2>
                 <div class="fecha-evento">Publicado · ${fechaTexto}</div>
               </div>
               <div class="btn-ver-galeria">
@@ -588,12 +654,13 @@
         }
 
       } catch (err) {
-        console.error("Error al cargar eventos:", err);
+        console.error("Error inesperado en cargarEventosPublicos:", err);
         contenedor.innerHTML = `
           <div class="estado-mensaje">
-            <span class="material-symbols-outlined" style="color: #ef4444;">warning</span>
+            <span class="material-symbols-outlined" style="color: #ffb4ab;">warning</span>
             <h3>Error de conexión</h3>
-            <p>Ocurrió una falla al procesar la lista de eventos.</p>
+            <p>Ocurrió un error inesperado al procesar las galerías:</p>
+            <code>${err.message || err}</code>
           </div>
         `;
       }
@@ -611,27 +678,53 @@
         return;
       }
 
+      const btn = e.target.querySelector('button');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined spin" style="font-size:16px;">sync</span> Verificando...`;
+      btn.disabled = true;
+
       try {
-        const { data, error } = await supabaseClient
-          .from('galeria')
+        // Consultar con la tabla activa detectada
+        let { data, error } = await supabaseClient
+          .from(tablaActivaGaleria)
           .select('*')
           .ilike('password', pass);
 
+        // Si la tabla activa no dio resultados o falló, probar con la alterna
+        if (error || !data || data.length === 0) {
+          const tablaAlterna = tablaActivaGaleria === 'galeria' ? 'galerias' : 'galeria';
+          const resAlt = await supabaseClient
+            .from(tablaAlterna)
+            .select('*')
+            .ilike('password', pass);
+
+          if (!resAlt.error && resAlt.data && resAlt.data.length > 0) {
+            data = resAlt.data;
+            error = null;
+            tablaActivaGaleria = tablaAlterna;
+          }
+        }
+
         if (!error && data && data.length > 0) {
           const evento = data[0];
-          const folderId = extraerIdDrive(evento.drive_url);
-          // Redirige al álbum privado con ID de Supabase, folder de Drive, clave y título
-          window.location.href = `galeria.html?id=${encodeURIComponent(evento.id)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(evento.titulo)}&key=${encodeURIComponent(pass)}&privada=true`;
+          const titulo = evento.titulo || evento.title || evento.nombre || 'Álbum Privado';
+          const driveUrl = evento.drive_url || evento.url_drive || evento.enlace_drive || evento.drive || '';
+          const folderId = extraerIdDrive(driveUrl);
+          const idRef = evento.id || folderId;
+          // Redirige al álbum privado con id, folder, clave y bandera
+          window.location.href = `galeria.html?id=${encodeURIComponent(idRef)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(pass)}&privada=true`;
         } else {
-          alert("Contraseña no válida. Verificá con el fotógrafo o la institución.");
+          alert("Contraseña no válida. Verificá con el fotógrafo o la institución escolar.");
         }
       } catch (err) {
-        console.error(err);
-        alert("Error al verificar la clave. Intente nuevamente.");
+        console.error("Error al validar clave privada:", err);
+        alert("Error al verificar la clave: " + (err.message || "Falla de red"));
+      } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
       }
     }
 
     document.addEventListener('DOMContentLoaded', cargarEventosPublicos);
   </script>
-</body>
-</html>
+</body></html>
