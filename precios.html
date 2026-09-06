@@ -1,1 +1,655 @@
+<!DOCTYPE html>
 
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tarifas y Precios Oficiales | SERGIO RICARDO MOLINA</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#005580",
+            "outline-variant": "#41474e",
+            "secondary-fixed-dim": "#9bccf4",
+            "on-secondary": "#00344f",
+            "inverse-on-surface": "#313030",
+            "error-container": "#93000a",
+            "tertiary": "#ffb878",
+            "surface-container-highest": "#353534",
+            "on-error-container": "#ffdad6",
+            "surface-container-high": "#2a2a2a",
+            "on-tertiary-container": "#ffb36e",
+            "on-primary-fixed": "#001e30",
+            "on-secondary-container": "#8dbee6",
+            "outline": "#8b9199",
+            "on-surface": "#e5e2e1",
+            "on-error": "#690005",
+            "on-primary": "#003350",
+            "secondary-container": "#124d70",
+            "surface-container-lowest": "#0e0e0e",
+            "on-secondary-fixed-variant": "#0e4b6d",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "surface-dim": "#131313",
+            "on-primary-fixed-variant": "#004b72",
+            "inverse-surface": "#e5e2e1",
+            "error": "#ffb4ab",
+            "background": "#131313",
+            "tertiary-fixed-dim": "#ffb878",
+            "primary": "#91cdfe",
+            "on-secondary-fixed": "#001e30",
+            "surface-bright": "#3a3939",
+            "surface-tint": "#91cdfe",
+            "surface": "#131313",
+            "primary-fixed": "#cbe6ff",
+            "tertiary-container": "#794303",
+            "primary-fixed-dim": "#91cdfe",
+            "inverse-primary": "#1e638f",
+            "on-tertiary-fixed": "#2e1500",
+            "on-background": "#e5e2e1",
+            "surface-container-low": "#1c1b1b",
+            "secondary-fixed": "#cae6ff",
+            "on-primary-container": "#8ec9fa",
+            "on-surface-variant": "#c0c7cf",
+            "secondary": "#9bccf4",
+            "on-tertiary": "#4c2700",
+            "surface-container": "#201f1f",
+            "tertiary-fixed": "#ffdcc1",
+            "surface-variant": "#353534"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-4xl": "6rem",
+            "container-max": "1440px",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "space-xs": "0.5rem",
+            "gutter-tablet": "1.5rem",
+            "space-md": "1rem",
+            "space-3xl": "4.5rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Raleway"],
+            "display-hero-mobile": ["Raleway"],
+            "headline-md": ["Raleway"],
+            "label-md": ["Manrope"],
+            "headline-lg-mobile": ["Raleway"],
+            "label-sm": ["Manrope"],
+            "headline-lg": ["Raleway"],
+            "body-lg": ["Manrope"],
+            "headline-sm": ["Raleway"],
+            "body-md": ["Manrope"]
+          },
+          "fontSize": {
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #111111;
+      color: #e5e2e1;
+      font-family: 'Manrope', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #111111;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2a2a2a;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#111111] text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-white">
+<!-- Top Global Bar (Shared Component Reference) -->
+<header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-space-md">
+<a class="flex items-center gap-space-xs text-primary font-bold text-headline-sm font-headline-sm tracking-tight" href="panel.html">
+<span class="material-symbols-outlined text-primary text-[26px]">photo_camera</span>
+<span class="text-white tracking-wide">EVENTOS Escolar</span>
+</a>
+<span class="hidden md:inline-block px-2.5 py-0.5 rounded-full text-label-sm font-label-sm uppercase bg-[#1c1b1b] border border-[#333333] text-primary">Tarifas Darkroom v2.4</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#333333] bg-[#181818] text-on-surface text-label-md font-label-md hover:bg-surface-container-high transition-colors" href="https://wa.me/5492613175222" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[#38bdf8] text-[18px]">chat</span>
+<span>WhatsApp Ventas Activo</span>
+</a>
+<div class="h-6 w-[1px] bg-[#222222] hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-label-md">
+            SM
+          </div>
+<div class="hidden lg:block text-left">
+<p class="text-label-md font-label-md text-white leading-tight">Sergio Ricardo Molina</p>
+<p class="text-label-sm font-label-sm text-outline">Laboratorio Mendoza</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-[#131313] border-r border-[#222222] flex flex-col justify-between shrink-0 hidden md:flex">
+<div class="p-space-md">
+<!-- Brand Header Identity -->
+<div class="mb-space-lg px-space-xs">
+<h2 class="text-headline-sm font-headline-sm text-white font-bold tracking-tight">SERGIO RICARDO MOLINA</h2>
+<p class="text-label-sm font-label-sm text-outline tracking-wider uppercase mt-1">Fotografía Profesional</p>
+</div>
+<!-- Navigation items -->
+<nav class="space-y-1.5">
+<!-- Item 1 -->
+<a class="flex items-center gap-space-sm text-on-surface-variant px-space-md py-space-sm font-body-md text-body-md rounded-lg hover:bg-surface-container hover:text-white transition-all duration-150" href="panel.html">
+<span class="material-symbols-outlined text-[20px]">photo_library</span>
+<span>Galerías</span>
+</a>
+<!-- Item 2 -->
+<a class="flex items-center gap-space-sm text-on-surface-variant px-space-md py-space-sm font-body-md text-body-md rounded-lg hover:bg-surface-container hover:text-white transition-all duration-150" href="cargas.html">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+<span>Cargas y Enlaces</span>
+</a>
+<!-- Item 3: Active Tab -->
+<a class="flex items-center gap-space-sm bg-primary-container text-white rounded-lg px-space-md py-space-sm font-label-md text-label-md font-semibold border-l-4 border-[#38bdf8] shadow-sm" href="precios.html">
+<span class="material-symbols-outlined text-[20px] text-[#38bdf8]">payments</span>
+<span>Tarifas y Precios</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Direct Shortcuts -->
+<div class="p-space-md border-t border-[#222222] bg-[#0e0e0e]/50 space-y-1.5">
+<p class="text-label-sm font-label-sm text-outline uppercase px-space-xs mb-2">Accesos Directos</p>
+<a class="flex items-center justify-between text-on-surface-variant hover:text-primary px-space-xs py-1.5 rounded text-body-md font-body-md transition-colors group" href="eventos.html">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary transition-colors">arrow_back</span>
+<span>Volver a Eventos</span>
+</div>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+</a>
+<a class="flex items-center justify-between text-on-surface-variant hover:text-primary px-space-xs py-1.5 rounded text-body-md font-body-md transition-colors group" href="index.html">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary transition-colors">visibility</span>
+<span>Ver Portafolio</span>
+</div>
+<span class="material-symbols-outlined text-[14px] text-outline">open_in_new</span>
+</a>
+<!-- Lab Spec Status badge -->
+<div class="mt-4 p-2.5 rounded-lg bg-[#181818] border border-[#222222] flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Lab Sync: Fuji Crystal Activo</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto custom-scrollbar p-space-lg md:p-space-xl max-w-container-max mx-auto w-full">
+<!-- Page Title & Overview Header -->
+<div class="mb-space-xl">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-primary-container/40 border border-[#005580] text-[#38bdf8] text-label-sm font-label-sm rounded uppercase tracking-wider">Control Comercial</span>
+<span class="text-label-sm font-label-sm text-outline">Actualización inmediata de catálogo</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-white mt-1">Tarifas y Precios Oficiales</h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-3xl mt-1">
+              Configurá los precios de venta para copias impresas en papel de laboratorio y descargas digitales en alta resolución. Los valores se sincronizan automáticamente con el carrito de compra de cada galería escolar.
+            </p>
+</div>
+<!-- Action bar -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-4 py-2.5 rounded-lg border border-[#333333] text-on-surface hover:bg-[#1f1e1e] active:scale-[0.98] transition-all font-label-md text-label-md flex items-center gap-2" id="btnResetValues" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span>Revertir</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg bg-[#004466] border border-[#005580] text-white hover:bg-[#005580] active:scale-[0.98] transition-all font-label-md text-label-md font-semibold flex items-center gap-2 shadow-lg shadow-black/40" id="btnSavePrices" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Guardar Nuevas Tarifas</span>
+</button>
+</div>
+</div>
+<!-- Alert Notification Box (Hidden by default, triggered on Save) -->
+<div class="hidden mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300" id="saveToast">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-body-md font-body-md font-medium text-white">Tarifas sincronizadas exitosamente en Supabase y caché local.</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline" id="timestampSaved">Hace unos segundos</span>
+</div>
+</div>
+<!-- Bento Configuration Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-2xl">
+<!-- Left Column: Core Pricing Cards (8 cols) -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- Card 1: Copia Impresa 15x21 cm -->
+<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm hover:border-[#333333] transition-all">
+<div class="flex items-start justify-between pb-3 border-b border-[#222222]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-[#111111] border border-[#333333] flex items-center justify-center text-[#38bdf8]">
+<span class="material-symbols-outlined text-[22px]">photo_size_select_actual</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-white">Copia Impresa 15x21 cm</h3>
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Papel mate Fuji Crystal Archival</p>
+</div>
+</div>
+<span class="px-2 py-0.5 bg-[#111111] border border-[#333333] text-on-surface-variant text-label-sm font-label-sm rounded">Físico Lab</span>
+</div>
+<div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputPrintPrice">Precio de Venta al Público (ARS)</label>
+<div class="relative">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-semibold">$</span>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputPrintPrice" type="text" value="7.000"/>
+</div>
+<p class="text-label-sm font-label-sm text-outline mt-1.5">Sugerido según inflación del mes: $6.800 - $7.500</p>
+</div>
+<div class="bg-[#111111] border border-[#222222] p-3 rounded-xl flex flex-col justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-outline uppercase">Especificación de Producción</span>
+<p class="text-body-md font-body-md text-white font-medium mt-0.5">Emulsión Haluro de Plata</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-[#222222]">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Costo laboratorio estimado:</span>
+<span class="text-label-md font-label-md text-white font-semibold">$1.950</span>
+</div>
+</div>
+</div>
+<!-- Features badges -->
+<div class="mt-4 pt-3 border-t border-[#222222] flex flex-wrap items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline">Incluye:</span>
+<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Envoltorio de polipropileno</span>
+<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Control de densidad y tono</span>
+<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Entrega en Colegio</span>
+</div>
+</div>
+<!-- Card 2: Archivo Digital HD -->
+<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm hover:border-[#333333] transition-all">
+<div class="flex items-start justify-between pb-3 border-b border-[#222222]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-[#111111] border border-[#333333] flex items-center justify-center text-[#38bdf8]">
+<span class="material-symbols-outlined text-[22px]">download_for_offline</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-white">Archivo Digital HD</h3>
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Entrega en alta resolución sin marca de agua</p>
+</div>
+</div>
+<span class="px-2 py-0.5 bg-[#111111] border border-[#333333] text-on-surface-variant text-label-sm font-label-sm rounded">Descarga Directa</span>
+</div>
+<div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputDigitalPrice">Precio por Fotografía Digital (ARS)</label>
+<div class="relative">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-semibold">$</span>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputDigitalPrice" type="text" value="4.200"/>
+</div>
+<p class="text-label-sm font-label-sm text-outline mt-1.5">Descarga instantánea post-verificación de comprobante</p>
+</div>
+<div class="bg-[#111111] border border-[#222222] p-3 rounded-xl flex flex-col justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-outline uppercase">Parámetros de Exportación</span>
+<p class="text-body-md font-body-md text-white font-medium mt-0.5">JPEG 100% sRGB / 300 DPI</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-[#222222]">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Margen bruto neto:</span>
+<span class="text-label-md font-label-md text-emerald-400 font-semibold">97.8%</span>
+</div>
+</div>
+</div>
+<!-- Features badges -->
+<div class="mt-4 pt-3 border-t border-[#222222] flex flex-wrap items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline">Incluye:</span>
+<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Licencia de impresión doméstica</span>
+<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Metadatos Exif optimizados</span>
+<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Respaldo en Drive 90 días</span>
+</div>
+</div>
+<!-- Card 3: WhatsApp Receptor Oficial -->
+<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm hover:border-[#333333] transition-all">
+<div class="flex items-start justify-between pb-3 border-b border-[#222222]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-[#111111] border border-[#333333] flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined text-[22px]">contact_phone</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-white">WhatsApp Oficial para Pedidos</h3>
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Número receptor de comprobantes y pedidos directos</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-800/60 text-emerald-400 text-label-sm font-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+<span>En Línea</span>
+</div>
+</div>
+<div class="mt-4">
+<label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputWhatsappPhone">Línea Móvil (Formato Internacional)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">call</span>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-10 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputWhatsappPhone" type="text" value="+54 9 261 317-5222"/>
+</div>
+<p class="text-label-sm font-label-sm text-outline mt-1.5">A este contacto se remitirán automáticamente los botones de "Confirmar Compra vía WhatsApp" desde las galerías públicas.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: WhatsApp Live Message Preview & Margins (5 cols) -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- Card 4: WhatsApp Message Preview -->
+<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg flex flex-col justify-between h-auto">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#222222]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#38bdf8] text-[20px]">smartphone</span>
+<h3 class="text-headline-sm font-headline-sm text-white">Vista Previa de Pedido</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Simulador WhatsApp</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-2 mb-4">Así ingresará el mensaje formulado al chat de Sergio Molina cuando las familias soliciten fotos:</p>
+<!-- Phone Screen Mockup -->
+<div class="bg-[#0b141a] border border-[#222222] rounded-xl p-3 relative overflow-hidden shadow-inner">
+<!-- Chat topbar inside mockup -->
+<div class="flex items-center gap-2 pb-2.5 mb-2.5 border-b border-[#1f2c34]">
+<div class="w-7 h-7 rounded-full bg-[#005580] flex items-center justify-center text-white text-label-sm font-bold">SM</div>
+<div class="leading-tight">
+<p class="text-label-sm font-label-sm font-semibold text-[#e9edef]" id="previewPhoneHeader">+54 9 261 317-5222</p>
+<p class="text-[9px] text-[#8696a0]">Sergio Ricardo Molina Fotografía</p>
+</div>
+</div>
+<!-- Chat bubble -->
+<div class="bg-[#005c4b] text-[#e9edef] rounded-lg rounded-tl-none p-3 text-[13px] leading-relaxed shadow max-w-[92%] relative">
+<p class="font-semibold text-[#d1f4cc] text-label-sm">¡Hola Sergio! Deseo confirmar un pedido escolar 📸</p>
+<p class="mt-1 text-[12px] opacity-95">Colegio: <strong class="text-white">San Martín de Tours</strong></p>
+<p class="text-[12px] opacity-95">Alumno: <strong class="text-white">Mateo Gómez (4to Grado "B")</strong></p>
+<div class="my-2 border-t border-[#02735e]/60 pt-1.5 space-y-0.5 text-[11.5px]">
+<p>• 2x Copia Impresa 15x21 cm (<span class="font-mono text-white" id="previewPrintCalc">$14.000</span>)</p>
+<p>• 1x Archivo Digital HD (<span class="font-mono text-white" id="previewDigitalCalc">$4.200</span>)</p>
+</div>
+<div class="bg-[#025141] p-1.5 rounded flex justify-between items-center text-[12px] font-bold text-white mb-1">
+<span>TOTAL A ABONAR:</span>
+<span class="text-emerald-300 font-mono" id="previewTotalCalc">$18.200</span>
+</div>
+<p class="text-[11px] text-[#bbf2c8]">Adjunto comprobante de transferencia y códigos de foto #SM-402, #SM-409.</p>
+<span class="block text-right text-[10px] text-[#86bfa3] mt-1">10:42 ✓✓</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#222222]">
+<label class="block text-label-sm font-label-sm text-outline uppercase mb-1" for="inputCustomNote">Nota al pie en WhatsApp (Opcional)</label>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] rounded-lg px-3 py-1.5 text-body-md text-white outline-none placeholder:text-[#555555]" id="inputCustomNote" placeholder="Ej: Alias de transferencia: SERGIO.FOTO.MP" type="text"/>
+</div>
+</div>
+<!-- Card 5: Desglose de Comisiones y Margen Neto -->
+<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-3 border-b border-[#222222]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#38bdf8] text-[20px]">analytics</span>
+<h3 class="text-headline-sm font-headline-sm text-white">Desglose y Rendimiento</h3>
+</div>
+<span class="text-label-sm font-label-sm text-emerald-400 font-semibold">Márgenes Sanos</span>
+</div>
+<div class="mt-4 space-y-3">
+<div class="flex items-center justify-between py-1.5 border-b border-[#222222]">
+<span class="text-body-md font-body-md text-on-surface-variant">Margen Neto Papel 15x21</span>
+<span class="text-body-md font-body-md font-bold text-white" id="statPrintMargin">$5.050 (72.1%)</span>
+</div>
+<div class="flex items-center justify-between py-1.5 border-b border-[#222222]">
+<span class="text-body-md font-body-md text-on-surface-variant">Margen Neto Descarga HD</span>
+<span class="text-body-md font-body-md font-bold text-emerald-400" id="statDigitalMargin">$4.110 (97.8%)</span>
+</div>
+<div class="flex items-center justify-between py-1.5 border-b border-[#222222]">
+<span class="text-body-md font-body-md text-on-surface-variant">Costo Promedio Envío Colegio</span>
+<span class="text-body-md font-body-md text-outline">$0 (Consolidado)</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-outline uppercase">Retención Impositiva Est.</span>
+<span class="text-label-sm font-label-sm text-outline">Monotributo Cat. F</span>
+</div>
+</div>
+<!-- Visual Bar -->
+<div class="mt-4">
+<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden flex">
+<div class="bg-[#005580] h-full" style="width: 72%" title="Margen"></div>
+<div class="bg-[#38bdf8] h-full" style="width: 25%" title="Laboratorio"></div>
+<div class="bg-outline h-full" style="width: 3%" title="Packaging"></div>
+</div>
+<div class="flex justify-between text-[11px] text-outline mt-1.5">
+<span>Azul: Beneficio Neto</span>
+<span>Celeste: Costo Fuji Lab</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- History Table: Auditoría de Modificaciones Recientes -->
+<section class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm mb-space-2xl">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#222222]">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-white">Historial de Actualizaciones de Tarifas</h3>
+<p class="text-label-sm font-label-sm text-outline">Registro auditable sincronizado con base de datos central</p>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant bg-[#111111] border border-[#333333] px-3 py-1 rounded-full">3 eventos registrados este ciclo lectivo</span>
+</div>
+<div class="overflow-x-auto mt-3">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#222222] text-label-sm font-label-sm text-outline uppercase tracking-wider">
+<th class="py-3 px-3">Fecha y Hora</th>
+<th class="py-3 px-3">Copia 15x21</th>
+<th class="py-3 px-3">Archivo HD</th>
+<th class="py-3 px-3">WhatsApp Destino</th>
+<th class="py-3 px-3">Usuario</th>
+<th class="py-3 px-3 text-right">Estado</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md text-on-surface divide-y divide-[#222222]">
+<tr class="hover:bg-[#1f1e1e] transition-colors">
+<td class="py-3 px-3 font-mono text-label-md text-outline">Hoy, 09:14 AM</td>
+<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentPrint">$7.000</td>
+<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentDigital">$4.200</td>
+<td class="py-3 px-3 font-mono text-label-sm text-outline">+54 9 261 317-5222</td>
+<td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">Vigente</span>
+</td>
+</tr>
+<tr class="hover:bg-[#1f1e1e] transition-colors">
+<td class="py-3 px-3 font-mono text-label-md text-outline">12 Abr 2025</td>
+<td class="py-3 px-3 text-on-surface-variant">$5.800</td>
+<td class="py-3 px-3 text-on-surface-variant">$3.500</td>
+<td class="py-3 px-3 font-mono text-label-sm text-outline">+54 9 261 317-5222</td>
+<td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm text-outline bg-[#111111] border border-[#2a2a2a]">Reemplazado</span>
+</td>
+</tr>
+<tr class="hover:bg-[#1f1e1e] transition-colors">
+<td class="py-3 px-3 font-mono text-label-md text-outline">01 Mar 2025</td>
+<td class="py-3 px-3 text-on-surface-variant">$4.500</td>
+<td class="py-3 px-3 text-on-surface-variant">$2.800</td>
+<td class="py-3 px-3 font-mono text-label-sm text-outline">+54 9 261 317-5222</td>
+<td class="py-3 px-3 text-on-surface-variant">Apertura Temporada</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm text-outline bg-[#111111] border border-[#2a2a2a]">Histórico</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Bottom Tab Bar (Responsive pivot) -->
+<nav class="md:hidden bg-[#131313] border-t border-[#222222] fixed bottom-0 left-0 right-0 z-50 px-2 py-1 flex justify-around items-center">
+<a class="flex flex-col items-center p-2 text-outline hover:text-white" href="panel.html">
+<span class="material-symbols-outlined text-[22px]">photo_library</span>
+<span class="text-[10px] font-label-sm">Galerías</span>
+</a>
+<a class="flex flex-col items-center p-2 text-outline hover:text-white" href="cargas.html">
+<span class="material-symbols-outlined text-[22px]">cloud_upload</span>
+<span class="text-[10px] font-label-sm">Cargas</span>
+</a>
+<a class="flex flex-col items-center p-2 text-[#38bdf8] font-bold" href="precios.html">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+<span class="text-[10px] font-label-sm">Tarifas</span>
+</a>
+<a class="flex flex-col items-center p-2 text-outline hover:text-white" href="eventos.html">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+<span class="text-[10px] font-label-sm">Eventos</span>
+</a>
+</nav>
+<!-- Interactive Script for Live Updating and LocalStorage Persistence -->
+<script>
+    (function() {
+      // Elements
+      const inputPrint = document.getElementById('inputPrintPrice');
+      const inputDigital = document.getElementById('inputDigitalPrice');
+      const inputPhone = document.getElementById('inputWhatsappPhone');
+      const btnSave = document.getElementById('btnSavePrices');
+      const btnReset = document.getElementById('btnResetValues');
+      const toast = document.getElementById('saveToast');
+      const timestampSaved = document.getElementById('timestampSaved');
+
+      // Live Previews
+      const previewPrintCalc = document.getElementById('previewPrintCalc');
+      const previewDigitalCalc = document.getElementById('previewDigitalCalc');
+      const previewTotalCalc = document.getElementById('previewTotalCalc');
+      const previewPhoneHeader = document.getElementById('previewPhoneHeader');
+      const statPrintMargin = document.getElementById('statPrintMargin');
+      const statDigitalMargin = document.getElementById('statDigitalMargin');
+      const tableRowCurrentPrint = document.getElementById('tableRowCurrentPrint');
+      const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
+
+      // Initial clean parse helper
+      function cleanNumber(str) {
+        return parseFloat(str.replace(/[^0-9]/g, '')) || 0;
+      }
+
+      function formatARS(num) {
+        return '$' + num.toLocaleString('es-AR');
+      }
+
+      // Live update logic
+      function updateLiveViews() {
+        const printVal = cleanNumber(inputPrint.value);
+        const digitalVal = cleanNumber(inputDigital.value);
+        const phoneVal = inputPhone.value.trim();
+
+        // 2 prints + 1 digital
+        const subtotalPrint = printVal * 2;
+        const total = subtotalPrint + digitalVal;
+
+        previewPrintCalc.textContent = formatARS(subtotalPrint);
+        previewDigitalCalc.textContent = formatARS(digitalVal);
+        previewTotalCalc.textContent = formatARS(total);
+        previewPhoneHeader.textContent = phoneVal || '+54 9 261 317-5222';
+
+        // Margins update (Lab print base cost: 1950)
+        const labCost = 1950;
+        const netPrint = Math.max(0, printVal - labCost);
+        const marginPrintPercent = printVal > 0 ? ((netPrint / printVal) * 100).toFixed(1) : '0';
+        statPrintMargin.textContent = `${formatARS(netPrint)} (${marginPrintPercent}%)`;
+
+        // Digital HD margin (97.8% base)
+        const netDigital = Math.round(digitalVal * 0.978);
+        statDigitalMargin.textContent = `${formatARS(netDigital)} (97.8%)`;
+      }
+
+      // Input listeners
+      inputPrint.addEventListener('input', updateLiveViews);
+      inputDigital.addEventListener('input', updateLiveViews);
+      inputPhone.addEventListener('input', updateLiveViews);
+
+      // Load saved values from localStorage if exist
+      function loadStored() {
+        const saved = localStorage.getItem('sergio_molina_tarifas');
+        if (saved) {
+          try {
+            const data = JSON.parse(saved);
+            if (data.print) inputPrint.value = data.print;
+            if (data.digital) inputDigital.value = data.digital;
+            if (data.phone) inputPhone.value = data.phone;
+          } catch (e) {
+            console.error('Error loading stored rates', e);
+          }
+        }
+        updateLiveViews();
+      }
+
+      // Save handler
+      btnSave.addEventListener('click', function() {
+        const printStr = inputPrint.value;
+        const digitalStr = inputDigital.value;
+        const phoneStr = inputPhone.value;
+
+        // LocalStorage persistence
+        const payload = {
+          print: printStr,
+          digital: digitalStr,
+          phone: phoneStr,
+          updatedAt: new Date().toISOString()
+        };
+        localStorage.setItem('sergio_molina_tarifas', JSON.stringify(payload));
+
+        // Update table row
+        if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + printStr.replace('$', '');
+        if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + digitalStr.replace('$', '');
+
+        // Visual toast feedback
+        const now = new Date();
+        timestampSaved.textContent = `Guardado hoy a las ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        toast.classList.remove('hidden');
+
+        btnSave.classList.add('ring-2', 'ring-[#38bdf8]');
+        setTimeout(() => {
+          btnSave.classList.remove('ring-2', 'ring-[#38bdf8]');
+        }, 1000);
+
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 6000);
+      });
+
+      // Reset handler
+      btnReset.addEventListener('click', function() {
+        inputPrint.value = "7.000";
+        inputDigital.value = "4.200";
+        inputPhone.value = "+54 9 261 317-5222";
+        updateLiveViews();
+      });
+
+      // Init on load
+      loadStored();
+    })();
+  </script>
+</body></html>
