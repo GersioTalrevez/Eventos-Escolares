@@ -1,0 +1,1035 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Galería de Fotos | Sergio Ricardo Molina</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      padding: 16px 12px 140px;
+      max-width: 1040px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      padding: 12px 0 16px;
+      border-bottom: 1px solid #222222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-volver-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 500;
+      background: #1c1c1c;
+      border: 1px solid #005580;
+      padding: 7px 14px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+    .btn-volver-nav:hover {
+      background: #282828;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+
+    .marca-personal {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .marca-personal span.icon { color: #38bdf8; }
+
+    .hero-galeria { padding: 18px 0 14px; }
+
+    .badge-tipo-galeria {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .badge-publica {
+      background: rgba(0, 85, 128, 0.25);
+      border: 1px solid #0077b3;
+      color: #38bdf8;
+    }
+    .badge-privada {
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid #eab308;
+      color: #facc15;
+    }
+
+    .titulo-galeria {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .subtitulo-galeria {
+      color: #999999;
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.45;
+      max-width: 680px;
+    }
+
+    .banner-tarifas {
+      background: #181818;
+      border: 1px solid #005580;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 14px 0 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.84rem;
+    }
+    .tarifa-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tarifa-item strong {
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    /* CUADRÍCULA DE FOTOS: 2 COLUMNAS EN MÓVIL, 4 EN ESCRITORIO */
+    .grid-fotos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    @media (min-width: 640px) {
+      .grid-fotos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+    }
+    @media (min-width: 880px) {
+      .grid-fotos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+    }
+
+    .tarjeta-foto {
+      background: #1c1c1c;
+      border: 1.5px solid #282828;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    .tarjeta-foto:hover {
+      border-color: #0077b3;
+      transform: translateY(-2px);
+    }
+    .tarjeta-foto.seleccionada {
+      border-color: #38bdf8;
+      background: #15222e;
+    }
+
+    .contenedor-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #0d0d0d;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .contenedor-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: transform 0.25s ease;
+    }
+    .tarjeta-foto:hover .contenedor-img img {
+      transform: scale(1.03);
+    }
+
+    .marca-agua {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        -35deg,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) 32px,
+        rgba(255, 255, 255, 0.12) 33px,
+        rgba(0, 0, 0, 0) 35px
+      );
+      z-index: 2;
+    }
+    .texto-marca-agua {
+      transform: rotate(-30deg);
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      user-select: none;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .pie-foto {
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #262626;
+      font-size: 0.74rem;
+      gap: 4px;
+    }
+    .nombre-foto {
+      color: #aaaaaa;
+      font-family: monospace;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .btn-check-foto {
+      background: #252525;
+      border: 1px solid #444444;
+      color: #cccccc;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-check-foto:hover {
+      background: #333333;
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+    .tarjeta-foto.seleccionada .btn-check-foto {
+      background: #005580;
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    .estado-caja {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 50px 16px;
+      background: #181818;
+      border: 1px dashed #333333;
+      border-radius: 12px;
+      color: #999999;
+      margin: 12px 0;
+    }
+    .estado-caja .material-symbols-outlined {
+      font-size: 42px;
+      color: #0088cc;
+      margin-bottom: 10px;
+    }
+    .estado-caja h3 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .estado-caja p {
+      font-size: 0.86rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.45;
+    }
+
+    .btn-accion-estado {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #005580;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-top: 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-accion-estado:hover { background: #0077b3; }
+
+    /* BARRA INFERIOR FIJA PARA PEDIDOS */
+    .barra-compras-fija {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 860px;
+      background: rgba(22, 22, 22, 0.94);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #005580;
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 100;
+    }
+
+    .resumen-seleccion {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+    }
+    .contador-badge {
+      background: #005580;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    .acciones-compra {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-pedido {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-pedido-impresas {
+      background: #1c1c1c;
+      border: 1px solid #444444;
+      color: #ffffff;
+    }
+    .btn-pedido-impresas:hover {
+      border-color: #facc15;
+      color: #facc15;
+    }
+    .btn-pedido-digitales {
+      background: #005580;
+      color: #ffffff;
+    }
+    .btn-pedido-digitales:hover { background: #0077b3; }
+
+    /* VISOR MODAL */
+    .modal-visor {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.96);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-visor img {
+      max-width: 92%;
+      max-height: 84vh;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .btn-cerrar-visor {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 26px;
+      color: #ffffff;
+      cursor: pointer;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+    }
+    .btn-nav-visor {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      color: #ffffff;
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      padding: 12px 14px;
+      border-radius: 50%;
+      user-select: none;
+      z-index: 10001;
+    }
+    .btn-nav-prev { left: 12px; }
+    .btn-nav-next { right: 12px; }
+
+    @media (max-width: 600px) {
+      .btn-nav-visor { display: none; }
+      .acciones-compra { width: 100%; justify-content: stretch; }
+      .btn-pedido { flex: 1; justify-content: center; font-size: 0.76rem; padding: 8px 6px; }
+      .resumen-seleccion { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+<!-- ENCABEZADO -->
+<header>
+<div class="marca-personal">
+<span class="material-symbols-outlined icon">photo_camera</span>
+<span class="">SERGIO RICARDO MOLINA</span>
+</div>
+<a class="btn-volver-nav" href="eventos.html">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+<span class="">Volver a Eventos</span>
+</a>
+</header>
+<main>
+<section class="hero-galeria">
+
+<h1 class="titulo-galeria" id="titulo-galeria">Acto de Fin de Curso • Promoción 2024</h1>
+<p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
+</section>
+<!-- BANNER DINÁMICO DE TARIFAS -->
+<div class="banner-tarifas" id="banner-tarifas">
+<div class="tarifa-item">
+<span class="material-symbols-outlined" style="color: rgb(56, 189, 248); font-size: 18px;">payments</span>
+<span class="" id="texto-tarifas-banner">
+          TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.000<br></strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; •&nbsp; Archivo Digital HD:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong id="lbl-tarifa-digital">$4.200</strong>
+</span>
+</div>
+<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;">
+<span class="material-symbols-outlined" style="font-size: 15px; color: rgb(74, 222, 128);">verified</span>
+<span class="">Entrega en papel fotográfico de laboratorio</span>
+</div>
+</div>
+<!-- CONTENEDOR DE FOTOS (2 COLUMNAS EN MÓVIL, 4 EN ESCRITORIO) -->
+<div class="grid-fotos" id="contenedor-fotos"><div class="tarjeta-foto" id="card-foto-4821">
+          <div class="contenedor-img" onclick="abrirVisor(0)">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSSlr6nX7JSdoBz_CBuDc4Mzuz6LS137lC4lzvDt0rTFHBe_gsxzZcNw_OkSTJCUBI8iRULfScf1PyEY-X16a3RNaMpYI1SzTqWSeQql2S20dz2EarcqdhJK0EPT_cWyix6wBA-sT8_-L4Swp2IcV9PQecMj9eh8aETAj_LBLGg5QBQewwlcMWiPOgdtCkYzqPeTVck2wjJMaUpuezEDLReGWdN5phgyru06kwrqJ-RHYaIe_HONjp" alt="DSC_4821.jpg" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/4821'">
+            
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="DSC_4821.jpg">#DSC_4821.jpg</span>
+            
+              <button class="btn-check-foto" onclick="toggleSeleccion('4821', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-4821">add</span>
+                <span id="txt-check-4821" class="">Elegir</span>
+              </button>
+            
+          </div>
+        </div><div class="tarjeta-foto" id="card-foto-4822">
+          <div class="contenedor-img" onclick="abrirVisor(1)">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg5WD0GziT1g9Ot_stxTdzc4phKMb_z40oVSCS0Wq56Ai5XTId5QH760XdQG7HexGOvedT6Xtp44svBKRqfajAM70R0_yhFrmQPNTnqlT_ulS3XmI08PTZQ6s8AvN7DPZmbP_wGCeInOCEsN7mUpNZ1GcT1S-UbGEupkLytoPZ3tja5w7tsbsSt4mrBDo0d6FB85WN7ek2TyIoPcM1Ler6hI0jC1C8z3zRvh7klMYbJ_Bo0Bj2O61k" alt="DSC_4822.jpg" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/4822'">
+            
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="DSC_4822.jpg">#DSC_4822.jpg</span>
+            
+              <button class="btn-check-foto" onclick="toggleSeleccion('4822', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-4822">add</span>
+                <span id="txt-check-4822" class="">Elegir</span>
+              </button>
+            
+          </div>
+        </div><div class="tarjeta-foto" id="card-foto-4823">
+          <div class="contenedor-img" onclick="abrirVisor(2)">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_wud0VjwMmzXK7jYyxLHXTaji9V6oKEXFgwy39YILX1vY2bdGVJU_1hY3mSnKJIvy8E9q0rTcglRcOc1qwBySq3XoC0xvV5MQ5h6KyuD9GIPKe_JEB7m9uYc2eQn5-yGYxhN0Wwr0a1YdNHsRq8SuTWYVCWRYD-jOcAZbPnGaEDcKs8xVQYZP66kq6IlIHH2VhIYgTt-5dNBOc8unbZLNDPIk0f6lQGTUIaebg2lw7YvynWBZfej7" alt="DSC_4823.jpg" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/4823'">
+            
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="DSC_4823.jpg">#DSC_4823.jpg</span>
+            
+              <button class="btn-check-foto" onclick="toggleSeleccion('4823', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-4823">add</span>
+                <span id="txt-check-4823" class="">Elegir</span>
+              </button>
+            
+          </div>
+        </div><div class="tarjeta-foto" id="card-foto-4824">
+          <div class="contenedor-img" onclick="abrirVisor(3)">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZRcnty5pw0Q7niPtWfqnhcfQdvmA8FvBIzV4UQzzICAADgwu42_kwW8rFQvqXYqWpbeYMeaysyNSZjZMBMdg8dGq_fai3Tekt_RXS05FuLLGUDISEuFL1_ui0A7UnB3uSVg1DgGF6aba35hKzwBj2d4FBx1bDTAdvX5pRRXNy1dNIIEK9Vf8qSH3dxGQezHKz-_hDGU0dhWxl5rd1GmyUHTe0LBPmQN-yNDDyBBWF-BxJ9-jkYg7Q" alt="DSC_4824.jpg" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/4824'">
+            
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="DSC_4824.jpg">#DSC_4824.jpg</span>
+            
+              <button class="btn-check-foto" onclick="toggleSeleccion('4824', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-4824">add</span>
+                <span id="txt-check-4824" class="">Elegir</span>
+              </button>
+            
+          </div>
+        </div><div class="tarjeta-foto" id="card-foto-4825">
+          <div class="contenedor-img" onclick="abrirVisor(4)">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH_1VpHfaWzF_caP-Y6Wxo0PlRO6BsO_Qk_W14ELq6orUJ_Zog6G9mYXV79Anjv0ZCj2Tzc_Ju4LHB5Lvj1UT1fs3HbnYSARyavV8QuI8oWKEUKwMTgYC-3jCAyfMNnk9zNMWpdgrB9i8EIAHeMOU6efb2a0eTkW4ODhye6gM7qmmyhqfpkfuIcxM6yK5iMIvSkSaMctcwjMbiuAdMqslAmeOCQGAydG12v5j_aiPd2ESL40inxtVT" alt="DSC_4825.jpg" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/4825'">
+            
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="DSC_4825.jpg">#DSC_4825.jpg</span>
+            
+              <button class="btn-check-foto" onclick="toggleSeleccion('4825', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-4825">add</span>
+                <span id="txt-check-4825" class="">Elegir</span>
+              </button>
+            
+          </div>
+        </div><div class="tarjeta-foto" id="card-foto-4826">
+          <div class="contenedor-img" onclick="abrirVisor(5)">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCxoRh7KObz2pl_TwuTPtsMixHu2GvBfNZQyNA2Dl0jD_rtwKhE_0BlqSGQwl9WAd4L5uRPtdh-aReIXuUkFtnDB5wBM2vAE1WId5eoC1il1cpYS4llLJqvkWiPdJeikA4gtFS6Y-NQz9l-NbrTm36_ftExC-265Y5WFICUkcc-DorEq7n88n6a6z00yDTNGwr2Q_NLh7HB__stwdJyWrc24j7J-hcSs9eyKNy4USdUAL0B5IkQmx6" alt="DSC_4826.jpg" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/4826'">
+            
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="DSC_4826.jpg">#DSC_4826.jpg</span>
+            
+              <button class="btn-check-foto" onclick="toggleSeleccion('4826', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-4826">add</span>
+                <span id="txt-check-4826" class="">Elegir</span>
+              </button>
+            
+          </div>
+        </div></div>
+</main>
+<!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
+<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;">
+<div class="resumen-seleccion">
+<div style="display:flex; align-items:center; gap:6px;">
+<span class="" style="color: rgb(56, 189, 248); font-size: 16px;">●</span>
+<span class="" style="font-weight: 600;">SELECCIÓN:</span>
+<span class="contador-badge" id="contador-fotos">0 fotos</span>
+</div>
+<button class="" onclick="limpiarSeleccion()" style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(136, 136, 136); text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar</button>
+</div>
+<div class="acciones-compra">
+<button class="btn-pedido btn-pedido-impresas" onclick="pedirPorWhatsApp('impresas')">
+<span class="material-symbols-outlined" style="font-size: 16px;">print</span>
+<span class="" id="btn-label-impresas">Impresas 15x21 ($7.000 c/u)</span>
+</button>
+<button class="btn-pedido btn-pedido-digitales" onclick="pedirPorWhatsApp('digitales')">
+<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span>
+<span class="" id="btn-label-digitales">Digital HD ($4.200 c/u)</span>
+</button>
+</div>
+</div>
+<!-- VISOR MODAL -->
+<div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
+<span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<img alt="Vista Previa" class="" id="img-ampliada" src="">
+<span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
+<script>
+    // CREDENCIALES OFICIALES
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+    // TARIFAS DINÁMICAS SINCRONIZADAS CON PRECIOS.HTML
+    let TARIFA_IMPRESA = 7000;
+    let TARIFA_DIGITAL = 4200;
+    let WHATSAPP_FOTOGRAFO = '5492613175222';
+
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    let listaFotos = [];
+    let seleccionadas = new Set();
+    let indiceVisor = 0;
+    let esGaleriaPrivada = false;
+    let tituloEvento = 'Acto de Fin de Curso • Promoción 2024';
+
+    // FOTOS DE MUESTRA DE GRADUACIÓN ESCOLAR PARA MODO PREVIEW
+    const FOTOS_MUESTRA_GRADUACION = [
+      {
+        id: '4821',
+        name: 'DSC_4821.jpg',
+        thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSSlr6nX7JSdoBz_CBuDc4Mzuz6LS137lC4lzvDt0rTFHBe_gsxzZcNw_OkSTJCUBI8iRULfScf1PyEY-X16a3RNaMpYI1SzTqWSeQql2S20dz2EarcqdhJK0EPT_cWyix6wBA-sT8_-L4Swp2IcV9PQecMj9eh8aETAj_LBLGg5QBQewwlcMWiPOgdtCkYzqPeTVck2wjJMaUpuezEDLReGWdN5phgyru06kwrqJ-RHYaIe_HONjp',
+        full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSSlr6nX7JSdoBz_CBuDc4Mzuz6LS137lC4lzvDt0rTFHBe_gsxzZcNw_OkSTJCUBI8iRULfScf1PyEY-X16a3RNaMpYI1SzTqWSeQql2S20dz2EarcqdhJK0EPT_cWyix6wBA-sT8_-L4Swp2IcV9PQecMj9eh8aETAj_LBLGg5QBQewwlcMWiPOgdtCkYzqPeTVck2wjJMaUpuezEDLReGWdN5phgyru06kwrqJ-RHYaIe_HONjp'
+      },
+      {
+        id: '4822',
+        name: 'DSC_4822.jpg',
+        thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg5WD0GziT1g9Ot_stxTdzc4phKMb_z40oVSCS0Wq56Ai5XTId5QH760XdQG7HexGOvedT6Xtp44svBKRqfajAM70R0_yhFrmQPNTnqlT_ulS3XmI08PTZQ6s8AvN7DPZmbP_wGCeInOCEsN7mUpNZ1GcT1S-UbGEupkLytoPZ3tja5w7tsbsSt4mrBDo0d6FB85WN7ek2TyIoPcM1Ler6hI0jC1C8z3zRvh7klMYbJ_Bo0Bj2O61k',
+        full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg5WD0GziT1g9Ot_stxTdzc4phKMb_z40oVSCS0Wq56Ai5XTId5QH760XdQG7HexGOvedT6Xtp44svBKRqfajAM70R0_yhFrmQPNTnqlT_ulS3XmI08PTZQ6s8AvN7DPZmbP_wGCeInOCEsN7mUpNZ1GcT1S-UbGEupkLytoPZ3tja5w7tsbsSt4mrBDo0d6FB85WN7ek2TyIoPcM1Ler6hI0jC1C8z3zRvh7klMYbJ_Bo0Bj2O61k'
+      },
+      {
+        id: '4823',
+        name: 'DSC_4823.jpg',
+        thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC_wud0VjwMmzXK7jYyxLHXTaji9V6oKEXFgwy39YILX1vY2bdGVJU_1hY3mSnKJIvy8E9q0rTcglRcOc1qwBySq3XoC0xvV5MQ5h6KyuD9GIPKe_JEB7m9uYc2eQn5-yGYxhN0Wwr0a1YdNHsRq8SuTWYVCWRYD-jOcAZbPnGaEDcKs8xVQYZP66kq6IlIHH2VhIYgTt-5dNBOc8unbZLNDPIk0f6lQGTUIaebg2lw7YvynWBZfej7',
+        full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC_wud0VjwMmzXK7jYyxLHXTaji9V6oKEXFgwy39YILX1vY2bdGVJU_1hY3mSnKJIvy8E9q0rTcglRcOc1qwBySq3XoC0xvV5MQ5h6KyuD9GIPKe_JEB7m9uYc2eQn5-yGYxhN0Wwr0a1YdNHsRq8SuTWYVCWRYD-jOcAZbPnGaEDcKs8xVQYZP66kq6IlIHH2VhIYgTt-5dNBOc8unbZLNDPIk0f6lQGTUIaebg2lw7YvynWBZfej7'
+      },
+      {
+        id: '4824',
+        name: 'DSC_4824.jpg',
+        thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZRcnty5pw0Q7niPtWfqnhcfQdvmA8FvBIzV4UQzzICAADgwu42_kwW8rFQvqXYqWpbeYMeaysyNSZjZMBMdg8dGq_fai3Tekt_RXS05FuLLGUDISEuFL1_ui0A7UnB3uSVg1DgGF6aba35hKzwBj2d4FBx1bDTAdvX5pRRXNy1dNIIEK9Vf8qSH3dxGQezHKz-_hDGU0dhWxl5rd1GmyUHTe0LBPmQN-yNDDyBBWF-BxJ9-jkYg7Q',
+        full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZRcnty5pw0Q7niPtWfqnhcfQdvmA8FvBIzV4UQzzICAADgwu42_kwW8rFQvqXYqWpbeYMeaysyNSZjZMBMdg8dGq_fai3Tekt_RXS05FuLLGUDISEuFL1_ui0A7UnB3uSVg1DgGF6aba35hKzwBj2d4FBx1bDTAdvX5pRRXNy1dNIIEK9Vf8qSH3dxGQezHKz-_hDGU0dhWxl5rd1GmyUHTe0LBPmQN-yNDDyBBWF-BxJ9-jkYg7Q'
+      },
+      {
+        id: '4825',
+        name: 'DSC_4825.jpg',
+        thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCH_1VpHfaWzF_caP-Y6Wxo0PlRO6BsO_Qk_W14ELq6orUJ_Zog6G9mYXV79Anjv0ZCj2Tzc_Ju4LHB5Lvj1UT1fs3HbnYSARyavV8QuI8oWKEUKwMTgYC-3jCAyfMNnk9zNMWpdgrB9i8EIAHeMOU6efb2a0eTkW4ODhye6gM7qmmyhqfpkfuIcxM6yK5iMIvSkSaMctcwjMbiuAdMqslAmeOCQGAydG12v5j_aiPd2ESL40inxtVT',
+        full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCH_1VpHfaWzF_caP-Y6Wxo0PlRO6BsO_Qk_W14ELq6orUJ_Zog6G9mYXV79Anjv0ZCj2Tzc_Ju4LHB5Lvj1UT1fs3HbnYSARyavV8QuI8oWKEUKwMTgYC-3jCAyfMNnk9zNMWpdgrB9i8EIAHeMOU6efb2a0eTkW4ODhye6gM7qmmyhqfpkfuIcxM6yK5iMIvSkSaMctcwjMbiuAdMqslAmeOCQGAydG12v5j_aiPd2ESL40inxtVT'
+      },
+      {
+        id: '4826',
+        name: 'DSC_4826.jpg',
+        thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCxoRh7KObz2pl_TwuTPtsMixHu2GvBfNZQyNA2Dl0jD_rtwKhE_0BlqSGQwl9WAd4L5uRPtdh-aReIXuUkFtnDB5wBM2vAE1WId5eoC1il1cpYS4llLJqvkWiPdJeikA4gtFS6Y-NQz9l-NbrTm36_ftExC-265Y5WFICUkcc-DorEq7n88n6a6z00yDTNGwr2Q_NLh7HB__stwdJyWrc24j7J-hcSs9eyKNy4USdUAL0B5IkQmx6',
+        full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCxoRh7KObz2pl_TwuTPtsMixHu2GvBfNZQyNA2Dl0jD_rtwKhE_0BlqSGQwl9WAd4L5uRPtdh-aReIXuUkFtnDB5wBM2vAE1WId5eoC1il1cpYS4llLJqvkWiPdJeikA4gtFS6Y-NQz9l-NbrTm36_ftExC-265Y5WFICUkcc-DorEq7n88n6a6z00yDTNGwr2Q_NLh7HB__stwdJyWrc24j7J-hcSs9eyKNy4USdUAL0B5IkQmx6'
+      }
+    ];
+
+    // 1. CARGA DINÁMICA DE PRECIOS
+    function sincronizarPrecios() {
+      try {
+        const storedImp = localStorage.getItem('tarifa_impresa');
+        const storedDig = localStorage.getItem('tarifa_digital');
+        const storedWa = localStorage.getItem('numero_whatsapp');
+
+        if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
+        if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
+        if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
+
+        // Actualizar banner superior
+        const lblImp = document.getElementById('lbl-tarifa-impresa');
+        const lblDig = document.getElementById('lbl-tarifa-digital');
+        if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+        if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+
+        // Actualizar botones de acción fija
+        const btnImp = document.getElementById('btn-label-impresas');
+        const btnDig = document.getElementById('btn-label-digitales');
+        if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
+        if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
+      } catch (e) {
+        console.warn("Uso de tarifas predeterminadas:", e);
+      }
+    }
+
+    function extraerIdDrive(input) {
+      if (!input) return '';
+      const str = String(input).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+    }
+
+    async function iniciarGaleria() {
+      sincronizarPrecios();
+
+      const params = new URLSearchParams(window.location.search);
+      const paramId = params.get('id');
+      const paramFolder = params.get('folder');
+      const paramTitulo = params.get('titulo');
+      const paramKey = params.get('key');
+      const paramPrivada = params.get('privada');
+
+      if (paramTitulo) {
+        tituloEvento = decodeURIComponent(paramTitulo);
+        document.getElementById('titulo-galeria').innerText = tituloEvento;
+      }
+
+      if (paramPrivada === 'true' || (paramKey && paramKey.trim().length > 0)) {
+        esGaleriaPrivada = true;
+        configurarModoPrivado();
+      }
+
+      let folderId = '';
+
+      if (paramFolder && paramFolder.trim().length > 5) {
+        folderId = extraerIdDrive(paramFolder);
+      } else if (paramId && paramId.trim().length > 15 && isNaN(paramId)) {
+        folderId = extraerIdDrive(paramId);
+      } else if (paramId && supabaseClient) {
+        try {
+          let { data, error } = await supabaseClient
+            .from('galeria')
+            .select('*')
+            .eq('id', paramId)
+            .maybeSingle();
+
+          if (error || !data) {
+            const intentoDos = await supabaseClient
+              .from('galerias')
+              .select('*')
+              .eq('id', paramId)
+              .maybeSingle();
+            if (intentoDos.data) data = intentoDos.data;
+          }
+
+          if (data) {
+            if (data.titulo && !paramTitulo) {
+              tituloEvento = data.titulo;
+              document.getElementById('titulo-galeria').innerText = tituloEvento;
+            }
+            if (data.es_privada || data.password) {
+              esGaleriaPrivada = true;
+              configurarModoPrivado();
+            }
+            const enlace = data.drive_url || data.url_drive || data.enlace_drive || '';
+            folderId = extraerIdDrive(enlace);
+          }
+        } catch (e) {
+          console.warn("Falla al consultar Supabase:", e);
+        }
+      }
+
+      if (!folderId && paramId) {
+        folderId = extraerIdDrive(paramId);
+      }
+
+      // Si no viene ningún ID o carpeta (modo preview directo), cargar 6 fotos de muestra de graduación escolar
+      if (!folderId) {
+        listaFotos = [...FOTOS_MUESTRA_GRADUACION];
+        renderizarFotos();
+        return;
+      }
+
+      cargarFotosDrive(folderId);
+    }
+
+    function configurarModoPrivado() {
+      const badge = document.getElementById('badge-tipo');
+      badge.className = 'badge-tipo-galeria badge-privada';
+      badge.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;">lock</span><span>Galería Privada de Cliente</span>';
+      
+      document.getElementById('subtitulo-galeria').innerText = 
+        "Álbum privado exclusivo para visualización en alta resolución.";
+      
+      const banner = document.getElementById('banner-tarifas');
+      if (banner) banner.style.display = 'none';
+      const barra = document.getElementById('barra-pedidos');
+      if (barra) barra.style.display = 'none';
+    }
+
+    async function cargarFotosDrive(folderId) {
+      const contenedor = document.getElementById('contenedor-fotos');
+      const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 7000);
+
+      try {
+        const res = await fetch(urlDrive, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        const datos = await res.json();
+
+        if (datos.error) {
+          console.error("Error API Drive:", datos.error);
+          mostrarMensajeError(
+            "Permisos de Google Drive",
+            "La carpeta de Google Drive debe estar compartida como: 'Cualquier persona con el enlace puede ver'. Verificá los permisos en Drive."
+          );
+          return;
+        }
+
+        if (!datos.files || datos.files.length === 0) {
+          mostrarMensajeVacio(folderId);
+          return;
+        }
+
+        listaFotos = datos.files.map(f => ({
+          id: f.id,
+          name: f.name || 'Fotografía',
+          thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
+          full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
+        }));
+
+        renderizarFotos();
+
+      } catch (err) {
+        clearTimeout(timeoutId);
+        console.error("Error al obtener fotos:", err);
+        if (err.name === 'AbortError') {
+          mostrarMensajeError(
+            "Tiempo de espera agotado",
+            "La conexión con Google Drive tardó demasiado. Por favor, hacé clic en Reintentar."
+          );
+        } else {
+          mostrarMensajeError(
+            "Error de conexión",
+            "No se pudieron descargar las fotos de Drive. Verificá que la carpeta exista y sea pública."
+          );
+        }
+      }
+    }
+
+    function renderizarFotos() {
+      const contenedor = document.getElementById('contenedor-fotos');
+      contenedor.innerHTML = '';
+
+      listaFotos.forEach((foto, index) => {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'tarjeta-foto';
+        tarjeta.id = `card-foto-${foto.id}`;
+
+        const nombreFormateado = foto.name.startsWith('#') 
+          ? foto.name 
+          : `#${foto.name}`;
+
+        tarjeta.innerHTML = `
+          <div class="contenedor-img" onclick="abrirVisor(${index})">
+            <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/${foto.id}'">
+            ${!esGaleriaPrivada ? `
+              <div class="marca-agua">
+                <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
+              </div>
+            ` : ''}
+          </div>
+          <div class="pie-foto">
+            <span class="nombre-foto" title="${foto.name}">${nombreFormateado}</span>
+            ${!esGaleriaPrivada ? `
+              <button class="btn-check-foto" onclick="toggleSeleccion('${foto.id}', event)">
+                <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-${foto.id}">add</span>
+                <span id="txt-check-${foto.id}">Elegir</span>
+              </button>
+            ` : `
+              <span style="color:#22c55e; font-size:0.72rem; font-weight:600; display:flex; align-items:center; gap:2px;">
+                <span class="material-symbols-outlined" style="font-size:13px;">check</span> Alta Calidad
+              </span>
+            `}
+          </div>
+        `;
+
+        contenedor.appendChild(tarjeta);
+      });
+
+      if (!esGaleriaPrivada) {
+        document.getElementById('barra-pedidos').style.display = 'flex';
+      }
+    }
+
+    function toggleSeleccion(fotoId, event) {
+      if (event) event.stopPropagation();
+      const card = document.getElementById(`card-foto-${fotoId}`);
+      const icon = document.getElementById(`icon-check-${fotoId}`);
+      const txt = document.getElementById(`txt-check-${fotoId}`);
+
+      if (seleccionadas.has(fotoId)) {
+        seleccionadas.delete(fotoId);
+        if (card) card.classList.remove('seleccionada');
+        if (icon) icon.innerText = 'add';
+        if (txt) txt.innerText = 'Elegir';
+      } else {
+        seleccionadas.add(fotoId);
+        if (card) card.classList.add('seleccionada');
+        if (icon) icon.innerText = 'check';
+        if (txt) txt.innerText = 'Elegida';
+      }
+
+      document.getElementById('contador-fotos').innerText = `${seleccionadas.size} fotos`;
+    }
+
+    function limpiarSeleccion() {
+      seleccionadas.clear();
+      document.querySelectorAll('.tarjeta-foto').forEach(c => c.classList.remove('seleccionada'));
+      document.querySelectorAll('[id^="icon-check-"]').forEach(i => i.innerText = 'add');
+      document.querySelectorAll('[id^="txt-check-"]').forEach(t => t.innerText = 'Elegir');
+      document.getElementById('contador-fotos').innerText = `0 fotos`;
+    }
+
+    // PEDIDO WHATSAPP CON TARIFAS EXACTAS DE PRECIOS.HTML
+    function pedirPorWhatsApp(tipo) {
+      if (seleccionadas.size === 0) {
+        alert("Por favor seleccioná al menos una fotografía haciendo clic en 'Elegir' sobre las fotos.");
+        return;
+      }
+
+      const fotosArray = Array.from(seleccionadas).map(id => {
+        const f = listaFotos.find(item => item.id === id);
+        return f ? f.name : id;
+      });
+
+      const cantidad = fotosArray.length;
+      let precioUnitario = tipo === 'impresas' ? TARIFA_IMPRESA : TARIFA_DIGITAL;
+      let total = cantidad * precioUnitario;
+      let tipoPedidoTexto = tipo === 'impresas' 
+        ? `Copia Impresa 15x21 cm ($${precioUnitario.toLocaleString('es-AR')} c/u)` 
+        : `Archivo Digital HD ($${precioUnitario.toLocaleString('es-AR')} c/u)`;
+
+      let mensaje = `Hola Sergio Ricardo Molina, quiero encargarte estas fotos:\n` +
+                    `Evento: ${tituloEvento}\n` +
+                    `Tipo de Pedido: ${tipoPedidoTexto}\n` +
+                    `Cantidad: ${cantidad}\n` +
+                    `Fotos seleccionadas: ${fotosArray.join(', ')}\n` +
+                    `Total estimado: $${total.toLocaleString('es-AR')}\n` +
+                    `¿Me confirmas los datos de pago y plazos de entrega? Muchas gracias.`;
+
+      const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
+      window.open(urlWa, '_blank');
+    }
+
+    function mostrarMensajeVacio(folderId) {
+      const contenedor = document.getElementById('contenedor-fotos');
+      contenedor.innerHTML = `
+        <div class="estado-caja">
+          <span class="material-symbols-outlined">hide_image</span>
+          <h3>No se encontraron fotografías disponibles</h3>
+          <p>La carpeta de Google Drive está vacía o no contiene fotografías con acceso público.</p>
+          <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#666;">Carpeta Drive ID: ${folderId}</div>
+          <button onclick="iniciarGaleria()" class="btn-accion-estado">
+            <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+            <span>Reintentar Sincronización</span>
+          </button>
+          <a href="eventos.html" class="btn-accion-estado" style="background:#262626; margin-left:8px;">
+            <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
+            <span>Ver Otros Eventos</span>
+          </a>
+        </div>
+      `;
+    }
+
+    function mostrarMensajeError(titulo, detalle) {
+      const contenedor = document.getElementById('contenedor-fotos');
+      contenedor.innerHTML = `
+        <div class="estado-caja">
+          <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
+          <h3>${titulo}</h3>
+          <p>${detalle}</p>
+          <button onclick="iniciarGaleria()" class="btn-accion-estado">
+            <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+            <span>Reintentar</span>
+          </button>
+          <a href="https://wa.me/${WHATSAPP_FOTOGRAFO}?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria%20escolar" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
+            <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
+            <span>Soporte WhatsApp</span>
+          </a>
+        </div>
+      `;
+    }
+
+    function abrirVisor(index) {
+      if (!listaFotos || listaFotos.length === 0) return;
+      indiceVisor = index;
+      document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+      document.getElementById('modal-visor').style.display = 'flex';
+    }
+
+    function cerrarVisor() {
+      document.getElementById('modal-visor').style.display = 'none';
+    }
+
+    function cerrarVisorFondo(e) {
+      if (e.target && e.target.id === 'modal-visor') cerrarVisor();
+    }
+
+    function cambiarFoto(dir, event) {
+      if (event) event.stopPropagation();
+      indiceVisor += dir;
+      if (indiceVisor >= listaFotos.length) indiceVisor = 0;
+      else if (indiceVisor < 0) indiceVisor = listaFotos.length - 1;
+      document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('modal-visor');
+      if (modal && modal.style.display === 'flex') {
+        if (e.key === 'Escape') cerrarVisor();
+        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
+        else if (e.key === 'ArrowRight') cambiarFoto(1);
+      }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const modalEl = document.getElementById('modal-visor');
+    modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    modalEl.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX + 45 < touchStartX) cambiarFoto(1);
+      else if (touchEndX > touchStartX + 45) cambiarFoto(-1);
+    }, false);
+
+    document.addEventListener('DOMContentLoaded', iniciarGaleria);
+  </script>
+
+
+</body></html>
