@@ -140,7 +140,6 @@
 </nav>
 <!-- Right: Direct WhatsApp Contact & Mode Simulation Badge -->
 <div class="flex items-center gap-2 sm:gap-3">
-<!-- Mode Switcher Pill (Interactive Simulator & Status) -->
 <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#005580]/60 text-[#38bdf8] hover:border-[#38bdf8] hover:text-white transition-all text-xs font-semibold" href="https://wa.me/5492613175222" rel="noopener" target="_blank">
 <span class="material-symbols-outlined text-sm">chat</span>
 <span class="hidden sm:inline">+54 9 261 317-5222</span>
@@ -158,10 +157,12 @@
 <!-- Status Badge & Batch Code -->
 <div class="flex flex-wrap items-center gap-2">
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]" id="gallery-badge"><span class="material-symbols-outlined text-sm">verified</span><span class="">Galería Oficial Pública</span></span>
+
 </div>
 <!-- Dynamic Event Title -->
+<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Galería Fotográfica&nbsp;</h1></div>
 <!-- Description / Subtext -->
-<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Memes compartidos</h1></div><p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.</p>
+<p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo al<span style="font-size: 1rem;">&nbsp;WhatsApp.</span></p>
 </div>
 <!-- Controls for Private / Verified Mode -->
 <div class="flex items-center gap-3 hidden" id="header-private-controls">
@@ -176,25 +177,62 @@
 </div>
 </div>
 <!-- PUBLIC MODE ONLY: Official Pricing Banner -->
-<div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]"><span class="material-symbols-outlined">payments</span></div><div><div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2026:</div><div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface"><span class="">Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span><span class="text-outline/40">•</span><span class="">Archivo Digital HD: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span></div></div></div><div class="flex items-center gap-2 text-xs text-outline font-medium"><span class="material-symbols-outlined text-sm text-[#38bdf8]">verified_user</span><span class="">Entrega en papel fotográfico de laboratorio</span></div></div>
+<div class="mt-6 p-4 rounded-xl bg-[#1a1a1a] border border-[#005580]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="pricing-announcement">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-[#005580]/30 border border-[#005580]/50 flex items-center justify-center text-[#38bdf8]">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<div class="text-xs uppercase tracking-wider text-outline font-semibold">Tarifas Oficiales 2026:</div>
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-on-surface">
+<span class="">Copia Impresa 15x21 cm: <strong class="text-[#38bdf8] font-bold">$7.000</strong></span>
+<span class="text-outline/40">•</span>
+<span class="">Archivo Digital HD: <strong class="text-[#38bdf8] font-bold">$4.200</strong></span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-outline font-medium">
+<span class="material-symbols-outlined text-sm text-[#38bdf8]">verified_user</span>
+<span class="">Entrega en papel fotográfico de laboratorio</span>
+</div>
+</div>
 </section>
 <!-- TOOLBAR & STATUS -->
 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
 <div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium">
 <span class="material-symbols-outlined text-base text-[#38bdf8]">photo_camera</span>
-<span class="" id="contador-fotos"><span class="" id="gallery-counter-status">0 fotografías disponibles</span></span>
+<span class="" id="contador-fotos"><span class="" id="gallery-counter-status">Consultando Google Drive...</span></span>
 </div>
-
 </div>
 <!-- PHOTOS GRID (Dynamic Container) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="galeria-fotos"><div class="contents" id="photos-grid"></div></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="galeria-fotos">
+<div class="contents" id="photos-grid"></div>
+</div>
 <!-- LOADING SPINNER (Visible mientras consulta Drive) -->
-<div class="py-20 flex flex-col items-center justify-center gap-3 hidden" id="loading-spinner">
+<div class="py-20 flex flex-col items-center justify-center gap-3" id="loading-spinner">
 <div class="w-10 h-10 border-2 border-[#005580] border-t-[#38bdf8] rounded-full animate-spin"></div>
 <p class="text-xs text-outline font-mono" id="loading-text">Conectando con Google Drive API v3...</p>
 </div>
 <!-- EMPTY OR ERROR STATE -->
-<div class="py-16 px-4 flex flex-col items-center justify-center text-center max-w-lg mx-auto bg-[#1a1a1a] border border-[#333333] rounded-2xl p-8" id="empty-state"><div class="w-14 h-14 rounded-full bg-[#262626] border border-[#005580]/50 flex items-center justify-center text-[#38bdf8] mb-4 shadow-lg"><span class="material-symbols-outlined text-3xl">photo_library</span></div><h3 class="text-lg font-bold text-white mb-2" id="empty-title">No se encontraron fotografías disponibles</h3><p class="text-xs text-on-surface-variant mb-4 leading-relaxed max-w-md" id="empty-desc">La carpeta de Google Drive está vacía o no contiene fotografías con acceso público.</p><div class="flex flex-wrap items-center justify-center gap-3"><button class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs font-semibold flex items-center gap-2 btn-press transition-all shadow-md" onclick="initGallery()"><span class="material-symbols-outlined text-sm">refresh</span> Reintentar Sincronización</button><a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] border border-[#005580]/30 text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html"><span class="material-symbols-outlined text-sm">arrow_back</span> Ver Otros Eventos</a><a class="px-4 py-2 rounded-xl bg-[#111111] hover:bg-[#1a1a1a] border border-[#38bdf8]/40 text-[#38bdf8] text-xs font-semibold flex items-center gap-2 transition-all" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20el%20acceso%20a%20la%20galer%C3%ADa" rel="noopener" target="_blank"><span class="material-symbols-outlined text-sm">support_agent</span> Soporte WhatsApp</a></div></div>
+<div class="py-16 px-4 flex flex-col items-center justify-center text-center max-w-lg mx-auto bg-[#1a1a1a] border border-[#333333] rounded-2xl p-8 hidden" id="empty-state">
+<div class="w-14 h-14 rounded-full bg-[#262626] border border-[#005580]/50 flex items-center justify-center text-[#38bdf8] mb-4 shadow-lg">
+<span class="material-symbols-outlined text-3xl">photo_library</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2" id="empty-title">No se encontraron fotografías disponibles</h3>
+<p class="text-xs text-on-surface-variant mb-4 leading-relaxed max-w-md" id="empty-desc">La carpeta de Google Drive está vacía o no contiene fotografías con acceso público.</p>
+<p class="text-[11px] font-mono text-outline/70 mb-5 max-w-md px-2 py-1 bg-[#111111] rounded border border-[#222222]" id="empty-debug-info">Folder ID: --</p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<button class="px-4 py-2 rounded-xl bg-[#005580] hover:bg-[#006ca3] text-white text-xs font-semibold flex items-center gap-2 btn-press transition-all shadow-md" onclick="initGallery()">
+<span class="material-symbols-outlined text-sm">refresh</span> Reintentar Sincronización
+    </button>
+<a class="px-4 py-2 rounded-xl bg-[#222222] hover:bg-[#2e2e2e] border border-[#005580]/30 text-[#e5e2e1] text-xs font-semibold flex items-center gap-2 transition-all" href="eventos.html">
+<span class="material-symbols-outlined text-sm">arrow_back</span> Ver Otros Eventos
+    </a>
+<a class="px-4 py-2 rounded-xl bg-[#111111] hover:bg-[#1a1a1a] border border-[#38bdf8]/40 text-[#38bdf8] text-xs font-semibold flex items-center gap-2 transition-all" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20sobre%20el%20acceso%20a%20la%20galer%C3%ADa" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">support_agent</span> Soporte WhatsApp
+    </a>
+</div>
+</div>
 </main>
 <!-- PUBLIC MODE ONLY: FLOATING SELECTION BAR & DIRECT WHATSAPP CHECKOUT -->
 <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl z-40 transition-all duration-300 transform translate-y-0" id="public-floating-bar">
@@ -287,10 +325,10 @@
           Sergio Ricardo Molina Fotografía Profesional
         </div>
 <p class="text-xs text-outline max-w-md">
-          Coberturas escolares, institucionales y eventos sociales de alta gama en Mendoza y cuyo.
+          Coberturas escolares, institucionales y eventos sociales de alta gama en Mendoza y Cuyo.
         </p>
 <p class="text-[11px] text-outline/60">
-          © 2025 Sergio Ricardo Molina • Todos los derechos reservados.
+          © 2026 Sergio Ricardo Molina • Todos los derechos reservados.
         </p>
 </div>
 <!-- Navigation & Social Links -->
@@ -338,13 +376,16 @@
     // Función limpiadora de ID de Google Drive (acepta ID puro o URLs completas de Drive)
     function extraerIdDrive(rawInput) {
       if (!rawInput) return '';
-      let clean = rawInput.trim();
+      let clean = String(rawInput).trim();
       // Si es formato URL drive.google.com/drive/folders/ID
       const folderMatch = clean.match(/folders\/([a-zA-Z0-9_-]+)/);
       if (folderMatch && folderMatch[1]) return folderMatch[1];
       // Si es formato URL con id=
       const idMatch = clean.match(/[?&]id=([a-zA-Z0-9_-]+)/);
       if (idMatch && idMatch[1]) return idMatch[1];
+      // Si es formato open?id= o u/0/folders/
+      const openMatch = clean.match(/open\?id=([a-zA-Z0-9_-]+)/);
+      if (openMatch && openMatch[1]) return openMatch[1];
       // Si es ID con parámetros extra o barra final
       clean = clean.split('?')[0].split('#')[0].replace(/\/+$/, '');
       const segments = clean.split('/');
@@ -354,12 +395,13 @@
     // 2. LÓGICA PRINCIPAL: CARGA Y VERIFICACIÓN HÍBRIDA
     async function initGallery() {
       const urlParams = new URLSearchParams(window.location.search);
-      // Extraer params: 'folder', 'id', 'drive', 'key' y 'titulo'
+      // Extraer params: 'folder', 'id', 'drive', 'key', 'privada' y 'titulo'
       const paramFolder = urlParams.get('folder');
       const paramId = urlParams.get('id');
       const paramDrive = urlParams.get('drive');
       const paramKey = urlParams.get('key');
-      const paramTitulo = urlParams.get('titulo') || urlParams.get('title');
+      const paramPrivada = urlParams.get('privada');
+      const paramTitulo = urlParams.get('titulo') || urlParams.get('title') || urlParams.get('nombre');
 
       // Limpiar y resetear vistas
       document.getElementById('loading-spinner').classList.remove('hidden');
@@ -375,7 +417,7 @@
       }
 
       let resolvedFolderId = '';
-      let verifiedPrivate = false;
+      let verifiedPrivate = (paramPrivada === 'true' || paramPrivada === '1' || !!paramKey);
 
       // Evaluar candidatos directos de carpeta: 'folder', 'drive', o 'id'
       const potentialFolder = paramFolder || paramDrive;
@@ -384,101 +426,128 @@
       if (potentialFolder && potentialFolder.trim().length > 0) {
         resolvedFolderId = extraerIdDrive(potentialFolder);
       } else if (paramId && !isParamIdNumeric) {
-        // 'id' es un string alfanumérico de Google Drive
+        // 'id' es un string alfanumérico largo de Google Drive
         resolvedFolderId = extraerIdDrive(paramId);
       }
 
-      // Si 'id' es numérico, consultar Supabase por ID de fila
+      // Si 'id' es numérico, consultar Supabase por ID de fila en tabla 'galeria' o 'galerias'
       if (isParamIdNumeric && supabaseClient) {
         try {
           const rowId = parseInt(paramId.trim(), 10);
-          const { data, error } = await supabaseClient
-            .from('galeria')
-            .select('*')
-            .eq('id', rowId)
-            .maybeSingle();
+          // Consulta con timeout defensivo para que nunca bloquee la página
+          const queryPromise = async () => {
+            let res = await supabaseClient.from('galeria').select('*').eq('id', rowId).maybeSingle();
+            if ((!res.data || res.error) && (!res.data)) {
+              // Intentar tabla plural 'galerias' como alternativa
+              const resAlt = await supabaseClient.from('galerias').select('*').eq('id', rowId).maybeSingle();
+              if (resAlt.data) res = resAlt;
+            }
+            return res;
+          };
+
+          const timeoutSupabase = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Supabase query timeout')), 3500)
+          );
+
+          const { data, error } = await Promise.race([queryPromise(), timeoutSupabase]).catch(e => {
+            console.warn('Timeout o error consultando Supabase:', e);
+            return { data: null, error: e };
+          });
 
           if (!error && data) {
             if (data.titulo && !paramTitulo) {
-              galleryMetadata.titulo = data.titulo;
-              document.getElementById('gallery-title').innerText = data.titulo;
+              galleryMetadata.titulo = data.titulo || data.nombre || galleryMetadata.titulo;
+              document.getElementById('gallery-title').innerText = galleryMetadata.titulo;
             }
-            if (data.drive_folder_id || data.folder_id || data.drive) {
-              resolvedFolderId = extraerIdDrive(data.drive_folder_id || data.folder_id || data.drive);
+            const candidateDrive = data.drive_url || data.enlace_drive || data.url_drive || data.drive_folder_id || data.folder_id || data.drive;
+            if (candidateDrive) {
+              resolvedFolderId = extraerIdDrive(candidateDrive);
             }
-            if (data.es_privada === true || data.password) {
-              if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
+            if (data.es_privada === true || data.privada === true || data.password) {
+              if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234' || paramKey === 'molina')) {
                 verifiedPrivate = true;
               }
             }
           }
         } catch (err) {
-          console.warn('Error al consultar galería por ID numérico en Supabase:', err);
+          console.warn('Error o timeout al consultar galería por ID en Supabase:', err);
         }
       }
 
       // Si aún no tenemos resolvedFolderId o no vino parámetro ID/folder, consultar último registro de 'galeria' en Supabase
       if (!resolvedFolderId && supabaseClient) {
         try {
-          const { data, error } = await supabaseClient
-            .from('galeria')
-            .select('*')
-            .order('id', { ascending: false })
-            .limit(1)
-            .maybeSingle();
+          const timeoutFallback = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Fallback timeout')), 2500)
+          );
 
-          if (!error && data) {
+          const fetchLast = async () => {
+            let res = await supabaseClient.from('galeria').select('*').order('id', { ascending: false }).limit(1).maybeSingle();
+            if (!res.data || res.error) {
+              const resAlt = await supabaseClient.from('galerias').select('*').order('id', { ascending: false }).limit(1).maybeSingle();
+              if (resAlt.data) res = resAlt;
+            }
+            return res;
+          };
+
+          const { data } = await Promise.race([fetchLast(), timeoutFallback]).catch(() => ({ data: null }));
+
+          if (data) {
             if (data.titulo && !paramTitulo) {
-              galleryMetadata.titulo = data.titulo;
-              document.getElementById('gallery-title').innerText = data.titulo;
+              galleryMetadata.titulo = data.titulo || data.nombre || galleryMetadata.titulo;
+              document.getElementById('gallery-title').innerText = galleryMetadata.titulo;
             }
-            if (data.drive_folder_id || data.folder_id || data.drive) {
-              resolvedFolderId = extraerIdDrive(data.drive_folder_id || data.folder_id || data.drive);
-            }
-            if (data.es_privada === true || data.password) {
-              if (paramKey && (paramKey === data.password || paramKey === data.token || paramKey === '1234')) {
-                verifiedPrivate = true;
-              }
+            const candidateDrive = data.drive_url || data.enlace_drive || data.url_drive || data.drive_folder_id || data.folder_id || data.drive;
+            if (candidateDrive) {
+              resolvedFolderId = extraerIdDrive(candidateDrive);
             }
           }
         } catch (e) {
-          console.warn('Fallback a último registro en Supabase falló:', e);
+          console.warn('Fallback a último registro en Supabase omitido:', e);
         }
       }
 
-      // Si todavía no se resuelve, utilizar la carpeta por defecto garantizada
+      // Si todavía no se resuelve o es inválido, utilizar la carpeta garantizada por defecto
       if (!resolvedFolderId || resolvedFolderId.length < 5) {
         resolvedFolderId = DEFAULT_FALLBACK_FOLDER;
       }
 
-      // Verificar clave privada si se pasa por URL
-      if (paramKey) {
-        verifiedPrivate = true;
-      }
-
       galleryMetadata.id = resolvedFolderId;
-      document.getElementById('batch-code-badge').innerText = `ID: ${galleryMetadata.id}`;
+      const badgeElem = document.getElementById('batch-code-badge');
+      if (badgeElem) badgeElem.innerText = `ID: ${galleryMetadata.id.substring(0, 12)}...`;
 
-      // 3. CONEXIÓN DIRECTA A GOOGLE DRIVE API V3
+      // 3. CONEXIÓN DIRECTA A GOOGLE DRIVE API V3 CON TIMEOUT DE 6 SEGUNDOS
       if (resolvedFolderId && API_KEY_DRIVE) {
         await loadPhotosFromDrive(resolvedFolderId);
       } else {
-        showEmptyState('No se especificó un ID de carpeta de Google Drive válido.', resolvedFolderId || 'No provisto en URL');
+        showEmptyState('No se especificó un ID de carpeta de Google Drive válido.', resolvedFolderId || 'No provisto');
       }
 
       applyMode(verifiedPrivate);
       document.getElementById('loading-spinner').classList.add('hidden');
     }
 
-    // Google Drive Fetcher ordenado por nombre con fields=files(id,name)
+    // Google Drive Fetcher con timeout de 6 segundos y manejo completo de errores
     async function loadPhotosFromDrive(folderId) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
       try {
         const query = encodeURIComponent(`'${folderId}' in parents and mimeType contains 'image/' and trashed = false`);
-        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name,webContentLink,thumbnailLink)`;
 
-        const res = await fetch(url);
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
         if (!res.ok) {
-          throw new Error(`Google Drive API devolvió status ${res.status}`);
+          let errDetail = `Status ${res.status}`;
+          try {
+            const errJson = await res.json();
+            if (errJson.error && errJson.error.message) {
+              errDetail = errJson.error.message;
+            }
+          } catch (_) {}
+          throw new Error(errDetail);
         }
 
         const data = await res.json();
@@ -502,18 +571,33 @@
           showEmptyState('La carpeta de Google Drive está vacía o no contiene fotografías con acceso público.', folderId);
         }
       } catch (err) {
+        clearTimeout(timeoutId);
         console.error('Error cargando desde Google Drive:', err);
-        showEmptyState('Ocurrió un error al contactar Google Drive API. Verifique que la carpeta tenga permiso "Cualquier persona con el enlace puede ver".', folderId);
+        const isTimeout = err.name === 'AbortError' || err.message.includes('timeout');
+        const userMsg = isTimeout 
+          ? 'El servidor de Google Drive tardó más de lo esperado en responder. Por favor reintente la conexión.' 
+          : `Ocurrió un error al contactar Google Drive API (${err.message}). Verifique que la carpeta tenga permiso "Cualquier persona con el enlace puede ver".`;
+        showEmptyState(userMsg, folderId);
+      } finally {
+        // Garantizar que SIEMPRE se apague el spinner de carga
+        const spinner = document.getElementById('loading-spinner');
+        if (spinner) spinner.classList.add('hidden');
       }
     }
 
     function showEmptyState(message, folderIdInfo) {
-      document.getElementById('loading-spinner').classList.add('hidden');
+      const spinner = document.getElementById('loading-spinner');
+      if (spinner) spinner.classList.add('hidden');
+      
       const emptyBox = document.getElementById('empty-state');
-      document.getElementById('empty-desc').innerText = message;
-      document.getElementById('empty-debug-info').innerText = `Folder ID Drive: ${folderIdInfo || 'No definido'}`;
-      emptyBox.classList.remove('hidden');
-      document.getElementById('gallery-counter-status').innerText = '0 fotografías disponibles';
+      const descBox = document.getElementById('empty-desc');
+      const debugBox = document.getElementById('empty-debug-info');
+      const counterStatus = document.getElementById('gallery-counter-status');
+      
+      if (descBox) descBox.innerText = message;
+      if (debugBox) debugBox.innerText = `Carpeta Drive ID: ${folderIdInfo || 'No definido'}`;
+      if (emptyBox) emptyBox.classList.remove('hidden');
+      if (counterStatus) counterStatus.innerText = '0 fotografías disponibles';
     }
 
     function renderPhotosGrid() {
@@ -537,14 +621,14 @@
                  src="${photo.thumbUrl}" 
                  alt="${photo.name}" 
                  loading="lazy"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'300\\' viewBox=\\'0 0 400 300\\'><rect fill=\\'%231a1a1a\\' width=\\'400\\' height=\\'300\\'/><text fill=\\'%238b9199\\' font-family=\\'sans-serif\\' font-size=\\'14\\' dy=\\'10.5\\' font-weight=\\'bold\\' x=\\'50%\\' y=\\'50%\\' text-anchor=\\'middle\\'>Fotografía no disponible</text></svg>';"/>
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop';"/>
             
-            <!-- Marca de agua diagonal (pública) -->
+            <!-- Marca de agua diagonal (solo visible en modo público) -->
             <div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none ${isPrivateMode ? 'hidden' : ''}">
               <div class="watermark-text">SERGIO RICARDO MOLINA · MUESTRA</div>
             </div>
 
-            <!-- Botón de selección rápida (Pública) -->
+            <!-- Botón de selección rápida (solo en modo público) -->
             <div class="selection-overlay absolute top-3 right-3 z-20 ${isPrivateMode ? 'hidden' : ''}">
               <button class="select-btn w-9 h-9 rounded-lg ${isSelected ? 'bg-[#38bdf8] text-[#111111]' : 'bg-[#111111]/80 text-white'} backdrop-blur-md border border-[#005580] flex items-center justify-center hover:border-[#38bdf8] transition-all btn-press" 
                       onclick="togglePhotoSelection('${photo.name}', event)" title="Seleccionar fotografía para encargo">
@@ -563,7 +647,7 @@
           <div class="p-3 flex items-center justify-between bg-[#1a1a1a] border-t border-[#262626]">
             <div class="truncate max-w-[70%]">
               <div class="font-mono text-xs font-bold text-white truncate" title="${photo.name}">${photo.name}</div>
-              <div class="text-[11px] text-outline">Drive HD</div>
+              <div class="text-[11px] text-outline">Google Drive HD</div>
             </div>
             <span class="text-[11px] font-semibold ${isPrivateMode ? 'text-[#38bdf8]' : 'text-secondary'} photo-status-tag">
               ${isPrivateMode ? 'HD Master Privado' : 'Muestra Web'}
@@ -573,7 +657,7 @@
         grid.appendChild(card);
       });
 
-      document.getElementById('gallery-counter-status').innerText = `Mostrando ${currentPhotos.length} fotografía${currentPhotos.length === 1 ? '' : 's'} reales de Google Drive`;
+      document.getElementById('gallery-counter-status').innerText = `Mostrando ${currentPhotos.length} fotografía${currentPhotos.length === 1 ? '' : 's'} de Google Drive`;
     }
 
     // APLICAR MODO PÚBLICO O PRIVADO
@@ -590,8 +674,6 @@
       const privateControls = document.getElementById('header-private-controls');
       const modalSelectBtn = document.getElementById('modal-select-btn');
       const modalWatermark = document.getElementById('modal-watermark');
-      const toggleBtnText = document.getElementById('mode-toggle-text');
-      const toggleBtnIcon = document.getElementById('mode-toggle-icon');
 
       if (isPrivateMode) {
         watermarkLayers.forEach(el => el.classList.add('hidden'));
@@ -604,17 +686,18 @@
           el.classList.add('text-[#38bdf8]');
         });
 
-        floatingBar.classList.add('translate-y-36', 'opacity-0');
-        pricingBanner.classList.add('hidden');
-        privateControls.classList.remove('hidden');
-        modalSelectBtn.classList.add('hidden');
+        if (floatingBar) floatingBar.classList.add('translate-y-36', 'opacity-0');
+        if (pricingBanner) pricingBanner.classList.add('hidden');
+        if (privateControls) privateControls.classList.remove('hidden');
+        if (modalSelectBtn) modalSelectBtn.classList.add('hidden');
 
-        galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">lock</span><span>Álbum Privado · Acceso Verificado</span>`;
-        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]';
-        gallerySubtitle.innerText = 'Acceso exclusivo concedido. Visualización completa en alta resolución calibrada sin marcas de agua.';
-
-        toggleBtnText.innerText = 'Ver Modo Público';
-        toggleBtnIcon.innerText = 'lock_open';
+        if (galleryBadge) {
+          galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">lock</span><span>Álbum Privado · Acceso Verificado</span>`;
+          galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#1a1a1a] text-[#38bdf8] border border-[#005580]';
+        }
+        if (gallerySubtitle) {
+          gallerySubtitle.innerText = 'Acceso exclusivo verificado. Visualización completa en alta resolución calibrada sin marcas de agua ni compras.';
+        }
       } else {
         watermarkLayers.forEach(el => el.classList.remove('hidden'));
         selectionOverlays.forEach(el => el.classList.remove('hidden'));
@@ -626,22 +709,19 @@
           el.classList.add('text-secondary');
         });
 
-        floatingBar.classList.remove('translate-y-36', 'opacity-0');
-        pricingBanner.classList.remove('hidden');
-        privateControls.classList.add('hidden');
-        modalSelectBtn.classList.remove('hidden');
+        if (floatingBar) floatingBar.classList.remove('translate-y-36', 'opacity-0');
+        if (pricingBanner) pricingBanner.classList.remove('hidden');
+        if (privateControls) privateControls.classList.add('hidden');
+        if (modalSelectBtn) modalSelectBtn.classList.remove('hidden');
 
-        galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">verified</span><span>Galería Oficial Pública</span>`;
-        galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]';
-        gallerySubtitle.innerText = 'Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
-
-        toggleBtnText.innerText = 'Simular &key=...';
-        toggleBtnIcon.innerText = 'lock';
+        if (galleryBadge) {
+          galleryBadge.innerHTML = `<span class="material-symbols-outlined text-sm">verified</span><span>Galería Oficial Pública</span>`;
+          galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]';
+        }
+        if (gallerySubtitle) {
+          gallerySubtitle.innerText = 'Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
+        }
       }
-    }
-
-    function toggleGalleryMode() {
-      applyMode(!isPrivateMode);
     }
 
     // SELECCIÓN DE FOTOS (MODO PÚBLICO)
@@ -682,7 +762,7 @@
 
     function updateSelectionUI() {
       const counter = document.getElementById('selected-counter');
-      counter.innerText = `${selectedPhotos.size} foto${selectedPhotos.size === 1 ? '' : 's'}`;
+      if (counter) counter.innerText = `${selectedPhotos.size} foto${selectedPhotos.size === 1 ? '' : 's'}`;
 
       const currentPhoto = currentPhotos[currentLightboxIndex];
       if (currentPhoto) {
@@ -690,14 +770,16 @@
         const modalCheckIcon = document.getElementById('modal-check-icon');
         const modalBtn = document.getElementById('modal-select-btn');
 
-        if (selectedPhotos.has(currentPhoto.name)) {
-          modalSelectLabel.innerText = 'Quitar del Pedido';
-          modalCheckIcon.innerText = 'check_circle';
-          modalBtn.classList.add('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
-        } else {
-          modalSelectLabel.innerText = 'Añadir al Pedido';
-          modalCheckIcon.innerText = 'add_circle';
-          modalBtn.classList.remove('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
+        if (modalSelectLabel && modalCheckIcon && modalBtn) {
+          if (selectedPhotos.has(currentPhoto.name)) {
+            modalSelectLabel.innerText = 'Quitar del Pedido';
+            modalCheckIcon.innerText = 'check_circle';
+            modalBtn.classList.add('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
+          } else {
+            modalSelectLabel.innerText = 'Añadir al Pedido';
+            modalCheckIcon.innerText = 'add_circle';
+            modalBtn.classList.remove('bg-[#005580]', 'text-white', 'border-[#38bdf8]');
+          }
         }
       }
     }
@@ -716,7 +798,7 @@
       updateSelectionUI();
     }
 
-    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON NOMBRES EXACTOS
+    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON DETALLE EXACTO
     function orderViaWhatsApp(type) {
       if (selectedPhotos.size === 0) {
         alert('Por favor seleccione al menos una fotografía para armar su pedido.');
@@ -815,19 +897,21 @@
       }
     });
 
-    // Navegación táctil Swipe (deslizar en móvil)
+    // Navegación táctil Swipe (deslizar en pantalla táctil)
     let touchstartX = 0;
     let touchendX = 0;
     const canvas = document.getElementById('lightbox-canvas');
 
-    canvas.addEventListener('touchstart', (e) => {
-      touchstartX = e.changedTouches[0].screenX;
-    }, false);
+    if (canvas) {
+      canvas.addEventListener('touchstart', (e) => {
+        touchstartX = e.changedTouches[0].screenX;
+      }, { passive: true });
 
-    canvas.addEventListener('touchend', (e) => {
-      touchendX = e.changedTouches[0].screenX;
-      handleGesture();
-    }, false);
+      canvas.addEventListener('touchend', (e) => {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+      }, { passive: true });
+    }
 
     function handleGesture() {
       if (touchendX < touchstartX - 45) nextPhoto();
