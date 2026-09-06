@@ -4,535 +4,361 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sergio Ricardo Molina | Fotografía</title>
+<title>Panel de Administración | Sergio Ricardo Molina</title>
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #111111;
-      color: #ffffff;
-      padding: 20px 16px 40px;
-      max-width: 960px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      max-width: 800px;
       margin: 0 auto;
       min-height: 100vh;
     }
-    
     header {
       text-align: center;
-      padding: 24px 0 20px;
-    }
-    .avatar-header {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 12px;
-      border: 2px solid #005580;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      display: block;
+      padding: 25px 0 15px;
+      border-bottom: 1px solid #222;
+      margin-bottom: 25px;
     }
     h1 {
-      font-size: 1.65rem;
-      letter-spacing: 1.5px;
-      font-weight: 400;
-      line-height: 1.3;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      font-weight: 300;
+      line-height: 1.4;
     }
     h1 span {
       display: block;
-      font-size: 0.95rem;
-      color: #aaaaaa;
-      margin-top: 5px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
-
-    /* VISTA 1: GRID DE CATEGORÍAS */
-    .grid-categorias {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    @media (min-width: 768px) {
-      .grid-categorias {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-    }
-
-    .card-categoria {
-      background: #222222;
-      border: 2px solid #005580;
-      border-radius: 12px;
-      min-height: 110px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      font-size: 1.05rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      color: #ffffff;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
-      text-decoration: none;
-      user-select: none;
-    }
-
-    .card-categoria:hover {
-      background: #282828;
-      border-color: #0077b3;
-    }
-
-    .card-categoria:active {
-      transform: scale(0.96);
-      background: #1f1f1f;
-    }
-
-    .card-icon {
-      font-size: 26px;
+      font-size: 0.9rem;
       color: #0088cc;
-    }
-
-    /* BOTÓN ESPECIAL EVENTOS ESCOLARES DESTACADO */
-    .card-eventos {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
-      border: 2px solid #38bdf8;
-      box-shadow: inset 0 0 0 2px #111111, 0 6px 18px rgba(0,100,200,0.25);
-      position: relative;
-      overflow: hidden;
-      padding: 16px;
-    }
-    .card-eventos:hover {
-      background: linear-gradient(135deg, #22334f 0%, #112236 100%);
-      border-color: #7dd3fc;
-    }
-    .badge-destacado {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: #0284c7;
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      margin-top: 4px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 6px;
+      font-weight: 500;
     }
-    .card-eventos h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #ffffff;
+    .panel-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    }
+    .panel-card h2 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      color: #eee;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .card-eventos p {
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
       font-size: 0.85rem;
-      color: #bae6fd;
-      margin-top: 4px;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      text-align: center;
-    }
-
-    /* BOTÓN ESPECIAL CLIENTES CON DOBLE BORDE */
-    .btn-clientes {
-      grid-column: 1 / -1;
-      background: #004466;
-      border: 2px solid #005580;
-      box-shadow: inset 0 0 0 3px #222222, 0 4px 12px rgba(0,0,0,0.35);
-      min-height: 90px;
-    }
-    .btn-clientes:hover {
-      background: #005580;
-    }
-
-    /* SECCIÓN REDES Y CATÁLOGO */
-    .redes-sociales {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .btn-red {
-      background: #222222;
-      border-radius: 12px;
-      padding: 14px 6px;
-      text-align: center;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .btn-red:active {
-      transform: scale(0.96);
-      background: #2a2a2a;
-    }
-
-    /* BORDES DE REDES SOCIALES */
-    .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
-    .btn-cat { border: 2px solid #facc15; color: #facc15; }
-    .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
-
-    /* VISTA 2 y 3: GALERÍA Y SECCIONES INTERNAS */
-    .contenedor-galeria { display: none; }
-    .cabecera-galeria {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #282828;
-    }
-    .btn-volver {
-      background: #222222;
-      color: #ffffff;
-      border: 1px solid #005580;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-volver:hover { background: #2f2f2f; }
-    .titulo-categoria { font-size: 1.3rem; font-weight: 300; letter-spacing: 1px; }
-
-    /* GALERÍA DE FOTOS */
-    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    @media (min-width: 600px) {
-      .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    }
-    @media (min-width: 768px) {
-      .galeria { grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    }
-    
-    .galeria img { 
-      width: 100%; 
-      aspect-ratio: 1 / 1; 
-      object-fit: cover; 
-      background: #000000; 
-      border-radius: 8px; 
-      cursor: pointer; 
-      transition: transform 0.2s ease, opacity 0.2s ease; 
-      border: 1px solid #2a2a2a;
-    }
-    
-    .galeria img:hover { transform: scale(1.02); opacity: 0.95; }
-    .galeria img:active { transform: scale(0.98); }
-
-    .cargando { text-align: center; color: #888888; grid-column: 1 / -1; padding: 50px 0; font-size: 0.95rem; }
-
-    /* MODAL VISOR */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.96);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal img {
-      max-width: 92%;
-      max-height: 85vh;
-      object-fit: contain;
-      user-select: none;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    }
-    
-    .btn-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 2.2rem;
-      padding: 14px 20px;
-      cursor: pointer;
-      background: rgba(0,0,0,0.5);
-      border-radius: 50%;
-      user-select: none;
-      z-index: 1001;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: background 0.2s ease;
-    }
-    .btn-nav:hover { background: rgba(0,85,128,0.7); }
-    .btn-prev { left: 16px; }
-    .btn-next { right: 16px; }
-    .btn-cerrar {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      z-index: 1001;
-      padding: 4px 14px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      line-height: 1;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #222222;
-      color: #666666;
-      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 6px;
       letter-spacing: 0.5px;
     }
-
-    @media (max-width: 600px) {
-      .btn-nav { display: none; }
+    input[type="text"], input[type="url"] {
+      width: 100%;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    input[type="text"]:focus, input[type="url"]:focus {
+      border-color: #0088cc;
+    }
+    .btn-guardar {
+      width: 100%;
+      background: #005580;
+      border: 1px solid #0088cc;
+      color: #fff;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+    .btn-guardar:active {
+      transform: scale(0.98);
+      background: #004466;
+    }
+    .btn-guardar:disabled {
+      background: #333;
+      border-color: #443;
+      cursor: not-allowed;
+    }
+    #mensaje {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+    }
+    .msg-ok {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      color: #4ade80;
+      display: block !important;
+    }
+    .msg-err {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #f87171;
+      display: block !important;
+    }
+    .lista-eventos {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .item-evento {
+      background: #111;
+      border: 1px solid #282828;
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .item-info h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .item-info span {
+      font-size: 0.75rem;
+      color: #777;
+      font-family: monospace;
+    }
+    .item-acciones {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .btn-item {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.2s;
+    }
+    .btn-ver-galeria {
+      background: #222;
+      border-color: #005580;
+      color: #00aaff;
+    }
+    .btn-borrar {
+      background: #200;
+      border-color: #522;
+      color: #f87171;
+    }
+    .btn-borrar:hover {
+      background: #400;
+    }
+    .enlaces-pie {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #222;
+      font-size: 0.85rem;
+    }
+    .enlaces-pie a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .enlaces-pie a:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
-<!-- VISTA 1: MENÚ PRINCIPAL (PORTAFOLIO COMO HOME) -->
-<div id="vista-menu">
 <header>
-<img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
-<h1>Sergio Ricardo Molina<span>Fotografía Profesional</span></h1>
+<h1>Sergio Ricardo Molina<span>Panel de Eventos Escolares</span></h1>
 </header>
 <main>
-<!-- ACCESO DESTACADO A EVENTOS ESCOLARES -->
-<div class="grid-categorias"><div class="card-categoria" onclick="abrirSeccionTexto()">
-<span class="material-symbols-outlined card-icon">person</span>
-<span>Sobre mí</span>
+<!-- Formulario para agregar nuevo evento -->
+<section class="panel-card">
+<h2><span>➕</span> Agregar Nueva Galería / Colegio</h2>
+<form id="form-evento"><div class="form-group">
+<label for="titulo">Nombre del Colegio / Evento:</label>
+<input id="titulo" placeholder="Ej: Belgrano Day School - Egresados 2026" required="" type="text"/>
 </div>
-<div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
-<span class="material-symbols-outlined card-icon">auto_awesome</span>
-<span>Ensayos</span>
+<div class="form-group">
+<label for="drive_url">Enlace o ID de la Carpeta de Google Drive:</label>
+<input id="drive_url" placeholder="Pegá el link completo o solo el ID (1UPMfWHBYpU3T...)" required="" type="text"/>
+<small style="color: #666; font-size: 0.75rem; display: block; margin-top: 4px;">
+            El sistema extrae automáticamente el ID de la carpeta aunque pegues el link largo de Drive.
+          </small>
 </div>
-<div class="card-categoria" onclick="abrirGaleria('Paisajes', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
-<span class="material-symbols-outlined card-icon">landscape</span>
-<span>Paisajes</span>
+<div class="form-group" id="grupo-portada">
+<label for="portada_url">Imagen de portada manual (Opcional - solo eventos públicos):</label>
+<input id="portada_url" placeholder="ID de archivo en Drive o URL directa de la foto de portada" type="text"/>
+<small style="color: #666; font-size: 0.75rem; display: block; margin-top: 4px;">
+  Si se deja en blanco, la galería usará automáticamente la primera foto de la carpeta.
+</small>
 </div>
-<div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
-<span class="material-symbols-outlined card-icon">face</span>
-<span>Retratos</span>
+<div class="form-group" style="background: #151515; padding: 14px 16px; border-radius: 8px; border: 1px solid #282828; margin-top: 6px;">
+<label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 0; color: #ddd;">
+<input id="es_privada" onchange="const checked = this.checked; document.getElementById('grupo-password').style.display = checked ? 'block' : 'none'; const grpPortada = document.getElementById('grupo-portada'); if (grpPortada) { grpPortada.style.display = checked ? 'none' : 'block'; } document.getElementById('aviso-privada').style.display = checked ? 'block' : 'none';" style="width: 17px; height: 17px; accent-color: #0088cc; cursor: pointer;" type="checkbox"/>
+<span style="font-size: 0.9rem; font-weight: 500;">🔒 Galería privada (requiere clave de acceso)</span>
+</label>
+<div id="aviso-privada" style="display: none; margin-top: 10px; padding: 10px 12px; background: rgba(255, 184, 120, 0.08); border-left: 3px solid #ffb878; border-radius: 4px; font-size: 0.8rem; color: #ffb878; line-height: 1.4;">
+  🔒 <strong>Galería Privada:</strong> No requiere portada y permanecerá oculta (no indexada) en la lista pública de Eventos. Solo accederán quienes tengan la clave o enlace directo.
 </div>
-<div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
-<span class="material-symbols-outlined card-icon">photo_camera</span>
-<span>Sesiones</span>
+<div id="grupo-password" style="display: none; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #333;">
+<label for="password_acceso" style="color: #ffb878; font-size: 0.8rem; margin-bottom: 4px;">Clave o contraseña para los clientes / padres:</label>
+<input id="password_acceso" placeholder="Ej: BDS2026 o egresados26" style="background: #0d0d0d; border-color: #444;" type="text"/>
+<small style="color: #777; font-size: 0.75rem; display: block; margin-top: 3px;">
+  Solo quienes ingresen esta contraseña podrán ver y descargar las fotos.
+</small>
 </div>
-<a class="card-categoria" href="eventos-escolares.html" style="position: relative; overflow: hidden;">
-<span class="material-symbols-outlined card-icon" style="color: #38bdf8;">school</span>
-<span>Eventos</span>
-</a>
-<div class="card-categoria btn-clientes" onclick="pedirPassword()"><span class="material-symbols-outlined" style="font-size: 24px; color:#38bdf8;">lock</span><span style="font-size: 1.05rem; font-weight: 600;">Acceso Privado Clientes 🔒</span><span style="font-size: 0.78rem; color:#93c5fd; font-weight: 400;">Ingresá la clave de tu sesión o colegio</span></div></div>
-<!-- REDES SOCIALES Y CONTACTO -->
-<div class="redes-sociales">
-<a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
-<span class="material-symbols-outlined">chat</span>
-<span>Chat WhatsApp</span>
-</a>
-<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
-<span class="material-symbols-outlined">inventory_2</span>
-<span>Catálogo</span>
-</a>
-<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
-<span class="material-symbols-outlined">photo_camera_back</span>
-<span>Instagram</span>
-</a>
+</div>
+<button class="btn-guardar" id="btn-submit" type="submit">Publicar Evento en la Web</button></form>
+<div id="mensaje"></div>
+</section>
+<!-- Lista de eventos cargados -->
+<section class="panel-card">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<h2><span>📁</span> Eventos Activos en Supabase</h2>
+<button onclick="cargarLista()" style="background: none; border: 1px solid #333; color: #aaa; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Actualizar lista</button>
+</div>
+<div class="lista-eventos" id="lista-eventos"><p style="color: #666; font-size: 0.85rem; text-align: center; padding: 15px 0;">Cargando eventos...</p></div>
+</section>
+<div class="enlaces-pie">
+<a href="index.html">← Volver al Portafolio Principal</a>
+<a href="galeria.html" target="_blank">Ver Plantilla de Galería ↗</a>
 </div>
 </main>
-<footer>
-<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-</footer>
-</div>
-<!-- VISTA 2: GALERÍA DE FOTOS -->
-<div class="contenedor-galeria" id="vista-galeria">
-<div class="cabecera-galeria">
-<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
-<h2 class="titulo-categoria" id="titulo-categoria">Categoría</h2>
-</div>
-<main class="galeria" id="galeria"></main>
-</div>
-<!-- VISTA 3: SOBRE MÍ -->
-<div class="contenedor-galeria" id="vista-sobre-mi">
-<div class="cabecera-galeria">
-<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
-<h2 class="titulo-categoria">Sobre mí</h2>
-</div>
-<div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
-<img alt="Sergio Ricardo Molina" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin-bottom: 25px; border: 2px solid #005580; box-shadow: 0 4px 20px rgba(0,0,0,0.6);"/>
-<p style="margin-bottom: 18px; color: #e5e5e5; font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
-<p style="color: #cccccc; font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
-<div style="margin-top: 30px;">
-<a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration:none; padding: 10px 20px; font-size: 0.95rem; border-color: #4ade80; color: #4ade80;" target="_blank">Consultar por Sesiones Privadas 💬</a>
-</div>
-</div>
-</div>
-<!-- VISOR MODAL EN ALTA RESOLUCIÓN -->
-<div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
-<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
-<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
-<img alt="Vista Previa" id="img-ampliada" src=""/>
-<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
-</div>
 <script>
-    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM'; 
-    const clientes = {
-      "familia2026": "ID_CARPETA_FAMILIA_PEREZ",
-      "boda1234": "ID_CARPETA_BODA_JUAN_Y_MARIA",
-      "miprueba": "1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB" 
-    };
+    // Configuración oficial Supabase
+    const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 
-    let fotosActuales = [];
-    let indiceFotoActual = 0;
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    history.pushState({ vista: 'inicio' }, '', '');
+    const form = document.getElementById('form-evento');
+    const mensaje = document.getElementById('mensaje');
+    const btnSubmit = document.getElementById('btn-submit');
+    const listaContenedor = document.getElementById('lista-eventos');
 
-    function pedirPassword() {
-      const pass = prompt("Por favor, ingresá la contraseña de tu evento o sesión privada:");
-      if (pass === null) return; 
-      const idCarpeta = clientes[pass.toLowerCase()]; 
-      if (idCarpeta) {
-        abrirGaleria('Tu Sesión Privada', idCarpeta);
-      } else {
-        alert("Contraseña incorrecta. Por favor, intentá de nuevo.");
-      }
+    // Extrae el ID puro de una carpeta de Drive si el usuario pegó el link completo
+    function extraerIdDrive(input) {
+      const match = input.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) return match[1];
+      const matchId = input.match(/id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      return input.trim().split('?')[0];
     }
 
-    async function cargarFotos(folderId) {
-      const galeria = document.getElementById('galeria');
-      galeria.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
-      fotosActuales = []; 
-      
-      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
+    // Agregar evento a Supabase
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('titulo').value.trim();
+      const rawInput = document.getElementById('drive_url').value.trim();
+      const folderId = extraerIdDrive(rawInput);
+
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = 'Guardando en Supabase...';
+      mensaje.style.display = 'none';
 
       try {
-        const respuesta = await fetch(url);
-        const datos = await respuesta.json();
-        galeria.innerHTML = '';
-        if (datos.error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error al consultar Google Drive. Verificá permisos.</p>'; return; }
-        if (!datos.files || datos.files.length === 0) { galeria.innerHTML = '<p style="text-align:center; color:#aaaaaa; grid-column: 1/-1;">No hay fotos en esta carpeta.</p>'; return; }
+        const { data, error } = await supabase
+          .from('galerias')
+          .insert([{ titulo: titulo, drive_url: folderId }]);
 
-        datos.files.forEach((archivo, index) => {
-          const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
-          fotosActuales.push(urlAltaRes);
-          const img = document.createElement('img');
-          img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
-          img.alt = archivo.name || "Fotografía";
-          img.loading = "lazy"; 
-          img.onclick = () => abrirVisor(index);
-          galeria.appendChild(img);
+        if (error) throw error;
+
+        mensaje.textContent = `¡Evento "${titulo}" publicado con éxito! Ya aparece en la web.`;
+        mensaje.className = 'msg-ok';
+        form.reset();
+        cargarLista();
+      } catch (err) {
+        console.error(err);
+        mensaje.textContent = 'Error al guardar: ' + (err.message || 'Verificá tu conexión o permisos en Supabase');
+        mensaje.className = 'msg-err';
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Publicar Evento en la Web';
+      }
+    });
+
+    // Cargar listado en vivo desde Supabase
+    async function cargarLista() {
+      listaContenedor.innerHTML = '<p style="color: #666; font-size: 0.85rem; text-align: center; padding: 15px 0;">Consultando Supabase...</p>';
+      try {
+        const { data, error } = await supabase
+          .from('galerias')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+          listaContenedor.innerHTML = '<p style="color: #666; font-size: 0.85rem; text-align: center; padding: 15px 0;">Todavía no hay eventos creados. Agregá el primero arriba.</p>';
+          return;
+        }
+
+        listaContenedor.innerHTML = '';
+        data.forEach(ev => {
+          const folderId = extraerIdDrive(ev.drive_url);
+          const item = document.createElement('div');
+          item.className = 'item-evento';
+          item.innerHTML = `
+            <div class="item-info">
+              <h3>${ev.titulo}</h3>
+              <span>ID Drive: ${folderId}</span>
+            </div>
+            <div class="item-acciones">
+              <a href="galeria.html?id=${folderId}&titulo=${encodeURIComponent(ev.titulo)}" target="_blank" class="btn-item btn-ver-galeria">Abrir Galería ↗</a>
+              <button onclick="borrarEvento(${ev.id})" class="btn-item btn-borrar">Borrar</button>
+            </div>
+          `;
+          listaContenedor.appendChild(item);
         });
-      } catch (error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error de conexión.</p>'; }
-    }
-
-    function abrirGaleria(nombreCategoria, folderId) {
-      history.pushState({ vista: 'interior' }, '', '');
-      document.getElementById('vista-menu').style.display = 'none';
-      document.getElementById('vista-sobre-mi').style.display = 'none';
-      document.getElementById('vista-galeria').style.display = 'block';
-      document.getElementById('titulo-categoria').innerText = nombreCategoria;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      cargarFotos(folderId);
-    }
-
-    function abrirSeccionTexto() {
-      history.pushState({ vista: 'interior' }, '', '');
-      document.getElementById('vista-menu').style.display = 'none';
-      document.getElementById('vista-galeria').style.display = 'none';
-      document.getElementById('vista-sobre-mi').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function mostrarMenu() {
-      if (window.history.state && window.history.state.vista === 'interior') {
-        window.history.back();
-      } else {
-        forzarVistaMenu();
+      } catch (err) {
+        console.error(err);
+        listaContenedor.innerHTML = '<p style="color: #f87171; font-size: 0.85rem; text-align: center;">Error al cargar la lista desde Supabase.</p>';
       }
     }
 
-    function forzarVistaMenu() {
-      document.getElementById('vista-galeria').style.display = 'none';
-      document.getElementById('vista-sobre-mi').style.display = 'none';
-      document.getElementById('vista-menu').style.display = 'block';
-      cerrarVisor();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    window.addEventListener('popstate', (event) => {
-      const modal = document.getElementById('modal');
-      if (modal.style.display === 'flex') {
-        cerrarVisor();
-        history.pushState({ vista: 'interior' }, '', '');
-      } else {
-        forzarVistaMenu();
-        history.pushState({ vista: 'inicio' }, '', '');
+    async function borrarEvento(id) {
+      if (!confirm('¿Seguro que querés quitar este evento de la web?')) return;
+      try {
+        const { error } = await supabase.from('galerias').delete().eq('id', id);
+        if (error) throw error;
+        cargarLista();
+      } catch (err) {
+        alert('Error al borrar: ' + err.message);
       }
-    });
-
-    function abrirVisor(index) {
-      indiceFotoActual = index;
-      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
-      document.getElementById('modal').style.display = 'flex';
     }
 
-    function cerrarVisor() { document.getElementById('modal').style.display = 'none'; }
-    function cerrarVisorFondo(event) { if (event.target.id === 'modal') cerrarVisor(); }
-
-    function cambiarFoto(direccion, event) {
-      if (event) event.stopPropagation();
-      indiceFotoActual += direccion;
-      if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
-      else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
-      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
-    }
-
-    // Teclado físico
-    document.addEventListener('keydown', (e) => {
-      const modal = document.getElementById('modal');
-      if (modal.style.display === 'flex') {
-        if (e.key === 'Escape') cerrarVisor();
-        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
-        else if (e.key === 'ArrowRight') cambiarFoto(1);
-      }
-    });
-
-    // Touch Swipe en móvil
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const modal = document.getElementById('modal');
-    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
-    modal.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchEndX + 50 < touchStartX) cambiarFoto(1);
-      else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
-    }, false);
+    // Inicializar lista al cargar
+    cargarLista();
   </script>
 </body>
 </html>
