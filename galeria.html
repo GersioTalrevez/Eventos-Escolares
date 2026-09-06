@@ -1,11 +1,13 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Galería Oficial | Sergio Ricardo Molina Fotografía Profesional</title>
 <!-- Google Fonts & Material Symbols -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
 <!-- Supabase JS Client CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS -->
@@ -157,12 +159,11 @@
 <!-- Status Badge & Batch Code -->
 <div class="flex flex-wrap items-center gap-2">
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]" id="gallery-badge"><span class="material-symbols-outlined text-sm">verified</span><span class="">Galería Oficial Pública</span></span>
-
 </div>
 <!-- Dynamic Event Title -->
-<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Galería Fotográfica&nbsp;</h1></div>
+<div class="flex flex-wrap items-baseline gap-3"><h1 class="text-2xl md:text-3xl font-bold font-headline-lg text-white tracking-tight" id="gallery-title">Galería Fotográfica </h1></div>
 <!-- Description / Subtext -->
-<p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo al<span style="font-size: 1rem;">&nbsp;WhatsApp.</span></p>
+<p class="text-on-surface-variant text-sm md:text-base max-w-3xl font-light" id="gallery-subtitle">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo al WhatsApp.</p>
 </div>
 <!-- Controls for Private / Verified Mode -->
 <div class="flex items-center gap-3 hidden" id="header-private-controls">
@@ -252,7 +253,7 @@
 <!-- Price Actions -->
 <div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full md:w-auto justify-end">
 <!-- Option 1: Impresas 15x21 ($7.000) -->
-<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] border border-[#005580]/50 text-white text-xs font-medium flex items-center justify-center gap-2 btn-press transition-all" onclick="orderViaWhatsApp('impresas')">
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-[#111111] hover:bg-[#222222] border border-[#005580]/50 text-white text-xs font-medium flex items-center justify-center gap-2 btn-press transition-all" onclick="pedirPorWhatsApp('impresas')">
 <span class="material-symbols-outlined text-[#38bdf8] text-base">print</span>
 <div class="text-left leading-tight">
 <span class="block text-xs">Impresas 15x21</span>
@@ -260,7 +261,7 @@
 </div>
 </button>
 <!-- Option 2: Digital HD ($4.200) - Primary Action -->
-<button class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#005580] hover:bg-[#006ca3] border border-[#38bdf8]/40 text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#005580]/30 btn-press transition-all" onclick="orderViaWhatsApp('digital')">
+<button class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-[#005580] hover:bg-[#006ca3] border border-[#38bdf8]/40 text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#005580]/30 btn-press transition-all" onclick="pedirPorWhatsApp('digital')">
 <span class="material-symbols-outlined text-base">cloud_download</span>
 <div class="text-left leading-tight">
 <span class="block text-xs">Digital HD</span>
@@ -301,7 +302,7 @@
 </button>
 <!-- The Image Frame -->
 <div class="relative max-h-[82vh] max-w-full flex items-center justify-center rounded-xl overflow-hidden border border-[#005580]/30 shadow-[0_16px_48px_rgba(0,0,0,0.9)] bg-[#0b0b0b]">
-<img alt="Fotografía en alta resolución" class="max-h-[82vh] w-auto object-contain pointer-events-none unselectable" id="modal-image" src="">
+<img alt="Fotografía en alta resolución" class="max-h-[82vh] w-auto object-contain pointer-events-none unselectable" id="modal-image" src=""/>
 <!-- Modal Watermark Overlay -->
 <div class="watermark-layer absolute inset-0 watermark-pattern pointer-events-none" id="modal-watermark">
 <div class="watermark-text text-base md:text-xl font-bold tracking-[0.25em]">SERGIO RICARDO MOLINA • MUESTRA OFICIAL</div>
@@ -357,6 +358,7 @@
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
     const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
     const DEFAULT_FALLBACK_FOLDER = '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_';
+    const WHATSAPP_FOTOGRAFO = '5492613175222';
 
     // Inicializar cliente Supabase seguro
     const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
@@ -719,7 +721,7 @@
           galleryBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#005580]/30 text-[#38bdf8] border border-[#005580]';
         }
         if (gallerySubtitle) {
-          gallerySubtitle.innerText = 'Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a WhatsApp de Sergio Ricardo Molina.';
+          gallerySubtitle.innerText = 'Muestra oficial para familias y participantes. Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo al WhatsApp de Sergio Ricardo Molina.';
         }
       }
     }
@@ -798,31 +800,33 @@
       updateSelectionUI();
     }
 
-    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON DETALLE EXACTO
-    function orderViaWhatsApp(type) {
+    // PEDIDOS WHATSAPP DIRECTO (+54 9 261 317-5222) CON PLANTILLA EXACTA
+    function pedirPorWhatsApp(tipo) {
       if (selectedPhotos.size === 0) {
         alert('Por favor seleccione al menos una fotografía para armar su pedido.');
         return;
       }
 
-      const list = Array.from(selectedPhotos).join(', ');
-      const title = galleryMetadata.titulo;
-      const typeLabel = type === 'impresas' ? 'Copia Impresa Premium 15x21 cm ($7.000 c/u)' : 'Archivos Digitales HD ($4.200 c/u)';
-      const unitPrice = type === 'impresas' ? 7000 : 4200;
-      const totalEstimated = selectedPhotos.size * unitPrice;
+      const tituloEvento = galleryMetadata.titulo;
+      const cantidad = selectedPhotos.size;
+      const fotosArray = Array.from(selectedPhotos);
+      const precioUnitario = tipo === 'impresas' ? 7000 : 4200;
+      const total = cantidad * precioUnitario;
 
-      const message = `Hola Sergio Ricardo Molina, quiero encargar fotos del evento oficial:%0A` +
-        `*Evento:* ${encodeURIComponent(title)}%0A` +
-        `*ID / Carpeta Drive:* ${encodeURIComponent(galleryMetadata.id)}%0A%0A` +
-        `*Tipo de Pedido:* ${encodeURIComponent(typeLabel)}%0A` +
-        `*Cantidad:* ${selectedPhotos.size}%0A` +
-        `*Fotos seleccionadas:* ${encodeURIComponent(list)}%0A` +
-        `*Total estimado:* $${totalEstimated.toLocaleString('es-AR')}%0A%0A` +
+      const mensaje = `Hola Sergio Ricardo Molina, quiero encargarte estas fotos:\n` +
+        `Evento: ${tituloEvento}\n` +
+        `Tipo de Pedido: ${tipo === 'impresas' ? 'Copia Impresa 15x21 cm ($7.000 c/u)' : 'Archivo Digital HD ($4.200 c/u)'}\n` +
+        `Cantidad: ${cantidad}\n` +
+        `Fotos seleccionadas: ${fotosArray.join(', ')}\n` +
+        `Total estimado: $${total.toLocaleString('es-AR')}\n` +
         `¿Me confirmas los datos de pago y plazos de entrega? Muchas gracias.`;
 
-      const waUrl = `https://wa.me/5492613175222?text=${message}`;
+      const waUrl = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
       window.open(waUrl, '_blank');
     }
+
+    // Alias retrocompatible
+    const orderViaWhatsApp = pedirPorWhatsApp;
 
     function downloadAllArchive() {
       if (galleryMetadata.id && galleryMetadata.id.length > 5) {
@@ -921,6 +925,4 @@
     // Inicializar al cargar el DOM
     window.addEventListener('DOMContentLoaded', initGallery);
   </script>
-
-
 </body></html>
