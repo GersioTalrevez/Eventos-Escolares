@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html class="dark" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Eventos Escolares | Sergio Ricardo Molina - Fotografía Profesional</title>
 <!-- Google Fonts & Material Symbols -->
-<link href="https://fonts.preconnect.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.preconnect.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Tailwind Theme Configuration -->
@@ -99,12 +97,9 @@
 <div class="flex items-center gap-space-sm">
 <a class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full border border-[#333333] hover:border-[#005580] text-on-surface hover:text-white bg-[#181818] font-label-md text-xs transition-all duration-150 active:scale-[0.98]" href="index.html" target="_self">
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_back">arrow_back</span>
-<span>Volver al Portafolio</span>
+<span class="">Volver al Portafolio</span>
 </a>
-<a class="inline-flex items-center gap-space-2xs px-space-md py-1.5 rounded-full bg-primary-container border border-[#005580] text-white hover:bg-[#0077b3] font-label-md text-xs transition-all duration-150 active:scale-[0.98]" href="#acceso-privado">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
-<span class="hidden sm:inline">Acceso Privado</span>
-</a>
+
 </div>
 </div>
 </header>
@@ -114,31 +109,16 @@
 <section class="border-b border-[#222222] pb-space-xl pt-space-sm space-y-space-xs">
 <div class="flex items-center gap-space-2xs text-[#38bdf8] font-label-sm uppercase tracking-widest text-xs">
 <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse"></span>
-<span>Catálogo &amp; Coberturas Oficiales</span>
+
 </div>
-<h1 class="font-headline-lg md:font-display-hero text-3xl md:text-5xl text-white tracking-tight font-semibold">Eventos Escolares</h1>
-<p class="font-body-md text-sm md:text-base text-outline max-w-2xl leading-relaxed">Galerías fotográficas de graduaciones, actos oficiales, retratos institucionales y vida académica. Selecciona tu colegio para visualizar o descargar las capturas en alta resolución sincronizadas con Drive.</p>
+<h1 class="font-headline-lg md:font-display-hero text-3xl md:text-5xl text-white tracking-tight font-semibold">Cacálogo de Eventos</h1>
+<p class="font-body-md text-sm md:text-base text-outline max-w-2xl leading-relaxed">Galerías fotográficas de graduaciones, actos oficiales, retratos institucionales y vida académica. Selecciona tu evento para encargar las fotografías impresas o digitales.</p>
 </section>
 <!-- PUBLIC EVENTS GALLERY GRID SECTION -->
 <section class="space-y-space-lg">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md pb-space-sm border-b border-[#222222]">
-<div>
-<div class="flex items-center gap-2">
-<h2 class="font-headline-sm text-lg md:text-xl text-white tracking-tight uppercase font-semibold">Colegios e Instituciones Registradas</h2>
-<span class="hidden items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-emerald-950/60 border border-emerald-500/40 text-emerald-400" id="realtimeBadge">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Sincronizado
-            </span>
-</div>
-<p class="font-body-md text-xs md:text-sm text-outline">Galerías públicas disponibles en tiempo real para descarga y visualización de familias y alumnos.</p>
-</div>
-<div class="relative">
-<input class="bg-[#161616] border border-[#333333] rounded-lg text-sm text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-3 py-1.5 transition-all outline-none w-full sm:w-64 font-body-md" id="schoolSearch" placeholder="Buscar colegio o año..." type="text"/>
-<span class="material-symbols-outlined absolute left-2.5 top-2 text-outline text-[18px]" data-icon="search">search</span>
-</div>
-</div>
+
 <!-- Loading State Skeleton -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg py-space-sm" id="loadingState">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg py-space-sm hidden" id="loadingState">
 <div class="bg-[#161616] border border-[#262626] rounded-xl overflow-hidden animate-pulse">
 <div class="h-60 bg-[#1c1b1b]"></div>
 <div class="p-space-md space-y-3">
@@ -168,7 +148,81 @@
 </div>
 </div>
 <!-- Realtime Dynamic Grid Container (ÚNICAMENTE galerías públicas reales de Supabase) -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg hidden" id="eventsGrid"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="eventsGrid">
+          <article class="group bg-[#161616] border border-[#262626] hover:border-[#005580] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
+            <a href="galeria.html?id=3" class="block relative h-60 bg-[#111111] overflow-hidden">
+              <img src="https://lh3.googleusercontent.com/d/1VJNz5LV4LbyrXunBf38Qc7Q08C6yia9A=w800" alt="Portada de Promesa a La Bandera TT 2026 Tarde" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/3=w800';">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-black/40"></div>
+              
+              
+              <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#005580]/90 backdrop-blur-md text-white text-xs font-label-sm">
+                <span class="">Pública</span>
+              </div>
+            </a>
+
+            <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
+              <div class="space-y-space-2xs">
+                <div class="flex items-center justify-between text-outline text-xs">
+                  <span class="uppercase tracking-widest text-[#38bdf8]">Oficial</span>
+                  <span class="text-[#22c55e] flex items-center gap-1 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+                    Acceso Libre
+                  </span>
+                </div>
+                <h3 class="font-headline-sm text-base md:text-lg text-white group-hover:text-primary transition-colors line-clamp-1 font-semibold">
+                  Promesa a La Bandera TT 2026 Tarde
+                </h3>
+                <p class="font-body-md text-xs md:text-sm text-outline line-clamp-2">
+                  Promesa a La Bandera TT 2026 Tarde
+                </p>
+              </div>
+
+              <div class="pt-space-xs border-t border-[#222222]">
+                <a class="w-full inline-flex items-center justify-between px-space-md py-2.5 rounded-lg bg-[#111111] hover:bg-[#005580] border border-[#333333] hover:border-[#0077b3] text-white font-label-md text-xs uppercase tracking-wider transition-all duration-150 active:scale-[0.98]" href="galeria.html?id=3">
+                  <span class="">Ver Álbum</span>
+                  <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        
+          <article class="group bg-[#161616] border border-[#262626] hover:border-[#005580] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col">
+            <a href="galeria.html?id=1" class="block relative h-60 bg-[#111111] overflow-hidden">
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-black/40"></div>
+              
+              
+              <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#005580]/90 backdrop-blur-md text-white text-xs font-label-sm">
+                <span class="">Pública</span>
+              </div>
+            </a>
+
+            <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
+              <div class="space-y-space-2xs">
+                <div class="flex items-center justify-between text-outline text-xs">
+                  <span class="uppercase tracking-widest text-[#38bdf8]">Oficial</span>
+                  <span class="text-[#22c55e] flex items-center gap-1 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+                    Acceso Libre
+                  </span>
+                </div>
+                <h3 class="font-headline-sm text-base md:text-lg text-white group-hover:text-primary transition-colors line-clamp-1 font-semibold">
+                  Promesa a La Bandera TM 2026 Tarde
+                </h3>
+                <p class="font-body-md text-xs md:text-sm text-outline line-clamp-2">
+                  Promesa a La Bandera TM 2026 Tarde
+                </p>
+              </div>
+
+              <div class="pt-space-xs border-t border-[#222222]">
+                <a class="w-full inline-flex items-center justify-between px-space-md py-2.5 rounded-lg bg-[#111111] hover:bg-[#005580] border border-[#333333] hover:border-[#0077b3] text-white font-label-md text-xs uppercase tracking-wider transition-all duration-150 active:scale-[0.98]" href="galeria.html?id=1">
+                  <span class="">Ver Álbum</span>
+                  <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
 <!-- Minimal Darkroom Empty State: No hay eventos públicos registrados todavía -->
 <div class="hidden text-center py-space-2xl md:py-space-3xl border border-[#262626] rounded-xl bg-[#141414]/70 p-space-xl" id="emptyState">
 <div class="w-14 h-14 mx-auto rounded-full bg-[#1c1b1b] border border-[#333333] flex items-center justify-center text-outline mb-space-md">
@@ -184,35 +238,8 @@
 <section class="scroll-mt-24 pt-space-md" id="acceso-privado">
 <div class="rounded-xl border border-[#005580]/50 bg-[#161616] p-space-lg md:p-space-xl">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-<div class="lg:col-span-7 space-y-space-xs">
-<div class="inline-flex items-center gap-space-xs text-[#38bdf8] font-label-sm uppercase tracking-wider text-xs">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
-<span>Protección &amp; Privacidad</span>
-</div>
-<h3 class="font-headline-md text-xl md:text-2xl text-white tracking-tight font-semibold">¿Tu evento o sesión es privada?</h3>
-<p class="font-body-md text-sm md:text-base text-outline leading-relaxed max-w-xl">
-              Por resguardo de los alumnos y familias, las galerías protegidas requieren clave de acceso. Ingresa tu código para desbloquear y visualizar tu álbum privado de manera inmediata.
-            </p>
-</div>
-<div class="lg:col-span-5 bg-[#111111] p-space-md md:p-space-lg rounded-xl border border-[#333333]">
-<form class="space-y-space-sm" id="privateAccessForm" onsubmit="event.preventDefault(); verifyPrivateCode();">
-<div class="space-y-space-2xs">
-<label class="block font-label-sm text-xs text-outline" for="galleryCode">Código o Contraseña de Galería</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]" data-icon="key">key</span>
-<input class="w-full bg-[#161616] border border-[#333333] rounded-lg text-white placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-9 pr-9 py-2 text-sm font-body-md outline-none transition-all" id="galleryCode" placeholder="Ingresa tu clave provista..." required="" type="password"/>
-<button class="absolute right-2.5 top-2 text-outline hover:text-white transition-colors" onclick="togglePasswordVisibility()" title="Mostrar/Ocultar contraseña" type="button">
-<span class="material-symbols-outlined text-[18px]" data-icon="visibility" id="eyeIcon">visibility</span>
-</button>
-</div>
-</div>
-<div class="hidden p-space-xs rounded-lg text-xs font-body-md border" id="privateMessage"></div>
-<button class="w-full inline-flex justify-center items-center gap-space-xs bg-primary-container hover:bg-[#0077b3] border border-[#005580] text-white font-label-md text-xs uppercase tracking-wider py-2.5 px-space-md rounded-lg transition-all duration-120 active:scale-[0.98]" id="submitCodeBtn" type="submit">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
-<span>Desbloquear Álbum</span>
-</button>
-</form>
-</div>
+
+
 </div>
 </div>
 </section>
@@ -241,10 +268,10 @@
 </div>
 </div>
 <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md text-outline font-label-sm text-xs">
-<div>© 2025 Sergio Ricardo Molina. Todos los derechos reservados.</div>
+<div class="">© 2026 Sergio Ricardo Molina. Todos los derechos reservados.</div>
 <div class="flex items-center gap-space-md">
 <span class="hover:text-on-surface transition-colors cursor-pointer">Privacidad Escolar</span>
-<span>•</span>
+<span class="">•</span>
 <span class="hover:text-on-surface transition-colors cursor-pointer">Términos de Licencia</span>
 </div>
 </div>
@@ -527,4 +554,6 @@
       setupRealtimeListener();
     });
   </script>
+
+
 </body></html>
