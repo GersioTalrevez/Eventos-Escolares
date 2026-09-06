@@ -1,307 +1,598 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos Escolares | Sergio Ricardo Molina</title>
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <!-- SDK oficial de Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      padding: 20px 16px 40px;
+      max-width: 960px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
 
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Eventos Escolares | Sergio Ricardo Molina</title>
-<!-- Fonts: Raleway & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "on-error-container": "#ffdad6",
-            "secondary-fixed": "#cae6ff",
-            "error-container": "#93000a",
-            "primary-fixed-dim": "#91cdfe",
-            "on-tertiary": "#4c2700",
-            "primary-fixed": "#cbe6ff",
-            "secondary": "#9bccf4",
-            "inverse-primary": "#1e638f",
-            "surface-tint": "#91cdfe",
-            "on-secondary": "#00344f",
-            "surface-dim": "#131313",
-            "on-primary-container": "#8ec9fa",
-            "inverse-surface": "#e5e2e1",
-            "on-secondary-container": "#8dbee6",
-            "outline-variant": "#41474e",
-            "on-tertiary-container": "#ffb36e",
-            "surface-container-low": "#1c1b1b",
-            "outline": "#8b9199",
-            "secondary-fixed-dim": "#9bccf4",
-            "on-primary": "#003350",
-            "surface-bright": "#3a3939",
-            "on-tertiary-fixed": "#2e1500",
-            "surface-variant": "#353534",
-            "primary": "#91cdfe",
-            "on-primary-fixed-variant": "#004b72",
-            "surface-container-highest": "#353534",
-            "tertiary-fixed": "#ffdcc1",
-            "on-surface": "#e5e2e1",
-            "surface": "#131313",
-            "tertiary-fixed-dim": "#ffb878",
-            "surface-container-lowest": "#0e0e0e",
-            "background": "#111111",
-            "on-surface-variant": "#c0c7cf",
-            "surface-container": "#222222",
-            "error": "#ffb4ab",
-            "surface-container-high": "#2a2a2a",
-            "on-primary-fixed": "#001e30",
-            "on-error": "#690005",
-            "tertiary-container": "#794303",
-            "on-secondary-fixed": "#001e30",
-            "primary-container": "#005580",
-            "on-background": "#e5e2e1",
-            "inverse-on-surface": "#313030",
-            "secondary-container": "#124d70",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "tertiary": "#ffb878"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-2xs": "0.25rem",
-            "space-2xl": "3rem",
-            "space-xl": "2rem",
-            "space-lg": "1.5rem",
-            "gutter-mobile": "1rem",
-            "space-4xl": "6rem",
-            "space-md": "1rem",
-            "container-max": "1200px",
-            "gutter-desktop": "2rem",
-            "gutter-tablet": "1.5rem",
-            "space-xs": "0.5rem",
-            "space-3xl": "4.5rem",
-            "space-sm": "0.75rem"
-          },
-          "fontFamily": {
-            "headline-lg": ["Raleway", "sans-serif"],
-            "label-md": ["Manrope", "sans-serif"],
-            "headline-md": ["Raleway", "sans-serif"],
-            "body-md": ["Manrope", "sans-serif"],
-            "label-sm": ["Manrope", "sans-serif"],
-            "display-hero": ["Raleway", "sans-serif"],
-            "headline-sm": ["Raleway", "sans-serif"],
-            "body-lg": ["Manrope", "sans-serif"]
-          }
-        }
+    header {
+      padding: 16px 0 24px;
+      border-bottom: 1px solid #222222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-volver-portafolio {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      background: #1c1c1c;
+      border: 1px solid #005580;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+    .btn-volver-portafolio:hover {
+      background: #282828;
+      color: #ffffff;
+      border-color: #0088cc;
+    }
+
+    .marca-personal {
+      text-align: right;
+      font-size: 0.82rem;
+      color: #777777;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .marca-personal strong {
+      color: #38bdf8;
+      display: block;
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-seccion {
+      text-align: center;
+      padding: 32px 0 24px;
+    }
+    .hero-seccion h1 {
+      font-size: 1.85rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .hero-seccion p {
+      color: #999999;
+      font-size: 0.95rem;
+      font-weight: 300;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* GRID DINÁMICO DE EVENTOS PÚBLICOS */
+    .grid-eventos {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+    @media (min-width: 600px) {
+      .grid-eventos {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
-  </script>
-<style>
-    .tactile-btn {
-      transition: transform 120ms cubic-bezier(0.2, 0, 0, 1), background-color 150ms ease, border-color 150ms ease;
+    @media (min-width: 860px) {
+      .grid-eventos {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
-    .tactile-btn:active {
-      transform: scale(0.98);
+
+    .tarjeta-evento {
+      background: #1a1a1a;
+      border: 1.5px solid #005580;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .tarjeta-evento:hover {
+      transform: translateY(-3px);
+      border-color: #38bdf8;
+      box-shadow: 0 8px 20px rgba(0, 85, 128, 0.35);
+    }
+
+    .contenedor-portada {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #0d0d0d;
+      overflow: hidden;
+    }
+    .contenedor-portada img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta-evento:hover .contenedor-portada img {
+      transform: scale(1.03);
+    }
+
+    .portada-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #112233 0%, #0d1722 100%);
+      color: #38bdf8;
+      gap: 8px;
+    }
+    .portada-fallback .material-symbols-outlined {
+      font-size: 40px;
+    }
+
+    .badge-fotos {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .detalle-evento {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .titulo-evento {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .fecha-evento {
+      font-size: 0.78rem;
+      color: #888888;
+      margin-bottom: 14px;
+    }
+
+    .btn-ver-galeria {
+      background: #004466;
+      color: #ffffff;
+      border: 1px solid #0077b3;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .tarjeta-evento:hover .btn-ver-galeria {
+      background: #005580;
+      border-color: #38bdf8;
+    }
+
+    /* ESTADOS DE CARGA Y VACÍO */
+    .estado-mensaje {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: #161616;
+      border: 1px dashed #333333;
+      border-radius: 12px;
+      color: #888888;
+    }
+    .estado-mensaje .material-symbols-outlined {
+      font-size: 42px;
+      color: #0088cc;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .estado-mensaje h3 {
+      font-size: 1.15rem;
+      color: #dddddd;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .estado-mensaje p {
+      font-size: 0.88rem;
+      color: #777777;
+    }
+
+    /* ACCESO PRIVADO CON CLAVE (UBICADO DEBAJO DE LOS EVENTOS) */
+    .bloque-privado {
+      margin-top: 36px;
+      background: #181818;
+      border: 1.5px solid #005580;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+    @media (min-width: 640px) {
+      .bloque-privado {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    .bloque-privado-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .bloque-privado-icono {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #00334d;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .bloque-privado-texto h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .bloque-privado-texto p {
+      font-size: 0.8rem;
+      color: #999999;
+    }
+    .form-clave {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      max-width: 340px;
+    }
+    .input-clave {
+      flex: 1;
+      background: #111111;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #ffffff;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .input-clave:focus {
+      border-color: #38bdf8;
+    }
+    .btn-ingresar-clave {
+      background: #005580;
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-ingresar-clave:hover {
+      background: #0077b3;
+    }
+
+    /* REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) */
+    .redes-sociales {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .btn-red {
+      background: #1f1f1f;
+      border-radius: 12px;
+      padding: 14px 6px;
+      text-align: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .btn-red:active {
+      transform: scale(0.96);
+      background: #2a2a2a;
+    }
+    .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
+    .btn-cat { border: 2px solid #facc15; color: #facc15; }
+    .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #222222;
+      color: #666666;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
-<body class="bg-[#111111] text-[#e5e2e1] antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-white">
-<!-- ================= 1. ENCABEZADO MINIMALISTA ================= -->
-<header class="sticky top-0 z-50 bg-[#111111]/90 border-b border-white/10 backdrop-blur-md">
-<div class="flex justify-between items-center w-full px-6 max-w-[1200px] mx-auto h-16">
-<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-white font-label-md text-sm transition-colors tactile-btn" href="portafolio.html">
-<span class="material-symbols-outlined text-[18px]">arrow_back</span>
-<span>Volver al Portafolio</span>
-</a>
-<div class="text-sm font-medium tracking-wide text-on-surface-variant">
-<span class="text-white font-semibold">Sergio Ricardo Molina</span>
-<span class="mx-1.5 opacity-40">·</span>
-<span class="text-primary tracking-wider uppercase text-xs font-semibold">EVENTOS</span>
-</div>
-</div>
-</header>
-<!-- ================= MAIN CONTENT ================= -->
-<main class="flex-1 max-w-[1200px] mx-auto w-full px-6 py-12 flex flex-col gap-12">
-<!-- ================= 2. TÍTULO SOBRIO Y LIMPIO ================= -->
-<section class="text-center max-w-2xl mx-auto pt-4">
-<h1 class="text-3xl md:text-4xl font-headline-lg font-semibold tracking-tight text-white mb-3">
-      Eventos Escolares
-    </h1>
-<p class="text-on-surface-variant text-base font-normal">
-      Acceso a galerías fotográficas institucionales y recuerdos de egresados.
-    </p>
-</section>
-<!-- ================= 3. DESBLOQUEO POR CÓDIGO PIN SIMPLE ================= -->
-<!-- ================= 5. FILTROS DE CATEGORÍA ================= -->
-<section class="flex items-center justify-center gap-2 pt-2">
-<button class="px-4 py-1.5 rounded-full bg-[#004466] border border-[#005580] text-white text-xs font-semibold tactile-btn">
-      Todos
-    </button>
-<button class="px-4 py-1.5 rounded-full bg-[#222222] border border-white/10 text-on-surface-variant hover:text-white hover:border-white/30 text-xs font-medium tactile-btn transition-colors">
-      Egresados
-    </button>
-<button class="px-4 py-1.5 rounded-full bg-[#222222] border border-white/10 text-on-surface-variant hover:text-white hover:border-white/30 text-xs font-medium tactile-btn transition-colors">
-      Primaria
-    </button>
-</section>
-<!-- ================= 4. GRILLA LIMPIA DE COLEGIOS Y EVENTOS ================= -->
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Tarjeta 1: Belgrano Day School -->
-<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
-<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
-<img alt="Belgrano Day School Egresados" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="High-contrast editorial documentary photo of high school seniors during an elegant graduation ceremony at Belgrano Day School. Young students in formal blazer uniforms standing outdoors in soft twilight, holding diplomas. Deep blue color grading with authentic film grain and crisp darkroom aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsIFqo7dLhlv9BEWTawIWmIDeUmk2bJ0CKL9Nv76b6cp-52hN3Xx-7l4XnVE5g-UkNufASOwTECq8tSAlTx-Un72aEL6EXBsF8p9BYo_rOCYczCJ2etYD0V3er-e0KC7HB8yz8Fx4r2trpjLjSM1I2Oer1MXPgki6nfVpd9Xkp7mNMcyTpbujZRtVqZf2yBAHmEH3bPWmaVwyKNfpuAvDtaSvY9qc-P3AaUW4AklXWjhnws0MoE7hs"/>
-</div>
-<div class="p-5 flex-1 flex flex-col justify-between gap-4">
-<div>
-<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
-            Belgrano Day School — Egresados 2026
-          </h3>
-<p class="text-xs text-outline mt-1 font-medium">
-            Nivel Secundario · Noviembre 2026
-          </p>
-</div>
-<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="bds-galeria.html">
-<span>Ver Galería</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- Tarjeta 2: Colegio San Martín de Tours -->
-<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
-<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
-<img alt="Colegio San Martín de Tours" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Atmospheric documentary photography of a children's choir and primary school concert inside the historic auditorium of Colegio San Martín de Tours. Warm tungsten rim lighting cutting through dark deep ambient theater space, captured with artistic precision and fine detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzab9iyku_cNSJyn3TZR2gfXmIxg3qolpOMFwxccdlZ6LtFxl4J_-VU-y7VijSZWgpsUEd20Dxs-_lwSPLWyjJ6Z9-YXhNklEo_X6SSMRgwzOpazjHCvkh0S5rm-uywY9E1Vm---MGUfeWC84PdaFoGre6XC2-1vihRGF_2xVEl1p7Is_kLN_P0V-L03q7NLLKK__BuFHw3IscXpiERnqD6JuY9ATy3OVA54wjQjKmSNDBURD7MII_"/>
-</div>
-<div class="p-5 flex-1 flex flex-col justify-between gap-4">
-<div>
-<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
-            Col. San Martín de Tours — Concierto Anual
-          </h3>
-<p class="text-xs text-outline mt-1 font-medium">
-            Nivel Primario · Diciembre 2025
-          </p>
-</div>
-<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="smt-galeria.html">
-<span>Ver Galería</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- Tarjeta 3: St. George's College -->
-<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
-<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
-<img alt="St. George's College" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Dynamic athletic sports photograph during rugby and field hockey intercollegiate games at St. George's College. Action shot capturing raw emotion, grass droplets frozen in air, dramatic sunlight backlighting students in traditional striped school sports kits. Darkroom exhibition tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPm7Sh214xR_d_SNUV8AtfTaWQEkSUHEk4hdb97mCQ0V3C1Y-mOUiYOVGmmxG31tRXtsHkmy3Rg2ZQZH72XuNtHs01ZnDwDPIISOtTfz-nyA__r50Yo3vfgU8W0Qq-jwDKeYNtzZFxc25OpEQcfmiBM-8b2rrR_CLTA46dVCAhy11oP0Z-FN-6zv-s2q8XOytL_ljzux69bsiIhyKNmjSKy1NglR7tybq1Z3c9asC8ljhApZCIh0xu"/>
-</div>
-<div class="p-5 flex-1 flex flex-col justify-between gap-4">
-<div>
-<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
-            St. George's College — Sports Day
-          </h3>
-<p class="text-xs text-outline mt-1 font-medium">
-            Intercolegiales · Octubre 2025
-          </p>
-</div>
-<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="stg-galeria.html">
-<span>Ver Galería</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- Tarjeta 4: Colegio Marín -->
-<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
-<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
-<img alt="Colegio Marín" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Serene fine art school portraiture of elementary students in classroom uniforms during an outdoor science fair under mature oak trees. Soft natural sunlight filtered through green leaves, minimal shadows, darkroom tonality, professional color grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkjzSecMo6txlO0nv5vkheK9HlJgaVQqv3eGEBK15BjQd1KTtWYrfOg96PVfq9f0lGVyiKsAnDGa0yZLrEFmdexI1MeskzrZEf9hQJ_Bk4-UhXGoM6vU3Ttbt9UZhfzvmdMvJet0aVbCH-bTuLHsR_K1ZGhlpVG_1DiRAZ3-YGyMFsWv0aGlrhf1ddCad0feSsq9am0xvz3vOYpYGCy4ickbd6PZx1nG7u8TknNVzxXSdcEi_aRP6I"/>
-</div>
-<div class="p-5 flex-1 flex flex-col justify-between gap-4">
-<div>
-<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
-            Colegio Marín — Feria Anual
-          </h3>
-<p class="text-xs text-outline mt-1 font-medium">
-            Nivel Primario y Secundario · Septiembre 2025
-          </p>
-</div>
-<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="#marin">
-<span>Ver Galería</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- Tarjeta 5: Michael Ham Memorial College -->
-<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
-<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
-<img alt="Michael Ham Memorial College" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Sophisticated black and white archival portrait of schoolgirls during traditional badge ceremony at Michael Ham College. Elegant lighting, sharp focus on school crest embroidery, shallow depth of field, high-end gallery darkroom look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSXj67Xv67iPEZ52m7Nj3tPU6L7tvisarnR0oD8WqVJ-_8lOgNbhduJTaoUFLomfGv1QqSqTHSTqbzHOuRy7jFcHmGwBXzk0uzhjV5ljTpXGq3WqChh8WwdGmpULeB8ngBKpph-LdPFLHbYK2Qw3AQF3JHC7rsB0sf5c1j5RnjZTg33-zl4dBW_F_Y6U3BlHx9F2_8LG_ZcSRQvJMJFq3jsRpzvHlbnmchLIuO3tVPRyXT916Q22KC"/>
-</div>
-<div class="p-5 flex-1 flex flex-col justify-between gap-4">
-<div>
-<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
-            Michael Ham — Entrega de Banderas
-          </h3>
-<p class="text-xs text-outline mt-1 font-medium">
-            Acto Institucional · Octubre 2025
-          </p>
-</div>
-<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="#michaelham">
-<span>Ver Galería</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- Tarjeta 6: Northlands School -->
-<article class="bg-[#222222] border-2 border-[#005580] rounded-xl overflow-hidden flex flex-col group hover:border-[#0077b3] transition-all duration-300">
-<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#161616]">
-<img alt="Northlands School Musical" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Vibrant theatrical musical stage performance at Northlands School. Secondary students in period costumes under moody blue and gold stage spotlights. Exceptional tonal latitude, deep velvety blacks, and razor sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Pxqz8EO-wSWLfH0npdSPT9cMFR0S9vjDDbbJaUQLbcwvKe6d7ufxSR6aSeKtvoR5Lq2ey2E-15yu4QKv-vPbT9L4hdmeWA7eAoaUr4qmRCz2vMOHGW9TMg4zA8ODffXTBiJo6NPnLWu6q8LLGizP_JEb2dMXrMZgDFa0RC2cOVvrSAI2RRErO4jSLzI3xmKUp9VdoRlqWDCZLRiUnXSnvYuc1TmeYNJnfsNJWA4HPJZcG-kvQi7m"/>
-</div>
-<div class="p-5 flex-1 flex flex-col justify-between gap-4">
-<div>
-<h3 class="text-base font-semibold text-white group-hover:text-primary transition-colors">
-            Northlands School — Annual Musical
-          </h3>
-<p class="text-xs text-outline mt-1 font-medium">
-            Nivel Secundario · Noviembre 2025
-          </p>
-</div>
-<a class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-xs font-semibold tactile-btn transition-colors" href="#northlands">
-<span>Ver Galería</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</article>
-</section><section class="w-full max-w-lg mx-auto">
-<div class="bg-[#222222] border-2 border-[#005580] rounded-xl p-5 shadow-lg">
-<form class="flex flex-col sm:flex-row gap-2.5" onsubmit="event.preventDefault();">
-<div class="relative flex-1">
-<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">key</span>
-<input class="w-full bg-[#161616] border border-white/10 rounded-lg pl-10 pr-3 py-2.5 text-sm text-white placeholder:text-outline/70 focus:outline-none focus:border-[#005580] focus:ring-1 focus:ring-[#005580] uppercase tracking-wider font-mono transition-colors" placeholder="Ingresá tu código o PIN" type="text"/>
-</div>
-<button class="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-lg bg-[#004466] border border-[#005580] hover:bg-[#005580] text-white text-sm font-semibold tactile-btn transition-colors shrink-0" type="submit">
-<span>Ingresar</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</button>
-</form>
-</div>
-</section>
-<!-- ================= 6. BOTONES TEMÁTICOS CON BORDES CROMÁTICOS ================= -->
-<section class="grid grid-cols-3 gap-3 max-w-lg mx-auto w-full pt-4">
-<a class="tactile-btn flex items-center justify-center py-2.5 px-3 bg-[#222222] border-2 border-[#4ade80] rounded-xl text-white text-[0.9rem] font-semibold tracking-wide hover:bg-[#252825] transition-all shadow-md" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
-<span>Chat 💬</span>
-</a>
-<a class="tactile-btn flex items-center justify-center py-2.5 px-3 bg-[#222222] border-2 border-[#facc15] rounded-xl text-white text-[0.9rem] font-semibold tracking-wide hover:bg-[#282722] transition-all shadow-md" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
-<span>Catálogo 📦</span>
-</a>
-<a class="tactile-btn flex items-center justify-center py-2.5 px-3 bg-[#222222] border-2 border-[#fb923c] rounded-xl text-white text-[0.9rem] font-semibold tracking-wide hover:bg-[#282422] transition-all shadow-md" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
-<span>IG 📷</span>
-</a>
-</section>
-</main>
-<!-- ================= 7. COPYRIGHT MINIMALISTA ================= -->
-<footer class="border-t border-white/10 mt-12 py-8">
-<div class="max-w-[1200px] mx-auto px-6 text-center text-xs text-outline">
-    © 2025 Sergio Ricardo Molina. Todos los derechos reservados.
-  </div>
-</footer>
-</body></html>
+<body>
+
+  <!-- ENCABEZADO CON RETORNO AL PORTAFOLIO -->
+  <header>
+    <a href="index.html" class="btn-volver-portafolio">
+      <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+      <span>Volver al Portafolio</span>
+    </a>
+    <div class="marca-personal">
+      Fotografía Profesional
+      <strong>Sergio Ricardo Molina</strong>
+    </div>
+  </header>
+
+  <!-- TÍTULO HERO -->
+  <section class="hero-seccion">
+    <h1>Eventos Escolares</h1>
+    <p>Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio.</p>
+  </section>
+
+  <!-- CONTENEDOR PRINCIPAL: SOLO EVENTOS PÚBLICOS DE SUPABASE -->
+  <main>
+    <div id="contenedor-eventos" class="grid-eventos">
+      <div class="estado-mensaje">
+        <span class="material-symbols-outlined">cloud_sync</span>
+        <h3>Cargando eventos oficiales...</h3>
+        <p>Conectando con Supabase y Google Drive.</p>
+      </div>
+    </div>
+
+    <!-- ACCESO PRIVADO CON CLAVE (POR DEBAJO DE LOS EVENTOS) -->
+    <div class="bloque-privado">
+      <div class="bloque-privado-info">
+        <div class="bloque-privado-icono">
+          <span class="material-symbols-outlined">lock</span>
+        </div>
+        <div class="bloque-privado-texto">
+          <h4>¿Tu evento o sesión es privada?</h4>
+          <p>Ingresá la clave de tu curso o colegio para desbloquear tu álbum.</p>
+        </div>
+      </div>
+      <form class="form-clave" onsubmit="validarClavePrivada(event)">
+        <input type="password" id="input-clave" class="input-clave" placeholder="Ingresá tu clave..." required autocomplete="off">
+        <button type="submit" class="btn-ingresar-clave">
+          <span>Ingresar</span>
+          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) -->
+    <div class="redes-sociales">
+      <a href="https://wa.me/542613175222" target="_blank" class="btn-red btn-wsp">
+        <span class="material-symbols-outlined">chat</span>
+        <span>Chat WhatsApp</span>
+      </a>
+      <a href="https://wa.me/c/5492613175222" target="_blank" class="btn-red btn-cat">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span>Catálogo</span>
+      </a>
+      <a href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank" class="btn-red btn-ig">
+        <span class="material-symbols-outlined">photo_camera_back</span>
+        <span>Instagram</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+  </footer>
+
+  <script>
+    // CREDENCIALES DE SUPABASE
+    const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    // Extraer ID limpio de carpeta de Google Drive
+    function extraerIdDrive(input) {
+      if (!input) return '';
+      const match = input.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) return match[1];
+      const matchId = input.match(/id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      return input.trim().split('?')[0];
+    }
+
+    // CARGAR EXCLUSIVAMENTE EVENTOS PÚBLICOS DESDE SUPABASE
+    async function cargarEventosPublicos() {
+      const contenedor = document.getElementById('contenedor-eventos');
+      if (!supabaseClient) {
+        contenedor.innerHTML = `
+          <div class="estado-mensaje">
+            <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
+            <h3>Error de conexión</h3>
+            <p>No se pudo inicializar la base de datos de Supabase.</p>
+          </div>
+        `;
+        return;
+      }
+
+      try {
+        // Consultar galerías públicas: es_privada = false o NULL (por compatibilidad hacia atrás)
+        const { data: galerias, error } = await supabaseClient
+          .from('galerias')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          console.error("Error Supabase:", error);
+          contenedor.innerHTML = `
+            <div class="estado-mensaje">
+              <span class="material-symbols-outlined" style="color: #ef4444;">cloud_off</span>
+              <h3>No se pudieron cargar los eventos</h3>
+              <p>Revisá la tabla 'galerias' en Supabase.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // FILTRO CRÍTICO: Excluir eventos privados. Solo mostrar públicos con portada.
+        const eventosPublicos = (galerias || []).filter(item => {
+          // Si tiene flag es_privada true, o si tiene password no vacía, es privado -> no mostrar en la lista pública
+          const esPrivada = item.es_privada === true || item.es_privada === 'true' || (item.password && String(item.password).trim().length > 0);
+          return !esPrivada;
+        });
+
+        if (eventosPublicos.length === 0) {
+          contenedor.innerHTML = `
+            <div class="estado-mensaje">
+              <span class="material-symbols-outlined">school</span>
+              <h3>No hay eventos escolares públicos disponibles</h3>
+              <p>Los eventos que cargues como públicos desde el Panel de Control aparecerán aquí automáticamente.</p>
+            </div>
+          `;
+          return;
+        }
+
+        contenedor.innerHTML = '';
+
+        for (const evento of eventosPublicos) {
+          const folderId = extraerIdDrive(evento.drive_url);
+          const tarjeta = document.createElement('a');
+          tarjeta.className = 'tarjeta-evento';
+          tarjeta.href = `galeria.html?id=${folderId}&titulo=${encodeURIComponent(evento.titulo)}`;
+
+          let portadaSrc = evento.portada_url || '';
+          
+          // Si no tiene portada guardada manual, buscar la primera foto del drive para mostrar de portada
+          if (!portadaSrc && folderId) {
+            portadaSrc = `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+          }
+
+          const fechaTexto = evento.created_at ? new Date(evento.created_at).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }) : 'Ciclo Lectivo';
+
+          tarjeta.innerHTML = `
+            <div class="contenedor-portada">
+              ${portadaSrc ? `
+                <img src="${portadaSrc}" alt="${evento.titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'portada-fallback\\'><span class=\\'material-symbols-outlined\\'>school</span><span>${evento.titulo}</span></div>'">
+              ` : `
+                <div class="portada-fallback">
+                  <span class="material-symbols-outlined">school</span>
+                  <span>${evento.titulo}</span>
+                </div>
+              `}
+              <div class="badge-fotos">
+                <span class="material-symbols-outlined" style="font-size: 14px;">photo_library</span>
+                <span>Galería Oficial</span>
+              </div>
+            </div>
+            <div class="detalle-evento">
+              <div>
+                <h2 class="titulo-evento">${evento.titulo}</h2>
+                <div class="fecha-evento">Publicado · ${fechaTexto}</div>
+              </div>
+              <div class="btn-ver-galeria">
+                <span>Ver Álbum Completo</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+              </div>
+            </div>
+          `;
+
+          contenedor.appendChild(tarjeta);
+        }
+
+      } catch (err) {
+        console.error("Error al cargar eventos:", err);
+        contenedor.innerHTML = `
+          <div class="estado-mensaje">
+            <span class="material-symbols-outlined" style="color: #ef4444;">warning</span>
+            <h3>Error de conexión</h3>
+            <p>Ocurrió una falla al procesar la lista de eventos.</p>
+          </div>
+        `;
+      }
+    }
+
+    // VALIDAR CLAVE DE EVENTOS PRIVADOS DESDE EL FORMULARIO INFERIOR
+    async function validarClavePrivada(e) {
+      e.preventDefault();
+      const input = document.getElementById('input-clave');
+      const pass = input.value.trim().toLowerCase();
+      if (!pass) return;
+
+      if (!supabaseClient) {
+        alert("No se pudo conectar a la base de datos.");
+        return;
+      }
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('galerias')
+          .select('*')
+          .ilike('password', pass);
+
+        if (!error && data && data.length > 0) {
+          const evento = data[0];
+          const folderId = extraerIdDrive(evento.drive_url);
+          window.location.href = `galeria.html?id=${folderId}&titulo=${encodeURIComponent(evento.titulo)}&key=${encodeURIComponent(pass)}`;
+        } else {
+          alert("Contraseña no válida. Verificá con el fotógrafo o el colegio.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error al verificar la clave. Intente nuevamente.");
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', cargarEventosPublicos);
+  </script>
+</body>
+</html>
