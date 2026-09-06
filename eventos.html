@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Eventos Escolares | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- SDK oficial de Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -269,99 +267,182 @@
       word-break: break-all;
     }
 
-    /* ACCESO PRIVADO CON CLAVE */
-    .bloque-privado {
+    /* BOTÓN ACCESO PRIVADO CLIENTES (IDÉNTICO AL PORTAFOLIO) */
+    .btn-clientes {
       margin-top: 36px;
-      background: #181818;
-      border: 1.5px solid #005580;
+      background: #004466;
+      border: 2px solid #005580;
+      box-shadow: inset 0 0 0 3px #181818, 0 4px 12px rgba(0, 0, 0, 0.35);
       border-radius: 12px;
-      padding: 20px;
+      min-height: 86px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+      cursor: pointer;
+      padding: 16px 20px;
+      gap: 4px;
+      text-align: center;
+      transition: all 0.25s ease;
+      user-select: none;
     }
 
-    @media (min-width: 640px) {
-      .bloque-privado {
-        flex-direction: row;
-        justify-content: space-between;
-      }
+    .btn-clientes:hover {
+      background: #005580;
+      border-color: #38bdf8;
+      box-shadow: inset 0 0 0 3px #181818, 0 6px 18px rgba(0, 85, 128, 0.45);
+      transform: translateY(-2px);
     }
 
-    .bloque-privado-info {
+    .btn-clientes:active {
+      transform: scale(0.99);
+    }
+
+    /* MODAL FLOTANTE DE ACCESO PRIVADO (IDÉNTICO AL PORTAFOLIO) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .modal-overlay.activo {
+      display: flex;
+    }
+
+    .modal-tarjeta {
+      background: #181818;
+      border: 1.5px solid #005580;
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+      animation: modalEntrada 0.22s ease-out;
+    }
+
+    @keyframes modalEntrada {
+      from { opacity: 0; transform: scale(0.94) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .btn-cerrar-modal {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: transparent;
+      border: none;
+      color: #888888;
+      font-size: 18px;
+      line-height: 1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .bloque-privado-icono {
-      width: 44px;
-      height: 44px;
+    .btn-cerrar-modal:hover {
+      background: #252525;
+      color: #ffffff;
+    }
+
+    .modal-icono {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: #00334d;
       color: #38bdf8;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
+      margin: 0 auto 14px;
     }
 
-    .bloque-privado-texto h4 {
-      font-size: 1.05rem;
+    .modal-icono .material-symbols-outlined {
+      font-size: 28px;
+    }
+
+    .modal-titulo {
+      text-align: center;
+      font-size: 1.25rem;
       font-weight: 600;
       color: #ffffff;
+      margin-bottom: 6px;
     }
 
-    .bloque-privado-texto p {
-      font-size: 0.8rem;
+    .modal-subtitulo {
+      text-align: center;
+      font-size: 0.85rem;
       color: #999999;
+      line-height: 1.45;
+      margin-bottom: 20px;
     }
 
-    .form-clave {
+    .form-modal-clave {
       display: flex;
-      gap: 8px;
-      width: 100%;
-      max-width: 340px;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .input-clave {
-      flex: 1;
+    .input-modal-clave {
       background: #111111;
       border: 1px solid #333333;
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 12px 14px;
       color: #ffffff;
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      width: 100%;
     }
 
-    .input-clave:focus {
+    .input-modal-clave:focus {
       border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
     }
 
-    .btn-ingresar-clave {
+    .btn-submit-modal {
       background: #005580;
       color: #ffffff;
       border: none;
-      padding: 10px 18px;
+      padding: 12px;
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      gap: 6px;
       transition: background 0.2s ease;
-      white-space: nowrap;
+      width: 100%;
     }
 
-    .btn-ingresar-clave:hover {
+    .btn-submit-modal:hover {
       background: #0077b3;
+    }
+
+    .modal-error {
+      color: #ffb4ab;
+      font-size: 0.8rem;
+      text-align: center;
+      min-height: 18px;
+      margin-top: 4px;
     }
 
     /* REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) */
@@ -423,7 +504,7 @@
 <header>
 <a class="btn-volver-portafolio" href="index.html">
 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
-<span>Volver al Portafolio</span>
+<span class="">Volver al Portafolio</span>
 </a>
 <div class="marca-personal">
       Fotografía Profesional
@@ -432,64 +513,92 @@
 </header>
 <!-- TÍTULO HERO -->
 <section class="hero-seccion">
-<h1>Eventos Escolares</h1>
-<p>Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio.</p>
+<h1 class="">Eventos Escolares</h1>
+<p class="">Ingresa en el&nbsp; Evento y selecciona tus fotografías .</p>
 </section>
 <!-- CONTENEDOR PRINCIPAL: SOLO EVENTOS PÚBLICOS DE SUPABASE -->
 <main>
 <div class="grid-eventos" id="contenedor-eventos">
 <div class="estado-mensaje">
 <span class="material-symbols-outlined spin">sync</span>
-<h3>Cargando eventos oficiales...</h3>
-<p>Conectando con base de datos y Google Drive.</p>
+<h3 class="">Cargando eventos oficiales...</h3>
+<p class="">Conectando con base de datos y Google Drive.</p>
 </div>
 </div>
-<!-- ACCESO PRIVADO CON CLAVE (POR DEBAJO DE LOS EVENTOS) -->
-<div class="bloque-privado">
-<div class="bloque-privado-info">
-<div class="bloque-privado-icono">
-<span class="material-symbols-outlined">lock</span>
-</div>
-<div class="bloque-privado-texto">
-<h4>¿Tu evento o sesión es privada?</h4>
-<p>Ingresá la clave de tu curso o colegio para desbloquear tu álbum.</p>
-</div>
-</div>
-<form class="form-clave" onsubmit="validarClavePrivada(event)">
-<input autocomplete="off" class="input-clave" id="input-clave" placeholder="Ingresá tu clave..." required="" type="password"/>
-<button class="btn-ingresar-clave" type="submit">
-<span>Ingresar</span>
-<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
-</button>
-</form>
+<!-- BOTÓN ACCESO PRIVADO CLIENTES IDÉNTICO AL PORTAFOLIO -->
+<div class="btn-clientes" onclick="pedirPassword()">
+<span class="material-symbols-outlined" style="font-size: 24px; color: rgb(56, 189, 248);">lock</span>
+<span style="font-size: 1.05rem; font-weight: 600; color: rgb(255, 255, 255);" class="">Acceso Privado Clientes 🔒</span>
+
 </div>
 <!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) -->
 <div class="redes-sociales">
 <a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
 <span class="material-symbols-outlined">chat</span>
-<span>Chat WhatsApp</span>
+<span class="">Chat WhatsApp</span>
 </a>
 <a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
 <span class="material-symbols-outlined">inventory_2</span>
-<span>Catálogo</span>
+<span class="">Catálogo</span>
 </a>
 <a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
 <span class="material-symbols-outlined">photo_camera_back</span>
-<span>Instagram</span>
+<span class="">Instagram</span>
 </a>
 </div>
 </main>
+<!-- MODAL DE ACCESO PRIVADO IDÉNTICO AL PORTAFOLIO -->
+<div class="modal-overlay" id="modal-acceso-privado" onclick="if(event.target === this) cerrarModalPrivado()">
+<div class="modal-tarjeta">
+<button aria-label="Cerrar" class="btn-cerrar-modal" onclick="cerrarModalPrivado()" type="button">✕</button>
+<div class="modal-icono">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<h3 class="modal-titulo">Acceso a Galería Privada</h3>
+<p class="modal-subtitulo">Ingresá la clave provista por el fotógrafo o tu institución para acceder a tu álbum exclusivo.</p>
+<form class="form-modal-clave" onsubmit="validarClaveModal(event)">
+<input autocomplete="off" class="input-modal-clave" id="modal-input-clave" placeholder="Ingresá la clave de acceso..." required="" type="password">
+<button class="btn-submit-modal" id="btn-submit-modal" type="submit">
+<span class="material-symbols-outlined" style="font-size: 18px;">key</span>
+<span class="">Desbloquear Álbum</span>
+</button>
+<div class="modal-error" id="modal-error-mensaje"></div>
+</form>
+</div>
+</div>
 <footer>
-<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+<p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
 </footer>
 <script>
     // CREDENCIALES OFICIALES DE SUPABASE (Tabla 'galeria' / fallback 'galerias')
-    const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
     const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
     // Tabla activa detectada (para reutilizar en la búsqueda por clave privada)
     let tablaActivaGaleria = 'galeria';
+
+    // MODAL DE ACCESO PRIVADO
+    function pedirPassword() {
+      const modal = document.getElementById('modal-acceso-privado');
+      const input = document.getElementById('modal-input-clave');
+      const errorMsg = document.getElementById('modal-error-mensaje');
+      if (errorMsg) errorMsg.textContent = '';
+      if (modal) {
+        modal.classList.add('activo');
+        if (input) {
+          input.value = '';
+          setTimeout(() => input.focus(), 150);
+        }
+      }
+    }
+
+    function cerrarModalPrivado() {
+      const modal = document.getElementById('modal-acceso-privado');
+      const errorMsg = document.getElementById('modal-error-mensaje');
+      if (errorMsg) errorMsg.textContent = '';
+      if (modal) modal.classList.remove('activo');
+    }
 
     // Extractor infalible y robusto de ID de Google Drive
     function extraerIdDrive(input) {
@@ -546,7 +655,6 @@
             data = resFallback.data;
             errorPrincipal = null;
           } else {
-            // Guardar el error final para diagnóstico detallado
             errorPrincipal = {
               galeriaError: errorPrincipal,
               galeriasError: resFallback.error
@@ -573,9 +681,7 @@
 
         const rawList = data || [];
 
-        // FILTRADO ESTRICTO DE PÚBLICOS CUBRIENDO TODAS LAS VARIANTES GUARDADAS EN PANEL.HTML:
-        // Considerar privado SOLO si es_privada es estrictamente true o string 'true',
-        // o si existe password no vacío. Si es false, null, undefined, 0, o 'false' -> ES PÚBLICO!
+        // FILTRADO ESTRICTO DE PÚBLICOS
         const eventosPublicos = rawList.filter(item => {
           const pass = (item.password || item.clave || item.codigo || '').toString().trim();
           const esPrivada = (item.es_privada === true || item.es_privada === 'true' || item.privada === true || item.privada === 'true') || pass.length > 0;
@@ -595,14 +701,12 @@
 
         contenedor.innerHTML = '';
         for (const item of eventosPublicos) {
-          // Soporte amplio a nombres de campos guardados desde panel.html
           const titulo = item.titulo || item.title || item.nombre || 'Galería Escolar';
           const driveUrl = item.drive_url || item.url_drive || item.enlace_drive || item.drive || '';
           let coverPhoto = item.portada_url || item.url_portada || item.portada || '';
           const folderId = extraerIdDrive(driveUrl);
           const idReferencia = item.id || folderId || 'evento';
 
-          // Enlace a galeria.html con id, folder y título codificados
           const urlDestino = `galeria.html?id=${encodeURIComponent(idReferencia)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
 
           if (!coverPhoto && folderId) {
@@ -666,21 +770,24 @@
       }
     }
 
-    // VALIDAR CLAVE DE EVENTOS PRIVADOS DESDE EL FORMULARIO INFERIOR
-    async function validarClavePrivada(e) {
+    // VALIDAR CLAVE DESDE EL MODAL FLOTANTE
+    async function validarClaveModal(e) {
       e.preventDefault();
-      const input = document.getElementById('input-clave');
-      const pass = input.value.trim().toLowerCase();
+      const input = document.getElementById('modal-input-clave');
+      const errorMsg = document.getElementById('modal-error-mensaje');
+      const btn = document.getElementById('btn-submit-modal');
+      const pass = (input ? input.value : '').trim().toLowerCase();
+      
       if (!pass) return;
+      if (errorMsg) errorMsg.textContent = '';
 
       if (!supabaseClient) {
-        alert("No se pudo conectar a la base de datos.");
+        if (errorMsg) errorMsg.textContent = 'No se pudo conectar con el servidor.';
         return;
       }
 
-      const btn = e.target.querySelector('button');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = `<span class="material-symbols-outlined spin" style="font-size:16px;">sync</span> Verificando...`;
+      const originalBtnHtml = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined spin" style="font-size:18px;">sync</span> Verificando...`;
       btn.disabled = true;
 
       try {
@@ -711,20 +818,35 @@
           const driveUrl = evento.drive_url || evento.url_drive || evento.enlace_drive || evento.drive || '';
           const folderId = extraerIdDrive(driveUrl);
           const idRef = evento.id || folderId;
-          // Redirige al álbum privado con id, folder, clave y bandera
+          // Redirige al álbum privado con id, folder, título, clave y privada=true
           window.location.href = `galeria.html?id=${encodeURIComponent(idRef)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(pass)}&privada=true`;
         } else {
-          alert("Contraseña no válida. Verificá con el fotógrafo o la institución escolar.");
+          if (errorMsg) {
+            errorMsg.textContent = 'Contraseña no válida. Verificá con el fotógrafo o la institución escolar.';
+          } else {
+            alert("Contraseña no válida. Verificá con el fotógrafo o la institución escolar.");
+          }
         }
       } catch (err) {
-        console.error("Error al validar clave privada:", err);
-        alert("Error al verificar la clave: " + (err.message || "Falla de red"));
+        console.error("Error al validar clave:", err);
+        if (errorMsg) {
+          errorMsg.textContent = 'Error de conexión al verificar la clave.';
+        }
       } finally {
-        btn.innerHTML = originalText;
+        btn.innerHTML = originalBtnHtml;
         btn.disabled = false;
       }
     }
 
+    // Soporte para tecla Escape para cerrar el modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        cerrarModalPrivado();
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', cargarEventosPublicos);
   </script>
+
+
 </body></html>
