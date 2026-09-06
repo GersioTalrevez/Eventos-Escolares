@@ -1,13 +1,15 @@
-<!DOCTYPE html><html class="dark" lang="es" style="width: 1280px; height: 2070px; overflow: hidden; position: relative;"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style="min-height: 100vh; height: auto; overflow-x: hidden; overflow-y: auto;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Panel de Control | Sergio Ricardo Molina - Atelier Darkroom</title>
 <!-- Google Fonts: Raleway & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Supabase JS Client CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS CDN -->
@@ -43,16 +45,26 @@
     }
   </script>
 <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
+    html {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      height: auto !important;
+      min-height: 100vh;
     }
     body {
       background-color: #111111;
       color: #e5e2e1;
       font-family: 'Manrope', sans-serif;
+      min-height: 100vh;
+      height: auto !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
     }
   </style>
 </head>
@@ -82,9 +94,9 @@
 </div>
 </header>
 <!-- Main Canvas Layout with Sidebar and Content Studio -->
-<div class="max-w-7xl mx-auto flex flex-col lg:flex-row min-h-[calc(100vh-4.25rem)]">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row min-h-screen">
 <!-- Atelier Sidebar -->
-<aside class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-[#005580]/40 bg-[#111111] p-4 flex flex-col justify-between shrink-0">
+<aside class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-[#005580]/40 bg-[#111111] p-4 flex flex-col justify-between shrink-0 h-auto">
 <div class="space-y-4">
 <div class="p-3 rounded-xl bg-[#161616] border border-[#005580]/40 flex items-center gap-3">
 <div class="w-9 h-9 rounded-lg bg-[#1c1c1c] border border-[#005580] flex items-center justify-center text-[#38bdf8] shrink-0">
@@ -100,7 +112,6 @@
 <span class="material-symbols-outlined text-[18px] text-[#38bdf8]">add_to_photos</span>
 <span class="">Gestor de Galerías</span>
 </button>
-
 <button class="w-full flex items-center justify-between text-gray-300 hover:text-white hover:bg-[#181818] border border-transparent hover:border-[#005580]/30 px-3 py-2 text-[13px] rounded-lg transition-colors cursor-pointer" onclick="cargarGaleriasReal()" type="button">
 <div class="flex items-center gap-2.5">
 <span class="material-symbols-outlined text-[18px] text-[#38bdf8]">refresh</span>
@@ -126,8 +137,8 @@
 </div>
 </div>
 </aside>
-<!-- Content Workspace -->
-<main class="flex-1 p-4 sm:p-8 lg:p-10 overflow-y-auto space-y-8">
+<!-- Content Workspace with native non-blocking scroll -->
+<main class="flex-1 p-4 sm:p-8 lg:p-10 overflow-y-visible h-auto space-y-8">
 <!-- Studio Header Section -->
 <section class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#005580]/40 pb-6">
 <div class="space-y-1">
@@ -145,8 +156,57 @@
     </button>
 </div>
 </section>
-<!-- Supabase Ingestion Form -->
-<section class="bg-[#161616] rounded-xl border border-[#005580]/50 shadow-sm overflow-hidden" id="section-tarifas"><div class="px-5 py-3.5 border-b border-[#005580]/40 bg-[#181818] flex flex-wrap items-center justify-between gap-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#38bdf8] text-[20px]">payments</span><h2 class="text-sm font-semibold text-white tracking-wide font-['Raleway']">Configuración de Precios y Tarifas Oficiales</h2></div><span class="text-[11px] font-mono text-[#ffb878] uppercase tracking-wider bg-[#111111] px-2 py-0.5 rounded border border-[#005580]/40">Tarifario Activo en Visor</span></div><div class="p-5 sm:p-6 space-y-4"><p class="text-[13px] text-gray-400">Fije los valores oficiales que verán las familias y egresados en el visor de pedidos (<code class="text-[#38bdf8] font-mono text-[12px]">galeria.html</code>). Los cambios se sincronizan al instante.</p><div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="space-y-1.5"><label class="block text-[12px] font-semibold text-gray-200 uppercase tracking-wider" for="precio-impresa">Copia Impresa 15x21 cm ($ ARS) <span class="text-[#38bdf8]">*</span></label><div class="relative"><span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">photo_print</span><input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white font-mono text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="precio-impresa" min="0" placeholder="7000" step="100" type="number" value="7000"></div><p class="text-[11px] text-gray-500">Papel fotográfico satinado premium</p></div><div class="space-y-1.5"><label class="block text-[12px] font-semibold text-gray-200 uppercase tracking-wider" for="precio-digital">Archivo Digital HD ($ ARS) <span class="text-[#38bdf8]">*</span></label><div class="relative"><span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">file_download</span><input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white font-mono text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="precio-digital" min="0" placeholder="4200" step="100" type="number" value="4200"></div><p class="text-[11px] text-gray-500">Descarga digital en alta resolución sin marca</p></div><div class="space-y-1.5"><label class="block text-[12px] font-semibold text-gray-200 uppercase tracking-wider" for="contacto-whatsapp">WhatsApp de Pedidos <span class="text-[#38bdf8]">*</span></label><div class="relative"><span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-400 text-[18px]">chat</span><input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white font-mono text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="contacto-whatsapp" placeholder="+54 9 261 317-5222" type="text" value="+54 9 261 317-5222"></div><p class="text-[11px] text-gray-500">Recepción y comprobantes de transferencias</p></div></div><div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[#005580]/30"><div class="flex items-center gap-2 text-[12px] text-gray-400"><span class="material-symbols-outlined text-[#38bdf8] text-[16px]">lock_reset</span><span class="">Configuración almacenada localmente y en sesión permanente</span></div><button class="w-full sm:w-auto px-6 py-2 rounded-lg bg-[#005580] hover:bg-[#0077b3] border border-[#38bdf8]/40 text-white text-[12px] uppercase tracking-wider font-semibold transition-all duration-150 active:scale-[0.98] shadow-sm flex items-center justify-center gap-2" id="btn-guardar-tarifas" onclick="guardarTarifasAdmin()" type="button"><span class="material-symbols-outlined text-[17px]">save_as</span><span class="">Guardar Tarifas</span></button></div></div></section><section class="bg-[#161616] rounded-xl border border-[#005580]/50 shadow-sm overflow-hidden">
+<!-- Supabase Ingestion Form / Tarifas Oficiales -->
+<section class="bg-[#161616] rounded-xl border border-[#005580]/50 shadow-sm overflow-hidden" id="section-tarifas">
+<div class="px-5 py-3.5 border-b border-[#005580]/40 bg-[#181818] flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#38bdf8] text-[20px]">payments</span>
+<h2 class="text-sm font-semibold text-white tracking-wide font-['Raleway']">Configuración de Precios y Tarifas Oficiales</h2>
+</div>
+<span class="text-[11px] font-mono text-[#ffb878] uppercase tracking-wider bg-[#111111] px-2 py-0.5 rounded border border-[#005580]/40">Tarifario Activo en Visor</span>
+</div>
+<div class="p-5 sm:p-6 space-y-4">
+<p class="text-[13px] text-gray-400">Fije los valores oficiales que verán las familias y egresados en el visor de pedidos (<code class="text-[#38bdf8] font-mono text-[12px]">galeria.html</code>). Los cambios se sincronizan al instante.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="space-y-1.5">
+<label class="block text-[12px] font-semibold text-gray-200 uppercase tracking-wider" for="precio-impresa">Copia Impresa 15x21 cm ($ ARS) <span class="text-[#38bdf8]">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">photo_print</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white font-mono text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="precio-impresa" min="0" placeholder="7000" step="100" type="number" value="7000"/>
+</div>
+<p class="text-[11px] text-gray-500">Papel fotográfico satinado premium</p>
+</div>
+<div class="space-y-1.5">
+<label class="block text-[12px] font-semibold text-gray-200 uppercase tracking-wider" for="precio-digital">Archivo Digital HD ($ ARS) <span class="text-[#38bdf8]">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">file_download</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white font-mono text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="precio-digital" min="0" placeholder="4200" step="100" type="number" value="4200"/>
+</div>
+<p class="text-[11px] text-gray-500">Descarga digital en alta resolución sin marca</p>
+</div>
+<div class="space-y-1.5">
+<label class="block text-[12px] font-semibold text-gray-200 uppercase tracking-wider" for="contacto-whatsapp">WhatsApp de Pedidos <span class="text-[#38bdf8]">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-400 text-[18px]">chat</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white font-mono text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="contacto-whatsapp" placeholder="+54 9 261 317-5222" type="text" value="+54 9 261 317-5222"/>
+</div>
+<p class="text-[11px] text-gray-500">Recepción y comprobantes de transferencias</p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[#005580]/30">
+<div class="flex items-center gap-2 text-[12px] text-gray-400">
+<span class="material-symbols-outlined text-[#38bdf8] text-[16px]">lock_reset</span>
+<span class="">Configuración almacenada localmente y en sesión permanente</span>
+</div>
+<button class="w-full sm:w-auto px-6 py-2 rounded-lg bg-[#005580] hover:bg-[#0077b3] border border-[#38bdf8]/40 text-white text-[12px] uppercase tracking-wider font-semibold transition-all duration-150 active:scale-[0.98] shadow-sm flex items-center justify-center gap-2" id="btn-guardar-tarifas" onclick="guardarTarifasAdmin()" type="button">
+<span class="material-symbols-outlined text-[17px]">save_as</span>
+<span class="">Guardar Tarifas</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Formulario para Registrar Nueva Galería -->
+<section class="bg-[#161616] rounded-xl border border-[#005580]/50 shadow-sm overflow-hidden">
 <div class="px-5 py-3.5 border-b border-[#005580]/40 bg-[#181818] flex flex-wrap items-center justify-between gap-2">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[#38bdf8] text-[18px]">add_to_photos</span>
@@ -162,7 +222,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">school</span>
-<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white placeholder-gray-500 text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="evento-titulo" placeholder="Ej. Col. San Martín de Tours - Acto de Graduación 2024" required="" type="text">
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white placeholder-gray-500 text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="evento-titulo" placeholder="Ej. Col. San Martín de Tours - Acto de Graduación 2024" required="" type="text"/>
 </div>
 <p class="text-[11px] text-gray-400">Nombre descriptivo que se vinculará al visor fotográfico.</p>
 </div>
@@ -172,7 +232,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">folder_shared</span>
-<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white placeholder-gray-500 text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="evento-drive" placeholder="https://drive.google.com/drive/folders/... o ID directo" required="" type="text">
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white placeholder-gray-500 text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="evento-drive" placeholder="https://drive.google.com/drive/folders/... o ID directo" required="" type="text"/>
 </div>
 <p class="text-[11px] text-gray-400">Se extraerá automáticamente el ID para la integración en <code class="text-[#38bdf8]">galeria.html</code>.</p>
 </div>
@@ -182,7 +242,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">image</span>
-<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white placeholder-gray-500 text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="evento-portada" placeholder="https://... Enlace web o link compartido de Drive" type="text">
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-[#005580]/50 focus:border-[#38bdf8] rounded-lg text-white placeholder-gray-500 text-[14px] focus:ring-1 focus:ring-[#38bdf8] transition-all outline-none" id="evento-portada" placeholder="https://... Enlace web o link compartido de Drive" type="text"/>
 </div>
 <p class="text-[11px] text-gray-400">Si pegas un link de Google Drive, se optimizará a <code class="text-[#38bdf8]">lh3.googleusercontent.com/d/ID=w800</code>.</p>
 </div>
@@ -205,7 +265,7 @@
 </div>
 <div class="flex items-center gap-3">
 <label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" id="check-privada" type="checkbox">
+<input class="sr-only peer" id="check-privada" type="checkbox"/>
 <div class="w-11 h-6 bg-[#222222] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#005580]"></div>
 </label>
 <span class="text-[12px] font-mono font-bold min-w-[75px] text-gray-400" id="privada-status-label">Pública</span>
@@ -220,7 +280,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[#ffb878] text-[18px]">lock</span>
-<input class="w-full pl-11 pr-4 py-2 bg-[#111111] border border-[#ffb878]/50 rounded-lg text-white placeholder-gray-500 font-mono text-[13px] focus:border-[#ffb878] focus:ring-1 focus:ring-[#ffb878] transition-all outline-none" id="evento-password" placeholder="Ej. GRADUACION-2024" type="text">
+<input class="w-full pl-11 pr-4 py-2 bg-[#111111] border border-[#ffb878]/50 rounded-lg text-white placeholder-gray-500 font-mono text-[13px] focus:border-[#ffb878] focus:ring-1 focus:ring-[#ffb878] transition-all outline-none" id="evento-password" placeholder="Ej. GRADUACION-2024" type="text"/>
 </div>
 <p class="text-[11px] text-gray-400">
             Se almacenará en la columna <code class="text-[#ffb878] font-mono">password</code> de la tabla <code class="text-white font-mono">galeria</code>.
@@ -240,13 +300,13 @@
 </div>
 </form>
 </section>
-<!-- Dynamic Real Supabase Galleries Section -->
+<!-- Dynamic Real Supabase Galleries Section (SIN VISOR NI BOTON DE VER GALERIA) -->
 <section class="space-y-4">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#005580]/40 pb-3">
 <div>
 <h2 class="text-xl font-['Raleway'] font-semibold text-white">Galerías en Base de Datos</h2>
 <p class="text-gray-400 text-[13px]">
-        Listado real recuperado directamente desde Supabase. Eliminar es definitivo.
+        Listado oficial de administración de Supabase. Eliminar es definitivo.
       </p>
 </div>
 <div class="flex items-center gap-2">
@@ -261,228 +321,234 @@
 </span>
 </div>
 </div>
-<!-- Grid container populated dynamically from Supabase -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-galerias"><article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-6">
-          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Portada de Memes compartidos" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80'">
-            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
-               <span class="">🔒</span> PRIVADA
-             </span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
-                ID: 6
-              </span>
-            </div>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
-                <span class="font-mono">06 sept 2026</span>
-              </div>
-              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
-                Memes compartidos
-              </h3>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
-              <div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
-               </span>
-               <span class="text-[#ffb878] font-bold tracking-wider">ssaamigos</span>
-             </div>
-              <div class="flex items-center justify-between truncate">
-                <span class="text-gray-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
-                </span>
-                <span class="text-gray-200 truncate max-w-[140px]" title="1BD9lEZq4QAnF0GSerfix0n85HHUI3ux8">1BD9lEZq4QAnF0GSerfix0n85HHUI3ux8</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              
-              <button type="button" onclick="eliminarEvento('6', 'Memes compartidos')" class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" title="Borrar de Supabase">
-                <span class="material-symbols-outlined text-[16px]">delete</span>
-                <span class="text-[11px]">Borrar</span>
-              </button>
-            </div>
-          </div>
-        </article><article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-5">
-          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Portada de Susana compañera" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80'">
-            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
-               <span class="">🔒</span> PRIVADA
-             </span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
-                ID: 5
-              </span>
-            </div>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
-                <span class="font-mono">06 sept 2026</span>
-              </div>
-              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
-                Susana compañera
-              </h3>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
-              <div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
-               </span>
-               <span class="text-[#ffb878] font-bold tracking-wider">susana2026</span>
-             </div>
-              <div class="flex items-center justify-between truncate">
-                <span class="text-gray-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
-                </span>
-                <span class="text-gray-200 truncate max-w-[140px]" title="1Y0RYJbd_Hz13KOYbCcrzISTuc--RArZZ">1Y0RYJbd_Hz13KOYbCcrzISTuc--RArZZ</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              
-              <button type="button" onclick="eliminarEvento('5', 'Susana compañera')" class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" title="Borrar de Supabase">
-                <span class="material-symbols-outlined text-[16px]">delete</span>
-                <span class="text-[11px]">Borrar</span>
-              </button>
-            </div>
-          </div>
-        </article><article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-4">
-          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Portada de Sesión de Brenda" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80'">
-            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
-               <span class="">🔒</span> PRIVADA
-             </span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
-                ID: 4
-              </span>
-            </div>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
-                <span class="font-mono">06 sept 2026</span>
-              </div>
-              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
-                Sesión de Brenda
-              </h3>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
-              <div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
-               </span>
-               <span class="text-[#ffb878] font-bold tracking-wider">brenda2024</span>
-             </div>
-              <div class="flex items-center justify-between truncate">
-                <span class="text-gray-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
-                </span>
-                <span class="text-gray-200 truncate max-w-[140px]" title="1KcKqJnYUobJaRdsrfBVgyVrTRer2IcKS">1KcKqJnYUobJaRdsrfBVgyVrTRer2IcKS</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              
-              <button type="button" onclick="eliminarEvento('4', 'Sesión de Brenda')" class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" title="Borrar de Supabase">
-                <span class="material-symbols-outlined text-[16px]">delete</span>
-                <span class="text-[11px]">Borrar</span>
-              </button>
-            </div>
-          </div>
-        </article><article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-3">
-          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
-            <img src="https://lh3.googleusercontent.com/d/1VJNz5LV4LbyrXunBf38Qc7Q08C6yia9A=w800" alt="Portada de Promesa a La Bandera TT 2026 Tarde" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80'">
-            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#38bdf8]/60 text-[#38bdf8] font-mono text-[10px] font-bold tracking-wider">
-               <span class="">🌐</span> PÚBLICA
-             </span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
-                ID: 3
-              </span>
-            </div>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
-                <span class="font-mono">06 sept 2026</span>
-              </div>
-              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
-                Promesa a La Bandera TT 2026 Tarde
-              </h3>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
-              <div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">lock_open</span> Acceso:
-               </span>
-               <span class="text-[#38bdf8] font-semibold">Público Libre</span>
-             </div>
-              <div class="flex items-center justify-between truncate">
-                <span class="text-gray-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
-                </span>
-                <span class="text-gray-200 truncate max-w-[140px]" title="1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v">1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              
-              <button type="button" onclick="eliminarEvento('3', 'Promesa a La Bandera TT 2026 Tarde')" class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" title="Borrar de Supabase">
-                <span class="material-symbols-outlined text-[16px]">delete</span>
-                <span class="text-[11px]">Borrar</span>
-              </button>
-            </div>
-          </div>
-        </article><article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-1">
-          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Portada de Promesa a La Bandera TM 2026 Tarde" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&amp;fit=crop&amp;w=800&amp;q=80'">
-            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#38bdf8]/60 text-[#38bdf8] font-mono text-[10px] font-bold tracking-wider">
-               <span class="">🌐</span> PÚBLICA
-             </span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
-                ID: 1
-              </span>
-            </div>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
-                <span class="font-mono">06 sept 2026</span>
-              </div>
-              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
-                Promesa a La Bandera TM 2026 Tarde
-              </h3>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
-              <div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">lock_open</span> Acceso:
-               </span>
-               <span class="text-[#38bdf8] font-semibold">Público Libre</span>
-             </div>
-              <div class="flex items-center justify-between truncate">
-                <span class="text-gray-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
-                </span>
-                <span class="text-gray-200 truncate max-w-[140px]" title="1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v">1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              
-              <button type="button" onclick="eliminarEvento('1', 'Promesa a La Bandera TM 2026 Tarde')" class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" title="Borrar de Supabase">
-                <span class="material-symbols-outlined text-[16px]">delete</span>
-                <span class="text-[11px]">Borrar</span>
-              </button>
-            </div>
-          </div>
-        </article></div>
+<!-- Grid container populated dynamically from Supabase (Solo Administración) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-galerias">
+<!-- Card 6 -->
+<article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-6">
+<div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
+<img alt="Portada de Memes compartidos" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9LDVYIw4c_hBUPdk6ViMiHtymC8z-FU3lRaVCX6T7lJ8U9wHXJJS2hHZTPMcX-8xlFDTQPlSQCFsFbT3K4855ocVqI7F-y6EtMUPFo-n-Lhu2LPaRLlyLJLohsKCZGG7c0l8XEFbgwdOpsnnQnFmUvzrf0MxKcRV3h1bkDOyyGrJe2E6N9PEeXdJ5vWsDxAUy11fqAA_ri-VcBtWymYVXj9P6kMhXlOCLeXrMBchZLFAGM89s1nl"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
+          🔒 PRIVADA
+        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
+          ID: 6
+        </span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-gray-400">
+<span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
+<span class="font-mono">06 sept 2026</span>
+</div>
+<h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
+          Memes compartidos
+        </h3>
+</div>
+<div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
+<div class="flex items-center justify-between text-[11px] font-mono">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
+          </span>
+<span class="text-[#ffb878] font-bold tracking-wider">ssaamigos</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
+          </span>
+<span class="text-gray-200 truncate max-w-[140px]" title="1BD9lEZq4QAnF0GSerfix0n85HHUI3ux8">1BD9lEZq4QAnF0GSerfix0n85HHUI3ux8</span>
+</div>
+</div>
+<div class="flex items-center justify-end pt-1">
+<button class="w-full py-2 px-3 rounded-lg bg-red-950/20 hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('6', 'Memes compartidos')" title="Borrar de Supabase" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Borrar Galería</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-5">
+<div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
+<img alt="Portada de Susana compañera" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGuSHavFL6WTm-CywcJYvDZL_vnB_x73NcE_U2QN820NubHTPQ57R8XM2MwKvsOmFX-Op-FKJ5fxG096IDihbcgiYBmxFy7GG8xm5BFgH-7elXqeLBhNfZ2LeWPtJTwc6kfCJM7mNNwMQJvTD1sg3ruRF3-14CnnNYrcGeBI3qZgvz-ct9i1aS_rNl4LkzvAlHHwYk3iGGRGonqXTVuStx2iPifpLP71ptRjZd6r-MxZdhM9i9_X41"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
+          🔒 PRIVADA
+        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
+          ID: 5
+        </span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-gray-400">
+<span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
+<span class="font-mono">06 sept 2026</span>
+</div>
+<h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
+          Susana compañera
+        </h3>
+</div>
+<div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
+<div class="flex items-center justify-between text-[11px] font-mono">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
+          </span>
+<span class="text-[#ffb878] font-bold tracking-wider">susana2026</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
+          </span>
+<span class="text-gray-200 truncate max-w-[140px]" title="1Y0RYJbd_Hz13KOYbCcrzISTuc--RArZZ">1Y0RYJbd_Hz13KOYbCcrzISTuc--RArZZ</span>
+</div>
+</div>
+<div class="flex items-center justify-end pt-1">
+<button class="w-full py-2 px-3 rounded-lg bg-red-950/20 hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('5', 'Susana compañera')" title="Borrar de Supabase" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Borrar Galería</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-4">
+<div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
+<img alt="Portada de Sesión de Brenda" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU4nhl_Kk0j5ugA1A7nmXKfvsEFj23cNIKchAlbMUk1_3bpV5nGgcXYzh9PYpyIqIs3LoMQhDb7WdRc2RT3vc4232AFuehX0ZTJrYJDWc4FRiEIQJ6JdpvFvlCc3q3OG-gjbWIckCiKlyVj6NHRiw7THzwj11Cum8mg2OPP-d275hf3S0YFExHY6aOaNqariwBd809fxnm8_MOMGsKNBR7F680TvhpIHEmh3WApU8r3uEKHHygGdYl"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
+          🔒 PRIVADA
+        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
+          ID: 4
+        </span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-gray-400">
+<span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
+<span class="font-mono">06 sept 2026</span>
+</div>
+<h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
+          Sesión de Brenda
+        </h3>
+</div>
+<div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
+<div class="flex items-center justify-between text-[11px] font-mono">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
+          </span>
+<span class="text-[#ffb878] font-bold tracking-wider">brenda2024</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
+          </span>
+<span class="text-gray-200 truncate max-w-[140px]" title="1KcKqJnYUobJaRdsrfBVgyVrTRer2IcKS">1KcKqJnYUobJaRdsrfBVgyVrTRer2IcKS</span>
+</div>
+</div>
+<div class="flex items-center justify-end pt-1">
+<button class="w-full py-2 px-3 rounded-lg bg-red-950/20 hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('4', 'Sesión de Brenda')" title="Borrar de Supabase" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Borrar Galería</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-3">
+<div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
+<img alt="Portada de Promesa a La Bandera TT 2026 Tarde" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/d/1VJNz5LV4LbyrXunBf38Qc7Q08C6yia9A=w800"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#38bdf8]/60 text-[#38bdf8] font-mono text-[10px] font-bold tracking-wider">
+          🌐 PÚBLICA
+        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
+          ID: 3
+        </span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-gray-400">
+<span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
+<span class="font-mono">06 sept 2026</span>
+</div>
+<h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
+          Promesa a La Bandera TT 2026 Tarde
+        </h3>
+</div>
+<div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
+<div class="flex items-center justify-between text-[11px] font-mono">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">lock_open</span> Acceso:
+          </span>
+<span class="text-[#38bdf8] font-semibold">Público Libre</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
+          </span>
+<span class="text-gray-200 truncate max-w-[140px]" title="1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v">1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v</span>
+</div>
+</div>
+<div class="flex items-center justify-end pt-1">
+<button class="w-full py-2 px-3 rounded-lg bg-red-950/20 hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('3', 'Promesa a La Bandera TT 2026 Tarde')" title="Borrar de Supabase" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Borrar Galería</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 1 -->
+<article class="bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]" id="galeria-card-1">
+<div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
+<img alt="Portada de Promesa a La Bandera TM 2026 Tarde" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNuqB7rUbsWqDetV-wrGYZtOqofFKRypSnAKVc7Xel8_jiRgwtm8xHupVlwigCfL2AmeexugCEA6A2D67bAf8tDePvBeBJvWDkrWUDy9k5k3JxJ3IV9NeRhGFWJOIMOEoXddqtLIobRe_ikF-WyB_bPvxD7RUQdEeA8mT2BDTd7ZsHcGZ6tdWcCj9BTUaTN1pT58oEoxVJiaHwfKI0DEqbXt3WrUb8pmIcBivp5_Nmebe_gf8Lqjqu"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#38bdf8]/60 text-[#38bdf8] font-mono text-[10px] font-bold tracking-wider">
+          🌐 PÚBLICA
+        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
+          ID: 1
+        </span>
+</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-gray-400">
+<span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
+<span class="font-mono">06 sept 2026</span>
+</div>
+<h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
+          Promesa a La Bandera TM 2026 Tarde
+        </h3>
+</div>
+<div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
+<div class="flex items-center justify-between text-[11px] font-mono">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">lock_open</span> Acceso:
+          </span>
+<span class="text-[#38bdf8] font-semibold">Público Libre</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-gray-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
+          </span>
+<span class="text-gray-200 truncate max-w-[140px]" title="1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v">1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v</span>
+</div>
+</div>
+<div class="flex items-center justify-end pt-1">
+<button class="w-full py-2 px-3 rounded-lg bg-red-950/20 hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('1', 'Promesa a La Bandera TM 2026 Tarde')" title="Borrar de Supabase" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Borrar Galería</span>
+</button>
+</div>
+</div>
+</article>
+</div>
 </section>
 <!-- Supabase Realtime State Toast -->
 <div class="fixed bottom-6 right-6 max-w-sm bg-[#181818] border border-[#005580] p-4 rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.85)] flex items-start gap-3 transform translate-y-32 opacity-0 pointer-events-none transition-all duration-300 z-50" id="toast-feedback">
@@ -517,6 +583,29 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 
   const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL.replace(/\/rest\/v1\/?$/, ''), SUPABASE_KEY) : null;
+
+  // Tarifas Management via localStorage
+  function cargarTarifasAdmin() {
+    const config = JSON.parse(localStorage.getItem('sergio_tarifas_admin') || '{}');
+    if (config.impresa) document.getElementById('precio-impresa').value = config.impresa;
+    if (config.digital) document.getElementById('precio-digital').value = config.digital;
+    if (config.whatsapp) document.getElementById('contacto-whatsapp').value = config.whatsapp;
+  }
+
+  function guardarTarifasAdmin() {
+    const impresa = document.getElementById('precio-impresa').value.trim();
+    const digital = document.getElementById('precio-digital').value.trim();
+    const whatsapp = document.getElementById('contacto-whatsapp').value.trim();
+
+    const config = {
+      impresa: impresa || "7000",
+      digital: digital || "4200",
+      whatsapp: whatsapp || "+54 9 261 317-5222"
+    };
+
+    localStorage.setItem('sergio_tarifas_admin', JSON.stringify(config));
+    showToast('Tarifas Guardadas', 'Precios oficiales actualizados para el visor.');
+  }
 
   // Drive Link / ID Converter helper
   function extractDriveId(input) {
@@ -583,7 +672,7 @@
     }, 4000);
   }
 
-  // Render cards based strictly on real Supabase items
+  // Render cards strictly for administration (without photo viewer / without Ver Galeria button)
   function renderGalerias(items) {
     const grid = document.getElementById('grid-galerias');
     const totalCount = document.getElementById('total-count');
@@ -629,9 +718,6 @@
       const id = item.id;
       const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Reciente';
 
-      // Build target: galeria.html?id=FOLDER_ID (and pass title / key when available)
-      const viewUrl = `galeria.html?id=${encodeURIComponent(folderId)}`;
-
       const card = document.createElement('article');
       card.className = "bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]";
       card.id = `galeria-card-${id}`;
@@ -658,6 +744,7 @@
              <span class="text-[#38bdf8] font-semibold">Público Libre</span>
            </div>`;
 
+      // Render exclusively focused on admin tasks: NO "Ver Galeria" button
       card.innerHTML = `
         <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
           <img 
@@ -692,22 +779,15 @@
               <span class="text-gray-200 truncate max-w-[140px]" title="${folderId}">${folderId || 'Sin ID'}</span>
             </div>
           </div>
-          <div class="flex items-center gap-2 pt-1">
-            <a 
-              href="${viewUrl}" 
-              class="flex-1 py-2 px-3 rounded-lg bg-[#005580]/40 hover:bg-[#005580] border border-[#005580] hover:border-[#38bdf8] text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all"
-            >
-              <span class="material-symbols-outlined text-[16px] text-[#38bdf8]">visibility</span>
-              <span>Ver Galería</span>
-            </a>
+          <div class="flex items-center justify-end pt-1">
             <button 
               type="button" 
               onclick="eliminarEvento('${id}', '${titulo.replace(/'/g, "\\'")}')" 
-              class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]"
+              class="w-full py-2 px-3 rounded-lg bg-red-950/20 hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98]"
               title="Borrar de Supabase"
             >
               <span class="material-symbols-outlined text-[16px]">delete</span>
-              <span class="text-[11px]">Borrar</span>
+              <span>Borrar Galería</span>
             </button>
           </div>
         </div>
@@ -735,8 +815,6 @@
         badge.textContent = 'Error Conexión';
         badge.className = "text-red-400 font-mono text-[11px]";
       }
-      showToast('Error Supabase', 'No se pudo inicializar el cliente de Supabase.', true);
-      renderGalerias([]);
       return;
     }
 
@@ -753,7 +831,6 @@
           badge.className = "text-red-400 font-mono text-[11px]";
         }
         showToast('Error Supabase', error.message || 'Error consultando tabla galeria', true);
-        renderGalerias([]);
       } else {
         if (indicator) {
           indicator.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Supabase Conectado`;
@@ -772,7 +849,6 @@
         badge.className = "text-red-400 font-mono text-[11px]";
       }
       showToast('Excepción', 'No se pudo conectar a la base de datos.', true);
-      renderGalerias([]);
     }
   }
 
@@ -822,7 +898,9 @@
 
   // Document init & Form binding
   document.addEventListener('DOMContentLoaded', () => {
-    // Show Supabase connected in green right away
+    // Inicializar valores de tarifas guardadas
+    cargarTarifasAdmin();
+
     const indicator = document.getElementById('supabase-indicator');
     const badge = document.getElementById('db-status-badge');
     if (indicator) {
@@ -947,156 +1025,4 @@
     cargarGaleriasReal();
   });
 </script>
-<script>
-  // Redefinición mejorada de renderGalerias para construir la URL exacta de visualización solicitada
-  (function() {
-    const originalRenderGalerias = window.renderGalerias;
-    window.renderGalerias = function(items) {
-      const grid = document.getElementById('grid-galerias');
-      const totalCount = document.getElementById('total-count');
-      const privateCount = document.getElementById('private-count');
-      const publicCount = document.getElementById('public-count');
-
-      if (!grid) return;
-      grid.innerHTML = '';
-
-      const total = items ? items.length : 0;
-      let privates = 0;
-      let publics = 0;
-
-      if (!items || total === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full py-16 px-4 text-center rounded-xl bg-[#161616] border border-[#005580]/40 space-y-3">
-            <div class="w-12 h-12 rounded-full bg-[#1c1c1c] border border-[#005580]/40 mx-auto flex items-center justify-center text-gray-400">
-              <span class="material-symbols-outlined text-[24px]">folder_off</span>
-            </div>
-            <h3 class="text-base font-semibold text-white font-['Raleway']">No hay galerías registradas</h3>
-            <p class="text-gray-400 max-w-md mx-auto text-[13px]">
-              La tabla <code class="text-[#38bdf8] font-mono bg-[#111111] px-1.5 py-0.5 rounded border border-[#005580]/30">galeria</code> está vacía. Registre la primera galería de Google Drive arriba.
-            </p>
-          </div>
-        `;
-        if (totalCount) totalCount.textContent = '0';
-        if (privateCount) privateCount.textContent = '0';
-        if (publicCount) publicCount.textContent = '0';
-        return;
-      }
-
-      items.forEach((item) => {
-        const isPrivada = Boolean(item.es_privada || item.privada);
-        if (isPrivada) privates++;
-        else publics++;
-
-        const titulo = item.titulo || item.nombre || 'Galería Sin Título';
-        const rawDrive = item.drive_url || item.drive_id || '';
-        const folderId = typeof extractDriveId === 'function' ? extractDriveId(rawDrive) : rawDrive;
-        const password = item.password || item.clave || '';
-        const portadaVisual = typeof formatImageCoverUrl === 'function' ? formatImageCoverUrl(item.portada_url || item.portada || rawDrive) : (item.portada_url || '');
-        const id = item.id;
-        const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Reciente';
-
-        // URL exacta con folder, id, titulo y key si corresponde
-        let viewUrl = `galeria.html?folder=${encodeURIComponent(folderId)}&id=${encodeURIComponent(id)}&titulo=${encodeURIComponent(titulo)}`;
-        if (isPrivada && password) {
-          viewUrl += `&key=${encodeURIComponent(password)}`;
-        }
-
-        const card = document.createElement('article');
-        card.className = "bg-[#161616] border border-[#005580]/50 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-[#38bdf8]";
-        card.id = `galeria-card-${id}`;
-
-        const badge = isPrivada 
-          ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#ffb878]/60 text-[#ffb878] font-mono text-[10px] font-bold tracking-wider">
-               <span>🔒</span> PRIVADA
-             </span>`
-          : `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-[#38bdf8]/60 text-[#38bdf8] font-mono text-[10px] font-bold tracking-wider">
-               <span>🌐</span> PÚBLICA
-             </span>`;
-
-        const credentialsDisplay = isPrivada
-          ? `<div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#ffb878]">key</span> Clave:
-               </span>
-               <span class="text-[#ffb878] font-bold tracking-wider">${password || 'PROTEGIDA'}</span>
-             </div>`
-          : `<div class="flex items-center justify-between text-[11px] font-mono">
-               <span class="text-gray-400 flex items-center gap-1">
-                 <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">lock_open</span> Acceso:
-               </span>
-               <span class="text-[#38bdf8] font-semibold">Público Libre</span>
-             </div>`;
-
-        card.innerHTML = `
-          <div class="relative h-44 w-full overflow-hidden bg-[#1c1c1c]">
-            <img 
-              src="${portadaVisual}" 
-              alt="Portada de ${titulo}" 
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80'"
-            />
-            <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-              ${badge}
-              <span class="inline-flex items-center px-2 py-0.5 rounded bg-black/75 text-[10px] font-mono text-gray-300 border border-white/10">
-                ID: ${id}
-              </span>
-            </div>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-            <div class="space-y-1">
-              <div class="flex items-center justify-between text-[11px] text-gray-400">
-                <span class="uppercase tracking-wider font-mono">Sergio R. Molina</span>
-                <span class="font-mono">${fecha}</span>
-              </div>
-              <h3 class="text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors leading-snug font-['Raleway']">
-                ${titulo}
-              </h3>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#111111] border border-[#005580]/40 space-y-1.5 text-[11px] font-mono">
-              ${credentialsDisplay}
-              <div class="flex items-center justify-between truncate">
-                <span class="text-gray-400 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px] text-[#38bdf8]">folder</span> Drive ID:
-                </span>
-                <span class="text-gray-200 truncate max-w-[140px]" title="${folderId}">${folderId || 'Sin ID'}</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              <a 
-                href="${viewUrl}"
-                class="flex-1 py-2 px-3 rounded-lg bg-[#005580]/40 hover:bg-[#005580] border border-[#005580] hover:border-[#38bdf8] text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all"
-              >
-                <span class="material-symbols-outlined text-[16px] text-[#38bdf8]">visibility</span>
-                <span>Ver Galería</span>
-              </a>
-              <button 
-                type="button" 
-                onclick="eliminarEvento('${id}', '${titulo.replace(/'/g, "\\'")}')" 
-                class="h-9 px-3 rounded-lg bg-transparent hover:bg-red-950/40 border border-red-800/40 hover:border-red-500 text-red-400 hover:text-red-300 text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]"
-                title="Borrar de Supabase"
-              >
-                <span class="material-symbols-outlined text-[16px]">delete</span>
-                <span class="text-[11px]">Borrar</span>
-              </button>
-            </div>
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
-
-      if (totalCount) totalCount.textContent = total;
-      if (privateCount) privateCount.textContent = privates;
-      if (publicCount) publicCount.textContent = publics;
-    };
-
-    // Recargar inmediatamente para aplicar el render correcto
-    if (typeof cargarGaleriasReal === 'function') {
-      cargarGaleriasReal();
-    }
-  })();
-</script>
-
-
-
 </body></html>
