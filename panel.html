@@ -1,14 +1,16 @@
-<!DOCTYPE html><html class="dark" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Panel de Control | Sergio Ricardo Molina - Atelier Darkroom</title>
 <!-- Google Fonts: Raleway & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Tailwind Theme Configuration -->
@@ -119,346 +121,331 @@
 <body class="bg-[#111111] text-on-surface antialiased min-h-screen selection:bg-primary-container selection:text-white">
 <!-- Top Navigation Shell (Incorporating TopNavBar anchors & exact requested panel links) -->
 <header class="sticky top-0 z-50 bg-[#111111]/95 backdrop-blur-md border-b border-outline-variant/20 py-3.5 px-space-md sm:px-space-xl transition-all">
-  <div class="max-w-container-max mx-auto flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <a href="index.html" class="w-9 h-9 rounded-full bg-surface-container border border-outline-variant/30 hover:border-primary flex items-center justify-center text-white hover:text-primary transition-all duration-150" title="Volver al Portafolio">
-        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-      </a>
-      <div class="flex flex-col">
-        <span class="text-label-md font-bold tracking-widest uppercase text-white font-headline-sm">Sergio Ricardo Molina</span>
-        <span class="text-[11px] text-outline font-medium tracking-wider">Fotografía Profesional · Panel Atelier</span>
-      </div>
-    </div>
-    <div class="flex items-center gap-space-sm sm:gap-space-md">
-      <a href="eventos.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#181818] border border-outline-variant/30 hover:border-primary text-[13px] text-on-surface hover:text-white transition-all duration-150">
-        <span class="material-symbols-outlined text-[16px] text-primary">photo_library</span>
-        <span class="">Ver Eventos Públicos</span>
-      </a>
-      <div class="h-4 w-px bg-outline-variant/30 hidden sm:block"></div>
-      <div class="w-8 h-8 rounded-full border border-primary/40 bg-surface-container-high flex items-center justify-center text-primary font-headline-sm text-label-sm font-semibold">
+<div class="max-w-container-max mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<a class="w-9 h-9 rounded-full bg-surface-container border border-outline-variant/30 hover:border-primary flex items-center justify-center text-white hover:text-primary transition-all duration-150" href="index.html" title="Volver al Portafolio">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+</a>
+<div class="flex flex-col">
+<span class="text-label-md font-bold tracking-widest uppercase text-white font-headline-sm">Sergio Ricardo Molina</span>
+<span class="text-[11px] text-outline font-medium tracking-wider">Fotografía Profesional · Panel Atelier</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm sm:gap-space-md">
+<a class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#181818] border border-outline-variant/30 hover:border-primary text-[13px] text-on-surface hover:text-white transition-all duration-150" href="eventos.html">
+<span class="material-symbols-outlined text-[16px] text-primary">photo_library</span>
+<span class="">Ver Eventos Públicos</span>
+</a>
+<div class="h-4 w-px bg-outline-variant/30 hidden sm:block"></div>
+<div class="w-8 h-8 rounded-full border border-primary/40 bg-surface-container-high flex items-center justify-center text-primary font-headline-sm text-label-sm font-semibold">
         SM
       </div>
-    </div>
-  </div>
+</div>
+</div>
 </header>
 <!-- Main Canvas Layout with Sidebar and Content Studio -->
 <div class="max-w-container-max mx-auto flex flex-col lg:flex-row min-h-[calc(100vh-4rem)]">
 <!-- Collapsible/Persistent Atelier Sidebar (SideNavBar specs) -->
 <aside class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-outline-variant/20 bg-[#111111] p-space-md flex flex-col justify-between shrink-0">
-  <div class="space-y-space-md">
-    <div class="p-3 rounded-xl bg-[#161616] border border-outline-variant/20 flex items-center gap-3">
-      <div class="w-9 h-9 rounded-lg bg-[#1c1c1c] border border-primary-container/40 flex items-center justify-center text-primary shrink-0">
-        <span class="material-symbols-outlined text-[20px]">photo_camera</span>
-      </div>
-      <div class="overflow-hidden">
-        <p class="text-label-md font-semibold text-white truncate">Sergio R. Molina</p>
-        <p class="text-[11px] text-primary flex items-center gap-1.5 truncate mt-0.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Supabase Online
+<div class="space-y-space-md">
+<div class="p-3 rounded-xl bg-[#161616] border border-outline-variant/20 flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-[#1c1c1c] border border-primary-container/40 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-label-md font-semibold text-white truncate">Sergio R. Molina</p>
+<p class="text-[11px] text-primary flex items-center gap-1.5 truncate mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Supabase Online
         </p>
-      </div>
-    </div>
-    <nav class="space-y-1 font-body-md">
-      <button class="w-full flex items-center gap-2.5 bg-primary-container/40 border border-primary-container text-white rounded-lg px-3 py-2 text-[13px] font-semibold transition-all" type="button">
-        <span class="material-symbols-outlined text-[18px] text-primary">add_to_photos</span>
-        <span class="">Gestor de Galerías</span>
-      </button>
-      <a class="flex items-center gap-2.5 text-on-surface-variant hover:text-white hover:bg-surface-container px-3 py-2 text-[13px] rounded-lg transition-colors" href="eventos.html">
-        <span class="material-symbols-outlined text-[18px]">public</span>
-        <span class="">Colección Pública</span>
-      </a>
-      <div class="flex items-center justify-between text-on-surface-variant hover:text-white hover:bg-surface-container px-3 py-2 text-[13px] rounded-lg transition-colors cursor-pointer">
-        <div class="flex items-center gap-2.5">
-          <span class="material-symbols-outlined text-[18px]">cloud_sync</span>
-          <span class="">Lotes y Drive</span>
-        </div>
-        <span class="text-[10px] bg-surface-container px-1.5 py-0.5 rounded text-outline font-mono">v2.4</span>
-      </div>
-      <div class="flex items-center gap-2.5 text-on-surface-variant hover:text-white hover:bg-surface-container px-3 py-2 text-[13px] rounded-lg transition-colors cursor-pointer">
-        <span class="material-symbols-outlined text-[18px]">lock_clock</span>
-        <span class="">Bóvedas Privadas</span>
-      </div>
-    </nav>
-  </div>
-  <div class="pt-4 border-t border-outline-variant/20 mt-6 space-y-2">
-    <div class="text-[11px] text-outline uppercase tracking-wider px-1 font-semibold">Infraestructura</div>
-    <div class="flex items-center justify-between text-[12px] px-1 text-on-surface-variant">
-      <span class="">Servicio Supabase</span>
-      <span class="text-emerald-500 font-mono text-[11px]">Conectado</span>
-    </div>
-    <div class="flex items-center justify-between text-[12px] px-1 text-on-surface-variant">
-      <span class="">API Drive Batch</span>
-      <span class="text-primary font-mono text-[11px]">En espera</span>
-    </div>
-  </div>
+</div>
+</div>
+<nav class="space-y-1 font-body-md">
+<button class="w-full flex items-center gap-2.5 bg-primary-container/40 border border-primary-container text-white rounded-lg px-3 py-2 text-[13px] font-semibold transition-all" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">add_to_photos</span>
+<span class="">Gestor de Galerías</span>
+</button>
+<a class="flex items-center gap-2.5 text-on-surface-variant hover:text-white hover:bg-surface-container px-3 py-2 text-[13px] rounded-lg transition-colors" href="eventos.html">
+<span class="material-symbols-outlined text-[18px]">public</span>
+<span class="">Colección Pública</span>
+</a>
+<div class="flex items-center justify-between text-on-surface-variant hover:text-white hover:bg-surface-container px-3 py-2 text-[13px] rounded-lg transition-colors cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+<span class="">Lotes y Drive</span>
+</div>
+<span class="text-[10px] bg-surface-container px-1.5 py-0.5 rounded text-outline font-mono">v2.4</span>
+</div>
+<div class="flex items-center gap-2.5 text-on-surface-variant hover:text-white hover:bg-surface-container px-3 py-2 text-[13px] rounded-lg transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">lock_clock</span>
+<span class="">Bóvedas Privadas</span>
+</div>
+</nav>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 mt-6 space-y-2">
+<div class="text-[11px] text-outline uppercase tracking-wider px-1 font-semibold">Infraestructura</div>
+<div class="flex items-center justify-between text-[12px] px-1 text-on-surface-variant">
+<span class="">Servicio Supabase</span>
+<span class="text-emerald-500 font-mono text-[11px]">Conectado</span>
+</div>
+<div class="flex items-center justify-between text-[12px] px-1 text-on-surface-variant">
+<span class="">API Drive Batch</span>
+<span class="text-primary font-mono text-[11px]">En espera</span>
+</div>
+</div>
 </aside>
 <!-- Content Workspace -->
 <main class="flex-1 p-space-md sm:p-space-xl lg:p-space-2xl overflow-y-auto space-y-space-2xl">
 <!-- Studio Header Section -->
 <section class="flex flex-col md:flex-row md:items-end justify-between gap-space-md border-b border-outline-variant/20 pb-space-lg">
-  <div class="space-y-1">
-    <div class="flex items-center gap-2 text-label-sm font-label-sm text-primary tracking-widest uppercase font-semibold">
-      <span class="material-symbols-outlined text-[15px]">tune</span>
-      <span class="">Consola Darkroom · Gestión Escolar y Eventos</span>
-    </div>
-    <h1 class="text-headline-md sm:text-headline-lg font-headline-md text-white font-semibold tracking-tight">Panel de Control de Fotógrafo</h1>
-    <p class="text-body-md text-on-surface-variant max-w-2xl text-[14px]">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-primary tracking-widest uppercase font-semibold">
+<span class="material-symbols-outlined text-[15px]">tune</span>
+<span class="">Consola Darkroom · Gestión Escolar y Eventos</span>
+</div>
+<h1 class="text-headline-md sm:text-headline-lg font-headline-md text-white font-semibold tracking-tight">Panel de Control de Fotógrafo</h1>
+<p class="text-body-md text-on-surface-variant max-w-2xl text-[14px]">
       Gestión y sincronización de carpetas de Google Drive y catálogos encriptados con la base de datos Supabase <code class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-primary text-[12px]">galeria</code>.
     </p>
-  </div>
-  <div class="flex items-center gap-2 shrink-0">
-    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant/30 bg-[#161616] text-[12px] text-on-surface font-medium">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Modo Live Darkroom
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant/30 bg-[#161616] text-[12px] text-on-surface font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Modo Live Darkroom
     </span>
-  </div>
+</div>
 </section>
 <!-- Supabase Ingestion Form (Card Level 1: #222222, 1px border) -->
 <section class="bg-[#161616] rounded-xl border border-outline-variant/20 shadow-sm overflow-hidden">
-  <div class="px- space-md sm:px-space-lg py-3.5 border-b border-outline-variant/20 bg-[#191919] flex flex-wrap items-center justify-between gap-2">
-    <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-primary text-[18px]">add_to_photos</span>
-      <h2 class="text-headline-sm font-semibold text-white text-[15px]">Registrar Nueva Galería en 'galeria'</h2>
-    </div>
-    <span class="text-[11px] font-mono text-outline uppercase tracking-wider">Tabla: public.galeria</span>
-  </div>
-  <form class="p-space-md sm:p-space-lg space-y-space-md sm:space-y-space-lg" id="form-galeria">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md sm:gap-space-lg">
-      <div class="space-y-1.5 md:col-span-2">
-        <label class="block text-[12px] font-semibold text-on-surface uppercase tracking-wider" for="evento-titulo">
+<div class="px- space-md sm:px-space-lg py-3.5 border-b border-outline-variant/20 bg-[#191919] flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">add_to_photos</span>
+<h2 class="text-headline-sm font-semibold text-white text-[15px]">Registrar Nueva Galería en 'galeria'</h2>
+</div>
+<span class="text-[11px] font-mono text-outline uppercase tracking-wider">Tabla: public.galeria</span>
+</div>
+<form class="p-space-md sm:p-space-lg space-y-space-md sm:space-y-space-lg" id="form-galeria">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md sm:gap-space-lg">
+<div class="space-y-1.5 md:col-span-2">
+<label class="block text-[12px] font-semibold text-on-surface uppercase tracking-wider" for="evento-titulo">
           Título del Evento o Colegio <span class="text-primary">*</span>
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">school</span>
-          <input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-outline-variant/30 focus:border-primary-container rounded-lg text-white placeholder-outline-variant text-body-md focus:ring-1 focus:ring-primary-container transition-all outline-none text-[14px]" id="evento-titulo" placeholder="Ej. Col. San Martín de Tours - Graduación Bachilleres 2024" required="" type="text">
-        </div>
-        <p class="text-[11px] text-outline">Nombre visible en cabecera pública y catálogo de egresados.</p>
-      </div>
-      <div class="space-y-1.5">
-        <label class="block text-[12px] font-semibold text-on-surface uppercase tracking-wider" for="evento-drive">
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">school</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-outline-variant/30 focus:border-primary-container rounded-lg text-white placeholder-outline-variant text-body-md focus:ring-1 focus:ring-primary-container transition-all outline-none text-[14px]" id="evento-titulo" placeholder="Ej. Col. San Martín de Tours - Graduación Bachilleres 2024" required="" type="text"/>
+</div>
+<p class="text-[11px] text-outline">Nombre visible en cabecera pública y catálogo de egresados.</p>
+</div>
+<div class="space-y-1.5">
+<label class="block text-[12px] font-semibold text-on-surface uppercase tracking-wider" for="evento-drive">
           Enlace o ID de Carpeta Google Drive <span class="text-primary">*</span>
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">folder_shared</span>
-          <input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-outline-variant/30 focus:border-primary-container rounded-lg text-white placeholder-outline-variant text-body-md focus:ring-1 focus:ring-primary-container transition-all outline-none text-[14px]" id="evento-drive" placeholder="https://drive.google.com/drive/folders/1aBcD..." required="" type="text">
-        </div>
-        <p class="text-[11px] text-outline">El motor extraerá metadatos y lotes en alta resolución.</p>
-      </div>
-      <div class="space-y-1.5">
-        <label class="block text-[12px] font-semibold text-on-surface uppercase tracking-wider" for="evento-portada">
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">folder_shared</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-outline-variant/30 focus:border-primary-container rounded-lg text-white placeholder-outline-variant text-body-md focus:ring-1 focus:ring-primary-container transition-all outline-none text-[14px]" id="evento-drive" placeholder="https://drive.google.com/drive/folders/1aBcD..." required="" type="text"/>
+</div>
+<p class="text-[11px] text-outline">El motor extraerá metadatos y lotes en alta resolución.</p>
+</div>
+<div class="space-y-1.5">
+<label class="block text-[12px] font-semibold text-on-surface uppercase tracking-wider" for="evento-portada">
           Enlace de Portada Manual <span class="text-outline font-normal lowercase">(opcional)</span>
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">image</span>
-          <input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-outline-variant/30 focus:border-primary-container rounded-lg text-white placeholder-outline-variant text-body-md focus:ring-1 focus:ring-primary-container transition-all outline-none text-[14px]" id="evento-portada" placeholder="https://images.unsplash.com/... o CDN de fotografía" type="url">
-        </div>
-        <p class="text-[11px] text-outline">Si se omite, se utilizará la portada predeterminada del lote.</p>
-      </div>
-    </div>
-    <div class="p-3.5 rounded-lg bg-[#121212] border border-outline-variant/20 space-y-3">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
-        <div class="flex items-start sm:items-center gap-3">
-          <div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined text-[17px]">shield</span>
-          </div>
-          <div>
-            <label class="text-[14px] font-semibold text-white cursor-pointer select-none" for="check-privada">
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">image</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#111111] border border-outline-variant/30 focus:border-primary-container rounded-lg text-white placeholder-outline-variant text-body-md focus:ring-1 focus:ring-primary-container transition-all outline-none text-[14px]" id="evento-portada" placeholder="https://images.unsplash.com/... o CDN de fotografía" type="url"/>
+</div>
+<p class="text-[11px] text-outline">Si se omite, se utilizará la portada predeterminada del lote.</p>
+</div>
+</div>
+<div class="p-3.5 rounded-lg bg-[#121212] border border-outline-variant/20 space-y-3">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-start sm:items-center gap-3">
+<div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[17px]">shield</span>
+</div>
+<div>
+<label class="text-[14px] font-semibold text-white cursor-pointer select-none" for="check-privada">
               ¿Es galería privada?
             </label>
-            <p class="text-[12px] text-on-surface-variant">
+<p class="text-[12px] text-on-surface-variant">
               Protege el álbum mediante clave cifrada para acceso restringido a familias y egresados.
             </p>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input class="sr-only peer" id="check-privada" type="checkbox">
-            <div class="w-10 h-5 bg-[#222222] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
-          </label>
-          <span class="text-[12px] font-mono text-outline min-w-[70px]" id="privada-status-label">Pública</span>
-        </div>
-      </div>
-      <div class="hidden pt-3 border-t border-outline-variant/20 transition-all duration-300" id="wrapper-clave">
-        <div class="max-w-md space-y-1.5">
-          <label class="block text-[12px] font-semibold text-secondary-fixed uppercase tracking-wider flex items-center gap-1.5" for="evento-password">
-            <span class="material-symbols-outlined text-[15px] text-primary">key</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="check-privada" type="checkbox"/>
+<div class="w-10 h-5 bg-[#222222] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="text-[12px] font-mono text-outline min-w-[70px]" id="privada-status-label">Pública</span>
+</div>
+</div>
+<div class="hidden pt-3 border-t border-outline-variant/20 transition-all duration-300" id="wrapper-clave">
+<div class="max-w-md space-y-1.5">
+<label class="block text-[12px] font-semibold text-secondary-fixed uppercase tracking-wider flex items-center gap-1.5" for="evento-password">
+<span class="material-symbols-outlined text-[15px] text-primary">key</span>
             Contraseña de Acceso para Alumnos
           </label>
-          <div class="relative">
-            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-[18px]">lock</span>
-            <input class="w-full pl-11 pr-4 py-2 bg-[#111111] border border-primary-container/60 rounded-lg text-white placeholder-outline-variant font-mono text-[13px] focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" id="evento-password" placeholder="Ej. TOURS2024-EGRESADOS" type="text">
-          </div>
-          <p class="text-[11px] text-outline">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-[18px]">lock</span>
+<input class="w-full pl-11 pr-4 py-2 bg-[#111111] border border-primary-container/60 rounded-lg text-white placeholder-outline-variant font-mono text-[13px] focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" id="evento-password" placeholder="Ej. TOURS2024-EGRESADOS" type="text"/>
+</div>
+<p class="text-[11px] text-outline">
             Requerida en <span class="text-primary underline">eventos.html</span> antes de renderizar la galería.
           </p>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-1">
-      <div class="flex items-center gap-2 text-[12px] text-outline">
-        <span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-1">
+<div class="flex items-center gap-2 text-[12px] text-outline">
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
         Sincronización encriptada local y almacenamiento Supabase.
       </div>
-      <button class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-primary-container hover:bg-[#0077b3] border border-primary-container text-white text-[13px] uppercase tracking-wider font-semibold transition-all duration-150 active:scale-[0.98] shadow-sm flex items-center justify-center gap-2" type="submit">
-        <span class="material-symbols-outlined text-[18px]">save</span>
-        <span class="">Guardar Galería</span>
-      </button>
-    </div>
-  </form>
+<button class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-primary-container hover:bg-[#0077b3] border border-primary-container text-white text-[13px] uppercase tracking-wider font-semibold transition-all duration-150 active:scale-[0.98] shadow-sm flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span class="">Guardar Galería</span>
+</button>
+</div>
+</form>
 </section>
 <!-- Grid of Loaded Galleries (Both Public & Private) -->
 <section class="space-y-space-md">
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm border-b border-outline-variant/20 pb-space-xs">
-    <div>
-      <h2 class="text-headline-md font-semibold text-white">Galerías Registradas</h2>
-      <p class="text-body-md text-on-surface-variant text-[13px]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm border-b border-outline-variant/20 pb-space-xs">
+<div>
+<h2 class="text-headline-md font-semibold text-white">Galerías Registradas</h2>
+<p class="text-body-md text-on-surface-variant text-[13px]">
         Eventos sincronizados disponibles en el archivo de Sergio Ricardo Molina.
       </p>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="px-3 py-1 rounded-lg bg-[#161616] border border-outline-variant/20 text-[12px] text-on-surface">
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-lg bg-[#161616] border border-outline-variant/20 text-[12px] text-on-surface">
         Total: <strong class="text-white font-mono" id="total-count">3</strong>
-      </span>
-      <span class="px-3 py-1 rounded-lg bg-[#161616] border border-outline-variant/20 text-[12px] text-primary">
+</span>
+<span class="px-3 py-1 rounded-lg bg-[#161616] border border-outline-variant/20 text-[12px] text-primary">
         Privadas: <strong class="font-mono" id="private-count">2</strong>
-      </span>
-    </div>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md sm:gap-space-lg" id="grid-galerias">
-    <!-- Card 1 -->
-    <article class="bg-[#161616] border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-primary/50">
-      <div class="relative h-44 w-full overflow-hidden bg-surface-container-high">
-        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="An atmospheric school formal photography portrait series taken in a darkroom aesthetic studio with high contrast chiaroscuro lighting, deep maritime shadows, and precise technical sharpness showcasing high school graduates in uniform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuV1gO1QI_IM01apsULRii_tKtVeChsfLrJzREcsgdp4vfRxn-JL2kX1HxaT289juVyw0RxN1gKWe2k36ARRDE3Cx-7w5-5GKLvdyUXeR7AklpumWx6kpjaDC0XVqMvL9Ju8yJ3nO9yjoDH_XYcQC7nE5H9RonYmo8j0LrAMJDbxxN2zY5sIgXNA_cj7SLcSvl1sGaYcd1AOI9LZ8zG30KPzdROC6MeU-PpV1RvyskCDxZVZrYMnPt">
-        <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-primary/40 text-primary font-mono text-[10px] font-semibold tracking-wider">
-            <span class="material-symbols-outlined text-[12px]">lock</span> PRIVADA
+</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md sm:gap-space-lg" id="grid-galerias">
+<!-- Card 1 -->
+<article class="bg-[#161616] border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-primary/50">
+<div class="relative h-44 w-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="An atmospheric school formal photography portrait series taken in a darkroom aesthetic studio with high contrast chiaroscuro lighting, deep maritime shadows, and precise technical sharpness showcasing high school graduates in uniform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuV1gO1QI_IM01apsULRii_tKtVeChsfLrJzREcsgdp4vfRxn-JL2kX1HxaT289juVyw0RxN1gKWe2k36ARRDE3Cx-7w5-5GKLvdyUXeR7AklpumWx6kpjaDC0XVqMvL9Ju8yJ3nO9yjoDH_XYcQC7nE5H9RonYmo8j0LrAMJDbxxN2zY5sIgXNA_cj7SLcSvl1sGaYcd1AOI9LZ8zG30KPzdROC6MeU-PpV1RvyskCDxZVZrYMnPt"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-primary/40 text-primary font-mono text-[10px] font-semibold tracking-wider">
+<span class="material-symbols-outlined text-[12px]">lock</span> PRIVADA
           </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-black/70 text-[10px] font-mono text-outline">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-black/70 text-[10px] font-mono text-outline">
             G-9021
           </span>
-        </div>
-      </div>
-      <div class="p-space-md flex-1 flex flex-col justify-between space-y-3">
-        <div class="space-y-1">
-          <div class="flex items-center justify-between text-[11px] text-outline">
-            <span class="">Col. San Martín de Tours</span>
-            <span class="font-mono">14 Nov 2024</span>
-          </div>
-          <h3 class="text-[14px] font-semibold text-white group-hover:text-primary transition-colors leading-snug">
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-outline">
+<span class="">Col. San Martín de Tours</span>
+<span class="font-mono">14 Nov 2024</span>
+</div>
+<h3 class="text-[14px] font-semibold text-white group-hover:text-primary transition-colors leading-snug">
             Acto de Colación &amp; Gala Promoción 2024
           </h3>
-        </div>
-        <div class="p-2 rounded bg-[#111111] border border-outline-variant/20 space-y-1 text-[11px] font-mono">
-          <div class="flex items-center justify-between">
-            <span class="text-outline flex items-center gap-1">
-              <span class="material-symbols-outlined text-[12px]">key</span> Clave:
+</div>
+<div class="p-2 rounded bg-[#111111] border border-outline-variant/20 space-y-1 text-[11px] font-mono">
+<div class="flex items-center justify-between">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">key</span> Clave:
             </span>
-            <span class="text-primary font-bold">TOURS2024-COL</span>
-          </div>
-          <div class="flex items-center justify-between truncate">
-            <span class="text-outline flex items-center gap-1">
-              <span class="material-symbols-outlined text-[12px]">folder</span> Drive ID:
+<span class="text-primary font-bold">TOURS2024-COL</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">folder</span> Drive ID:
             </span>
-            <span class="text-on-surface-variant truncate max-w-[120px]">1y_X4K9L8Zq...</span>
-          </div>
-        </div>
-        <div>
-          <a class="w-full py-2 px-3 rounded-lg bg-transparent hover:bg-surface-container border border-outline-variant/30 hover:border-primary text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all" href="eventos.html?galeria=9021&amp;auth=master">
-            <span class="material-symbols-outlined text-[15px] text-primary">open_in_new</span>
-            <span class="">Abrir Galería</span>
-          </a>
-        </div>
-      </div>
-    </article>
-    <!-- Card 2 -->
-    <article class="bg-[#161616] border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-primary/50">
-      <div class="relative h-44 w-full overflow-hidden bg-surface-container-high">
-        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A dynamic outdoor school sports tournament photography frame showing youth athletes in motion during a tournament final, captured with low-angle editorial depth of field and dark dramatic sky tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy7pWhFT-PZwasA4W7xCSmMdzbGFx9zFbIrDAszA2aUkQ2a_DyMsZ8-f-E29xCRFzaNlIz1WehRxPQsruYQ5dYwb3142p7rfH0y79QeysbME230-v2iw6xUuHsnc3MkH8vYjiefSft5m4QFbPYp61QOZBp7z7GzeIrBguUBodnECOkChr3ZleNpP_v24MKI6QFtU5QxHTkaeIj7r4iTEH0yWkStMp3JpV8Ap_SJcveB9A8aQXooiUC">
-        <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-primary/40 text-primary font-mono text-[10px] font-semibold tracking-wider">
-            <span class="material-symbols-outlined text-[12px]">public</span> PÚBLICA
+<span class="text-on-surface-variant truncate max-w-[120px]">1y_X4K9L8Zq...</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1"><a class="flex-1 py-2 px-3 rounded-lg bg-transparent hover:bg-surface-container border border-outline-variant/30 hover:border-primary text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all" href="eventos.html?galeria=9021&amp;auth=master"><span class="material-symbols-outlined text-[15px] text-primary">open_in_new</span><span>Abrir Galería</span></a><button class="h-9 px-3 rounded-lg bg-transparent hover:bg-error-container/20 border border-outline-variant/30 hover:border-error text-error text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('9021', 'Acto de Colación &amp; Gala Promoción 2024')" title="Eliminar de Supabase" type="button"><span class="material-symbols-outlined text-[16px]">delete</span><span class="hidden sm:inline text-[11px]">Eliminar</span></button></div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-[#161616] border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-primary/50">
+<div class="relative h-44 w-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A dynamic outdoor school sports tournament photography frame showing youth athletes in motion during a tournament final, captured with low-angle editorial depth of field and dark dramatic sky tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy7pWhFT-PZwasA4W7xCSmMdzbGFx9zFbIrDAszA2aUkQ2a_DyMsZ8-f-E29xCRFzaNlIz1WehRxPQsruYQ5dYwb3142p7rfH0y79QeysbME230-v2iw6xUuHsnc3MkH8vYjiefSft5m4QFbPYp61QOZBp7z7GzeIrBguUBodnECOkChr3ZleNpP_v24MKI6QFtU5QxHTkaeIj7r4iTEH0yWkStMp3JpV8Ap_SJcveB9A8aQXooiUC"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-primary/40 text-primary font-mono text-[10px] font-semibold tracking-wider">
+<span class="material-symbols-outlined text-[12px]">public</span> PÚBLICA
           </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-black/70 text-[10px] font-mono text-outline">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-black/70 text-[10px] font-mono text-outline">
             G-8842
           </span>
-        </div>
-      </div>
-      <div class="p-space-md flex-1 flex flex-col justify-between space-y-3">
-        <div class="space-y-1">
-          <div class="flex items-center justify-between text-[11px] text-outline">
-            <span class="">Instituto Belgrano Day</span>
-            <span class="font-mono">02 Oct 2024</span>
-          </div>
-          <h3 class="text-[14px] font-semibold text-white group-hover:text-primary transition-colors leading-snug">
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-outline">
+<span class="">Instituto Belgrano Day</span>
+<span class="font-mono">02 Oct 2024</span>
+</div>
+<h3 class="text-[14px] font-semibold text-white group-hover:text-primary transition-colors leading-snug">
             Torneo Intercolegial - Rugby &amp; Hockey
           </h3>
-        </div>
-        <div class="p-2 rounded bg-[#111111] border border-outline-variant/20 space-y-1 text-[11px] font-mono">
-          <div class="flex items-center justify-between">
-            <span class="text-outline flex items-center gap-1">
-              <span class="material-symbols-outlined text-[12px]">lock_open</span> Acceso:
+</div>
+<div class="p-2 rounded bg-[#111111] border border-outline-variant/20 space-y-1 text-[11px] font-mono">
+<div class="flex items-center justify-between">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">lock_open</span> Acceso:
             </span>
-            <span class="text-primary font-semibold">Libre</span>
-          </div>
-          <div class="flex items-center justify-between truncate">
-            <span class="text-outline flex items-center gap-1">
-              <span class="material-symbols-outlined text-[12px]">folder</span> Drive ID:
+<span class="text-primary font-semibold">Libre</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">folder</span> Drive ID:
             </span>
-            <span class="text-on-surface-variant truncate max-w-[120px]">0B9m7uY6...</span>
-          </div>
-        </div>
-        <div>
-          <a class="w-full py-2 px-3 rounded-lg bg-transparent hover:bg-surface-container border border-outline-variant/30 hover:border-primary text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all" href="eventos.html?galeria=8842">
-            <span class="material-symbols-outlined text-[15px] text-primary">open_in_new</span>
-            <span class="">Abrir Galería</span>
-          </a>
-        </div>
-      </div>
-    </article>
-    <!-- Card 3 -->
-    <article class="bg-[#161616] border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-primary/50">
-      <div class="relative h-44 w-full overflow-hidden bg-surface-container-high">
-        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Editorial candid photography capturing children performing in a primary school musical play with dramatic atmospheric theatre spotlights, deep dark background staging, and crisp photographic texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6DbZwvLp6o8iAthjvRoBQUBP0HSXoMIbvH-znGzL13mXMZ1zs1ss2dR2Vd-2-4xTAae8htECHmSOqT1wYWG_inHUbx5gf3-f_LC7C1C0HrgsWxG2yaM6ssI5rUT-ipIAOBPym5mbQUCXNMgzLuwqPAGt7kM3cjx0FEfXgS2SAzIjBlMdVsgcGYAHEGjUrwGeivxq_O65S1HTTJneb1uBd2gtDxn4G9u20i8yVHD6mg4jecfPjtzRh">
-        <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-primary/40 text-primary font-mono text-[10px] font-semibold tracking-wider">
-            <span class="material-symbols-outlined text-[12px]">lock</span> PRIVADA
+<span class="text-on-surface-variant truncate max-w-[120px]">0B9m7uY6...</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1"><a class="flex-1 py-2 px-3 rounded-lg bg-transparent hover:bg-surface-container border border-outline-variant/30 hover:border-primary text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all" href="eventos.html?galeria=8842"><span class="material-symbols-outlined text-[15px] text-primary">open_in_new</span><span>Abrir Galería</span></a><button class="h-9 px-3 rounded-lg bg-transparent hover:bg-error-container/20 border border-outline-variant/30 hover:border-error text-error text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('8842', 'Torneo Intercolegial - Rugby &amp; Hockey')" title="Eliminar de Supabase" type="button"><span class="material-symbols-outlined text-[16px]">delete</span><span class="hidden sm:inline text-[11px]">Eliminar</span></button></div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-[#161616] border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm flex flex-col group transition-all duration-200 hover:border-primary/50">
+<div class="relative h-44 w-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Editorial candid photography capturing children performing in a primary school musical play with dramatic atmospheric theatre spotlights, deep dark background staging, and crisp photographic texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6DbZwvLp6o8iAthjvRoBQUBP0HSXoMIbvH-znGzL13mXMZ1zs1ss2dR2Vd-2-4xTAae8htECHmSOqT1wYWG_inHUbx5gf3-f_LC7C1C0HrgsWxG2yaM6ssI5rUT-ipIAOBPym5mbQUCXNMgzLuwqPAGt7kM3cjx0FEfXgS2SAzIjBlMdVsgcGYAHEGjUrwGeivxq_O65S1HTTJneb1uBd2gtDxn4G9u20i8yVHD6mg4jecfPjtzRh"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#111111]/90 backdrop-blur-md border border-primary/40 text-primary font-mono text-[10px] font-semibold tracking-wider">
+<span class="material-symbols-outlined text-[12px]">lock</span> PRIVADA
           </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-black/70 text-[10px] font-mono text-outline">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-black/70 text-[10px] font-mono text-outline">
             G-7719
           </span>
-        </div>
-      </div>
-      <div class="p-space-md flex-1 flex flex-col justify-between space-y-3">
-        <div class="space-y-1">
-          <div class="flex items-center justify-between text-[11px] text-outline">
-            <span class="">Colegio Northlands</span>
-            <span class="font-mono">18 Sep 2024</span>
-          </div>
-          <h3 class="text-[14px] font-semibold text-white group-hover:text-primary transition-colors leading-snug">
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[11px] text-outline">
+<span class="">Colegio Northlands</span>
+<span class="font-mono">18 Sep 2024</span>
+</div>
+<h3 class="text-[14px] font-semibold text-white group-hover:text-primary transition-colors leading-snug">
             Concert de Primaria "The Dark Forest"
           </h3>
-        </div>
-        <div class="p-2 rounded bg-[#111111] border border-outline-variant/20 space-y-1 text-[11px] font-mono">
-          <div class="flex items-center justify-between">
-            <span class="text-outline flex items-center gap-1">
-              <span class="material-symbols-outlined text-[12px]">key</span> Clave:
+</div>
+<div class="p-2 rounded bg-[#111111] border border-outline-variant/20 space-y-1 text-[11px] font-mono">
+<div class="flex items-center justify-between">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">key</span> Clave:
             </span>
-            <span class="text-primary font-bold">NORTH-STAGE-24</span>
-          </div>
-          <div class="flex items-center justify-between truncate">
-            <span class="text-outline flex items-center gap-1">
-              <span class="material-symbols-outlined text-[12px]">folder</span> Drive ID:
+<span class="text-primary font-bold">NORTH-STAGE-24</span>
+</div>
+<div class="flex items-center justify-between truncate">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">folder</span> Drive ID:
             </span>
-            <span class="text-on-surface-variant truncate max-w-[120px]">3w_Qp99KxLm...</span>
-          </div>
-        </div>
-        <div>
-          <a class="w-full py-2 px-3 rounded-lg bg-transparent hover:bg-surface-container border border-outline-variant/30 hover:border-primary text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all" href="eventos.html?galeria=7719&amp;auth=master">
-            <span class="material-symbols-outlined text-[15px] text-primary">open_in_new</span>
-            <span class="">Abrir Galería</span>
-          </a>
-        </div>
-      </div>
-    </article>
-  </div>
+<span class="text-on-surface-variant truncate max-w-[120px]">3w_Qp99KxLm...</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1"><a class="flex-1 py-2 px-3 rounded-lg bg-transparent hover:bg-surface-container border border-outline-variant/30 hover:border-primary text-white text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-all" href="eventos.html?galeria=7719&amp;auth=master"><span class="material-symbols-outlined text-[15px] text-primary">open_in_new</span><span>Abrir Galería</span></a><button class="h-9 px-3 rounded-lg bg-transparent hover:bg-error-container/20 border border-outline-variant/30 hover:border-error text-error text-[12px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1 transition-all duration-150 active:scale-[0.98]" onclick="eliminarEvento('7719', 'Concert de Primaria \'The Dark Forest\'')" title="Eliminar de Supabase" type="button"><span class="material-symbols-outlined text-[16px]">delete</span><span class="hidden sm:inline text-[11px]">Eliminar</span></button></div>
+</div>
+</article>
+</div>
 </section>
 <!-- Supabase Live State Notification Toast (Simulated realtime feedback) -->
 <div class="fixed bottom-6 right-6 max-w-sm bg-[#181818] border border-primary-container p-4 rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.65)] flex items-start gap-3 transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none z-50" id="toast-feedback">
@@ -472,18 +459,18 @@
 </div>
 </main>
 </div><footer class="border-t border-outline-variant/20 bg-[#111111] py-8 px-space-md sm:px-space-xl text-center text-outline text-[12px] font-body-md">
-  <div class="max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-    <div class="flex items-center gap-4 text-on-surface-variant">
-      <a href="index.html" class="hover:text-primary transition-colors">Portafolio</a>
-      <span class="text-outline-variant">·</span>
-      <a href="eventos.html" class="hover:text-primary transition-colors">Galerías</a>
-      <span class="text-outline-variant">·</span>
-      <a href="#" class="hover:text-primary transition-colors">Instagram</a>
-      <span class="text-outline-variant">·</span>
-      <a href="#" class="hover:text-primary transition-colors">WhatsApp</a>
-    </div>
-  </div>
+<div class="max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="index.html">Portafolio</a>
+<span class="text-outline-variant">·</span>
+<a class="hover:text-primary transition-colors" href="eventos.html">Galerías</a>
+<span class="text-outline-variant">·</span>
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+<span class="text-outline-variant">·</span>
+<a class="hover:text-primary transition-colors" href="#">WhatsApp</a>
+</div>
+</div>
 </footer>
 <!-- Interactive JavaScript: Switch for Private Gallery + Real-time Insertion Simulation -->
 <script>
@@ -633,6 +620,4 @@
       });
     });
   </script>
-
-
 </body></html>
