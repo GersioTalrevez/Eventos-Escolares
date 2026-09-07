@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Galería Privada de Cliente | Sergio Ricardo Molina</title>
@@ -225,7 +224,7 @@ header {
 .estado-caja {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 60px 16px;
+  padding: 50px 16px;
   background: #181818;
   border: 1px dashed #333333;
   border-radius: 12px;
@@ -276,6 +275,7 @@ header {
   margin-top: 14px;
   cursor: pointer;
   text-decoration: none;
+  transition: background 0.2s ease;
 }
 .btn-accion-estado:hover { background: #0077b3; }
 
@@ -400,7 +400,7 @@ footer {
 <div class="banner-privado" id="banner-privado">
 <div class="banner-item">
 <span class="material-symbols-outlined" style="color: #facc15; font-size: 18px;">verified</span>
-<span>Acceso protegido por clave autorizada: <strong id="lbl-clave-activa">Verificada</strong></span>
+<span>Acceso protegido por clave autorizada: <strong id="lbl-clave-activa">Verificando...</strong></span>
 </div>
 <div style="color: #22c55e; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;">
 <span class="material-symbols-outlined" style="font-size: 15px;">high_quality</span>
@@ -453,25 +453,69 @@ let listaFotos = [];
 let indiceVisor = 0;
 let tituloEvento = 'Sesión Privada';
 
+// LIMPIEZA INFALIBLE DE ID / URL DE GOOGLE DRIVE
 function extraerIdDrive(input) {
   if (!input) return '';
-  const str = String(input).trim();
+  let str = String(input).trim();
+
+  // 1. Decodificar posibles codificaciones de URL
+  try {
+    str = decodeURIComponent(str);
+  } catch(e) {}
+
+  // 2. Extraer de /folders/ID
   const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
-  if (matchFolder && matchFolder[1]) return matchFolder[1];
+  if (matchFolder && matchFolder[1]) {
+    return matchFolder[1].split('?')[0].split('&')[0].split('#')[0].trim();
+  }
+
+  // 3. Extraer de ?id=ID o &id=ID
   const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-  if (matchId && matchId[1]) return matchId[1];
+  if (matchId && matchId[1]) {
+    return matchId[1].split('?')[0].split('&')[0].split('#')[0].trim();
+  }
+
+  // 4. Extraer de /d/ID
   const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if (matchD && matchD[1]) return matchD[1];
-  return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+  if (matchD && matchD[1]) {
+    return matchD[1].split('?')[0].split('&')[0].split('#')[0].trim();
+  }
+
+  // 5. Extraer de URLs generales de drive
+  if (str.includes('drive.google.com')) {
+    const sinDominio = str.replace(/.*drive\.google\.com\/(?:open\?id=|file\/d\/|drive\/folders\/)?/, '');
+    const idPosible = sinDominio.split('?')[0].split('&')[0].split('#')[0].replace(/\/+$/, '').trim();
+    if (idPosible.length > 5) return idPosible;
+  }
+
+  // 6. Si ya es una cadena limpia o con sufijos query string/hash
+  let idLimpio = str.split('?')[0].split('&')[0].split('#')[0].trim();
+  idLimpio = idLimpio.replace(/^\/+|\/+$/g, '');
+  const coincidencia = idLimpio.match(/[a-zA-Z0-9_-]{15,}/);
+  if (coincidencia) return coincidencia[0];
+
+  return idLimpio;
 }
 
-// INICIAR GALERÍA PRIVADA (SUPABASE + LOCALSTORAGE + PARAM)
+// OBTENER VALOR DE ENLACE DE CUALQUIER COLUMNA POSIBLE
+function extraerLinkDeRegistro(reg) {
+  if (!reg) return '';
+  return reg.drive_url || reg.url_drive || reg.enlace_drive || reg.drive_id || reg.folder_id || reg.url || reg.link || '';
+}
+
+// OBTENER TITULO DE REGISTRO
+function extraerTituloDeRegistro(reg) {
+  if (!reg) return '';
+  return reg.titulo || reg.nombre || reg.title || reg.name || reg.evento || '';
+}
+
+// INICIAR GALERÍA PRIVADA (SUPABASE AMPLIADO + LOCALSTORAGE + PARAMS)
 async function iniciarGaleriaPrivada() {
   const params = new URLSearchParams(window.location.search);
   const paramId = params.get('id');
   const paramFolder = params.get('folder');
   const paramTitulo = params.get('titulo');
-  const paramKey = params.get('key');
+  const paramKey = params.get('key') || params.get('clave') || params.get('password') || params.get('pin');
 
   if (paramTitulo) {
     tituloEvento = decodeURIComponent(paramTitulo);
@@ -484,114 +528,188 @@ async function iniciarGaleriaPrivada() {
 
   let folderId = '';
 
-  // 1. Si viene por carpeta explícita
+  // 1. Si viene por carpeta explícita en param 'folder'
   if (paramFolder && paramFolder.trim().length > 5) {
     folderId = extraerIdDrive(paramFolder);
   }
 
-  // 2. Si viene por ID directo de Drive
+  // 2. Si viene 'id' y es un ID directo de Drive (longitud > 15 caracteres y alfanumérico no puramente numérico corto)
   if (!folderId && paramId && paramId.trim().length > 15 && isNaN(paramId)) {
     folderId = extraerIdDrive(paramId);
   }
 
-  // 3. Buscar por clave o por ID numérico en Supabase
+  // 3. Consulta de Supabase ampliada: buscar tanto en 'galeria' como en 'galerias', probando columnas 'password', 'clave', 'pin' o por ID
   if ((!folderId || !paramTitulo) && (paramKey || paramId)) {
     if (supabaseClient) {
-      try {
-        let query = supabaseClient.from('galeria').select('*');
-        if (paramKey) {
-          query = query.ilike('password', paramKey.trim());
-        } else if (paramId && !isNaN(paramId)) {
-          query = query.eq('id', paramId);
-        }
+      const tablas = ['galerias', 'galeria'];
+      const columnasClave = ['password', 'clave', 'pin'];
 
-        let { data, error } = await query.maybeSingle();
+      for (const tabla of tablas) {
+        if (folderId && tituloEvento !== 'Sesión Privada') break;
 
-        if (error || !data) {
-          let queryDos = supabaseClient.from('galerias').select('*');
-          if (paramKey) queryDos = queryDos.ilike('password', paramKey.trim());
-          else if (paramId && !isNaN(paramId)) queryDos = queryDos.eq('id', paramId);
-          const resDos = await queryDos.maybeSingle();
-          if (resDos.data) data = resDos.data;
-        }
+        // Búsqueda por clave
+        if (paramKey && !folderId) {
+          for (const col of columnasClave) {
+            try {
+              const { data, error } = await supabaseClient
+                .from(tabla)
+                .select('*')
+                .ilike(col, paramKey.trim())
+                .limit(1)
+                .maybeSingle();
 
-        if (data) {
-          if (data.titulo) {
-            tituloEvento = data.titulo;
-            document.getElementById('titulo-galeria').innerText = tituloEvento;
+              if (!error && data) {
+                const link = extraerLinkDeRegistro(data);
+                if (link) folderId = extraerIdDrive(link);
+                const tit = extraerTituloDeRegistro(data);
+                if (tit && !paramTitulo) {
+                  tituloEvento = tit;
+                  document.getElementById('titulo-galeria').innerText = tituloEvento;
+                }
+                if (folderId) break;
+              }
+            } catch(e) {}
           }
-          const link = data.drive_url || data.url_drive || data.enlace_drive || '';
-          folderId = extraerIdDrive(link);
         }
-      } catch (errSupabase) {
-        console.warn("Aviso Supabase privadas:", errSupabase);
+
+        // Búsqueda por ID (numérico o id primario)
+        if (paramId && !folderId) {
+          try {
+            const { data, error } = await supabaseClient
+              .from(tabla)
+              .select('*')
+              .eq('id', paramId.trim())
+              .limit(1)
+              .maybeSingle();
+
+            if (!error && data) {
+              const link = extraerLinkDeRegistro(data);
+              if (link) folderId = extraerIdDrive(link);
+              const tit = extraerTituloDeRegistro(data);
+              if (tit && !paramTitulo) {
+                tituloEvento = tit;
+                document.getElementById('titulo-galeria').innerText = tituloEvento;
+              }
+            }
+          } catch(e) {}
+        }
       }
     }
   }
 
-  // 4. Buscar en respaldo local si aún no se resolvió
+  // 4. Buscar en respaldo local (localStorage 'galerias_locales')
   if (!folderId && (paramKey || paramId)) {
     try {
       const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
-      const loc = locales.find(g => 
-        (paramKey && g.password && g.password.trim().toLowerCase() === paramKey.trim().toLowerCase()) ||
-        (paramId && String(g.id) === String(paramId))
-      );
+      const loc = locales.find(g => {
+        const kMatch = paramKey && (
+          (g.password && g.password.trim().toLowerCase() === paramKey.trim().toLowerCase()) ||
+          (g.clave && g.clave.trim().toLowerCase() === paramKey.trim().toLowerCase()) ||
+          (g.pin && g.pin.trim().toLowerCase() === paramKey.trim().toLowerCase())
+        );
+        const idMatch = paramId && (String(g.id) === String(paramId) || String(g.folder_id) === String(paramId));
+        return kMatch || idMatch;
+      });
+
       if (loc) {
-        if (loc.titulo) {
-          tituloEvento = loc.titulo;
+        const tit = extraerTituloDeRegistro(loc);
+        if (tit && !paramTitulo) {
+          tituloEvento = tit;
           document.getElementById('titulo-galeria').innerText = tituloEvento;
         }
-        folderId = extraerIdDrive(loc.drive_url || loc.enlace_drive || '');
+        folderId = extraerIdDrive(extraerLinkDeRegistro(loc));
       }
     } catch(e) {}
   }
 
-  // Fallback si paramId es el ID directo alfanumérico
+  // 5. Fallback si paramId era directamente el ID de Drive
   if (!folderId && paramId) {
     folderId = extraerIdDrive(paramId);
   }
 
-  if (!folderId) {
+  // Si no se encontró ningún identificador de carpeta
+  if (!folderId || folderId.length < 10) {
     mostrarMensajeError(
       "Galería privada no especificada",
-      "No se encontró una carpeta de Google Drive asociada a esta clave o enlace. Verificá la contraseña ingresada con el fotógrafo."
+      "No se encontró una carpeta de Google Drive asociada a esta clave o enlace. Verificá la contraseña ingresada con el fotógrafo o consultanos directamente."
     );
     return;
+  }
+
+  if (paramKey) {
+    document.getElementById('lbl-clave-activa').innerText = paramKey.toUpperCase();
+  } else {
+    document.getElementById('lbl-clave-activa').innerText = 'Verificada';
   }
 
   cargarFotosDrive(folderId);
 }
 
-// OBTENER FOTOGRAFÍAS REALES DIRECTAS DE LA API DE DRIVE
+// OBTENER FOTOGRAFÍAS REALES DIRECTAS DE LA API DE GOOGLE DRIVE (CON FALLBACK TOLERANTE)
 async function cargarFotosDrive(folderId) {
   const contenedor = document.getElementById('contenedor-fotos');
-  const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+  contenedor.innerHTML = `
+    <div class="estado-caja">
+      <div class="spinner"></div>
+      <h3>Descargando álbum privado...</h3>
+      <p>Conectando con Google Drive y sincronizando fotografías en alta resolución...</p>
+    </div>
+  `;
+
+  const extensionesPermitidas = ['.jpg', '.jpeg', '.png', '.webp', '.cr2', '.cr3', '.nef', '.arw', '.dng', '.heic', '.raw'];
+
+  // Consulta 1: Filtro de mimeType image/
+  const url1 = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name,mimeType)`;
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 9000);
+  const timeoutId = setTimeout(() => controller.abort(), 12000);
 
   try {
-    const res = await fetch(urlDrive, { signal: controller.signal });
-    clearTimeout(timeoutId);
-    const datos = await res.json();
+    let res = await fetch(url1, { signal: controller.signal });
+    let datos = await res.json();
 
+    // Manejo de error de permisos de Drive
     if (datos.error) {
-      console.error("Error Drive:", datos.error);
+      clearTimeout(timeoutId);
+      console.error("Error Drive API:", datos.error);
       mostrarMensajeError(
         "Permisos de Google Drive",
-        "La carpeta en Drive debe estar compartida como: 'Cualquier persona con el enlace puede ver'. Verificá los permisos del álbum."
+        "La carpeta en Drive debe estar compartida como: 'Cualquier persona con el enlace puede ver'. Verificá los permisos del álbum.",
+        folderId
       );
       return;
     }
 
-    if (!datos.files || datos.files.length === 0) {
+    let archivos = datos.files || [];
+
+    // Fallback 2: Si devuelve 0 archivos, consultar sin filtro estricto de mimeType (con trashed=false)
+    if (archivos.length === 0) {
+      const url2 = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name,mimeType)`;
+      try {
+        const res2 = await fetch(url2, { signal: controller.signal });
+        const datos2 = await res2.json();
+        if (datos2.files && datos2.files.length > 0) {
+          // Filtrar por mimeType imagen o por extensiones fotográficas válidas
+          archivos = datos2.files.filter(f => {
+            if (f.mimeType && f.mimeType.startsWith('image/')) return true;
+            const nom = (f.name || '').toLowerCase();
+            return extensionesPermitidas.some(ext => nom.endsWith(ext));
+          });
+        }
+      } catch(err2) {
+        console.warn("Fallo fallback Drive:", err2);
+      }
+    }
+
+    clearTimeout(timeoutId);
+
+    if (archivos.length === 0) {
       mostrarMensajeVacio(folderId);
       return;
     }
 
-    // 100% fotos reales de Google Drive (Sin miniaturas de muestra)
-    listaFotos = datos.files.map(f => ({
+    // Mapear fotos con URLs de resolución óptima y fallbacks
+    listaFotos = archivos.map(f => ({
       id: f.id,
       name: f.name || 'Fotografía Privada',
       thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
@@ -601,16 +719,18 @@ async function cargarFotosDrive(folderId) {
     renderizarFotos();
   } catch (err) {
     clearTimeout(timeoutId);
-    console.error("Error:", err);
+    console.error("Error al cargar fotos:", err);
     if (err.name === 'AbortError') {
       mostrarMensajeError(
         "Tiempo de espera agotado",
-        "La conexión con Google Drive tardó más de lo esperado. Hacé clic en Reintentar."
+        "La conexión con Google Drive tardó más de lo esperado. Por favor reintentá la sincronización.",
+        folderId
       );
     } else {
       mostrarMensajeError(
         "Error de conexión con Google Drive",
-        "No se pudieron descargar las fotos de la carpeta privada. Verificá que la carpeta exista y sea pública."
+        "No se pudieron descargar las fotos de la carpeta privada. Verificá que la carpeta exista y tenga acceso público.",
+        folderId
       );
     }
   }
@@ -629,7 +749,10 @@ function renderizarFotos() {
 
     tarjeta.innerHTML = `
       <div class="contenedor-img" onclick="abrirVisor(${index})">
-        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/${foto.id}'">
+        <img src="${foto.thumb}" 
+             alt="${foto.name}" 
+             loading="lazy" 
+             onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='https://drive.google.com/thumbnail?id=${foto.id}&sz=w800';}else{this.src='https://lh3.googleusercontent.com/d/${foto.id}';}">
       </div>
       <div class="pie-foto">
         <span class="nombre-foto" title="${foto.name}">${nombreFormateado}</span>
@@ -643,51 +766,70 @@ function renderizarFotos() {
   });
 }
 
-// ESTADOS DE ERROR Y VACÍO
+// ESTADOS DE ERROR Y VACÍO CON BOTÓN PARA VERIFICAR EN DRIVE
 function mostrarMensajeVacio(folderId) {
   const contenedor = document.getElementById('contenedor-fotos');
   contenedor.innerHTML = `
     <div class="estado-caja">
       <span class="material-symbols-outlined">folder_open</span>
       <h3>Carpeta privada vacía</h3>
-      <p>No se encontraron fotografías en la carpeta vinculada a esta sesión.</p>
-      <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#666;">Carpeta Drive ID: ${folderId}</div>
-      <button onclick="iniciarGaleriaPrivada()" class="btn-accion-estado">
-        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
-        <span>Reintentar Sincronización</span>
-      </button>
-      <a href="index.html" class="btn-accion-estado" style="background:#262626; margin-left:8px;">
-        <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
-        <span>Volver al Portafolio</span>
-      </a>
+      <p>No se encontraron fotografías en la carpeta vinculada a esta sesión o las imágenes aún se están procesando.</p>
+      <div style="margin: 12px auto; font-family: monospace; font-size:0.75rem; color:#888; word-break: break-all; max-width: 480px; background: #111; padding: 6px 10px; border-radius: 6px; border: 1px solid #222;">
+        ID Carpeta: ${folderId}
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+        <button onclick="iniciarGaleriaPrivada()" class="btn-accion-estado">
+          <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+          <span>Reintentar Sincronización</span>
+        </button>
+        <a href="https://drive.google.com/drive/folders/${folderId}" target="_blank" class="btn-accion-estado" style="background:#222; border: 1px solid #444;">
+          <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span>
+          <span>Abrir Carpeta en Drive</span>
+        </a>
+      </div>
     </div>
   `;
 }
 
-function mostrarMensajeError(titulo, detalle) {
+function mostrarMensajeError(titulo, detalle, folderId) {
   const contenedor = document.getElementById('contenedor-fotos');
+  const botonDrive = folderId ? `
+    <a href="https://drive.google.com/drive/folders/${folderId}" target="_blank" class="btn-accion-estado" style="background:#1f1f1f; border: 1px solid #333; margin-left: 8px;">
+      <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span>
+      <span>Verificar en Drive</span>
+    </a>
+  ` : '';
+
   contenedor.innerHTML = `
     <div class="estado-caja">
       <span class="material-symbols-outlined" style="color: #ef4444;">lock_reset</span>
       <h3>${titulo}</h3>
       <p>${detalle}</p>
-      <button onclick="iniciarGaleriaPrivada()" class="btn-accion-estado">
-        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
-        <span>Reintentar</span>
-      </button>
-      <a href="https://wa.me/542613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20con%20la%20clave%20de%20mi%20galeria%20privada" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
-        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
-        <span>Consultar por WhatsApp</span>
-      </a>
+      ${folderId ? `<div style="margin: 12px auto; font-family: monospace; font-size:0.75rem; color:#888; word-break: break-all; max-width: 480px; background: #111; padding: 6px 10px; border-radius: 6px; border: 1px solid #222;">ID Detectado: ${folderId}</div>` : ''}
+      <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:14px;">
+        <button onclick="iniciarGaleriaPrivada()" class="btn-accion-estado">
+          <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+          <span>Reintentar</span>
+        </button>
+        ${botonDrive}
+        <a href="https://wa.me/542613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20con%20la%20clave%20de%20mi%20galeria%20privada" target="_blank" class="btn-accion-estado" style="background:#075e54;">
+          <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
+          <span>Consultar por WhatsApp</span>
+        </a>
+      </div>
     </div>
   `;
 }
 
-// VISOR EN ALTA DEFINICIÓN CON SWIPE Y NAVEGACIÓN
+// VISOR EN ALTA DEFINICIÓN CON SWIPE Y TECLADO
 function abrirVisor(index) {
   if (!listaFotos || listaFotos.length === 0) return;
   indiceVisor = index;
-  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+  const imgVisor = document.getElementById('img-ampliada');
+  imgVisor.onerror = function() {
+    this.src = `https://drive.google.com/thumbnail?id=${listaFotos[indiceVisor].id}&sz=w1600`;
+  };
+  imgVisor.src = listaFotos[indiceVisor].full;
   document.getElementById('modal-visor').style.display = 'flex';
 }
 
@@ -701,10 +843,16 @@ function cerrarVisorFondo(e) {
 
 function cambiarFoto(dir, event) {
   if (event) event.stopPropagation();
+  if (!listaFotos.length) return;
   indiceVisor += dir;
   if (indiceVisor >= listaFotos.length) indiceVisor = 0;
   else if (indiceVisor < 0) indiceVisor = listaFotos.length - 1;
-  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+
+  const imgVisor = document.getElementById('img-ampliada');
+  imgVisor.onerror = function() {
+    this.src = `https://drive.google.com/thumbnail?id=${listaFotos[indiceVisor].id}&sz=w1600`;
+  };
+  imgVisor.src = listaFotos[indiceVisor].full;
 }
 
 document.addEventListener('keydown', (e) => {
@@ -728,5 +876,4 @@ modalEl.addEventListener('touchend', e => {
 
 document.addEventListener('DOMContentLoaded', iniciarGaleriaPrivada);
 </script>
-</body>
-</html>
+</body></html>
