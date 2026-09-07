@@ -1,484 +1,739 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Álbum Privado · Sergio Ricardo Molina · Fotografía Profesional</title>
-<!-- Fonts -->
+<title>Galería Privada de Cliente | Sergio Ricardo Molina</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            brand: "#005580",
-            primary: "#91cdfe",
-            "primary-container": "#005580",
-            "surface-dark": "#111111",
-            "surface-card": "#171717",
-            "border-subtle": "#222222",
-            "border-accent": "#005580"
-          },
-          fontFamily: {
-            sans: ["Manrope", "sans-serif"]
-          },
-          maxWidth: {
-            "container-max": "1440px"
-          }
-        }
-      }
-    }
-  </script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Supabase JS Client Oficial -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-    body {
-      background-color: #111111;
-      color: #e5e2e1;
-      font-family: 'Manrope', sans-serif;
-      margin: 0;
-      overflow-x: hidden;
-    }
-    .material-symbols-outlined {
-      font-family: 'Material Symbols Outlined';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 20px;
-      line-height: 1;
-      display: inline-block;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-    }
-    .card-hover {
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-2px);
-      border-color: #005580;
-      box-shadow: 0 10px 25px -5px rgba(0, 85, 128, 0.15);
-    }
-    .lightbox-backdrop {
-      backdrop-filter: blur(16px);
-      background-color: rgba(10, 10, 10, 0.95);
-    }
-  </style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #111111;
+  color: #ffffff;
+  padding: 16px 12px 60px;
+  max-width: 1040px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+header {
+  padding: 12px 0 16px;
+  border-bottom: 1px solid #222222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-volver-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #bbbbbb;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 500;
+  background: #1c1c1c;
+  border: 1px solid #005580;
+  padding: 7px 14px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+.btn-volver-nav:hover {
+  background: #282828;
+  color: #ffffff;
+  border-color: #38bdf8;
+}
+
+.marca-personal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+.marca-personal img.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #005580;
+  object-fit: cover;
+}
+
+.hero-galeria {
+  padding: 18px 0 14px;
+}
+
+.badge-tipo-galeria {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  background: rgba(234, 179, 8, 0.15);
+  border: 1px solid #eab308;
+  color: #facc15;
+}
+
+.titulo-galeria {
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.subtitulo-galeria {
+  color: #999999;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.45;
+  max-width: 680px;
+}
+
+/* BANNER EXCLUSIVO DE SESIÓN PRIVADA (SIN MARCA DE AGUA) */
+.banner-privado {
+  background: #181818;
+  border: 1px solid #005580;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 14px 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.84rem;
+}
+.banner-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.banner-item strong {
+  color: #facc15;
+  font-weight: 700;
+}
+
+/* CUADRÍCULA DE FOTOS: 2 COLUMNAS EN MÓVIL, 3 EN TABLET, 4 EN ESCRITORIO */
+.grid-fotos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+@media (min-width: 640px) {
+  .grid-fotos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+@media (min-width: 880px) {
+  .grid-fotos {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+}
+
+.tarjeta-foto {
+  background: #1c1c1c;
+  border: 1.5px solid #282828;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+  user-select: none;
+}
+.tarjeta-foto:hover {
+  border-color: #0077b3;
+  transform: translateY(-2px);
+}
+
+.contenedor-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #0d0d0d;
+  overflow: hidden;
+  cursor: pointer;
+}
+.contenedor-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.25s ease;
+  display: block;
+}
+.tarjeta-foto:hover .contenedor-img img {
+  transform: scale(1.03);
+}
+
+.pie-foto {
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #262626;
+  font-size: 0.74rem;
+  gap: 4px;
+  background: #181818;
+}
+.nombre-foto {
+  color: #aaaaaa;
+  font-family: monospace;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+.tag-calidad {
+  color: #22c55e;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+/* ESTADOS DE CARGA Y MENSAJES */
+.estado-caja {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 16px;
+  background: #181818;
+  border: 1px dashed #333333;
+  border-radius: 12px;
+  color: #999999;
+  margin: 12px 0;
+}
+.estado-caja .material-symbols-outlined {
+  font-size: 42px;
+  color: #facc15;
+  margin-bottom: 10px;
+}
+.estado-caja h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.estado-caja p {
+  font-size: 0.86rem;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.45;
+}
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 2.5px solid rgba(250, 204, 21, 0.2);
+  border-top-color: #facc15;
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+.btn-accion-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #005580;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-top: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-accion-estado:hover { background: #0077b3; }
+
+/* VISOR MODAL */
+.modal-visor {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.96);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.modal-visor img {
+  max-width: 92%;
+  max-height: 84vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.btn-cerrar-visor {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 26px;
+  color: #ffffff;
+  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+}
+.btn-nav-visor {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  color: #ffffff;
+  cursor: pointer;
+  background: rgba(0,0,0,0.4);
+  padding: 12px 14px;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 10001;
+}
+.btn-nav-prev { left: 12px; }
+.btn-nav-next { right: 12px; }
+
+/* SECCIÓN REDES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) */
+.redes-sociales {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+.btn-red {
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 14px 6px;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.btn-red:active {
+  transform: scale(0.96);
+  background: #2a2a2a;
+}
+.btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
+.btn-cat { border: 2px solid #facc15; color: #facc15; }
+.btn-ig { border: 2px solid #fb923c; color: #fb923c; }
+
+footer {
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid #222222;
+  color: #666666;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .btn-nav-visor { display: none; }
+}
+</style>
 </head>
-<body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col selection:bg-[#005580] selection:text-white font-sans antialiased">
-<!-- Top Navigation Bar (Header sobrio y depurado) -->
-<header class="sticky top-0 z-40 w-full bg-[#111111]/90 backdrop-blur-md border-b border-[#222222] transition-colors">
-<div class="max-w-container-max mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-<!-- Marca -->
-<a class="flex items-center gap-3 group cursor-pointer" href="index.html">
-<div class="w-10 h-10 rounded-lg bg-[#171717] flex items-center justify-center border border-[#222222] group-hover:border-[#005580] transition-colors">
-<span class="material-symbols-outlined text-[#91cdfe] text-xl" data-icon="photo_camera">photo_camera</span>
-</div>
-<div class="flex flex-col">
-<span class="font-medium text-base text-white tracking-wide group-hover:text-[#91cdfe] transition-colors">
-            Sergio Ricardo Molina
-          </span>
-<span class="text-xs uppercase tracking-widest text-[#888888] font-medium">
-            Fotografía Profesional · Mendoza
-          </span>
-</div>
-</a>
-<!-- Navegación de retorno -->
-<nav class="flex items-center gap-2 sm:gap-3">
-<a class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-[#b0b0b0] hover:text-white hover:bg-[#1a1a1a] border border-transparent hover:border-[#222222] text-xs font-medium uppercase tracking-wider transition-all" href="eventos.html">
-<span class="material-symbols-outlined text-base" data-icon="event">event</span>
-<span>Eventos</span>
-</a>
-<a class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-[#b0b0b0] hover:text-white hover:bg-[#1a1a1a] border border-transparent hover:border-[#222222] text-xs font-medium uppercase tracking-wider transition-all" href="galeria.html">
-<span class="material-symbols-outlined text-base" data-icon="grid_view">grid_view</span>
-<span>Galerías Públicas</span>
-</a>
-<a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#171717] hover:bg-[#202020] border border-[#222222] hover:border-[#005580] text-white text-xs font-medium uppercase tracking-wider active:scale-[0.98] transition-all" href="index.html">
-<span class="material-symbols-outlined text-base text-[#91cdfe]" data-icon="arrow_back">arrow_back</span>
-<span>Volver al Portafolio</span>
-</a>
-</nav>
-</div>
+<body>
+
+<!-- ENCABEZADO -->
+<header>
+  <div class="marca-personal">
+    <img src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" alt="Sergio Ricardo Molina" class="avatar">
+    <span>SERGIO RICARDO MOLINA</span>
+  </div>
+  <a class="btn-volver-nav" href="index.html">
+    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+    <span>Volver al Portafolio</span>
+  </a>
 </header>
-<!-- Main Canvas -->
-<main class="flex-grow w-full max-w-container-max mx-auto px-4 md:px-8 py-8 md:py-12">
-<!-- Album Hero Banner -->
-<section class="mb-10 p-6 md:p-10 rounded-xl bg-[#171717] border border-[#222222] hover:border-[#005580]/60 transition-colors relative overflow-hidden shadow-sm">
-<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div class="max-w-3xl space-y-3">
-<!-- Exclusive Security Badge -->
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffb878]/10 border border-[#ffb878]/30 text-[#ffb878] text-xs font-semibold tracking-wider uppercase">
-<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
-<span>Álbum Privado de Cliente</span>
-</div>
-<!-- Session Title -->
-<h1 class="text-2xl md:text-3xl lg:text-4xl text-white font-medium tracking-tight" id="session-title">
-            Colegio San Martín · Promoción LXVIII
-          </h1>
-<!-- Statement -->
-<p class="text-sm md:text-base text-[#a0a0a0] max-w-2xl font-normal leading-relaxed">
-            Entrega oficial en alta resolución sin marcas de agua para visualización, selección y descarga completa.
-          </p>
-<div class="flex flex-wrap items-center gap-y-2 gap-x-6 pt-2 text-xs text-[#888888]">
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[#91cdfe] text-base" data-icon="verified">verified</span>
-<span>Licencia de Uso Completo</span>
-</div>
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[#91cdfe] text-base" data-icon="high_density">high_density</span>
-<span>Calidad Máxima 300 DPI Original</span>
-</div>
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[#91cdfe] text-base" data-icon="cloud_done">cloud_done</span>
-<span id="session-source-badge">Sincronizado vía Cloud Storage</span>
-</div>
-</div>
-</div>
-<!-- Download Action -->
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 self-start md:self-end">
-<button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#005580] hover:bg-[#004466] border border-[#91cdfe]/30 text-white text-xs font-semibold uppercase tracking-wider transition-all duration-150 active:scale-[0.98] shadow-md hover:shadow-[#005580]/20" id="btn-download-all">
-<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
-<span>Descargar Álbum (.ZIP)</span>
-</button>
-</div>
-</div>
-</section>
-<!-- Toolbar / Status Filter Bar -->
-<div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#222222] mb-8">
-<div class="flex items-center gap-3">
-<span class="text-xs uppercase tracking-wider text-[#888888]">Total Fotografías:</span>
-<span class="px-2.5 py-1 rounded bg-[#1f1f1f] text-white text-xs font-semibold border border-[#222222]" id="photo-counter">8 Fotografías</span>
-<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-<span class="text-xs text-[#a0a0a0]">Listas para impresión sin marcas de agua</span>
-</div>
-<!-- Quick Session Filter Switcher -->
-<div class="flex items-center gap-2">
-<label class="text-xs uppercase tracking-wider text-[#888888]" for="folder-select">Lote Activo:</label>
-<select class="bg-[#171717] border border-[#222222] rounded-lg px-3 py-1.5 text-xs text-white focus:border-[#005580] focus:ring-0 cursor-pointer outline-none transition-colors" id="folder-select">
-<option value="drive-main">Colegio San Martín · Ceremonia Formal</option>
-<option value="drive-party">Colegio San Martín · Fiesta &amp; Brindis</option>
-<option value="drive-portraits">Retratos Individuales de Estudio</option>
-</select>
-</div>
-</div>
-<!-- Pristine Photo Grid: 2 Columns Mobile, 4 Columns Desktop (Sin marcas de agua) -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="contenedor-fotos">
-<!-- Inyectado dinámicamente o precargado limpio -->
-</div>
-<!-- Technical Delivery Specifications Section -->
-<section class="mt-12 p-6 md:p-8 rounded-xl bg-[#171717] border border-[#222222]">
-<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-[#222222]">
-<div>
-<h2 class="text-lg md:text-xl text-white font-medium flex items-center gap-2">
-<span class="material-symbols-outlined text-[#91cdfe]" data-icon="settings_suggest">settings_suggest</span>
-            Especificaciones Técnicas del Lote Entregado
-          </h2>
-<p class="text-xs md:text-sm text-[#888888] mt-1 font-normal">
-            Archivos directos originales listos para impresión fine-art, ampliaciones o fotolibros.
-          </p>
-</div>
-<div class="flex items-center gap-2 text-emerald-400 text-xs font-semibold bg-[#111111] px-3.5 py-2 rounded-lg border border-[#222222]">
-<span class="material-symbols-outlined text-base" data-icon="check_circle">check_circle</span>
-<span>Sin Compresión ni Marcas de Agua</span>
-</div>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-<div class="flex flex-col">
-<span class="text-xs text-[#888888] uppercase tracking-wider">Formato de Archivo</span>
-<span class="text-sm md:text-base text-white font-medium mt-1">JPEG Alta Gama / TIFF</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-[#888888] uppercase tracking-wider">Espacio de Color</span>
-<span class="text-sm md:text-base text-white font-medium mt-1">Adobe sRGB Calibrado</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-[#888888] uppercase tracking-wider">Densidad Óptima</span>
-<span class="text-sm md:text-base text-white font-medium mt-1">300 DPI Nativo</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-[#888888] uppercase tracking-wider">Vigencia del Enlace</span>
-<span class="text-sm md:text-base text-white font-medium mt-1">90 Días Activo</span>
-</div>
-</div>
-</section>
-<!-- Bloque de 3 Redes Sociales idéntico a Portafolio (WhatsApp, Catálogo, Instagram) -->
-<section class="mt-14 pt-10 border-t border-[#222222]">
-<div class="text-center mb-8">
-<h3 class="text-lg md:text-xl font-medium text-white tracking-tight">Canales de Contacto Directo</h3>
-<p class="text-xs md:text-sm text-[#888888] mt-1">Coordinación de nuevos eventos, presupuestos y consultas personalizadas.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-<!-- WhatsApp (Borde Verde #4ade80) -->
-<a class="flex items-center gap-4 p-5 rounded-xl bg-[#171717] border border-[#4ade80]/40 hover:border-[#4ade80] transition-all card-hover group" href="https://wa.me/5492610000000?text=Hola%20Sergio,%20estoy%20viendo%20el%20%C3%A1lbum%20privado%20y%20deseo%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
-<div class="w-12 h-12 rounded-lg bg-[#111111] flex items-center justify-center border border-[#4ade80]/30 text-[#4ade80] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl" data-icon="chat">chat</span>
-</div>
-<div class="flex flex-col">
-<span class="text-sm font-semibold text-white group-hover:text-[#4ade80] transition-colors">Chat WhatsApp</span>
-<span class="text-xs text-[#888888] mt-0.5">Atención directa e inmediata</span>
-</div>
-<span class="material-symbols-outlined text-base text-[#888888] ml-auto group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</a>
-<!-- Catálogo (Borde Amarillo #facc15) -->
-<a class="flex items-center gap-4 p-5 rounded-xl bg-[#171717] border border-[#facc15]/40 hover:border-[#facc15] transition-all card-hover group" href="eventos.html">
-<div class="w-12 h-12 rounded-lg bg-[#111111] flex items-center justify-center border border-[#facc15]/30 text-[#facc15] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl" data-icon="photo_library">photo_library</span>
-</div>
-<div class="flex flex-col">
-<span class="text-sm font-semibold text-white group-hover:text-[#facc15] transition-colors">Catálogo de Servicios</span>
-<span class="text-xs text-[#888888] mt-0.5">Egresados, Bodas y 15 Años</span>
-</div>
-<span class="material-symbols-outlined text-base text-[#888888] ml-auto group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</a>
-<!-- Instagram (Borde Naranja #fb923c) -->
-<a class="flex items-center gap-4 p-5 rounded-xl bg-[#171717] border border-[#fb923c]/40 hover:border-[#fb923c] transition-all card-hover group" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
-<div class="w-12 h-12 rounded-lg bg-[#111111] flex items-center justify-center border border-[#fb923c]/30 text-[#fb923c] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl" data-icon="camera_enhance">camera_enhance</span>
-</div>
-<div class="flex flex-col">
-<span class="text-sm font-semibold text-white group-hover:text-[#fb923c] transition-colors">Instagram Oficial</span>
-<span class="text-xs text-[#888888] mt-0.5">@sergiomolina.fotografia</span>
-</div>
-<span class="material-symbols-outlined text-base text-[#888888] ml-auto group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-</section>
+
+<main>
+  <section class="hero-galeria">
+    <div class="badge-tipo-galeria" id="badge-tipo">
+      <span class="material-symbols-outlined" style="font-size: 14px;">lock</span>
+      <span>Galería Privada de Cliente</span>
+    </div>
+    <h1 class="titulo-galeria" id="titulo-galeria">Cargando sesión privada...</h1>
+    <p class="subtitulo-galeria" id="subtitulo-galeria">Álbum exclusivo para visualización en alta definición sin marcas de agua.</p>
+  </section>
+
+  <!-- BANNER DE GARANTÍA PRIVADA -->
+  <div class="banner-privado" id="banner-privado">
+    <div class="banner-item">
+      <span class="material-symbols-outlined" style="color: #facc15; font-size: 18px;">verified</span>
+      <span>Acceso protegido por clave autorizada: <strong id="lbl-clave-activa">Verificada</strong></span>
+    </div>
+    <div style="color: #22c55e; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;">
+      <span class="material-symbols-outlined" style="font-size: 15px;">high_quality</span>
+      <span>Fotografías sin marcas de agua</span>
+    </div>
+  </div>
+
+  <!-- CUADRÍCULA DINÁMICA 100% REAL DE GOOGLE DRIVE -->
+  <div class="grid-fotos" id="contenedor-fotos">
+    <div class="estado-caja">
+      <div class="spinner"></div>
+      <h3>Descargando álbum privado...</h3>
+      <p>Conectando con Google Drive y base de datos autorizada...</p>
+    </div>
+  </div>
+
+  <!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO) -->
+  <div class="redes-sociales">
+    <a href="https://wa.me/542613175222" target="_blank" class="btn-red btn-wsp">
+      <span class="material-symbols-outlined">chat</span>
+      <span>Chat WhatsApp</span>
+    </a>
+    <a href="https://wa.me/c/5492613175222" target="_blank" class="btn-red btn-cat">
+      <span class="material-symbols-outlined">inventory_2</span>
+      <span>Catálogo</span>
+    </a>
+    <a href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank" class="btn-red btn-ig">
+      <span class="material-symbols-outlined">photo_camera_back</span>
+      <span>Instagram</span>
+    </a>
+  </div>
 </main>
-<!-- Fullscreen Modal Lightbox Viewer (Sin marcas de agua) -->
-<div aria-modal="true" class="fixed inset-0 z-50 hidden lightbox-backdrop flex-col items-center justify-between p-4 md:p-6 transition-opacity duration-300" id="lightbox-modal" role="dialog">
-<!-- Lightbox Top Controls -->
-<div class="w-full flex items-center justify-between max-w-7xl mx-auto z-10">
-<div class="flex items-center gap-3">
-<span class="text-xs px-2.5 py-1 rounded bg-[#171717] text-[#91cdfe] border border-[#005580] font-bold tracking-wider">ORIGINAL HD</span>
-<span class="text-sm text-white font-medium" id="lightbox-filename">SRM_0891_HD.jpg</span>
-<span class="text-xs text-[#888888]" id="lightbox-counter">1 / 8</span>
+
+<!-- VISOR MODAL -->
+<div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
+  <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
+  <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
+  <img alt="Vista Previa" id="img-ampliada" src=""/>
+  <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
 </div>
-<div class="flex items-center gap-2">
-<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#005580] hover:bg-[#004466] border border-[#91cdfe]/30 text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-md" id="lightbox-btn-download" onclick="downloadActivePhoto()">
-<span class="material-symbols-outlined text-base" data-icon="download">download</span>
-<span>Descargar Original</span>
-</button>
-<button class="p-2 rounded-lg text-[#a0a0a0] hover:text-white bg-[#171717] hover:bg-[#222222] border border-[#222222] transition-colors" onclick="closeLightbox()" title="Cerrar (ESC)">
-<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
-</button>
-</div>
-</div>
-<!-- Lightbox Main Stage -->
-<div class="relative w-full flex-grow flex items-center justify-center my-4 overflow-hidden">
-<!-- Previous Arrow -->
-<button aria-label="Fotografía Anterior" class="absolute left-2 md:left-6 z-20 p-3 rounded-full bg-[#171717]/80 hover:bg-[#171717] text-white border border-[#222222] transition-all hover:scale-105 active:scale-95" onclick="prevPhoto()">
-<span class="material-symbols-outlined text-2xl" data-icon="chevron_left">chevron_left</span>
-</button>
-<!-- Center Pristine Photo Display (NO watermarks) -->
-<div class="relative max-h-[82vh] max-w-full flex items-center justify-center">
-<img alt="Vista previa en alta resolución sin marcas de agua" class="max-h-[82vh] max-w-[90vw] object-contain rounded-lg border border-[#222222] shadow-2xl transition-all duration-200" id="lightbox-img" src=""/>
-</div>
-<!-- Next Arrow -->
-<button aria-label="Siguiente Fotografía" class="absolute right-2 md:right-6 z-20 p-3 rounded-full bg-[#171717]/80 hover:bg-[#171717] text-white border border-[#222222] transition-all hover:scale-105 active:scale-95" onclick="nextPhoto()">
-<span class="material-symbols-outlined text-2xl" data-icon="chevron_right">chevron_right</span>
-</button>
-</div>
-<!-- Lightbox Footer Info -->
-<div class="w-full max-w-4xl mx-auto flex items-center justify-between text-[#888888] text-xs py-2 border-t border-[#222222] z-10">
-<p class="text-white text-xs md:text-sm font-normal" id="lightbox-caption">Entrada Solemne y Apertura Institucional</p>
-<div class="flex items-center gap-3">
-<span>Navega con flechas o desliza</span>
-<span>·</span>
-<span>Presiona <kbd class="px-1.5 py-0.5 rounded bg-[#1f1f1f] text-white border border-[#222222]">ESC</kbd> para salir</span>
-</div>
-</div>
-</div>
-<!-- Global Footer (Idéntico a Portafolio) -->
-<footer class="w-full border-t border-[#222222] bg-[#111111] py-8 mt-16">
-<div class="max-w-container-max mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-<p class="text-xs md:text-sm text-[#888888] text-center md:text-left">
-        © Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
-      </p>
-<div class="flex items-center gap-4 text-xs text-[#666666]">
-<span>Álbum Privado Exclusivo</span>
-<span>·</span>
-<span>Descargas en Alta Resolución</span>
-</div>
-</div>
+
+<footer>
+  <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
 </footer>
-<!-- Client-Side Integration Script: Supabase & Google Drive Connector Simulation -->
+
 <script>
-    // Fotografías reales limpias en alta calidad (Google Drive / Supabase storage) sin marca de agua
-    const galleryItems = [
-      {
-        filename: "SRM_0891_HD.jpg",
-        caption: "Entrada Solemne y Apertura Institucional",
-        code: "SRM-2024-001",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0894_HD.jpg",
-        caption: "Momento de Entrega de Diplomas de Honor",
-        code: "SRM-2024-002",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0902_HD.jpg",
-        caption: "Retrato Institucional de Grupo Promoción",
-        code: "SRM-2024-003",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0915_HD.jpg",
-        caption: "Festejo y Lanzamiento Tradicional de Birretes",
-        code: "SRM-2024-004",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0920_HD.jpg",
-        caption: "Abrazo Familiar y Felicitaciones de Padres",
-        code: "SRM-2024-005",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0931_HD.jpg",
-        caption: "Brindis de Honor y Salón de Gala",
-        code: "SRM-2024-006",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0945_HD.jpg",
-        caption: "Retrato Editorial Individual de Egresado",
-        code: "SRM-2024-007",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        filename: "SRM_0958_HD.jpg",
-        caption: "Vals Tradicional y Pista de Baile",
-        code: "SRM-2024-008",
-        dimensions: "6240 × 4160 px",
-        placeholderSrc: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop"
+// CREDENCIALES OFICIALES DE SUPABASE Y GOOGLE DRIVE
+const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+let listaFotos = [];
+let indiceVisor = 0;
+let tituloEvento = 'Sesión Privada';
+
+function extraerIdDrive(input) {
+  if (!input) return '';
+  const str = String(input).trim();
+  const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+  if (matchFolder && matchFolder[1]) return matchFolder[1];
+  const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (matchId && matchId[1]) return matchId[1];
+  const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (matchD && matchD[1]) return matchD[1];
+  return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+}
+
+// INICIAR GALERÍA PRIVADA (SUPABASE + LOCALSTORAGE + PARAM)
+async function iniciarGaleriaPrivada() {
+  const params = new URLSearchParams(window.location.search);
+  const paramId = params.get('id');
+  const paramFolder = params.get('folder');
+  const paramTitulo = params.get('titulo');
+  const paramKey = params.get('key');
+
+  if (paramTitulo) {
+    tituloEvento = decodeURIComponent(paramTitulo);
+    document.getElementById('titulo-galeria').innerText = tituloEvento;
+  }
+
+  if (paramKey) {
+    document.getElementById('lbl-clave-activa').innerText = paramKey.toUpperCase();
+  }
+
+  let folderId = '';
+
+  // 1. Si viene por carpeta explícita
+  if (paramFolder && paramFolder.trim().length > 5) {
+    folderId = extraerIdDrive(paramFolder);
+  }
+
+  // 2. Si viene por ID directo de Drive
+  if (!folderId && paramId && paramId.trim().length > 15 && isNaN(paramId)) {
+    folderId = extraerIdDrive(paramId);
+  }
+
+  // 3. Buscar por clave o por ID numérico en Supabase
+  if ((!folderId || !paramTitulo) && (paramKey || paramId)) {
+    if (supabaseClient) {
+      try {
+        let query = supabaseClient.from('galeria').select('*');
+        if (paramKey) {
+          query = query.ilike('password', paramKey.trim());
+        } else if (paramId && !isNaN(paramId)) {
+          query = query.eq('id', paramId);
+        }
+
+        let { data, error } = await query.maybeSingle();
+
+        if (error || !data) {
+          let queryDos = supabaseClient.from('galerias').select('*');
+          if (paramKey) queryDos = queryDos.ilike('password', paramKey.trim());
+          else if (paramId && !isNaN(paramId)) queryDos = queryDos.eq('id', paramId);
+          const resDos = await queryDos.maybeSingle();
+          if (resDos.data) data = resDos.data;
+        }
+
+        if (data) {
+          if (data.titulo) {
+            tituloEvento = data.titulo;
+            document.getElementById('titulo-galeria').innerText = tituloEvento;
+          }
+          const link = data.drive_url || data.url_drive || data.enlace_drive || '';
+          folderId = extraerIdDrive(link);
+        }
+      } catch (errSupabase) {
+        console.warn("Aviso Supabase privadas:", errSupabase);
       }
-    ];
+    }
+  }
 
-    let currentPhotoIndex = 0;
-    const modal = document.getElementById('lightbox-modal');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxFilename = document.getElementById('lightbox-filename');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const lightboxCounter = document.getElementById('lightbox-counter');
-    const contenedor = document.getElementById('contenedor-fotos');
+  // 4. Buscar en respaldo local si aún no se resolvió
+  if (!folderId && (paramKey || paramId)) {
+    try {
+      const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+      const loc = locales.find(g => 
+        (paramKey && g.password && g.password.trim().toLowerCase() === paramKey.trim().toLowerCase()) ||
+        (paramId && String(g.id) === String(paramId))
+      );
+      if (loc) {
+        if (loc.titulo) {
+          tituloEvento = loc.titulo;
+          document.getElementById('titulo-galeria').innerText = tituloEvento;
+        }
+        folderId = extraerIdDrive(loc.drive_url || loc.enlace_drive || '');
+      }
+    } catch(e) {}
+  }
 
-    // Render Grid
-    function renderGallery() {
-      contenedor.innerHTML = '';
-      galleryItems.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = "group flex flex-col bg-[#171717] rounded-xl border border-[#222222] hover:border-[#005580] overflow-hidden card-hover cursor-pointer";
-        card.onclick = () => openLightbox(index);
+  // Fallback si paramId es el ID directo alfanumérico
+  if (!folderId && paramId) {
+    folderId = extraerIdDrive(paramId);
+  }
 
-        card.innerHTML = `
-          <div class="relative aspect-[4/3] w-full overflow-hidden bg-[#111111]">
-            <img src="${item.placeholderSrc}" alt="${item.caption}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-3">
-              <span class="text-[11px] text-white font-medium bg-[#005580] px-2 py-0.5 rounded">Ver HD</span>
-              <span class="material-symbols-outlined text-white text-lg" data-icon="fullscreen">fullscreen</span>
-            </div>
-          </div>
-          <div class="p-3.5 flex flex-col justify-between flex-grow gap-2">
-            <div>
-              <p class="text-xs font-medium text-white truncate group-hover:text-[#91cdfe] transition-colors">${item.caption}</p>
-              <p class="text-[11px] text-[#888888] font-mono mt-0.5">${item.filename}</p>
-            </div>
-            <div class="flex items-center justify-between pt-2 border-t border-[#222222] text-[10px] text-[#888888]">
-              <span>${item.dimensions}</span>
-              <button onclick="event.stopPropagation(); downloadDirect('${item.filename}')" class="text-[#91cdfe] hover:text-white flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
-                <span>Bajar</span>
-              </button>
-            </div>
-          </div>
-        `;
-        contenedor.appendChild(card);
-      });
-      document.getElementById('photo-counter').textContent = `${galleryItems.length} Fotografías`;
+  if (!folderId) {
+    mostrarMensajeError(
+      "Galería privada no especificada",
+      "No se encontró una carpeta de Google Drive asociada a esta clave o enlace. Verificá la contraseña ingresada con el fotógrafo."
+    );
+    return;
+  }
+
+  cargarFotosDrive(folderId);
+}
+
+// OBTENER FOTOGRAFÍAS REALES DIRECTAS DE LA API DE DRIVE
+async function cargarFotosDrive(folderId) {
+  const contenedor = document.getElementById('contenedor-fotos');
+  const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 9000);
+
+  try {
+    const res = await fetch(urlDrive, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    const datos = await res.json();
+
+    if (datos.error) {
+      console.error("Error Drive:", datos.error);
+      mostrarMensajeError(
+        "Permisos de Google Drive",
+        "La carpeta en Drive debe estar compartida como: 'Cualquier persona con el enlace puede ver'. Verificá los permisos del álbum."
+      );
+      return;
     }
 
-    // Lightbox Control Logic
-    function openLightbox(index) {
-      currentPhotoIndex = index;
-      updateLightboxContent();
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
+    if (!datos.files || datos.files.length === 0) {
+      mostrarMensajeVacio(folderId);
+      return;
     }
 
-    function closeLightbox() {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.body.style.overflow = 'auto';
+    // 100% fotos reales de Google Drive (Sin miniaturas de muestra)
+    listaFotos = datos.files.map(f => ({
+      id: f.id,
+      name: f.name || 'Fotografía Privada',
+      thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
+      full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
+    }));
+
+    renderizarFotos();
+  } catch (err) {
+    clearTimeout(timeoutId);
+    console.error("Error:", err);
+    if (err.name === 'AbortError') {
+      mostrarMensajeError(
+        "Tiempo de espera agotado",
+        "La conexión con Google Drive tardó más de lo esperado. Hacé clic en Reintentar."
+      );
+    } else {
+      mostrarMensajeError(
+        "Error de conexión con Google Drive",
+        "No se pudieron descargar las fotos de la carpeta privada. Verificá que la carpeta exista y sea pública."
+      );
     }
+  }
+}
 
-    function updateLightboxContent() {
-      const item = galleryItems[currentPhotoIndex];
-      lightboxFilename.textContent = item.filename;
-      lightboxCaption.textContent = item.caption;
-      lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${galleryItems.length}`;
-      lightboxImg.src = item.placeholderSrc;
-    }
+// RENDERIZAR CUADRÍCULA 100% LIMPIA (SIN MARCA DE AGUA)
+function renderizarFotos() {
+  const contenedor = document.getElementById('contenedor-fotos');
+  contenedor.innerHTML = '';
 
-    function nextPhoto() {
-      currentPhotoIndex = (currentPhotoIndex + 1) % galleryItems.length;
-      updateLightboxContent();
-    }
+  listaFotos.forEach((foto, index) => {
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'tarjeta-foto';
 
-    function prevPhoto() {
-      currentPhotoIndex = (currentPhotoIndex - 1 + galleryItems.length) % galleryItems.length;
-      updateLightboxContent();
-    }
+    const nombreFormateado = foto.name.startsWith('#') ? foto.name : `#${foto.name}`;
 
-    function downloadDirect(filename) {
-      alert(`Iniciando descarga directa de "${filename}" en resolución máxima original (300 DPI nativo, sin marcas de agua).`);
-    }
+    tarjeta.innerHTML = `
+      <div class="contenedor-img" onclick="abrirVisor(${index})">
+        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/${foto.id}'">
+      </div>
+      <div class="pie-foto">
+        <span class="nombre-foto" title="${foto.name}">${nombreFormateado}</span>
+        <span class="tag-calidad">
+          <span class="material-symbols-outlined" style="font-size:14px;">check_circle</span>
+          Alta Calidad
+        </span>
+      </div>
+    `;
+    contenedor.appendChild(tarjeta);
+  });
+}
 
-    function downloadActivePhoto() {
-      const item = galleryItems[currentPhotoIndex];
-      downloadDirect(item.filename);
-    }
+// ESTADOS DE ERROR Y VACÍO
+function mostrarMensajeVacio(folderId) {
+  const contenedor = document.getElementById('contenedor-fotos');
+  contenedor.innerHTML = `
+    <div class="estado-caja">
+      <span class="material-symbols-outlined">folder_open</span>
+      <h3>Carpeta privada vacía</h3>
+      <p>No se encontraron fotografías en la carpeta vinculada a esta sesión.</p>
+      <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#666;">Carpeta Drive ID: ${folderId}</div>
+      <button onclick="iniciarGaleriaPrivada()" class="btn-accion-estado">
+        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+        <span>Reintentar Sincronización</span>
+      </button>
+      <a href="index.html" class="btn-accion-estado" style="background:#262626; margin-left:8px;">
+        <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
+        <span>Volver al Portafolio</span>
+      </a>
+    </div>
+  `;
+}
 
-    // Keyboard navigation
-    window.addEventListener('keydown', (e) => {
-      if (modal.classList.contains('hidden')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextPhoto();
-      if (e.key === 'ArrowLeft') prevPhoto();
-    });
+function mostrarMensajeError(titulo, detalle) {
+  const contenedor = document.getElementById('contenedor-fotos');
+  contenedor.innerHTML = `
+    <div class="estado-caja">
+      <span class="material-symbols-outlined" style="color: #ef4444;">lock_reset</span>
+      <h3>${titulo}</h3>
+      <p>${detalle}</p>
+      <button onclick="iniciarGaleriaPrivada()" class="btn-accion-estado">
+        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+        <span>Reintentar</span>
+      </button>
+      <a href="https://wa.me/542613175222?text=Hola%20Sergio,%20tengo%20una%20consulta%20con%20la%20clave%20de%20mi%20galeria%20privada" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
+        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
+        <span>Consultar por WhatsApp</span>
+      </a>
+    </div>
+  `;
+}
 
-    // ZIP Batch Download
-    document.getElementById('btn-download-all').addEventListener('click', () => {
-      alert('Preparando archivo .ZIP completo con las 8 fotografías en alta resolución sin marcas de agua.');
-    });
+// VISOR EN ALTA DEFINICIÓN CON SWIPE Y NAVEGACIÓN
+function abrirVisor(index) {
+  if (!listaFotos || listaFotos.length === 0) return;
+  indiceVisor = index;
+  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+  document.getElementById('modal-visor').style.display = 'flex';
+}
 
-    // Folder selector change
-    document.getElementById('folder-select').addEventListener('change', (e) => {
-      const titles = {
-        'drive-main': 'Colegio San Martín · Ceremonia Formal',
-        'drive-party': 'Colegio San Martín · Fiesta & Brindis',
-        'drive-portraits': 'Retratos Individuales de Estudio'
-      };
-      document.getElementById('session-title').textContent = titles[e.target.value] || 'Colegio San Martín';
-    });
+function cerrarVisor() {
+  document.getElementById('modal-visor').style.display = 'none';
+}
 
-    // Inicializar galería
-    document.addEventListener('DOMContentLoaded', () => {
-      renderGallery();
-    });
-  </script>
-</body></html>
+function cerrarVisorFondo(e) {
+  if (e.target && e.target.id === 'modal-visor') cerrarVisor();
+}
+
+function cambiarFoto(dir, event) {
+  if (event) event.stopPropagation();
+  indiceVisor += dir;
+  if (indiceVisor >= listaFotos.length) indiceVisor = 0;
+  else if (indiceVisor < 0) indiceVisor = listaFotos.length - 1;
+  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+}
+
+document.addEventListener('keydown', (e) => {
+  const modal = document.getElementById('modal-visor');
+  if (modal && modal.style.display === 'flex') {
+    if (e.key === 'Escape') cerrarVisor();
+    else if (e.key === 'ArrowLeft') cambiarFoto(-1);
+    else if (e.key === 'ArrowRight') cambiarFoto(1);
+  }
+});
+
+let touchStartX = 0;
+let touchEndX = 0;
+const modalEl = document.getElementById('modal-visor');
+modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+modalEl.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  if (touchEndX + 45 < touchStartX) cambiarFoto(1);
+  else if (touchEndX > touchStartX + 45) cambiarFoto(-1);
+}, false);
+
+document.addEventListener('DOMContentLoaded', iniciarGaleriaPrivada);
+</script>
+</body>
+</html>
