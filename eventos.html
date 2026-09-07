@@ -143,65 +143,11 @@
 </head>
 <body class="bg-surface-dim text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary">
 <!-- Top Navigation Bar matching Shared TopNavBar tokens & return action -->
-<header class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-all duration-200">
-<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
-<!-- Brand anchor & Return action -->
-<div class="flex items-center gap-space-md">
-<a class="flex items-center gap-space-xs text-on-surface-variant hover:text-surface-bright px-space-sm py-space-xs rounded-lg border border-outline-variant hover:border-outline transition-all duration-150 active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-body-lg">arrow_back</span>
-<span class="font-label-md text-label-md uppercase tracking-wider">Volver al Portafolio</span>
-</a>
-<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
-<div class="hidden md:flex flex-col">
-<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Sergio Ricardo Molina</span>
-<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Fotografía Profesional</span>
-</div>
-</div>
-<!-- Live status badge and quick direct actions -->
-<div class="flex items-center gap-space-sm">
-<div class="hidden lg:flex items-center gap-space-xs bg-surface-container-high px-space-sm py-1 rounded-full border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">SERVIDORES EN LÍNEA · LAB DRIVE</span>
-</div>
-<a class="flex items-center gap-space-2xs text-secondary hover:text-surface-bright border border-secondary-container bg-secondary-container/30 px-space-sm py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="#acceso-privado">
-<span class="material-symbols-outlined text-body-md">lock</span>
-<span>Acceso Privado</span>
-</a>
-</div>
-</div>
-</header>
+<header class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-all duration-200"><div class="flex flex-col sm:flex-row justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet max-w-container-max mx-auto py-space-sm sm:py-0 sm:h-16 gap-space-sm"><div class="flex items-center justify-between w-full sm:w-auto gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="Sergio Ricardo Molina" class="w-10 h-10 rounded-full border border-primary object-cover shadow-sm" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/><div class="flex flex-col text-left"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Sergio Ricardo Molina</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Fotografía Profesional / Eventos Escolares</span></div></div><a aria-label="Volver al Portafolio" class="sm:hidden flex items-center justify-center w-9 h-9 text-on-surface-variant hover:text-surface-bright rounded-lg border border-outline-variant bg-surface-container-high transition-all active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-body-lg">arrow_back</span></a></div><div class="flex items-center justify-between w-full sm:w-auto gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-xs text-on-surface-variant hover:text-surface-bright px-space-sm py-space-xs rounded-lg border border-outline-variant hover:border-outline transition-all duration-150 active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-body-lg">arrow_back</span><span class="font-label-md text-label-md uppercase tracking-wider">Volver al Portafolio</span></a><a class="flex-1 sm:flex-initial flex items-center justify-center gap-space-2xs text-secondary hover:text-surface-bright border border-secondary-container bg-secondary-container/30 px-space-sm py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="#acceso-privado"><span class="material-symbols-outlined text-body-md">lock</span><span>Acceso Clientes Privado</span></a></div></div></header>
 <!-- Main Content Canvas -->
 <main class="flex-grow w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop pt-space-2xl pb-space-4xl">
 <!-- Atmospheric Hero Section -->
-<section class="mb-space-3xl relative">
-<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-primary-container/10 blur-3xl pointer-events-none rounded-full"></div>
-<div class="relative z-10 max-w-4xl">
-<div class="inline-flex items-center gap-space-xs bg-surface-container-high border border-outline-variant px-space-sm py-1 rounded-full text-secondary mb-space-md">
-<span class="material-symbols-outlined text-label-md">photo_camera</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Portal de Coberturas Escolares</span>
-</div>
-<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface mb-space-sm tracking-tight">
-          Eventos Escolares
-        </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-          Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio. Coberturas completas y tomas protocolares procesadas individualmente.
-        </p>
-</div>
-<!-- Quick Filter & Search Bar Cluster -->
-<div class="mt-space-xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md bg-surface-container-low border border-outline-variant p-space-md rounded-xl">
-<div class="relative flex-grow max-w-lg">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full bg-surface border border-outline-variant pl-10 pr-space-md py-space-sm rounded-lg text-on-surface placeholder:text-outline focus:border-primary-container focus:outline-none text-body-md font-body-md transition-colors" id="gallery-search" placeholder="Buscar por colegio, curso, promoción o localidad..." type="text"/>
-</div>
-<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md overflow-x-auto pb-1 md:pb-0">
-<span class="text-outline uppercase tracking-wider text-label-sm mr-2 hidden sm:inline">Filtrar:</span>
-<button class="filter-btn active bg-primary-container border border-primary text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="all" type="button">Todos</button>
-<button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="actos" type="button">Actos</button>
-<button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="egresados" type="button">Egresados</button>
-<button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="deportes" type="button">Deportes</button>
-</div>
-</div>
-</section>
+<section class="mb-space-3xl relative"><div class="absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-primary-container/10 blur-3xl pointer-events-none rounded-full"></div><div class="relative z-10 max-w-4xl text-center md:text-left"><div class="inline-flex items-center gap-space-xs bg-surface-container-high border border-outline-variant px-space-sm py-1 rounded-full text-secondary mb-space-sm"><span class="material-symbols-outlined text-label-md">photo_camera</span><span class="font-label-sm text-label-sm uppercase tracking-widest">Portal de Coberturas Escolares</span></div><h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface mb-space-2xs tracking-tight">Eventos Escolares</h1><p class="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-2xl leading-relaxed mx-auto md:mx-0">Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio.</p></div><div class="mt-space-md flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-sm bg-surface-container-low border border-outline-variant p-space-sm md:p-space-md rounded-xl"><div class="relative flex-grow max-w-lg"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">search</span><input class="w-full bg-surface border border-outline-variant pl-10 pr-space-md py-space-xs md:py-space-sm rounded-lg text-on-surface placeholder:text-outline focus:border-primary focus:outline-none text-body-md font-body-md transition-colors" id="gallery-search" placeholder="Buscar por colegio o acto..." type="text"/></div><div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md overflow-x-auto pb-1 md:pb-0 scrollbar-none"><button class="filter-btn active bg-primary-container border border-primary text-on-surface px-space-sm py-1 rounded-lg transition-all flex-shrink-0" data-filter="all" type="button">Todos</button><button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1 rounded-lg transition-all flex-shrink-0" data-filter="actos" type="button">Actos</button><button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1 rounded-lg transition-all flex-shrink-0" data-filter="egresados" type="button">Egresados</button><button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1 rounded-lg transition-all flex-shrink-0" data-filter="deportes" type="button">Deportes</button></div></div></section>
 <!-- Dynamic Gallery Section -->
 <section class="mb-space-4xl">
 <div class="flex items-center justify-between mb-space-lg pb-space-xs border-b border-surface-container-highest">
@@ -241,36 +187,7 @@
 </div>
 </section>
 <!-- Prominent Private Access Block -->
-<section class="relative overflow-hidden rounded-xl border border-secondary-container/80 bg-surface-container p-space-xl md:p-space-2xl shadow-2xl mb-space-4xl" id="acceso-privado">
-<!-- Darkroom subtle cyan glow -->
-<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
-<div class="watermark-pattern absolute inset-0 opacity-40 pointer-events-none"></div>
-<div class="relative z-10 max-w-3xl mx-auto text-center">
-<div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-secondary-container/40 border border-primary text-secondary mb-space-md shadow-inner">
-<span class="material-symbols-outlined text-headline-lg">key</span>
-</div>
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-space-xs font-semibold">
-          ¿Tu evento o sesión es privada?
-        </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-space-xl max-w-xl mx-auto">
-          Ingresá la clave de tu curso o colegio para desbloquear tu álbum con acceso exclusivo y fotografías confidenciales del curso.
-        </p>
-<!-- Access Form -->
-<form class="flex flex-col sm:flex-row items-stretch justify-center gap-space-sm max-w-lg mx-auto" id="private-access-form">
-<div class="relative flex-grow">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">lock_open</span>
-<input class="w-full bg-surface-container-lowest border border-outline-variant pl-11 pr-space-md py-space-sm rounded-lg text-on-surface placeholder:text-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md uppercase tracking-wider transition-all" id="private-key-input" name="key" placeholder="Ej. COLEGIO2024 o BGU-6A" required="" type="text"/>
-</div>
-<button class="bg-primary-container hover:bg-secondary-container border border-primary text-on-surface px-space-xl py-space-sm rounded-lg font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-space-xs transition-all duration-150 active:scale-[0.98] shadow-md" type="submit">
-<span>Ingresar</span>
-<span class="material-symbols-outlined text-body-md">arrow_forward</span>
-</button>
-</form>
-<p class="font-label-sm text-label-sm text-outline mt-space-md">
-<span class="material-symbols-outlined text-xs align-middle">verified_user</span> Privacidad protegida · Entrega directa autorizada por el establecimiento
-        </p>
-</div>
-</section>
+<section class="relative overflow-hidden rounded-xl border border-secondary-container/80 bg-surface-container p-space-xl md:p-space-2xl shadow-2xl mb-space-4xl" id="acceso-privado"><div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div><div class="watermark-pattern absolute inset-0 opacity-40 pointer-events-none"></div><div class="relative z-10 max-w-3xl mx-auto text-center"><div class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-secondary-container/40 border border-primary text-secondary mb-space-sm shadow-inner"><span class="material-symbols-outlined text-headline-md md:text-headline-lg">lock</span></div><h2 class="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-on-surface mb-space-xs font-semibold">Acceso Clientes Privado 🔒</h2><p class="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant mb-space-lg max-w-xl mx-auto">Ingresá la clave de tu curso o colegio para desbloquear tu álbum con acceso exclusivo y fotografías protegidas.</p><form class="flex flex-col sm:flex-row items-stretch justify-center gap-space-xs md:gap-space-sm max-w-lg mx-auto" id="private-access-form"><div class="relative flex-grow"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">key</span><input class="w-full bg-surface-container-lowest border border-outline-variant pl-11 pr-space-md py-space-sm rounded-lg text-on-surface placeholder:text-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md uppercase tracking-wider transition-all" id="private-key-input" name="key" placeholder="Ej. COLEGIO2024 o BGU-6A" required="" type="text"/></div><button class="bg-primary-container hover:bg-secondary-container border border-primary text-on-surface px-space-xl py-space-sm rounded-lg font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-space-xs transition-all duration-150 active:scale-[0.98] shadow-md" type="submit"><span>Desbloquear</span><span class="material-symbols-outlined text-body-md">arrow_forward</span></button></form><p class="font-label-sm text-label-sm text-outline mt-space-md flex items-center justify-center gap-1"><span class="material-symbols-outlined text-xs align-middle">verified_user</span> Privacidad protegida · Entrega directa autorizada por el establecimiento</p></div></section>
 <!-- Communication & Direct Ordering Channels -->
 <section class="mb-space-3xl">
 <div class="text-center mb-space-lg">
@@ -312,22 +229,7 @@
 </section>
 </main>
 <!-- Clean Minimal Darkroom Footer -->
-<footer class="border-t border-outline-variant bg-surface-container-lowest py-space-xl">
-<div class="w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet flex flex-col md:flex-row items-center justify-between gap-space-md text-center md:text-left">
-<div>
-<p class="font-headline-sm text-body-md text-on-surface font-semibold tracking-wide">
-          Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
-        </p>
-<p class="font-label-sm text-label-sm text-outline mt-0.5">
-          Revelado digital de alta resolución, archivos de preservación y copias fine-art.
-        </p>
-</div>
-<div class="flex items-center gap-space-lg text-outline font-label-sm text-label-sm uppercase tracking-widest">
-<span>© 2024 Todos los derechos reservados</span>
-<a class="hover:text-primary transition-colors" href="index.html">Inicio</a>
-</div>
-</div>
-</footer>
+<footer class="border-t border-outline-variant bg-surface-container-lowest py-space-xl"><div class="w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center"><p class="font-body-md text-body-md text-on-surface-variant font-medium tracking-wide">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p><div class="flex items-center gap-space-md text-outline font-label-sm text-label-sm uppercase tracking-widest"><a class="hover:text-primary transition-colors py-1" href="index.html">Inicio</a><span class="text-outline-variant">•</span><a class="hover:text-primary transition-colors py-1" href="catalogo.html">Catálogo</a></div></div></footer>
 <!-- Complete Inline Architecture & Dual Supabase Sync -->
 <script>
     (function () {
