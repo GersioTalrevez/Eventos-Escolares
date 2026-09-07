@@ -3,603 +3,482 @@
 <html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Eventos Escolares | Sergio Ricardo Molina Fotografía Profesional</title>
-<!-- Google Fonts -->
+<title>Álbum Privado · Sergio Ricardo Molina · Fotografía Profesional</title>
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Supabase JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Tailwind Configuration verbatim -->
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
-          "colors": {
-            "secondary-fixed": "#cae6ff",
-            "on-secondary-fixed": "#001e30",
-            "inverse-surface": "#e5e2e1",
-            "on-primary": "#003350",
-            "primary-fixed": "#cbe6ff",
-            "on-secondary-container": "#8dbee6",
-            "primary-fixed-dim": "#91cdfe",
-            "surface-container-low": "#1c1b1b",
-            "surface-tint": "#91cdfe",
-            "secondary-fixed-dim": "#9bccf4",
-            "tertiary-fixed-dim": "#ffb878",
-            "on-background": "#e5e2e1",
-            "error": "#ffb4ab",
-            "primary": "#91cdfe",
-            "inverse-on-surface": "#313030",
-            "tertiary": "#ffb878",
-            "surface-dim": "#131313",
-            "on-tertiary-container": "#ffb36e",
-            "error-container": "#93000a",
-            "surface-bright": "#3a3939",
-            "surface-container-lowest": "#0e0e0e",
-            "on-primary-fixed": "#001e30",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-secondary": "#00344f",
-            "on-error-container": "#ffdad6",
+          colors: {
+            brand: "#005580",
+            primary: "#91cdfe",
             "primary-container": "#005580",
-            "background": "#131313",
-            "on-primary-fixed-variant": "#004b72",
-            "surface-container-high": "#2a2a2a",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "tertiary-container": "#794303",
-            "outline-variant": "#41474e",
-            "on-tertiary": "#4c2700",
-            "on-tertiary-fixed": "#2e1500",
-            "surface-container-highest": "#353534",
-            "secondary-container": "#124d70",
-            "on-surface-variant": "#c0c7cf",
-            "outline": "#8b9199",
-            "on-primary-container": "#8ec9fa",
-            "surface-variant": "#353534",
-            "surface-container": "#201f1f",
-            "on-error": "#690005",
-            "secondary": "#9bccf4",
-            "tertiary-fixed": "#ffdcc1",
-            "inverse-primary": "#1e638f",
-            "surface": "#131313",
-            "on-surface": "#e5e2e1"
+            "surface-dark": "#111111",
+            "surface-card": "#171717",
+            "border-subtle": "#222222",
+            "border-accent": "#005580"
           },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
+          fontFamily: {
+            sans: ["Manrope", "sans-serif"]
           },
-          "spacing": {
-            "space-sm": "0.75rem",
-            "space-4xl": "6rem",
-            "container-max": "1440px",
-            "space-2xl": "3rem",
-            "space-2xs": "0.25rem",
-            "gutter-tablet": "1.5rem",
-            "gutter-mobile": "1rem",
-            "space-md": "1rem",
-            "space-3xl": "4.5rem",
-            "space-lg": "1.5rem",
-            "gutter-desktop": "2rem",
-            "space-xs": "0.5rem",
-            "space-xl": "2rem"
-          },
-          "fontFamily": {
-            "headline-sm": ["Raleway"],
-            "label-sm": ["Manrope"],
-            "body-lg": ["Manrope"],
-            "display-hero-mobile": ["Raleway"],
-            "display-hero": ["Raleway"],
-            "headline-lg-mobile": ["Raleway"],
-            "headline-md": ["Raleway"],
-            "body-md": ["Manrope"],
-            "headline-lg": ["Raleway"],
-            "label-md": ["Manrope"]
-          },
-          "fontSize": {
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }]
+          maxWidth: {
+            "container-max": "1440px"
           }
         }
       }
-    };
+    }
   </script>
 <style>
     body {
       background-color: #111111;
       color: #e5e2e1;
       font-family: 'Manrope', sans-serif;
+      margin: 0;
       overflow-x: hidden;
     }
     .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
       line-height: 1;
+      display: inline-block;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
     }
-    .card-zoom:hover .card-img {
-      transform: scale(1.03);
+    .card-hover {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .watermark-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-      background-size: 24px 24px;
+    .card-hover:hover {
+      transform: translateY(-2px);
+      border-color: #005580;
+      box-shadow: 0 10px 25px -5px rgba(0, 85, 128, 0.15);
+    }
+    .lightbox-backdrop {
+      backdrop-filter: blur(16px);
+      background-color: rgba(10, 10, 10, 0.95);
     }
   </style>
 </head>
-<body class="bg-surface-dim text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary">
-<!-- Top Navigation Bar matching Shared TopNavBar tokens & return action -->
-<header class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-all duration-200">
-<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
-<!-- Brand anchor & Return action -->
-<div class="flex items-center gap-space-md">
-<a class="flex items-center gap-space-xs text-on-surface-variant hover:text-surface-bright px-space-sm py-space-xs rounded-lg border border-outline-variant hover:border-outline transition-all duration-150 active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-body-lg">arrow_back</span>
-<span class="font-label-md text-label-md uppercase tracking-wider">Volver al Portafolio</span>
+<body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col selection:bg-[#005580] selection:text-white font-sans antialiased">
+<!-- Top Navigation Bar (Header sobrio y depurado) -->
+<header class="sticky top-0 z-40 w-full bg-[#111111]/90 backdrop-blur-md border-b border-[#222222] transition-colors">
+<div class="max-w-container-max mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+<!-- Marca -->
+<a class="flex items-center gap-3 group cursor-pointer" href="index.html">
+<div class="w-10 h-10 rounded-lg bg-[#171717] flex items-center justify-center border border-[#222222] group-hover:border-[#005580] transition-colors">
+<span class="material-symbols-outlined text-[#91cdfe] text-xl" data-icon="photo_camera">photo_camera</span>
+</div>
+<div class="flex flex-col">
+<span class="font-medium text-base text-white tracking-wide group-hover:text-[#91cdfe] transition-colors">
+            Sergio Ricardo Molina
+          </span>
+<span class="text-xs uppercase tracking-widest text-[#888888] font-medium">
+            Fotografía Profesional · Mendoza
+          </span>
+</div>
 </a>
-<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
-<div class="hidden md:flex flex-col">
-<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Sergio Ricardo Molina</span>
-<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Fotografía Profesional</span>
-</div>
-</div>
-<!-- Live status badge and quick direct actions -->
-<div class="flex items-center gap-space-sm">
-<div class="hidden lg:flex items-center gap-space-xs bg-surface-container-high px-space-sm py-1 rounded-full border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">SERVIDORES EN LÍNEA · LAB DRIVE</span>
-</div>
-<a class="flex items-center gap-space-2xs text-secondary hover:text-surface-bright border border-secondary-container bg-secondary-container/30 px-space-sm py-1.5 rounded-lg font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="#acceso-privado">
-<span class="material-symbols-outlined text-body-md">lock</span>
-<span>Acceso Privado</span>
+<!-- Navegación de retorno -->
+<nav class="flex items-center gap-2 sm:gap-3">
+<a class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-[#b0b0b0] hover:text-white hover:bg-[#1a1a1a] border border-transparent hover:border-[#222222] text-xs font-medium uppercase tracking-wider transition-all" href="eventos.html">
+<span class="material-symbols-outlined text-base" data-icon="event">event</span>
+<span>Eventos</span>
 </a>
-</div>
+<a class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-[#b0b0b0] hover:text-white hover:bg-[#1a1a1a] border border-transparent hover:border-[#222222] text-xs font-medium uppercase tracking-wider transition-all" href="galeria.html">
+<span class="material-symbols-outlined text-base" data-icon="grid_view">grid_view</span>
+<span>Galerías Públicas</span>
+</a>
+<a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#171717] hover:bg-[#202020] border border-[#222222] hover:border-[#005580] text-white text-xs font-medium uppercase tracking-wider active:scale-[0.98] transition-all" href="index.html">
+<span class="material-symbols-outlined text-base text-[#91cdfe]" data-icon="arrow_back">arrow_back</span>
+<span>Volver al Portafolio</span>
+</a>
+</nav>
 </div>
 </header>
-<!-- Main Content Canvas -->
-<main class="flex-grow w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop pt-space-2xl pb-space-4xl">
-<!-- Atmospheric Hero Section -->
-<section class="mb-space-3xl relative">
-<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-primary-container/10 blur-3xl pointer-events-none rounded-full"></div>
-<div class="relative z-10 max-w-4xl">
-<div class="inline-flex items-center gap-space-xs bg-surface-container-high border border-outline-variant px-space-sm py-1 rounded-full text-secondary mb-space-md">
-<span class="material-symbols-outlined text-label-md">photo_camera</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Portal de Coberturas Escolares</span>
+<!-- Main Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-4 md:px-8 py-8 md:py-12">
+<!-- Album Hero Banner -->
+<section class="mb-10 p-6 md:p-10 rounded-xl bg-[#171717] border border-[#222222] hover:border-[#005580]/60 transition-colors relative overflow-hidden shadow-sm">
+<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-3xl space-y-3">
+<!-- Exclusive Security Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffb878]/10 border border-[#ffb878]/30 text-[#ffb878] text-xs font-semibold tracking-wider uppercase">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span>Álbum Privado de Cliente</span>
 </div>
-<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface mb-space-sm tracking-tight">
-          Eventos Escolares
-        </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-          Seleccioná tu colegio o acto para ver y encargar fotografías oficiales con marca de agua y calidad de laboratorio. Coberturas completas y tomas protocolares procesadas individualmente.
-        </p>
+<!-- Session Title -->
+<h1 class="text-2xl md:text-3xl lg:text-4xl text-white font-medium tracking-tight" id="session-title">
+            Colegio San Martín · Promoción LXVIII
+          </h1>
+<!-- Statement -->
+<p class="text-sm md:text-base text-[#a0a0a0] max-w-2xl font-normal leading-relaxed">
+            Entrega oficial en alta resolución sin marcas de agua para visualización, selección y descarga completa.
+          </p>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-6 pt-2 text-xs text-[#888888]">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#91cdfe] text-base" data-icon="verified">verified</span>
+<span>Licencia de Uso Completo</span>
 </div>
-<!-- Quick Filter & Search Bar Cluster -->
-<div class="mt-space-xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md bg-surface-container-low border border-outline-variant p-space-md rounded-xl">
-<div class="relative flex-grow max-w-lg">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full bg-surface border border-outline-variant pl-10 pr-space-md py-space-sm rounded-lg text-on-surface placeholder:text-outline focus:border-primary-container focus:outline-none text-body-md font-body-md transition-colors" id="gallery-search" placeholder="Buscar por colegio, curso, promoción o localidad..." type="text"/>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#91cdfe] text-base" data-icon="high_density">high_density</span>
+<span>Calidad Máxima 300 DPI Original</span>
 </div>
-<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md overflow-x-auto pb-1 md:pb-0">
-<span class="text-outline uppercase tracking-wider text-label-sm mr-2 hidden sm:inline">Filtrar:</span>
-<button class="filter-btn active bg-primary-container border border-primary text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="all" type="button">Todos</button>
-<button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="actos" type="button">Actos</button>
-<button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="egresados" type="button">Egresados</button>
-<button class="filter-btn bg-surface border border-outline-variant text-on-surface-variant hover:text-on-surface px-space-sm py-1.5 rounded-lg transition-all" data-filter="deportes" type="button">Deportes</button>
-</div>
-</div>
-</section>
-<!-- Dynamic Gallery Section -->
-<section class="mb-space-4xl">
-<div class="flex items-center justify-between mb-space-lg pb-space-xs border-b border-surface-container-highest">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-primary">collections_bookmark</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">Galerías Públicas Disponibles</h2>
-</div>
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline" id="gallery-counter">Cargando colecciones...</span>
-</div>
-<!-- Loading State Skeleton -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl" id="loading-state">
-<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant animate-pulse p-space-md flex flex-col gap-space-md">
-<div class="w-full aspect-[16/10] bg-surface-container-high rounded-lg"></div>
-<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
-<div class="h-3 bg-surface-container-high rounded w-1/2"></div>
-</div>
-<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant animate-pulse p-space-md flex flex-col gap-space-md">
-<div class="w-full aspect-[16/10] bg-surface-container-high rounded-lg"></div>
-<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
-<div class="h-3 bg-surface-container-high rounded w-1/2"></div>
-</div>
-<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant animate-pulse p-space-md flex flex-col gap-space-md">
-<div class="w-full aspect-[16/10] bg-surface-container-high rounded-lg"></div>
-<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
-<div class="h-3 bg-surface-container-high rounded w-1/2"></div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#91cdfe] text-base" data-icon="cloud_done">cloud_done</span>
+<span id="session-source-badge">Sincronizado vía Cloud Storage</span>
 </div>
 </div>
-<!-- Empty State -->
-<div class="hidden text-center py-space-3xl border border-dashed border-outline-variant rounded-xl bg-surface-container-low" id="empty-state">
-<span class="material-symbols-outlined text-5xl text-outline mb-space-sm">folder_off</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs">No se encontraron galerías públicas</h3>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">Verificá los términos de búsqueda o comprobá si tu álbum escolar requiere código de acceso privado.</p>
 </div>
-<!-- Dynamic Cards Grid (Supabase & LocalStorage) -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl" id="galleries-grid">
-<!-- Rendered dynamically by script -->
-</div>
-</section>
-<!-- Prominent Private Access Block -->
-<section class="relative overflow-hidden rounded-xl border border-secondary-container/80 bg-surface-container p-space-xl md:p-space-2xl shadow-2xl mb-space-4xl" id="acceso-privado">
-<!-- Darkroom subtle cyan glow -->
-<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
-<div class="watermark-pattern absolute inset-0 opacity-40 pointer-events-none"></div>
-<div class="relative z-10 max-w-3xl mx-auto text-center">
-<div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-secondary-container/40 border border-primary text-secondary mb-space-md shadow-inner">
-<span class="material-symbols-outlined text-headline-lg">key</span>
-</div>
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-space-xs font-semibold">
-          ¿Tu evento o sesión es privada?
-        </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-space-xl max-w-xl mx-auto">
-          Ingresá la clave de tu curso o colegio para desbloquear tu álbum con acceso exclusivo y fotografías confidenciales del curso.
-        </p>
-<!-- Access Form -->
-<form class="flex flex-col sm:flex-row items-stretch justify-center gap-space-sm max-w-lg mx-auto" id="private-access-form">
-<div class="relative flex-grow">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline">lock_open</span>
-<input class="w-full bg-surface-container-lowest border border-outline-variant pl-11 pr-space-md py-space-sm rounded-lg text-on-surface placeholder:text-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md uppercase tracking-wider transition-all" id="private-key-input" name="key" placeholder="Ej. COLEGIO2024 o BGU-6A" required="" type="text"/>
-</div>
-<button class="bg-primary-container hover:bg-secondary-container border border-primary text-on-surface px-space-xl py-space-sm rounded-lg font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-space-xs transition-all duration-150 active:scale-[0.98] shadow-md" type="submit">
-<span>Ingresar</span>
-<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+<!-- Download Action -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 self-start md:self-end">
+<button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#005580] hover:bg-[#004466] border border-[#91cdfe]/30 text-white text-xs font-semibold uppercase tracking-wider transition-all duration-150 active:scale-[0.98] shadow-md hover:shadow-[#005580]/20" id="btn-download-all">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+<span>Descargar Álbum (.ZIP)</span>
 </button>
-</form>
-<p class="font-label-sm text-label-sm text-outline mt-space-md">
-<span class="material-symbols-outlined text-xs align-middle">verified_user</span> Privacidad protegida · Entrega directa autorizada por el establecimiento
-        </p>
+</div>
 </div>
 </section>
-<!-- Communication & Direct Ordering Channels -->
-<section class="mb-space-3xl">
-<div class="text-center mb-space-lg">
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Canales Directos de Atención</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Consultas sobre pedidos, copias ampliadas y entregas a domicilio</p>
+<!-- Toolbar / Status Filter Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#222222] mb-8">
+<div class="flex items-center gap-3">
+<span class="text-xs uppercase tracking-wider text-[#888888]">Total Fotografías:</span>
+<span class="px-2.5 py-1 rounded bg-[#1f1f1f] text-white text-xs font-semibold border border-[#222222]" id="photo-counter">8 Fotografías</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-xs text-[#a0a0a0]">Listas para impresión sin marcas de agua</span>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md max-w-4xl mx-auto">
-<!-- WhatsApp (Green border) -->
-<a class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-low border border-emerald-500/70 hover:border-emerald-400 hover:bg-surface-container transition-all duration-150 active:scale-[0.98] group" href="https://wa.me/5492610000000?text=Hola%20Sergio,%20te%20escribo%20por%20las%20fotos%20escolares" rel="noopener noreferrer" target="_blank">
-<div class="w-12 h-12 rounded-lg bg-emerald-950/60 border border-emerald-500/50 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl">chat</span>
+<!-- Quick Session Filter Switcher -->
+<div class="flex items-center gap-2">
+<label class="text-xs uppercase tracking-wider text-[#888888]" for="folder-select">Lote Activo:</label>
+<select class="bg-[#171717] border border-[#222222] rounded-lg px-3 py-1.5 text-xs text-white focus:border-[#005580] focus:ring-0 cursor-pointer outline-none transition-colors" id="folder-select">
+<option value="drive-main">Colegio San Martín · Ceremonia Formal</option>
+<option value="drive-party">Colegio San Martín · Fiesta &amp; Brindis</option>
+<option value="drive-portraits">Retratos Individuales de Estudio</option>
+</select>
 </div>
+</div>
+<!-- Pristine Photo Grid: 2 Columns Mobile, 4 Columns Desktop (Sin marcas de agua) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="contenedor-fotos">
+<!-- Inyectado dinámicamente o precargado limpio -->
+</div>
+<!-- Technical Delivery Specifications Section -->
+<section class="mt-12 p-6 md:p-8 rounded-xl bg-[#171717] border border-[#222222]">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-[#222222]">
 <div>
-<span class="font-headline-sm text-body-lg font-bold text-on-surface block">Chat WhatsApp</span>
-<span class="font-label-sm text-label-sm text-emerald-400/90 tracking-wide uppercase">Atención Inmediata</span>
+<h2 class="text-lg md:text-xl text-white font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[#91cdfe]" data-icon="settings_suggest">settings_suggest</span>
+            Especificaciones Técnicas del Lote Entregado
+          </h2>
+<p class="text-xs md:text-sm text-[#888888] mt-1 font-normal">
+            Archivos directos originales listos para impresión fine-art, ampliaciones o fotolibros.
+          </p>
 </div>
+<div class="flex items-center gap-2 text-emerald-400 text-xs font-semibold bg-[#111111] px-3.5 py-2 rounded-lg border border-[#222222]">
+<span class="material-symbols-outlined text-base" data-icon="check_circle">check_circle</span>
+<span>Sin Compresión ni Marcas de Agua</span>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+<div class="flex flex-col">
+<span class="text-xs text-[#888888] uppercase tracking-wider">Formato de Archivo</span>
+<span class="text-sm md:text-base text-white font-medium mt-1">JPEG Alta Gama / TIFF</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-[#888888] uppercase tracking-wider">Espacio de Color</span>
+<span class="text-sm md:text-base text-white font-medium mt-1">Adobe sRGB Calibrado</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-[#888888] uppercase tracking-wider">Densidad Óptima</span>
+<span class="text-sm md:text-base text-white font-medium mt-1">300 DPI Nativo</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-[#888888] uppercase tracking-wider">Vigencia del Enlace</span>
+<span class="text-sm md:text-base text-white font-medium mt-1">90 Días Activo</span>
+</div>
+</div>
+</section>
+<!-- Bloque de 3 Redes Sociales idéntico a Portafolio (WhatsApp, Catálogo, Instagram) -->
+<section class="mt-14 pt-10 border-t border-[#222222]">
+<div class="text-center mb-8">
+<h3 class="text-lg md:text-xl font-medium text-white tracking-tight">Canales de Contacto Directo</h3>
+<p class="text-xs md:text-sm text-[#888888] mt-1">Coordinación de nuevos eventos, presupuestos y consultas personalizadas.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+<!-- WhatsApp (Borde Verde #4ade80) -->
+<a class="flex items-center gap-4 p-5 rounded-xl bg-[#171717] border border-[#4ade80]/40 hover:border-[#4ade80] transition-all card-hover group" href="https://wa.me/5492610000000?text=Hola%20Sergio,%20estoy%20viendo%20el%20%C3%A1lbum%20privado%20y%20deseo%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
+<div class="w-12 h-12 rounded-lg bg-[#111111] flex items-center justify-center border border-[#4ade80]/30 text-[#4ade80] group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="chat">chat</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-white group-hover:text-[#4ade80] transition-colors">Chat WhatsApp</span>
+<span class="text-xs text-[#888888] mt-0.5">Atención directa e inmediata</span>
+</div>
+<span class="material-symbols-outlined text-base text-[#888888] ml-auto group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
 </a>
-<!-- Catálogo (Yellow border) -->
-<a class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-low border border-amber-500/70 hover:border-amber-400 hover:bg-surface-container transition-all duration-150 active:scale-[0.98] group" href="catalogo.html">
-<div class="w-12 h-12 rounded-lg bg-amber-950/60 border border-amber-500/50 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl">menu_book</span>
+<!-- Catálogo (Borde Amarillo #facc15) -->
+<a class="flex items-center gap-4 p-5 rounded-xl bg-[#171717] border border-[#facc15]/40 hover:border-[#facc15] transition-all card-hover group" href="eventos.html">
+<div class="w-12 h-12 rounded-lg bg-[#111111] flex items-center justify-center border border-[#facc15]/30 text-[#facc15] group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="photo_library">photo_library</span>
 </div>
-<div>
-<span class="font-headline-sm text-body-lg font-bold text-on-surface block">Catálogo</span>
-<span class="font-label-sm text-label-sm text-amber-400/90 tracking-wide uppercase">Cuadros y Fotolibros</span>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-white group-hover:text-[#facc15] transition-colors">Catálogo de Servicios</span>
+<span class="text-xs text-[#888888] mt-0.5">Egresados, Bodas y 15 Años</span>
 </div>
+<span class="material-symbols-outlined text-base text-[#888888] ml-auto group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
 </a>
-<!-- Instagram (Orange border) -->
-<a class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-low border border-orange-500/70 hover:border-orange-400 hover:bg-surface-container transition-all duration-150 active:scale-[0.98] group" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
-<div class="w-12 h-12 rounded-lg bg-orange-950/60 border border-orange-500/50 flex items-center justify-center text-orange-400 group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl">photo_camera_front</span>
+<!-- Instagram (Borde Naranja #fb923c) -->
+<a class="flex items-center gap-4 p-5 rounded-xl bg-[#171717] border border-[#fb923c]/40 hover:border-[#fb923c] transition-all card-hover group" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
+<div class="w-12 h-12 rounded-lg bg-[#111111] flex items-center justify-center border border-[#fb923c]/30 text-[#fb923c] group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="camera_enhance">camera_enhance</span>
 </div>
-<div>
-<span class="font-headline-sm text-body-lg font-bold text-on-surface block">Instagram</span>
-<span class="font-label-sm text-label-sm text-orange-400/90 tracking-wide uppercase">Portfolio y Novedades</span>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-white group-hover:text-[#fb923c] transition-colors">Instagram Oficial</span>
+<span class="text-xs text-[#888888] mt-0.5">@sergiomolina.fotografia</span>
 </div>
+<span class="material-symbols-outlined text-base text-[#888888] ml-auto group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
 </a>
 </div>
 </section>
 </main>
-<!-- Clean Minimal Darkroom Footer -->
-<footer class="border-t border-outline-variant bg-surface-container-lowest py-space-xl">
-<div class="w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet flex flex-col md:flex-row items-center justify-between gap-space-md text-center md:text-left">
-<div>
-<p class="font-headline-sm text-body-md text-on-surface font-semibold tracking-wide">
-          Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
-        </p>
-<p class="font-label-sm text-label-sm text-outline mt-0.5">
-          Revelado digital de alta resolución, archivos de preservación y copias fine-art.
-        </p>
+<!-- Fullscreen Modal Lightbox Viewer (Sin marcas de agua) -->
+<div aria-modal="true" class="fixed inset-0 z-50 hidden lightbox-backdrop flex-col items-center justify-between p-4 md:p-6 transition-opacity duration-300" id="lightbox-modal" role="dialog">
+<!-- Lightbox Top Controls -->
+<div class="w-full flex items-center justify-between max-w-7xl mx-auto z-10">
+<div class="flex items-center gap-3">
+<span class="text-xs px-2.5 py-1 rounded bg-[#171717] text-[#91cdfe] border border-[#005580] font-bold tracking-wider">ORIGINAL HD</span>
+<span class="text-sm text-white font-medium" id="lightbox-filename">SRM_0891_HD.jpg</span>
+<span class="text-xs text-[#888888]" id="lightbox-counter">1 / 8</span>
 </div>
-<div class="flex items-center gap-space-lg text-outline font-label-sm text-label-sm uppercase tracking-widest">
-<span>© 2024 Todos los derechos reservados</span>
-<a class="hover:text-primary transition-colors" href="index.html">Inicio</a>
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#005580] hover:bg-[#004466] border border-[#91cdfe]/30 text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-md" id="lightbox-btn-download" onclick="downloadActivePhoto()">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+<span>Descargar Original</span>
+</button>
+<button class="p-2 rounded-lg text-[#a0a0a0] hover:text-white bg-[#171717] hover:bg-[#222222] border border-[#222222] transition-colors" onclick="closeLightbox()" title="Cerrar (ESC)">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Lightbox Main Stage -->
+<div class="relative w-full flex-grow flex items-center justify-center my-4 overflow-hidden">
+<!-- Previous Arrow -->
+<button aria-label="Fotografía Anterior" class="absolute left-2 md:left-6 z-20 p-3 rounded-full bg-[#171717]/80 hover:bg-[#171717] text-white border border-[#222222] transition-all hover:scale-105 active:scale-95" onclick="prevPhoto()">
+<span class="material-symbols-outlined text-2xl" data-icon="chevron_left">chevron_left</span>
+</button>
+<!-- Center Pristine Photo Display (NO watermarks) -->
+<div class="relative max-h-[82vh] max-w-full flex items-center justify-center">
+<img alt="Vista previa en alta resolución sin marcas de agua" class="max-h-[82vh] max-w-[90vw] object-contain rounded-lg border border-[#222222] shadow-2xl transition-all duration-200" id="lightbox-img" src=""/>
+</div>
+<!-- Next Arrow -->
+<button aria-label="Siguiente Fotografía" class="absolute right-2 md:right-6 z-20 p-3 rounded-full bg-[#171717]/80 hover:bg-[#171717] text-white border border-[#222222] transition-all hover:scale-105 active:scale-95" onclick="nextPhoto()">
+<span class="material-symbols-outlined text-2xl" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Lightbox Footer Info -->
+<div class="w-full max-w-4xl mx-auto flex items-center justify-between text-[#888888] text-xs py-2 border-t border-[#222222] z-10">
+<p class="text-white text-xs md:text-sm font-normal" id="lightbox-caption">Entrada Solemne y Apertura Institucional</p>
+<div class="flex items-center gap-3">
+<span>Navega con flechas o desliza</span>
+<span>·</span>
+<span>Presiona <kbd class="px-1.5 py-0.5 rounded bg-[#1f1f1f] text-white border border-[#222222]">ESC</kbd> para salir</span>
+</div>
+</div>
+</div>
+<!-- Global Footer (Idéntico a Portafolio) -->
+<footer class="w-full border-t border-[#222222] bg-[#111111] py-8 mt-16">
+<div class="max-w-container-max mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-xs md:text-sm text-[#888888] text-center md:text-left">
+        © Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
+      </p>
+<div class="flex items-center gap-4 text-xs text-[#666666]">
+<span>Álbum Privado Exclusivo</span>
+<span>·</span>
+<span>Descargas en Alta Resolución</span>
 </div>
 </div>
 </footer>
-<!-- Complete Inline Architecture & Dual Supabase Sync -->
+<!-- Client-Side Integration Script: Supabase & Google Drive Connector Simulation -->
 <script>
-    (function () {
-      // Configuration & Endpoints
-      const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
-      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NDg1NDcsImV4cCI6MjA1NDEyNDU0N30.Yp9gN_L2108Q50p9mCfxbC55yqI7vU1Jc18y-P55vN8";
-      
-      let supabaseClient = null;
-      if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Fotografías reales limpias en alta calidad (Google Drive / Supabase storage) sin marca de agua
+    const galleryItems = [
+      {
+        filename: "SRM_0891_HD.jpg",
+        caption: "Entrada Solemne y Apertura Institucional",
+        code: "SRM-2024-001",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0894_HD.jpg",
+        caption: "Momento de Entrega de Diplomas de Honor",
+        code: "SRM-2024-002",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0902_HD.jpg",
+        caption: "Retrato Institucional de Grupo Promoción",
+        code: "SRM-2024-003",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0915_HD.jpg",
+        caption: "Festejo y Lanzamiento Tradicional de Birretes",
+        code: "SRM-2024-004",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0920_HD.jpg",
+        caption: "Abrazo Familiar y Felicitaciones de Padres",
+        code: "SRM-2024-005",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0931_HD.jpg",
+        caption: "Brindis de Honor y Salón de Gala",
+        code: "SRM-2024-006",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0945_HD.jpg",
+        caption: "Retrato Editorial Individual de Egresado",
+        code: "SRM-2024-007",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        filename: "SRM_0958_HD.jpg",
+        caption: "Vals Tradicional y Pista de Baile",
+        code: "SRM-2024-008",
+        dimensions: "6240 × 4160 px",
+        placeholderSrc: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop"
       }
+    ];
 
-      // UI Element references
-      const grid = document.getElementById('galleries-grid');
-      const loadingState = document.getElementById('loading-state');
-      const emptyState = document.getElementById('empty-state');
-      const counterEl = document.getElementById('gallery-counter');
-      const searchInput = document.getElementById('gallery-search');
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const privateForm = document.getElementById('private-access-form');
-      const privateKeyInput = document.getElementById('private-key-input');
+    let currentPhotoIndex = 0;
+    const modal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxFilename = document.getElementById('lightbox-filename');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const contenedor = document.getElementById('contenedor-fotos');
 
-      let allGalleries = [];
-      let activeFilter = 'all';
+    // Render Grid
+    function renderGallery() {
+      contenedor.innerHTML = '';
+      galleryItems.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = "group flex flex-col bg-[#171717] rounded-xl border border-[#222222] hover:border-[#005580] overflow-hidden card-hover cursor-pointer";
+        card.onclick = () => openLightbox(index);
 
-      // Fallback realistic curated data if network offline
-      const defaultSchoolGalleries = [
-        {
-          id: 'san-martin-2024',
-          titulo: 'Colegio San Martín de Tours · Colación 5to Año 2024',
-          categoria: 'egresados',
-          fecha: 'Noviembre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 142
-        },
-        {
-          id: 'instituto-belgrano-patria',
-          titulo: 'Instituto Manuel Belgrano · Acto Día de la Independencia',
-          categoria: 'actos',
-          fecha: 'Julio 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 88
-        },
-        {
-          id: 'torneo-intercolegial-cuyo',
-          titulo: 'Torneo Intercolegial de Atletismo y Voley Cuyo',
-          categoria: 'deportes',
-          fecha: 'Septiembre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 215
-        },
-        {
-          id: 'escuela-mendoza-primaria',
-          titulo: 'Escuela Normal Tomás Godoy Cruz · Fiesta Fin de Ciclo Primaria',
-          categoria: 'actos',
-          fecha: 'Diciembre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 110
-        },
-        {
-          id: 'liceo-militar-desfile',
-          titulo: 'Liceo Militar General Espejo · Ceremonia de Graduación y Promesa',
-          categoria: 'egresados',
-          fecha: 'Octubre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 164
-        }
-      ];
-
-      // Formats Drive lh3 link or maintains safe source
-      function normalizeImageCover(url) {
-        if (!url || url === 'placeholder') return 'placeholder';
-        if (url.includes('drive.google.com') || url.includes('lh3.googleusercontent.com')) {
-          return url;
-        }
-        return url;
-      }
-
-      // Fetch dual check Supabase table: 'galeria' then fallback 'galerias' + localStorage backup
-      async function loadEventsData() {
-        let fetchedData = [];
-        let networkSuccess = false;
-
-        if (supabaseClient) {
-          try {
-            // First check table 'galeria'
-            let { data, error } = await supabaseClient
-              .from('galeria')
-              .select('*')
-              .eq('es_privada', false);
-
-            // If empty or errored, fallback to plural 'galerias'
-            if (error || !data || data.length === 0) {
-              const fallbackResponse = await supabaseClient
-                .from('galerias')
-                .select('*')
-                .eq('es_privada', false);
-              
-              if (!fallbackResponse.error && fallbackResponse.data) {
-                data = fallbackResponse.data;
-              }
-            }
-
-            if (data && data.length > 0) {
-              fetchedData = data;
-              networkSuccess = true;
-            }
-          } catch (err) {
-            console.warn('Supabase query failed, moving to cache/storage fallback:', err);
-          }
-        }
-
-        // LocalStorage reconciliation ('galerias_locales')
-        let localBackup = [];
-        try {
-          const rawLocal = localStorage.getItem('galerias_locales');
-          if (rawLocal) {
-            const parsed = JSON.parse(rawLocal);
-            if (Array.isArray(parsed)) {
-              localBackup = parsed.filter(item => !item.es_privada && item.privada !== true);
-            }
-          }
-        } catch (e) {
-          console.warn('Local storage parse exception:', e);
-        }
-
-        // Merge strategies
-        if (networkSuccess && fetchedData.length > 0) {
-          allGalleries = fetchedData;
-        } else if (localBackup.length > 0) {
-          allGalleries = localBackup;
-        } else {
-          allGalleries = defaultSchoolGalleries;
-        }
-
-        // Strict filter guarantee: private albums must NEVER leak onto this public list
-        allGalleries = allGalleries.filter(item => {
-          return item.es_privada !== true && item.privada !== true && item.es_privado !== true;
-        });
-
-        renderGalleries();
-      }
-
-      function renderGalleries() {
-        loadingState.classList.add('hidden');
-        
-        const searchTerm = (searchInput.value || '').trim().toLowerCase();
-
-        const filtered = allGalleries.filter(gallery => {
-          const title = (gallery.titulo || gallery.nombre || gallery.name || '').toLowerCase();
-          const matchesSearch = title.includes(searchTerm);
-          
-          let matchesFilter = true;
-          if (activeFilter !== 'all') {
-            const cat = (gallery.categoria || gallery.category || '').toLowerCase();
-            matchesFilter = cat.includes(activeFilter);
-          }
-
-          return matchesSearch && matchesFilter;
-        });
-
-        counterEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'GALERÍA DISPONIBLE' : 'GALERÍAS DISPONIBLES'}`;
-
-        if (filtered.length === 0) {
-          emptyState.classList.remove('hidden');
-          grid.innerHTML = '';
-          return;
-        }
-
-        emptyState.classList.add('hidden');
-        grid.innerHTML = '';
-
-        filtered.forEach(item => {
-          const id = item.id || item.slug || 'evento';
-          const title = item.titulo || item.nombre || 'Evento Escolar Oficial';
-          const fecha = item.fecha || item.created_at || 'Ciclo Lectivo Actual';
-          const photoTotal = item.foto_count || item.total_fotos || 'Colección Completa';
-          const cover = normalizeImageCover(item.portada_url || item.portada || 'placeholder');
-          
-          const card = document.createElement('article');
-          card.className = 'card-zoom group flex flex-col bg-surface-container rounded-xl border border-outline-variant overflow-hidden hover:border-primary transition-all duration-200 shadow-md';
-          
-          card.innerHTML = `
-            <!-- 16:10 Cover Container -->
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-surface-container-lowest border-b border-outline-variant">
-              <img 
-                src="${cover}" 
-                data-alt="A pristine, high-resolution documentary photograph capturing an emotional school event graduation ceremony in an auditorium. Students in formal uniforms are seen on stage illuminated by directional stage spotlights with subtle rim lights. The image conveys refined darkroom tone, high micro-contrast, cinematic blacks, and deep oceanic cyan color grading reflecting photographic excellence."
-                class="card-img w-full h-full object-cover transition-transform duration-500 ease-out"
-                loading="lazy"
-                onerror="this.onerror=null; this.src='placeholder';"
-              />
-              
-              <!-- Galería Oficial Badge -->
-              <div class="absolute top-space-sm left-space-sm flex items-center gap-1.5 bg-surface/90 backdrop-blur-md border border-outline-variant/80 px-2.5 py-1 rounded-full text-secondary">
-                <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
-                <span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Galería Oficial</span>
-              </div>
-
-              <!-- Photo Count Pill -->
-              <div class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-0.5 rounded text-on-surface-variant font-label-sm text-label-sm border border-outline-variant/50">
-                ${typeof photoTotal === 'number' ? photoTotal + ' Fotos' : photoTotal}
-              </div>
+        card.innerHTML = `
+          <div class="relative aspect-[4/3] w-full overflow-hidden bg-[#111111]">
+            <img src="${item.placeholderSrc}" alt="${item.caption}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-3">
+              <span class="text-[11px] text-white font-medium bg-[#005580] px-2 py-0.5 rounded">Ver HD</span>
+              <span class="material-symbols-outlined text-white text-lg" data-icon="fullscreen">fullscreen</span>
             </div>
-
-            <!-- Card Content Body -->
-            <div class="p-space-lg flex flex-col flex-grow justify-between bg-surface-container">
-              <div>
-                <div class="flex items-center gap-space-2xs text-outline font-label-sm text-label-sm mb-space-xs uppercase tracking-widest">
-                  <span class="material-symbols-outlined text-sm">calendar_month</span>
-                  <span>${fecha}</span>
-                </div>
-                
-                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-150 line-clamp-2 mb-space-sm">
-                  ${title}
-                </h3>
-              </div>
-
-              <div class="pt-space-md border-t border-surface-container-highest mt-space-md flex items-center justify-between">
-                <span class="font-label-sm text-label-sm text-on-surface-variant">Marca de agua digital</span>
-                <a 
-                  href="galeria.html?id=${encodeURIComponent(id)}" 
-                  class="inline-flex items-center gap-space-xs bg-primary-container hover:bg-secondary-container border border-primary text-on-surface px-space-md py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider transition-all duration-150 active:scale-[0.98]"
-                >
-                  <span>Ver Álbum Completo</span>
-                  <span class="material-symbols-outlined text-label-md">arrow_forward</span>
-                </a>
-              </div>
+          </div>
+          <div class="p-3.5 flex flex-col justify-between flex-grow gap-2">
+            <div>
+              <p class="text-xs font-medium text-white truncate group-hover:text-[#91cdfe] transition-colors">${item.caption}</p>
+              <p class="text-[11px] text-[#888888] font-mono mt-0.5">${item.filename}</p>
             </div>
-          `;
-
-          grid.appendChild(card);
-        });
-      }
-
-      // Event Listeners for Filters
-      filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterButtons.forEach(b => {
-            b.classList.remove('active', 'bg-primary-container', 'border-primary', 'text-on-surface');
-            b.classList.add('bg-surface', 'border-outline-variant', 'text-on-surface-variant');
-          });
-          btn.classList.add('active', 'bg-primary-container', 'border-primary', 'text-on-surface');
-          btn.classList.remove('bg-surface', 'border-outline-variant', 'text-on-surface-variant');
-          
-          activeFilter = btn.dataset.filter;
-          renderGalleries();
-        });
+            <div class="flex items-center justify-between pt-2 border-t border-[#222222] text-[10px] text-[#888888]">
+              <span>${item.dimensions}</span>
+              <button onclick="event.stopPropagation(); downloadDirect('${item.filename}')" class="text-[#91cdfe] hover:text-white flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                <span>Bajar</span>
+              </button>
+            </div>
+          </div>
+        `;
+        contenedor.appendChild(card);
       });
+      document.getElementById('photo-counter').textContent = `${galleryItems.length} Fotografías`;
+    }
 
-      // Search interaction
-      searchInput.addEventListener('input', () => {
-        renderGalleries();
-      });
+    // Lightbox Control Logic
+    function openLightbox(index) {
+      currentPhotoIndex = index;
+      updateLightboxContent();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
 
-      // Private Key Redirection Form
-      privateForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const code = (privateKeyInput.value || '').trim();
-        if (code) {
-          window.location.href = `privadas.html?key=${encodeURIComponent(code)}`;
-        }
-      });
+    function closeLightbox() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
 
-      // Initial Execution
-      document.addEventListener('DOMContentLoaded', loadEventsData);
-      loadEventsData();
-    })();
+    function updateLightboxContent() {
+      const item = galleryItems[currentPhotoIndex];
+      lightboxFilename.textContent = item.filename;
+      lightboxCaption.textContent = item.caption;
+      lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${galleryItems.length}`;
+      lightboxImg.src = item.placeholderSrc;
+    }
+
+    function nextPhoto() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    function prevPhoto() {
+      currentPhotoIndex = (currentPhotoIndex - 1 + galleryItems.length) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    function downloadDirect(filename) {
+      alert(`Iniciando descarga directa de "${filename}" en resolución máxima original (300 DPI nativo, sin marcas de agua).`);
+    }
+
+    function downloadActivePhoto() {
+      const item = galleryItems[currentPhotoIndex];
+      downloadDirect(item.filename);
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+    });
+
+    // ZIP Batch Download
+    document.getElementById('btn-download-all').addEventListener('click', () => {
+      alert('Preparando archivo .ZIP completo con las 8 fotografías en alta resolución sin marcas de agua.');
+    });
+
+    // Folder selector change
+    document.getElementById('folder-select').addEventListener('change', (e) => {
+      const titles = {
+        'drive-main': 'Colegio San Martín · Ceremonia Formal',
+        'drive-party': 'Colegio San Martín · Fiesta & Brindis',
+        'drive-portraits': 'Retratos Individuales de Estudio'
+      };
+      document.getElementById('session-title').textContent = titles[e.target.value] || 'Colegio San Martín';
+    });
+
+    // Inicializar galería
+    document.addEventListener('DOMContentLoaded', () => {
+      renderGallery();
+    });
   </script>
 </body></html>
