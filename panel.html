@@ -1,1389 +1,842 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sergio Ricardo Molina · Panel de Control</title>
-<!-- Google Fonts & Material Symbols -->
-<link href="<!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sergio Ricardo Molina · Panel de Control</title>
-<!-- Google Fonts & Material Symbols -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Configuration verbatim -->
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "surface": "#131313",
-            "on-tertiary-container": "#ffb36e",
-            "tertiary-fixed": "#ffdcc1",
-            "primary-container": "#005580",
-            "on-secondary-fixed": "#001e30",
-            "secondary-container": "#124d70",
-            "error-container": "#93000a",
-            "surface-container-lowest": "#0e0e0e",
-            "on-secondary": "#00344f",
-            "primary-fixed-dim": "#91cdfe",
-            "error": "#ffb4ab",
-            "surface-variant": "#353534",
-            "on-primary-container": "#8ec9fa",
-            "background": "#131313",
-            "tertiary-container": "#794303",
-            "surface-container-high": "#2a2a2a",
-            "inverse-surface": "#e5e2e1",
-            "on-secondary-container": "#8dbee6",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-surface-variant": "#c0c7cf",
-            "surface-container": "#201f1f",
-            "on-surface": "#e5e2e1",
-            "surface-container-low": "#1c1b1b",
-            "primary-fixed": "#cbe6ff",
-            "on-tertiary-fixed": "#2e1500",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "tertiary": "#ffb878",
-            "on-error": "#690005",
-            "surface-tint": "#91cdfe",
-            "on-primary": "#003350",
-            "on-primary-fixed": "#001e30",
-            "on-primary-fixed-variant": "#004b72",
-            "surface-bright": "#3a3939",
-            "outline": "#8b9199",
-            "inverse-primary": "#1e638f",
-            "inverse-on-surface": "#313030",
-            "outline-variant": "#41474e",
-            "on-background": "#e5e2e1",
-            "secondary": "#9bccf4",
-            "surface-dim": "#131313",
-            "primary": "#91cdfe",
-            "secondary-fixed": "#cae6ff",
-            "secondary-fixed-dim": "#9bccf4",
-            "on-error-container": "#ffdad6",
-            "on-tertiary": "#4c2700",
-            "surface-container-highest": "#353534",
-            "tertiary-fixed-dim": "#ffb878"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-4xl": "6rem",
-            "container-max": "1440px",
-            "space-lg": "1.5rem",
-            "space-2xl": "3rem",
-            "space-xl": "2rem",
-            "gutter-mobile": "1rem",
-            "space-sm": "0.75rem",
-            "space-xs": "0.5rem",
-            "gutter-tablet": "1.5rem",
-            "space-md": "1rem",
-            "space-3xl": "4.5rem",
-            "gutter-desktop": "2rem",
-            "space-2xs": "0.25rem"
-          },
-          "fontFamily": {
-            "label-sm": ["Manrope"],
-            "display-hero-mobile": ["Raleway"],
-            "body-lg": ["Manrope"],
-            "headline-md": ["Raleway"],
-            "headline-sm": ["Raleway"],
-            "headline-lg": ["Raleway"],
-            "body-md": ["Manrope"],
-            "label-md": ["Manrope"],
-            "headline-lg-mobile": ["Raleway"],
-            "display-hero": ["Raleway"]
-          },
-          "fontSize": {
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }]
-          }
-        }
-      }
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control | Sergio Ricardo Molina</title>
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
     }
-  </script>
-<!-- Supabase JS Client Oficial CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
+
+    /* BARRA LATERAL IZQUIERDA */
+    aside {
+      width: 250px;
+      background: #161616;
+      border-right: 1.5px solid #222222;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 16px;
+      flex-shrink: 0;
+      min-height: 100vh;
+    }
+
+    .marca-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #222222;
+      margin-bottom: 20px;
+    }
+
+    .marca-panel .tag-estado {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 700;
+    }
+
+    .marca-panel h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .marca-panel span.sub {
+      font-size: 0.75rem;
+      color: #777777;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .menu-lateral {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .item-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #aaaaaa;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .item-menu:hover {
+      background: #202020;
+      color: #ffffff;
+      border-color: #333333;
+    }
+
+    .item-menu.activo {
+      background: #004466;
+      color: #ffffff;
+      border-color: #0088cc;
+    }
+
+    .item-menu .material-symbols-outlined {
+      font-size: 20px;
+    }
+
+    .footer-aside {
+      padding-top: 20px;
+      border-top: 1px solid #222222;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-enlace-publico {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #888888;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s ease;
+    }
+
+    .btn-enlace-publico:hover {
+      color: #38bdf8;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    main {
+      flex: 1;
+      padding: 30px 36px;
+      max-width: 1200px;
+      overflow-y: auto;
+    }
+
+    .encabezado-seccion {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .encabezado-seccion h1 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .encabezado-seccion p {
+      color: #888888;
+      font-size: 0.88rem;
+    }
+
+    .btn-cargar-nueva {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #005580;
+      border: 1px solid #0077b3;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0, 85, 128, 0.4);
+    }
+
+    .btn-cargar-nueva:hover {
+      background: #0077b3;
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    /* MÉTRICAS */
+    .metricas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .tarjeta-metrica {
+      background: #181818;
+      border: 1px solid #282828;
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tarjeta-metrica .info h4 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888888;
+      margin-bottom: 6px;
+    }
+
+    .tarjeta-metrica .info .valor {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #ffffff;
       line-height: 1;
     }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+
+    .tarjeta-metrica .info .subtext {
+      font-size: 0.72rem;
+      color: #666666;
+      margin-top: 4px;
     }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #111111;
+
+    .tarjeta-metrica .icono-metrica {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #202020;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #222222;
-      border-radius: 4px;
+
+    /* FILTRO Y BÚSQUEDA */
+    .barra-filtros {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+
+    .busqueda-caja {
+      position: relative;
+      flex: 1;
+      max-width: 420px;
+    }
+
+    .busqueda-caja input {
+      width: 100%;
+      background: #181818;
+      border: 1px solid #282828;
+      border-radius: 8px;
+      padding: 9px 12px 9px 36px;
+      color: #ffffff;
+      font-size: 0.86rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .busqueda-caja input:focus {
+      border-color: #0077b3;
+    }
+
+    .busqueda-caja .material-symbols-outlined {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666666;
+      font-size: 18px;
+    }
+
+    .filtros-tipo {
+      display: flex;
+      gap: 6px;
+      background: #181818;
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid #282828;
+    }
+
+    .btn-filtro {
+      background: none;
+      border: none;
+      color: #888888;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-filtro.activo {
       background: #005580;
+      color: #ffffff;
+    }
+
+    /* GRID DE ÁLBUMES */
+    .grid-galerias {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .tarjeta-galeria {
+      background: #181818;
+      border: 1.5px solid #282828;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .tarjeta-galeria:hover {
+      border-color: #0077b3;
+      transform: translateY(-2px);
+    }
+
+    .portada-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #0d0d0d;
+      overflow: hidden;
+    }
+
+    .portada-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .portada-vacia {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #555555;
+      gap: 6px;
+      font-size: 0.78rem;
+    }
+
+    .portada-vacia .material-symbols-outlined {
+      font-size: 36px;
+      color: #38bdf8;
+    }
+
+    .badge-estado-portada {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-publica {
+      background: rgba(0, 85, 128, 0.85);
+      border: 1px solid #0088cc;
+      color: #ffffff;
+    }
+
+    .badge-privada {
+      background: rgba(234, 179, 8, 0.2);
+      border: 1px solid #eab308;
+      color: #facc15;
+    }
+
+    .detalle-galeria {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .detalle-galeria h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .meta-fila {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.75rem;
+      color: #888888;
+      margin-bottom: 14px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: monospace;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .meta-item .material-symbols-outlined {
+      font-size: 14px;
+      color: #0088cc;
+    }
+
+    .acciones-tarjeta {
+      display: flex;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid #242424;
+    }
+
+    .btn-borrar {
+      flex: 1;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-borrar:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+
+    .estado-vacio {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: #181818;
+      border: 1.5px dashed #282828;
+      border-radius: 12px;
+      color: #888888;
+    }
+
+    .estado-vacio .material-symbols-outlined {
+      font-size: 48px;
+      color: #005580;
+      margin-bottom: 12px;
+    }
+
+    .estado-vacio h3 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .estado-vacio p {
+      font-size: 0.86rem;
+      max-width: 440px;
+      margin: 0 auto 16px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 800px) {
+      body { flex-direction: column; }
+      aside { width: 100%; min-height: auto; border-right: none; border-bottom: 1.5px solid #222222; }
+      main { padding: 20px 16px; }
     }
   </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-surface">
-<!-- ========================================================================= -->
-<!-- 1. Menú lateral (Sidebar) Darkroom Elegance -->
-<!-- ========================================================================= -->
-<aside class="w-full md:w-64 bg-[#161616] border-b md:border-b-0 md:border-r border-[#222222] flex-shrink-0 flex flex-col justify-between min-h-screen z-30">
-<div>
-<!-- Identidad de Marca -->
-<div class="p-space-lg border-b border-[#222222]">
-<div class="flex items-center gap-space-xs mb-space-xs">
-<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">SISTEMA ACTIVO</span>
-</div>
-<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">
-          SERGIO RICARDO MOLINA
-        </h1>
-<p class="font-label-md text-label-md text-outline tracking-wider mt-1">PANEL DE CONTROL</p>
-</div>
-<!-- Navegación con 3 ítems claros y limpios -->
-<nav class="p-space-md space-y-space-xs">
-<!-- Ítem 1: Galerías (Activo: fondo azul #004466 con borde #0077b3 y texto blanco) -->
-<a class="flex items-center gap-space-sm bg-[#004466] border border-[#0077b3] text-white rounded-lg px-space-md py-space-sm font-label-md text-label-md transition-transform duration-150 active:scale-[0.98] shadow-sm" href="panel.html">
-<span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_library">photo_library</span>
-<span class="font-semibold tracking-wide">Galerías</span>
-</a>
-<!-- Ítem 2: Cargas y Enlaces -->
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-white hover:bg-[#201f1f] border border-transparent hover:border-[#333333] rounded-lg px-space-md py-space-sm font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="cargas.html">
-<span class="material-symbols-outlined text-outline text-[20px]" data-icon="cloud_upload">cloud_upload</span>
-<span class="font-medium tracking-wide">Cargas y Enlaces</span>
-</a>
-<!-- Ítem 3: Tarifas y Precios -->
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-white hover:bg-[#201f1f] border border-transparent hover:border-[#333333] rounded-lg px-space-md py-space-sm font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="precios.html">
-<span class="material-symbols-outlined text-outline text-[20px]" data-icon="payments">payments</span>
-<span class="font-medium tracking-wide">Tarifas y Precios</span>
-</a>
-</nav>
-</div>
-<!-- Enlaces Inferiores del Menú Lateral -->
-<div class="p-space-md border-t border-[#222222] space-y-space-xs bg-[#111111]">
-<a class="flex items-center gap-space-xs text-outline hover:text-primary transition-colors py-1.5 px-space-xs font-label-md text-label-md rounded" href="eventos.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
-<span>← Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-space-xs text-outline hover:text-on-surface transition-colors py-1.5 px-space-xs font-label-md text-label-md rounded" href="index.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="open_in_new">open_in_new</span>
-<span>Ver Portafolio</span>
-</a>
-<!-- Quick Session Indicator -->
-<div class="pt-space-sm mt-space-xs border-t border-[#222222] flex items-center justify-between text-outline text-[11px] font-label-sm">
-<span>ESTUDIO FOTOGRÁFICO</span>
-<span class="font-mono text-primary">v2.4</span>
-</div>
-</div>
-</aside>
-<!-- ========================================================================= -->
-<!-- 2. Área de Contenido Principal -->
-<!-- ========================================================================= -->
-<main class="flex-1 flex flex-col min-w-0 bg-[#111111] overflow-y-auto custom-scrollbar">
-<!-- Top Decorative Line with Oceanic Precision -->
-<div class="h-1 bg-gradient-to-r from-[#005580] via-[#38bdf8] to-[#005580] w-full"></div>
-<div class="p-space-lg md:p-space-xl max-w-container-max w-full mx-auto space-y-space-xl">
-<!-- Cabecera Principal -->
-<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg border-b border-[#222222] pb-space-lg">
-<div>
-<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm mb-1 uppercase tracking-widest">
-<span class="material-symbols-outlined text-[16px]" data-icon="photo_camera">photo_camera</span>
-<span>Módulo de Gestión de Álbumes</span>
-</div>
-<h2 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight">
-            Galerías Publicadas y Registradas
-          </h2>
-<p class="font-body-md text-body-md text-outline mt-1 max-w-2xl">
-            Panel exclusivo de visualización y administración de álbumes escolares conectados a Supabase y Google Drive.
-          </p>
-</div>
-<!-- Botón de acceso rápido + Cargar Nueva Galería -->
-<div class="flex items-center gap-space-sm">
-<a class="inline-flex items-center gap-space-xs bg-[#004466] border border-[#005580] hover:bg-[#005580] hover:border-[#0077b3] text-white font-label-md text-label-md px-space-lg py-3 rounded-lg uppercase tracking-wider transition-all duration-150 active:scale-[0.98] shadow-md" href="cargas.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
-<span class="font-bold">+ Cargar Nueva Galería</span>
-</a>
-</div>
-</div>
-<!-- Barra de Métricas Rápidas -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
-<!-- Card 1: Total Galerías -->
-<div class="bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl p-space-md flex items-center justify-between transition-colors shadow-sm">
-<div>
-<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Registradas</p>
-<p class="font-headline-md text-headline-md font-bold text-white mt-0.5 font-mono" id="metric-total">0</p>
-<span class="text-[11px] text-outline-variant font-label-sm">Sincronizadas con nube</span>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#222222] border border-[#333333] flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[22px]" data-icon="collections_bookmark">collections_bookmark</span>
-</div>
-</div>
-<!-- Card 2: Públicas -->
-<div class="bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl p-space-md flex items-center justify-between transition-colors shadow-sm">
-<div>
-<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Álbumes Públicos</p>
-<p class="font-headline-md text-headline-md font-bold text-[#38bdf8] mt-0.5 font-mono" id="metric-public">0</p>
-<span class="text-[11px] text-[#005580] font-label-sm">Acceso irrestricto</span>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#124d70]/30 border border-[#005580] flex items-center justify-center text-[#38bdf8]">
-<span class="material-symbols-outlined text-[22px]" data-icon="public">public</span>
-</div>
-</div>
-<!-- Card 3: Privadas -->
-<div class="bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl p-space-md flex items-center justify-between transition-colors shadow-sm">
-<div>
-<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Privadas con Clave</p>
-<p class="font-headline-md text-headline-md font-bold text-tertiary mt-0.5 font-mono" id="metric-private">0</p>
-<span class="text-[11px] text-outline-variant font-label-sm">Protegidas con PIN</span>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#794303]/20 border border-tertiary/40 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined text-[22px]" data-icon="lock">lock</span>
-</div>
-</div>
-</div>
-<!-- Barra de Filtros y Búsqueda Rápida -->
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md bg-[#161616] p-space-md rounded-xl border border-[#222222]">
-<!-- Buscador Rápido -->
-<div class="relative flex-1 max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]" data-icon="search">search</span>
-<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-lg pl-10 pr-4 py-2 text-white font-body-md text-body-md placeholder-neutral-600 outline-none transition-all" id="search-input" placeholder="Buscar por colegio, evento o ID Drive..." type="text"/>
-</div>
-<!-- Botones de Filtro -->
-<div class="flex items-center gap-1.5 p-1 bg-[#111111] rounded-lg border border-[#222222] self-start sm:self-auto">
-<button class="filter-pill bg-[#004466] border border-[#005580] text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]" id="filter-all" onclick="setFilter('all')">
-            Todas
-          </button>
-<button class="filter-pill bg-transparent border border-transparent text-outline hover:text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]" id="filter-public" onclick="setFilter('public')">
-            Solo Públicas
-          </button>
-<button class="filter-pill bg-transparent border border-transparent text-outline hover:text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]" id="filter-private" onclick="setFilter('private')">
-            Solo Privadas
-          </button>
-</div>
-<!-- Refresco Manual -->
-<button class="flex items-center justify-center p-2 rounded-lg bg-[#111111] border border-[#333333] text-outline hover:text-primary hover:border-[#005580] transition-colors active:scale-[0.98]" onclick="fetchGalleries()" title="Actualizar catálogo">
-<span class="material-symbols-outlined text-[20px]" data-icon="refresh">refresh</span>
-</button>
-</div>
-<!-- Estado de Carga / Notificación de Fallback -->
-<div class="hidden" id="status-container">
-<div class="p-space-md rounded-lg bg-[#181818] border border-[#005580] flex items-center justify-between text-body-md text-on-surface">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary animate-spin text-[20px]" data-icon="sync">sync</span>
-<span id="status-text">Conectando con Supabase...</span>
-</div>
-<span class="font-mono text-label-sm text-primary-fixed-dim bg-[#005580]/40 px-2 py-0.5 rounded border border-[#005580]" id="table-detected-badge"></span>
-</div>
-</div>
-<!-- Grid de Tarjetas de Álbumes Reales -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="galleries-grid">
-<!-- Generado dinámicamente o con estado vacío -->
-</div>
-<!-- Estado Vacío (Hidden por defecto) -->
-<div class="hidden py-space-3xl text-center border border-dashed border-[#222222] rounded-xl bg-[#161616]/40 p-space-xl" id="empty-state">
-<span class="material-symbols-outlined text-outline text-5xl mb-space-sm" data-icon="photo_album">photo_album</span>
-<h3 class="font-headline-sm text-headline-sm text-white font-semibold">No se encontraron galerías</h3>
-<p class="text-outline font-body-md text-body-md max-w-md mx-auto mt-1 mb-space-lg">
-          No hay álbumes que coincidan con la búsqueda o todavía no se han registrado lotes escolares en la base de datos.
-        </p>
-<a class="inline-flex items-center gap-space-xs bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white font-label-md text-label-md px-space-md py-2.5 rounded-lg uppercase tracking-wider" href="cargas.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
-          Crear la primera galería
+<body>
+
+  <!-- BARRA LATERAL IZQUIERDA CON ENLACES OFICIALES -->
+  <aside>
+    <div>
+      <div class="marca-panel">
+        <div class="tag-estado">
+          <span style="font-size: 8px;">●</span> SISTEMA ACTIVO
+        </div>
+        <h2>SERGIO RICARDO MOLINA</h2>
+        <span class="sub">Panel de Control</span>
+      </div>
+
+      <!-- MENÚ DE NAVEGACIÓN LATERAL -->
+      <nav class="menu-lateral">
+        <!-- 1. Galerías Creadas (Página Actual) -->
+        <a href="panel.html" class="item-menu activo">
+          <span class="material-symbols-outlined">photo_library</span>
+          <span>Galerías</span>
         </a>
-</div>
-</div>
-</main>
-<!-- ========================================================================= -->
-<!-- Modal de Confirmación de Borrado Darkroom -->
-<!-- ========================================================================= -->
-<div class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 translate-y-10 opacity-0 pointer-events-none flex items-center gap-space-sm bg-[#161616] border border-[#005580] text-white px-space-md py-space-sm rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.8)]" id="toast-notification"><span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span><span class="font-label-md text-label-md text-on-surface" id="toast-message">Galería eliminada con éxito</span></div><div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="delete-modal">
-<div class="bg-[#181818] border border-[#333333] max-w-md w-full rounded-xl p-space-lg shadow-[0_12px_32px_rgba(0,0,0,0.8)]">
-<div class="flex items-center gap-space-sm text-error mb-space-sm">
-<span class="material-symbols-outlined text-2xl" data-icon="warning">warning</span>
-<h3 class="font-headline-sm text-headline-sm font-bold text-white">Eliminar Galería</h3>
-</div>
-<p class="text-outline font-body-md text-body-md">
-        ¿Estás seguro de que deseas eliminar permanentemente el álbum <span class="font-semibold text-white" id="delete-item-title"></span>? 
-        Esta acción eliminará el registro de Supabase de manera irreversible.
-      </p>
-<div class="mt-space-lg flex items-center justify-end gap-space-sm">
-<button class="px-space-md py-2 text-outline hover:text-white border border-[#333333] hover:border-outline rounded-lg font-label-md text-label-md transition-colors active:scale-[0.98]" onclick="closeDeleteModal()">
-          Cancelar
-        </button>
-<button class="px-space-md py-2 bg-error-container hover:bg-[#b00020] text-white border border-error/50 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98] flex items-center gap-1.5" id="confirm-delete-btn">
-<span class="material-symbols-outlined text-[18px]" data-icon="delete_forever">delete_forever</span>
-          Confirmar Eliminación
-        </button>
-</div>
-</div>
-</div>
-<!-- ========================================================================= -->
-<!-- 3. Integración Oficial Supabase JS & Lógica Operativa -->
-<!-- ========================================================================= -->
-<script>
-    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68";
 
-    // Inicialización del cliente Supabase
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        <!-- 2. Cargas y Enlaces (Dirige a cargas.html) -->
+        <a href="cargas.html" class="item-menu">
+          <span class="material-symbols-outlined">cloud_upload</span>
+          <span>Cargas y Enlaces</span>
+        </a>
 
-    let currentTable = 'galeria';
-    let galleriesData = [];
-    let currentFilter = 'all'; // 'all', 'public', 'private'
-    let itemToDelete = null;
+        <!-- 3. Tarifas y Precios (Dirige a precios.html) -->
+        <a href="precios.html" class="item-menu">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Tarifas y Precios</span>
+        </a>
+      </nav>
+    </div>
 
-    // Fallback Mock Data estructurada si la base está temporalmente vacía
-    const fallbackGalleries = [
-      {
-        id: "mock-1",
-        titulo: "Promesa a La Bandera TM 2026 Mañana",
-        es_publica: true,
-        clave: null,
-        cantidad_fotos: 342,
-        drive_id: "1A_Drive_School_98x1",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "High school students in pristine formal uniforms raising the national flag on a crisp sunny morning in a classical courtyard, editorial school documentary photography, sharp contrast, neutral deep darkroom tones, soft golden hour natural illumination."
-      },
-      {
-        id: "mock-2",
-        titulo: "Colación Egresados San Martín de Tours",
-        es_publica: false,
-        clave: "SMT2026",
-        cantidad_fotos: 580,
-        drive_id: "1B_Drive_Egresados_Tours_33",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "Elegant graduation commencement ceremony inside an architectural theater auditorium, students tossing caps under soft dramatic spotlighting, deep rich shadows with restrained maritime cyan hues, high dynamic range fine art editorial photography."
-      },
-      {
-        id: "mock-3",
-        titulo: "Muestra Anual de Teatro y Danza",
-        es_publica: true,
-        clave: null,
-        cantidad_fotos: 215,
-        drive_id: "1C_Drive_Teatro_Anual_44",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "Young theatrical performers dynamic dance movement captured with crisp optical clarity on a dark stage, atmospheric rim lighting highlighting silhouettes, deep cinematic near-black background with delicate oceanic cyan accents."
-      },
-      {
-        id: "mock-4",
-        titulo: "Torneo Intercolegial de Atletismo 2026",
-        es_publica: false,
-        clave: "RUN77",
-        cantidad_fotos: 420,
-        drive_id: "1D_Drive_Athletics_89",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "Student track and field athletes sprinting on a polished running track with intense focus and determination, fast shutter speed freezing motion, clean editorial sports composition, darkroom grading with deep charcoal shadows."
-      }
-    ];
+    <!-- ENLACES DE RETORNO AL SITIO PÚBLICO -->
+    <div class="footer-aside">
+      <a href="eventos.html" class="btn-enlace-publico">
+        <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+        <span>Volver a Eventos</span>
+      </a>
+      <a href="index.html" class="btn-enlace-publico">
+        <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+        <span>Ver Portafolio</span>
+      </a>
+      <div style="font-size: 0.7rem; color: #444; margin-top: 6px;">
+        ESTUDIO FOTOGRÁFICO &nbsp;•&nbsp; v2.5
+      </div>
+    </div>
+  </aside>
 
-    // Detección automática de tabla con fallback
-    async function determineTable() {
-      showStatus("Detectando estructura de base de datos...", "");
-      try {
-        const { data, error } = await supabaseClient.from('galeria').select('*').limit(1);
-        if (!error) {
-          currentTable = 'galeria';
-          updateBadge('Tabla: galeria');
-          return 'galeria';
-        }
-      } catch (e) {
-        // Continue to fallback
-      }
+  <!-- ÁREA DE GESTIÓN CENTRAL -->
+  <main>
+    <div class="encabezado-seccion">
+      <div>
+        <div style="color: #38bdf8; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+          <span class="material-symbols-outlined" style="font-size: 15px;">photo_camera</span>
+          MÓDULO DE GESTIÓN DE ÁLBUMES
+        </div>
+        <h1>Galerías Publicadas y Registradas</h1>
+        <p>Panel exclusivo de visualización y administración de álbumes escolares conectados a Supabase y Google Drive.</p>
+      </div>
 
-      try {
-        const { data, error } = await supabaseClient.from('galerias').select('*').limit(1);
-        if (!error) {
-          currentTable = 'galerias';
-          updateBadge('Tabla: galerias');
-          return 'galerias';
-        }
-      } catch (e) {
-        // Fallback standard
-      }
+      <!-- BOTÓN DIRECTO PARA VINCULAR NUEVAS CARPETAS EN CARGAS.HTML -->
+      <a href="cargas.html" class="btn-cargar-nueva">
+        <span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
+        <span>+ CARGAR NUEVA GALERÍA</span>
+      </a>
+    </div>
 
-      currentTable = 'galeria';
-      updateBadge('Tabla: galeria');
-      return 'galeria';
-    }
+    <!-- TARJETAS DE MÉTRICAS RÁPIDAS -->
+    <div class="metricas-grid">
+      <div class="tarjeta-metrica">
+        <div class="info">
+          <h4>Total Registradas</h4>
+          <div class="valor" id="lbl-total-galerias">0</div>
+          <div class="subtext">Sincronizadas con nube</div>
+        </div>
+        <div class="icono-metrica">
+          <span class="material-symbols-outlined">collections_bookmark</span>
+        </div>
+      </div>
 
-    function showStatus(text, badge) {
-      const container = document.getElementById('status-container');
-      const label = document.getElementById('status-text');
-      if (text) {
-        container.classList.remove('hidden');
-        label.innerText = text;
-      } else {
-        container.classList.add('hidden');
-      }
-    }
+      <div class="tarjeta-metrica">
+        <div class="info">
+          <h4>Álbumes Públicos</h4>
+          <div class="valor" id="lbl-publicas-count" style="color: #38bdf8;">0</div>
+          <div class="subtext">Acceso irrestricto</div>
+        </div>
+        <div class="icono-metrica" style="color: #38bdf8;">
+          <span class="material-symbols-outlined">public</span>
+        </div>
+      </div>
 
-    function updateBadge(badgeText) {
-      const badge = document.getElementById('table-detected-badge');
-      if (badgeText) {
-        badge.innerText = badgeText;
-        badge.classList.remove('hidden');
-      }
-    }
+      <div class="tarjeta-metrica">
+        <div class="info">
+          <h4>Privadas con Clave</h4>
+          <div class="valor" id="lbl-privadas-count" style="color: #facc15;">0</div>
+          <div class="subtext">Protegidas con PIN</div>
+        </div>
+        <div class="icono-metrica" style="color: #facc15;">
+          <span class="material-symbols-outlined">lock</span>
+        </div>
+      </div>
+    </div>
 
-    // Carga principal de galerías
-    async function fetchGalleries() {
-      showStatus("Cargando galerías desde Supabase...", "");
-      await determineTable();
+    <!-- FILTROS Y BÚSQUEDA -->
+    <div class="barra-filtros">
+      <div class="busqueda-caja">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="input-busqueda" placeholder="Buscar por colegio, evento o ID Drive..." onkeyup="filtrarLista()">
+      </div>
 
-      try {
-        const { data, error } = await supabaseClient
-          .from(currentTable)
-          .select('*')
-          .order('created_at', { ascending: false });
+      <div class="filtros-tipo">
+        <button class="btn-filtro activo" onclick="cambiarFiltro('todas', this)">Todas</button>
+        <button class="btn-filtro" onclick="cambiarFiltro('publicas', this)">Solo Públicas</button>
+        <button class="btn-filtro" onclick="cambiarFiltro('privadas', this)">Solo Privadas</button>
+      </div>
 
-        if (error || !data || data.length === 0) {
-          // Si no hay datos en la nube, utilizar datos representativos verificados
-          galleriesData = fallbackGalleries;
-        } else {
-          // Mapeo flexible para tolerar esquemas con campos en español/inglés
-          galleriesData = data.map(item => ({
-            id: item.id || `db-${Math.random()}`,
-            titulo: item.titulo || item.nombre || item.title || "Álbum Escolar Registrado",
-            es_publica: item.es_publica !== undefined ? item.es_publica : (item.publica !== undefined ? item.publica : (item.is_public !== undefined ? item.is_public : true)),
-            clave: item.clave || item.pin || item.password || null,
-            cantidad_fotos: item.cantidad_fotos || item.total_fotos || item.photos_count || Math.floor(Math.random() * 250) + 120,
-            drive_id: item.drive_id || item.google_drive_id || item.folder_id || "1Drive_Sync_Verified",
-            imagen_portada: item.portada_url || item.cover_url || item.imagen_url || "placeholder",
-            data_alt_prompt: "High school educational exhibition photography, students engaging in academic activities, captured with refined architectural lighting, deep darkroom background with near black tones and sharp oceanic cyan highlights."
-          }));
-        }
-      } catch (err) {
-        console.warn("Fallo en consulta Supabase, activando lote visual:", err);
-        galleriesData = fallbackGalleries;
-      }
+      <button onclick="cargarListaEventos()" style="background:#181818; border:1px solid #282828; color:#aaa; border-radius:8px; padding:8px 12px; cursor:pointer; font-size:0.8rem; display:flex; align-items:center; gap:4px;">
+        <span class="material-symbols-outlined" style="font-size:16px;">refresh</span>
+      </button>
+    </div>
 
-      showStatus(null);
-      updateMetrics();
-      renderGalleries();
-    }
+    <!-- CUADRÍCULA DINÁMICA DE ÁLBUMES -->
+    <div id="lista-eventos" class="grid-galerias">
+      <div class="estado-vacio">
+        <span class="material-symbols-outlined">sync</span>
+        <h3>Sincronizando con base de datos...</h3>
+        <p>Consultando eventos escolares y carpetas en Supabase.</p>
+      </div>
+    </div>
+  </main>
 
-    // Actualización de Métricas Superiores
-    function updateMetrics() {
-      const total = galleriesData.length;
-      const publics = galleriesData.filter(g => g.es_publica).length;
-      const privates = total - publics;
+  <script>
+    // CREDENCIALES OFICIALES DE SUPABASE
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 
-      document.getElementById('metric-total').innerText = total;
-      document.getElementById('metric-public').innerText = publics;
-      document.getElementById('metric-private').innerText = privates;
-    }
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-    // Renderizado del Grid
-    function renderGalleries() {
-      const grid = document.getElementById('galleries-grid');
-      const empty = document.getElementById('empty-state');
-      const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+    let listaGlobal = [];
+    let filtroActivo = 'todas';
 
-      // Aplicar filtros
-      const filtered = galleriesData.filter(item => {
-        // Filtro de visibilidad
-        if (currentFilter === 'public' && !item.es_publica) return false;
-        if (currentFilter === 'private' && item.es_publica) return false;
+    // 1. CARGAR GALERÍAS (SUPABASE + RESPALDO LOCAL)
+    async function cargarListaEventos() {
+      const contenedor = document.getElementById('lista-eventos');
+      let eventos = [];
 
-        // Filtro de búsqueda
-        if (searchQuery) {
-          const matchTitle = item.titulo.toLowerCase().includes(searchQuery);
-          const matchDrive = item.drive_id.toLowerCase().includes(searchQuery);
-          return matchTitle || matchDrive;
-        }
-        return true;
-      });
+      // A) Consultar Supabase
+      if (supabaseClient) {
+        try {
+          let { data, error } = await supabaseClient
+            .from('galeria')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        empty.classList.remove('hidden');
-        return;
-      }
-
-      empty.classList.add('hidden');
-
-      grid.innerHTML = filtered.map(item => {
-        const isPublic = item.es_publica;
-        const badgeClass = isPublic 
-          ? "bg-[#004466]/80 text-[#38bdf8] border-[#005580]" 
-          : "bg-[#794303]/70 text-tertiary border-tertiary/60";
-        const badgeIcon = isPublic ? "public" : "lock";
-        const badgeLabel = isPublic ? "Pública" : "Privada";
-
-        const promptText = item.data_alt_prompt || "Photographic showcase framed in darkroom aesthetic, balanced contrast, sharp professional optics with cool cyan and pure black color harmonies.";
-
-        return `
-          <div class="group bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-[0_4px_16px_rgba(0,85,128,0.2)]">
-            
-            <!-- Portada 16:10 -->
-            <div class="relative w-full aspect-[16/10] bg-[#0e0e0e] overflow-hidden border-b border-[#222222]">
-              <img 
-                src="placeholder" 
-                data-alt="${promptText}" 
-                class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100"
-              >
-
-              <!-- Etiqueta de Visibilidad Flotante -->
-              <div class="absolute top-3 left-3">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border text-label-sm font-label-sm uppercase tracking-wider backdrop-blur-md ${badgeClass}">
-                  <span class="material-symbols-outlined text-[14px]" data-icon="${badgeIcon}">${badgeIcon}</span>
-                  <span>${badgeLabel}</span>
-                </span>
-              </div>
-
-              <!-- Quick ID Badge -->
-              <div class="absolute top-3 right-3 bg-[#111111]/80 backdrop-blur-md border border-[#333333] px-2 py-0.5 rounded text-[11px] font-mono text-outline">
-                ID: ${item.drive_id.substring(0, 10)}...
-              </div>
-            </div>
-
-            <!-- Contenido y Metadatos -->
-            <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
-              <div>
-                <h3 class="font-headline-sm text-headline-sm font-bold text-white tracking-tight leading-snug line-clamp-2 group-hover:text-primary transition-colors">
-                  ${item.titulo}
-                </h3>
-
-                <!-- Metadatos de la sesión -->
-                <div class="mt-3 pt-3 border-t border-[#222222] grid grid-cols-2 gap-2 text-label-sm font-label-sm">
-                  <div>
-                    <span class="text-outline uppercase block text-[10px]">Fotos Estimadas</span>
-                    <span class="text-white font-mono flex items-center gap-1 mt-0.5">
-                      <span class="material-symbols-outlined text-[14px] text-primary" data-icon="photo_camera">photo_camera</span>
-                      ${item.cantidad_fotos} tomas
-                    </span>
-                  </div>
-                  <div>
-                    <span class="text-outline uppercase block text-[10px]">Conexión Google Drive</span>
-                    <span class="text-white font-mono flex items-center gap-1 mt-0.5 truncate" title="${item.drive_id}">
-                      <span class="material-symbols-outlined text-[14px] text-[#38bdf8]" data-icon="cloud_done">cloud_done</span>
-                      <span class="truncate">${item.drive_id}</span>
-                    </span>
-                  </div>
-                </div>
-
-                ${!isPublic && item.clave ? `
-                  <div class="mt-2 text-[11px] font-mono bg-[#111111] border border-[#222222] px-2 py-1 rounded text-outline flex items-center justify-between">
-                    <span>Clave de Acceso:</span>
-                    <span class="text-tertiary font-bold tracking-wider">${item.clave}</span>
-                  </div>
-                ` : ''}
-              </div>
-
-              <!-- Barra de Acciones: Puro Gestor sin Visores -->
-              <div class="pt-space-sm border-t border-[#222222] flex items-center justify-between gap-2">
-                <a 
-                  href="cargas.html?edit=${item.id}" 
-                  class="flex-1 inline-flex items-center justify-center gap-1 py-2 px-3 rounded-lg bg-[#222222] hover:bg-[#2a2a2a] text-outline hover:text-white border border-[#333333] font-label-md text-label-md transition-all active:scale-[0.98]">
-                  <span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
-                  Editar
-                </a>
-
-                <button 
-                  onclick="openDeleteModal('${item.id}', '${item.titulo.replace(/'/g, "\\'")}')" 
-                  class="inline-flex items-center justify-center gap-1 py-2 px-3 rounded-lg bg-transparent hover:bg-error-container/30 text-error/80 hover:text-error border border-error/30 hover:border-error font-label-md text-label-md transition-all active:scale-[0.98]">
-                  <span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
-                  <span>Eliminar Galería</span>
-                </button>
-              </div>
-
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Manejo de Filtros
-    function setFilter(type) {
-      currentFilter = type;
-      const buttons = {
-        all: document.getElementById('filter-all'),
-        public: document.getElementById('filter-public'),
-        private: document.getElementById('filter-private')
-      };
-
-      Object.keys(buttons).forEach(key => {
-        const btn = buttons[key];
-        if (key === type) {
-          btn.className = "filter-pill bg-[#004466] border border-[#005580] text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]";
-        } else {
-          btn.className = "filter-pill bg-transparent border border-transparent text-outline hover:text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]";
-        }
-      });
-
-      renderGalleries();
-    }
-
-    // Modal de Confirmación y Eliminación Real en Supabase
-    function openDeleteModal(id, title) {
-      itemToDelete = { id, title };
-      document.getElementById('delete-item-title').innerText = `"${title}"`;
-      document.getElementById('delete-modal').classList.remove('hidden');
-    }
-
-    function closeDeleteModal() {
-      itemToDelete = null;
-      document.getElementById('delete-modal').classList.add('hidden');
-    }
-
-    document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
-      if (!itemToDelete) return;
-
-      const deleteBtn = document.getElementById('confirm-delete-btn');
-      deleteBtn.disabled = true;
-      deleteBtn.innerHTML = `
-        <span class="material-symbols-outlined text-[18px] animate-spin" data-icon="sync">sync</span>
-        Eliminando...
-      `;
-
-      try {
-        // Borrado real en Supabase
-        const { error } = await supabaseClient
-          .from(currentTable)
-          .delete()
-          .eq('id', itemToDelete.id);
-
-        if (error) {
-          console.error("Error al borrar en Supabase:", error);
-        }
-      } catch (err) {
-        console.warn("Fallo de red en Supabase:", err);
-      }
-
-      // Remover del estado local para feedback instantáneo
-      galleriesData = galleriesData.filter(g => g.id !== itemToDelete.id);
-      
-      closeDeleteModal();
-      deleteBtn.disabled = false;
-      deleteBtn.innerHTML = `
-        <span class="material-symbols-outlined text-[18px]" data-icon="delete_forever">delete_forever</span>
-        Confirmar Eliminación
-      `;
-
-      updateMetrics();
-      renderGalleries();
-    });
-
-    // Escuchador del Buscador
-    document.getElementById('search-input').addEventListener('input', () => {
-      renderGalleries();
-    });
-
-    // Carga inicial
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchGalleries();
-    });
-  </script>
-</body></html>" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Configuration verbatim -->
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "surface": "#131313",
-            "on-tertiary-container": "#ffb36e",
-            "tertiary-fixed": "#ffdcc1",
-            "primary-container": "#005580",
-            "on-secondary-fixed": "#001e30",
-            "secondary-container": "#124d70",
-            "error-container": "#93000a",
-            "surface-container-lowest": "#0e0e0e",
-            "on-secondary": "#00344f",
-            "primary-fixed-dim": "#91cdfe",
-            "error": "#ffb4ab",
-            "surface-variant": "#353534",
-            "on-primary-container": "#8ec9fa",
-            "background": "#131313",
-            "tertiary-container": "#794303",
-            "surface-container-high": "#2a2a2a",
-            "inverse-surface": "#e5e2e1",
-            "on-secondary-container": "#8dbee6",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-surface-variant": "#c0c7cf",
-            "surface-container": "#201f1f",
-            "on-surface": "#e5e2e1",
-            "surface-container-low": "#1c1b1b",
-            "primary-fixed": "#cbe6ff",
-            "on-tertiary-fixed": "#2e1500",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "tertiary": "#ffb878",
-            "on-error": "#690005",
-            "surface-tint": "#91cdfe",
-            "on-primary": "#003350",
-            "on-primary-fixed": "#001e30",
-            "on-primary-fixed-variant": "#004b72",
-            "surface-bright": "#3a3939",
-            "outline": "#8b9199",
-            "inverse-primary": "#1e638f",
-            "inverse-on-surface": "#313030",
-            "outline-variant": "#41474e",
-            "on-background": "#e5e2e1",
-            "secondary": "#9bccf4",
-            "surface-dim": "#131313",
-            "primary": "#91cdfe",
-            "secondary-fixed": "#cae6ff",
-            "secondary-fixed-dim": "#9bccf4",
-            "on-error-container": "#ffdad6",
-            "on-tertiary": "#4c2700",
-            "surface-container-highest": "#353534",
-            "tertiary-fixed-dim": "#ffb878"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-4xl": "6rem",
-            "container-max": "1440px",
-            "space-lg": "1.5rem",
-            "space-2xl": "3rem",
-            "space-xl": "2rem",
-            "gutter-mobile": "1rem",
-            "space-sm": "0.75rem",
-            "space-xs": "0.5rem",
-            "gutter-tablet": "1.5rem",
-            "space-md": "1rem",
-            "space-3xl": "4.5rem",
-            "gutter-desktop": "2rem",
-            "space-2xs": "0.25rem"
-          },
-          "fontFamily": {
-            "label-sm": ["Manrope"],
-            "display-hero-mobile": ["Raleway"],
-            "body-lg": ["Manrope"],
-            "headline-md": ["Raleway"],
-            "headline-sm": ["Raleway"],
-            "headline-lg": ["Raleway"],
-            "body-md": ["Manrope"],
-            "label-md": ["Manrope"],
-            "headline-lg-mobile": ["Raleway"],
-            "display-hero": ["Raleway"]
-          },
-          "fontSize": {
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }]
+          if (error || !data) {
+            const intentoDos = await supabaseClient
+              .from('galerias')
+              .select('*')
+              .order('created_at', { ascending: false });
+            if (intentoDos.data) data = intentoDos.data;
           }
+
+          if (data && data.length > 0) {
+            eventos = data;
+          }
+        } catch (errSupabase) {
+          console.warn("Aviso Supabase:", errSupabase);
         }
       }
-    }
-  </script>
-<!-- Supabase JS Client Oficial CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #111111;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #222222;
-      border-radius: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #005580;
-    }
-  </style>
-</head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-surface">
-<!-- ========================================================================= -->
-<!-- 1. Menú lateral (Sidebar) Darkroom Elegance -->
-<!-- ========================================================================= -->
-<aside class="w-full md:w-64 bg-[#161616] border-b md:border-b-0 md:border-r border-[#222222] flex-shrink-0 flex flex-col justify-between min-h-screen z-30">
-<div>
-<!-- Identidad de Marca -->
-<div class="p-space-lg border-b border-[#222222]">
-<div class="flex items-center gap-space-xs mb-space-xs">
-<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">SISTEMA ACTIVO</span>
-</div>
-<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">
-          SERGIO RICARDO MOLINA
-        </h1>
-<p class="font-label-md text-label-md text-outline tracking-wider mt-1">PANEL DE CONTROL</p>
-</div>
-<!-- Navegación con 3 ítems claros y limpios -->
-<nav class="p-space-md space-y-space-xs">
-<!-- Ítem 1: Galerías (Activo: fondo azul #004466 con borde #0077b3 y texto blanco) -->
-<a class="flex items-center gap-space-sm bg-[#004466] border border-[#0077b3] text-white rounded-lg px-space-md py-space-sm font-label-md text-label-md transition-transform duration-150 active:scale-[0.98] shadow-sm" href="panel.html">
-<span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_library">photo_library</span>
-<span class="font-semibold tracking-wide">Galerías</span>
-</a>
-<!-- Ítem 2: Cargas y Enlaces -->
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-white hover:bg-[#201f1f] border border-transparent hover:border-[#333333] rounded-lg px-space-md py-space-sm font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="cargas.html">
-<span class="material-symbols-outlined text-outline text-[20px]" data-icon="cloud_upload">cloud_upload</span>
-<span class="font-medium tracking-wide">Cargas y Enlaces</span>
-</a>
-<!-- Ítem 3: Tarifas y Precios -->
-<a class="flex items-center gap-space-sm text-on-surface-variant hover:text-white hover:bg-[#201f1f] border border-transparent hover:border-[#333333] rounded-lg px-space-md py-space-sm font-label-md text-label-md transition-all duration-150 active:scale-[0.98]" href="precios.html">
-<span class="material-symbols-outlined text-outline text-[20px]" data-icon="payments">payments</span>
-<span class="font-medium tracking-wide">Tarifas y Precios</span>
-</a>
-</nav>
-</div>
-<!-- Enlaces Inferiores del Menú Lateral -->
-<div class="p-space-md border-t border-[#222222] space-y-space-xs bg-[#111111]">
-<a class="flex items-center gap-space-xs text-outline hover:text-primary transition-colors py-1.5 px-space-xs font-label-md text-label-md rounded" href="eventos.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
-<span>← Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-space-xs text-outline hover:text-on-surface transition-colors py-1.5 px-space-xs font-label-md text-label-md rounded" href="index.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="open_in_new">open_in_new</span>
-<span>Ver Portafolio</span>
-</a>
-<!-- Quick Session Indicator -->
-<div class="pt-space-sm mt-space-xs border-t border-[#222222] flex items-center justify-between text-outline text-[11px] font-label-sm">
-<span>ESTUDIO FOTOGRÁFICO</span>
-<span class="font-mono text-primary">v2.4</span>
-</div>
-</div>
-</aside>
-<!-- ========================================================================= -->
-<!-- 2. Área de Contenido Principal -->
-<!-- ========================================================================= -->
-<main class="flex-1 flex flex-col min-w-0 bg-[#111111] overflow-y-auto custom-scrollbar">
-<!-- Top Decorative Line with Oceanic Precision -->
-<div class="h-1 bg-gradient-to-r from-[#005580] via-[#38bdf8] to-[#005580] w-full"></div>
-<div class="p-space-lg md:p-space-xl max-w-container-max w-full mx-auto space-y-space-xl">
-<!-- Cabecera Principal -->
-<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg border-b border-[#222222] pb-space-lg">
-<div>
-<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm mb-1 uppercase tracking-widest">
-<span class="material-symbols-outlined text-[16px]" data-icon="photo_camera">photo_camera</span>
-<span>Módulo de Gestión de Álbumes</span>
-</div>
-<h2 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight">
-            Galerías Publicadas y Registradas
-          </h2>
-<p class="font-body-md text-body-md text-outline mt-1 max-w-2xl">
-            Panel exclusivo de visualización y administración de álbumes escolares conectados a Supabase y Google Drive.
-          </p>
-</div>
-<!-- Botón de acceso rápido + Cargar Nueva Galería -->
-<div class="flex items-center gap-space-sm">
-<a class="inline-flex items-center gap-space-xs bg-[#004466] border border-[#005580] hover:bg-[#005580] hover:border-[#0077b3] text-white font-label-md text-label-md px-space-lg py-3 rounded-lg uppercase tracking-wider transition-all duration-150 active:scale-[0.98] shadow-md" href="cargas.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
-<span class="font-bold">+ Cargar Nueva Galería</span>
-</a>
-</div>
-</div>
-<!-- Barra de Métricas Rápidas -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
-<!-- Card 1: Total Galerías -->
-<div class="bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl p-space-md flex items-center justify-between transition-colors shadow-sm">
-<div>
-<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Registradas</p>
-<p class="font-headline-md text-headline-md font-bold text-white mt-0.5 font-mono" id="metric-total">0</p>
-<span class="text-[11px] text-outline-variant font-label-sm">Sincronizadas con nube</span>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#222222] border border-[#333333] flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[22px]" data-icon="collections_bookmark">collections_bookmark</span>
-</div>
-</div>
-<!-- Card 2: Públicas -->
-<div class="bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl p-space-md flex items-center justify-between transition-colors shadow-sm">
-<div>
-<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Álbumes Públicos</p>
-<p class="font-headline-md text-headline-md font-bold text-[#38bdf8] mt-0.5 font-mono" id="metric-public">0</p>
-<span class="text-[11px] text-[#005580] font-label-sm">Acceso irrestricto</span>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#124d70]/30 border border-[#005580] flex items-center justify-center text-[#38bdf8]">
-<span class="material-symbols-outlined text-[22px]" data-icon="public">public</span>
-</div>
-</div>
-<!-- Card 3: Privadas -->
-<div class="bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl p-space-md flex items-center justify-between transition-colors shadow-sm">
-<div>
-<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Privadas con Clave</p>
-<p class="font-headline-md text-headline-md font-bold text-tertiary mt-0.5 font-mono" id="metric-private">0</p>
-<span class="text-[11px] text-outline-variant font-label-sm">Protegidas con PIN</span>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#794303]/20 border border-tertiary/40 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined text-[22px]" data-icon="lock">lock</span>
-</div>
-</div>
-</div>
-<!-- Barra de Filtros y Búsqueda Rápida -->
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md bg-[#161616] p-space-md rounded-xl border border-[#222222]">
-<!-- Buscador Rápido -->
-<div class="relative flex-1 max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]" data-icon="search">search</span>
-<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-lg pl-10 pr-4 py-2 text-white font-body-md text-body-md placeholder-neutral-600 outline-none transition-all" id="search-input" placeholder="Buscar por colegio, evento o ID Drive..." type="text"/>
-</div>
-<!-- Botones de Filtro -->
-<div class="flex items-center gap-1.5 p-1 bg-[#111111] rounded-lg border border-[#222222] self-start sm:self-auto">
-<button class="filter-pill bg-[#004466] border border-[#005580] text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]" id="filter-all" onclick="setFilter('all')">
-            Todas
-          </button>
-<button class="filter-pill bg-transparent border border-transparent text-outline hover:text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]" id="filter-public" onclick="setFilter('public')">
-            Solo Públicas
-          </button>
-<button class="filter-pill bg-transparent border border-transparent text-outline hover:text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]" id="filter-private" onclick="setFilter('private')">
-            Solo Privadas
-          </button>
-</div>
-<!-- Refresco Manual -->
-<button class="flex items-center justify-center p-2 rounded-lg bg-[#111111] border border-[#333333] text-outline hover:text-primary hover:border-[#005580] transition-colors active:scale-[0.98]" onclick="fetchGalleries()" title="Actualizar catálogo">
-<span class="material-symbols-outlined text-[20px]" data-icon="refresh">refresh</span>
-</button>
-</div>
-<!-- Estado de Carga / Notificación de Fallback -->
-<div class="hidden" id="status-container">
-<div class="p-space-md rounded-lg bg-[#181818] border border-[#005580] flex items-center justify-between text-body-md text-on-surface">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary animate-spin text-[20px]" data-icon="sync">sync</span>
-<span id="status-text">Conectando con Supabase...</span>
-</div>
-<span class="font-mono text-label-sm text-primary-fixed-dim bg-[#005580]/40 px-2 py-0.5 rounded border border-[#005580]" id="table-detected-badge"></span>
-</div>
-</div>
-<!-- Grid de Tarjetas de Álbumes Reales -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="galleries-grid">
-<!-- Generado dinámicamente o con estado vacío -->
-</div>
-<!-- Estado Vacío (Hidden por defecto) -->
-<div class="hidden py-space-3xl text-center border border-dashed border-[#222222] rounded-xl bg-[#161616]/40 p-space-xl" id="empty-state">
-<span class="material-symbols-outlined text-outline text-5xl mb-space-sm" data-icon="photo_album">photo_album</span>
-<h3 class="font-headline-sm text-headline-sm text-white font-semibold">No se encontraron galerías</h3>
-<p class="text-outline font-body-md text-body-md max-w-md mx-auto mt-1 mb-space-lg">
-          No hay álbumes que coincidan con la búsqueda o todavía no se han registrado lotes escolares en la base de datos.
-        </p>
-<a class="inline-flex items-center gap-space-xs bg-[#004466] hover:bg-[#005580] border border-[#005580] text-white font-label-md text-label-md px-space-md py-2.5 rounded-lg uppercase tracking-wider" href="cargas.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
-          Crear la primera galería
-        </a>
-</div>
-</div>
-</main>
-<!-- ========================================================================= -->
-<!-- Modal de Confirmación de Borrado Darkroom -->
-<!-- ========================================================================= -->
-<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="delete-modal">
-<div class="bg-[#181818] border border-[#333333] max-w-md w-full rounded-xl p-space-lg shadow-[0_12px_32px_rgba(0,0,0,0.8)]">
-<div class="flex items-center gap-space-sm text-error mb-space-sm">
-<span class="material-symbols-outlined text-2xl" data-icon="warning">warning</span>
-<h3 class="font-headline-sm text-headline-sm font-bold text-white">Eliminar Galería</h3>
-</div>
-<p class="text-outline font-body-md text-body-md">
-        ¿Estás seguro de que deseas eliminar permanentemente el álbum <span class="font-semibold text-white" id="delete-item-title"></span>? 
-        Esta acción eliminará el registro de Supabase de manera irreversible.
-      </p>
-<div class="mt-space-lg flex items-center justify-end gap-space-sm">
-<button class="px-space-md py-2 text-outline hover:text-white border border-[#333333] hover:border-outline rounded-lg font-label-md text-label-md transition-colors active:scale-[0.98]" onclick="closeDeleteModal()">
-          Cancelar
-        </button>
-<button class="px-space-md py-2 bg-error-container hover:bg-[#b00020] text-white border border-error/50 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98] flex items-center gap-1.5" id="confirm-delete-btn">
-<span class="material-symbols-outlined text-[18px]" data-icon="delete_forever">delete_forever</span>
-          Confirmar Eliminación
-        </button>
-</div>
-</div>
-</div>
-<!-- ========================================================================= -->
-<!-- 3. Integración Oficial Supabase JS & Lógica Operativa -->
-<!-- ========================================================================= -->
-<script>
-    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68";
 
-    // Inicialización del cliente Supabase
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    let currentTable = 'galeria';
-    let galleriesData = [];
-    let currentFilter = 'all'; // 'all', 'public', 'private'
-    let itemToDelete = null;
-
-    // Fallback Mock Data estructurada si la base está temporalmente vacía
-    const fallbackGalleries = [
-      {
-        id: "mock-1",
-        titulo: "Promesa a La Bandera TM 2026 Mañana",
-        es_publica: true,
-        clave: null,
-        cantidad_fotos: 342,
-        drive_id: "1A_Drive_School_98x1",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "High school students in pristine formal uniforms raising the national flag on a crisp sunny morning in a classical courtyard, editorial school documentary photography, sharp contrast, neutral deep darkroom tones, soft golden hour natural illumination."
-      },
-      {
-        id: "mock-2",
-        titulo: "Colación Egresados San Martín de Tours",
-        es_publica: false,
-        clave: "SMT2026",
-        cantidad_fotos: 580,
-        drive_id: "1B_Drive_Egresados_Tours_33",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "Elegant graduation commencement ceremony inside an architectural theater auditorium, students tossing caps under soft dramatic spotlighting, deep rich shadows with restrained maritime cyan hues, high dynamic range fine art editorial photography."
-      },
-      {
-        id: "mock-3",
-        titulo: "Muestra Anual de Teatro y Danza",
-        es_publica: true,
-        clave: null,
-        cantidad_fotos: 215,
-        drive_id: "1C_Drive_Teatro_Anual_44",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "Young theatrical performers dynamic dance movement captured with crisp optical clarity on a dark stage, atmospheric rim lighting highlighting silhouettes, deep cinematic near-black background with delicate oceanic cyan accents."
-      },
-      {
-        id: "mock-4",
-        titulo: "Torneo Intercolegial de Atletismo 2026",
-        es_publica: false,
-        clave: "RUN77",
-        cantidad_fotos: 420,
-        drive_id: "1D_Drive_Athletics_89",
-        imagen_portada: "placeholder",
-        data_alt_prompt: "Student track and field athletes sprinting on a polished running track with intense focus and determination, fast shutter speed freezing motion, clean editorial sports composition, darkroom grading with deep charcoal shadows."
-      }
-    ];
-
-    // Detección automática de tabla con fallback
-    async function determineTable() {
-      showStatus("Detectando estructura de base de datos...", "");
+      // B) Combinar con Respaldo Local (localStorage)
       try {
-        const { data, error } = await supabaseClient.from('galeria').select('*').limit(1);
-        if (!error) {
-          currentTable = 'galeria';
-          updateBadge('Tabla: galeria');
-          return 'galeria';
-        }
-      } catch (e) {
-        // Continue to fallback
+        const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+        locales.forEach(loc => {
+          const yaExiste = eventos.some(ev => 
+            String(ev.id) === String(loc.id) || 
+            (loc.drive_url && (ev.drive_url === loc.drive_url || ev.enlace_drive === loc.drive_url))
+          );
+          if (!yaExiste) eventos.unshift(loc);
+        });
+      } catch (errLocal) {
+        console.warn("Aviso LocalStorage:", errLocal);
       }
 
-      try {
-        const { data, error } = await supabaseClient.from('galerias').select('*').limit(1);
-        if (!error) {
-          currentTable = 'galerias';
-          updateBadge('Tabla: galerias');
-          return 'galerias';
-        }
-      } catch (e) {
-        // Fallback standard
-      }
-
-      currentTable = 'galeria';
-      updateBadge('Tabla: galeria');
-      return 'galeria';
+      listaGlobal = eventos;
+      actualizarContadores();
+      renderizarTarjetas();
     }
 
-    function showStatus(text, badge) {
-      const container = document.getElementById('status-container');
-      const label = document.getElementById('status-text');
-      if (text) {
-        container.classList.remove('hidden');
-        label.innerText = text;
-      } else {
-        container.classList.add('hidden');
-      }
+    // 2. ACTUALIZAR CONTADORES SUPERIORES
+    function actualizarContadores() {
+      const total = listaGlobal.length;
+      const privadas = listaGlobal.filter(g => g.es_privada || (g.password && String(g.password).trim().length > 0)).length;
+      const publicas = total - privadas;
+
+      document.getElementById('lbl-total-galerias').innerText = total;
+      document.getElementById('lbl-publicas-count').innerText = publicas;
+      document.getElementById('lbl-privadas-count').innerText = privadas;
     }
 
-    function updateBadge(badgeText) {
-      const badge = document.getElementById('table-detected-badge');
-      if (badgeText) {
-        badge.innerText = badgeText;
-        badge.classList.remove('hidden');
-      }
-    }
+    // 3. RENDERIZAR TARJETAS CON BOTÓN DE BORRADO OPERATIVO
+    function renderizarTarjetas() {
+      const contenedor = document.getElementById('lista-eventos');
+      const busqueda = document.getElementById('input-busqueda').value.toLowerCase().trim();
 
-    // Carga principal de galerías
-    async function fetchGalleries() {
-      showStatus("Cargando galerías desde Supabase...", "");
-      await determineTable();
+      let filtradas = listaGlobal.filter(item => {
+        const titulo = (item.titulo || '').toLowerCase();
+        const driveUrl = (item.drive_url || item.url_drive || item.enlace_drive || '').toLowerCase();
+        const matchTexto = titulo.includes(busqueda) || driveUrl.includes(busqueda);
 
-      try {
-        const { data, error } = await supabaseClient
-          .from(currentTable)
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error || !data || data.length === 0) {
-          // Si no hay datos en la nube, utilizar datos representativos verificados
-          galleriesData = fallbackGalleries;
-        } else {
-          // Mapeo flexible para tolerar esquemas con campos en español/inglés
-          galleriesData = data.map(item => ({
-            id: item.id || `db-${Math.random()}`,
-            titulo: item.titulo || item.nombre || item.title || "Álbum Escolar Registrado",
-            es_publica: item.es_publica !== undefined ? item.es_publica : (item.publica !== undefined ? item.publica : (item.is_public !== undefined ? item.is_public : true)),
-            clave: item.clave || item.pin || item.password || null,
-            cantidad_fotos: item.cantidad_fotos || item.total_fotos || item.photos_count || Math.floor(Math.random() * 250) + 120,
-            drive_id: item.drive_id || item.google_drive_id || item.folder_id || "1Drive_Sync_Verified",
-            imagen_portada: item.portada_url || item.cover_url || item.imagen_url || "placeholder",
-            data_alt_prompt: "High school educational exhibition photography, students engaging in academic activities, captured with refined architectural lighting, deep darkroom background with near black tones and sharp oceanic cyan highlights."
-          }));
-        }
-      } catch (err) {
-        console.warn("Fallo en consulta Supabase, activando lote visual:", err);
-        galleriesData = fallbackGalleries;
-      }
-
-      showStatus(null);
-      updateMetrics();
-      renderGalleries();
-    }
-
-    // Actualización de Métricas Superiores
-    function updateMetrics() {
-      const total = galleriesData.length;
-      const publics = galleriesData.filter(g => g.es_publica).length;
-      const privates = total - publics;
-
-      document.getElementById('metric-total').innerText = total;
-      document.getElementById('metric-public').innerText = publics;
-      document.getElementById('metric-private').innerText = privates;
-    }
-
-    // Renderizado del Grid
-    function renderGalleries() {
-      const grid = document.getElementById('galleries-grid');
-      const empty = document.getElementById('empty-state');
-      const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
-
-      // Aplicar filtros
-      const filtered = galleriesData.filter(item => {
-        // Filtro de visibilidad
-        if (currentFilter === 'public' && !item.es_publica) return false;
-        if (currentFilter === 'private' && item.es_publica) return false;
-
-        // Filtro de búsqueda
-        if (searchQuery) {
-          const matchTitle = item.titulo.toLowerCase().includes(searchQuery);
-          const matchDrive = item.drive_id.toLowerCase().includes(searchQuery);
-          return matchTitle || matchDrive;
-        }
-        return true;
+        const esPriv = item.es_privada || (item.password && String(item.password).trim().length > 0);
+        if (filtroActivo === 'publicas') return matchTexto && !esPriv;
+        if (filtroActivo === 'privadas') return matchTexto && esPriv;
+        return matchTexto;
       });
 
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        empty.classList.remove('hidden');
+      if (filtradas.length === 0) {
+        contenedor.innerHTML = `
+          <div class="estado-vacio">
+            <span class="material-symbols-outlined">folder_open</span>
+            <h3>No se encontraron galerías</h3>
+            <p>No hay álbumes creados con los filtros actuales. Podés cargar una nueva carpeta desde Cargas y Enlaces.</p>
+            <a href="cargas.html" class="btn-cargar-nueva">
+              <span class="material-symbols-outlined">add</span>
+              <span>Cargar Nueva Galería</span>
+            </a>
+          </div>
+        `;
         return;
       }
 
-      empty.classList.add('hidden');
+      contenedor.innerHTML = '';
+      filtradas.forEach(item => {
+        const esPrivada = item.es_privada || (item.password && String(item.password).trim().length > 0);
+        const driveEnlace = item.drive_url || item.url_drive || item.enlace_drive || '';
+        const folderId = extraerIdDrive(driveEnlace);
 
-      grid.innerHTML = filtered.map(item => {
-        const isPublic = item.es_publica;
-        const badgeClass = isPublic 
-          ? "bg-[#004466]/80 text-[#38bdf8] border-[#005580]" 
-          : "bg-[#794303]/70 text-tertiary border-tertiary/60";
-        const badgeIcon = isPublic ? "public" : "lock";
-        const badgeLabel = isPublic ? "Pública" : "Privada";
+        let portadaImg = item.portada_url || item.portada || '';
+        if (!portadaImg && folderId) {
+          portadaImg = `https://lh3.googleusercontent.com/d/${folderId}=w600`;
+        }
 
-        const promptText = item.data_alt_prompt || "Photographic showcase framed in darkroom aesthetic, balanced contrast, sharp professional optics with cool cyan and pure black color harmonies.";
-
-        return `
-          <div class="group bg-[#181818] border border-[#222222] hover:border-[#005580] rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-[0_4px_16px_rgba(0,85,128,0.2)]">
-            
-            <!-- Portada 16:10 -->
-            <div class="relative w-full aspect-[16/10] bg-[#0e0e0e] overflow-hidden border-b border-[#222222]">
-              <img 
-                src="placeholder" 
-                data-alt="${promptText}" 
-                class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100"
-              >
-
-              <!-- Etiqueta de Visibilidad Flotante -->
-              <div class="absolute top-3 left-3">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border text-label-sm font-label-sm uppercase tracking-wider backdrop-blur-md ${badgeClass}">
-                  <span class="material-symbols-outlined text-[14px]" data-icon="${badgeIcon}">${badgeIcon}</span>
-                  <span>${badgeLabel}</span>
-                </span>
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'tarjeta-galeria';
+        tarjeta.innerHTML = `
+          <div class="portada-wrap">
+            ${portadaImg ? `
+              <img src="${portadaImg}" alt="${item.titulo}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\\'portada-vacia\\\'><span class=\\\'material-symbols-outlined\\\'>photo_camera</span><span>Sin Portada Disponible</span></div>'">
+            ` : `
+              <div class="portada-vacia">
+                <span class="material-symbols-outlined">photo_camera</span>
+                <span>Sin Portada Asignada</span>
               </div>
-
-              <!-- Quick ID Badge -->
-              <div class="absolute top-3 right-3 bg-[#111111]/80 backdrop-blur-md border border-[#333333] px-2 py-0.5 rounded text-[11px] font-mono text-outline">
-                ID: ${item.drive_id.substring(0, 10)}...
-              </div>
+            `}
+            <div class="badge-estado-portada ${esPrivada ? 'badge-privada' : 'badge-publica'}">
+              <span class="material-symbols-outlined" style="font-size:12px;">${esPrivada ? 'lock' : 'public'}</span>
+              <span>${esPrivada ? 'PRIVADA' : 'PÚBLICA'}</span>
             </div>
+          </div>
 
-            <!-- Contenido y Metadatos -->
-            <div class="p-space-md flex-1 flex flex-col justify-between space-y-space-md">
-              <div>
-                <h3 class="font-headline-sm text-headline-sm font-bold text-white tracking-tight leading-snug line-clamp-2 group-hover:text-primary transition-colors">
-                  ${item.titulo}
-                </h3>
-
-                <!-- Metadatos de la sesión -->
-                <div class="mt-3 pt-3 border-t border-[#222222] grid grid-cols-2 gap-2 text-label-sm font-label-sm">
-                  <div>
-                    <span class="text-outline uppercase block text-[10px]">Fotos Estimadas</span>
-                    <span class="text-white font-mono flex items-center gap-1 mt-0.5">
-                      <span class="material-symbols-outlined text-[14px] text-primary" data-icon="photo_camera">photo_camera</span>
-                      ${item.cantidad_fotos} tomas
-                    </span>
-                  </div>
-                  <div>
-                    <span class="text-outline uppercase block text-[10px]">Conexión Google Drive</span>
-                    <span class="text-white font-mono flex items-center gap-1 mt-0.5 truncate" title="${item.drive_id}">
-                      <span class="material-symbols-outlined text-[14px] text-[#38bdf8]" data-icon="cloud_done">cloud_done</span>
-                      <span class="truncate">${item.drive_id}</span>
-                    </span>
-                  </div>
+          <div class="detalle-galeria">
+            <div>
+              <h3>${item.titulo || 'Evento Escolar sin Título'}</h3>
+              <div class="meta-fila">
+                <div class="meta-item" title="${driveEnlace}">
+                  <span class="material-symbols-outlined">folder</span>
+                  <span>Drive: ${folderId || 'Sin ID'}</span>
                 </div>
-
-                ${!isPublic && item.clave ? `
-                  <div class="mt-2 text-[11px] font-mono bg-[#111111] border border-[#222222] px-2 py-1 rounded text-outline flex items-center justify-between">
-                    <span>Clave de Acceso:</span>
-                    <span class="text-tertiary font-bold tracking-wider">${item.clave}</span>
+                ${esPrivada ? `
+                  <div class="meta-item" style="color: #facc15;">
+                    <span class="material-symbols-outlined" style="color: #facc15;">key</span>
+                    <span>Clave: ${item.password || 'Asignada'}</span>
                   </div>
                 ` : ''}
               </div>
+            </div>
 
-              <!-- Barra de Acciones: Puro Gestor sin Visores -->
-              <div class="pt-space-sm border-t border-[#222222] flex items-center justify-between gap-2">
-                <a 
-                  href="cargas.html?edit=${item.id}" 
-                  class="flex-1 inline-flex items-center justify-center gap-1 py-2 px-3 rounded-lg bg-[#222222] hover:bg-[#2a2a2a] text-outline hover:text-white border border-[#333333] font-label-md text-label-md transition-all active:scale-[0.98]">
-                  <span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
-                  Editar
-                </a>
-
-                <button 
-                  onclick="openDeleteModal('${item.id}', '${item.titulo.replace(/'/g, "\\'")}')" 
-                  class="inline-flex items-center justify-center gap-1 py-2 px-3 rounded-lg bg-transparent hover:bg-error-container/30 text-error/80 hover:text-error border border-error/30 hover:border-error font-label-md text-label-md transition-all active:scale-[0.98]">
-                  <span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
-                  <span>Eliminar Galería</span>
-                </button>
-              </div>
-
+            <div class="acciones-tarjeta">
+              <!-- BOTÓN DE BORRADO OPERATIVO (SUPABASE Y LOCAL) -->
+              <button class="btn-borrar" onclick="borrarGaleria('${item.id}', '${driveEnlace}', '${(item.titulo || 'este evento').replace(/'/g, "\\'")}', event)">
+                <span class="material-symbols-outlined" style="font-size:16px;">delete</span>
+                <span>Eliminar Galería</span>
+              </button>
             </div>
           </div>
         `;
-      }).join('');
-    }
-
-    // Manejo de Filtros
-    function setFilter(type) {
-      currentFilter = type;
-      const buttons = {
-        all: document.getElementById('filter-all'),
-        public: document.getElementById('filter-public'),
-        private: document.getElementById('filter-private')
-      };
-
-      Object.keys(buttons).forEach(key => {
-        const btn = buttons[key];
-        if (key === type) {
-          btn.className = "filter-pill bg-[#004466] border border-[#005580] text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]";
-        } else {
-          btn.className = "filter-pill bg-transparent border border-transparent text-outline hover:text-white font-label-md text-label-md px-3.5 py-1.5 rounded-md transition-all active:scale-[0.98]";
-        }
+        contenedor.appendChild(tarjeta);
       });
-
-      renderGalleries();
     }
 
-    // Modal de Confirmación y Eliminación Real en Supabase
-    function openDeleteModal(id, title) {
-      itemToDelete = { id, title };
-      document.getElementById('delete-item-title').innerText = `"${title}"`;
-      document.getElementById('delete-modal').classList.remove('hidden');
-    }
+    // 4. FUNCIÓN PARA ELIMINAR GALERÍA (SUPABASE + LOCALSTORAGE)
+    async function borrarGaleria(id, driveUrl, titulo, event) {
+      if (event) event.stopPropagation();
 
-    function closeDeleteModal() {
-      itemToDelete = null;
-      document.getElementById('delete-modal').classList.add('hidden');
-    }
+      const confirma = confirm(`¿Estás seguro de que deseas eliminar permanentemente la galería:\n"${titulo}"?\n\nEsta acción quitará el evento tanto del sitio web como de la base de datos.`);
+      if (!confirma) return;
 
-    document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
-      if (!itemToDelete) return;
-
-      const deleteBtn = document.getElementById('confirm-delete-btn');
-      deleteBtn.disabled = true;
-      deleteBtn.innerHTML = `
-        <span class="material-symbols-outlined text-[18px] animate-spin" data-icon="sync">sync</span>
-        Eliminando...
-      `;
-
+      // A) Borrar del Respaldo Local (localStorage)
       try {
-        // Borrado real en Supabase
-        const { error } = await supabaseClient
-          .from(currentTable)
-          .delete()
-          .eq('id', itemToDelete.id);
-
-        if (error) {
-          console.error("Error al borrar en Supabase:", error);
-        }
-      } catch (err) {
-        console.warn("Fallo de red en Supabase:", err);
+        let locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+        locales = locales.filter(g => String(g.id) !== String(id) && g.drive_url !== driveUrl && g.enlace_drive !== driveUrl);
+        localStorage.setItem('galerias_locales', JSON.stringify(locales));
+      } catch (errLocal) {
+        console.warn("Aviso local:", errLocal);
       }
 
-      // Remover del estado local para feedback instantáneo
-      galleriesData = galleriesData.filter(g => g.id !== itemToDelete.id);
-      
-      closeDeleteModal();
-      deleteBtn.disabled = false;
-      deleteBtn.innerHTML = `
-        <span class="material-symbols-outlined text-[18px]" data-icon="delete_forever">delete_forever</span>
-        Confirmar Eliminación
-      `;
+      // B) Borrar de Supabase
+      if (supabaseClient) {
+        try {
+          if (id && !isNaN(id)) {
+            await supabaseClient.from('galeria').delete().eq('id', id);
+            await supabaseClient.from('galerias').delete().eq('id', id);
+          }
+          if (driveUrl) {
+            await supabaseClient.from('galeria').delete().eq('drive_url', driveUrl);
+            await supabaseClient.from('galeria').delete().eq('enlace_drive', driveUrl);
+          }
+        } catch (errSupabase) {
+          console.warn("Aviso Supabase:", errSupabase);
+        }
+      }
 
-      updateMetrics();
-      renderGalleries();
-    });
+      // C) Refrescar visualmente la lista
+      cargarListaEventos();
+    }
 
-    // Escuchador del Buscador
-    document.getElementById('search-input').addEventListener('input', () => {
-      renderGalleries();
-    });
+    // 5. FILTROS Y UTILIDADES
+    function cambiarFiltro(tipo, btn) {
+      filtroActivo = tipo;
+      document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+      if (btn) btn.classList.add('activo');
+      renderizarTarjetas();
+    }
 
-    // Carga inicial
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchGalleries();
-    });
+    function filtrarLista() {
+      renderizarTarjetas();
+    }
+
+    function extraerIdDrive(input) {
+      if (!input) return '';
+      const str = String(input).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+    }
+
+    document.addEventListener('DOMContentLoaded', cargarListaEventos);
   </script>
-</body></html>
+</body>
+</html>
