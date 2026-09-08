@@ -167,7 +167,7 @@
         Seleccioná el acto, egreso o institución de tu interés para ver y encargar las fotografías oficiales en alta calidad digital y copias impresas.
       </p>
 </section>
-<!-- 3. Cuadrícula dinámica de eventos escolares públicos (100% LIMPIA DE MUESTRAS FALSAS) -->
+<!-- 3. Cuadrícula dinámica de eventos escolares públicos leyendo directamente de Supabase -->
 <section class="mb-12">
 <div class="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800">
 <div class="flex items-center gap-2 text-xs font-semibold text-neutral-400 tracking-widest uppercase">
@@ -175,7 +175,7 @@
 <span id="gallery-counter">0 GALERÍAS DISPONIBLES</span>
 </div>
 </div>
-<!-- Loading Skeleton (sutil durante conexión inicial) -->
+<!-- Loading Skeleton -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden" id="loading-state">
 <div class="bg-[#1a1a1a] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
 <div class="aspect-[16/10] w-full bg-[#242424]"></div>
@@ -192,7 +192,7 @@
 </div>
 </div>
 </div>
-<!-- Empty State: Aparece limpio si no hay eventos cargados en Supabase -->
+<!-- Empty State: Cartel cuando no hay coberturas escolares públicas -->
 <div class="text-center py-16 px-4 border border-dashed border-neutral-800 rounded-xl bg-[#161616]" id="empty-state">
 <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center text-neutral-400">
 <span class="material-symbols-outlined text-2xl">photo_library</span>
@@ -202,7 +202,7 @@
           No se encontraron coberturas escolares públicas disponibles en este momento. Si disponés de un código o clave para un álbum privado, ingresá mediante el botón de Acceso Privado Clientes.
         </p>
 </div>
-<!-- Contenedor Dinámico: 100% Vacío al inicio, sin tarjetas de relleno -->
+<!-- Contenedor Dinámico -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleries-grid"></div>
 </section>
 <!-- 4. Bloque 'Acceso Privado Clientes' fiel a la imagen de referencia: Botón completo centrado -->
@@ -243,13 +243,14 @@
       </p>
 </div>
 </footer>
-<!-- 7. Script oficial Supabase y renderizado 100% real sin tarjetas de prueba -->
+<!-- 7. Script oficial Supabase y conexión directa a la tabla 'galeria' -->
 <script>
-    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68";
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+
     let supabaseClient = null;
     if (window.supabase && typeof window.supabase.createClient === 'function') {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     }
 
     const localPrivateKeys = {
@@ -274,18 +275,13 @@
       let albumEncontrado = null;
       if (supabaseClient) {
         try {
-          let { data, error } = await supabaseClient
+          const { data, error } = await supabaseClient
             .from('galeria')
             .select('*')
             .or(`password.eq.${clave},clave.eq.${clave},codigo.eq.${clave}`);
-          if (!data || data.length === 0 || error) {
-            const resFallback = await supabaseClient
-              .from('galerias')
-              .select('*')
-              .or(`password.eq.${clave},clave.eq.${clave},codigo.eq.${clave}`);
-            if (resFallback.data && resFallback.data.length > 0) data = resFallback.data;
+          if (!error && data && data.length > 0) {
+            albumEncontrado = data[0];
           }
-          if (data && data.length > 0) albumEncontrado = data[0];
         } catch (err) {
           console.warn('Error al verificar clave en Supabase:', err);
         }
@@ -296,7 +292,7 @@
       }
 
       if (albumEncontrado) {
-        const folderId = albumEncontrado.folder_id || albumEncontrado.drive_id || albumEncontrado.id || 'privado';
+        const folderId = extraerIdDrive(albumEncontrado.drive_url || albumEncontrado.url_drive) || albumEncontrado.folder_id || albumEncontrado.drive_id || albumEncontrado.id || 'privado';
         const titulo = albumEncontrado.titulo || albumEncontrado.nombre || 'Álbum Privado';
         window.location.href = `privadas.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(clave)}`;
       } else {
@@ -304,110 +300,81 @@
       }
     }
 
-    (function () {
+    function extraerIdDrive(input) {
+      if (!input) return '';
+      const str = String(input).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+    }
+
+    function resolveCover(url, folderId) {
+      if (url && String(url).trim().length > 0) {
+        const trimmed = String(url).trim();
+        if (trimmed.includes('drive.google.com/uc?id=') || trimmed.includes('drive.google.com/file/d/')) {
+          const match = trimmed.match(/[-\w]{25,}/);
+          if (match) return `https://lh3.googleusercontent.com/d/${match[0]}=w800`;
+        }
+        return trimmed;
+      }
+      if (folderId) {
+        return `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+      }
+      return 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop';
+    }
+
+    async function cargarEventosPublicos() {
       const grid = document.getElementById('galleries-grid');
       const loadingState = document.getElementById('loading-state');
       const emptyState = document.getElementById('empty-state');
       const counterEl = document.getElementById('gallery-counter');
 
-      function resolveCover(url, folderId) {
-        if (!url && folderId) {
-          return `https://lh3.googleusercontent.com/d/${folderId}=w800`;
-        }
-        if (!url) return 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop';
-        if (url.includes('drive.google.com/uc?id=') || url.includes('drive.google.com/file/d/')) {
-          const match = url.match(/[-\w]{25,}/);
-          if (match) return `https://lh3.googleusercontent.com/d/${match[0]}=w800`;
-        }
-        return url;
-      }
+      if (loadingState) loadingState.classList.remove('hidden');
+      if (emptyState) emptyState.classList.add('hidden');
 
-      function extraerIdDrive(input) {
-        if (!input) return '';
-        const str = String(input).trim();
-        const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
-        if (matchFolder && matchFolder[1]) return matchFolder[1];
-        const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-        if (matchId && matchId[1]) return matchId[1];
-        const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        if (matchD && matchD[1]) return matchD[1];
-        return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
-      }
+      let eventosPublicos = [];
 
-      async function fetchPublicGalleries() {
-        let events = [];
-
-        if (supabaseClient) {
-          try {
-            let { data, error } = await supabaseClient
-              .from('galeria')
-              .select('*')
-              .eq('es_privada', false)
-              .order('created_at', { ascending: false });
-
-            if (error || !data || data.length === 0) {
-              const fallbackResp = await supabaseClient
-                .from('galerias')
-                .select('*')
-                .eq('es_privada', false)
-                .order('created_at', { ascending: false });
-              if (!fallbackResp.error && fallbackResp.data) {
-                data = fallbackResp.data;
-              }
-            }
-            if (data && data.length > 0) {
-              events = data;
-            }
-          } catch (err) {
-            console.warn('Error Supabase:', err);
-          }
-        }
-
-        // Respaldo LocalStorage
+      if (supabaseClient) {
         try {
-          const raw = localStorage.getItem('galerias_locales');
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              parsed.forEach(item => {
-                const esPriv = item.es_privada || item.privada || (item.password && String(item.password).trim().length > 0);
-                if (!esPriv) {
-                  const yaExiste = events.some(e => String(e.id) === String(item.id) || (item.drive_url && e.drive_url === item.drive_url));
-                  if (!yaExiste) events.unshift(item);
-                }
-              });
-            }
+          const { data, error } = await supabaseClient
+            .from('galeria')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!error && Array.isArray(data)) {
+            eventosPublicos = data.filter(item => {
+              const tienePassword = item.password && String(item.password).trim().length > 0;
+              return !item.es_privada && !tienePassword;
+            });
+          } else if (error) {
+            console.warn('Error Supabase al consultar galeria:', error);
           }
-        } catch (e) {
-          console.warn('Error localStorage:', e);
+        } catch (err) {
+          console.warn('Fallo de red o consulta Supabase:', err);
         }
-
-        // Filtrar estrictamente públicas (sin password y sin flag privada)
-        const publicOnly = events.filter(item => {
-          const esPriv = item.es_privada === true || item.privada === true || (item.password && String(item.password).trim().length > 0);
-          return !esPriv;
-        });
-
-        renderEvents(publicOnly);
       }
 
-      function renderEvents(items) {
-        if (loadingState) loadingState.classList.add('hidden');
-        if (!items || items.length === 0) {
-          if (emptyState) emptyState.classList.remove('hidden');
-          if (counterEl) counterEl.textContent = '0 GALERÍAS DISPONIBLES';
-          grid.innerHTML = '';
-          return;
-        }
+      if (loadingState) loadingState.classList.add('hidden');
 
-        if (emptyState) emptyState.classList.add('hidden');
-        if (counterEl) {
-          counterEl.textContent = `${items.length} ${items.length === 1 ? 'GALERÍA OFICIAL DISPONIBLE' : 'GALERÍAS OFICIALES DISPONIBLES'}`;
-        }
+      if (!eventosPublicos || eventosPublicos.length === 0) {
+        if (emptyState) emptyState.classList.remove('hidden');
+        if (counterEl) counterEl.textContent = '0 GALERÍAS DISPONIBLES';
+        if (grid) grid.innerHTML = '';
+        return;
+      }
 
+      if (emptyState) emptyState.classList.add('hidden');
+      if (counterEl) {
+        counterEl.textContent = `${eventosPublicos.length} ${eventosPublicos.length === 1 ? 'GALERÍA DISPONIBLE' : 'GALERÍAS DISPONIBLES'}`;
+      }
+
+      if (grid) {
         grid.innerHTML = '';
-
-        items.forEach(evento => {
+        eventosPublicos.forEach(evento => {
           const driveEnlace = evento.drive_url || evento.url_drive || evento.enlace_drive || '';
           const folderId = extraerIdDrive(driveEnlace) || evento.folder_id || evento.id || 'evento';
           const titulo = evento.titulo || evento.nombre || 'Evento Escolar Oficial';
@@ -416,7 +383,6 @@
           const cover = resolveCover(evento.portada_url || evento.portada, folderId);
           const linkUrl = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
 
-          // Toda la tarjeta como enlace activo <a>
           const card = document.createElement('a');
           card.href = linkUrl;
           card.className = 'tarjeta-enlace card-zoom group bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg block';
@@ -454,9 +420,11 @@
           grid.appendChild(card);
         });
       }
+    }
 
-      document.addEventListener('DOMContentLoaded', fetchPublicGalleries);
-      fetchPublicGalleries();
-    })();
+    document.addEventListener('DOMContentLoaded', cargarEventosPublicos);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      cargarEventosPublicos();
+    }
   </script>
 </body></html>
