@@ -7,12 +7,18 @@
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <!-- Supabase JS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  -webkit-touch-callout: none; /* Desactivar menú táctil iOS */
+}
+
 body {
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #111111;
@@ -23,6 +29,8 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 header {
@@ -70,6 +78,8 @@ header {
   border-radius: 50%;
   border: 1px solid #005580;
   object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .hero-galeria {
@@ -189,12 +199,22 @@ header {
   -webkit-user-drag: none;
   transition: transform 0.25s ease;
   display: block;
+  pointer-events: none;
 }
 .tarjeta-foto:hover .contenedor-img img {
   transform: scale(1.03);
 }
 
-/* MARCA DE AGUA DIAGONAL INVIOLABLE */
+/* ESCUDO TRANSPARENTE DE PROTECCIÓN ANTI-CLICK / TOUCH */
+.escudo-proteccion {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* MARCA DE AGUA DIAGONAL EN MINIATURAS */
 .marca-agua {
   position: absolute;
   inset: 0;
@@ -232,6 +252,7 @@ header {
   border-top: 1px solid #262626;
   font-size: 0.74rem;
   gap: 4px;
+  z-index: 15;
 }
 .nombre-foto {
   color: #aaaaaa;
@@ -398,7 +419,7 @@ header {
 }
 .btn-pedido-digitales:hover { background: #0077b3; }
 
-/* VISOR MODAL */
+/* VISOR MODAL EN ALTA RESOLUCIÓN */
 .modal-visor {
   display: none;
   position: fixed;
@@ -407,14 +428,119 @@ header {
   z-index: 9999;
   justify-content: center;
   align-items: center;
+  padding: 16px;
 }
+
+.visor-foto-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 94vw;
+  max-height: 85vh;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
 .modal-visor img {
-  max-width: 92%;
-  max-height: 84vh;
+  max-width: 94vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+  display: block;
+  pointer-events: none;
 }
+
+/* MARCA DE AGUA PROFESIONAL DEL VISOR */
+.marca-agua-visor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 5;
+  background: repeating-linear-gradient(
+    -32deg,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 48px,
+    rgba(255, 255, 255, 0.08) 49px,
+    rgba(0, 0, 0, 0) 51px
+  );
+}
+
+.marca-agua-visor .repeticion-texto {
+  position: absolute;
+  inset: -60%;
+  width: 220%;
+  height: 220%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  transform: rotate(-25deg);
+  pointer-events: none;
+  opacity: 0.42;
+}
+
+.repeticion-texto span {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 1px #000;
+  white-space: nowrap;
+  padding: 16px 24px;
+}
+
+.sello-central-visor {
+  position: relative;
+  z-index: 6;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  padding: 12px 22px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.sello-central-visor .sello-titulo {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+}
+
+.sello-central-visor .sello-sub {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  margin-top: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+/* ESCUDO SOBRE EL VISOR */
+.escudo-visor {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: transparent;
+  cursor: default;
+}
+
 .btn-cerrar-visor {
   position: absolute;
   top: 16px;
@@ -430,7 +556,10 @@ header {
   align-items: center;
   justify-content: center;
   z-index: 10001;
+  transition: background 0.15s ease;
 }
+.btn-cerrar-visor:hover { background: rgba(255,255,255,0.2); }
+
 .btn-nav-visor {
   position: absolute;
   top: 50%;
@@ -438,20 +567,61 @@ header {
   font-size: 28px;
   color: #ffffff;
   cursor: pointer;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
   padding: 12px 14px;
   border-radius: 50%;
   user-select: none;
   z-index: 10001;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
-.btn-nav-prev { left: 12px; }
-.btn-nav-next { right: 12px; }
+.btn-nav-visor:hover { 
+  background: rgba(0, 85, 128, 0.7); 
+  transform: translateY(-50%) scale(1.06);
+}
+.btn-nav-prev { left: 14px; }
+.btn-nav-next { right: 14px; }
+
+/* AVISO TOAST DE PROTECCIÓN */
+.toast-proteccion {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(18, 18, 18, 0.94);
+  border: 1px solid #005580;
+  color: #e5e2e1;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+  z-index: 100000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.toast-proteccion.activo {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.toast-proteccion .material-symbols-outlined {
+  font-size: 17px;
+  color: #38bdf8;
+}
 
 @media (max-width: 600px) {
   .btn-nav-visor { display: none; }
   .acciones-compra { width: 100%; justify-content: stretch; }
   .btn-pedido { flex: 1; justify-content: center; font-size: 0.76rem; padding: 8px 6px; }
   .resumen-seleccion { width: 100%; justify-content: space-between; }
+  .sello-central-visor { padding: 8px 14px; }
+  .sello-central-visor .sello-titulo { font-size: 0.75rem; letter-spacing: 1.5px; }
+  .sello-central-visor .sello-sub { font-size: 0.58rem; }
+  .repeticion-texto span { font-size: 0.65rem; padding: 12px 16px; }
 }
 
 footer {
@@ -465,7 +635,7 @@ footer {
 }
 </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 <!-- ENCABEZADO -->
 <header>
 <div class="marca-personal">
@@ -529,12 +699,40 @@ footer {
 </button>
 </div>
 </div>
-<!-- VISOR MODAL -->
+<!-- VISOR MODAL CON MARCA DE AGUA Y ESCUDO ANTI-COPIA -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
 <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
 <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
-<img alt="Vista Previa" id="img-ampliada" src=""/>
+<div class="visor-foto-wrapper" id="visor-foto-wrapper">
+<img alt="Vista Previa Ampliada" draggable="false" id="img-ampliada" src=""/>
+<!-- MARCA DE AGUA EN FOTOS AMPLIADAS -->
+<div class="marca-agua-visor" id="marca-agua-visor">
+<div class="repeticion-texto">
+<span>MUESTRA OFICIAL • SERGIO RICARDO MOLINA</span>
+<span>PROHIBIDA SU COPIA / CAPTURA</span>
+<span>MUESTRA OFICIAL • SERGIO RICARDO MOLINA</span>
+<span>PROHIBIDA SU COPIA / CAPTURA</span>
+<span>MUESTRA OFICIAL • SERGIO RICARDO MOLINA</span>
+<span>PROHIBIDA SU COPIA / CAPTURA</span>
+<span>MUESTRA OFICIAL • SERGIO RICARDO MOLINA</span>
+<span>PROHIBIDA SU COPIA / CAPTURA</span>
+<span>MUESTRA OFICIAL • SERGIO RICARDO MOLINA</span>
+<span>PROHIBIDA SU COPIA / CAPTURA</span>
+</div>
+<div class="sello-central-visor">
+<div class="sello-titulo">Sergio Ricardo Molina</div>
+<div class="sello-sub">Muestra Oficial • Prohibida su copia</div>
+</div>
+</div>
+<!-- ESCUDO PROTECTOR TRANSPARENTE SOBRE LA IMAGEN AMPLIADA -->
+<div class="escudo-visor" id="escudo-visor"></div>
+</div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
+<!-- AVISO TOAST FLOTANTE DE PROTECCIÓN -->
+<div class="toast-proteccion" id="toast-proteccion">
+<span class="material-symbols-outlined">shield_lock</span>
+<span>Galería Protegida • Sergio Ricardo Molina Fotografía</span>
 </div>
 <footer>
 <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
@@ -555,6 +753,57 @@ let listaFotos = [];
 let seleccionadas = new Set();
 let indiceVisor = 0;
 let tituloEvento = 'Evento Escolar';
+let esGaleriaPrivada = false;
+
+// TOAST DE AVISO DE PROTECCIÓN
+let toastTimer = null;
+function mostrarToastProteccion(mensaje) {
+  const toast = document.getElementById('toast-proteccion');
+  if (!toast) return;
+  if (mensaje) {
+    const span = toast.querySelector('span:last-child');
+    if (span) span.innerText = mensaje;
+  }
+  toast.classList.add('activo');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('activo');
+  }, 2200);
+}
+
+// SISTEMAS DE SEGURIDAD ANTI-COPIA PROFESIONALES
+function activarSistemasSeguridad() {
+  // 1. Bloqueo de menú contextual (clic derecho)
+  window.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    mostrarToastProteccion("Galería Protegida • Sergio Ricardo Molina Fotografía");
+    return false;
+  }, { capture: true });
+
+  // 2. Bloqueo de arrastre de imágenes
+  window.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+    return false;
+  }, { capture: true });
+
+  // 3. Interceptación y bloqueo de atajos de teclado clave
+  window.addEventListener('keydown', (e) => {
+    // Ctrl+S, Ctrl+P, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J, F12
+    const key = e.key.toLowerCase();
+    const ctrlOrMeta = e.ctrlKey || e.metaKey;
+
+    if (
+      (ctrlOrMeta && (key === 's' || key === 'p' || key === 'u' || key === 'c')) ||
+      (ctrlOrMeta && e.shiftKey && (key === 'i' || key === 'c' || key === 'j')) ||
+      e.key === 'F12'
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+      mostrarToastProteccion("Galería Protegida • Acción deshabilitada");
+      return false;
+    }
+  }, { capture: true });
+}
 
 function extraerIdDrive(input) {
   if (!input) return '';
@@ -593,12 +842,24 @@ function sincronizarPrecios() {
 
 // INICIAR GALERÍA CON ID DE DRIVE Y DATOS DE SUPABASE / LOCALSTORAGE
 async function iniciarGaleria() {
+  activarSistemasSeguridad();
   sincronizarPrecios();
 
   const params = new URLSearchParams(window.location.search);
   const paramId = params.get('id');
   const paramFolder = params.get('folder');
   const paramTitulo = params.get('titulo');
+  const paramTipo = params.get('tipo');
+
+  // Detectar si la galería es privada
+  const ref = document.referrer ? document.referrer.toLowerCase() : '';
+  if (paramTipo === 'privada' || ref.includes('privada')) {
+    esGaleriaPrivada = true;
+    const badgeTxt = document.getElementById('texto-tipo-badge');
+    if (badgeTxt) badgeTxt.innerText = 'Galería Privada';
+    const marcaAguaVisor = document.getElementById('marca-agua-visor');
+    if (marcaAguaVisor) marcaAguaVisor.style.display = 'none';
+  }
 
   if (paramTitulo) {
     tituloEvento = decodeURIComponent(paramTitulo);
@@ -619,7 +880,6 @@ async function iniciarGaleria() {
 
   // 3. Si viene como ID numérico de Supabase, o para buscar título en base de datos
   if (!folderId && paramId) {
-    // Buscar en Supabase
     if (supabaseClient) {
       try {
         let { data } = await supabaseClient.from('galeria').select('*').eq('id', paramId).maybeSingle();
@@ -631,6 +891,13 @@ async function iniciarGaleria() {
           if (data.titulo && (!paramTitulo || paramTitulo === 'Evento Escolar')) {
             tituloEvento = data.titulo;
             document.getElementById('titulo-galeria').innerText = tituloEvento;
+          }
+          if (data.tipo === 'privada' || data.es_privada) {
+            esGaleriaPrivada = true;
+            const badgeTxt = document.getElementById('texto-tipo-badge');
+            if (badgeTxt) badgeTxt.innerText = 'Galería Privada';
+            const marcaAguaVisor = document.getElementById('marca-agua-visor');
+            if (marcaAguaVisor) marcaAguaVisor.style.display = 'none';
           }
           const link = data.drive_url || data.url_drive || data.enlace_drive || '';
           folderId = extraerIdDrive(link);
@@ -650,6 +917,13 @@ async function iniciarGaleria() {
             tituloEvento = loc.titulo;
             document.getElementById('titulo-galeria').innerText = tituloEvento;
           }
+          if (loc.tipo === 'privada') {
+            esGaleriaPrivada = true;
+            const badgeTxt = document.getElementById('texto-tipo-badge');
+            if (badgeTxt) badgeTxt.innerText = 'Galería Privada';
+            const marcaAguaVisor = document.getElementById('marca-agua-visor');
+            if (marcaAguaVisor) marcaAguaVisor.style.display = 'none';
+          }
           folderId = extraerIdDrive(loc.drive_url || loc.enlace_drive || '');
         }
       } catch (e) {}
@@ -661,7 +935,7 @@ async function iniciarGaleria() {
     folderId = extraerIdDrive(paramId);
   }
 
-  // Si no se pasó ningún parámetro en la URL, tomar la última galería guardada en localStorage o Supabase
+  // Si no se pasó ningún parámetro en la URL, tomar la última galería guardada
   if (!folderId) {
     try {
       const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
@@ -727,7 +1001,6 @@ async function cargarFotosBackend(folderId) {
       return;
     }
 
-    // Mapeo de fotos devueltas por el backend
     listaFotos = filesList.map(f => ({
       id: f.id,
       name: f.name || 'Fotografía',
@@ -753,7 +1026,7 @@ async function cargarFotosBackend(folderId) {
   }
 }
 
-// RENDERIZAR CUADRÍCULA DE FOTOS CON MARCA DE AGUA
+// RENDERIZAR CUADRÍCULA DE FOTOS CON MARCA DE AGUA Y ESCUDO ANTI-COPIA
 function renderizarFotos() {
   const contenedor = document.getElementById('contenedor-fotos');
   contenedor.innerHTML = '';
@@ -767,10 +1040,12 @@ function renderizarFotos() {
 
     tarjeta.innerHTML = `
       <div class="contenedor-img" onclick="abrirVisor(${index})">
-        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/${foto.id}'">
+        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" draggable="false" onerror="this.src='https://lh3.googleusercontent.com/d/${foto.id}'">
         <div class="marca-agua">
           <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
         </div>
+        <!-- Escudo que intercepta clics y arrastres -->
+        <div class="escudo-proteccion"></div>
       </div>
       <div class="pie-foto">
         <span class="nombre-foto" title="${foto.name}">${nombreFormateado}</span>
@@ -887,11 +1162,18 @@ function mostrarMensajeError(titulo, detalle) {
   `;
 }
 
-// VISOR EN ALTA RESOLUCIÓN CON NAVEGACIÓN Y SWIPE TÁCTIL
+// VISOR EN ALTA RESOLUCIÓN CON MARCA DE AGUA Y PROTECCIÓN INTEGRAL
 function abrirVisor(index) {
   if (!listaFotos || listaFotos.length === 0) return;
   indiceVisor = index;
-  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+  const img = document.getElementById('img-ampliada');
+  img.src = listaFotos[indiceVisor].full;
+
+  const marcaAguaVisor = document.getElementById('marca-agua-visor');
+  if (marcaAguaVisor) {
+    marcaAguaVisor.style.display = esGaleriaPrivada ? 'none' : 'flex';
+  }
+
   document.getElementById('modal-visor').style.display = 'flex';
 }
 
@@ -900,7 +1182,9 @@ function cerrarVisor() {
 }
 
 function cerrarVisorFondo(e) {
-  if (e.target && e.target.id === 'modal-visor') cerrarVisor();
+  if (e.target && (e.target.id === 'modal-visor' || e.target.id === 'escudo-visor')) {
+    cerrarVisor();
+  }
 }
 
 function cambiarFoto(dir, event) {
@@ -923,12 +1207,15 @@ document.addEventListener('keydown', (e) => {
 let touchStartX = 0;
 let touchEndX = 0;
 const modalEl = document.getElementById('modal-visor');
-modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+modalEl.addEventListener('touchstart', e => { 
+  touchStartX = e.changedTouches[0].screenX; 
+}, { passive: true });
+
 modalEl.addEventListener('touchend', e => {
   touchEndX = e.changedTouches[0].screenX;
   if (touchEndX + 45 < touchStartX) cambiarFoto(1);
   else if (touchEndX > touchStartX + 45) cambiarFoto(-1);
-}, false);
+}, { passive: true });
 
 document.addEventListener('DOMContentLoaded', iniciarGaleria);
 </script>
