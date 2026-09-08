@@ -116,57 +116,109 @@
     transform: scale(1.04);
   }
 
-  /* Bloque Redes Sociales fiel a index.html */
-  .redes-sociales {
+  /* Botón de Acceso Privado Clientes fiel a la imagen de referencia */
+  .btn-acceso-privado-box {
+    background-color: #003d5c;
+    border: 2px solid #0088cc;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 16px;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+  }
+  .btn-acceso-privado-box:hover {
+    background-color: #004b70;
+    border-color: #38bdf8;
+    box-shadow: 0 0 20px rgba(0, 136, 204, 0.45);
+  }
+  .btn-acceso-privado-box:active {
+    transform: scale(0.985);
+  }
+
+  /* Bloque Redes Sociales: 3 columnas estrictas tanto en móvil como desktop */
+  .redes-sociales-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 36px;
+    gap: 14px;
     width: 100%;
   }
   @media (max-width: 640px) {
-    .redes-sociales {
-      grid-template-columns: 1fr;
+    .redes-sociales-grid {
+      gap: 10px;
+    }
+    .btn-red-card {
+      padding: 16px 8px !important;
+    }
+    .btn-red-card span.text-label {
+      font-size: 13px !important;
     }
   }
-  .btn-red {
-    display: inline-flex;
+
+  .btn-red-card {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 12px 18px;
-    background-color: #1f1f1f;
+    gap: 10px;
+    padding: 22px 14px;
+    background-color: #1e1e1e;
     border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
     text-decoration: none;
     transition: all 0.2s ease;
-    border: 1px solid transparent;
+    border-width: 2px;
+    border-style: solid;
+    user-select: none;
   }
-  .btn-red:active {
-    transform: scale(0.96);
+  .btn-red-card:hover {
+    transform: translateY(-2px);
   }
-  .btn-wsp {
+  .btn-red-card:active {
+    transform: scale(0.97);
+  }
+
+  /* WhatsApp - Verde */
+  .btn-card-wsp {
     border-color: #4ade80;
+  }
+  .btn-card-wsp:hover {
+    background-color: rgba(74, 222, 128, 0.1);
+    box-shadow: 0 0 16px rgba(74, 222, 128, 0.25);
+  }
+  .btn-card-wsp .icon-red,
+  .btn-card-wsp .text-label {
     color: #4ade80;
   }
-  .btn-wsp:hover {
-    background-color: rgba(74, 222, 128, 0.12);
-  }
-  .btn-cat {
+
+  /* Catálogo - Amarillo */
+  .btn-card-cat {
     border-color: #facc15;
+  }
+  .btn-card-cat:hover {
+    background-color: rgba(250, 204, 21, 0.1);
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.25);
+  }
+  .btn-card-cat .icon-red,
+  .btn-card-cat .text-label {
     color: #facc15;
   }
-  .btn-cat:hover {
-    background-color: rgba(250, 204, 21, 0.12);
-  }
-  .btn-ig {
+
+  /* Instagram - Naranja */
+  .btn-card-ig {
     border-color: #fb923c;
-    color: #fb923c;
   }
-  .btn-ig:hover {
-    background-color: rgba(251, 146, 60, 0.12);
+  .btn-card-ig:hover {
+    background-color: rgba(251, 146, 60, 0.1);
+    box-shadow: 0 0 16px rgba(251, 146, 60, 0.25);
+  }
+  .btn-card-ig .icon-red,
+  .btn-card-ig .text-label {
+    color: #fb923c;
   }
 </style>
 </head>
@@ -197,12 +249,12 @@
 </div>
 </header>
 <!-- Main Container -->
-<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 pb-16">
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 pb-12">
 <!-- 2. Título de Sección y Subtítulo Sobrio -->
 <section class="mb-12 text-left">
 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950/60 border border-sky-800/60 text-sky-300 text-xs font-semibold uppercase tracking-wider mb-4">
 <span class="material-symbols-outlined text-sm">school</span>
-<span>Cobertura Oficial Escolar</span>
+<span class="">Cobertura Oficial Escolar</span>
 </div>
 <h1 class="font-['Raleway'] text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
       Eventos Escolares
@@ -212,15 +264,15 @@
     </p>
 </section>
 <!-- 3. Cuadrícula dinámica de eventos escolares públicos -->
-<section class="mb-16">
+<section class="mb-12">
 <div class="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800">
 <div class="flex items-center gap-2 text-xs font-semibold text-neutral-400 tracking-widest uppercase">
 <span class="material-symbols-outlined text-sky-400 text-base">photo_library</span>
-<span id="gallery-counter">Cargando galerías oficiales...</span>
+<span class="" id="gallery-counter">3 GALERÍAS OFICIALES DISPONIBLES</span>
 </div>
 </div>
 <!-- Loading Skeleton -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="loading-state">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden" id="loading-state">
 <div class="bg-[#1a1a1a] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
 <div class="aspect-[16/10] w-full bg-[#242424]"></div>
 <div class="p-5 flex flex-col gap-3">
@@ -257,88 +309,242 @@
       </p>
 </div>
 <!-- Public Grid Container -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleries-grid"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleries-grid"><article class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg">
+<!-- 16:10 Cover Container -->
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+<img alt="Colegio San Martín de Tours · Colación 5to Año 2024" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9JtBA5UBd5Jan_1fa4vBM9MblT7Q6yx3Fp6x4cMa7eQphrWQ4EQUMY2BzUGhPECUZngQa43BPjdubU6hiM17z1OPTvd3Ub4XkkXQbEijZile2iBtvIEXl7nEAOIYDaHlNWHAR8y1vNHpfHDtarX16DFDfdhCSJZplRICJ5GG-5pDAZUODBUkJx15_a5Spal960X78kyylNRiffEIbXG_t_iwdCBW4rUuLeKiqTQ274Fs6L1SiNMop"/>
+<!-- Badge Galería Oficial -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-full text-sky-400 shadow-sm">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
+</div>
+<!-- Photo Count Pill -->
+<div class="absolute bottom-3 right-3 bg-[#111111]/85 backdrop-blur-sm px-2.5 py-1 rounded text-neutral-300 text-xs font-semibold border border-neutral-700/60">
+              142 Fotos
+            </div>
+</div>
+<!-- Card Content Body -->
+<div class="p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+<div>
+<div class="flex items-center gap-1.5 text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm text-sky-400">calendar_month</span>
+<span class="">Noviembre 2024</span>
+</div>
+<h3 class="font-['Raleway'] text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+                Colegio San Martín de Tours · Colación 5to Año 2024
+              </h3>
+</div>
+<div class="pt-4 mt-4 border-t border-neutral-800/80 flex items-center justify-between">
+<span class="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold">Resolución Oficial</span>
+<a class="inline-flex items-center gap-1.5 bg-[#005580] hover:bg-[#006ca3] text-white px-3.5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-150 active:scale-[0.98] border border-sky-400/40" href="galeria.html?id=1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA&amp;titulo=Colegio%20San%20Mart%C3%ADn%20de%20Tours%20%C2%B7%20Colaci%C3%B3n%205to%20A%C3%B1o%202024">
+<span class="">Ver Álbum Completo</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article><article class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg">
+<!-- 16:10 Cover Container -->
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+<img alt="Instituto Manuel Belgrano · Acto Día de la Independencia" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCztmBVNjfizAtmfPTYftdcHiOwfU8i151CtSQu2NZQV2gWcNTc3Wojy1dtKGCL9fqIQo2Z2GQbfKKwkEUQVdUHZ29SshxbaoVxV8fqVYyWt6kn-RmO1_-4jHpMadixFs__p6EBwtkLtL-rGn9XgUi1Mf9WAslnwVEGe2555XcIIutLzORPLBBeOfNTMK68QV7BBJfvPRXhKbPX-NLZPywDv_EIBJLeIcBzFQX6NpaJOdjmIhIAyEq"/>
+<!-- Badge Galería Oficial -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-full text-sky-400 shadow-sm">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
+</div>
+<!-- Photo Count Pill -->
+<div class="absolute bottom-3 right-3 bg-[#111111]/85 backdrop-blur-sm px-2.5 py-1 rounded text-neutral-300 text-xs font-semibold border border-neutral-700/60">
+              88 Fotos
+            </div>
+</div>
+<!-- Card Content Body -->
+<div class="p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+<div>
+<div class="flex items-center gap-1.5 text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm text-sky-400">calendar_month</span>
+<span class="">Julio 2024</span>
+</div>
+<h3 class="font-['Raleway'] text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+                Instituto Manuel Belgrano · Acto Día de la Independencia
+              </h3>
+</div>
+<div class="pt-4 mt-4 border-t border-neutral-800/80 flex items-center justify-between">
+<span class="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold">Resolución Oficial</span>
+<a class="inline-flex items-center gap-1.5 bg-[#005580] hover:bg-[#006ca3] text-white px-3.5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-150 active:scale-[0.98] border border-sky-400/40" href="galeria.html?id=instituto-manuel-belgrano-2024&amp;titulo=Instituto%20Manuel%20Belgrano%20%C2%B7%20Acto%20D%C3%ADa%20de%20la%20Independencia">
+<span class="">Ver Álbum Completo</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article><article class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg">
+<!-- 16:10 Cover Container -->
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+<img alt="Torneo Intercolegial de Atletismo y Voley Cuyo" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2FlxCp6iW6l_ktB6YodgggQlRlwp9kK8lrDS78-p61VnD_aD8WDTFBHJP_lBnbRHAcldNwzgc82naSldq4je2vFpnQ3CRCyvboiQJ5SeKXvXXhm0_fD0i3-k2DBSoC7KlbICiEYRJDWgT-FPGp9LDFRnQGWm4gkzL3KcvCNn3t-nH8kzGLdo30gmINd_x59yBWXwKV-4TDlNbJndwd8tARLw_c4JCGKB28NqlzmPpeOb7bavtdkXJ"/>
+<!-- Badge Galería Oficial -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-full text-sky-400 shadow-sm">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
+</div>
+<!-- Photo Count Pill -->
+<div class="absolute bottom-3 right-3 bg-[#111111]/85 backdrop-blur-sm px-2.5 py-1 rounded text-neutral-300 text-xs font-semibold border border-neutral-700/60">
+              215 Fotos
+            </div>
+</div>
+<!-- Card Content Body -->
+<div class="p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+<div>
+<div class="flex items-center gap-1.5 text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm text-sky-400">calendar_month</span>
+<span class="">Septiembre 2024</span>
+</div>
+<h3 class="font-['Raleway'] text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+                Torneo Intercolegial de Atletismo y Voley Cuyo
+              </h3>
+</div>
+<div class="pt-4 mt-4 border-t border-neutral-800/80 flex items-center justify-between">
+<span class="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold">Resolución Oficial</span>
+<a class="inline-flex items-center gap-1.5 bg-[#005580] hover:bg-[#006ca3] text-white px-3.5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-150 active:scale-[0.98] border border-sky-400/40" href="galeria.html?id=torneo-intercolegial-2024&amp;titulo=Torneo%20Intercolegial%20de%20Atletismo%20y%20Voley%20Cuyo">
+<span class="">Ver Álbum Completo</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article></div>
 </section>
-<!-- 4. Bloque de Acceso Privado con Clave -->
-<section class="mb-16 bg-[#161616] border border-neutral-800 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-lg">
-<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
-<div class="max-w-2xl">
-<div class="flex items-center gap-2 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-2">
-<span class="material-symbols-outlined text-base">lock</span>
-<span>Área Privada Protegida</span>
-</div>
-<h2 class="font-['Raleway'] text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">
-        Acceso a Álbumes y Cursos Privados
-      </h2>
-<p class="text-neutral-400 text-sm sm:text-base mb-6 leading-relaxed">
-        Si tu curso, directivo o comisión organizadora contrató una galería privada con contraseña individual, ingresá el código de acceso provisto para visualizar las fotografías protegidas.
-      </p>
-<form class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3" id="private-access-form">
-<div class="relative flex-grow">
-<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 text-lg">key</span>
-<input autocomplete="off" class="w-full bg-[#1e1e1e] border border-neutral-700 text-white placeholder-neutral-500 text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-colors" id="private-key-input" placeholder="Ingresá la contraseña o código de curso..." required="" type="password"/>
-</div>
-<button class="inline-flex items-center justify-center gap-2 bg-[#005580] hover:bg-[#006699] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 active:scale-[0.98] border border-sky-400/40 shadow-sm shrink-0" id="private-submit-btn" type="submit">
-<span class="material-symbols-outlined text-base">lock_open</span>
-<span>Acceder al Álbum</span>
+<!-- 4. Bloque 'Acceso Privado Clientes' fiel a la imagen de referencia: Botón completo centrado -->
+<section class="mb-5 w-full">
+<button class="btn-acceso-privado-box group" onclick="pedirPassword()" type="button">
+<span class="material-symbols-outlined text-[#38bdf8] text-3xl mb-2 transition-transform group-hover:scale-110">lock</span>
+<span class="text-white font-bold text-lg sm:text-xl font-['Raleway'] tracking-wide">
+      Acceso Privado Clientes 🔒
+    </span>
 </button>
-</form>
-<p class="hidden text-xs text-rose-400 mt-2 font-medium flex items-center gap-1" id="private-error">
-<span class="material-symbols-outlined text-sm">error</span>
-<span>Clave incorrecta o no encontrada. Por favor verificá los datos con tu institución.</span>
-</p>
-</div>
 </section>
-<!-- 5. Bloque de Redes Sociales IDÉNTICO estética y funcionalmente al del portafolio (index.html) -->
-<section class="pt-4 border-t border-neutral-800/80">
-<div class="redes-sociales">
-<a class="btn-red btn-wsp" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined">chat</span>
-<span>Chat WhatsApp</span>
+<!-- 5. Bloque de Redes Sociales: 3 columnas idénticas a la imagen de referencia (WhatsApp, Catálogo, Instagram) -->
+<section class="mb-14">
+<div class="redes-sociales-grid">
+<!-- Chat WhatsApp -->
+<a class="btn-red-card btn-card-wsp" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined icon-red text-2xl">chat</span>
+<span class="text-label text-sm sm:text-base font-semibold tracking-wide">Chat WhatsApp</span>
 </a>
-<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined">inventory_2</span>
-<span>Catálogo</span>
+<!-- Catálogo -->
+<a class="btn-red-card btn-card-cat" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined icon-red text-2xl">inventory_2</span>
+<span class="text-label text-sm sm:text-base font-semibold tracking-wide">Catálogo</span>
 </a>
-<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined">photo_camera_back</span>
-<span>Instagram</span>
+<!-- Instagram -->
+<a class="btn-red-card btn-card-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined icon-red text-2xl">photo_camera_back</span>
+<span class="text-label text-sm sm:text-base font-semibold tracking-wide">Instagram</span>
 </a>
 </div>
 </section>
 </main>
-<!-- 6. Pie de página sobrio -->
-<footer class="border-t border-[#222222] bg-[#0c0c0c] py-8 mt-auto">
-<div class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-<p class="text-neutral-400 text-xs sm:text-sm tracking-wide">
+<!-- 6. Pie de página centrado fiel a la imagen de referencia -->
+<footer class="border-t border-neutral-900 bg-[#0d0d0d] py-7 mt-auto">
+<div class="w-full max-w-[1200px] mx-auto px-4 text-center">
+<p class="text-[#888888] text-xs sm:text-sm tracking-wide">
       © Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
     </p>
-<div class="flex items-center gap-4 text-neutral-500 text-xs">
-<span class="hover:text-neutral-400 transition-colors">Fotografía Documental &amp; Escolar</span>
-<span>•</span>
-<span class="hover:text-neutral-400 transition-colors">Atelier Darkroom</span>
-</div>
 </div>
 </footer>
-<!-- 7. Script con Supabase integrado y funcional -->
+<!-- 7. Script con Supabase integrado, galerías públicas y validación de Acceso Privado -->
 <script>
-  (function () {
-    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NDg1NDcsImV4cCI6MjA1NDEyNDU0N30.Yp9gN_L2108Q50p9mCfxbC55yqI7vU1Jc18y-P55vN8";
+  const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NDg1NDcsImV4cCI6MjA1NDEyNDU0N30.Yp9gN_L2108Q50p9mCfxbC55yqI7vU1Jc18y-P55vN8";
 
-    let supabaseClient = null;
-    if (window.supabase && typeof window.supabase.createClient === 'function') {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  let supabaseClient = null;
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  // Claves de respaldo locales conocidas
+  const localPrivateKeys = {
+    "familia2026": { folder_id: "familia-2026", titulo: "Sesión Familia Colección 2026" },
+    "boda1234": { folder_id: "boda-1234", titulo: "Boda Exclusiva & Recepción" },
+    "miprueba": { folder_id: "1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA", titulo: "Álbum Privado de Muestra" },
+    "colegio2024": { folder_id: "colegio-san-martin-2024", titulo: "Colegio San Martín · Galería Privada" }
+  };
+
+  // Función global para pedir clave mediante prompt amigable
+  window.pedirPassword = async function() {
+    const pass = prompt("Acceso Privado Clientes 🔒\n\nPor favor, ingresá la contraseña o código de tu álbum/colegio:");
+    if (pass !== null) {
+      const trimmed = pass.trim();
+      if (!trimmed) {
+        alert("Por favor ingresá tu contraseña de acceso.");
+        return;
+      }
+      await verificarClave(trimmed);
+    }
+  };
+
+  // Núcleo de consulta contra Supabase y redirección a privadas.html
+  async function verificarClave(clave) {
+    let albumEncontrado = null;
+
+    // 1. Consulta en Supabase (galeria y galerias)
+    if (supabaseClient) {
+      try {
+        let { data, error } = await supabaseClient
+          .from('galeria')
+          .select('*')
+          .or(`password.eq.${clave},clave.eq.${clave},codigo.eq.${clave}`);
+
+        if (!data || data.length === 0 || error) {
+          const resFallback = await supabaseClient
+            .from('galerias')
+            .select('*')
+            .or(`password.eq.${clave},clave.eq.${clave},codigo.eq.${clave}`);
+          if (resFallback.data && resFallback.data.length > 0) {
+            data = resFallback.data;
+          }
+        }
+
+        if (data && data.length > 0) {
+          albumEncontrado = data[0];
+        }
+      } catch (err) {
+        console.warn('Error al verificar clave en Supabase:', err);
+      }
     }
 
+    // 2. Consulta en claves locales de respaldo
+    if (!albumEncontrado && localPrivateKeys[clave.toLowerCase()]) {
+      albumEncontrado = localPrivateKeys[clave.toLowerCase()];
+    }
+
+    // 3. Revisión de LocalStorage adicional
+    if (!albumEncontrado) {
+      try {
+        const raw = localStorage.getItem('galerias_locales');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            const match = parsed.find(g => (g.password === clave || g.clave === clave || g.codigo === clave));
+            if (match) albumEncontrado = match;
+          }
+        }
+      } catch (e) {
+        console.warn('Error en lectura local:', e);
+      }
+    }
+
+    // 4. Redirección o aviso al cliente
+    if (albumEncontrado) {
+      const folderId = albumEncontrado.folder_id || albumEncontrado.id || 'privado';
+      const titulo = albumEncontrado.titulo || albumEncontrado.nombre || 'Álbum Privado de Cliente';
+      window.location.href = `privadas.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(clave)}`;
+    } else {
+      alert("Contraseña incorrecta o álbum no encontrado.\nPor favor verificá e intentá nuevamente.");
+    }
+  }
+
+  (function () {
     const grid = document.getElementById('galleries-grid');
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
     const counterEl = document.getElementById('gallery-counter');
-    const privateForm = document.getElementById('private-access-form');
-    const privateKeyInput = document.getElementById('private-key-input');
-    const privateError = document.getElementById('private-error');
-    const privateSubmitBtn = document.getElementById('private-submit-btn');
 
     // Default curated fallback if Supabase is offline or still empty
     const fallbackEvents = [
@@ -519,61 +725,6 @@
         `;
 
         grid.appendChild(card);
-      });
-    }
-
-    // 4. Validación de Acceso Privado con Clave contra Supabase
-    if (privateForm) {
-      privateForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const code = (privateKeyInput.value || '').trim();
-        if (!code) return;
-
-        privateError.classList.add('hidden');
-        const origBtnHtml = privateSubmitBtn.innerHTML;
-        privateSubmitBtn.disabled = true;
-        privateSubmitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-base">sync</span> Validando...`;
-
-        let matched = false;
-        let matchedItem = null;
-
-        if (supabaseClient) {
-          try {
-            // Check 'galeria' for matching clave or password or key
-            let { data } = await supabaseClient
-              .from('galeria')
-              .select('*')
-              .or(`clave.eq.${code},password.eq.${code},codigo.eq.${code}`);
-
-            if (!data || data.length === 0) {
-              // Check fallback table 'galerias'
-              const fallback = await supabaseClient
-                .from('galerias')
-                .select('*')
-                .or(`clave.eq.${code},password.eq.${code},codigo.eq.${code}`);
-              data = fallback.data;
-            }
-
-            if (data && data.length > 0) {
-              matched = true;
-              matchedItem = data[0];
-            }
-          } catch (err) {
-            console.warn('Error querying private album:', err);
-          }
-        }
-
-        privateSubmitBtn.disabled = false;
-        privateSubmitBtn.innerHTML = origBtnHtml;
-
-        if (matched && matchedItem) {
-          const targetFolder = matchedItem.folder_id || matchedItem.id || 'privado';
-          const targetTitle = matchedItem.titulo || matchedItem.nombre || 'Galería Privada';
-          window.location.href = `galeria.html?id=${encodeURIComponent(targetFolder)}&titulo=${encodeURIComponent(targetTitle)}&key=${encodeURIComponent(code)}`;
-        } else {
-          // If not confirmed by remote query or offline, redirect to dedicated privadas.html validator
-          window.location.href = `privadas.html?key=${encodeURIComponent(code)}`;
-        }
       });
     }
 
