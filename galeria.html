@@ -704,7 +704,7 @@ footer {
 <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
 <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
 <div class="visor-foto-wrapper" id="visor-foto-wrapper">
-<img alt="Vista Previa Ampliada" draggable="false" id="img-ampliada" src=""/>
+<img alt="Vista Previa Ampliada" draggable="false" id="img-ampliada" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4="/>
 <!-- MARCA DE AGUA EN FOTOS AMPLIADAS -->
 <div class="marca-agua-visor" id="marca-agua-visor">
 <div class="repeticion-texto">
@@ -744,7 +744,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-// TARIFAS DINÁMICAS Y WHATSAPP
+// TARIFAS DINÁMICAS Y WHATSAPP BASE
 let TARIFA_IMPRESA = 7000;
 let TARIFA_DIGITAL = 4200;
 let WHATSAPP_FOTOGRAFO = '5492613175222';
@@ -817,33 +817,81 @@ function extraerIdDrive(input) {
   return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
 }
 
-function sincronizarPrecios() {
+// SINCRONIZAR PRECIOS DIRECTAMENTE DESDE SUPABASE
+async function sincronizarPrecios() {
+  let obtenidoDeSupabase = false;
+
+  // 1. Consultar tarifas y contacto globales directamente en Supabase
   try {
-    const storedImp = localStorage.getItem('tarifa_impresa');
-    const storedDig = localStorage.getItem('tarifa_digital');
-    const storedWa = localStorage.getItem('numero_whatsapp');
-    if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
-    if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
-    if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
-
-    const lblImp = document.getElementById('lbl-tarifa-impresa');
-    const lblDig = document.getElementById('lbl-tarifa-digital');
-    if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
-    if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
-
-    const btnImp = document.getElementById('btn-label-impresas');
-    const btnDig = document.getElementById('btn-label-digitales');
-    if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
-    if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
-  } catch (e) {
-    console.warn("Uso de tarifas base:", e);
+    if (supabaseClient) {
+      // Intentar primero tabla 'configuracion'
+      const { data, error } = await supabaseClient.from('configuracion').select('*').limit(1);
+      if (!error && data && data.length > 0) {
+        const conf = data[0];
+        if (conf.tarifa_impresa && !isNaN(conf.tarifa_impresa)) {
+          TARIFA_IMPRESA = Number(conf.tarifa_impresa);
+          obtenidoDeSupabase = true;
+        }
+        if (conf.tarifa_digital && !isNaN(conf.tarifa_digital)) {
+          TARIFA_DIGITAL = Number(conf.tarifa_digital);
+          obtenidoDeSupabase = true;
+        }
+        if (conf.whatsapp && String(conf.whatsapp).trim().length > 5) {
+          WHATSAPP_FOTOGRAFO = String(conf.whatsapp).replace(/\D/g, '');
+        }
+      } else {
+        // Fallback: consultar si existen columnas de tarifas en tabla 'galerias' o 'galeria'
+        const resGal = await supabaseClient.from('galeria').select('tarifa_impresa, tarifa_digital, whatsapp').limit(1);
+        if (resGal.data && resGal.data.length > 0) {
+          const g = resGal.data[0];
+          if (g.tarifa_impresa && !isNaN(g.tarifa_impresa)) {
+            TARIFA_IMPRESA = Number(g.tarifa_impresa);
+            obtenidoDeSupabase = true;
+          }
+          if (g.tarifa_digital && !isNaN(g.tarifa_digital)) {
+            TARIFA_DIGITAL = Number(g.tarifa_digital);
+            obtenidoDeSupabase = true;
+          }
+          if (g.whatsapp && String(g.whatsapp).trim().length > 5) {
+            WHATSAPP_FOTOGRAFO = String(g.whatsapp).replace(/\D/g, '');
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn("Aviso supabase precios:", err);
   }
+
+  // 2. Si no se pudo obtener de Supabase, recurrir a respaldo en localStorage si existe
+  if (!obtenidoDeSupabase) {
+    try {
+      const storedImp = localStorage.getItem('tarifa_impresa');
+      const storedDig = localStorage.getItem('tarifa_digital');
+      const storedWa = localStorage.getItem('numero_whatsapp');
+      if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
+      if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
+      if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
+    } catch (e) {
+      console.warn("Uso de tarifas base por omisión:", e);
+    }
+  }
+
+  // 3. Actualizar elementos visuales del banner y botones
+  const lblImp = document.getElementById('lbl-tarifa-impresa');
+  const lblDig = document.getElementById('lbl-tarifa-digital');
+  if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+  if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+
+  const btnImp = document.getElementById('btn-label-impresas');
+  const btnDig = document.getElementById('btn-label-digitales');
+  if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
+  if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
 }
 
 // INICIAR GALERÍA CON ID DE DRIVE Y DATOS DE SUPABASE / LOCALSTORAGE
 async function iniciarGaleria() {
   activarSistemasSeguridad();
-  sincronizarPrecios();
+  await sincronizarPrecios();
 
   const params = new URLSearchParams(window.location.search);
   const paramId = params.get('id');
@@ -899,6 +947,26 @@ async function iniciarGaleria() {
             const marcaAguaVisor = document.getElementById('marca-agua-visor');
             if (marcaAguaVisor) marcaAguaVisor.style.display = 'none';
           }
+          // Si el evento específico sobreescribe tarifas
+          if (data.tarifa_impresa && !isNaN(data.tarifa_impresa)) {
+            TARIFA_IMPRESA = Number(data.tarifa_impresa);
+          }
+          if (data.tarifa_digital && !isNaN(data.tarifa_digital)) {
+            TARIFA_DIGITAL = Number(data.tarifa_digital);
+          }
+          if (data.whatsapp && String(data.whatsapp).trim().length > 5) {
+            WHATSAPP_FOTOGRAFO = String(data.whatsapp).replace(/\D/g, '');
+          }
+          const lblImp = document.getElementById('lbl-tarifa-impresa');
+          const lblDig = document.getElementById('lbl-tarifa-digital');
+          if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+          if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+
+          const btnImp = document.getElementById('btn-label-impresas');
+          const btnDig = document.getElementById('btn-label-digitales');
+          if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
+          if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
+
           const link = data.drive_url || data.url_drive || data.enlace_drive || '';
           folderId = extraerIdDrive(link);
         }
@@ -1104,13 +1172,13 @@ function pedirPorWhatsApp(tipo) {
   });
 
   const cantidad = fotosArray.length;
-  let precioUnitario = tipo === 'impresas' ? TARIFA_IMPRESA : TARIFA_DIGITAL;
-  let total = cantidad * precioUnitario;
-  let tipoPedidoTexto = tipo === 'impresas' 
+  const precioUnitario = tipo === 'impresas' ? TARIFA_IMPRESA : TARIFA_DIGITAL;
+  const total = cantidad * precioUnitario;
+  const tipoPedidoTexto = tipo === 'impresas' 
     ? `Copia Impresa 15x21 cm ($${precioUnitario.toLocaleString('es-AR')} c/u)` 
     : `Archivo Digital HD ($${precioUnitario.toLocaleString('es-AR')} c/u)`;
 
-  let mensaje = `Hola Sergio Ricardo Molina, quiero encargarte estas fotos:\n` +
+  const mensaje = `Hola Sergio Ricardo Molina, quiero encargarte estas fotos:\n` +
     `Evento: ${tituloEvento}\n` +
     `Tipo de Pedido: ${tipoPedidoTexto}\n` +
     `Cantidad: ${cantidad}\n` +
