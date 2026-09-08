@@ -1,509 +1,585 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Eventos Escolares | Sergio Ricardo Molina Fotografía Profesional</title>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind Configuration verbatim -->
 <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "secondary-fixed": "#cae6ff",
-            "on-secondary-fixed": "#001e30",
-            "inverse-surface": "#e5e2e1",
-            "on-primary": "#003350",
-            "primary-fixed": "#cbe6ff",
-            "on-secondary-container": "#8dbee6",
-            "primary-fixed-dim": "#91cdfe",
-            "surface-container-low": "#1c1b1b",
-            "surface-tint": "#91cdfe",
-            "secondary-fixed-dim": "#9bccf4",
-            "tertiary-fixed-dim": "#ffb878",
-            "on-background": "#e5e2e1",
-            "error": "#ffb4ab",
-            "primary": "#91cdfe",
-            "inverse-on-surface": "#313030",
-            "tertiary": "#ffb878",
-            "surface-dim": "#131313",
-            "on-tertiary-container": "#ffb36e",
-            "error-container": "#93000a",
-            "surface-bright": "#3a3939",
-            "surface-container-lowest": "#0e0e0e",
-            "on-primary-fixed": "#001e30",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-secondary": "#00344f",
-            "on-error-container": "#ffdad6",
-            "primary-container": "#005580",
-            "background": "#131313",
-            "on-primary-fixed-variant": "#004b72",
-            "surface-container-high": "#2a2a2a",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "tertiary-container": "#794303",
-            "outline-variant": "#41474e",
-            "on-tertiary": "#4c2700",
-            "on-tertiary-fixed": "#2e1500",
-            "surface-container-highest": "#353534",
-            "secondary-container": "#124d70",
-            "on-surface-variant": "#c0c7cf",
-            "outline": "#8b9199",
-            "on-primary-container": "#8ec9fa",
-            "surface-variant": "#353534",
-            "surface-container": "#201f1f",
-            "on-error": "#690005",
-            "secondary": "#9bccf4",
-            "tertiary-fixed": "#ffdcc1",
-            "inverse-primary": "#1e638f",
-            "surface": "#131313",
-            "on-surface": "#e5e2e1"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-sm": "0.75rem",
-            "space-4xl": "6rem",
-            "container-max": "1440px",
-            "space-2xl": "3rem",
-            "space-2xs": "0.25rem",
-            "gutter-tablet": "1.5rem",
-            "gutter-mobile": "1rem",
-            "space-md": "1rem",
-            "space-3xl": "4.5rem",
-            "space-lg": "1.5rem",
-            "gutter-desktop": "2rem",
-            "space-xs": "0.5rem",
-            "space-xl": "2rem"
-          },
-          "fontFamily": {
-            "headline-sm": ["Raleway"],
-            "label-sm": ["Manrope"],
-            "body-lg": ["Manrope"],
-            "display-hero-mobile": ["Raleway"],
-            "display-hero": ["Raleway"],
-            "headline-lg-mobile": ["Raleway"],
-            "headline-md": ["Raleway"],
-            "body-md": ["Manrope"],
-            "headline-lg": ["Raleway"],
-            "label-md": ["Manrope"]
-          },
-          "fontSize": {
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }]
-          }
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "secondary-fixed": "#cae6ff",
+          "on-secondary-fixed": "#001e30",
+          "inverse-surface": "#e5e2e1",
+          "on-primary": "#003350",
+          "primary-fixed": "#cbe6ff",
+          "on-secondary-container": "#8dbee6",
+          "primary-fixed-dim": "#91cdfe",
+          "surface-container-low": "#1c1b1b",
+          "surface-tint": "#91cdfe",
+          "secondary-fixed-dim": "#9bccf4",
+          "tertiary-fixed-dim": "#ffb878",
+          "on-background": "#e5e2e1",
+          "error": "#ffb4ab",
+          "primary": "#91cdfe",
+          "inverse-on-surface": "#313030",
+          "tertiary": "#ffb878",
+          "surface-dim": "#131313",
+          "on-tertiary-container": "#ffb36e",
+          "error-container": "#93000a",
+          "surface-bright": "#3a3939",
+          "surface-container-lowest": "#0e0e0e",
+          "on-primary-fixed": "#001e30",
+          "on-tertiary-fixed-variant": "#6c3a00",
+          "on-secondary": "#00344f",
+          "on-error-container": "#ffdad6",
+          "primary-container": "#005580",
+          "background": "#111111",
+          "on-primary-fixed-variant": "#004b72",
+          "surface-container-high": "#2a2a2a",
+          "on-secondary-fixed-variant": "#0e4b6d",
+          "tertiary-container": "#794303",
+          "outline-variant": "#333333",
+          "on-tertiary": "#4c2700",
+          "on-tertiary-fixed": "#2e1500",
+          "surface-container-highest": "#353534",
+          "secondary-container": "#124d70",
+          "on-surface-variant": "#a3a3a3",
+          "outline": "#555555",
+          "on-primary-container": "#8ec9fa",
+          "surface-variant": "#222222",
+          "surface-container": "#1a1a1a",
+          "on-error": "#690005",
+          "secondary": "#9bccf4",
+          "tertiary-fixed": "#ffdcc1",
+          "inverse-primary": "#1e638f",
+          "surface": "#141414",
+          "on-surface": "#f3f4f6"
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "2xl": "1rem",
+          "full": "9999px"
+        },
+        spacing: {
+          "space-2xs": "0.25rem",
+          "space-xs": "0.5rem",
+          "space-sm": "0.75rem",
+          "space-md": "1rem",
+          "space-lg": "1.5rem",
+          "space-xl": "2rem",
+          "space-2xl": "3rem",
+          "space-3xl": "4.5rem",
+          "space-4xl": "6rem",
+          "gutter-mobile": "1rem",
+          "gutter-tablet": "1.5rem",
+          "gutter-desktop": "2rem",
+          "container-max": "1200px"
+        },
+        fontFamily: {
+          "sans": ["Manrope", "sans-serif"],
+          "display": ["Raleway", "sans-serif"]
         }
       }
-    };
-  </script>
+    }
+  };
+</script>
 <style>
-    body {
-      background-color: #111111;
-      color: #e5e2e1;
-      font-family: 'Manrope', sans-serif;
-      overflow-x: hidden;
+  body {
+    background-color: #111111;
+    color: #e5e2e1;
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  .card-zoom:hover .card-img {
+    transform: scale(1.04);
+  }
+
+  /* Bloque Redes Sociales fiel a index.html */
+  .redes-sociales {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 36px;
+    width: 100%;
+  }
+  @media (max-width: 640px) {
+    .redes-sociales {
+      grid-template-columns: 1fr;
     }
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-    .card-zoom:hover .card-img {
-      transform: scale(1.03);
-    }
-    .watermark-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-      background-size: 24px 24px;
-    }
-  </style>
+  }
+  .btn-red {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .btn-red:active {
+    transform: scale(0.96);
+  }
+  .btn-wsp {
+    border-color: #4ade80;
+    color: #4ade80;
+  }
+  .btn-wsp:hover {
+    background-color: rgba(74, 222, 128, 0.12);
+  }
+  .btn-cat {
+    border-color: #facc15;
+    color: #facc15;
+  }
+  .btn-cat:hover {
+    background-color: rgba(250, 204, 21, 0.12);
+  }
+  .btn-ig {
+    border-color: #fb923c;
+    color: #fb923c;
+  }
+  .btn-ig:hover {
+    background-color: rgba(251, 146, 60, 0.12);
+  }
+</style>
 </head>
-<body class="bg-surface-dim text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary">
-<!-- Top Navigation Bar matching Shared TopNavBar tokens & return action -->
-<header class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-all duration-200"><div class="flex flex-col sm:flex-row justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet max-w-container-max mx-auto py-space-sm sm:py-0 sm:h-16 gap-space-sm"><div class="flex items-center justify-between w-full sm:w-auto gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="Sergio Ricardo Molina" class="w-10 h-10 rounded-full border border-primary object-cover shadow-sm" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"><div class="flex flex-col text-left"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Sergio Ricardo Molina</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Fotografía Profesional / Eventos Escolares</span></div></div><a aria-label="Volver al Portafolio" class="sm:hidden flex items-center justify-center w-9 h-9 text-on-surface-variant hover:text-surface-bright rounded-lg border border-outline-variant bg-surface-container-high transition-all active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-body-lg">arrow_back</span></a></div><div class="flex items-center justify-between w-full sm:w-auto gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-xs text-on-surface-variant hover:text-surface-bright px-space-sm py-space-xs rounded-lg border border-outline-variant hover:border-outline transition-all duration-150 active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-body-lg">arrow_back</span><span class="font-label-md text-label-md uppercase tracking-wider">Volver al Portafolio</span></a></div></div></header>
-<!-- Main Content Canvas -->
-<main class="flex-grow w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop pt-space-2xl pb-space-4xl">
-<!-- Atmospheric Hero Section -->
-
-<!-- Dynamic Gallery Section -->
-<section class="mb-space-4xl">
-
-<!-- Loading State Skeleton -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl hidden" id="loading-state">
-<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant animate-pulse p-space-md flex flex-col gap-space-md">
-<div class="w-full aspect-[16/10] bg-surface-container-high rounded-lg"></div>
-<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
-<div class="h-3 bg-surface-container-high rounded w-1/2"></div>
+<body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary antialiased">
+<!-- 1. Encabezado Oficial con Marca Personal y Volver al Portafolio -->
+<header class="sticky top-0 z-50 bg-[#111111]/90 backdrop-blur-md border-b border-[#262626] transition-all duration-200">
+<div class="flex items-center justify-between w-full max-w-[1200px] mx-auto px-4 sm:px-6 h-18 py-3">
+<!-- Brand Info -->
+<a class="flex items-center gap-3.5 group" href="index.html">
+<img alt="Sergio Ricardo Molina" class="w-11 h-11 rounded-full border border-sky-400/60 object-cover shadow-sm group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
+<div class="flex flex-col text-left">
+<span class="font-['Raleway'] text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors">
+          SERGIO RICARDO MOLINA
+        </span>
+<span class="text-[11px] text-sky-400 font-semibold tracking-widest uppercase">
+          Fotografía Profesional / Eventos Escolares
+        </span>
 </div>
-<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant animate-pulse p-space-md flex flex-col gap-space-md">
-<div class="w-full aspect-[16/10] bg-surface-container-high rounded-lg"></div>
-<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
-<div class="h-3 bg-surface-container-high rounded w-1/2"></div>
+</a>
+<!-- Return Action Button -->
+<div>
+<a class="inline-flex items-center gap-2 text-neutral-300 hover:text-white px-3.5 py-2 rounded-lg border border-neutral-700/80 bg-[#1a1a1a] hover:bg-[#252525] hover:border-neutral-500 transition-all duration-150 active:scale-[0.97] text-xs font-semibold uppercase tracking-wider shadow-sm" href="index.html">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+<span class="hidden sm:inline">Volver al Portafolio</span>
+<span class="sm:hidden">Volver</span>
+</a>
 </div>
-<div class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant animate-pulse p-space-md flex flex-col gap-space-md">
-<div class="w-full aspect-[16/10] bg-surface-container-high rounded-lg"></div>
-<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
-<div class="h-3 bg-surface-container-high rounded w-1/2"></div>
+</div>
+</header>
+<!-- Main Container -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 pb-16">
+<!-- 2. Título de Sección y Subtítulo Sobrio -->
+<section class="mb-12 text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950/60 border border-sky-800/60 text-sky-300 text-xs font-semibold uppercase tracking-wider mb-4">
+<span class="material-symbols-outlined text-sm">school</span>
+<span>Cobertura Oficial Escolar</span>
+</div>
+<h1 class="font-['Raleway'] text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
+      Eventos Escolares
+    </h1>
+<p class="text-neutral-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+      Seleccioná el acto, egreso o institución de tu interés para ver y encargar las fotografías oficiales en alta calidad digital y copias impresas.
+    </p>
+</section>
+<!-- 3. Cuadrícula dinámica de eventos escolares públicos -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800">
+<div class="flex items-center gap-2 text-xs font-semibold text-neutral-400 tracking-widest uppercase">
+<span class="material-symbols-outlined text-sky-400 text-base">photo_library</span>
+<span id="gallery-counter">Cargando galerías oficiales...</span>
+</div>
+</div>
+<!-- Loading Skeleton -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="loading-state">
+<div class="bg-[#1a1a1a] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
+<div class="aspect-[16/10] w-full bg-[#242424]"></div>
+<div class="p-5 flex flex-col gap-3">
+<div class="h-4 bg-[#242424] rounded w-1/3"></div>
+<div class="h-6 bg-[#242424] rounded w-3/4"></div>
+<div class="h-10 bg-[#242424] rounded w-full mt-2"></div>
+</div>
+</div>
+<div class="bg-[#1a1a1a] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
+<div class="aspect-[16/10] w-full bg-[#242424]"></div>
+<div class="p-5 flex flex-col gap-3">
+<div class="h-4 bg-[#242424] rounded w-1/3"></div>
+<div class="h-6 bg-[#242424] rounded w-3/4"></div>
+<div class="h-10 bg-[#242424] rounded w-full mt-2"></div>
+</div>
+</div>
+<div class="bg-[#1a1a1a] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
+<div class="aspect-[16/10] w-full bg-[#242424]"></div>
+<div class="p-5 flex flex-col gap-3">
+<div class="h-4 bg-[#242424] rounded w-1/3"></div>
+<div class="h-6 bg-[#242424] rounded w-3/4"></div>
+<div class="h-10 bg-[#242424] rounded w-full mt-2"></div>
+</div>
 </div>
 </div>
 <!-- Empty State -->
-<div class="hidden text-center py-space-3xl border border-dashed border-outline-variant rounded-xl bg-surface-container-low" id="empty-state"><div class="max-w-md mx-auto py-space-md flex flex-col items-center justify-center"><div class="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-outline mb-space-sm"><span class="material-symbols-outlined text-2xl">photo_library</span></div><h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs font-medium">No hay eventos escolares públicos disponibles</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">En este momento no se encuentran coberturas públicas publicadas. Si tu curso o colegio cuenta con un álbum privado, ingresá tu clave en el módulo de acceso inferior.</p></div></div>
-<!-- Dynamic Cards Grid (Supabase & LocalStorage) -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl" id="galleries-grid"><article class="card-zoom group flex flex-col bg-surface-container rounded-xl border border-outline-variant overflow-hidden hover:border-primary transition-all duration-200 shadow-md">
-            <!-- 16:10 Cover Container -->
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-surface-container-lowest border-b border-outline-variant">
-              <img src="placeholder" data-alt="A pristine, high-resolution documentary photograph capturing an emotional school event graduation ceremony in an auditorium. Students in formal uniforms are seen on stage illuminated by directional stage spotlights with subtle rim lights. The image conveys refined darkroom tone, high micro-contrast, cinematic blacks, and deep oceanic cyan color grading reflecting photographic excellence." class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='placeholder';">
-              
-              <!-- Galería Oficial Badge -->
-              <div class="absolute top-space-sm left-space-sm flex items-center gap-1.5 bg-surface/90 backdrop-blur-md border border-outline-variant/80 px-2.5 py-1 rounded-full text-secondary">
-                <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
-                
-              </div>
-
-              <!-- Photo Count Pill -->
-              <div class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-0.5 rounded text-on-surface-variant font-label-sm text-label-sm border border-outline-variant/50">
-                142 Fotos
-              </div>
-            </div>
-
-            <!-- Card Content Body -->
-            <div class="p-space-lg flex flex-col flex-grow justify-between bg-surface-container">
-              <div>
-                <div class="flex items-center gap-space-2xs text-outline font-label-sm text-label-sm mb-space-xs uppercase tracking-widest">
-                  <span class="material-symbols-outlined text-sm">calendar_month</span>
-                  <span class="">Noviembre 2024</span>
-                </div>
-                
-                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-150 line-clamp-2 mb-space-sm">
-                  Colegio San Martín de Tours · Colación 5to Año 2024
-                </h3>
-              </div>
-
-              
-            </div>
-          </article></div>
+<div class="hidden text-center py-16 px-4 border border-dashed border-neutral-800 rounded-xl bg-[#161616]" id="empty-state">
+<div class="w-14 h-14 mx-auto mb-4 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center text-neutral-400">
+<span class="material-symbols-outlined text-2xl">photo_library</span>
+</div>
+<h3 class="font-['Raleway'] text-lg text-white font-medium mb-1">No hay coberturas escolares públicas en este momento</h3>
+<p class="text-neutral-400 text-sm max-w-md mx-auto leading-relaxed">
+        Las coberturas con privacidad asignada sólo están disponibles mediante código de acceso exclusivo. Si poseés una clave, ingresala en la sección inferior.
+      </p>
+</div>
+<!-- Public Grid Container -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleries-grid"></div>
 </section>
-<!-- Prominent Private Access Block -->
-
-<!-- Communication & Direct Ordering Channels -->
-
+<!-- 4. Bloque de Acceso Privado con Clave -->
+<section class="mb-16 bg-[#161616] border border-neutral-800 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-lg">
+<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-base">lock</span>
+<span>Área Privada Protegida</span>
+</div>
+<h2 class="font-['Raleway'] text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">
+        Acceso a Álbumes y Cursos Privados
+      </h2>
+<p class="text-neutral-400 text-sm sm:text-base mb-6 leading-relaxed">
+        Si tu curso, directivo o comisión organizadora contrató una galería privada con contraseña individual, ingresá el código de acceso provisto para visualizar las fotografías protegidas.
+      </p>
+<form class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3" id="private-access-form">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 text-lg">key</span>
+<input autocomplete="off" class="w-full bg-[#1e1e1e] border border-neutral-700 text-white placeholder-neutral-500 text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-colors" id="private-key-input" placeholder="Ingresá la contraseña o código de curso..." required="" type="password"/>
+</div>
+<button class="inline-flex items-center justify-center gap-2 bg-[#005580] hover:bg-[#006699] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 active:scale-[0.98] border border-sky-400/40 shadow-sm shrink-0" id="private-submit-btn" type="submit">
+<span class="material-symbols-outlined text-base">lock_open</span>
+<span>Acceder al Álbum</span>
+</button>
+</form>
+<p class="hidden text-xs text-rose-400 mt-2 font-medium flex items-center gap-1" id="private-error">
+<span class="material-symbols-outlined text-sm">error</span>
+<span>Clave incorrecta o no encontrada. Por favor verificá los datos con tu institución.</span>
+</p>
+</div>
+</section>
+<!-- 5. Bloque de Redes Sociales IDÉNTICO estética y funcionalmente al del portafolio (index.html) -->
+<section class="pt-4 border-t border-neutral-800/80">
 <div class="redes-sociales">
-  <a href="https://wa.me/542613175222" target="_blank" class="btn-red btn-wsp">
-    <span class="material-symbols-outlined">chat</span>
-    <span class="">Chat WhatsApp</span>
-  </a>
-  <a href="https://wa.me/c/5492613175222" target="_blank" class="btn-red btn-cat">
-    <span class="material-symbols-outlined">inventory_2</span>
-    <span class="">Catálogo</span>
-  </a>
-  <a href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank" class="btn-red btn-ig">
-    <span class="material-symbols-outlined">photo_camera_back</span>
-    <span class="">Instagram</span>
-  </a>
-</div></main>
-<!-- Clean Minimal Darkroom Footer -->
-<footer class="border-t border-outline-variant bg-surface-container-lowest py-space-xl"><div class="w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center"><p class="font-body-md text-body-md text-on-surface-variant font-medium tracking-wide">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p></div></footer>
-<!-- Complete Inline Architecture & Dual Supabase Sync -->
+<a class="btn-red btn-wsp" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined">chat</span>
+<span>Chat WhatsApp</span>
+</a>
+<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Catálogo</span>
+</a>
+<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined">photo_camera_back</span>
+<span>Instagram</span>
+</a>
+</div>
+</section>
+</main>
+<!-- 6. Pie de página sobrio -->
+<footer class="border-t border-[#222222] bg-[#0c0c0c] py-8 mt-auto">
+<div class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+<p class="text-neutral-400 text-xs sm:text-sm tracking-wide">
+      © Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
+    </p>
+<div class="flex items-center gap-4 text-neutral-500 text-xs">
+<span class="hover:text-neutral-400 transition-colors">Fotografía Documental &amp; Escolar</span>
+<span>•</span>
+<span class="hover:text-neutral-400 transition-colors">Atelier Darkroom</span>
+</div>
+</div>
+</footer>
+<!-- 7. Script con Supabase integrado y funcional -->
 <script>
-    (function () {
-      // Configuration & Endpoints
-      const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
-      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NDg1NDcsImV4cCI6MjA1NDEyNDU0N30.Yp9gN_L2108Q50p9mCfxbC55yqI7vU1Jc18y-P55vN8";
-      
-      let supabaseClient = null;
-      if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  (function () {
+    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NDg1NDcsImV4cCI6MjA1NDEyNDU0N30.Yp9gN_L2108Q50p9mCfxbC55yqI7vU1Jc18y-P55vN8";
+
+    let supabaseClient = null;
+    if (window.supabase && typeof window.supabase.createClient === 'function') {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    const grid = document.getElementById('galleries-grid');
+    const loadingState = document.getElementById('loading-state');
+    const emptyState = document.getElementById('empty-state');
+    const counterEl = document.getElementById('gallery-counter');
+    const privateForm = document.getElementById('private-access-form');
+    const privateKeyInput = document.getElementById('private-key-input');
+    const privateError = document.getElementById('private-error');
+    const privateSubmitBtn = document.getElementById('private-submit-btn');
+
+    // Default curated fallback if Supabase is offline or still empty
+    const fallbackEvents = [
+      {
+        id: 'colegio-san-martin-2024',
+        folder_id: '1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA',
+        titulo: 'Colegio San Martín de Tours · Colación 5to Año 2024',
+        fecha: 'Noviembre 2024',
+        es_privada: false,
+        portada_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop',
+        total_fotos: 142
+      },
+      {
+        id: 'instituto-manuel-belgrano-2024',
+        folder_id: 'instituto-manuel-belgrano-2024',
+        titulo: 'Instituto Manuel Belgrano · Acto Día de la Independencia',
+        fecha: 'Julio 2024',
+        es_privada: false,
+        portada_url: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop',
+        total_fotos: 88
+      },
+      {
+        id: 'torneo-intercolegial-2024',
+        folder_id: 'torneo-intercolegial-2024',
+        titulo: 'Torneo Intercolegial de Atletismo y Voley Cuyo',
+        fecha: 'Septiembre 2024',
+        es_privada: false,
+        portada_url: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?q=80&w=1200&auto=format&fit=crop',
+        total_fotos: 215
       }
+    ];
 
-      // UI Element references
-      const grid = document.getElementById('galleries-grid');
-      const loadingState = document.getElementById('loading-state');
-      const emptyState = document.getElementById('empty-state');
-      const counterEl = document.getElementById('gallery-counter');
-      const searchInput = document.getElementById('gallery-search');
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const privateForm = document.getElementById('private-access-form');
-      const privateKeyInput = document.getElementById('private-key-input');
-
-      let allGalleries = [];
-      let activeFilter = 'all';
-
-      // Fallback realistic curated data if network offline
-      const defaultSchoolGalleries = [
-        {
-          id: 'san-martin-2024',
-          titulo: 'Colegio San Martín de Tours · Colación 5to Año 2024',
-          categoria: 'egresados',
-          fecha: 'Noviembre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 142
-        },
-        {
-          id: 'instituto-belgrano-patria',
-          titulo: 'Instituto Manuel Belgrano · Acto Día de la Independencia',
-          categoria: 'actos',
-          fecha: 'Julio 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 88
-        },
-        {
-          id: 'torneo-intercolegial-cuyo',
-          titulo: 'Torneo Intercolegial de Atletismo y Voley Cuyo',
-          categoria: 'deportes',
-          fecha: 'Septiembre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 215
-        },
-        {
-          id: 'escuela-mendoza-primaria',
-          titulo: 'Escuela Normal Tomás Godoy Cruz · Fiesta Fin de Ciclo Primaria',
-          categoria: 'actos',
-          fecha: 'Diciembre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 110
-        },
-        {
-          id: 'liceo-militar-desfile',
-          titulo: 'Liceo Militar General Espejo · Ceremonia de Graduación y Promesa',
-          categoria: 'egresados',
-          fecha: 'Octubre 2024',
-          es_privada: false,
-          portada_url: 'placeholder',
-          foto_count: 164
-        }
-      ];
-
-      // Formats Drive lh3 link or maintains safe source
-      function normalizeImageCover(url) {
-        if (!url || url === 'placeholder') return 'placeholder';
-        if (url.includes('drive.google.com') || url.includes('lh3.googleusercontent.com')) {
-          return url;
-        }
-        return url;
+    function resolveCover(url) {
+      if (!url) return 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop';
+      if (url.includes('drive.google.com/uc?id=') || url.includes('drive.google.com/file/d/')) {
+        const match = url.match(/[-\w]{25,}/);
+        if (match) return `https://lh3.googleusercontent.com/d/${match[0]}`;
       }
+      return url;
+    }
 
-      // Fetch dual check Supabase table: 'galeria' then fallback 'galerias' + localStorage backup
-      async function loadEventsData() {
-        let fetchedData = [];
-        let networkSuccess = false;
+    async function fetchPublicGalleries() {
+      let events = [];
+      let success = false;
 
-        if (supabaseClient) {
-          try {
-            // First check table 'galeria'
-            let { data, error } = await supabaseClient
-              .from('galeria')
+      if (supabaseClient) {
+        try {
+          // Check 'galeria' table first
+          let { data, error } = await supabaseClient
+            .from('galeria')
+            .select('*')
+            .eq('es_privada', false);
+
+          if (error || !data || data.length === 0) {
+            // Fallback check 'galerias' table
+            const fallbackResp = await supabaseClient
+              .from('galerias')
               .select('*')
               .eq('es_privada', false);
-
-            // If empty or errored, fallback to plural 'galerias'
-            if (error || !data || data.length === 0) {
-              const fallbackResponse = await supabaseClient
-                .from('galerias')
-                .select('*')
-                .eq('es_privada', false);
-              
-              if (!fallbackResponse.error && fallbackResponse.data) {
-                data = fallbackResponse.data;
-              }
+            
+            if (!fallbackResp.error && fallbackResp.data) {
+              data = fallbackResp.data;
             }
-
-            if (data && data.length > 0) {
-              fetchedData = data;
-              networkSuccess = true;
-            }
-          } catch (err) {
-            console.warn('Supabase query failed, moving to cache/storage fallback:', err);
           }
-        }
 
-        // LocalStorage reconciliation ('galerias_locales')
-        let localBackup = [];
+          if (data && data.length > 0) {
+            events = data;
+            success = true;
+          }
+        } catch (err) {
+          console.warn('Supabase query exception, using local fallback:', err);
+        }
+      }
+
+      // Check LocalStorage backup
+      if (!success) {
         try {
-          const rawLocal = localStorage.getItem('galerias_locales');
-          if (rawLocal) {
-            const parsed = JSON.parse(rawLocal);
-            if (Array.isArray(parsed)) {
-              localBackup = parsed.filter(item => !item.es_privada && item.privada !== true);
+          const raw = localStorage.getItem('galerias_locales');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              events = parsed.filter(item => !item.es_privada && !item.privada && !item.es_privado);
+              if (events.length > 0) success = true;
             }
           }
         } catch (e) {
-          console.warn('Local storage parse exception:', e);
+          console.warn('Error reading localStorage:', e);
         }
-
-        // Merge strategies
-        if (networkSuccess && fetchedData.length > 0) {
-          allGalleries = fetchedData;
-        } else if (localBackup.length > 0) {
-          allGalleries = localBackup;
-        } else {
-          allGalleries = defaultSchoolGalleries;
-        }
-
-        // Strict filter guarantee: private albums must NEVER leak onto this public list
-        allGalleries = allGalleries.filter(item => {
-          return item.es_privada !== true && item.privada !== true && item.es_privado !== true;
-        });
-
-        renderGalleries();
       }
 
-      function renderGalleries() {
-        loadingState.classList.add('hidden');
-        
-        const searchTerm = (searchInput.value || '').trim().toLowerCase();
+      if (!success || events.length === 0) {
+        events = fallbackEvents;
+      }
 
-        const filtered = allGalleries.filter(gallery => {
-          const title = (gallery.titulo || gallery.nombre || gallery.name || '').toLowerCase();
-          const matchesSearch = title.includes(searchTerm);
-          
-          let matchesFilter = true;
-          if (activeFilter !== 'all') {
-            const cat = (gallery.categoria || gallery.category || '').toLowerCase();
-            matchesFilter = cat.includes(activeFilter);
-          }
+      // Strictly exclude any private items
+      const publicOnly = events.filter(item => {
+        return item.es_privada !== true && item.privada !== true && item.es_privado !== true;
+      });
 
-          return matchesSearch && matchesFilter;
-        });
+      renderEvents(publicOnly);
+    }
 
-        counterEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'GALERÍA DISPONIBLE' : 'GALERÍAS DISPONIBLES'}`;
+    function renderEvents(items) {
+      if (loadingState) loadingState.classList.add('hidden');
 
-        if (filtered.length === 0) {
-          emptyState.classList.remove('hidden');
-          grid.innerHTML = '';
-          return;
-        }
-
-        emptyState.classList.add('hidden');
+      if (!items || items.length === 0) {
+        if (emptyState) emptyState.classList.remove('hidden');
+        if (counterEl) counterEl.textContent = '0 GALERÍAS DISPONIBLES';
         grid.innerHTML = '';
-
-        filtered.forEach(item => {
-          const id = item.id || item.slug || 'evento';
-          const title = item.titulo || item.nombre || 'Evento Escolar Oficial';
-          const fecha = item.fecha || item.created_at || 'Ciclo Lectivo Actual';
-          const photoTotal = item.foto_count || item.total_fotos || 'Colección Completa';
-          const cover = normalizeImageCover(item.portada_url || item.portada || 'placeholder');
-          
-          const card = document.createElement('article');
-          card.className = 'card-zoom group flex flex-col bg-surface-container rounded-xl border border-outline-variant overflow-hidden hover:border-primary transition-all duration-200 shadow-md';
-          
-          card.innerHTML = `
-            <!-- 16:10 Cover Container -->
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-surface-container-lowest border-b border-outline-variant">
-              <img 
-                src="${cover}" 
-                data-alt="A pristine, high-resolution documentary photograph capturing an emotional school event graduation ceremony in an auditorium. Students in formal uniforms are seen on stage illuminated by directional stage spotlights with subtle rim lights. The image conveys refined darkroom tone, high micro-contrast, cinematic blacks, and deep oceanic cyan color grading reflecting photographic excellence."
-                class="card-img w-full h-full object-cover transition-transform duration-500 ease-out"
-                loading="lazy"
-                onerror="this.onerror=null; this.src='placeholder';"
-              />
-              
-              <!-- Galería Oficial Badge -->
-              <div class="absolute top-space-sm left-space-sm flex items-center gap-1.5 bg-surface/90 backdrop-blur-md border border-outline-variant/80 px-2.5 py-1 rounded-full text-secondary">
-                <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
-                <span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Galería Oficial</span>
-              </div>
-
-              <!-- Photo Count Pill -->
-              <div class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-0.5 rounded text-on-surface-variant font-label-sm text-label-sm border border-outline-variant/50">
-                ${typeof photoTotal === 'number' ? photoTotal + ' Fotos' : photoTotal}
-              </div>
-            </div>
-
-            <!-- Card Content Body -->
-            <div class="p-space-lg flex flex-col flex-grow justify-between bg-surface-container">
-              <div>
-                <div class="flex items-center gap-space-2xs text-outline font-label-sm text-label-sm mb-space-xs uppercase tracking-widest">
-                  <span class="material-symbols-outlined text-sm">calendar_month</span>
-                  <span>${fecha}</span>
-                </div>
-                
-                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-150 line-clamp-2 mb-space-sm">
-                  ${title}
-                </h3>
-              </div>
-
-              <div class="pt-space-md border-t border-surface-container-highest mt-space-md flex items-center justify-between">
-                <span class="font-label-sm text-label-sm text-on-surface-variant">Marca de agua digital</span>
-                <a 
-                  href="galeria.html?id=${encodeURIComponent(id)}" 
-                  class="inline-flex items-center gap-space-xs bg-primary-container hover:bg-secondary-container border border-primary text-on-surface px-space-md py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider transition-all duration-150 active:scale-[0.98]"
-                >
-                  <span>Ver Álbum Completo</span>
-                  <span class="material-symbols-outlined text-label-md">arrow_forward</span>
-                </a>
-              </div>
-            </div>
-          `;
-
-          grid.appendChild(card);
-        });
+        return;
       }
 
-      // Event Listeners for Filters
-      filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterButtons.forEach(b => {
-            b.classList.remove('active', 'bg-primary-container', 'border-primary', 'text-on-surface');
-            b.classList.add('bg-surface', 'border-outline-variant', 'text-on-surface-variant');
-          });
-          btn.classList.add('active', 'bg-primary-container', 'border-primary', 'text-on-surface');
-          btn.classList.remove('bg-surface', 'border-outline-variant', 'text-on-surface-variant');
-          
-          activeFilter = btn.dataset.filter;
-          renderGalleries();
-        });
-      });
+      if (emptyState) emptyState.classList.add('hidden');
+      if (counterEl) {
+        counterEl.textContent = `${items.length} ${items.length === 1 ? 'GALERÍA OFICIAL DISPONIBLE' : 'GALERÍAS OFICIALES DISPONIBLES'}`;
+      }
 
-      // Search interaction
-      searchInput.addEventListener('input', () => {
-        renderGalleries();
-      });
+      grid.innerHTML = '';
 
-      // Private Key Redirection Form
-      privateForm.addEventListener('submit', (e) => {
+      items.forEach(evento => {
+        const folderId = evento.folder_id || evento.id_carpeta || evento.id || 'evento';
+        const titulo = evento.titulo || evento.nombre || 'Evento Escolar Oficial';
+        const fecha = evento.fecha || evento.created_at || 'Ciclo Lectivo Actual';
+        const totalFotos = evento.total_fotos || evento.foto_count || evento.fotos_count || 'Colección Completa';
+        const cover = resolveCover(evento.portada_url || evento.portada || evento.cover_url);
+        const linkUrl = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
+
+        const card = document.createElement('article');
+        card.className = 'card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg';
+        
+        card.innerHTML = `
+          <!-- 16:10 Cover Container -->
+          <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+            <img 
+              src="${cover}" 
+              alt="${titulo}"
+              class="card-img w-full h-full object-cover transition-transform duration-500 ease-out"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop';"
+            />
+            
+            <!-- Badge Galería Oficial -->
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-full text-sky-400 shadow-sm">
+              <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+              <span class="text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
+            </div>
+
+            <!-- Photo Count Pill -->
+            <div class="absolute bottom-3 right-3 bg-[#111111]/85 backdrop-blur-sm px-2.5 py-1 rounded text-neutral-300 text-xs font-semibold border border-neutral-700/60">
+              ${typeof totalFotos === 'number' ? totalFotos + ' Fotos' : totalFotos}
+            </div>
+          </div>
+
+          <!-- Card Content Body -->
+          <div class="p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+            <div>
+              <div class="flex items-center gap-1.5 text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">
+                <span class="material-symbols-outlined text-sm text-sky-400">calendar_month</span>
+                <span>${fecha}</span>
+              </div>
+              
+              <h3 class="font-['Raleway'] text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+                ${titulo}
+              </h3>
+            </div>
+
+            <div class="pt-4 mt-4 border-t border-neutral-800/80 flex items-center justify-between">
+              <span class="text-[11px] text-neutral-500 uppercase tracking-wider font-semibold">Resolución Oficial</span>
+              <a 
+                href="${linkUrl}" 
+                class="inline-flex items-center gap-1.5 bg-[#005580] hover:bg-[#006ca3] text-white px-3.5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-150 active:scale-[0.98] border border-sky-400/40"
+              >
+                <span>Ver Álbum Completo</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    // 4. Validación de Acceso Privado con Clave contra Supabase
+    if (privateForm) {
+      privateForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const code = (privateKeyInput.value || '').trim();
-        if (code) {
+        if (!code) return;
+
+        privateError.classList.add('hidden');
+        const origBtnHtml = privateSubmitBtn.innerHTML;
+        privateSubmitBtn.disabled = true;
+        privateSubmitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-base">sync</span> Validando...`;
+
+        let matched = false;
+        let matchedItem = null;
+
+        if (supabaseClient) {
+          try {
+            // Check 'galeria' for matching clave or password or key
+            let { data } = await supabaseClient
+              .from('galeria')
+              .select('*')
+              .or(`clave.eq.${code},password.eq.${code},codigo.eq.${code}`);
+
+            if (!data || data.length === 0) {
+              // Check fallback table 'galerias'
+              const fallback = await supabaseClient
+                .from('galerias')
+                .select('*')
+                .or(`clave.eq.${code},password.eq.${code},codigo.eq.${code}`);
+              data = fallback.data;
+            }
+
+            if (data && data.length > 0) {
+              matched = true;
+              matchedItem = data[0];
+            }
+          } catch (err) {
+            console.warn('Error querying private album:', err);
+          }
+        }
+
+        privateSubmitBtn.disabled = false;
+        privateSubmitBtn.innerHTML = origBtnHtml;
+
+        if (matched && matchedItem) {
+          const targetFolder = matchedItem.folder_id || matchedItem.id || 'privado';
+          const targetTitle = matchedItem.titulo || matchedItem.nombre || 'Galería Privada';
+          window.location.href = `galeria.html?id=${encodeURIComponent(targetFolder)}&titulo=${encodeURIComponent(targetTitle)}&key=${encodeURIComponent(code)}`;
+        } else {
+          // If not confirmed by remote query or offline, redirect to dedicated privadas.html validator
           window.location.href = `privadas.html?key=${encodeURIComponent(code)}`;
         }
       });
+    }
 
-      // Initial Execution
-      document.addEventListener('DOMContentLoaded', loadEventsData);
-      loadEventsData();
-    })();
-  </script>
-
-
-
-
-
-
-
-
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', fetchPublicGalleries);
+    fetchPublicGalleries();
+  })();
+</script>
 </body></html>
