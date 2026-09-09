@@ -247,9 +247,9 @@
 <label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputPrintPrice">Precio de Venta al Público (ARS)</label>
 <div class="relative">
 <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-semibold">$</span>
-<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputPrintPrice" type="text" value="7.500"/>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputPrintPrice" type="text" value="7.000"/>
 </div>
-<p class="text-label-sm font-label-sm text-outline mt-1.5">Sugerido según inflación del mes: $7.000 - $8.000</p>
+<p class="text-label-sm font-label-sm text-outline mt-1.5">Sugerido según inflación del mes: $6.800 - $7.500</p>
 </div>
 </div>
 <div class="mt-4 pt-3 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2">
@@ -278,7 +278,7 @@
 <label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputDigitalPrice">Precio por Fotografía Digital (ARS)</label>
 <div class="relative">
 <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-semibold">$</span>
-<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputDigitalPrice" type="text" value="2.500"/>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputDigitalPrice" type="text" value="4.200"/>
 </div>
 <p class="text-label-sm font-label-sm text-outline mt-1.5">Descarga directa desde enlace de galería privada</p>
 </div>
@@ -316,8 +316,8 @@
 <tbody class="text-body-md font-body-md text-on-surface divide-y divide-[#222222]">
 <tr class="hover:bg-[#1f1e1e] transition-colors">
 <td class="py-3 px-3 font-mono text-label-md text-outline" id="tableRowTimestamp">Hoy, vigencia activa</td>
-<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentPrint">$7.500</td>
-<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentDigital">$2.500</td>
+<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentPrint">$7.000</td>
+<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentDigital">$4.200</td>
 <td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
 <td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
 <td class="py-3 px-3 text-right">
@@ -372,10 +372,6 @@
 <!-- Unified Persistence & 100% Compatible 'configuracion' Table Sync -->
 <script>
   (function() {
-    // Valores predeterminados oficiales
-    const DEFAULT_PRINT = 7500;
-    const DEFAULT_DIGITAL = 2500;
-
     // 1. Client initialization
     let supabaseClient = null;
     try {
@@ -406,17 +402,6 @@
     const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
     const tableRowTimestamp = document.getElementById('tableRowTimestamp');
 
-    function formatNumber(val) {
-      const num = parseInt(String(val).replace(/\D/g, ''), 10);
-      if (isNaN(num)) return String(val);
-      return num.toLocaleString('es-AR');
-    }
-
-    function parseNumeric(val) {
-      const clean = String(val).replace(/\D/g, '');
-      return clean ? parseInt(clean, 10) : 0;
-    }
-
     function showNotification(message, isError = false) {
       if (!toast || !toastMessage) return;
       toastMessage.textContent = message;
@@ -438,27 +423,22 @@
     }
 
     function syncUIValues(printVal, digitalVal) {
-      const formattedPrint = formatNumber(printVal);
-      const formattedDigital = formatNumber(digitalVal);
-      if (inputPrint) inputPrint.value = formattedPrint;
-      if (inputDigital) inputDigital.value = formattedDigital;
-      if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + formattedPrint;
-      if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + formattedDigital;
+      if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + String(printVal).replace('$', '').trim();
+      if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + String(digitalVal).replace('$', '').trim();
       if (tableRowTimestamp) {
         const now = new Date();
         tableRowTimestamp.textContent = `Hoy, ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
       }
     }
 
-    // Carga inicial desde Supabase tabla 'configuracion' con fallback a 7500 y 2500
+    // 4. Carga inicial desde Supabase tabla 'configuracion' con .select('*').limit(1)
     async function cargarTarifasDesdeSupabase() {
-      // Leer primero de localStorage o usar predeterminados oficiales (7500 / 2500)
+      // Respaldo inmediato desde LocalStorage primero
       const localPrint = localStorage.getItem('tarifa_impresa');
       const localDigital = localStorage.getItem('tarifa_digital');
-      const initialPrint = localPrint ? parseNumeric(localPrint) : DEFAULT_PRINT;
-      const initialDigital = localDigital ? parseNumeric(localDigital) : DEFAULT_DIGITAL;
-
-      syncUIValues(initialPrint, initialDigital);
+      if (localPrint) inputPrint.value = localPrint;
+      if (localDigital) inputDigital.value = localDigital;
+      syncUIValues(inputPrint.value, inputDigital.value);
 
       if (!supabaseClient) {
         if (cloudSyncText) cloudSyncText.textContent = 'Almacenamiento Local Activo';
@@ -480,46 +460,41 @@
 
         if (data && data.length > 0) {
           const config = data[0];
-          const printVal = (config.tarifa_impresa !== undefined && config.tarifa_impresa !== null)
-            ? parseNumeric(config.tarifa_impresa)
-            : DEFAULT_PRINT;
-          const digitalVal = (config.tarifa_digital !== undefined && config.tarifa_digital !== null)
-            ? parseNumeric(config.tarifa_digital)
-            : DEFAULT_DIGITAL;
-
-          syncUIValues(printVal, digitalVal);
-          localStorage.setItem('tarifa_impresa', String(printVal));
-          localStorage.setItem('tarifa_digital', String(digitalVal));
+          // Asignar los valores vigentes a los inputs
+          if (config.tarifa_impresa !== undefined && config.tarifa_impresa !== null) {
+            inputPrint.value = String(config.tarifa_impresa);
+            localStorage.setItem('tarifa_impresa', String(config.tarifa_impresa));
+          }
+          if (config.tarifa_digital !== undefined && config.tarifa_digital !== null) {
+            inputDigital.value = String(config.tarifa_digital);
+            localStorage.setItem('tarifa_digital', String(config.tarifa_digital));
+          }
+          syncUIValues(inputPrint.value, inputDigital.value);
           if (cloudSyncText) cloudSyncText.textContent = 'Sincronizado con Supabase';
         } else {
-          // Fallback a los valores predeterminados oficiales
-          syncUIValues(DEFAULT_PRINT, DEFAULT_DIGITAL);
-          localStorage.setItem('tarifa_impresa', String(DEFAULT_PRINT));
-          localStorage.setItem('tarifa_digital', String(DEFAULT_DIGITAL));
-          if (cloudSyncText) cloudSyncText.textContent = 'Valores Predeterminados Activos';
+          if (cloudSyncText) cloudSyncText.textContent = 'Sin tarifas remotas previas';
         }
       } catch (err) {
         console.warn('Fallo de conexión al cargar de Supabase:', err);
-        syncUIValues(DEFAULT_PRINT, DEFAULT_DIGITAL);
         if (cloudSyncText) cloudSyncText.textContent = 'Modo Local (Sin Conexión)';
       }
     }
 
-    // Guardar tarifas con upsert en Supabase y respaldo en localStorage
+    // 1 & 2. Guardar tarifas con estructura BIGINT y clave obligatoria
     async function guardarTarifasEnSupabase() {
-      const precioImpresaNum = parseNumeric(inputPrint.value) || DEFAULT_PRINT;
-      const precioDigitalNum = parseNumeric(inputDigital.value) || DEFAULT_DIGITAL;
+      const precioImpresa = inputPrint.value.trim();
+      const precioDigital = inputDigital.value.trim();
       const whatsapp = '5492613175222';
       const updatedAt = new Date().toISOString();
 
-      if (!precioImpresaNum || !precioDigitalNum) {
+      if (!precioImpresa || !precioDigital) {
         showNotification('Por favor ingrese valores válidos para ambas tarifas.', true);
         return;
       }
 
-      // Guardar en localStorage('tarifa_impresa', 7500) y ('tarifa_digital', 2500)
-      localStorage.setItem('tarifa_impresa', String(precioImpresaNum));
-      localStorage.setItem('tarifa_digital', String(precioDigitalNum));
+      // 2. Guardar también en localStorage ('tarifa_impresa', 'tarifa_digital') como respaldo inmediato
+      localStorage.setItem('tarifa_impresa', precioImpresa);
+      localStorage.setItem('tarifa_digital', precioDigital);
       localStorage.setItem('numero_whatsapp', whatsapp);
 
       // Compatibilidad con broadcast channel entre pestañas abiertas
@@ -528,8 +503,8 @@
           const bc = new BroadcastChannel('tarifas_escolar_channel');
           bc.postMessage({
             type: 'TARIFAS_UPDATED',
-            tarifa_impresa: precioImpresaNum,
-            tarifa_digital: precioDigitalNum,
+            tarifa_impresa: precioImpresa,
+            tarifa_digital: precioDigital,
             whatsapp: whatsapp,
             updatedAt: updatedAt
           });
@@ -542,7 +517,7 @@
       if (btnSaveText) btnSaveText.textContent = 'Guardando...';
       btnSave.disabled = true;
 
-      // Upsert a la tabla 'configuracion' con registro requerido
+      // 1. Enviar upsert a la tabla 'configuracion' con id: 1, clave: 'tarifas_oficiales'
       let remoteSuccess = false;
       let remoteMessage = '';
 
@@ -551,8 +526,8 @@
           const payload = {
             id: 1,
             clave: 'tarifas_oficiales',
-            tarifa_impresa: precioImpresaNum,
-            tarifa_digital: precioDigitalNum,
+            tarifa_impresa: precioImpresa,
+            tarifa_digital: precioDigital,
             whatsapp: whatsapp,
             updated_at: updatedAt
           };
@@ -572,15 +547,15 @@
           remoteMessage = ' (Guardado localmente. Supabase desconectado)';
         }
       } else {
-        remoteMessage = ' (Guardado localmente. Supabase no configurado)';
+        remoteMessage = ' (Guardado localmente. Configure Supabase para sincronización remota)';
       }
 
       // Restaurar botón
       btnSave.disabled = false;
       if (btnSaveText) btnSaveText.textContent = 'Guardar Nuevas Tarifas';
-      syncUIValues(precioImpresaNum, precioDigitalNum);
+      syncUIValues(precioImpresa, precioDigital);
 
-      // Mostrar alerta clara de confirmación
+      // 3. Mostrar alerta clara de confirmación al guardar
       if (remoteSuccess) {
         showNotification('¡Tarifas guardadas exitosamente en Supabase (tabla configuracion) y respaldo local!');
         if (cloudSyncText) cloudSyncText.textContent = 'Sincronizado con Supabase';
@@ -594,18 +569,13 @@
     btnSave.addEventListener('click', guardarTarifasEnSupabase);
 
     btnReset.addEventListener('click', function() {
-      syncUIValues(DEFAULT_PRINT, DEFAULT_DIGITAL);
-      localStorage.setItem('tarifa_impresa', String(DEFAULT_PRINT));
-      localStorage.setItem('tarifa_digital', String(DEFAULT_DIGITAL));
-      showNotification('Valores restablecidos a los predeterminados ($7.500 y $2.500). Guardá para sincronizar.');
+      inputPrint.value = '7.000';
+      inputDigital.value = '4.200';
+      syncUIValues('7.000', '4.200');
     });
 
-    // Iniciar carga de datos al cargar el DOM
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', cargarTarifasDesdeSupabase);
-    } else {
-      cargarTarifasDesdeSupabase();
-    }
+    // Iniciar carga de datos
+    cargarTarifasDesdeSupabase();
   })();
 </script>
 </body></html>
