@@ -5,7 +5,8 @@
 
 const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
   ? 'http://localhost:3001'
-  : ''; // En producción / Vercel las peticiones van directamente a /api/...
+  : 'https://eventos-escolares-ten.vercel.app';
+ // En producción / Vercel las peticiones van directamente a /api/...
 
 const ApiClient = {
   // 1. Iniciar sesión de cliente con clientId y password
