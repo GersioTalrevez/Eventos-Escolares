@@ -1,20 +1,10 @@
+web application/stitch/projects/1179288502330012801/screens/22e3405bf81947209080812681ecf6f6
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "api/index.js",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/index.js"
-    }
-  ],
-  "env": {
-    "GOOGLE_API_KEY": "@google_api_key",
-    "JWT_SECRET": "@jwt_secret",
-    "FRONTEND_URL": "@frontend_url"
-  }
+  ]
 }
