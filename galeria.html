@@ -462,7 +462,7 @@ header {
 <div class="tarifa-item">
 <span class="material-symbols-outlined" style="color: #38bdf8; font-size: 18px;">payments</span>
 <span class="" id="texto-tarifas-banner">
-        TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.000</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$4.200</strong>
+        TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.500</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$2.500</strong>
 </span>
 </div>
 <div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 15px; color: rgb(74, 222, 128);">cloud_done</span><span class="" id="lbl-sync-status">Precios oficiales sincronizados en vivo</span><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
@@ -497,11 +497,11 @@ header {
 <div class="acciones-compra">
 <button class="btn-pedido btn-pedido-impresas" onclick="pedirPorWhatsApp('impresas')">
 <span class="material-symbols-outlined" style="font-size: 16px;">print</span>
-<span class="" id="btn-label-impresas">Impresas 15x21 ($7.000 c/u)</span>
+<span class="" id="btn-label-impresas">Impresas 15x21 ($7.500 c/u)</span>
 </button>
 <button class="btn-pedido btn-pedido-digitales" onclick="pedirPorWhatsApp('digitales')">
 <span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span>
-<span class="" id="btn-label-digitales">Digital HD ($4.200 c/u)</span>
+<span class="" id="btn-label-digitales">Digital HD ($2.500 c/u)</span>
 </button>
 </div>
 </div>
@@ -523,8 +523,8 @@ const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
 
-let TARIFA_IMPRESA = 7000;
-let TARIFA_DIGITAL = 4200;
+let TARIFA_IMPRESA = 7500;
+let TARIFA_DIGITAL = 2500;
 let WHATSAPP_FOTOGRAFO = '5492613175222';
 
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
@@ -569,41 +569,32 @@ function actualizarUIPrecios() {
 
 // SINCRONIZAR TARIFAS ASÍNCRONA DESDE SUPABASE 'configuracion'
 async function sincronizarPrecios() {
-  // 1. Fallback inicial inmediato desde localStorage o valores por defecto
+  // a) Leer primero de localStorage('tarifa_impresa') y localStorage('tarifa_digital') si existen
   try {
     const storedImp = localStorage.getItem('tarifa_impresa');
     const storedDig = localStorage.getItem('tarifa_digital');
     const storedWa = localStorage.getItem('numero_whatsapp');
-    if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
-    if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
+    if (storedImp && !isNaN(storedImp) && Number(storedImp) > 0) TARIFA_IMPRESA = Number(storedImp);
+    if (storedDig && !isNaN(storedDig) && Number(storedDig) > 0) TARIFA_DIGITAL = Number(storedDig);
     if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
   } catch (e) {
     console.warn("Error leyendo localStorage inicial:", e);
   }
   actualizarUIPrecios();
 
-  // 2. Consulta asíncrona universal a Supabase contra la tabla 'configuracion' buscando fila con id=1 o limit(1)
+  // b) Consultar en tiempo real a Supabase a la tabla 'configuracion' con limit(1)
   if (supabaseClient) {
     try {
       const consultaConfig = async () => {
-        // Intento 1: buscar por id=1
-        let { data, error } = await supabaseClient
+        const { data, error } = await supabaseClient
           .from('configuracion')
           .select('*')
-          .eq('id', 1)
-          .maybeSingle();
+          .limit(1);
 
-        // Intento 2: si no encuentra con id=1, tomar el primer registro
-        if (!data || error) {
-          const resGral = await supabaseClient
-            .from('configuracion')
-            .select('*')
-            .limit(1);
-          if (resGral.data && resGral.data.length > 0) {
-            data = resGral.data[0];
-          }
+        if (!error && data && data.length > 0) {
+          return data[0];
         }
-        return data;
+        return null;
       };
 
       const config = await Promise.race([
@@ -646,6 +637,7 @@ async function sincronizarPrecios() {
           try { localStorage.setItem('numero_whatsapp', WHATSAPP_FOTOGRAFO); } catch (_) {}
         }
 
+        // c) Actualizar de inmediato los textos del banner y los labels de los botones
         actualizarUIPrecios();
         const syncLbl = document.getElementById('lbl-sync-status');
         if (syncLbl) syncLbl.innerText = 'Precios oficiales sincronizados en vivo';
