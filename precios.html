@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="es" style=""><head>
+<html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Tarifas y Precios Oficiales | SERGIO RICARDO MOLINA</title>
@@ -133,7 +133,7 @@
   </style>
 </head>
 <body class="bg-[#111111] text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-white">
-<!-- Top Global Bar (Shared Component Reference) -->
+<!-- Top Global Bar -->
 <header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-40">
 <div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
 <div class="flex items-center gap-space-md">
@@ -145,7 +145,7 @@
 </div>
 </header>
 <div class="flex-1 flex overflow-hidden">
-<!-- Sidebar Navigation -->
+<!-- Sidebar Navigation (Darkroom estética limpia) -->
 <aside class="w-64 bg-[#131313] border-r border-[#222222] flex flex-col justify-between shrink-0 hidden md:flex">
 <div class="p-space-md">
 <!-- Brand Header Identity -->
@@ -189,7 +189,6 @@
 </div>
 <span class="material-symbols-outlined text-[14px] text-outline">open_in_new</span>
 </a>
-<!-- Lab Spec Status badge -->
 </div>
 </aside>
 <!-- Main Content Canvas -->
@@ -201,10 +200,10 @@
 <div class="flex items-center gap-2">
 <span class="px-2 py-0.5 bg-primary-container/40 border border-[#005580] text-[#38bdf8] text-label-sm font-label-sm rounded uppercase tracking-wider">Control Comercial</span>
 <span class="text-label-sm font-label-sm text-outline">Actualización inmediata de catálogo</span>
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#111111] border border-emerald-800/60 text-emerald-400 text-label-sm font-label-sm rounded uppercase tracking-wider" id="cloudSyncBadge"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span class="" id="cloudSyncText">Sincronizado con Supabase</span></span></div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#111111] border border-emerald-800/60 text-emerald-400 text-label-sm font-label-sm rounded uppercase tracking-wider" id="cloudSyncBadge"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" id="cloudSyncDot"></span><span class="" id="cloudSyncText">Sincronizado con Supabase</span></span></div>
 <h1 class="text-headline-lg font-headline-lg text-white mt-1">Tarifas y Precios Oficiales</h1>
 <p class="text-body-md font-body-md text-on-surface-variant max-w-3xl mt-1">
-              Configurá los precios de venta para copias impresas en papel de laboratorio y descargas digitales en alta resolución. Los valores se sincronizan automáticamente con el carrito de compra de cada galería escolar.
+              Configurá los precios de venta para copias impresas en papel de laboratorio y descargas digitales en alta resolución. Los valores se sincronizan automáticamente con la tabla oficial de configuración y las galerías.
             </p>
 </div>
 <!-- Action bar -->
@@ -215,15 +214,15 @@
 </button>
 <button class="px-5 py-2.5 rounded-lg bg-[#004466] border border-[#005580] text-white hover:bg-[#005580] active:scale-[0.98] transition-all font-label-md text-label-md font-semibold flex items-center gap-2 shadow-lg shadow-black/40" id="btnSavePrices" type="button">
 <span class="material-symbols-outlined text-[18px]">save</span>
-<span class="">Guardar Nuevas Tarifas</span>
+<span id="btnSaveText">Guardar Nuevas Tarifas</span>
 </button>
 </div>
 </div>
-<!-- Alert Notification Box (Updated feedback toast) -->
+<!-- Alert Notification Box (Confirmation toast) -->
 <div class="hidden mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-md" id="saveToast">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px] text-[#38bdf8]">check_circle</span>
-<span class="text-body-md font-body-md font-medium text-white" id="toastMessage">Tarifas guardadas. Se actualizaron en todas las galerías automáticamente.</span>
+<span class="material-symbols-outlined text-[20px] text-[#38bdf8]" id="toastIcon">check_circle</span>
+<span class="text-body-md font-body-md font-medium text-white" id="toastMessage">¡Tarifas actualizadas con éxito en Supabase y respaldo local!</span>
 </div>
 <span class="text-label-sm font-label-sm text-outline ml-4 shrink-0" id="timestampSaved">Hace unos segundos</span>
 </div>
@@ -298,9 +297,9 @@
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#222222]">
 <div>
 <h3 class="text-headline-sm font-headline-sm text-white">Historial de Actualizaciones de Tarifas</h3>
-<p class="text-label-sm font-label-sm text-outline">Registro auditable sincronizado con base de datos central</p>
+<p class="text-label-sm font-label-sm text-outline">Registro auditable sincronizado con base de datos central (tabla configuracion)</p>
 </div>
-<span class="text-label-sm font-label-sm text-on-surface-variant bg-[#111111] border border-[#333333] px-3 py-1 rounded-full">3 eventos registrados este ciclo lectivo</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant bg-[#111111] border border-[#333333] px-3 py-1 rounded-full">Registro oficial activo</span>
 </div>
 <div class="overflow-x-auto mt-3">
 <table class="w-full text-left border-collapse">
@@ -309,15 +308,17 @@
 <th class="py-3 px-3">Fecha y Hora</th>
 <th class="py-3 px-3">Copia 15x21</th>
 <th class="py-3 px-3">Archivo HD</th>
+<th class="py-3 px-3">WhatsApp Oficial</th>
 <th class="py-3 px-3">Usuario</th>
 <th class="py-3 px-3 text-right">Estado</th>
 </tr>
 </thead>
 <tbody class="text-body-md font-body-md text-on-surface divide-y divide-[#222222]">
 <tr class="hover:bg-[#1f1e1e] transition-colors">
-<td class="py-3 px-3 font-mono text-label-md text-outline">Hoy, 09:14 AM</td>
+<td class="py-3 px-3 font-mono text-label-md text-outline" id="tableRowTimestamp">Hoy, vigencia activa</td>
 <td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentPrint">$7.000</td>
 <td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentDigital">$4.200</td>
+<td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
 <td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
 <td class="py-3 px-3 text-right">
 <span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">Vigente</span>
@@ -327,6 +328,7 @@
 <td class="py-3 px-3 font-mono text-label-md text-outline">12 Abr 2025</td>
 <td class="py-3 px-3 text-on-surface-variant">$5.800</td>
 <td class="py-3 px-3 text-on-surface-variant">$3.500</td>
+<td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
 <td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
 <td class="py-3 px-3 text-right">
 <span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm text-outline bg-[#111111] border border-[#2a2a2a]">Reemplazado</span>
@@ -336,6 +338,7 @@
 <td class="py-3 px-3 font-mono text-label-md text-outline">01 Mar 2025</td>
 <td class="py-3 px-3 text-on-surface-variant">$4.500</td>
 <td class="py-3 px-3 text-on-surface-variant">$2.800</td>
+<td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
 <td class="py-3 px-3 text-on-surface-variant">Apertura Temporada</td>
 <td class="py-3 px-3 text-right">
 <span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm text-outline bg-[#111111] border border-[#2a2a2a]">Histórico</span>
@@ -347,7 +350,7 @@
 </section>
 </main>
 </div>
-<!-- Mobile Bottom Tab Bar (Responsive pivot) -->
+<!-- Mobile Bottom Tab Bar -->
 <nav class="md:hidden bg-[#131313] border-t border-[#222222] fixed bottom-0 left-0 right-0 z-50 px-2 py-1 flex justify-around items-center">
 <a class="flex flex-col items-center p-2 text-outline hover:text-white" href="panel.html">
 <span class="material-symbols-outlined text-[22px]">photo_library</span>
@@ -366,260 +369,213 @@
 <span class="text-[10px] font-label-sm">Eventos</span>
 </a>
 </nav>
-<!-- Interactive Script for Live Updating and Unified Persistence (LocalStorage + Supabase / Broadcast) -->
+<!-- Unified Persistence & 100% Compatible 'configuracion' Table Sync -->
 <script>
-    (function() {
-      // Supabase Client initialization if global credentials exist
-      let supabaseClient = null;
+  (function() {
+    // 1. Client initialization
+    let supabaseClient = null;
+    try {
+      const SUPABASE_URL = window.SUPABASE_URL || localStorage.getItem('supabase_url') || localStorage.getItem('SUPABASE_URL');
+      const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_anon_key') || localStorage.getItem('SUPABASE_ANON_KEY');
+      if (window.supabase && SUPABASE_URL && SUPABASE_ANON_KEY) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      } else if (window._supabase) {
+        supabaseClient = window._supabase;
+      }
+    } catch (err) {
+      console.warn('Supabase client check:', err);
+    }
+
+    // DOM References
+    const inputPrint = document.getElementById('inputPrintPrice');
+    const inputDigital = document.getElementById('inputDigitalPrice');
+    const btnSave = document.getElementById('btnSavePrices');
+    const btnSaveText = document.getElementById('btnSaveText');
+    const btnReset = document.getElementById('btnResetValues');
+    const toast = document.getElementById('saveToast');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    const timestampSaved = document.getElementById('timestampSaved');
+    const cloudSyncText = document.getElementById('cloudSyncText');
+    const cloudSyncDot = document.getElementById('cloudSyncDot');
+    const tableRowCurrentPrint = document.getElementById('tableRowCurrentPrint');
+    const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
+    const tableRowTimestamp = document.getElementById('tableRowTimestamp');
+
+    function showNotification(message, isError = false) {
+      if (!toast || !toastMessage) return;
+      toastMessage.textContent = message;
+      if (isError) {
+        toast.className = 'mt-4 p-3 rounded-lg bg-red-950/40 border border-red-500/60 text-red-400 flex items-center justify-between transition-all duration-300 shadow-md';
+        if (toastIcon) toastIcon.textContent = 'error';
+      } else {
+        toast.className = 'mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-md';
+        if (toastIcon) toastIcon.textContent = 'check_circle';
+      }
+      const now = new Date();
+      if (timestampSaved) {
+        timestampSaved.textContent = `Actualizado ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      }
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 6000);
+    }
+
+    function syncUIValues(printVal, digitalVal) {
+      if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + String(printVal).replace('$', '').trim();
+      if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + String(digitalVal).replace('$', '').trim();
+      if (tableRowTimestamp) {
+        const now = new Date();
+        tableRowTimestamp.textContent = `Hoy, ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      }
+    }
+
+    // 4. Carga inicial desde Supabase tabla 'configuracion' con .select('*').limit(1)
+    async function cargarTarifasDesdeSupabase() {
+      // Respaldo inmediato desde LocalStorage primero
+      const localPrint = localStorage.getItem('tarifa_impresa');
+      const localDigital = localStorage.getItem('tarifa_digital');
+      if (localPrint) inputPrint.value = localPrint;
+      if (localDigital) inputDigital.value = localDigital;
+      syncUIValues(inputPrint.value, inputDigital.value);
+
+      if (!supabaseClient) {
+        if (cloudSyncText) cloudSyncText.textContent = 'Almacenamiento Local Activo';
+        return;
+      }
+
       try {
-        const SUPABASE_URL = window.SUPABASE_URL || localStorage.getItem('supabase_url') || localStorage.getItem('SUPABASE_URL');
-        const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_anon_key') || localStorage.getItem('SUPABASE_ANON_KEY');
-        if (window.supabase && SUPABASE_URL && SUPABASE_ANON_KEY) {
-          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } else if (window._supabase) {
-          supabaseClient = window._supabase;
+        if (cloudSyncText) cloudSyncText.textContent = 'Consultando Supabase...';
+        const { data, error } = await supabaseClient
+          .from('configuracion')
+          .select('*')
+          .limit(1);
+
+        if (error) {
+          console.warn('Error al leer configuracion en Supabase:', error);
+          if (cloudSyncText) cloudSyncText.textContent = 'Respaldo Local Activo';
+          return;
+        }
+
+        if (data && data.length > 0) {
+          const config = data[0];
+          // Asignar los valores vigentes a los inputs
+          if (config.tarifa_impresa !== undefined && config.tarifa_impresa !== null) {
+            inputPrint.value = String(config.tarifa_impresa);
+            localStorage.setItem('tarifa_impresa', String(config.tarifa_impresa));
+          }
+          if (config.tarifa_digital !== undefined && config.tarifa_digital !== null) {
+            inputDigital.value = String(config.tarifa_digital);
+            localStorage.setItem('tarifa_digital', String(config.tarifa_digital));
+          }
+          syncUIValues(inputPrint.value, inputDigital.value);
+          if (cloudSyncText) cloudSyncText.textContent = 'Sincronizado con Supabase';
+        } else {
+          if (cloudSyncText) cloudSyncText.textContent = 'Sin tarifas remotas previas';
         }
       } catch (err) {
-        console.warn('Supabase client init optional check:', err);
+        console.warn('Fallo de conexión al cargar de Supabase:', err);
+        if (cloudSyncText) cloudSyncText.textContent = 'Modo Local (Sin Conexión)';
+      }
+    }
+
+    // 1 & 2. Guardar tarifas con estructura BIGINT y clave obligatoria
+    async function guardarTarifasEnSupabase() {
+      const precioImpresa = inputPrint.value.trim();
+      const precioDigital = inputDigital.value.trim();
+      const whatsapp = '5492613175222';
+      const updatedAt = new Date().toISOString();
+
+      if (!precioImpresa || !precioDigital) {
+        showNotification('Por favor ingrese valores válidos para ambas tarifas.', true);
+        return;
       }
 
-      // Elements
-      const inputPrint = document.getElementById('inputPrintPrice');
-      const inputDigital = document.getElementById('inputDigitalPrice');
-      const btnSave = document.getElementById('btnSavePrices');
-      const btnReset = document.getElementById('btnResetValues');
-      const toast = document.getElementById('saveToast');
-      const toastMessage = document.getElementById('toastMessage');
-      const timestampSaved = document.getElementById('timestampSaved');
+      // 2. Guardar también en localStorage ('tarifa_impresa', 'tarifa_digital') como respaldo inmediato
+      localStorage.setItem('tarifa_impresa', precioImpresa);
+      localStorage.setItem('tarifa_digital', precioDigital);
+      localStorage.setItem('numero_whatsapp', whatsapp);
 
-      // Live Previews & Tables (Safe access)
-      const previewPrintCalc = document.getElementById('previewPrintCalc');
-      const previewDigitalCalc = document.getElementById('previewDigitalCalc');
-      const previewTotalCalc = document.getElementById('previewTotalCalc');
-      const statPrintMargin = document.getElementById('statPrintMargin');
-      const statDigitalMargin = document.getElementById('statDigitalMargin');
-      const tableRowCurrentPrint = document.getElementById('tableRowCurrentPrint');
-      const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
-
-      // Initial clean parse helper
-      function cleanNumber(str) {
-        return parseFloat(String(str || '').replace(/[^0-9]/g, '')) || 0;
-      }
-
-      function formatARS(num) {
-        return '$' + num.toLocaleString('es-AR');
-      }
-
-      // Live update logic with null safety
-      function updateLiveViews() {
-        const printVal = inputPrint ? cleanNumber(inputPrint.value) : 0;
-        const digitalVal = inputDigital ? cleanNumber(inputDigital.value) : 0;
-
-        // Calculations for previews if present
-        const subtotalPrint = printVal * 2;
-        const total = subtotalPrint + digitalVal;
-
-        if (previewPrintCalc) previewPrintCalc.textContent = formatARS(subtotalPrint);
-        if (previewDigitalCalc) previewDigitalCalc.textContent = formatARS(digitalVal);
-        if (previewTotalCalc) previewTotalCalc.textContent = formatARS(total);
-
-        // Margins update (Lab print base cost: 1950) if present
-        if (statPrintMargin) {
-          const labCost = 1950;
-          const netPrint = Math.max(0, printVal - labCost);
-          const marginPrintPercent = printVal > 0 ? ((netPrint / printVal) * 100).toFixed(1) : '0';
-          statPrintMargin.textContent = `${formatARS(netPrint)} (${marginPrintPercent}%)`;
+      // Compatibilidad con broadcast channel entre pestañas abiertas
+      try {
+        if ('BroadcastChannel' in window) {
+          const bc = new BroadcastChannel('tarifas_escolar_channel');
+          bc.postMessage({
+            type: 'TARIFAS_UPDATED',
+            tarifa_impresa: precioImpresa,
+            tarifa_digital: precioDigital,
+            whatsapp: whatsapp,
+            updatedAt: updatedAt
+          });
         }
+      } catch (e) {
+        console.warn('BroadcastChannel opcional:', e);
+      }
 
-        // Digital HD margin (97.8% base) if present
-        if (statDigitalMargin) {
-          const netDigital = Math.round(digitalVal * 0.978);
-          statDigitalMargin.textContent = `${formatARS(netDigital)} (97.8%)`;
+      // Estado visual del botón durante el guardado
+      if (btnSaveText) btnSaveText.textContent = 'Guardando...';
+      btnSave.disabled = true;
+
+      // 1. Enviar upsert a la tabla 'configuracion' con id: 1, clave: 'tarifas_oficiales'
+      let remoteSuccess = false;
+      let remoteMessage = '';
+
+      if (supabaseClient) {
+        try {
+          const payload = {
+            id: 1,
+            clave: 'tarifas_oficiales',
+            tarifa_impresa: precioImpresa,
+            tarifa_digital: precioDigital,
+            whatsapp: whatsapp,
+            updated_at: updatedAt
+          };
+
+          const { error } = await supabaseClient
+            .from('configuracion')
+            .upsert(payload, { onConflict: 'id' });
+
+          if (error) {
+            console.error('Error al guardar en Supabase configuracion:', error);
+            remoteMessage = ' (Guardado localmente. Error en Supabase: ' + (error.message || 'tabla configuracion') + ')';
+          } else {
+            remoteSuccess = true;
+          }
+        } catch (supaErr) {
+          console.error('Excepción al conectar con Supabase:', supaErr);
+          remoteMessage = ' (Guardado localmente. Supabase desconectado)';
         }
+      } else {
+        remoteMessage = ' (Guardado localmente. Configure Supabase para sincronización remota)';
       }
 
-      // Input listeners with existence check
-      if (inputPrint) inputPrint.addEventListener('input', updateLiveViews);
-      if (inputDigital) inputDigital.addEventListener('input', updateLiveViews);
+      // Restaurar botón
+      btnSave.disabled = false;
+      if (btnSaveText) btnSaveText.textContent = 'Guardar Nuevas Tarifas';
+      syncUIValues(precioImpresa, precioDigital);
 
-      // Load saved values from unified keys and fallback
-      function loadStored() {
-        const storedImpresa = localStorage.getItem('tarifa_impresa');
-        const storedDigital = localStorage.getItem('tarifa_digital');
-
-        if (storedImpresa && inputPrint) inputPrint.value = storedImpresa;
-        if (storedDigital && inputDigital) inputDigital.value = storedDigital;
-
-        // Fallback to older bundle if specific keys were not yet set
-        if ((!storedImpresa || !storedDigital)) {
-          const saved = localStorage.getItem('sergio_molina_tarifas');
-          if (saved) {
-            try {
-              const data = JSON.parse(saved);
-              if (!storedImpresa && data.print && inputPrint) inputPrint.value = data.print;
-              if (!storedDigital && data.digital && inputDigital) inputDigital.value = data.digital;
-            } catch (e) {
-              console.error('Error loading stored rates', e);
-            }
-          }
-        }
-
-        // Try reading from Supabase if configured
-        if (supabaseClient) {
-          // Attempt reading from 'ajustes'
-          supabaseClient
-            .from('ajustes')
-            .select('*')
-            .in('clave', ['tarifa_impresa', 'tarifa_digital'])
-            .then(({ data, error }) => {
-              if (!error && data && data.length > 0) {
-                data.forEach(item => {
-                  if (item.clave === 'tarifa_impresa' && item.valor && inputPrint) inputPrint.value = item.valor;
-                  if (item.clave === 'tarifa_digital' && item.valor && inputDigital) inputDigital.value = item.valor;
-                });
-                updateLiveViews();
-              } else {
-                // Fallback attempt reading from 'configuracion'
-                supabaseClient
-                  .from('configuracion')
-                  .select('*')
-                  .in('key', ['tarifa_impresa', 'tarifa_digital'])
-                  .then(({ data: cfgData, error: cfgErr }) => {
-                    if (!cfgErr && cfgData && cfgData.length > 0) {
-                      cfgData.forEach(item => {
-                        if (item.key === 'tarifa_impresa' && item.value && inputPrint) inputPrint.value = item.value;
-                        if (item.key === 'tarifa_digital' && item.value && inputDigital) inputDigital.value = item.value;
-                      });
-                      updateLiveViews();
-                    }
-                  }).catch(() => {});
-              }
-            }).catch(() => {});
-        }
-
-        updateLiveViews();
+      // 3. Mostrar alerta clara de confirmación al guardar
+      if (remoteSuccess) {
+        showNotification('¡Tarifas guardadas exitosamente en Supabase (tabla configuracion) y respaldo local!');
+        if (cloudSyncText) cloudSyncText.textContent = 'Sincronizado con Supabase';
+        if (cloudSyncDot) cloudSyncDot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse';
+      } else {
+        showNotification(`Tarifas guardadas en almacenamiento local con éxito.${remoteMessage}`);
       }
+    }
 
-      // Unified Save handler (LocalStorage + Supabase / BroadcastChannel)
-      if (btnSave) {
-        btnSave.addEventListener('click', async function() {
-          const printStr = inputPrint ? inputPrint.value.trim() : "7.000";
-          const digitalStr = inputDigital ? inputDigital.value.trim() : "4.200";
-          const timestamp = new Date().toISOString();
+    // Event Listeners
+    btnSave.addEventListener('click', guardarTarifasEnSupabase);
 
-          // 1. LocalStorage unified keys persistence
-          localStorage.setItem('tarifa_impresa', printStr);
-          localStorage.setItem('tarifa_digital', digitalStr);
+    btnReset.addEventListener('click', function() {
+      inputPrint.value = '7.000';
+      inputDigital.value = '4.200';
+      syncUIValues('7.000', '4.200');
+    });
 
-          // Update bundle object for full backward compatibility
-          try {
-            let legacyObj = {};
-            const prevBundle = localStorage.getItem('sergio_molina_tarifas');
-            if (prevBundle) {
-              try { legacyObj = JSON.parse(prevBundle); } catch(e){}
-            }
-            legacyObj.print = printStr;
-            legacyObj.digital = digitalStr;
-            legacyObj.tarifa_impresa = printStr;
-            legacyObj.tarifa_digital = digitalStr;
-            legacyObj.updatedAt = timestamp;
-            localStorage.setItem('sergio_molina_tarifas', JSON.stringify(legacyObj));
-          } catch(e) {
-            console.warn('LocalStorage save error:', e);
-          }
-
-          // 2. Broadcast to other open client tabs/galleries
-          try {
-            if ('BroadcastChannel' in window) {
-              const bc = new BroadcastChannel('tarifas_escolar_channel');
-              bc.postMessage({
-                type: 'TARIFAS_UPDATED',
-                tarifa_impresa: printStr,
-                tarifa_digital: digitalStr,
-                timestamp: timestamp
-              });
-            }
-          } catch (e) {
-            console.warn('BroadcastChannel error:', e);
-          }
-
-          // 3. Supabase remote sync attempt
-          if (supabaseClient) {
-            try {
-              // Attempt saving to 'ajustes'
-              const syncPayload = [
-                { clave: 'tarifa_impresa', valor: printStr, updated_at: timestamp },
-                { clave: 'tarifa_digital', valor: digitalStr, updated_at: timestamp }
-              ];
-
-              const { error: errAjustes } = await supabaseClient
-                .from('ajustes')
-                .upsert(syncPayload, { onConflict: 'clave' });
-
-              if (errAjustes) {
-                // Try 'configuracion' table as alternative fallback
-                await supabaseClient
-                  .from('configuracion')
-                  .upsert([
-                    { key: 'tarifa_impresa', value: printStr },
-                    { key: 'tarifa_digital', value: digitalStr }
-                  ], { onConflict: 'key' });
-              }
-
-              // Also broadcast via Supabase Realtime channel if available
-              if (typeof supabaseClient.channel === 'function') {
-                const channel = supabaseClient.channel('tarifas_updates');
-                channel.send({
-                  type: 'broadcast',
-                  event: 'precio_actualizado',
-                  payload: { tarifa_impresa: printStr, tarifa_digital: digitalStr }
-                });
-              }
-            } catch (supaErr) {
-              console.warn('Supabase sync attempted gracefully:', supaErr);
-            }
-          }
-
-          // Update table row if present
-          if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + printStr.replace('$', '');
-          if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + digitalStr.replace('$', '');
-
-          // 4. Visual toast feedback
-          if (toastMessage) {
-            toastMessage.textContent = 'Tarifas guardadas. Se actualizaron en todas las galerías automáticamente.';
-          }
-          if (timestampSaved) {
-            const now = new Date();
-            timestampSaved.textContent = `Guardado hoy a las ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-          }
-          if (toast) {
-            toast.classList.remove('hidden');
-          }
-
-          btnSave.classList.add('ring-2', 'ring-[#38bdf8]');
-          setTimeout(() => {
-            btnSave.classList.remove('ring-2', 'ring-[#38bdf8]');
-          }, 1000);
-
-          if (toast) {
-            setTimeout(() => {
-              toast.classList.add('hidden');
-            }, 6000);
-          }
-        });
-      }
-
-      // Reset handler with null checks
-      if (btnReset) {
-        btnReset.addEventListener('click', function() {
-          if (inputPrint) inputPrint.value = "7.000";
-          if (inputDigital) inputDigital.value = "4.200";
-          updateLiveViews();
-        });
-      }
-
-      // Init on load
-      loadStored();
-    })();
-  </script>
+    // Iniciar carga de datos
+    cargarTarifasDesdeSupabase();
+  })();
+</script>
 </body></html>
