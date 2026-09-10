@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head>
+<!DOCTYPE html><html lang="es" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Galería de Fotos | Sergio Ricardo Molina</title>
@@ -622,17 +622,7 @@ header {
 <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
 </section>
 <!-- BANNER DINÁMICO DE TARIFAS -->
-<div class="banner-tarifas" data-pricing-source="supabase-live" id="banner-tarifas">
-<div class="tarifa-item">
-<span class="material-symbols-outlined" style="color: rgb(56, 189, 248); font-size: 18px;">payments</span>
-<span class="" id="texto-tarifas-banner">
-        TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.500</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$2.500</strong>
-</span>
-</div>
-<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;">
-<span class="" style="color: rgb(150, 150, 150);">• Entrega en papel fotográfico de laboratorio</span>
-</div>
-</div>
+<div class="banner-tarifas" data-pricing-source="supabase-live" id="banner-tarifas" style="background: linear-gradient(135deg, rgb(24, 22, 17) 0%, rgb(28, 24, 19) 100%); border: 1.5px solid rgb(217, 119, 6); border-radius: 12px; padding: 12px 16px; margin: 14px 0px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 0.84rem; box-shadow: rgba(245, 158, 11, 0.12) 0px 4px 20px, rgba(254, 240, 138, 0.1) 0px 1px 0px inset;"><div class="tarifa-item" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><span class="material-symbols-outlined" style="color: #f59e0b; font-size: 20px; text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);">payments</span><span id="texto-tarifas-banner" style="letter-spacing: 0.2px;" class=""><strong style="color: #fbbf24; font-weight: 700; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.8px; margin-right: 4px;">TARIFAS:</strong> Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa" style="color: #fde047; font-weight: 800; font-size: 0.95rem;">$7.500</strong> <span style="color: #f59e0b; margin: 0 4px;" class="">•</span> Archivo Digital HD: <strong id="lbl-tarifa-digital" style="color: #38bdf8; font-weight: 800; font-size: 0.95rem;">$2.500</strong></span></div><div style="color: rgb(253, 230, 138); font-size: 0.8rem; display: flex; align-items: center; gap: 6px; font-weight: 500; background: rgba(245, 158, 11, 0.12); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.3);"><span class="material-symbols-outlined" style="color: #f59e0b; font-size: 15px;">workspace_premium</span><span class="">Entrega en papel fotográfico de laboratorio</span></div></div>
 <!-- CONTENEDOR DINÁMICO DE FOTOS -->
 <div class="grid-fotos" id="contenedor-fotos">
 <div class="estado-caja" style="grid-column: 1 / -1; padding: 60px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #161616; border: 1px dashed #2a2a2a; border-radius: 14px;">
@@ -643,27 +633,9 @@ header {
 </div>
 </main>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
-<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;">
-<div class="resumen-seleccion">
-<div style="display: flex; align-items: center; gap: 6px;">
-<span class="" style="color: rgb(56, 189, 248); font-size: 13px;">●</span>
-<span class="" style="font-weight: 700; font-size: 0.82rem; letter-spacing: 0.5px;">SELECCIÓN:</span>
-<span class="contador-badge" id="contador-fotos">0 fotos</span>
-</div>
-<div style="display: flex; align-items: center; gap: 12px; font-size: 0.82rem; flex-wrap: wrap;">
-<span class="" style="color: rgb(250, 204, 21); font-weight: 600; display: flex; align-items: center; gap: 4px;">
-<span class="material-symbols-outlined" style="font-size: 15px;">photo</span> Impresas: <strong id="lbl-cant-impresas" style="color: rgb(255, 255, 255); margin-left: 2px;">0 ($0)</strong>
-</span>
-<span class="" style="color: rgb(56, 189, 248); font-weight: 600; display: flex; align-items: center; gap: 4px;">
-<span class="material-symbols-outlined" style="font-size: 15px;">cloud_download</span> Digitales: <strong id="lbl-cant-digitales" style="color: rgb(255, 255, 255); margin-left: 2px;">0 ($0)</strong>
-</span>
-<span class="" style="color: rgb(255, 255, 255); font-weight: 700; margin-left: 4px; font-size: 0.84rem;">
-        Total: <span class="" id="lbl-total-monto" style="color: rgb(56, 189, 248); font-size: 0.94rem; font-weight: 800;">$0</span>
-</span>
-</div>
-<button class="" onclick="limpiarSeleccionCompleta()" style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(136, 136, 136); text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar todo</button>
-</div>
-<div class="acciones-compra"><a class="" href="pedido.html" id="btn-ir-pedido" onclick="guardarPedidoLocalStorage()" style="background: rgb(30, 41, 59); color: rgb(147, 197, 253); font-weight: 600; font-size: 0.84rem; padding: 10px 14px; border-radius: 10px; border: 1px solid rgb(59, 130, 246); display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: 0.2s;"><span class="material-symbols-outlined" style="font-size: 18px;">shopping_cart_checkout</span><span class="">Ver Resumen</span></a><button class="btn-enviar-wa" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()"><span class="material-symbols-outlined" style="font-size: 20px;">chat</span><span class="">Enviar Pedido por WhatsApp</span></button></div>
+<div class="barra-compras-fija" id="barra-pedidos" style="display: flex; position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); width: calc(100% - 24px); max-width: 900px; background: rgba(18, 17, 15, 0.96); backdrop-filter: blur(14px); border: 1.5px solid rgb(245, 158, 11); border-radius: 16px; padding: 12px 18px; box-shadow: rgba(0, 0, 0, 0.9) 0px 12px 36px, rgba(245, 158, 11, 0.2) 0px 0px 20px; z-index: 100;">
+<div class="resumen-seleccion"><div style="display: flex; align-items: center; gap: 8px;"><span style="color: #f59e0b; font-size: 13px; filter: drop-shadow(0 0 4px #f59e0b);" class="">●</span><span style="font-weight: 800; font-size: 0.82rem; letter-spacing: 0.6px; color: #fef08a;" class="">SELECCIÓN:</span><span class="contador-badge" id="contador-fotos" style="background: linear-gradient(135deg, #d97706, #f59e0b); color: #000000; font-weight: 800; padding: 3px 10px; border-radius: 12px; font-size: 0.78rem; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);">0 fotos</span></div><div style="display: flex; align-items: center; gap: 14px; font-size: 0.82rem; flex-wrap: wrap;"><span style="color: #fde047; font-weight: 600; display: flex; align-items: center; gap: 4px; background: rgba(250, 204, 21, 0.1); padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(250, 204, 21, 0.25);" class=""><span class="material-symbols-outlined" style="font-size: 16px; color: #facc15;">photo</span> Impresas: <strong id="lbl-cant-impresas" style="color: #ffffff; margin-left: 2px;">0 ($0)</strong></span><span style="color: #7dd3fc; font-weight: 600; display: flex; align-items: center; gap: 4px; background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.25);" class=""><span class="material-symbols-outlined" style="font-size: 16px; color: #38bdf8;">cloud_download</span> Digitales: <strong id="lbl-cant-digitales" style="color: #ffffff; margin-left: 2px;">0 ($0)</strong></span><span style="color: #ffffff; font-weight: 700; margin-left: 4px; font-size: 0.86rem;" class="">Total: <span id="lbl-total-monto" style="color: #facc15; font-size: 1.05rem; font-weight: 800; text-shadow: 0 0 10px rgba(250, 204, 21, 0.35);" class="">$0</span></span></div><button onclick="limpiarSeleccionCompleta()" style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(161, 161, 170); text-decoration: underline; font-size: 0.75rem; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#a1a1aa'" class="">Vaciar todo</button></div>
+<div class="acciones-compra"><a href="pedido.html" id="btn-ir-pedido" onclick="guardarPedidoLocalStorage()" style="background: linear-gradient(135deg, rgb(245, 158, 11) 0%, rgb(234, 179, 8) 50%, rgb(250, 204, 21) 100%); color: rgb(17, 17, 17); font-weight: 800; font-size: 0.88rem; padding: 10px 18px; border-radius: 12px; border: 1px solid rgb(253, 224, 71); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: 0.2s; box-shadow: rgba(234, 179, 8, 0.45) 0px 4px 18px; letter-spacing: 0.3px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 24px rgba(234, 179, 8, 0.6)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 18px rgba(234, 179, 8, 0.45)';"><span class="material-symbols-outlined" style="font-size: 19px; font-weight: 700;">shopping_cart_checkout</span><span class="">Ver Resumen</span></a></div>
 </div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
