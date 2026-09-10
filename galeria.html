@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Galería de Fotos | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -452,7 +450,7 @@ header {
 <section class="hero-galeria">
 <div class="badge-tipo-galeria badge-publica" id="badge-tipo">
 <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
-<span class="" id="texto-tipo-badge">Galería Oficial Pública</span>
+<span class="" id="texto-tipo-badge">Galería Pública</span>
 </div>
 <h1 class="titulo-galeria" id="titulo-galeria">Cargando álbum...</h1>
 <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
@@ -465,25 +463,25 @@ header {
         TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.500</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$2.500</strong>
 </span>
 </div>
-<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 15px; color: rgb(74, 222, 128);">cloud_done</span><span class="" id="lbl-sync-status">Precios oficiales sincronizados en vivo</span><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
+<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
 </div>
 <!-- CONTENEDOR DE FOTOS -->
 <div class="grid-fotos" id="contenedor-fotos">
-<div class="estado-caja">
-<span class="material-symbols-outlined" style="color: #ef4444;">error</span>
-<h3 class="">Galería no especificada</h3>
-<p class="">No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum.</p>
-<button class="btn-accion-estado" onclick="iniciarGaleria()">
-<span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
-<span class="">Reintentar</span>
-</button>
-<a class="btn-accion-estado" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" style="background:#075e54; margin-left:8px;" target="_blank">
-<span class="material-symbols-outlined" style="font-size:18px;">chat</span>
-<span class="">Soporte WhatsApp</span>
-</a>
-</div>
-</div>
-</main><div id="toast-proteccion" style="display: none; position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1px solid #facc15; color: #facc15; padding: 10px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 16px; color: #facc15;">lock</span> Fotografía protegida • Sergio Ricardo Molina</div>
+    <div class="estado-caja">
+      <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
+      <h3 class="">Galería no especificada</h3>
+      <p class="">No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum.</p>
+      <button onclick="iniciarGaleria()" class="btn-accion-estado">
+        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+        <span class="">Reintentar</span>
+      </button>
+      <a href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
+        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
+        <span class="">Soporte WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</main><div id="toast-proteccion" style="display: none; position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1px solid #facc15; color: #facc15; padding: 10px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none; align-items: center; gap: 8px;" class=""><span class="material-symbols-outlined" style="font-size: 16px; color: #facc15;">lock</span> Fotografía protegida • Sergio Ricardo Molina</div>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
 <div class="barra-compras-fija" id="barra-pedidos" style="display: none;">
 <div class="resumen-seleccion">
@@ -510,9 +508,9 @@ header {
 <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
 <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
 <div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
-<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src=""/>
+<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="">
 <div class="marca-agua" id="marca-visor" style="display: none;">
-<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br/>SERGIO RICARDO MOLINA</div>
+<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br>SERGIO RICARDO MOLINA</div>
 </div>
 </div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
@@ -1012,4 +1010,6 @@ modalEl.addEventListener('touchend', e => {
 // Iniciar de inmediato
 document.addEventListener('DOMContentLoaded', iniciarGaleria);
 </script>
+
+
 </body></html>
