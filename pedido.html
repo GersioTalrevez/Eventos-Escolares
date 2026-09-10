@@ -7,7 +7,7 @@
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Raleway:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,6 +50,7 @@
       font-weight: 600;
       letter-spacing: 0.5px;
       color: #ffffff;
+      font-family: 'Raleway', sans-serif;
     }
     .subtitulo-evento {
       font-size: 0.88rem;
@@ -84,6 +85,9 @@
       border-bottom: 1px solid #222222;
       padding-bottom: 10px;
     }
+    .tabla-remito-container {
+      overflow-x: auto;
+    }
     .tabla-remito {
       width: 100%;
       border-collapse: collapse;
@@ -104,23 +108,27 @@
       vertical-align: middle;
     }
     .toma-tag {
-      font-family: monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-weight: 700;
       color: #ffffff;
       font-size: 0.86rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .controles-formato {
       display: flex;
       gap: 6px;
       align-items: center;
+      flex-wrap: wrap;
     }
     .btn-toggle-mini {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 5px 8px;
+      gap: 5px;
+      padding: 5px 9px;
       border-radius: 6px;
-      font-size: 0.72rem;
+      font-size: 0.73rem;
       font-weight: 700;
       cursor: pointer;
       border: 1.5px solid;
@@ -128,12 +136,18 @@
       user-select: none;
       transition: all 0.15s ease;
     }
+    .btn-toggle-mini input[type="checkbox"] {
+      accent-color: currentColor;
+      cursor: pointer;
+      pointer-events: none;
+    }
     .btn-toggle-impresa {
       border-color: #eab308;
       color: #facc15;
     }
     .btn-toggle-impresa.activo {
-      background: rgba(234, 179, 8, 0.2);
+      background: rgba(234, 179, 8, 0.22);
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.15);
     }
     .btn-toggle-digital {
       border-color: #0088cc;
@@ -141,22 +155,29 @@
     }
     .btn-toggle-digital.activo {
       background: rgba(0, 136, 204, 0.25);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
     }
     .btn-quitar-fila {
       background: transparent;
-      border: none;
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      border-radius: 6px;
       color: #f87171;
       font-size: 0.74rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 2px;
-      opacity: 0.8;
-      transition: opacity 0.15s;
+      gap: 3px;
+      padding: 4px 8px;
+      opacity: 0.85;
+      transition: all 0.15s ease;
     }
-    .btn-quitar-fila:hover { opacity: 1; text-decoration: underline; }
+    .btn-quitar-fila:hover { 
+      opacity: 1; 
+      background: rgba(248, 113, 113, 0.12);
+      border-color: #f87171;
+    }
     .fila-sumar-fotos {
-      background: #19232e;
+      background: #15222e;
       border: 1px dashed #0088cc;
       border-radius: 10px;
       padding: 12px 16px;
@@ -171,7 +192,7 @@
       background: #005580;
       border: 1px solid #38bdf8;
       color: #ffffff;
-      padding: 7px 14px;
+      padding: 7px 15px;
       border-radius: 8px;
       font-size: 0.82rem;
       font-weight: 700;
@@ -180,9 +201,12 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      transition: background 0.15s ease;
+      transition: background 0.15s ease, border-color 0.15s ease;
     }
-    .btn-sumar-fotos:hover { background: #0077b3; }
+    .btn-sumar-fotos:hover { 
+      background: #0077b3; 
+      border-color: #91cdfe;
+    }
     .form-entrega {
       display: grid;
       grid-template-columns: 1fr;
@@ -208,6 +232,10 @@
       letter-spacing: 0.5px;
       font-weight: 600;
     }
+    .campo-grupo label span.asterisco {
+      color: #f87171;
+      font-weight: bold;
+    }
     .campo-grupo input, .campo-grupo textarea {
       background: #111111;
       border: 1px solid #333333;
@@ -217,10 +245,15 @@
       font-size: 0.86rem;
       outline: none;
       font-family: inherit;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     .campo-grupo input:focus, .campo-grupo textarea:focus {
       border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+    .campo-grupo input.campo-invalido {
+      border-color: #f87171 !important;
+      box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.25);
     }
     .caja-totales {
       background: #161616;
@@ -253,16 +286,17 @@
       letter-spacing: 0.5px;
     }
     .fila-total-principal .val-total {
-      font-size: 1.7rem;
+      font-size: 1.85rem;
       font-weight: 800;
       color: #4ade80;
+      text-shadow: 0 0 16px rgba(74, 222, 128, 0.25);
     }
     .btn-enviar-wsp {
       width: 100%;
       background: #22c55e;
-      color: #0b2512;
+      color: #052e16;
       border: none;
-      padding: 14px 20px;
+      padding: 15px 20px;
       border-radius: 10px;
       font-size: 1.05rem;
       font-weight: 800;
@@ -271,13 +305,14 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: background 0.15s ease, transform 0.15s ease;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
     }
     .btn-enviar-wsp:hover {
       background: #16a34a;
       color: #ffffff;
       transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
     }
     .btn-imprimir-pdf {
       width: 100%;
@@ -294,6 +329,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
+      transition: color 0.15s, border-color 0.15s;
     }
     .btn-imprimir-pdf:hover { color: #ffffff; border-color: #555555; }
     .print-only-delivery { display: none; }
@@ -302,7 +338,7 @@
       .card-seccion, .caja-totales { background: #ffffff; border: 1px solid #cccccc; color: #000000; box-shadow: none; }
       .fila-sumar-fotos, .btn-enviar-wsp, .btn-imprimir-pdf { display: none; }
       .titulo-seccion-card { color: #000000 !important; border-color: #cccccc; }
-      .fila-total-principal .val-total { color: #000000; }
+      .fila-total-principal .val-total { color: #000000; text-shadow: none; }
       .campo-grupo input, .campo-grupo textarea {
         border: 1px solid #999999;
         color: #000000;
@@ -342,6 +378,7 @@
 </div>
 <span id="badge-total-items" style="font-size:0.74rem; background:#222; padding:3px 8px; border-radius:10px; color:#aaa;">0 fotos</span>
 </div>
+<div class="tabla-remito-container">
 <table class="tabla-remito">
 <thead>
 <tr>
@@ -354,20 +391,22 @@
 </thead>
 <tbody id="lista-items-remito">
 <tr>
-<td colspan="5" style="text-align:center; color:#777; padding:30px 10px;">
-            No hay tomas cargadas en este remito.
-          </td>
+<td colspan="5" style="text-align:center; color:#888; padding:32px 10px;">
+  No tenés tomas seleccionadas actualmente.<br/>
+<a href="galeria.html" id="link-vacio-volver" onclick="volverAGaleria(event)" style="color:#38bdf8; font-weight:700; margin-top:8px; display:inline-block; text-decoration: underline;">Hacé clic acá para volver a la galería y elegir fotos.</a>
+</td>
 </tr>
 </tbody>
 </table>
+</div>
 <div class="fila-sumar-fotos">
 <div style="font-size: 0.82rem; color: #8ec9fa; display:flex; align-items:center; gap:6px;">
 <span class="material-symbols-outlined" style="font-size: 17px;">add_photo_alternate</span>
 <span>¿Querés agregar más tomas a este remito?</span>
 </div>
-<a class="btn-sumar-fotos" href="galeria.html" onclick="volverAGaleria(event)">
+<a class="btn-sumar-fotos" href="galeria.html" id="btn-sumar-fotos-link" onclick="volverAGaleria(event)">
 <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
-<span>Sumar más fotos</span>
+<span>+ Sumar más fotos</span>
 </a>
 </div>
 </div>
@@ -380,15 +419,15 @@
 </div>
 <div class="form-entrega">
 <div class="campo-grupo">
-<label>Nombre y Apellido del Titular *</label>
+<label for="input-nombre-titular">NOMBRE Y APELLIDO DEL TITULAR <span class="asterisco">*</span></label>
 <input id="input-nombre-titular" placeholder="Ej: Laura Gómez" required="" type="text"/>
 </div>
 <div class="campo-grupo">
-<label>Institución / Grado / Egresado *</label>
+<label for="input-grado-colegio">INSTITUCIÓN / GRADO / EGRESADO <span class="asterisco">*</span></label>
 <input id="input-grado-colegio" placeholder="Ej: San Martín - 5to B (Egresados 2024)" required="" type="text"/>
 </div>
 <div class="campo-grupo col-span-full">
-<label>Observaciones</label>
+<label for="input-observaciones">OBSERVACIONES (opcional)</label>
 <textarea id="input-observaciones" placeholder="Aclaraciones sobre edición, encuadre o entrega (opcional)" rows="2"></textarea>
 </div>
 </div>
@@ -427,46 +466,179 @@
     let TARIFA_DIGITAL = 2500;
     let WHATSAPP_FOTOGRAFO = '5492613175222';
 
-    let itemsSeleccionados = {}; // { [fotoId]: { impresa: bool, digital: bool, name: string, thumb: string } }
+    // Formato estándar interno: { [id]: { name: string, impresa: bool, digital: bool, thumb: string } }
+    let itemsSeleccionados = {};
     let eventoTitulo = 'Cobertura Oficial Escolar';
     let eventoFolderId = '';
 
+    function normalizarItems(raw) {
+      if (!raw) return {};
+      let resultado = {};
+
+      // Si viene como Array: [ 'DSC_4821.jpg' ] o [ { id, name, impresa, digital } ]
+      if (Array.isArray(raw)) {
+        raw.forEach(item => {
+          if (!item) return;
+          if (typeof item === 'string') {
+            const key = item.replace(/[#]/g, '').trim();
+            resultado[key] = {
+              name: item,
+              impresa: true,
+              digital: false
+            };
+          } else if (typeof item === 'object') {
+            const key = item.id || item.name || String(Math.random());
+            const cleanKey = String(key).replace(/[#]/g, '').trim();
+            const nom = item.name || item.filename || item.id || cleanKey;
+            // Si no tiene especificado formato, default impresa: true
+            const hasImp = item.impresa !== undefined ? Boolean(item.impresa) : (item.formato === 'impresa' || item.type === 'impresa' || (!item.digital && item.formato !== 'digital'));
+            const hasDig = item.digital !== undefined ? Boolean(item.digital) : (item.formato === 'digital' || item.type === 'digital' || item.formato === 'ambos');
+            resultado[cleanKey] = {
+              name: nom,
+              impresa: hasImp || (!hasImp && !hasDig),
+              digital: hasDig,
+              thumb: item.thumb || item.thumbnail || ''
+            };
+          }
+        });
+        return resultado;
+      }
+
+      // Si viene como Objeto { key: { ... } } o { key: true } o { key: 'impresa' }
+      if (typeof raw === 'object') {
+        Object.keys(raw).forEach(key => {
+          const val = raw[key];
+          const cleanKey = String(key).replace(/[#]/g, '').trim();
+          if (!val) return;
+          if (typeof val === 'boolean' && val) {
+            resultado[cleanKey] = { name: cleanKey, impresa: true, digital: false };
+          } else if (typeof val === 'string') {
+            resultado[cleanKey] = {
+              name: cleanKey,
+              impresa: val.toLowerCase().includes('imp') || val === 'ambos',
+              digital: val.toLowerCase().includes('dig') || val === 'ambos'
+            };
+          } else if (typeof val === 'object') {
+            const nom = val.name || val.filename || cleanKey;
+            const hasImp = val.impresa !== undefined ? Boolean(val.impresa) : (val.formato === 'impresa' || (!val.digital && val.formato !== 'digital'));
+            const hasDig = val.digital !== undefined ? Boolean(val.digital) : (val.formato === 'digital' || val.formato === 'ambos');
+            resultado[cleanKey] = {
+              name: nom,
+              impresa: hasImp || (!hasImp && !hasDig),
+              digital: hasDig,
+              thumb: val.thumb || val.thumbnail || ''
+            };
+          }
+        });
+        return resultado;
+      }
+
+      return {};
+    }
+
+    function parseSafeJSON(str) {
+      try {
+        return JSON.parse(str);
+      } catch (e) {
+        return null;
+      }
+    }
+
     function inicializarRemito() {
-      // Fecha de hoy formateada
+      // Fecha de hoy
       const hoy = new Date();
       const fechaTxt = `${String(hoy.getDate()).padStart(2, '0')}/${String(hoy.getMonth() + 1).padStart(2, '0')}/${hoy.getFullYear()}`;
-      document.getElementById('lbl-fecha-emision').innerText = fechaTxt;
+      const elemFecha = document.getElementById('lbl-fecha-emision');
+      if (elemFecha) elemFecha.innerText = fechaTxt;
 
-      // Recuperar tarifas dinámicas
+      // Lectura de URL Params por si viene id, folder o titulo
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramFolder = urlParams.get('folder') || urlParams.get('id') || urlParams.get('folderId') || '';
+      const paramTitulo = urlParams.get('titulo') || urlParams.get('evento') || '';
+
+      // Recuperar tarifas dinámicas si existen
       const storedImp = localStorage.getItem('tarifa_impresa');
       const storedDig = localStorage.getItem('tarifa_digital');
       const storedWa = localStorage.getItem('numero_whatsapp');
-      if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
-      if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
+      if (storedImp && !isNaN(storedImp) && Number(storedImp) > 0) TARIFA_IMPRESA = Number(storedImp);
+      if (storedDig && !isNaN(storedDig) && Number(storedDig) > 0) TARIFA_DIGITAL = Number(storedDig);
       if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
 
       document.getElementById('lbl-unit-imp').innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
       document.getElementById('lbl-unit-dig').innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
 
-      // Recuperar evento y carpeta de origen
-      eventoFolderId = localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
-      eventoTitulo = localStorage.getItem('galeria_activa_titulo') || localStorage.getItem('pedido_evento_titulo') || 'Cobertura Oficial Escolar';
+      // Determinar folder y título de evento
+      eventoFolderId = paramFolder || localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
+      eventoTitulo = paramTitulo || localStorage.getItem('galeria_activa_titulo') || localStorage.getItem('pedido_evento_titulo') || 'Cobertura Oficial Escolar';
       document.getElementById('subtitulo-evento').innerText = `Evento: ${eventoTitulo}`;
 
-      // Recuperar items seleccionados en galeria.html
-      try {
-        let datos = localStorage.getItem('pedido_items_dual');
-        if (!datos && eventoFolderId) {
-          datos = localStorage.getItem(`seleccion_dual_${eventoFolderId}`);
-        }
-        if (datos) {
-          itemsSeleccionados = JSON.parse(datos);
-        }
-      } catch (e) {
-        console.warn("Falla al parsear items de pedido:", e);
+      // 1. LECTURA EXHAUSTIVA DE LOCALSTORAGE
+      // Claves solicitadas explícitamente y compatibles con galeria.html:
+      const candidatosClaves = [
+        'fotos_seleccionadas_pedido',
+        'carrito_pedido_fotos',
+        'seleccion_galeria',
+        'pedido_items_dual'
+      ];
+      if (eventoFolderId) {
+        candidatosClaves.push(`seleccion_dual_${eventoFolderId}`);
+        candidatosClaves.push(`seleccion_${eventoFolderId}`);
       }
 
+      let dataCruda = null;
+      for (const clave of candidatosClaves) {
+        const itemStr = localStorage.getItem(clave);
+        if (itemStr && itemStr.trim().length > 2) {
+          const parsed = parseSafeJSON(itemStr);
+          if (parsed && (Array.isArray(parsed) ? parsed.length > 0 : Object.keys(parsed).length > 0)) {
+            dataCruda = parsed;
+            break;
+          }
+        }
+      }
+
+      // Si también vino por parámetro en la URL 'fotos'
+      if (!dataCruda && urlParams.get('fotos')) {
+        try {
+          dataCruda = parseSafeJSON(decodeURIComponent(urlParams.get('fotos'))) || urlParams.get('fotos').split(',');
+        } catch(e) {}
+      }
+
+      if (dataCruda) {
+        itemsSeleccionados = normalizarItems(dataCruda);
+      } else {
+        itemsSeleccionados = {};
+      }
+
+      // Sincronizar link de volver con parámetros
+      actualizarEnlacesGaleria();
+
       renderizarTablaRemito();
+    }
+
+    function actualizarEnlacesGaleria() {
+      let targetHref = 'galeria.html';
+      const folder = eventoFolderId || localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
+      const titulo = eventoTitulo || localStorage.getItem('galeria_activa_titulo') || '';
+
+      if (folder) {
+        targetHref = `galeria.html?id=${encodeURIComponent(folder)}&folder=${encodeURIComponent(folder)}&titulo=${encodeURIComponent(titulo)}`;
+      }
+
+      const linkVacio = document.getElementById('link-vacio-volver');
+      if (linkVacio) linkVacio.href = targetHref;
+      const btnSumar = document.getElementById('btn-sumar-fotos-link');
+      if (btnSumar) btnSumar.href = targetHref;
+    }
+
+    function formatearNombreVisual(nombre) {
+      if (!nombre) return 'Archivo sin nombre';
+      let limpio = String(nombre).trim();
+      // Si ya tiene extensión .jpg o DSC_, preservarlo; si es puro número, ponerle prefijo #
+      if (/^\d+$/.test(limpio)) {
+        return `#${limpio}`;
+      }
+      return limpio;
     }
 
     function renderizarTablaRemito() {
@@ -478,11 +650,12 @@
           <tr>
             <td colspan="5" style="text-align:center; color:#888; padding:32px 10px;">
               No tenés tomas seleccionadas actualmente.<br>
-              <a href="galeria.html" onclick="volverAGaleria(event)" style="color:#38bdf8; font-weight:700; margin-top:8px; display:inline-block;">Hacé clic acá para volver a la galería y elegir fotos.</a>
+              <a href="galeria.html" id="link-vacio-volver" onclick="volverAGaleria(event)" style="color:#38bdf8; font-weight:700; margin-top:8px; display:inline-block; text-decoration: underline;">Hacé clic acá para volver a la galería y elegir fotos.</a>
             </td>
           </tr>
         `;
         document.getElementById('badge-total-items').innerText = '0 fotos';
+        actualizarEnlacesGaleria();
         calcularTotales();
         return;
       }
@@ -494,11 +667,9 @@
         const item = itemsSeleccionados[id];
         const tr = document.createElement('tr');
 
-        // Formato genuino de nombre de archivo
-        let nombreLimpio = item.name || id;
-        if (!nombreLimpio.startsWith('#')) nombreLimpio = `#${nombreLimpio}`;
+        const nombreVisual = formatearNombreVisual(item.name || id);
 
-        // Cálculo de subtotal por toma
+        // Subtotal de la toma
         let subtotalFila = 0;
         let unitText = '';
         if (item.impresa && item.digital) {
@@ -517,31 +688,34 @@
 
         tr.innerHTML = `
           <td>
-            <div class="toma-tag">${nombreLimpio}</div>
+            <div class="toma-tag">
+              <span class="material-symbols-outlined" style="font-size:16px; color:#38bdf8; opacity:0.8;">image</span>
+              <span>${nombreVisual}</span>
+            </div>
           </td>
           <td>
             <div class="controles-formato">
-              <button type="button" class="btn-toggle-mini btn-toggle-impresa ${item.impresa ? 'activo' : ''}" onclick="toggleFormato('${id}', 'impresa')">
-                <input type="checkbox" ${item.impresa ? 'checked' : ''} style="pointer-events:none;">
-                <span>Impresa</span>
-                <span style="opacity:0.8;">$${TARIFA_IMPRESA.toLocaleString('es-AR')}</span>
+              <button type="button" class="btn-toggle-mini btn-toggle-impresa ${item.impresa ? 'activo' : ''}" onclick="toggleFormato('${id}', 'impresa')" title="Tildar o destildar Copia Impresa 15x21cm">
+                <input type="checkbox" ${item.impresa ? 'checked' : ''} tabindex="-1">
+                <span>🟡 Impresa</span>
+                <span style="opacity:0.85; font-size:0.7rem;">$${TARIFA_IMPRESA.toLocaleString('es-AR')}</span>
               </button>
-              <button type="button" class="btn-toggle-mini btn-toggle-digital ${item.digital ? 'activo' : ''}" onclick="toggleFormato('${id}', 'digital')">
-                <input type="checkbox" ${item.digital ? 'checked' : ''} style="pointer-events:none;">
-                <span>Digital</span>
-                <span style="opacity:0.8;">$${TARIFA_DIGITAL.toLocaleString('es-AR')}</span>
+              <button type="button" class="btn-toggle-mini btn-toggle-digital ${item.digital ? 'activo' : ''}" onclick="toggleFormato('${id}', 'digital')" title="Tildar o destildar Archivo Digital HD">
+                <input type="checkbox" ${item.digital ? 'checked' : ''} tabindex="-1">
+                <span>🔵 Digital</span>
+                <span style="opacity:0.85; font-size:0.7rem;">$${TARIFA_DIGITAL.toLocaleString('es-AR')}</span>
               </button>
             </div>
           </td>
-          <td style="text-align: right; color: #888; font-size: 0.78rem;">
+          <td style="text-align: right; color: #888888; font-size: 0.78rem;">
             ${unitText}
           </td>
           <td style="text-align: right; font-weight: 700; color: #facc15;">
             $${subtotalFila.toLocaleString('es-AR')}
           </td>
           <td style="text-align: center;">
-            <button class="btn-quitar-fila" onclick="eliminarFila('${id}')">
-              <span class="material-symbols-outlined" style="font-size: 15px;">delete</span>
+            <button type="button" class="btn-quitar-fila" onclick="eliminarFila('${id}')" title="Eliminar del remito">
+              <span class="material-symbols-outlined" style="font-size: 14px;">delete</span>
               <span>Quitar</span>
             </button>
           </td>
@@ -556,7 +730,7 @@
       if (!itemsSeleccionados[id]) return;
       itemsSeleccionados[id][tipo] = !itemsSeleccionados[id][tipo];
 
-      // Si desmarcó ambas, eliminar la fila
+      // Si ambas quedaron destildadas, se elimina la toma del remito
       if (!itemsSeleccionados[id].impresa && !itemsSeleccionados[id].digital) {
         delete itemsSeleccionados[id];
       }
@@ -571,11 +745,19 @@
       renderizarTablaRemito();
     }
 
+    // Persiste exhaustivamente en todas las claves para garantizar sincronización bidireccional
     function guardarCambios() {
+      const json = JSON.stringify(itemsSeleccionados);
+
+      localStorage.setItem('fotos_seleccionadas_pedido', json);
+      localStorage.setItem('carrito_pedido_fotos', json);
+      localStorage.setItem('seleccion_galeria', json);
+      localStorage.setItem('pedido_items_dual', json);
+
       if (eventoFolderId) {
-        localStorage.setItem(`seleccion_dual_${eventoFolderId}`, JSON.stringify(itemsSeleccionados));
+        localStorage.setItem(`seleccion_dual_${eventoFolderId}`, json);
+        localStorage.setItem(`seleccion_${eventoFolderId}`, json);
       }
-      localStorage.setItem('pedido_items_dual', JSON.stringify(itemsSeleccionados));
     }
 
     function calcularTotales() {
@@ -599,27 +781,21 @@
       document.getElementById('val-total-general').innerText = `$${totalGeneral.toLocaleString('es-AR')}`;
     }
 
-    // Retorno inteligente: no pierde el evento ni las fotos
+    // Retorno inteligente a la galería conservando estado
     function volverAGaleria(event) {
       if (event) event.preventDefault();
 
-      // Guardar el estado actual antes de salir
       guardarCambios();
 
-      // Si venimos navegando desde la galería, history.back() conserva el scroll y la carga
-      if (window.history.length > 1 && document.referrer && document.referrer.includes('galeria.html')) {
-        window.history.back();
-        return;
-      }
-
-      // Si no, abre galeria.html con los parámetros exactos del evento
-      const folderId = eventoFolderId || localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
+      const folder = eventoFolderId || localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
       const titulo = eventoTitulo || localStorage.getItem('galeria_activa_titulo') || '';
 
-      if (folderId) {
-        window.location.href = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
+      if (folder) {
+        window.location.href = `galeria.html?id=${encodeURIComponent(folder)}&folder=${encodeURIComponent(folder)}&titulo=${encodeURIComponent(titulo)}`;
+      } else if (window.history.length > 1 && document.referrer && document.referrer.includes('galeria.html')) {
+        window.history.back();
       } else {
-        window.location.href = 'eventos.html';
+        window.location.href = 'galeria.html';
       }
     }
 
@@ -630,7 +806,7 @@
 
       document.getElementById('print-lbl-titular').innerText = nombreTitular || '(No especificado)';
       document.getElementById('print-lbl-grado').innerText = gradoColegio || '(No especificado)';
-      
+
       const obsRow = document.getElementById('print-row-observaciones');
       if (observaciones) {
         document.getElementById('print-lbl-observaciones').innerText = observaciones;
@@ -653,72 +829,91 @@
       const inputGrado = document.getElementById('input-grado-colegio');
       const inputObs = document.getElementById('input-observaciones');
 
+      inputTitular.classList.remove('campo-invalido');
+      inputGrado.classList.remove('campo-invalido');
+
       const nombreTitular = inputTitular.value.trim();
       const gradoColegio = inputGrado.value.trim();
       const observaciones = inputObs.value.trim();
 
-      if (!nombreTitular && !gradoColegio) {
-        alert("Por favor completá obligatoriamente el Nombre y Apellido del Titular y la Institución / Grado / Egresado antes de continuar.");
-        inputTitular.focus();
-        return;
-      }
-
+      let faltantes = [];
       if (!nombreTitular) {
-        alert("Por favor completá el Nombre y Apellido del titular antes de continuar.");
-        inputTitular.focus();
-        return;
+        faltantes.push("Nombre y Apellido del Titular");
+        inputTitular.classList.add('campo-invalido');
       }
-
       if (!gradoColegio) {
-        alert("Por favor completá la Institución / Grado / Egresado antes de continuar.");
-        inputGrado.focus();
+        faltantes.push("Institución / Grado / Egresado");
+        inputGrado.classList.add('campo-invalido');
+      }
+
+      if (faltantes.length > 0) {
+        alert(`Por favor completá los campos obligatorios (*):\n• ${faltantes.join('\n• ')}`);
+        if (!nombreTitular) inputTitular.focus();
+        else inputGrado.focus();
         return;
       }
 
-      let impresas = [];
-      let digitales = [];
+      // Clasificación clara de fotos
+      let listaTomasDetalladas = [];
+      let cantImp = 0;
+      let cantDig = 0;
 
-      ids.forEach(id => {
+      ids.forEach((id, index) => {
         const item = itemsSeleccionados[id];
-        const nom = item.name.startsWith('#') ? item.name : `#${item.name}`;
-        if (item.impresa) impresas.push(nom);
-        if (item.digital) digitales.push(nom);
+        const nom = formatearNombreVisual(item.name || id);
+        let formatoTxt = '';
+
+        if (item.impresa && item.digital) {
+          formatoTxt = '🟡 Impresa 15x21 + 🔵 Digital HD';
+          cantImp++;
+          cantDig++;
+        } else if (item.impresa) {
+          formatoTxt = '🟡 Impresa 15x21';
+          cantImp++;
+        } else if (item.digital) {
+          formatoTxt = '🔵 Digital HD';
+          cantDig++;
+        }
+
+        listaTomasDetalladas.push(`${index + 1}. *${nom}* (${formatoTxt})`);
       });
 
-      const cantImp = impresas.length;
-      const cantDig = digitales.length;
       const subImp = cantImp * TARIFA_IMPRESA;
       const subDig = cantDig * TARIFA_DIGITAL;
-      const total = subImp + subDig;
+      const totalGeneral = subImp + subDig;
 
+      // Mensaje estructurado renglón por renglón
       let msg = `*COMPROBANTE DE PEDIDO FOTOGRÁFICO*\n` +
-        `Fotógrafo: Sergio Ricardo Molina\n` +
+        `Fotógrafo Oficial: Sergio Ricardo Molina\n` +
         `-----------------------------------------\n` +
         `*DATOS DE ENTREGA:*\n` +
         `• *Titular:* ${nombreTitular}\n` +
         `• *Institución / Grado / Egresado:* ${gradoColegio}\n` +
         `• *Evento:* ${eventoTitulo}\n`;
 
-      if (observaciones) msg += `• *Observaciones:* ${observaciones}\n`;
+      if (observaciones) {
+        msg += `• *Observaciones:* ${observaciones}\n`;
+      }
 
       msg += `-----------------------------------------\n` +
-        `*DETALLE DE TOMAS SOLICITADAS:*\n`;
+        `*DETALLE DE TOMAS SOLICITADAS (${ids.length} fotos):*\n` +
+        `${listaTomasDetalladas.join('\n')}\n` +
+        `-----------------------------------------\n` +
+        `*RESUMEN Y LIQUIDACIÓN:*\n`;
 
       if (cantImp > 0) {
-        msg += `\n🟡 *Copias Impresas 15x21 cm* (${cantImp} un. a $${TARIFA_IMPRESA.toLocaleString('es-AR')} = $${subImp.toLocaleString('es-AR')}):\n` +
-          `${impresas.join(', ')}\n`;
+        msg += `• Copias Impresas 15x21: ${cantImp} un. × $${TARIFA_IMPRESA.toLocaleString('es-AR')} = *$${subImp.toLocaleString('es-AR')}*\n`;
       }
-
       if (cantDig > 0) {
-        msg += `\n🔵 *Archivos Digitales HD* (${cantDig} un. a $${TARIFA_DIGITAL.toLocaleString('es-AR')} = $${subDig.toLocaleString('es-AR')}):\n` +
-          `${digitales.join(', ')}\n`;
+        msg += `• Archivos Digitales HD: ${cantDig} un. × $${TARIFA_DIGITAL.toLocaleString('es-AR')} = *$${subDig.toLocaleString('es-AR')}*\n`;
       }
 
-      msg += `\n-----------------------------------------\n` +
-        `*TOTAL GENERAL A LIQUIDAR:* $${total.toLocaleString('es-AR')}\n` +
+      msg += `-----------------------------------------\n` +
+        `*TOTAL GENERAL A LIQUIDAR: $${totalGeneral.toLocaleString('es-AR')}*\n` +
         `-----------------------------------------\n` +
         `¿Me confirmás los datos de transferencia y plazos de entrega? Muchas gracias.`;
 
+      // Número oficial: +54 9 261 317-5222 -> 5492613175222
       const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(msg)}`;
       window.open(urlWa, '_blank');
     }
