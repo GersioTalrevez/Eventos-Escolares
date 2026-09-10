@@ -271,6 +271,9 @@
       return str;
     }
 
+    // Alias para satisfacer el requerimiento de extraerIdDrive
+    const extraerIdDrive = extraerDriveId;
+
     // Constructor tolerante de portadas
     function construirUrlPortada(coverRaw, folderId) {
       if (coverRaw) {
@@ -296,6 +299,24 @@
       const div = document.createElement('div');
       div.textContent = texto;
       return div.innerHTML;
+    }
+
+    // Obtener clave única representativa para evitar cualquier duplicación
+    function obtenerClaveUnica(item) {
+      if (!item) return '';
+      const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || '';
+      const driveId = extraerIdDrive(driveRaw);
+      if (driveId && driveId.length >= 15) {
+        return `drive:${driveId}`;
+      }
+      if (item.id) {
+        return `id:${String(item.id).trim()}`;
+      }
+      const titulo = String(item.titulo || item.nombre || item.name || '').trim().toLowerCase();
+      if (titulo) {
+        return `title:${titulo}`;
+      }
+      return '';
     }
 
     // Identifica si una entrada es pública
@@ -327,7 +348,7 @@
     // Normalizador de item para garantizar campos compatibles
     function normalizarGaleria(item) {
       const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || item.id || '';
-      const folderId = extraerDriveId(driveRaw);
+      const folderId = extraerIdDrive(driveRaw);
       const titulo = item.titulo || item.nombre || item.name || 'Evento Escolar';
       const coverRaw = item.portada_url || item.portada || item.portada_id || item.cover_id || item.cover || '';
       const imgUrl = construirUrlPortada(coverRaw, folderId);
@@ -344,59 +365,108 @@
       };
     }
 
-    // Carga de eventos públicos desde Supabase con fallback a 'galerias' y respaldo en localStorage
+    // Carga de eventos públicos con deduplicación estricta
     async function cargarEventosPublicos() {
       const grid = document.getElementById('galleries-grid');
       const emptyState = document.getElementById('empty-state');
       const counter = document.getElementById('gallery-counter');
       grid.innerHTML = '';
 
-      let listaBruta = [];
+      const listaDeduplicada = [];
+      const clavesProcesadas = new Set();
+      const driveIdsProcesados = new Set();
+
+      // Función auxiliar para agregar sin duplicar
+      function agregarSiNoExiste(item) {
+        if (!item) return;
+
+        // Extraer id de drive
+        const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || '';
+        const driveId = extraerIdDrive(driveRaw);
+
+        // Clave primaria normalizada
+        const clave = obtenerClaveUnica(item);
+
+        // Si ya registramos el Drive ID
+        if (driveId && driveId.length >= 15 && driveIdsProcesados.has(driveId)) {
+          return;
+        }
+
+        // Si ya registramos la clave normalizada
+        if (clave && clavesProcesadas.has(clave)) {
+          return;
+        }
+
+        // Si tiene id de Supabase
+        if (item.id && clavesProcesadas.has(`id:${String(item.id).trim()}`)) {
+          return;
+        }
+
+        // Registrar huellas
+        if (driveId && driveId.length >= 15) {
+          driveIdsProcesados.add(driveId);
+        }
+        if (clave) {
+          clavesProcesadas.add(clave);
+        }
+        if (item.id) {
+          clavesProcesadas.add(`id:${String(item.id).trim()}`);
+        }
+        const tituloNorm = String(item.titulo || item.nombre || item.name || '').trim().toLowerCase();
+        if (tituloNorm) {
+          clavesProcesadas.add(`title:${tituloNorm}`);
+        }
+
+        listaDeduplicada.push(item);
+      }
 
       // 1. Consulta a Supabase
       if (supabaseClient) {
         try {
-          // Primero tabla 'galeria'
-          let { data, error } = await supabaseClient
-            .from('galeria')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-          // Si falla o no devuelve datos, probar tabla 'galerias'
-          if (!data || data.length === 0 || error) {
-            const resFallback = await supabaseClient
-              .from('galerias')
+          // Consulta principal tabla 'galeria'
+          let galeriaData = null;
+          try {
+            const { data, error } = await supabaseClient
+              .from('galeria')
               .select('*')
               .order('created_at', { ascending: false });
-            if (resFallback.data && resFallback.data.length > 0) {
-              data = resFallback.data;
+            if (!error && Array.isArray(data)) {
+              galeriaData = data;
             }
+          } catch (e) {
+            console.warn('Tabla galeria no disponible o error:', e);
           }
 
-          if (data && Array.isArray(data)) {
-            listaBruta = data;
+          if (galeriaData && galeriaData.length > 0) {
+            // Si galeria tuvo éxito, agregamos sus registros
+            galeriaData.forEach(agregarSiNoExiste);
+          } else {
+            // Si galeria falló o vino vacía, intentar como fallback con 'galerias'
+            try {
+              const resFallback = await supabaseClient
+                .from('galerias')
+                .select('*')
+                .order('created_at', { ascending: false });
+              if (resFallback.data && Array.isArray(resFallback.data)) {
+                resFallback.data.forEach(agregarSiNoExiste);
+              }
+            } catch (errFallback) {
+              console.warn('Fallback tabla galerias fallo:', errFallback);
+            }
           }
         } catch (err) {
           console.warn('Advertencia al consultar Supabase:', err);
         }
       }
 
-      // 2. Respaldo complementario de localStorage ('galerias_locales')
+      // 2. Respaldo complementario de localStorage ('galerias_locales') deduplicado
       try {
         const guardadasLocal = localStorage.getItem('galerias_locales');
         if (guardadasLocal) {
           const parsed = JSON.parse(guardadasLocal);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            // Unificar evitando duplicados por folderId o id
-            const idsExistentes = new Set(
-              listaBruta.map(g => String(g.folder_id || g.drive_id || g.id || g.drive_url || '').trim()).filter(Boolean)
-            );
+          if (Array.isArray(parsed)) {
             parsed.forEach(localItem => {
-              const localKey = String(localItem.folder_id || localItem.drive_id || localItem.id || localItem.drive_url || '').trim();
-              if (!localKey || !idsExistentes.has(localKey)) {
-                listaBruta.push(localItem);
-                if (localKey) idsExistentes.add(localKey);
-              }
+              agregarSiNoExiste(localItem);
             });
           }
         }
@@ -405,7 +475,7 @@
       }
 
       // 3. Filtrar galerías públicas
-      const publicasFiltradas = listaBruta.filter(esGaleriaPublica);
+      const publicasFiltradas = listaDeduplicada.filter(esGaleriaPublica);
       const itemsNormalizados = publicasFiltradas.map(normalizarGaleria).filter(g => Boolean(g.folderId || g.titulo));
 
       // Actualizar contador
