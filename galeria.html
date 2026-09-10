@@ -492,16 +492,7 @@ header {
 </div>
 <button class="" onclick="limpiarSeleccion()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar</button>
 </div>
-<div class="acciones-compra">
-<button class="btn-pedido btn-pedido-impresas" onclick="pedirPorWhatsApp('impresas')" style="border: 2px solid #facc15; color: #facc15; background: rgba(250, 204, 21, 0.12); box-shadow: 0 0 12px rgba(250, 204, 21, 0.25);">
-<span class="material-symbols-outlined" style="font-size: 16px;">print</span>
-<span class="" id="btn-label-impresas">Impresas 15x21 ($7.500 c/u)</span>
-</button>
-<button class="btn-pedido btn-pedido-digitales" onclick="pedirPorWhatsApp('digitales')">
-<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span>
-<span class="" id="btn-label-digitales">Digital HD ($2.500 c/u)</span>
-</button>
-</div>
+<div class="acciones-compra"><button class="btn-pedido btn-pedido-impresas" onclick="tramitarPedido('impresas')" style="border: 2px solid rgb(250, 204, 21); color: rgb(250, 204, 21); background: rgba(250, 204, 21, 0.12); box-shadow: rgba(250, 204, 21, 0.25) 0px 0px 12px;"><span class="material-symbols-outlined" style="font-size: 16px;">print</span><span id="btn-label-impresas" class="">Impresas 15x21 ($7.500 c/u)</span></button><button class="btn-pedido btn-pedido-digitales" onclick="tramitarPedido('digitales')"><span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span><span id="btn-label-digitales" class="">Digital HD ($2.500 c/u)</span></button><button class="btn-pedido" onclick="tramitarPedido()" style="background: rgb(34, 197, 94); color: rgb(255, 255, 255); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 8px 14px; font-weight: 700;"><span class="material-symbols-outlined" style="font-size: 16px;">shopping_cart_checkout</span><span class="">Revisar Pedido</span></button></div>
 </div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
@@ -1012,4 +1003,45 @@ document.addEventListener('DOMContentLoaded', iniciarGaleria);
 </script>
 
 
-</body></html>
+
+
+<script>
+function tramitarPedido(formato) {
+  if (seleccionadas.size === 0) {
+    alert("Por favor seleccioná al menos una fotografía haciendo clic en 'Elegir' sobre las fotos.");
+    return;
+  }
+  const fotosArray = Array.from(seleccionadas).map(id => {
+    const f = (listaFotos && listaFotos.length > 0) ? listaFotos.find(item => item.id === id) : null;
+    return {
+      id: id,
+      name: f ? f.name : id,
+      thumb: f ? f.thumb : `https://lh3.googleusercontent.com/d/${id}=w600`,
+      full: f ? f.full : `https://lh3.googleusercontent.com/d/${id}=w1600`
+    };
+  });
+  const nombresFotos = fotosArray.map(f => f.name);
+  const params = new URLSearchParams(window.location.search);
+  const currentFolder = params.get('folder') || params.get('id') || '';
+  try {
+    localStorage.setItem('pedido_fotos_seleccionadas', JSON.stringify(fotosArray));
+    localStorage.setItem('pedido_fotos_nombres', JSON.stringify(nombresFotos));
+    localStorage.setItem('pedido_evento_titulo', tituloEvento || 'Álbum Fotográfico');
+    localStorage.setItem('pedido_folder_id', currentFolder);
+    localStorage.setItem('pedido_formato_inicial', formato || 'impresas');
+    localStorage.setItem('tarifa_impresa', String(TARIFA_IMPRESA));
+    localStorage.setItem('tarifa_digital', String(TARIFA_DIGITAL));
+  } catch (err) {
+    console.warn('Error guardando pedido en localStorage:', err);
+  }
+  const urlDestino = new URL('pedido.html', window.location.href);
+  if (formato) {
+    urlDestino.searchParams.set('formato', formato);
+  }
+  urlDestino.searchParams.set('cantidad', fotosArray.length);
+  if (tituloEvento) {
+    urlDestino.searchParams.set('evento', tituloEvento);
+  }
+  window.location.href = urlDestino.toString();
+}
+</script></body></html>
