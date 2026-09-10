@@ -1,11 +1,11 @@
-<!DOCTYPE html><html lang="es" style=""><head>
+<!DOCTYPE html><html lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Galería de Fotos | Sergio Ricardo Molina</title>
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -15,7 +15,7 @@ body {
   background: #111111;
   color: #ffffff;
   padding: 16px 12px 140px;
-  max-width: 1040px;
+  max-width: 1080px;
   margin: 0 auto;
   min-height: 100vh;
   position: relative;
@@ -122,48 +122,48 @@ header {
   font-weight: 700;
 }
 
-/* CUADRÍCULA DE FOTOS: 2 COLUMNAS EN MÓVIL, 4 EN ESCRITORIO */
+/* CUADRÍCULA DE FOTOS DUAL */
 .grid-fotos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: 14px;
 }
-@media (min-width: 640px) {
+@media (min-width: 680px) {
   .grid-fotos {
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-}
-@media (min-width: 880px) {
-  .grid-fotos {
-    grid-template-columns: repeat(4, 1fr);
     gap: 14px;
   }
 }
+@media (min-width: 960px) {
+  .grid-fotos {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* TARJETA MODERNA DUAL SERGIO RICARDO MOLINA */
 .tarjeta-foto {
-  background: #1c1c1c;
-  border: 1.5px solid #282828;
-  border-radius: 10px;
+  background: #141414;
+  border: 2px solid #00a0e9;
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.18s ease, border-color 0.18s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .tarjeta-foto:hover {
-  border-color: #0077b3;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 160, 233, 0.2);
 }
-.tarjeta-foto.seleccionada {
-  border-color: #38bdf8;
-  background: #15222e;
-}
+
 .contenedor-img {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #0d0d0d;
+  background: #0a0a0a;
   overflow: hidden;
   cursor: pointer;
 }
@@ -173,12 +173,29 @@ header {
   object-fit: cover;
   user-select: none;
   -webkit-user-drag: none;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease;
   pointer-events: none;
 }
 .tarjeta-foto:hover .contenedor-img img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
+
+.badge-numero-foto {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-family: monospace;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  z-index: 4;
+}
+
 .marca-agua {
   position: absolute;
   inset: 0;
@@ -186,72 +203,165 @@ header {
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    -35deg,
-    rgba(0, 0, 0, 0) 0,
-    rgba(0, 0, 0, 0) 32px,
-    rgba(255, 255, 255, 0.12) 33px,
-    rgba(0, 0, 0, 0) 35px
-  );
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 3;
 }
-.texto-marca-agua {
-  transform: rotate(-30deg);
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-  user-select: none;
+.marca-agua-badge {
+  background: rgba(15, 15, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 16px;
+  border-radius: 8px;
+  transform: rotate(-24deg);
   text-align: center;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+}
+.marca-agua-badge .linea-1 {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   line-height: 1.2;
 }
-.pie-foto {
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid #262626;
-  font-size: 0.74rem;
-  gap: 4px;
+.marca-agua-badge .linea-2 {
+  color: #38bdf8;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
-.nombre-foto {
-  color: #aaaaaa;
+
+.cuerpo-tarjeta {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #141414;
+}
+.nombre-archivo-foto {
+  color: #a0aec0;
   font-family: monospace;
   font-size: 0.72rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 1;
-  min-width: 0;
+  text-align: center;
+  padding: 0 2px;
 }
-.btn-check-foto {
-  background: #252525;
-  border: 1px solid #444444;
-  color: #cccccc;
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-size: 0.72rem;
-  font-weight: 600;
+
+.caja-controles-dual {
+  background: #0f1318;
+  border: 1.5px solid #1a232e;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grid-botones-opcion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+/* BOTÓN IMPRESA */
+.btn-opcion-compra {
+  border-radius: 8px;
+  padding: 7px 4px;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 3px;
+  justify-content: center;
+  gap: 2px;
   transition: all 0.15s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
+  background: #151c24;
+  border: 1px solid #334155;
+  user-select: none;
 }
-.btn-check-foto:hover {
-  background: #333333;
-  border-color: #38bdf8;
-  color: #ffffff;
+.btn-opcion-impresa {
+  border-color: #3d3415;
+  background: #18150c;
 }
-.tarjeta-foto.seleccionada .btn-check-foto {
-  background: #005580;
-  border-color: #38bdf8;
-  color: #ffffff;
+.btn-opcion-impresa .txt-etiqueta {
+  color: #a39564;
+  font-size: 0.76rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
+.btn-opcion-impresa .txt-precio {
+  color: #7d7247;
+  font-size: 0.84rem;
+  font-weight: 800;
+  font-family: monospace;
+}
+.btn-opcion-impresa.activo {
+  background: #1e1a0a;
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+.btn-opcion-impresa.activo .txt-etiqueta {
+  color: #facc15;
+}
+.btn-opcion-impresa.activo .txt-precio {
+  color: #eab308;
+}
+
+/* BOTÓN DIGITAL */
+.btn-opcion-digital {
+  border-color: #1e293b;
+  background: #0f1722;
+}
+.btn-opcion-digital .txt-etiqueta {
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-opcion-digital .txt-precio {
+  color: #475569;
+  font-size: 0.84rem;
+  font-weight: 800;
+  font-family: monospace;
+}
+.btn-opcion-digital.activo {
+  background: #0b1723;
+  border: 2px solid #0284c7;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.25);
+}
+.btn-opcion-digital.activo .txt-etiqueta {
+  color: #38bdf8;
+}
+.btn-opcion-digital.activo .txt-precio {
+  color: #38bdf8;
+}
+
+/* BOTÓN QUITAR */
+.btn-quitar-foto {
+  background: none;
+  border: none;
+  color: #f87171;
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 3px 0;
+  transition: color 0.15s ease;
+}
+.btn-quitar-foto:hover {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
 .estado-caja {
   grid-column: 1 / -1;
   text-align: center;
@@ -303,25 +413,26 @@ header {
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 24px);
-  max-width: 860px;
-  background: rgba(22, 22, 22, 0.94);
-  backdrop-filter: blur(10px);
-  border: 1.5px solid #005580;
+  max-width: 900px;
+  background: rgba(18, 20, 24, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid #00a0e9;
   border-radius: 14px;
-  padding: 10px 14px;
+  padding: 10px 16px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  gap: 12px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.85);
   z-index: 100;
 }
 .resumen-seleccion {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.88rem;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.84rem;
 }
 .contador-badge {
   background: #005580;
@@ -329,48 +440,34 @@ header {
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 12px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 .acciones-compra {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
 }
-.btn-pedido {
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
+.btn-enviar-wa {
+  background: #22c55e;
+  color: #052e16;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  border: none;
-  transition: all 0.15s ease;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
-.btn-pedido-impresas {
-  background: rgba(250, 204, 21, 0.08);
-  border: 1px solid #facc15;
-  color: #facc15;
+.btn-enviar-wa:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.45);
 }
-.btn-pedido-impresas .material-symbols-outlined {
-  color: #facc15;
-}
-.btn-pedido-impresas:hover {
-  background: rgba(250, 204, 21, 0.18);
-  border-color: #fde047;
-  color: #fde047;
-}
-.btn-pedido-impresas:hover .material-symbols-outlined {
-  color: #fde047;
-}
-.btn-pedido-digitales {
-  background: #005580;
-  color: #ffffff;
-}
-.btn-pedido-digitales:hover { background: #0077b3; }
 
 /* VISOR MODAL */
 .modal-visor {
@@ -422,14 +519,10 @@ header {
 .btn-nav-prev { left: 12px; }
 .btn-nav-next { right: 12px; }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 680px) {
   .btn-nav-visor { display: none; }
-  .acciones-compra { width: 100%; justify-content: stretch; }
-  .btn-pedido { flex: 1; justify-content: center; font-size: 0.76rem; padding: 8px 6px; }
+  .acciones-compra { width: 100%; }
+  .btn-enviar-wa { width: 100%; justify-content: center; font-size: 0.82rem; padding: 9px 10px; }
   .resumen-seleccion { width: 100%; justify-content: space-between; }
 }
 </style>
@@ -450,7 +543,7 @@ header {
 <section class="hero-galeria">
 <div class="badge-tipo-galeria badge-publica" id="badge-tipo">
 <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
-<span class="" id="texto-tipo-badge">Galería Pública</span>
+<span id="texto-tipo-badge" class="">Galería Pública</span>
 </div>
 <h1 class="titulo-galeria" id="titulo-galeria">Gala de Fin de Año 2024</h1>
 <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
@@ -459,107 +552,111 @@ header {
 <div class="banner-tarifas" data-pricing-source="supabase-live" id="banner-tarifas">
 <div class="tarifa-item">
 <span class="material-symbols-outlined" style="color: #38bdf8; font-size: 18px;">payments</span>
-<span class="" id="texto-tarifas-banner">
+<span id="texto-tarifas-banner" class="">
         TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.500</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$2.500</strong>
 </span>
 </div>
-<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
+<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;">
+<span style="color: rgb(150, 150, 150);" class="">• Entrega en papel fotográfico de laboratorio</span>
 </div>
-<!-- CONTENEDOR DE FOTOS -->
-<div class="grid-fotos" id="contenedor-fotos"><div class="tarjeta-foto seleccionada" id="card-foto-4822" style="background: rgb(20, 20, 20); border: 2px solid rgb(0, 160, 233); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 24px; transition: 0.2s;">
-  <div class="contenedor-img" onclick="abrirVisor(0)" style="position: relative; width: 100%; aspect-ratio: 1 / 1; background: #0a0a0a; overflow: hidden; cursor: pointer;">
-    
-    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="#DSC_4822.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-    <div class="marca-agua" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; background: rgba(0,0,0,0.15); z-index: 3;">
-      <div style="background: rgba(15, 15, 15, 0.82); border: 1px solid rgba(255, 255, 255, 0.15); padding: 8px 18px; border-radius: 8px; transform: rotate(-24deg); text-align: center; backdrop-filter: blur(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.8);">
-        <div style="color: #ffffff; font-weight: 800; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;" class="">MUESTRA OFICIAL</div>
-        <div style="color: #38bdf8; font-weight: 800; font-size: 0.74rem; letter-spacing: 1.5px; text-transform: uppercase;" class="">SERGIO MOLINA</div>
-      </div>
-    </div>
-  </div>
-  <div style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
-    
-    <div style="background: #0f1318; border: 1.5px solid #1a232e; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-        <button type="button" id="btn-impresa-4822" onclick="toggleOpcion('4822', 'impresa', event)" style="background: #1e1a0a; border: 2px solid #d4af37; border-radius: 8px; padding: 7px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.15s ease;">
-          <div style="color: #facc15; font-size: 0.76rem; font-weight: 700; display: flex; align-items: center; gap: 4px;" class="">
-            <span id="chk-impresa-4822" class="">✔</span> Impresa
-          </div>
-          <div style="color: #eab308; font-size: 0.84rem; font-weight: 800; font-family: monospace;" class="">$7.500</div>
-        </button>
-        <button type="button" id="btn-digital-4822" onclick="toggleOpcion('4822', 'digital', event)" style="background: #0b1723; border: 2px solid #0284c7; border-radius: 8px; padding: 7px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.15s ease;">
-          <div style="color: #38bdf8; font-size: 0.76rem; font-weight: 700; display: flex; align-items: center; gap: 4px;" class="">
-            <span id="chk-digital-4822" class="">✔</span> Digital
-          </div>
-          <div style="color: #38bdf8; font-size: 0.84rem; font-weight: 800; font-family: monospace;" class="">$2.500</div>
-        </button>
-      </div>
-      <button type="button" onclick="quitarSeleccion('4822', event)" style="background: none; border: none; color: #f87171; font-size: 0.72rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; padding: 3px 0;" class="">
-        <span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-      </button>
-    </div>
-  </div>
 </div>
-
-<div class="tarjeta-foto seleccionada tiene-seleccion" id="card-foto-4823" style="background: rgb(20, 20, 20); border: 2px solid rgb(0, 160, 233); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 24px; transition: 0.2s;">
-  <div class="contenedor-img" onclick="abrirVisor(1)" style="position: relative; width: 100%; aspect-ratio: 1 / 1; background: #0a0a0a; overflow: hidden; cursor: pointer;">
-    
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="#DSC_4823.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-    <div class="marca-agua" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; background: rgba(0,0,0,0.15); z-index: 3;">
-      <div style="background: rgba(15, 15, 15, 0.82); border: 1px solid rgba(255, 255, 255, 0.15); padding: 8px 18px; border-radius: 8px; transform: rotate(-24deg); text-align: center; backdrop-filter: blur(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.8);">
-        <div style="color: #ffffff; font-weight: 800; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;" class="">MUESTRA OFICIAL</div>
-        <div style="color: #38bdf8; font-weight: 800; font-size: 0.74rem; letter-spacing: 1.5px; text-transform: uppercase;" class="">SERGIO MOLINA</div>
-      </div>
-    </div>
-  </div>
-  <div style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
-    
-    <div style="background: #0f1318; border: 1.5px solid #1a232e; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-        <button type="button" id="btn-impresa-4823" onclick="toggleOpcion('4823', 'impresa', event)" style="background: #1e1a0a; border: 2px solid #d4af37; border-radius: 8px; padding: 7px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.15s ease;">
-          <div style="color: #facc15; font-size: 0.76rem; font-weight: 700; display: flex; align-items: center; gap: 4px;" class="">
-            <span id="chk-impresa-4823" class="">✔</span> Impresa
+<!-- CONTENEDOR DINÁMICO DE FOTOS -->
+<div class="grid-fotos" id="contenedor-fotos"><div class="tarjeta-foto" id="card-foto-4822">
+      <div class="contenedor-img" onclick="abrirVisor(0)">
+        
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="DSC_4822.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/4822';">
+        
+          <div class="marca-agua">
+            <div class="marca-agua-badge">
+              <div class="linea-1">MUESTRA OFICIAL</div>
+              <div class="linea-2">SERGIO MOLINA</div>
+            </div>
           </div>
-          <div style="color: #eab308; font-size: 0.84rem; font-weight: 800; font-family: monospace;" class="">$7.500</div>
-        </button>
-        <button type="button" id="btn-digital-4823" onclick="toggleOpcion('4823', 'digital', event)" style="background: #151c24; border: 1px solid #334155; border-radius: 8px; padding: 7px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.15s ease;" class="">
-          <div style="color: #94a3b8; font-size: 0.76rem; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
-            <span id="chk-digital-4823" class="">☐</span> Digital
-          </div>
-          <div style="color: #64748b; font-size: 0.84rem; font-weight: 800; font-family: monospace;" class="">$2.500</div>
-        </button>
+        
       </div>
-      <button type="button" onclick="quitarSeleccion('4823', event)" style="background: none; border: none; color: #f87171; font-size: 0.72rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; padding: 3px 0;" class="">
-        <span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-      </button>
-    </div>
-  </div>
-</div></div>
-</main><div class="" id="toast-proteccion" style="display: none; position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1px solid #facc15; color: #facc15; padding: 10px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 16px; color: rgb(250, 204, 21);">lock</span> Fotografía protegida • Sergio Ricardo Molina</div>
+      <div class="cuerpo-tarjeta">
+        
+        
+          <div class="caja-controles-dual">
+            <div class="grid-botones-opcion">
+              <button type="button" id="btn-impresa-4822" onclick="toggleImpresa('4822', event)" class="btn-opcion-compra btn-opcion-impresa activo">
+                <div class="txt-etiqueta"><span id="chk-impresa-4822" class="">✓</span> Impresa</div>
+                <div class="txt-precio">$7.500</div>
+              </button>
+              <button type="button" id="btn-digital-4822" onclick="toggleDigital('4822', event)" class="btn-opcion-compra btn-opcion-digital activo">
+                <div class="txt-etiqueta"><span id="chk-digital-4822" class="">✓</span> Digital</div>
+                <div class="txt-precio">$2.500</div>
+              </button>
+            </div>
+            <button type="button" class="btn-quitar-foto" onclick="quitarFoto('4822', event)">
+              <span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
+            </button>
+          </div>
+        
+      </div>
+    </div><div class="tarjeta-foto" id="card-foto-4823">
+      <div class="contenedor-img" onclick="abrirVisor(1)">
+        
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="DSC_4823.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/4823';">
+        
+          <div class="marca-agua">
+            <div class="marca-agua-badge">
+              <div class="linea-1">MUESTRA OFICIAL</div>
+              <div class="linea-2">SERGIO MOLINA</div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="cuerpo-tarjeta">
+        
+        
+          <div class="caja-controles-dual">
+            <div class="grid-botones-opcion">
+              <button type="button" id="btn-impresa-4823" onclick="toggleImpresa('4823', event)" class="btn-opcion-compra btn-opcion-impresa activo">
+                <div class="txt-etiqueta"><span id="chk-impresa-4823" class="">✓</span> Impresa</div>
+                <div class="txt-precio">$7.500</div>
+              </button>
+              <button type="button" id="btn-digital-4823" onclick="toggleDigital('4823', event)" class="btn-opcion-compra btn-opcion-digital ">
+                <div class="txt-etiqueta"><span id="chk-digital-4823" class="">☐</span> Digital</div>
+                <div class="txt-precio">$2.500</div>
+              </button>
+            </div>
+            <button type="button" class="btn-quitar-foto" onclick="quitarFoto('4823', event)">
+              <span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
+            </button>
+          </div>
+        
+      </div>
+    </div></div>
+</main>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
-<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;"><div class="resumen-seleccion">
-  <div style="display: flex; align-items: center; gap: 6px;">
-    <span style="color: #38bdf8; font-size: 13px;" class="">●</span>
-    <span style="font-weight: 700; font-size: 0.82rem; letter-spacing: 0.5px;" class="">SELECCIÓN:</span>
-    <span class="contador-badge" id="contador-fotos">2 fotos</span>
-  </div>
-  <div style="display: flex; align-items: center; gap: 12px; font-size: 0.82rem;">
-    <span style="color: #facc15; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
-      <span class="material-symbols-outlined" style="font-size: 15px;">photo</span> Impresas: <strong id="lbl-cant-impresas" style="color: #ffffff; margin-left: 2px;">2 ($15.000)</strong>
-    </span>
-    <span style="color: #38bdf8; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
-      <span class="material-symbols-outlined" style="font-size: 15px;">cloud_download</span> Digitales: <strong id="lbl-cant-digitales" style="color: #ffffff; margin-left: 2px;">1 ($2.500)</strong>
-    </span>
-    <span style="color: #ffffff; font-weight: 700; margin-left: 4px; font-size: 0.84rem;" class="">
-      Total: <span id="lbl-total-monto" style="color: #38bdf8; font-size: 0.94rem; font-weight: 800;" class="">$17.500</span>
-    </span>
-  </div>
-  <button onclick="limpiarSeleccionCompleta()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;" class="">Vaciar todo</button>
+<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;">
+<div class="resumen-seleccion">
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="color: #38bdf8; font-size: 13px;" class="">●</span>
+<span style="font-weight: 700; font-size: 0.82rem; letter-spacing: 0.5px;" class="">SELECCIÓN:</span>
+<span class="contador-badge" id="contador-fotos">2 fotos</span>
 </div>
-<div class="acciones-compra"><button class="btn-pedido" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()" style="background: rgb(34, 197, 94); color: rgb(5, 46, 22); font-weight: 700; font-size: 0.88rem; padding: 10px 18px; border-radius: 10px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: rgba(34, 197, 94, 0.4) 0px 4px 14px; transition: 0.2s;">
-    <span class="material-symbols-outlined" style="font-size: 20px; color: #052e16;">chat</span>
-    <span class="">Enviar Pedido por WhatsApp&nbsp;</span>
-  </button></div></div>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 0.82rem; flex-wrap: wrap;">
+<span style="color: #facc15; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
+<span class="material-symbols-outlined" style="font-size: 15px;">photo</span> Impresas: <strong id="lbl-cant-impresas" style="color: #ffffff; margin-left: 2px;">2 ($15.000)</strong>
+</span>
+<span style="color: #38bdf8; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
+<span class="material-symbols-outlined" style="font-size: 15px;">cloud_download</span> Digitales: <strong id="lbl-cant-digitales" style="color: #ffffff; margin-left: 2px;">1 ($2.500)</strong>
+</span>
+<span style="color: #ffffff; font-weight: 700; margin-left: 4px; font-size: 0.84rem;" class="">
+        Total: <span id="lbl-total-monto" style="color: #38bdf8; font-size: 0.94rem; font-weight: 800;" class="">$17.500</span>
+</span>
+</div>
+<button onclick="limpiarSeleccionCompleta()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;" class="">Vaciar todo</button>
+</div>
+<div class="acciones-compra">
+<button class="btn-enviar-wa" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()">
+<span class="material-symbols-outlined" style="font-size: 20px;">chat</span>
+<span class="">Enviar Pedido por WhatsApp</span>
+</button>
+</div>
+</div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
 <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
@@ -567,7 +664,10 @@ header {
 <div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
 <img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="">
 <div class="marca-agua" id="marca-visor" style="display: none;">
-<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br>SERGIO RICARDO MOLINA</div>
+<div class="marca-agua-badge" style="transform: rotate(-24deg); padding: 12px 24px;">
+<div class="linea-1" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL</div>
+<div class="linea-2" style="font-size: 0.95rem; letter-spacing: 2px;">SERGIO RICARDO MOLINA</div>
+</div>
 </div>
 </div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
@@ -584,47 +684,223 @@ let WHATSAPP_FOTOGRAFO = '5492613175222';
 
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-let listaFotos = [];
-let seleccionadas = new Set();
+let listaFotos = [
+  { id: '4822', name: 'DSC_4822.jpg', thumb: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&auto=format&fit=crop&q=80', full: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&auto=format&fit=crop&q=80' },
+  { id: '4823', name: 'DSC_4823.jpg', thumb: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80', full: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=80' }
+];
+
+// Conjuntos de selección dual
+const seleccionImpresas = new Set(['4822', '4823']);
+const seleccionDigitales = new Set(['4822']);
+
 let indiceVisor = 0;
 let esGaleriaPrivada = false;
-let tituloEvento = 'Álbum Oficial';
+let tituloEvento = 'Gala de Fin de Año 2024';
 
-// EXTRAER ID LIMPIO DE GOOGLE DRIVE SIN ERRORES
 function extraerIdDrive(input) {
   if (!input) return '';
   const str = String(input).trim();
-  // Formato: /folders/ID
   const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]{20,})/);
   if (matchFolder && matchFolder[1]) return matchFolder[1];
-  // Formato: ?id=ID o &id=ID
   const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]{20,})/);
   if (matchId && matchId[1]) return matchId[1];
-  // Formato: /d/ID
   const matchD = str.match(/\/d\/([a-zA-Z0-9_-]{20,})/);
   if (matchD && matchD[1]) return matchD[1];
-  // Formato directo alfanumérico largo
   const matchLargo = str.match(/([a-zA-Z0-9_-]{25,})/);
   if (matchLargo && matchLargo[1]) return matchLargo[1];
   return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
 }
 
-// ACTUALIZAR INTERFAZ DE TARIFAS
+function formatearMoneda(val) {
+  return '$' + (Number(val) || 0).toLocaleString('es-AR');
+}
+
+function extraerNumeroFoto(nombre) {
+  if (!nombre) return '0000';
+  const match = nombre.match(/\d{3,}/);
+  if (match) return match[0];
+  const clean = nombre.replace(/\.[^/.]+$/, '').replace(/[^0-9]/g, '');
+  return clean ? clean.slice(-4) : nombre.slice(-4);
+}
+
+function obtenerNombreConPrefijo(nombre) {
+  if (!nombre) return '#FOTO';
+  return nombre.startsWith('#') ? nombre : `#${nombre}`;
+}
+
 function actualizarUIPrecios() {
   const lblImp = document.getElementById('lbl-tarifa-impresa');
   const lblDig = document.getElementById('lbl-tarifa-digital');
-  if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
-  if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+  if (lblImp) lblImp.innerText = formatearMoneda(TARIFA_IMPRESA);
+  if (lblDig) lblDig.innerText = formatearMoneda(TARIFA_DIGITAL);
 
-  const btnImp = document.getElementById('btn-label-impresas');
-  const btnDig = document.getElementById('btn-label-digitales');
-  if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
-  if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
+  // Actualizar también dentro de las tarjetas ya renderizadas
+  listaFotos.forEach(foto => {
+    const pImp = document.querySelector(`#btn-impresa-${foto.id} .txt-precio`);
+    const pDig = document.querySelector(`#btn-digital-${foto.id} .txt-precio`);
+    if (pImp) pImp.innerText = formatearMoneda(TARIFA_IMPRESA);
+    if (pDig) pDig.innerText = formatearMoneda(TARIFA_DIGITAL);
+  });
+
+  actualizarTotales();
 }
 
-// SINCRONIZAR TARIFAS ASÍNCRONA DESDE SUPABASE 'configuracion'
+function actualizarTotales() {
+  const cantImpresas = seleccionImpresas.size;
+  const cantDigitales = seleccionDigitales.size;
+
+  const todasLasFotos = new Set([...seleccionImpresas, ...seleccionDigitales]);
+  const cantTotalFotos = todasLasFotos.size;
+
+  const montoImpresas = cantImpresas * TARIFA_IMPRESA;
+  const montoDigitales = cantDigitales * TARIFA_DIGITAL;
+  const totalGeneral = montoImpresas + montoDigitales;
+
+  const lblCont = document.getElementById('contador-fotos');
+  const lblImp = document.getElementById('lbl-cant-impresas');
+  const lblDig = document.getElementById('lbl-cant-digitales');
+  const lblTot = document.getElementById('lbl-total-monto');
+  const barra = document.getElementById('barra-pedidos');
+
+  if (lblCont) lblCont.innerText = `${cantTotalFotos} fotos`;
+  if (lblImp) lblImp.innerText = `${cantImpresas} (${formatearMoneda(montoImpresas)})`;
+  if (lblDig) lblDig.innerText = `${cantDigitales} (${formatearMoneda(montoDigitales)})`;
+  if (lblTot) lblTot.innerText = formatearMoneda(totalGeneral);
+
+  if (barra && !esGaleriaPrivada) {
+    barra.style.display = 'flex';
+  }
+}
+
+// TOGGLES DUALES INTERACTIVOS
+function toggleImpresa(fotoId, event) {
+  if (event) event.stopPropagation();
+  const btn = document.getElementById(`btn-impresa-${fotoId}`);
+  const chk = document.getElementById(`chk-impresa-${fotoId}`);
+
+  if (seleccionImpresas.has(fotoId)) {
+    seleccionImpresas.delete(fotoId);
+    if (btn) btn.classList.remove('activo');
+    if (chk) chk.innerText = '☐';
+  } else {
+    seleccionImpresas.add(fotoId);
+    if (btn) btn.classList.add('activo');
+    if (chk) chk.innerText = '✓';
+  }
+  actualizarTotales();
+}
+
+function toggleDigital(fotoId, event) {
+  if (event) event.stopPropagation();
+  const btn = document.getElementById(`btn-digital-${fotoId}`);
+  const chk = document.getElementById(`chk-digital-${fotoId}`);
+
+  if (seleccionDigitales.has(fotoId)) {
+    seleccionDigitales.delete(fotoId);
+    if (btn) btn.classList.remove('activo');
+    if (chk) chk.innerText = '☐';
+  } else {
+    seleccionDigitales.add(fotoId);
+    if (btn) btn.classList.add('activo');
+    if (chk) chk.innerText = '✓';
+  }
+  actualizarTotales();
+}
+
+function quitarFoto(fotoId, event) {
+  if (event) event.stopPropagation();
+  seleccionImpresas.delete(fotoId);
+  seleccionDigitales.delete(fotoId);
+
+  const btnImp = document.getElementById(`btn-impresa-${fotoId}`);
+  const chkImp = document.getElementById(`chk-impresa-${fotoId}`);
+  const btnDig = document.getElementById(`btn-digital-${fotoId}`);
+  const chkDig = document.getElementById(`chk-digital-${fotoId}`);
+
+  if (btnImp) btnImp.classList.remove('activo');
+  if (chkImp) chkImp.innerText = '☐';
+  if (btnDig) btnDig.classList.remove('activo');
+  if (chkDig) chkDig.innerText = '☐';
+
+  actualizarTotales();
+}
+
+function limpiarSeleccionCompleta() {
+  seleccionImpresas.clear();
+  seleccionDigitales.clear();
+
+  document.querySelectorAll('.btn-opcion-impresa').forEach(b => b.classList.remove('activo'));
+  document.querySelectorAll('[id^="chk-impresa-"]').forEach(c => c.innerText = '☐');
+  document.querySelectorAll('.btn-opcion-digital').forEach(b => b.classList.remove('activo'));
+  document.querySelectorAll('[id^="chk-digital-"]').forEach(c => c.innerText = '☐');
+
+  actualizarTotales();
+}
+
+// RENDERIZADO EXCLUSIVO CON TARJETA DUAL EXACTA
+function renderizarFotos() {
+  const contenedor = document.getElementById('contenedor-fotos');
+  if (!contenedor) return;
+  contenedor.innerHTML = '';
+
+  listaFotos.forEach((foto, index) => {
+    const numTag = extraerNumeroFoto(foto.name);
+    const nombreCompleto = obtenerNombreConPrefijo(foto.name);
+
+    const estaImpresa = seleccionImpresas.has(foto.id);
+    const estaDigital = seleccionDigitales.has(foto.id);
+
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'tarjeta-foto';
+    tarjeta.id = `card-foto-${foto.id}`;
+
+    tarjeta.innerHTML = `
+      <div class="contenedor-img" onclick="abrirVisor(${index})">
+        <div class="badge-numero-foto">#${numTag}</div>
+        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
+        ${!esGaleriaPrivada ? `
+          <div class="marca-agua">
+            <div class="marca-agua-badge">
+              <div class="linea-1">MUESTRA OFICIAL</div>
+              <div class="linea-2">SERGIO MOLINA</div>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+      <div class="cuerpo-tarjeta">
+        <div class="nombre-archivo-foto" title="${nombreCompleto}">${nombreCompleto}</div>
+        ${!esGaleriaPrivada ? `
+          <div class="caja-controles-dual">
+            <div class="grid-botones-opcion">
+              <button type="button" id="btn-impresa-${foto.id}" onclick="toggleImpresa('${foto.id}', event)" class="btn-opcion-compra btn-opcion-impresa ${estaImpresa ? 'activo' : ''}">
+                <div class="txt-etiqueta"><span id="chk-impresa-${foto.id}">${estaImpresa ? '✓' : '☐'}</span> Impresa</div>
+                <div class="txt-precio">${formatearMoneda(TARIFA_IMPRESA)}</div>
+              </button>
+              <button type="button" id="btn-digital-${foto.id}" onclick="toggleDigital('${foto.id}', event)" class="btn-opcion-compra btn-opcion-digital ${estaDigital ? 'activo' : ''}">
+                <div class="txt-etiqueta"><span id="chk-digital-${foto.id}">${estaDigital ? '✓' : '☐'}</span> Digital</div>
+                <div class="txt-precio">${formatearMoneda(TARIFA_DIGITAL)}</div>
+              </button>
+            </div>
+            <button type="button" class="btn-quitar-foto" onclick="quitarFoto('${foto.id}', event)">
+              <span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
+            </button>
+          </div>
+        ` : `
+          <div style="background:#0f1318; border-radius:8px; padding:10px; text-align:center; color:#22c55e; font-size:0.75rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:5px;">
+            <span class="material-symbols-outlined" style="font-size:16px;">verified</span> Galería Privada HD
+          </div>
+        `}
+      </div>
+    `;
+
+    contenedor.appendChild(tarjeta);
+  });
+
+  actualizarTotales();
+}
+
+// SINCRONIZAR TARIFAS EN VIVO DESDE SUPABASE
 async function sincronizarPrecios() {
-  // a) Leer primero de localStorage('tarifa_impresa') y localStorage('tarifa_digital') si existen
   try {
     const storedImp = localStorage.getItem('tarifa_impresa');
     const storedDig = localStorage.getItem('tarifa_digital');
@@ -633,50 +909,23 @@ async function sincronizarPrecios() {
     if (storedDig && !isNaN(storedDig) && Number(storedDig) > 0) TARIFA_DIGITAL = Number(storedDig);
     if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
   } catch (e) {
-    console.warn("Error leyendo localStorage inicial:", e);
+    console.warn("Lectura localStorage inicial:", e);
   }
   actualizarUIPrecios();
 
-  // b) Consultar en tiempo real a Supabase a la tabla 'configuracion' con limit(1)
   if (supabaseClient) {
     try {
-      const consultaConfig = async () => {
-        const { data, error } = await supabaseClient
-          .from('configuracion')
-          .select('*')
-          .limit(1);
+      const { data } = await supabaseClient.from('configuracion').select('*').limit(1);
+      if (data && data.length > 0) {
+        const config = data[0];
+        let imp = config.tarifa_impresa !== undefined ? Number(config.tarifa_impresa) : null;
+        let dig = config.tarifa_digital !== undefined ? Number(config.tarifa_digital) : null;
+        let wa = config.whatsapp || config.numero_whatsapp;
 
-        if (!error && data && data.length > 0) {
-          return data[0];
-        }
-        return null;
-      };
-
-      const config = await Promise.race([
-        consultaConfig(),
-        new Promise(resolve => setTimeout(() => resolve(null), 3000))
-      ]);
-
-      if (config) {
-        let imp = null;
-        let dig = null;
-        let wa = null;
-
-        if (config.tarifa_impresa !== undefined && config.tarifa_impresa !== null) imp = Number(config.tarifa_impresa);
-        if (config.tarifa_digital !== undefined && config.tarifa_digital !== null) dig = Number(config.tarifa_digital);
-        if (config.whatsapp || config.numero_whatsapp) wa = String(config.whatsapp || config.numero_whatsapp);
-
-        // Si viene estructurado dentro de 'valor'
-        if ((imp === null || dig === null) && config.valor) {
-          let val = config.valor;
-          if (typeof val === 'string') {
-            try { val = JSON.parse(val); } catch (_) {}
-          }
-          if (val && typeof val === 'object') {
-            if (val.tarifa_impresa) imp = Number(val.tarifa_impresa);
-            if (val.tarifa_digital) dig = Number(val.tarifa_digital);
-            if (val.whatsapp || val.numero_whatsapp) wa = String(val.whatsapp || val.numero_whatsapp);
-          }
+        if (config.valor && typeof config.valor === 'object') {
+          if (config.valor.tarifa_impresa) imp = Number(config.valor.tarifa_impresa);
+          if (config.valor.tarifa_digital) dig = Number(config.valor.tarifa_digital);
+          if (config.valor.whatsapp) wa = String(config.valor.whatsapp);
         }
 
         if (imp && !isNaN(imp) && imp > 0) {
@@ -691,21 +940,17 @@ async function sincronizarPrecios() {
           WHATSAPP_FOTOGRAFO = wa.replace(/\D/g, '');
           try { localStorage.setItem('numero_whatsapp', WHATSAPP_FOTOGRAFO); } catch (_) {}
         }
-
-        // c) Actualizar de inmediato los textos del banner y los labels de los botones
         actualizarUIPrecios();
-        const syncLbl = document.getElementById('lbl-sync-status');
-        if (syncLbl) syncLbl.innerText = 'Precios oficiales sincronizados en vivo';
       }
     } catch (errSupabase) {
-      console.warn("No se pudo sincronizar tarifas en vivo desde Supabase 'configuracion':", errSupabase);
+      console.warn("Consulta tarifas Supabase:", errSupabase);
     }
   }
 }
 
-// INICIAR GALERÍA CON CARGA INMEDIATA SIN BLOQUEO EN SUPABASE
+// INICIAR GALERÍA
 async function iniciarGaleria() {
-  sincronizarPrecios();
+  await sincronizarPrecios();
 
   const params = new URLSearchParams(window.location.search);
   const paramId = params.get('id') || '';
@@ -714,52 +959,37 @@ async function iniciarGaleria() {
   const paramKey = params.get('key') || '';
   const paramPrivada = params.get('privada') || '';
 
-  // 1. Título inmediato si viene por URL
   if (paramTitulo) {
     tituloEvento = decodeURIComponent(paramTitulo);
-    document.getElementById('titulo-galeria').innerText = tituloEvento;
+    const elTit = document.getElementById('titulo-galeria');
+    if (elTit) elTit.innerText = tituloEvento;
   }
 
-  // 2. Detección inmediata de privada
   if (paramPrivada === 'true' || (paramKey && paramKey.trim().length > 0)) {
     esGaleriaPrivada = true;
     configurarModoPrivado();
   }
 
   let folderId = '';
-
-  // Si ya nos enviaron un folder o un ID que es directamente de Drive (más de 20 caracteres)
   if (paramFolder && paramFolder.trim().length > 15) {
     folderId = extraerIdDrive(paramFolder);
   } else if (paramId && paramId.trim().length > 20 && isNaN(paramId)) {
     folderId = extraerIdDrive(paramId);
   }
 
-  // Si no tenemos el folderId y tenemos un ID numérico o clave, consultar Supabase con TIMEOUT CORTO (máx 2.5s)
   if (!folderId && (paramId || paramKey) && supabaseClient) {
     try {
-      const promiseSupabase = (async () => {
-        let query = supabaseClient.from('galeria').select('*');
-        if (paramId && !isNaN(paramId)) {
-          query = query.eq('id', paramId);
-        } else if (paramKey) {
-          query = query.ilike('password', paramKey);
-        } else if (paramId) {
-          query = query.eq('id', paramId);
-        }
-        const { data } = await query.maybeSingle();
-        return data;
-      })();
+      let query = supabaseClient.from('galeria').select('*');
+      if (paramId && !isNaN(paramId)) query = query.eq('id', paramId);
+      else if (paramKey) query = query.ilike('password', paramKey);
+      else if (paramId) query = query.eq('id', paramId);
 
-      const data = await Promise.race([
-        promiseSupabase,
-        new Promise(resolve => setTimeout(() => resolve(null), 2500))
-      ]);
-
+      const { data } = await query.maybeSingle();
       if (data) {
         if (data.titulo && !paramTitulo) {
           tituloEvento = data.titulo;
-          document.getElementById('titulo-galeria').innerText = tituloEvento;
+          const elTit = document.getElementById('titulo-galeria');
+          if (elTit) elTit.innerText = tituloEvento;
         }
         if (data.es_privada || data.password) {
           esGaleriaPrivada = true;
@@ -773,22 +1003,14 @@ async function iniciarGaleria() {
     }
   }
 
-  // 3. Fallback de folderId si aún está vacío
-  if (!folderId && paramId) {
-    folderId = extraerIdDrive(paramId);
-  }
+  if (!folderId && paramId) folderId = extraerIdDrive(paramId);
 
-  // Si no hay folderId especificado
-  if (!folderId) {
-    mostrarMensajeError(
-      "Galería no especificada",
-      "No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum."
-    );
-    return;
+  if (folderId) {
+    cargarFotosDrive(folderId);
+  } else {
+    // Si no hay carpeta en URL, mantener las fotos de muestra predeterminadas con tarjeta dual
+    renderizarFotos();
   }
-
-  // Cargar fotos de Google Drive
-  cargarFotosDrive(folderId);
 }
 
 function configurarModoPrivado() {
@@ -798,9 +1020,7 @@ function configurarModoPrivado() {
     badge.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;">lock</span><span>Galería Privada de Cliente</span>';
   }
   const subtitulo = document.getElementById('subtitulo-galeria');
-  if (subtitulo) {
-    subtitulo.innerText = "Álbum privado exclusivo para visualización en alta resolución.";
-  }
+  if (subtitulo) subtitulo.innerText = "Álbum privado exclusivo para visualización en alta resolución.";
   const banner = document.getElementById('banner-tarifas');
   if (banner) banner.style.display = 'none';
   const barra = document.getElementById('barra-pedidos');
@@ -809,12 +1029,12 @@ function configurarModoPrivado() {
   if (marcaVisor) marcaVisor.style.display = 'none';
 }
 
-// CONSULTA DIRECTA A GOOGLE DRIVE API
+// CONSULTA DE GOOGLE DRIVE Y GENERACIÓN DE NUEVAS TARJETAS
 async function cargarFotosDrive(folderId) {
   const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 8000);
+  const timeoutId = setTimeout(() => controller.abort(), 8500);
 
   try {
     const res = await fetch(urlDrive, { signal: controller.signal });
@@ -823,10 +1043,7 @@ async function cargarFotosDrive(folderId) {
 
     if (datos.error) {
       console.error("Error API Drive:", datos.error);
-      mostrarMensajeError(
-        "Permisos de Google Drive",
-        "La carpeta de Google Drive debe estar compartida como: 'Cualquier persona con el enlace puede ver'. Verificá los permisos de la carpeta en Google Drive."
-      );
+      mostrarMensajeError("Permisos de Google Drive", "La carpeta de fotos debe estar configurada con permiso 'Cualquier persona con el enlace puede ver'.");
       return;
     }
 
@@ -835,7 +1052,7 @@ async function cargarFotosDrive(folderId) {
       return;
     }
 
-    // Mapeo con miniaturas oficiales de Google
+    // Actualizar catálogo real
     listaFotos = datos.files.map(f => ({
       id: f.id,
       name: f.name || 'Fotografía',
@@ -843,125 +1060,17 @@ async function cargarFotosDrive(folderId) {
       full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
     }));
 
+    // Resetear selecciones para las fotos reales cargadas
+    seleccionImpresas.clear();
+    seleccionDigitales.clear();
+
+    // Renderizar garantizando el nuevo diseño dual
     renderizarFotos();
   } catch (err) {
     clearTimeout(timeoutId);
-    console.error("Error al obtener fotos:", err);
-    if (err.name === 'AbortError') {
-      mostrarMensajeError(
-        "Tiempo de conexión agotado",
-        "La conexión con Google Drive tardó demasiado en responder. Por favor, hacé clic en Reintentar."
-      );
-    } else {
-      mostrarMensajeError(
-        "Error de conexión con Google Drive",
-        "No se pudieron cargar las fotos. Verificá que la carpeta exista y tenga permisos públicos de lectura."
-      );
-    }
+    console.error("Error al obtener fotos Drive:", err);
+    mostrarMensajeError("Conexión con el Servidor", "No se pudieron obtener las imágenes. Verificá tu conexión o reintentá nuevamente.");
   }
-}
-
-// RENDERIZADO FLUIDO EN 2 COLUMNAS MÓVIL Y 4 EN ESCRITORIO CON PROTECCIÓN ANTI-DESCARGA
-function renderizarFotos() {
-  const contenedor = document.getElementById('contenedor-fotos');
-  contenedor.innerHTML = '';
-
-  listaFotos.forEach((foto, index) => {
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'tarjeta-foto';
-    tarjeta.id = `card-foto-${foto.id}`;
-
-    const nombreFormateado = foto.name.startsWith('#')
-      ? foto.name
-      : `#${foto.name}`;
-
-    tarjeta.innerHTML = `
-      <div class="contenedor-img" onclick="abrirVisor(${index})">
-        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
-        ${!esGaleriaPrivada ? `
-          <div class="marca-agua">
-            <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
-          </div>
-        ` : ''}
-      </div>
-      <div class="pie-foto">
-        <span class="nombre-foto" title="${foto.name}">${nombreFormateado}</span>
-        ${!esGaleriaPrivada ? `
-          <button class="btn-check-foto" onclick="toggleSeleccion('${foto.id}', event)">
-            <span class="material-symbols-outlined" style="font-size: 14px;" id="icon-check-${foto.id}">add</span>
-            <span id="txt-check-${foto.id}">Elegir</span>
-          </button>
-        ` : `
-          <span style="color:#22c55e; font-size:0.72rem; font-weight:600; display:flex; align-items:center; gap:2px;">
-            <span class="material-symbols-outlined" style="font-size:13px;">check</span> Alta Calidad
-          </span>
-        `}
-      </div>
-    `;
-    contenedor.appendChild(tarjeta);
-  });
-
-  if (!esGaleriaPrivada) {
-    document.getElementById('barra-pedidos').style.display = 'flex';
-  }
-}
-
-function toggleSeleccion(fotoId, event) {
-  if (event) event.stopPropagation();
-  const card = document.getElementById(`card-foto-${fotoId}`);
-  const icon = document.getElementById(`icon-check-${fotoId}`);
-  const txt = document.getElementById(`txt-check-${fotoId}`);
-
-  if (seleccionadas.has(fotoId)) {
-    seleccionadas.delete(fotoId);
-    if (card) card.classList.remove('seleccionada');
-    if (icon) icon.innerText = 'add';
-    if (txt) txt.innerText = 'Elegir';
-  } else {
-    seleccionadas.add(fotoId);
-    if (card) card.classList.add('seleccionada');
-    if (icon) icon.innerText = 'check';
-    if (txt) txt.innerText = 'Elegida';
-  }
-  document.getElementById('contador-fotos').innerText = `${seleccionadas.size} fotos`;
-}
-
-function limpiarSeleccion() {
-  seleccionadas.clear();
-  document.querySelectorAll('.tarjeta-foto').forEach(c => c.classList.remove('seleccionada'));
-  document.querySelectorAll('[id^="icon-check-"]').forEach(i => i.innerText = 'add');
-  document.querySelectorAll('[id^="txt-check-"]').forEach(t => t.innerText = 'Elegir');
-  document.getElementById('contador-fotos').innerText = `0 fotos`;
-}
-
-// PEDIDO WHATSAPP EXACTO
-function pedirPorWhatsApp(tipo) {
-  if (seleccionadas.size === 0) {
-    alert("Por favor seleccioná al menos una fotografía haciendo clic en 'Elegir' sobre las fotos.");
-    return;
-  }
-  const fotosArray = Array.from(seleccionadas).map(id => {
-    const f = listaFotos.find(item => item.id === id);
-    return f ? f.name : id;
-  });
-
-  const cantidad = fotosArray.length;
-  let precioUnitario = tipo === 'impresas' ? TARIFA_IMPRESA : TARIFA_DIGITAL;
-  let total = cantidad * precioUnitario;
-  let tipoPedidoTexto = tipo === 'impresas'
-    ? `Copia Impresa 15x21 cm ($${precioUnitario.toLocaleString('es-AR')} c/u)`
-    : `Archivo Digital HD ($${precioUnitario.toLocaleString('es-AR')} c/u)`;
-
-  let mensaje = `Hola Sergio Ricardo Molina, quiero encargarte estas fotos:\n` +
-    `Evento: ${tituloEvento}\n` +
-    `Tipo de Pedido: ${tipoPedidoTexto}\n` +
-    `Cantidad: ${cantidad}\n` +
-    `Fotos seleccionadas: ${fotosArray.join(', ')}\n` +
-    `Total estimado: $${total.toLocaleString('es-AR')}\n` +
-    `¿Me confirmas los datos de pago y plazos de entrega? Muchas gracias.`;
-
-  const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
-  window.open(urlWa, '_blank');
 }
 
 function mostrarMensajeVacio(folderId) {
@@ -969,17 +1078,13 @@ function mostrarMensajeVacio(folderId) {
   contenedor.innerHTML = `
     <div class="estado-caja">
       <span class="material-symbols-outlined">hide_image</span>
-      <h3>No se encontraron fotografías disponibles</h3>
-      <p>La carpeta de Google Drive está vacía o no contiene fotografías con acceso de lectura público.</p>
-      <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#666;">Carpeta Drive ID: ${folderId}</div>
+      <h3>No se encontraron fotografías en este álbum</h3>
+      <p>La carpeta seleccionada se encuentra vacía o aún está procesando las tomas.</p>
+      <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#777;">ID: ${folderId}</div>
       <button onclick="iniciarGaleria()" class="btn-accion-estado">
         <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
         <span>Reintentar</span>
       </button>
-      <a href="eventos.html" class="btn-accion-estado" style="background:#262626; margin-left:8px;">
-        <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
-        <span>Volver a Eventos</span>
-      </a>
     </div>
   `;
 }
@@ -995,12 +1100,59 @@ function mostrarMensajeError(titulo, detalle) {
         <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
         <span>Reintentar</span>
       </button>
-      <a href="https://wa.me/${WHATSAPP_FOTOGRAFO}?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
-        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
-        <span>Soporte WhatsApp</span>
-      </a>
     </div>
   `;
+}
+
+// PEDIDO WHATSAPP DIRECTO Y ESTRUCTURADO
+function enviarPedidoWhatsAppDirecto() {
+  const fotosImpresas = [];
+  const fotosDigitales = [];
+
+  seleccionImpresas.forEach(id => {
+    const f = listaFotos.find(item => item.id === id);
+    fotosImpresas.push(f ? obtenerNombreConPrefijo(f.name) : `#${id}`);
+  });
+
+  seleccionDigitales.forEach(id => {
+    const f = listaFotos.find(item => item.id === id);
+    fotosDigitales.push(f ? obtenerNombreConPrefijo(f.name) : `#${id}`);
+  });
+
+  if (fotosImpresas.length === 0 && fotosDigitales.length === 0) {
+    alert('Por favor seleccioná al menos una foto (marcando Impresa o Digital) antes de enviar tu pedido.');
+    return;
+  }
+
+  const subtotalImp = fotosImpresas.length * TARIFA_IMPRESA;
+  const subtotalDig = fotosDigitales.length * TARIFA_DIGITAL;
+  const totalGral = subtotalImp + subtotalDig;
+  const eventoNombre = tituloEvento || 'Álbum Fotográfico';
+
+  let mensaje = `📸 *NUEVO PEDIDO DE FOTOGRAFÍAS*\n`;
+  mensaje += `*Sergio Ricardo Molina - Fotografía*\n`;
+  mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+  mensaje += `🎯 *Evento:* ${eventoNombre}\n\n`;
+
+  if (fotosImpresas.length > 0) {
+    mensaje += `🖼️ *COPIAS IMPRESAS 15x21 cm* (${fotosImpresas.length}):\n`;
+    fotosImpresas.forEach(f => { mensaje += `  • ${f}\n`; });
+    mensaje += `  *Subtotal Impresas:* $${subtotalImp.toLocaleString('es-AR')} ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)\n\n`;
+  }
+
+  if (fotosDigitales.length > 0) {
+    mensaje += `💾 *ARCHIVOS DIGITALES HD* (${fotosDigitales.length}):\n`;
+    fotosDigitales.forEach(f => { mensaje += `  • ${f}\n`; });
+    mensaje += `  *Subtotal Digitales:* $${subtotalDig.toLocaleString('es-AR')} ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)\n\n`;
+  }
+
+  mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+  mensaje += `💰 *TOTAL GENERAL: $${totalGral.toLocaleString('es-AR')}*\n`;
+  mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+  mensaje += `Hola Sergio, confirmo este pedido. ¿Podrías indicarme los datos bancarios para realizar la transferencia y el tiempo estimado de entrega? Muchas gracias!`;
+
+  const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
+  window.open(urlWa, '_blank');
 }
 
 // VISOR EN ALTA RESOLUCIÓN
@@ -1031,14 +1183,9 @@ function cambiarFoto(dir, event) {
   document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
 }
 
-// SEGURIDAD ANTI-COPIA: BLOQUEO DE ATAJOS Y CONTEXTMENU
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-  return false;
-});
-
-document.addEventListener('keydown', (e) => {
-  // Atajos para descarga o inspección
+// PROTECCIÓN ANTI-DESCARGA
+document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
+document.addEventListener('keydown', e => {
   if (
     (e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U' || e.key === 'p' || e.key === 'P') ||
     e.key === 'F12'
@@ -1064,357 +1211,9 @@ modalEl.addEventListener('touchend', e => {
   else if (touchEndX > touchStartX + 45) cambiarFoto(-1);
 }, false);
 
-// Iniciar de inmediato
+// Iniciar al cargar el DOM
 document.addEventListener('DOMContentLoaded', iniciarGaleria);
 </script>
-<script>
-function tramitarPedido(formato) {
-  if (seleccionadas.size === 0) {
-    alert("Por favor seleccioná al menos una fotografía haciendo clic en 'Elegir' sobre las fotos.");
-    return;
-  }
-  const fotosArray = Array.from(seleccionadas).map(id => {
-    const f = (listaFotos && listaFotos.length > 0) ? listaFotos.find(item => item.id === id) : null;
-    return {
-      id: id,
-      name: f ? f.name : id,
-      thumb: f ? f.thumb : `https://lh3.googleusercontent.com/d/${id}=w600`,
-      full: f ? f.full : `https://lh3.googleusercontent.com/d/${id}=w1600`
-    };
-  });
-  const nombresFotos = fotosArray.map(f => f.name);
-  const params = new URLSearchParams(window.location.search);
-  const currentFolder = params.get('folder') || params.get('id') || '';
-  try {
-    localStorage.setItem('pedido_fotos_seleccionadas', JSON.stringify(fotosArray));
-    localStorage.setItem('pedido_fotos_nombres', JSON.stringify(nombresFotos));
-    localStorage.setItem('pedido_evento_titulo', tituloEvento || 'Álbum Fotográfico');
-    localStorage.setItem('pedido_folder_id', currentFolder);
-    localStorage.setItem('pedido_formato_inicial', formato || 'impresas');
-    localStorage.setItem('tarifa_impresa', String(TARIFA_IMPRESA));
-    localStorage.setItem('tarifa_digital', String(TARIFA_DIGITAL));
-  } catch (err) {
-    console.warn('Error guardando pedido en localStorage:', err);
-  }
-  const urlDestino = new URL('pedido.html', window.location.href);
-  if (formato) {
-    urlDestino.searchParams.set('formato', formato);
-  }
-  urlDestino.searchParams.set('cantidad', fotosArray.length);
-  if (tituloEvento) {
-    urlDestino.searchParams.set('evento', tituloEvento);
-  }
-  window.location.href = urlDestino.toString();
-}
-</script>
-
-
-<div id="logica-carrito-script"><script>
-// Diccionario de selección por foto: { [fotoId]: { impresa: boolean, digital: boolean, name: string, thumb: string, full: string } }
-window.carritoSeleccion = {
-  '4822': { impresa: true, digital: true, name: '#DSC_4822.jpg', thumb: '', full: '' },
-  '4823': { impresa: true, digital: false, name: '#DSC_4823.jpg', thumb: '', full: '' }
-};
-
-function extraerNumeroId(nombre) {
-  if (!nombre) return '0000';
-  const match = nombre.match(/\d{3,}/);
-  return match ? match[0] : nombre.replace(/[^a-zA-Z0-9]/g, '').slice(-4);
-}
-
-function formatearMoneda(val) {
-  return '$' + (Number(val) || 0).toLocaleString('es-AR');
-}
-
-function actualizarResumenTotales() {
-  let totalImpresas = 0;
-  let totalDigitales = 0;
-  let fotosUnicas = 0;
-
-  for (const id in window.carritoSeleccion) {
-    const sel = window.carritoSeleccion[id];
-    if (sel && (sel.impresa || sel.digital)) {
-      fotosUnicas++;
-      if (sel.impresa) totalImpresas++;
-      if (sel.digital) totalDigitales++;
-    }
-  }
-
-  const subtotalImpresas = totalImpresas * (typeof TARIFA_IMPRESA !== 'undefined' ? TARIFA_IMPRESA : 7500);
-  const subtotalDigitales = totalDigitales * (typeof TARIFA_DIGITAL !== 'undefined' ? TARIFA_DIGITAL : 2500);
-  const total = subtotalImpresas + subtotalDigitales;
-
-  const lblCont = document.getElementById('contador-fotos');
-  const lblImp = document.getElementById('lbl-cant-impresas');
-  const lblDig = document.getElementById('lbl-cant-digitales');
-  const lblTot = document.getElementById('lbl-total-monto');
-  const barra = document.getElementById('barra-pedidos');
-
-  if (lblCont) lblCont.innerText = `${fotosUnicas} fotos`;
-  if (lblImp) lblImp.innerText = `${totalImpresas} (${formatearMoneda(subtotalImpresas)})`;
-  if (lblDig) lblDig.innerText = `${totalDigitales} (${formatearMoneda(subtotalDigitales)})`;
-  if (lblTot) lblTot.innerText = formatearMoneda(total);
-
-  if (barra && !esGaleriaPrivada) {
-    barra.style.display = 'flex';
-  }
-}
-
-function toggleOpcion(fotoId, tipo, event) {
-  if (event) event.stopPropagation();
-  
-  if (!window.carritoSeleccion[fotoId]) {
-    let fObj = (typeof listaFotos !== 'undefined') ? listaFotos.find(f => f.id === fotoId) : null;
-    window.carritoSeleccion[fotoId] = {
-      impresa: false,
-      digital: false,
-      name: fObj ? fObj.name : `#DSC_${fotoId}.jpg`,
-      thumb: fObj ? fObj.thumb : '',
-      full: fObj ? fObj.full : ''
-    };
-  }
-
-  const actual = window.carritoSeleccion[fotoId][tipo];
-  window.carritoSeleccion[fotoId][tipo] = !actual;
-
-  const btn = document.getElementById(`btn-${tipo}-${fotoId}`);
-  const chk = document.getElementById(`chk-${tipo}-${fotoId}`);
-  if (btn) {
-    if (window.carritoSeleccion[fotoId][tipo]) {
-      btn.classList.add('activo');
-      if (chk) chk.innerText = '☑';
-    } else {
-      btn.classList.remove('activo');
-      if (chk) chk.innerText = '☐';
-    }
-  }
-
-  const card = document.getElementById(`card-foto-${fotoId}`);
-  if (card) {
-    const sel = window.carritoSeleccion[fotoId];
-    if (sel.impresa || sel.digital) {
-      card.classList.add('tiene-seleccion');
-    } else {
-      card.classList.remove('tiene-seleccion');
-    }
-  }
-
-  actualizarResumenTotales();
-}
-
-function quitarSeleccion(fotoId, event) {
-  if (event) event.stopPropagation();
-  if (window.carritoSeleccion[fotoId]) {
-    window.carritoSeleccion[fotoId].impresa = false;
-    window.carritoSeleccion[fotoId].digital = false;
-  }
-
-  const btnImp = document.getElementById(`btn-impresa-${fotoId}`);
-  const btnDig = document.getElementById(`btn-digital-${fotoId}`);
-  const chkImp = document.getElementById(`chk-impresa-${fotoId}`);
-  const chkDig = document.getElementById(`chk-digital-${fotoId}`);
-  if (btnImp) { btnImp.classList.remove('activo'); if (chkImp) chkImp.innerText = '☐'; }
-  if (btnDig) { btnDig.classList.remove('activo'); if (chkDig) chkDig.innerText = '☐'; }
-
-  const card = document.getElementById(`card-foto-${fotoId}`);
-  if (card) card.classList.remove('tiene-seleccion');
-
-  actualizarResumenTotales();
-}
-
-function limpiarSeleccionCompleta() {
-  for (const id in window.carritoSeleccion) {
-    window.carritoSeleccion[id].impresa = false;
-    window.carritoSeleccion[id].digital = false;
-    const btnImp = document.getElementById(`btn-impresa-${id}`);
-    const btnDig = document.getElementById(`btn-digital-${id}`);
-    const chkImp = document.getElementById(`chk-impresa-${id}`);
-    const chkDig = document.getElementById(`chk-digital-${id}`);
-    if (btnImp) { btnImp.classList.remove('activo'); if (chkImp) chkImp.innerText = '☐'; }
-    if (btnDig) { btnDig.classList.remove('activo'); if (chkDig) chkDig.innerText = '☐'; }
-    const card = document.getElementById(`card-foto-${id}`);
-    if (card) card.classList.remove('tiene-seleccion');
-  }
-  actualizarResumenTotales();
-}
-
-function continuarAlPedido() {
-  const seleccionadasArray = [];
-  for (const id in window.carritoSeleccion) {
-    const item = window.carritoSeleccion[id];
-    if (item && (item.impresa || item.digital)) {
-      seleccionadasArray.push({
-        id: id,
-        name: item.name,
-        thumb: item.thumb,
-        full: item.full,
-        impresa: item.impresa,
-        digital: item.digital
-      });
-    }
-  }
-
-  if (seleccionadasArray.length === 0) {
-    alert('Por favor seleccioná al menos una foto (Impresa o Digital) antes de continuar.');
-    return;
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const currentFolder = params.get('folder') || params.get('id') || '';
-  const eventoNombre = (typeof tituloEvento !== 'undefined' && tituloEvento) ? tituloEvento : 'Álbum Fotográfico';
-
-  const carritoData = {
-    evento: eventoNombre,
-    folderId: currentFolder,
-    fotos: seleccionadasArray
-  };
-
-  try {
-    localStorage.setItem('carrito_evento_actual', JSON.stringify(carritoData));
-    localStorage.setItem('pedido_fotos_seleccionadas', JSON.stringify(seleccionadasArray));
-    localStorage.setItem('pedido_fotos_nombres', JSON.stringify(seleccionadasArray.map(f => f.name)));
-    localStorage.setItem('pedido_evento_titulo', eventoNombre);
-    localStorage.setItem('pedido_folder_id', currentFolder);
-    if (typeof TARIFA_IMPRESA !== 'undefined') localStorage.setItem('tarifa_impresa', String(TARIFA_IMPRESA));
-    if (typeof TARIFA_DIGITAL !== 'undefined') localStorage.setItem('tarifa_digital', String(TARIFA_DIGITAL));
-  } catch (err) {
-    console.warn('Error guardando en localStorage:', err);
-  }
-
-  window.location.href = 'pedido.html?id=' + encodeURIComponent(currentFolder) + '&titulo=' + encodeURIComponent(eventoNombre);
-}
-window.irAlPedido = continuarAlPedido;
-window.tramitarPedido = continuarAlPedido;
-
-// Adaptación del render dinámico para cuando provienen fotos desde Google Drive API
-window.renderizarFotos = function() {
-  const contenedor = document.getElementById('contenedor-fotos');
-  if (!contenedor) return;
-  contenedor.innerHTML = '';
-
-  listaFotos.forEach((foto, index) => {
-    const numTag = extraerNumeroId(foto.name);
-    const nombreCompleto = foto.name.startsWith('#') ? foto.name : `#${foto.name}`;
-    
-    // Inicializar estado en window.carritoSeleccion si no existe
-    if (!window.carritoSeleccion[foto.id]) {
-      window.carritoSeleccion[foto.id] = {
-        impresa: false,
-        digital: false,
-        name: nombreCompleto,
-        thumb: foto.thumb,
-        full: foto.full
-      };
-    }
-
-    const sel = window.carritoSeleccion[foto.id];
-    const tieneSel = sel.impresa || sel.digital;
-
-    const tarjeta = document.createElement('div');
-    tarjeta.className = `tarjeta-foto ${tieneSel ? 'tiene-seleccion' : ''}`;
-    tarjeta.id = `card-foto-${foto.id}`;
-
-    tarjeta.innerHTML = `
-      <div class="contenedor-img" onclick="abrirVisor(${index})">
-        <div class="badge-numero-foto">#${numTag}</div>
-        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
-        ${!esGaleriaPrivada ? `
-          <div class="marca-agua-badge">
-            <div class="linea-1">MUESTRA OFICIAL</div>
-            <div class="linea-2">SERGIO MOLINA</div>
-          </div>
-        ` : ''}
-      </div>
-      <div class="cuerpo-tarjeta">
-        <div class="nombre-archivo-foto" title="${nombreCompleto}">${nombreCompleto}</div>
-        ${!esGaleriaPrivada ? `
-          <div class="grid-botones-opcion">
-            <button type="button" class="btn-opcion-compra btn-opcion-impresa ${sel.impresa ? 'activo' : ''}" id="btn-impresa-${foto.id}" onclick="toggleOpcion('${foto.id}', 'impresa', event)">
-              <div class="txt-etiqueta"><span id="chk-impresa-${foto.id}">${sel.impresa ? '☑' : '☐'}</span> Impresa</div>
-              <div class="txt-precio" id="lbl-card-imp-${foto.id}">${formatearMoneda(TARIFA_IMPRESA)}</div>
-            </button>
-            <button type="button" class="btn-opcion-compra btn-opcion-digital ${sel.digital ? 'activo' : ''}" id="btn-digital-${foto.id}" onclick="toggleOpcion('${foto.id}', 'digital', event)">
-              <div class="txt-etiqueta"><span id="chk-digital-${foto.id}">${sel.digital ? '☑' : '☐'}</span> Digital</div>
-              <div class="txt-precio" id="lbl-card-dig-${foto.id}">${formatearMoneda(TARIFA_DIGITAL)}</div>
-            </button>
-          </div>
-          <button type="button" class="btn-quitar-foto" onclick="quitarSeleccion('${foto.id}', event)">
-            <span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-          </button>
-        ` : `
-          <span style="color:#22c55e; font-size:0.75rem; font-weight:600; display:flex; align-items:center; justify-content:center; gap:3px;">
-            <span class="material-symbols-outlined" style="font-size:14px;">check_circle</span> Alta Resolución
-          </span>
-        `}
-      </div>
-    `;
-    contenedor.appendChild(tarjeta);
-  });
-
-  actualizarResumenTotales();
-};
-
-// Inicializar totales de la vista
-actualizarResumenTotales();
-</script><script>
-function enviarPedidoWhatsAppDirecto() {
-  const seleccionadasArray = [];
-  const fotosImpresas = [];
-  const fotosDigitales = [];
-
-  for (const id in window.carritoSeleccion) {
-    const item = window.carritoSeleccion[id];
-    if (item && (item.impresa || item.digital)) {
-      seleccionadasArray.push(item);
-      if (item.impresa) fotosImpresas.push(item.name || ('#' + id));
-      if (item.digital) fotosDigitales.push(item.name || ('#' + id));
-    }
-  }
-
-  if (seleccionadasArray.length === 0) {
-    alert('Por favor seleccioná al menos una foto (Impresa o Digital) antes de enviar tu pedido.');
-    return;
-  }
-
-  const tarifaImp = (typeof TARIFA_IMPRESA !== 'undefined') ? TARIFA_IMPRESA : 7500;
-  const tarifaDig = (typeof TARIFA_DIGITAL !== 'undefined') ? TARIFA_DIGITAL : 2500;
-  const subtotalImp = fotosImpresas.length * tarifaImp;
-  const subtotalDig = fotosDigitales.length * tarifaDig;
-  const totalGral = subtotalImp + subtotalDig;
-  const eventoNombre = (typeof tituloEvento !== 'undefined' && tituloEvento) ? tituloEvento : 'Álbum Fotográfico';
-  const waNum = (typeof WHATSAPP_FOTOGRAFO !== 'undefined' && WHATSAPP_FOTOGRAFO) ? WHATSAPP_FOTOGRAFO : '5492613175222';
-
-  let mensaje = `📸 *NUEVO PEDIDO DE FOTOGRAFÍAS*\n`;
-  mensaje += `*Sergio Ricardo Molina - Fotografía*\n`;
-  mensaje += `----------------------------------------\n`;
-  mensaje += `🎯 *Evento:* ${eventoNombre}\n\n`;
-
-  if (fotosImpresas.length > 0) {
-    mensaje += `🖼️ *COPIAS IMPRESAS 15x21 cm* (${fotosImpresas.length}):\n`;
-    fotosImpresas.forEach(f => { mensaje += `  • ${f}\n`; });
-    mensaje += `  *Subtotal Impresas:* $${subtotalImp.toLocaleString('es-AR')} ($${tarifaImp.toLocaleString('es-AR')} c/u)\n\n`;
-  }
-
-  if (fotosDigitales.length > 0) {
-    mensaje += `💾 *ARCHIVOS DIGITALES HD* (${fotosDigitales.length}):\n`;
-    fotosDigitales.forEach(f => { mensaje += `  • ${f}\n`; });
-    mensaje += `  *Subtotal Digitales:* $${subtotalDig.toLocaleString('es-AR')} ($${tarifaDig.toLocaleString('es-AR')} c/u)\n\n`;
-  }
-
-  mensaje += `----------------------------------------\n`;
-  mensaje += `💰 *TOTAL GENERAL: $${totalGral.toLocaleString('es-AR')}*\n`;
-  mensaje += `----------------------------------------\n\n`;
-  mensaje += `Hola Sergio, confirmo este pedido. ¿Podrías indicarme los datos bancarios para realizar la transferencia y el tiempo estimado de entrega? Muchas gracias!`;
-
-  const urlWa = `https://wa.me/${waNum}?text=${encodeURIComponent(mensaje)}`;
-  window.open(urlWa, '_blank');
-}
-
-window.continuarAlPedido = enviarPedidoWhatsAppDirecto;
-window.irAlPedido = enviarPedidoWhatsAppDirecto;
-window.tramitarPedido = enviarPedidoWhatsAppDirecto;
-</script></div>
-
 
 
 </body></html>
