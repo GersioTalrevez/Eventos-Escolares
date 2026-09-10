@@ -1,292 +1,323 @@
-<!DOCTYPE html>
-
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>login</title>
+<!DOCTYPE html><html class="dark" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Portal de Administración - Sergio Ricardo Molina</title>
+<!-- Google Fonts: Raleway & Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Google Fonts: Manrope (Sans) & Source Serif 4 (Serif) -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           "colors": {
-            "on-surface": "#0d1c2e",
-            "primary-fixed-dim": "#b7c4fd",
-            "surface-container-highest": "#d5e3fc",
-            "on-error": "#ffffff",
-            "surface-container-high": "#dce9ff",
-            "primary": "#000f3f",
-            "surface-bright": "#f8f9ff",
-            "on-secondary-fixed": "#331200",
-            "error-container": "#ffdad6",
-            "outline-variant": "#c6c5d0",
-            "secondary": "#9b4500",
-            "on-background": "#0d1c2e",
-            "surface-container": "#e6eeff",
-            "on-primary-fixed": "#071747",
-            "inverse-surface": "#233144",
-            "background": "#f8f9ff",
-            "on-tertiary-fixed-variant": "#004b73",
-            "on-tertiary": "#ffffff",
-            "surface-variant": "#d5e3fc",
-            "on-secondary-container": "#682c00",
-            "secondary-fixed": "#ffdbca",
-            "on-primary-container": "#808dc2",
-            "secondary-fixed-dim": "#ffb68e",
-            "surface-container-low": "#eff4ff",
-            "inverse-primary": "#b7c4fd",
-            "on-primary-fixed-variant": "#374475",
-            "tertiary-fixed-dim": "#93ccff",
-            "primary-fixed": "#dce1ff",
-            "on-tertiary-container": "#2f96db",
-            "surface": "#f8f9ff",
-            "surface-container-lowest": "#ffffff",
-            "on-primary": "#ffffff",
-            "on-error-container": "#93000a",
-            "on-surface-variant": "#45464f",
-            "tertiary": "#001626",
-            "on-secondary": "#ffffff",
-            "tertiary-fixed": "#cce5ff",
-            "outline": "#767680",
-            "inverse-on-surface": "#eaf1ff",
-            "on-tertiary-fixed": "#001d31",
-            "primary-container": "#172554",
-            "error": "#ba1a1a",
-            "surface-tint": "#4f5c8e",
-            "secondary-container": "#fd8a42",
-            "tertiary-container": "#002b45",
-            "on-secondary-fixed-variant": "#763300",
-            "surface-dim": "#ccdbf3"
+            "surface-container": "#201f1f",
+            "tertiary-fixed": "#ffdcc1",
+            "background": "#131313",
+            "on-primary": "#003350",
+            "secondary-fixed": "#cae6ff",
+            "surface-container-high": "#2a2a2a",
+            "tertiary-fixed-dim": "#ffb878",
+            "on-primary-fixed-variant": "#004b72",
+            "on-surface": "#e5e2e1",
+            "surface": "#131313",
+            "secondary": "#9bccf4",
+            "on-secondary-fixed": "#001e30",
+            "primary": "#91cdfe",
+            "on-tertiary-fixed": "#2e1500",
+            "error": "#ffb4ab",
+            "on-surface-variant": "#c0c7cf",
+            "secondary-container": "#124d70",
+            "on-primary-container": "#8ec9fa",
+            "on-secondary": "#00344f",
+            "primary-container": "#005580",
+            "surface-dim": "#131313",
+            "inverse-surface": "#e5e2e1",
+            "inverse-primary": "#1e638f",
+            "surface-bright": "#3a3939",
+            "primary-fixed-dim": "#91cdfe",
+            "surface-container-highest": "#353534",
+            "on-secondary-fixed-variant": "#0e4b6d",
+            "on-secondary-container": "#8dbee6",
+            "on-background": "#e5e2e1",
+            "tertiary": "#ffb878",
+            "on-error-container": "#ffdad6",
+            "tertiary-container": "#794303",
+            "on-error": "#690005",
+            "inverse-on-surface": "#313030",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "surface-container-lowest": "#0e0e0e",
+            "on-tertiary-container": "#ffb36e",
+            "primary-fixed": "#cbe6ff",
+            "surface-variant": "#353534",
+            "on-tertiary": "#4c2700",
+            "error-container": "#93000a",
+            "outline-variant": "#41474e",
+            "secondary-fixed-dim": "#9bccf4",
+            "outline": "#8b9199",
+            "surface-tint": "#91cdfe",
+            "on-primary-fixed": "#001e30",
+            "surface-container-low": "#1c1b1b"
           },
           "borderRadius": {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
           },
           "spacing": {
-            "gutter-desktop": "1.5rem",
-            "space-sm": "0.75rem",
+            "gutter-desktop": "2rem",
+            "space-4xl": "6rem",
+            "space-3xl": "4.5rem",
+            "space-2xl": "3rem",
+            "space-xl": "2rem",
+            "gutter-tablet": "1.5rem",
             "space-2xs": "0.25rem",
             "space-xs": "0.5rem",
-            "space-xl": "2rem",
-            "space-3xs": "0.125rem",
-            "space-2xl": "3rem",
-            "gutter-mobile": "1rem",
             "space-md": "1rem",
-            "container-max": "80rem",
-            "space-3xl": "4rem",
+            "gutter-mobile": "1rem",
+            "container-max": "1440px",
+            "space-sm": "0.75rem",
             "space-lg": "1.5rem"
           },
           "fontFamily": {
-            "body-lg": ["manrope"],
-            "headline-md": ["sourceSerif4"],
-            "body-md": ["manrope"],
-            "headline-lg": ["sourceSerif4"],
-            "headline-lg-mobile": ["sourceSerif4"],
-            "label-sm": ["manrope"],
-            "headline-sm": ["sourceSerif4"],
-            "display-hero-mobile": ["sourceSerif4"],
-            "label-md": ["manrope"],
-            "title-md": ["manrope"],
-            "display-hero": ["sourceSerif4"],
-            "body-sm": ["manrope"]
+            "label-sm": ["Manrope"],
+            "headline-lg-mobile": ["Raleway"],
+            "label-md": ["Manrope"],
+            "headline-lg": ["Raleway"],
+            "body-lg": ["Manrope"],
+            "headline-md": ["Raleway"],
+            "display-hero": ["Raleway"],
+            "display-hero-mobile": ["Raleway"],
+            "body-md": ["Manrope"],
+            "headline-sm": ["Raleway"]
           },
           "fontSize": {
-            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
-            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
-            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
-            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
-            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }]
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }]
           }
         }
       }
     }
   </script>
 <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
+    /* Darkroom delicate aesthetic textures */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
-    /* Subtle camera watermark lines for editorial tone */
-    .proof-grid-texture {
-      background-image: radial-gradient(rgba(23, 37, 84, 0.04) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+    .atelier-glow {
+      box-shadow: 0 0 35px -5px rgba(0, 85, 128, 0.35), 0 12px 32px rgba(0, 0, 0, 0.65);
     }
   </style>
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col justify-between proof-grid-texture selection:bg-primary-container selection:text-white">
-<!-- Top Navigation Header -->
-<header class="bg-surface-container-lowest text-primary docked full-width top-0 shadow-sm border-b border-outline-variant z-40 sticky">
-<div class="w-full px-gutter-mobile md:px-gutter-desktop mx-auto max-w-container-max flex justify-between items-center h-16">
-<!-- Brand & Identity Cluster -->
-<div class="flex items-center space-x-space-sm">
-<a class="flex items-center space-x-space-xs text-primary group active:scale-98 transition-transform duration-150 ease-out" href="index.html" title="Directorio Escolar">
-<span class="material-symbols-outlined text-primary text-[28px]" data-icon="camera_roll">camera_roll</span>
-<span class="font-headline-md text-headline-md tracking-tight text-primary font-bold">EVENTOS</span>
-</a>
-<span class="hidden sm:inline-block text-outline-variant">|</span>
-<span class="hidden sm:inline-flex items-center text-on-surface-variant font-label-md text-label-md">
-          Fotografía Escolar &amp; Archivo
-        </span>
-</div>
-<!-- Institutional Verification Anchor -->
-<div class="flex items-center space-x-space-xs">
-<div class="inline-flex items-center gap-1.5 px-space-sm py-1 bg-surface-container-low rounded border border-outline-variant text-primary font-label-md text-label-md">
-<span class="material-symbols-outlined text-primary text-[18px]" data-icon="vpn_key" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
-<span class="text-xs font-semibold">Acceso Exclusivo</span>
-</div>
-</div>
-</div>
-</header>
-<!-- Main Canvas Journey (Clean Exclusive Google OAuth) -->
-<main class="flex-grow flex items-center justify-center px-gutter-mobile py-space-xl md:py-space-3xl">
-<div class="w-full max-w-[480px]">
-<!-- Elevated Administrative Card -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_24px_-2px_rgba(23,37,84,0.09)] p-6 md:p-8 relative">
-<!-- Resticted & Private Badge -->
-<div class="flex justify-center mb-space-md">
-<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-primary rounded-full border border-primary/20 shadow-sm">
-<span class="material-symbols-outlined text-[16px] text-primary" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
-<span class="font-label-sm text-label-sm tracking-wider uppercase font-bold text-primary">ACCESO RESTRINGIDO &amp; PRIVADO</span>
+<body class="bg-[#111111] text-on-surface font-body-md text-body-md min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-surface-bright relative overflow-x-hidden">
+<!-- Background atmospheric glow & optical lines -->
+<div class="fixed inset-0 pointer-events-none bg-grid-pattern z-0 opacity-70"></div>
+<div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary-container/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
+<div class="fixed bottom-10 right-10 w-96 h-96 bg-tertiary-container/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- Subtle Top Banner: Integration Context Info -->
+
+<!-- Top Navigation Utility (Suppressed Main Shell per Destination/Linear Rule) -->
+
+<!-- Central Authentication Canvas -->
+<main class="relative z-10 flex-grow flex items-center justify-center px-4 py-space-xl">
+<div class="w-full max-w-[440px]">
+<!-- Atelier Darkroom Card -->
+<div class="bg-[#181818] border border-[#005580]/60 rounded-xl atelier-glow p-space-xl relative overflow-hidden backdrop-blur-md">
+<!-- Subtle Top Accent Lighting Bar -->
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
+<!-- Photographer / Identity Badge -->
+<div class="flex flex-col items-center text-center mb-space-lg">
+<div class="relative mb-space-sm group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary-container via-primary to-tertiary rounded-full blur-sm opacity-50 group-hover:opacity-75 transition duration-300"></div>
+<img alt="Fotógrafo Sergio Ricardo Molina" class="relative w-20 h-20 rounded-full object-cover border-2 border-[#005580] shadow-md bg-surface-container-lowest" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+<div class="absolute bottom-0 right-0 w-5 h-5 bg-surface-container-lowest rounded-full border border-outline-variant flex items-center justify-center" title="Administrador Autenticado">
+<span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8]"></span>
 </div>
 </div>
-<!-- Section Title & Subtitle -->
-<div class="text-center mb-space-lg">
-<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-2">
-            Portal de Fotógrafo
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight font-semibold">
+            Portal de Administración
           </h1>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-            Administración de sesiones escolares, sincronización de tomas en alta resolución y control comercial directo con Google Drive.
-          </p>
+<p class="font-label-md text-label-md text-outline mt-1.5 max-w-xs">
+            Gestión de Galerías y Tarifas&nbsp;</p>
 </div>
-<!-- Authorized Account Card / Identity Banner -->
-<div class="mb-space-lg p-3.5 bg-surface-container-low border border-primary/20 rounded-lg flex items-center gap-3 text-left">
-<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-base flex-shrink-0 shadow-sm">
-          SO
-        </div>
-<div class="min-w-0 flex-1">
-<div class="flex items-center gap-1.5 flex-wrap">
-<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">Fotógrafo Autorizado</span>
-<span class="inline-flex items-center gap-0.5 px-1.5 py-0.2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
-<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span> Propietario
-            </span>
+<!-- Authentication Form -->
+<div class="space-y-space-md" id="admin-login-form">
+  <!-- Access Mode Indicator / Context -->
+  <div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-tertiary text-lg" data-icon="verified_user">verified_user</span>
+      <span class="font-label-sm text-label-sm text-on-surface">AUTENTICACIÓN GOOGLE&nbsp;</span>
+    </div>
+    <span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-primary-container/20 border border-primary-container/40">
+      ROL: ADMIN</span>
+  </div>
+
+  <!-- Authorized Account Preview Card -->
+  <div class="p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center gap-space-sm relative overflow-hidden">
+    <div class="relative flex-shrink-0">
+      
+      <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#38bdf8] border-2 border-surface-container-lowest"></span>
+    </div>
+    <div class="flex flex-col min-w-0 flex-grow text-left">
+      <div class="flex items-center gap-1.5">
+        
+        
+      </div>
+      <span class="font-label-sm text-label-sm text-secondary truncate">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ingreso privado</span>
+      
+    </div>
+  </div>
+
+  <!-- Google OAuth Action Button -->
+  <div class="pt-1">
+    <button type="button" id="google-oauth-btn" onclick="handleGoogleLogin()" class="w-full flex items-center justify-center gap-3 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/60 hover:border-primary py-3 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md group cursor-pointer">
+      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+        <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"></path>
+        <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"></path>
+        <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z"></path>
+        <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"></path>
+      </svg>
+      <span class="group-hover:text-primary transition-colors">Iniciar sesión con Google</span>
+    </button>
+  </div>
+
+  <!-- Dynamic Status Feedback -->
+  <div id="status-message" class="hidden p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all"></div>
 </div>
-<p class="font-mono font-semibold text-primary text-xs sm:text-sm truncate select-all">molinaoksergio@gmail.com</p>
+<!-- Divider with darkroom aesthetic -->
+<div class="relative my-space-lg">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/30"></div>
+</div>
+
+</div>
+<!-- Supabase & Local Token Trust Badge -->
+<div class="space-y-2">
+
+
 </div>
 </div>
-<!-- Google Authentication Block -->
-<div class="space-y-space-sm">
-<button class="w-full flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest border-2 border-primary/20 rounded-lg text-on-surface hover:bg-surface-container-low hover:border-primary transition-all duration-150 shadow-sm active:scale-98 cursor-pointer group disabled:opacity-75 disabled:cursor-not-allowed" id="googleAuthBtn" onclick="handleGoogleSignIn()" type="button">
-<svg class="w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110 duration-150" viewbox="0 0 24 24">
-<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
-<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
-<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
-<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
-</svg>
-<span class="font-title-md text-title-md font-bold text-primary group-hover:text-primary-container transition-colors" id="btnLabel">Iniciar sesión con Google</span>
-</button>
-<p class="text-center font-label-sm text-label-sm text-on-surface-variant">
-          Autenticación segura federada mediante Google Workspace &amp; Drive Sync
-        </p>
-</div>
-<!-- Dynamic Status Feedback Box (Hidden by default) -->
-<div class="hidden mt-space-md p-3.5 bg-surface-container border border-primary/30 text-primary rounded-lg flex items-center gap-3 transition-all duration-200" id="statusBox" role="status">
-<svg class="animate-spin h-5 w-5 text-primary flex-shrink-0" fill="none" id="statusSpinner" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-<path class="opacity-75" d="M4 12a8 8 0 018-8v8H4z" fill="currentColor"></path>
-</svg>
-<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 hidden" data-icon="check_circle" id="statusCheck" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<p class="font-body-sm text-body-sm font-semibold text-primary" id="statusMessage">Conectando con Google...</p>
-</div>
-<!-- Institutional Security Notice Box -->
-<div class="mt-space-lg p-3.5 bg-surface-container-low border border-outline-variant rounded-lg flex items-start space-x-3 text-left">
-<span class="material-symbols-outlined text-secondary text-[22px] flex-shrink-0 mt-0.5" data-icon="shield">shield</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-<strong class="text-primary font-semibold">Aviso de Seguridad:</strong> Este portal está restringido exclusivamente a la cuenta autorizada (<strong class="text-primary font-mono text-xs">molinaoksergio@gmail.com</strong>). El acceso habilita la sincronización completa de lotes y galerías escolares.
-        </p>
-</div>
-</div>
-<!-- Footer Anchor Backlink -->
-<div class="mt-space-lg text-center">
-<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-1.5 px-3 rounded hover:bg-surface-container-high" href="index.html">
-<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
-<span>Volver al Directorio Escolar</span>
+<!-- Secondary Return Links for Flow Freedom -->
+<div class="mt-space-md text-center">
+<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-outline hover:text-on-surface transition-colors py-1 px-3 rounded hover:bg-surface-container-low" href="/eventos">
+<span class="material-symbols-outlined text-sm" data-icon="school">school</span>
+<span class="">Volver a Eventos Escolares</span>
 </a>
 </div>
 </div>
 </main>
-<!-- Editorial Institutional Footer -->
-<footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-4 px-gutter-mobile md:px-gutter-desktop">
-<div class="max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
-<div class="flex items-center space-x-2">
-<span class="font-headline-sm text-headline-sm text-primary tracking-tight">EVENTOS</span>
-<span>• Archivo Fotográfico &amp; Retratos Familiares</span>
-</div>
-<div class="flex items-center space-x-4">
-<span class="font-label-sm text-label-sm text-outline">Soporte Técnico de Estudio: fotógrafos@eventos.edu.ar</span>
-</div>
-</div>
-</footer>
-<!-- Google Single-Sign-On Simulation Script -->
-<script>
-    const AUTHORIZED_GOOGLE_EMAIL = 'molinaoksergio@gmail.com';
+<!-- Ambient Minimal Footer -->
+<script class="">
+  function handleGoogleLogin() {
+    const btn = document.getElementById('google-oauth-btn');
+    const statusEl = document.getElementById('status-message');
+    const authorizedEmail = 'molinaoksergio@gmail.com';
 
-    function handleGoogleSignIn() {
-      const btn = document.getElementById('googleAuthBtn');
-      const btnLabel = document.getElementById('btnLabel');
-      const statusBox = document.getElementById('statusBox');
-      const statusMessage = document.getElementById('statusMessage');
-      const statusSpinner = document.getElementById('statusSpinner');
-      const statusCheck = document.getElementById('statusCheck');
+    btn.disabled = true;
+    btn.classList.add('opacity-75', 'pointer-events-none');
+    btn.innerHTML = `
+      <span class="material-symbols-outlined text-lg animate-spin text-primary" data-icon="progress_activity">progress_activity</span>
+      <span>Conectando con Google...</span>
+    `;
 
-      // 1. Bloquear botón y mostrar feedback de conexión inicial
-      btn.disabled = true;
-      btnLabel.textContent = 'Conectando con Google...';
-      statusBox.classList.remove('hidden');
-      statusSpinner.classList.remove('hidden');
-      statusCheck.classList.add('hidden');
-      statusMessage.textContent = 'Verificando autorización para ' + AUTHORIZED_GOOGLE_EMAIL + '...';
+    setTimeout(() => {
+      // Authorized photographer verification
+      sessionStorage.setItem('srm_admin_session', JSON.stringify({
+        email: authorizedEmail,
+        name: 'Sergio Ricardo Molina',
+        role: 'OWNER',
+        authenticatedAt: new Date().toISOString()
+      }));
 
-      // 2. Simulación de autenticación OAuth exitosa de Sergio Molina
+      statusEl.className = 'p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all bg-primary-container/20 text-primary border border-primary-container flex items-center justify-center gap-1.5';
+      statusEl.innerHTML = `
+        <span class="material-symbols-outlined text-base" data-icon="check_circle">check_circle</span>
+        <span>Acceso concedido para ${authorizedEmail}. Redirigiendo...</span>
+      `;
+
       setTimeout(() => {
-        statusSpinner.classList.add('hidden');
-        statusCheck.classList.remove('hidden');
-        statusMessage.textContent = 'Autenticado con éxito como ' + AUTHORIZED_GOOGLE_EMAIL;
-        btnLabel.textContent = 'Redirigiendo al Panel...';
-
-        // 3. Guardar estado de sesión fotógrafo en sessionStorage
-        sessionStorage.setItem('eventos_fotografo_auth', 'true');
-        sessionStorage.setItem('eventos_fotografo_email', AUTHORIZED_GOOGLE_EMAIL);
-        sessionStorage.setItem('eventos_fotografo_name', 'Sergio Molina');
-
         window.location.href = 'panel.html';
+      }, 1000);
+    }, 900);
+  }
+</script>
+<!-- Micro-interactions Script -->
+<script>
+    // Set dynamic year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Toggle password visibility
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('admin-password');
+      const iconSpan = document.getElementById('password-icon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        iconSpan.textContent = 'visibility_off';
+      } else {
+        passwordInput.type = 'password';
+        iconSpan.textContent = 'visibility';
+      }
+    }
+
+    // Interactive mock login verification
+    function handleLogin() {
+      const password = document.getElementById('admin-password').value;
+      const statusEl = document.getElementById('status-message');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if (!password) return;
+
+      // Loading state
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      submitBtn.innerHTML = `
+        <span class="material-symbols-outlined text-lg animate-spin" data-icon="sync">sync</span>
+        <span>Verificando Credenciales...</span>
+      `;
+
+      setTimeout(() => {
+        // Mock successful validation for the photographer
+        statusEl.classList.remove('hidden', 'bg-error/10', 'text-error', 'border-error/40');
+        statusEl.classList.add('bg-primary-container/20', 'text-primary', 'border', 'border-primary-container');
+        statusEl.innerHTML = `
+          <div class="flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-base" data-icon="check_circle">check_circle</span>
+            <span>Credenciales correctas. Redirigiendo al panel...</span>
+          </div>
+        `;
+
         setTimeout(() => {
-          window.location.href = 'panel.html';
-        }, 800);
-      }, 950);
+          window.location.href = '#dashboard-panel';
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+          submitBtn.innerHTML = `
+            <span>Ingresar al Panel de Control</span>
+            <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+          `;
+        }, 1200);
+      }, 900);
     }
   </script>
+
+
 </body></html>
