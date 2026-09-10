@@ -56,83 +56,50 @@ body {
   transform: scale(0.985);
 }
 
-/* Redes Sociales Grid (Estética renovada y uniforme) */
+/* Redes Sociales Grid */
 .redes-sociales-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 14px;
   width: 100%;
 }
 @media (max-width: 640px) {
   .redes-sociales-grid { gap: 10px; }
+  .btn-red-card { padding: 16px 8px !important; }
+  .btn-red-card span.text-label { font-size: 13px !important; }
 }
 .btn-red-card {
-  background: #1a1a1a;
-  border-radius: 14px;
-  padding: 16px 8px;
-  text-align: center;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  position: relative;
-  overflow: hidden;
+  gap: 10px;
+  padding: 22px 14px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-width: 2px;
   border-style: solid;
-  border-width: 1px;
   user-select: none;
 }
-.btn-red-card .material-symbols-outlined {
-  font-size: 24px;
-  transition: transform 0.2s ease;
-}
-.btn-red-card:hover .material-symbols-outlined {
-  transform: scale(1.1);
-}
-.btn-red-card:active {
-  transform: scale(0.95);
-}
+.btn-red-card:hover { transform: translateY(-2px); }
+.btn-red-card:active { transform: scale(0.97); }
 
-/* ESTILOS ESPECÍFICOS Y MODERNOS POR RED SOCIAL */
-.btn-card-wsp { 
-  border-color: rgba(74, 222, 128, 0.4); 
-  background: linear-gradient(145deg, #1d241f, #151a17);
-}
-.btn-card-wsp:hover { 
-  border-color: #4ade80; 
-  background: linear-gradient(145deg, #243229, #1a221d);
-  box-shadow: 0 6px 16px rgba(74, 222, 128, 0.15);
-}
-.btn-card-wsp .material-symbols-outlined, .btn-card-wsp .text-label { color: #4ade80; }
+/* WhatsApp - Verde */
+.btn-card-wsp { border-color: #4ade80; }
+.btn-card-wsp:hover { background-color: rgba(74, 222, 128, 0.1); box-shadow: 0 0 16px rgba(74, 222, 128, 0.25); }
+.btn-card-wsp .icon-red, .btn-card-wsp .text-label { color: #4ade80; }
 
-.btn-card-cat { 
-  border-color: rgba(250, 204, 21, 0.4); 
-  background: linear-gradient(145deg, #24221a, #1a1915);
-}
-.btn-card-cat:hover { 
-  border-color: #facc15; 
-  background: linear-gradient(145deg, #322f1f, #222016);
-  box-shadow: 0 6px 16px rgba(250, 204, 21, 0.15);
-}
-.btn-card-cat .material-symbols-outlined, .btn-card-cat .text-label { color: #facc15; }
+/* Catálogo - Amarillo */
+.btn-card-cat { border-color: #facc15; }
+.btn-card-cat:hover { background-color: rgba(250, 204, 21, 0.1); box-shadow: 0 0 16px rgba(250, 204, 21, 0.25); }
+.btn-card-cat .icon-red, .btn-card-cat .text-label { color: #facc15; }
 
-.btn-card-ig  { 
-  border-color: rgba(251, 146, 60, 0.4); 
-  background: linear-gradient(145deg, #241d19, #1a1513);
-}
-.btn-card-ig:hover { 
-  border-color: #fb923c; 
-  background: linear-gradient(145deg, #32251e, #221a15);
-  box-shadow: 0 6px 16px rgba(251, 146, 60, 0.15);
-}
-.btn-card-ig .material-symbols-outlined, .btn-card-ig .text-label { color: #fb923c; }
+/* Instagram - Naranja */
+.btn-card-ig { border-color: #fb923c; }
+.btn-card-ig:hover { background-color: rgba(251, 146, 60, 0.1); box-shadow: 0 0 16px rgba(251, 146, 60, 0.25); }
+.btn-card-ig .icon-red, .btn-card-ig .text-label { color: #fb923c; }
 </style>
 </head>
 <body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col antialiased">
@@ -165,6 +132,7 @@ body {
 <main class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 pb-12">
   <!-- TÍTULO -->
   <section class="mb-10 text-left">
+    
     <h1 class="font-['Raleway'] text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
       Eventos Escolares
     </h1>
@@ -192,7 +160,45 @@ body {
     </div>
 
     <!-- Public Grid Container -->
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6" id="galleries-grid"><a href="galeria.html?id=1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v&amp;titulo=Promesa%20a%20La%20Bandera%20TT%202026%20Tarde" class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block"><div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800"><img src="https://lh3.googleusercontent.com/d/1VJNz5LV4LbyrXunBf38Qc7Q08C6yia9A=w600" alt="Promesa a La Bandera TT 2026 Tarde" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';"><div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm"><span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span><span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span></div></div><div class="p-3 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]"><div><div class="flex items-center gap-1 sm:gap-1.5 text-neutral-400 text-[10px] sm:text-xs font-semibold mb-1.5 sm:mb-2 uppercase tracking-wider"><span class="material-symbols-outlined text-xs sm:text-sm text-sky-400">calendar_month</span><span class="">septiembre de 2026</span></div><h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">Promesa a La Bandera TT 2026 Tarde</h3></div></div></a><a href="galeria.html?id=1YxwsZ0Kv-vLWN8RcXNPIrQKZ5n6gYwzl&amp;titulo=Practicas%20Cct%202026%20TT" class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block"><div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800"><img src="https://lh3.googleusercontent.com/d/12l9zeTaNCzY2C6NNPUokQvp5oYFhMd8c=w600" alt="Practicas Cct 2026 TT" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';"><div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm"><span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span><span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span></div></div><div class="p-3 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]"><div><div class="flex items-center gap-1 sm:gap-1.5 text-neutral-400 text-[10px] sm:text-xs font-semibold mb-1.5 sm:mb-2 uppercase tracking-wider"><span class="material-symbols-outlined text-xs sm:text-sm text-sky-400">calendar_month</span><span class="">septiembre de 2026</span></div><h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">Practicas Cct 2026 TT</h3></div></div></a></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleries-grid"><a href="galeria.html?id=1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v&amp;titulo=Promesa%20a%20La%20Bandera%20TT%202026%20Tarde" class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block">
+      <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+        <img src="https://lh3.googleusercontent.com/d/1VJNz5LV4LbyrXunBf38Qc7Q08C6yia9A=w600" alt="Promesa a La Bandera TT 2026 Tarde" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';">
+        <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-full text-sky-400 shadow-sm">
+          <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <span class="text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span>
+        </div>
+      </div>
+      <div class="p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+        <div>
+          <div class="flex items-center gap-1.5 text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">
+            <span class="material-symbols-outlined text-sm text-sky-400">calendar_month</span>
+            <span class="">septiembre de 2026</span>
+          </div>
+          <h3 class="font-['Raleway'] text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+            Promesa a La Bandera TT 2026 Tarde
+          </h3>
+        </div>
+      </div>
+    </a><a href="galeria.html?id=1YxwsZ0Kv-vLWN8RcXNPIrQKZ5n6gYwzl&amp;titulo=Practicas%20Cct%202026%20TT" class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block">
+      <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+        <img src="https://lh3.googleusercontent.com/d/12l9zeTaNCzY2C6NNPUokQvp5oYFhMd8c=w600" alt="Practicas Cct 2026 TT" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';">
+        <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2.5 py-1 rounded-full text-sky-400 shadow-sm">
+          <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <span class="text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span>
+        </div>
+      </div>
+      <div class="p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+        <div>
+          <div class="flex items-center gap-1.5 text-neutral-400 text-xs font-semibold mb-2 uppercase tracking-wider">
+            <span class="material-symbols-outlined text-sm text-sky-400">calendar_month</span>
+            <span class="">septiembre de 2026</span>
+          </div>
+          <h3 class="font-['Raleway'] text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+            Practicas Cct 2026 TT
+          </h3>
+        </div>
+      </div>
+    </a></div>
   </section>
 
   <!-- ACCESO PRIVADO CLIENTES -->
@@ -202,6 +208,7 @@ body {
       <span class="text-white font-bold text-lg sm:text-xl font-['Raleway'] tracking-wide">
         Acceso Privado Clientes 🔒
       </span>
+      
     </button>
   </section>
 
@@ -209,16 +216,16 @@ body {
   <section class="mb-14">
     <div class="redes-sociales-grid">
       <a class="btn-red-card btn-card-wsp" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
-        <span class="material-symbols-outlined">chat</span>
-        <span class="text-label">WhatsApp</span>
+        <span class="material-symbols-outlined icon-red text-2xl">chat</span>
+        <span class="text-label text-sm sm:text-base font-semibold tracking-wide">Chat WhatsApp</span>
       </a>
       <a class="btn-red-card btn-card-cat" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
-        <span class="material-symbols-outlined">inventory_2</span>
-        <span class="text-label">Catálogo</span>
+        <span class="material-symbols-outlined icon-red text-2xl">inventory_2</span>
+        <span class="text-label text-sm sm:text-base font-semibold tracking-wide">Catálogo</span>
       </a>
       <a class="btn-red-card btn-card-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
-        <span class="material-symbols-outlined">photo_camera_back</span>
-        <span class="text-label">Instagram</span>
+        <span class="material-symbols-outlined icon-red text-2xl">photo_camera_back</span>
+        <span class="text-label text-sm sm:text-base font-semibold tracking-wide">Instagram</span>
       </a>
     </div>
   </section>
@@ -262,6 +269,7 @@ async function verificarClave(clave) {
 
   if (supabaseClient) {
     try {
+      // Consulta flexible por password en 'galeria' y 'galerias'
       let res = await supabaseClient.from('galeria').select('*').ilike('password', pass);
       if (res.error || !res.data || res.data.length === 0) {
         res = await supabaseClient.from('galerias').select('*').ilike('password', pass);
@@ -274,6 +282,7 @@ async function verificarClave(clave) {
     }
   }
 
+  // Claves de respaldo locales
   if (!albumEncontrado) {
     const localPrivateKeys = {
       "familia2026": { folder_id: "familia-2026", titulo: "Sesión Familia Colección 2026" },
@@ -285,6 +294,7 @@ async function verificarClave(clave) {
     }
   }
 
+  // Redirección inmediata a galeria.html en modo privado
   if (albumEncontrado) {
     const rawDrive = albumEncontrado.drive_url || albumEncontrado.folder_id || albumEncontrado.enlace_drive || albumEncontrado.id_carpeta || '';
     const match = rawDrive.match(/[-\w]{25,}/);
@@ -324,6 +334,7 @@ async function fetchPublicGalleries() {
     }
   }
 
+  // Filtrar estrictamente solo públicas
   const publicOnly = events.filter(item => !item.es_privada && !item.privada && (!item.password || item.password.trim() === ''));
 
   if (publicOnly.length === 0) {
@@ -382,5 +393,8 @@ async function fetchPublicGalleries() {
 
 document.addEventListener('DOMContentLoaded', fetchPublicGalleries);
 </script>
+
+
+
 
 </body></html>
