@@ -164,20 +164,67 @@
   <!-- Access Mode Indicator / Context -->
   <div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-tertiary text-lg" data-icon="verified_user">verified_user</span>
-      <span class="font-label-sm text-label-sm text-on-surface">AUTENTICACIÓN GOOGLE&nbsp;</span>
+      <span class="material-symbols-outlined text-tertiary text-lg" data-icon="shield_person">shield_person</span>
+      <span class="font-label-sm text-label-sm text-on-surface tracking-wide uppercase">Autenticación de Administrador</span>
     </div>
     <span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-primary-container/20 border border-primary-container/40">
-      ROL: ADMIN</span>
+      ROL: OWNER
+    </span>
   </div>
 
-  <!-- Authorized Account Preview Card -->
-  <div class="p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center gap-space-sm relative overflow-hidden"><div class="relative flex-shrink-0"><div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/40 flex items-center justify-center text-primary font-semibold font-headline-md">S</div><span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#38bdf8] border-2 border-surface-container-lowest"></span></div><div class="flex flex-col min-w-0 flex-grow text-left"><div class="flex items-center gap-1.5"><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Sergio Ricardo Molina</span><span class="material-symbols-outlined text-secondary text-sm" data-icon="verified">verified</span></div><span class="font-label-sm text-label-sm text-secondary truncate">molinaoksergio@gmail.com</span><span class="font-label-sm text-label-sm text-outline mt-0.5">Acceso Exclusivo • Panel, Cargas y Precios</span></div></div>
+  <!-- Authorized Account Context -->
+  <div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center gap-space-sm">
+    <div class="relative flex-shrink-0">
+      <div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/40 flex items-center justify-center text-primary font-semibold font-headline-md">S</div>
+      <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#38bdf8] border-2 border-surface-container-lowest"></span>
+    </div>
+    <div class="flex flex-col min-w-0 flex-grow text-left">
+      <div class="flex items-center gap-1.5">
+        <span class="font-label-md text-label-md text-on-surface font-semibold truncate">Sergio Ricardo Molina</span>
+        <span class="material-symbols-outlined text-secondary text-sm" data-icon="verified">verified</span>
+      </div>
+      <span class="font-label-sm text-label-sm text-secondary truncate" id="authorized-email-display">molinaoksergio@gmail.com</span>
+      <span class="font-label-sm text-label-sm text-outline mt-0.5">Identidad de gestión restringida</span>
+    </div>
+  </div>
 
-  <!-- Google OAuth Action Button -->
-  <div class="pt-1"><button type="button" id="google-oauth-btn" onclick="handleGoogleLogin()" class="w-full flex items-center justify-center gap-3 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/60 hover:border-primary py-3 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md group cursor-pointer"><svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"></path><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"></path><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z"></path><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"></path></svg><span class="group-hover:text-primary transition-colors">Continuar con Google</span></button></div>
+  <!-- Admin Password Authentication Form (Strict, No Auto-bypass) -->
+  <form id="credentials-form" onsubmit="event.preventDefault(); handleAdminPasswordLogin();" class="space-y-3">
+    <div class="space-y-1 text-left">
+      <label for="admin-password" class="block font-label-sm text-label-sm text-outline uppercase tracking-wider">Clave de Acceso Administrador</label>
+      <div class="relative flex items-center">
+        <input id="admin-password" type="password" required="" autocomplete="current-password" placeholder="Ingrese su contraseña maestra" class="w-full bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:outline-none text-on-surface py-2.5 pl-3 pr-10 rounded-lg font-body-md text-sm transition-colors placeholder:text-outline/60">
+        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-2.5 text-outline hover:text-on-surface transition-colors p-1 flex items-center justify-center" title="Mostrar / Ocultar contraseña">
+          <span id="password-icon" class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+        </button>
+      </div>
+    </div>
 
-  <!-- Dynamic Status Feedback -->
+    <button type="submit" id="submit-password-btn" class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-primary-fixed hover:text-on-primary-fixed py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md cursor-pointer">
+      <span class="material-symbols-outlined text-base" data-icon="lock_open">lock_open</span>
+      <span class="">Ingresar con Contraseña</span>
+    </button>
+  </form>
+
+  <!-- Divider -->
+  <div class="relative my-2">
+    <div class="absolute inset-0 flex items-center">
+      <div class="w-full border-t border-outline-variant/30"></div>
+    </div>
+    <div class="relative flex justify-center text-label-sm">
+      <span class="bg-[#181818] px-3 text-outline text-label-sm">o autenticar con Google</span>
+    </div>
+  </div>
+
+  <!-- Google OAuth Real Auth Button (select_account prompt, no auto-bypass) -->
+  <div>
+    <button type="button" id="google-oauth-btn" onclick="handleGoogleLogin()" class="w-full flex items-center justify-center gap-3 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/60 hover:border-primary py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md group cursor-pointer">
+      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"></path><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"></path><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z"></path><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"></path></svg>
+      <span class="group-hover:text-primary transition-colors">Continuar con Google</span>
+    </button>
+  </div>
+
+  <!-- Dynamic Status Feedback Message -->
   <div id="status-message" class="hidden p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all"></div>
 </div>
 <!-- Divider with darkroom aesthetic -->
@@ -188,7 +235,7 @@
 
 </div>
 <!-- Supabase & Local Token Trust Badge -->
-<div class="space-y-2"><div class="flex items-center justify-between text-outline text-label-sm font-label-sm px-1"><span class="">Google OAuth / Supabase Auth</span><span class="flex items-center gap-1 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span> Conexión Segura TLS</span></div><div class="p-space-xs rounded-lg bg-surface-container-low border border-outline-variant/30 text-center font-label-sm text-outline">Sesión autorizada para <span class="text-on-surface font-semibold">molinaoksergio@gmail.com</span> con acceso a Panel, Cargas y Tarifas.</div></div>
+<div class="space-y-2"><div class="flex items-center justify-between text-outline text-label-sm font-label-sm px-1"><span class="">Google OAuth / Supabase Auth</span><span class="flex items-center gap-1 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span> Acceso Restringido y Encriptado</span></div><div class="p-space-xs rounded-lg bg-surface-container-low border border-outline-variant/30 text-center font-label-sm text-outline">Autenticación requerida exclusivamente para <span class="text-on-surface font-semibold">molinaoksergio@gmail.com</span>. Se prohíbe el bypass automático sin validación activa.</div></div>
 </div>
 <!-- Secondary Return Links for Flow Freedom -->
 <div class="mt-space-md text-center">
