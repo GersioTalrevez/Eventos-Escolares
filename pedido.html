@@ -181,17 +181,25 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     .item-foto-card:hover {
       border-color: #38bdf8;
     }
+    .item-foto-card.sin-seleccion {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: #171111;
+    }
+
+    /* THUMB & MARCA DE AGUA IDÉNTICA A GALERIA */
     .item-foto-thumb {
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
       background: #0a0a0a;
       overflow: hidden;
+      user-select: none;
+      -webkit-user-drag: none;
     }
     .item-foto-thumb img {
       width: 100%;
@@ -200,6 +208,7 @@
       user-select: none;
       pointer-events: none;
       display: block;
+      -webkit-user-drag: none;
     }
     .item-foto-watermark {
       position: absolute;
@@ -210,21 +219,40 @@
       background: repeating-linear-gradient(
         -35deg,
         rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0) 24px,
-        rgba(255, 255, 255, 0.08) 25px,
-        rgba(0, 0, 0, 0) 26px
+        rgba(0, 0, 0, 0) 22px,
+        rgba(255, 255, 255, 0.07) 23px,
+        rgba(0, 0, 0, 0) 24px
       );
       pointer-events: none;
+      z-index: 2;
     }
-    .item-foto-watermark span {
-      transform: rotate(-28deg);
-      font-size: 0.62rem;
-      font-weight: 800;
-      color: rgba(255,255,255,0.38);
+    .item-foto-watermark-center {
+      transform: rotate(-30deg);
+      text-align: center;
+      line-height: 1.15;
+      padding: 6px 12px;
+      background: rgba(0, 0, 0, 0.38);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      border-radius: 4px;
+      backdrop-filter: blur(1.5px);
+    }
+    .item-foto-watermark-center .w-main {
+      font-size: 0.65rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      display: block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    }
+    .item-foto-watermark-center .w-sub {
+      font-size: 0.52rem;
+      font-weight: 700;
+      color: #38bdf8;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      text-align: center;
-      line-height: 1.2;
+      display: block;
+      margin-top: 1px;
     }
     .item-foto-id {
       position: absolute;
@@ -238,6 +266,7 @@
       padding: 2px 6px;
       border-radius: 4px;
       color: #38bdf8;
+      z-index: 3;
     }
     .item-foto-datos {
       padding: 8px 8px 10px;
@@ -254,31 +283,56 @@
       text-overflow: ellipsis;
     }
 
-    /* SELECTOR DUAL TÁCTIL Y LIMPIO */
+    /* SELECTOR DUAL INDEPENDIENTE (CHECKBOXES INTERACTIVOS) */
     .formato-selector {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px;
+      gap: 5px;
       background: #0f0f0f;
-      padding: 3px;
+      padding: 4px;
       border-radius: 8px;
       border: 1px solid #242424;
     }
     .btn-formato {
-      min-height: 38px;
-      padding: 6px 4px;
+      min-height: 40px;
+      padding: 5px 4px;
       border-radius: 6px;
       font-size: 0.7rem;
       font-weight: 700;
       cursor: pointer;
-      border: 1px solid transparent;
+      border: 1px solid #2a2a2a;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      line-height: 1.1;
+      line-height: 1.15;
       gap: 2px;
-      color: #777777;
+      color: #888888;
+      background: #171717;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+    .btn-formato:hover {
+      border-color: #444444;
+      color: #bbbbbb;
+    }
+    .btn-formato .btn-header-chk {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .btn-formato .chk-box {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1.2px solid #555555;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: transparent;
       background: transparent;
       transition: all 0.15s ease;
     }
@@ -287,15 +341,38 @@
       font-weight: 600;
       opacity: 0.85;
     }
+
+    /* ESTADOS ACTIVOS INDEPENDIENTES */
     .btn-formato.activo-impresa {
       background: rgba(250, 204, 21, 0.16);
       border-color: #facc15;
       color: #facc15;
+      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.2);
     }
+    .btn-formato.activo-impresa .chk-box {
+      border-color: #facc15;
+      background: #facc15;
+      color: #000000;
+    }
+
     .btn-formato.activo-digital {
-      background: rgba(0, 85, 128, 0.4);
+      background: rgba(0, 85, 128, 0.35);
       border-color: #38bdf8;
       color: #38bdf8;
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25);
+    }
+    .btn-formato.activo-digital .chk-box {
+      border-color: #38bdf8;
+      background: #38bdf8;
+      color: #002235;
+    }
+
+    .aviso-sin-seleccion {
+      font-size: 0.62rem;
+      color: #f87171;
+      text-align: center;
+      line-height: 1.1;
+      margin-top: 2px;
     }
 
     .btn-quitar-foto {
@@ -499,7 +576,7 @@
 <!-- TOAST SEGURIDAD -->
 <div id="toast-seguridad">
 <span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
-<span>Fotografía protegida • Sergio Molina</span>
+<span>Fotografía protegida • Sergio Ricardo Molina</span>
 </div>
 <!-- HEADER -->
 <header>
@@ -641,7 +718,7 @@
     });
 
     document.addEventListener('dragstart', function(e) {
-      if (e.target.tagName === 'IMG') {
+      if (e.target.tagName === 'IMG' || e.target.closest('.item-foto-thumb')) {
         e.preventDefault();
         return false;
       }
@@ -682,6 +759,31 @@
       }
     }
 
+    function normalizarItem(it) {
+      let impresa = false;
+      let digital = false;
+      if (typeof it.impresa === 'boolean' || typeof it.digital === 'boolean') {
+        impresa = !!it.impresa;
+        digital = !!it.digital;
+      } else if (it.formato === 'digital') {
+        digital = true;
+      } else if (it.formato === 'impresa') {
+        impresa = true;
+      } else if (it.formato === 'ambos') {
+        impresa = true;
+        digital = true;
+      } else {
+        impresa = true;
+      }
+      return {
+        id: it.id,
+        name: it.name,
+        thumb: it.thumb,
+        impresa: impresa,
+        digital: digital
+      };
+    }
+
     function cargarDatosCheckout() {
       const params = new URLSearchParams(window.location.search);
       const paramTitulo = params.get('titulo');
@@ -702,7 +804,7 @@
         if (rawLocal) {
           const parsed = JSON.parse(rawLocal);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            itemsPedido = parsed;
+            itemsPedido = parsed.map(normalizarItem);
           }
         }
       } catch (e) {
@@ -711,7 +813,7 @@
 
       if (itemsPedido.length === 0) {
         const paramFotos = params.get('fotos');
-        const formatoInicial = params.get('tipo') === 'digitales' ? 'digital' : 'impresa';
+        const formatoInicial = params.get('tipo');
         if (paramFotos) {
           const listaIds = paramFotos.split(',');
           itemsPedido = listaIds.map(fId => {
@@ -720,7 +822,8 @@
               id: clean,
               name: clean.startsWith('#') ? clean : `#${clean}`,
               thumb: `https://lh3.googleusercontent.com/d/${clean}=w600`,
-              formato: formatoInicial
+              impresa: formatoInicial !== 'digitales',
+              digital: formatoInicial === 'digitales'
             };
           });
         }
@@ -732,19 +835,22 @@
             id: '4821',
             name: '#DSC_4821.jpg',
             thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSSlr6nX7JSdoBz_CBuDc4Mzuz6LS137lC4lzvDt0rTFHBe_gsxzZcNw_OkSTJCUBI8iRULfScf1PyEY-X16a3RNaMpYI1SzTqWSeQql2S20dz2EarcqdhJK0EPT_cWyix6wBA-sT8_-L4Swp2IcV9PQecMj9eh8aETAj_LBLGg5QBQewwlcMWiPOgdtCkYzqPeTVck2wjJMaUpuezEDLReGWdN5phgyru06kwrqJ-RHYaIe_HONjp',
-            formato: 'impresa'
+            impresa: true,
+            digital: false
           },
           {
             id: '4822',
             name: '#DSC_4822.jpg',
             thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg5WD0GziT1g9Ot_stxTdzc4phKMb_z40oVSCS0Wq56Ai5XTId5QH760XdQG7HexGOvedT6Xtp44svBKRqfajAM70R0_yhFrmQPNTnqlT_ulS3XmI08PTZQ6s8AvN7DPZmbP_wGCeInOCEsN7mUpNZ1GcT1S-UbGEupkLytoPZ3tja5w7tsbsSt4mrBDo0d6FB85WN7ek2TyIoPcM1Ler6hI0jC1C8z3zRvh7klMYbJ_Bo0Bj2O61k',
-            formato: 'impresa'
+            impresa: true,
+            digital: false
           },
           {
             id: '4823',
             name: '#DSC_4823.jpg',
             thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC_wud0VjwMmzXK7jYyxLHXTaji9V6oKEXFgwy39YILX1vY2bdGVJU_1hY3mSnKJIvy8E9q0rTcglRcOc1qwBySq3XoC0xvV5MQ5h6KyuD9GIPKe_JEB7m9uYc2eQn5-yGYxhN0Wwr0a1YdNHsRq8SuTWYVCWRYD-jOcAZbPnGaEDcKs8xVQYZP66kq6IlIHH2VhIYgTt-5dNBOc8unbZLNDPIk0f6lQGTUIaebg2lw7YvynWBZfej7',
-            formato: 'digital'
+            impresa: false,
+            digital: true
           }
         ];
       }
@@ -774,12 +880,16 @@
 
       itemsPedido.forEach((item, index) => {
         const tarjeta = document.createElement('div');
-        tarjeta.className = 'item-foto-card';
+        const sinFormato = !item.impresa && !item.digital;
+        tarjeta.className = `item-foto-card ${sinFormato ? 'sin-seleccion' : ''}`;
         tarjeta.innerHTML = `
           <div class="item-foto-thumb">
             <img src="${item.thumb}" alt="${item.name}" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/${item.id}'">
             <div class="item-foto-watermark">
-              <span>MUESTRA<br>SERGIO MOLINA</span>
+              <div class="item-foto-watermark-center">
+                <span class="w-main">MUESTRA OFICIAL</span>
+                <span class="w-sub">SERGIO MOLINA</span>
+              </div>
             </div>
             <div class="item-foto-id">#${item.id}</div>
           </div>
@@ -788,21 +898,30 @@
             <div class="formato-selector">
               <button 
                 type="button" 
-                class="btn-formato ${item.formato === 'impresa' ? 'activo-impresa' : ''}" 
-                onclick="cambiarFormato(${index}, 'impresa')"
+                class="btn-formato ${item.impresa ? 'activo-impresa' : ''}" 
+                onclick="toggleFormato(${index}, 'impresa')"
+                title="Tildar / destildar copia impresa 15x21"
               >
-                <span>Impresa</span>
+                <div class="btn-header-chk">
+                  <span class="chk-box">${item.impresa ? '✓' : ''}</span>
+                  <span>Impresa</span>
+                </div>
                 <span class="precio-tag">$${TARIFA_IMPRESA.toLocaleString('es-AR')}</span>
               </button>
               <button 
                 type="button" 
-                class="btn-formato ${item.formato === 'digital' ? 'activo-digital' : ''}" 
-                onclick="cambiarFormato(${index}, 'digital')"
+                class="btn-formato ${item.digital ? 'activo-digital' : ''}" 
+                onclick="toggleFormato(${index}, 'digital')"
+                title="Tildar / destildar archivo digital HD"
               >
-                <span>Digital</span>
+                <div class="btn-header-chk">
+                  <span class="chk-box">${item.digital ? '✓' : ''}</span>
+                  <span>Digital</span>
+                </div>
                 <span class="precio-tag">$${TARIFA_DIGITAL.toLocaleString('es-AR')}</span>
               </button>
             </div>
+            ${sinFormato ? '<span class="aviso-sin-seleccion">Sin formato tildado</span>' : ''}
             <button type="button" class="btn-quitar-foto" onclick="quitarFoto(${index})">
               <span class="material-symbols-outlined" style="font-size:13px;">delete</span>
               <span>Quitar</span>
@@ -813,9 +932,13 @@
       });
     }
 
-    function cambiarFormato(index, nuevoFormato) {
+    function toggleFormato(index, tipo) {
       if (itemsPedido[index]) {
-        itemsPedido[index].formato = nuevoFormato;
+        if (tipo === 'impresa') {
+          itemsPedido[index].impresa = !itemsPedido[index].impresa;
+        } else if (tipo === 'digital') {
+          itemsPedido[index].digital = !itemsPedido[index].digital;
+        }
         guardarLocalmente();
         renderizarItems();
         calcularTotales();
@@ -844,8 +967,8 @@
       let cantDigitales = 0;
 
       itemsPedido.forEach(it => {
-        if (it.formato === 'digital') cantDigitales++;
-        else cantImpresas++;
+        if (it.impresa) cantImpresas++;
+        if (it.digital) cantDigitales++;
       });
 
       const subtotalImpresas = cantImpresas * TARIFA_IMPRESA;
@@ -865,15 +988,21 @@
         return;
       }
 
+      const impresasArray = itemsPedido.filter(it => it.impresa).map(it => it.name);
+      const digitalesArray = itemsPedido.filter(it => it.digital).map(it => it.name);
+
+      const cantImpresas = impresasArray.length;
+      const cantDigitales = digitalesArray.length;
+
+      if (cantImpresas === 0 && cantDigitales === 0) {
+        alert("Por favor seleccioná al menos una opción (Impresa o Digital) para tus fotos antes de confirmar.");
+        return;
+      }
+
       const nombreCliente = document.getElementById('cliente-nombre').value.trim() || 'Cliente';
       const colegioEgresado = document.getElementById('cliente-colegio').value.trim();
       const notas = document.getElementById('cliente-notas').value.trim();
 
-      const impresasArray = itemsPedido.filter(it => it.formato === 'impresa').map(it => it.name);
-      const digitalesArray = itemsPedido.filter(it => it.formato === 'digital').map(it => it.name);
-
-      const cantImpresas = impresasArray.length;
-      const cantDigitales = digitalesArray.length;
       const subtotalImp = cantImpresas * TARIFA_IMPRESA;
       const subtotalDig = cantDigitales * TARIFA_DIGITAL;
       const totalGeneral = subtotalImp + subtotalDig;
@@ -886,20 +1015,29 @@
       }
 
       mensaje += `📅 Evento: ${tituloEvento}\n\n` +
-        `📦 DETALLE:\n`;
+        `📦 DETALLE DEL PEDIDO:\n`;
 
       if (cantImpresas > 0) {
-        mensaje += `• Impresas 15x21 (${cantImpresas}): ${impresasArray.join(', ')} ($${subtotalImp.toLocaleString('es-AR')})\n`;
+        mensaje += `📸 Copias Impresas 15x21 (${cantImpresas} un.):\n` +
+                   `   ${impresasArray.join(', ')}\n` +
+                   `   Subtotal: $${subtotalImp.toLocaleString('es-AR')}\n\n`;
       }
 
       if (cantDigitales > 0) {
-        mensaje += `• Digitales HD (${cantDigitales}): ${digitalesArray.join(', ')} ($${subtotalDig.toLocaleString('es-AR')})\n`;
+        mensaje += `💾 Archivos Digitales HD (${cantDigitales} un.):\n` +
+                   `   ${digitalesArray.join(', ')}\n` +
+                   `   Subtotal: $${subtotalDig.toLocaleString('es-AR')}\n\n`;
       }
 
-      mensaje += `\n💰 TOTAL: $${totalGeneral.toLocaleString('es-AR')}\n`;
+      const fotosAmbos = itemsPedido.filter(it => it.impresa && it.digital).map(it => it.name);
+      if (fotosAmbos.length > 0) {
+        mensaje += `⭐ En ambos formatos (Impresa + Digital):\n   ${fotosAmbos.join(', ')}\n\n`;
+      }
+
+      mensaje += `💰 TOTAL GENERAL: $${totalGeneral.toLocaleString('es-AR')}\n`;
 
       if (notas) {
-        mensaje += `📝 Notas: ${notas}\n`;
+        mensaje += `📝 Notas / Aclaraciones: ${notas}\n`;
       }
 
       mensaje += `\n¿Me confirmás datos de pago y plazos de entrega?`;
