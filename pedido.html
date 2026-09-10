@@ -585,6 +585,52 @@
     return '$' + Number(num).toLocaleString('es-AR');
   }
 
+  // Extrae y normaliza el nombre real de archivo fotográfico genuino de Google Drive
+  function extraerNombreArchivoLimpio(crudo, idRespaldo) {
+    if (!crudo && !idRespaldo) return 'Foto.jpg';
+    let str = String(crudo || idRespaldo || '').trim();
+
+    // Si viene codificado en URL
+    try {
+      str = decodeURIComponent(str);
+    } catch (e) {}
+
+    // Si contiene URL o ruta con slashes
+    if (str.includes('/')) {
+      str = str.split('?')[0].split('#')[0];
+      const segmentos = str.split('/').filter(Boolean);
+      str = segmentos[segmentos.length - 1] || str;
+    }
+
+    // Limpiar query params residuales o hashes
+    str = str.split('?')[0].split('&')[0].split('#')[0].trim();
+
+    // Eliminar prefijo '#' si ya lo traía
+    if (str.startsWith('#')) {
+      str = str.slice(1).trim();
+    }
+
+    // Detectar si parece un ID técnico de Google Drive o URL residual sin nombre legible
+    const esIdODescarga = /^(uc|export|download|view|open|file|d)$/i.test(str) ||
+                          str.includes('id=') ||
+                          str.includes('google') ||
+                          (/^[a-zA-Z0-9_-]{25,}$/.test(str) && !/\.(jpe?g|png|raw|cr2|nef|arw|dng|webp)$/i.test(str));
+
+    if (esIdODescarga) {
+      if (idRespaldo && idRespaldo !== crudo) {
+        return extraerNombreArchivoLimpio(idRespaldo, null);
+      }
+      return 'Foto.jpg';
+    }
+
+    // Si no tiene extensión reconocible de imagen, agregar .jpg como estándar fotográfico
+    if (!/\.(jpe?g|png|raw|cr2|nef|arw|dng|webp)$/i.test(str)) {
+      str = str + '.jpg';
+    }
+
+    return str;
+  }
+
   function normalizarItem(it) {
     let impresa = false;
     let digital = false;
@@ -603,14 +649,15 @@
       impresa = true;
     }
 
-    let nombre = it.name || it.id || 'Foto';
-    if (!nombre.startsWith('#')) {
-      nombre = `#${nombre}`;
-    }
+    // Priorizar estrictamente el nombre real original del archivo devuelto por Google Drive API
+    const candidatoNombre = it.name || it.nombre || it.filename || it.fileName || it.title || it.titulo || it.archivo;
+    const candidatoId = it.id;
+    const nombreLimpio = extraerNombreArchivoLimpio(candidatoNombre, candidatoId);
 
     return {
-      id: it.id || nombre.replace('#', ''),
-      name: nombre,
+      id: it.id || nombreLimpio,
+      name: `#${nombreLimpio}`,
+      nombreLimpio: nombreLimpio,
       impresa: impresa,
       digital: digital
     };
@@ -654,20 +701,21 @@
       if (paramFotos) {
         const lista = paramFotos.split(',');
         itemsPedido = lista.map(itemStr => {
-          const limpio = itemStr.trim();
+          const limpio = extraerNombreArchivoLimpio(itemStr.trim(), null);
           return {
-            id: limpio.replace('#', ''),
-            name: limpio.startsWith('#') ? limpio : `#${limpio}`,
+            id: limpio,
+            name: `#${limpio}`,
+            nombreLimpio: limpio,
             impresa: true,
             digital: false
           };
         });
       } else {
-        // Mock oficial limpio sin imágenes
+        // Mock oficial limpio con nombres reales de archivo
         itemsPedido = [
-          { id: 'DSC_4821', name: '#DSC_4821.jpg', impresa: true, digital: false },
-          { id: 'DSC_4822', name: '#DSC_4822.jpg', impresa: true, digital: false },
-          { id: 'DSC_4823', name: '#DSC_4823.jpg', impresa: false, digital: true }
+          { id: 'DSC_4821', name: '#DSC_4821.jpg', nombreLimpio: 'DSC_4821.jpg', impresa: true, digital: false },
+          { id: 'DSC_4822', name: '#DSC_4822.jpg', nombreLimpio: 'DSC_4822.jpg', impresa: true, digital: false },
+          { id: 'DSC_4823', name: '#DSC_4823.jpg', nombreLimpio: 'DSC_4823.jpg', impresa: false, digital: true }
         ];
       }
     }
@@ -812,6 +860,7 @@
       return;
     }
 
+    // Utilizar el nombre real de archivo original sin IDs técnicos
     const fotosImpresas = itemsPedido.filter(it => it.impresa).map(it => it.name);
     const fotosDigitales = itemsPedido.filter(it => it.digital).map(it => it.name);
 
