@@ -408,6 +408,11 @@ header {
 }
 .btn-accion-estado:hover { background: #0077b3; }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* BARRA INFERIOR FIJA PARA PEDIDOS */
 .barra-compras-fija {
   position: fixed;
@@ -547,7 +552,7 @@ header {
 <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
 <span class="" id="texto-tipo-badge">Galería Pública</span>
 </div>
-<h1 class="titulo-galeria" id="titulo-galeria">Gala de Fin de Año 2024</h1>
+<h1 class="titulo-galeria" id="titulo-galeria">Cargando evento...</h1>
 <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
 </section>
 <!-- BANNER DINÁMICO DE TARIFAS -->
@@ -563,7 +568,13 @@ header {
 </div>
 </div>
 <!-- CONTENEDOR DINÁMICO DE FOTOS -->
-<div class="grid-fotos" id="contenedor-fotos"><div class="estado-caja" style="grid-column: 1 / -1; padding: 60px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #161616; border: 1px dashed #2a2a2a; border-radius: 14px;"><span class="material-symbols-outlined" style="font-size: 40px; color: #38bdf8; animation: spin 1.5s linear infinite;">sync</span><h3 style="font-size: 1.15rem; font-weight: 600; color: #ffffff; letter-spacing: 0.3px;">Cargando fotografías oficiales...</h3><p style="font-size: 0.84rem; color: #999999; max-width: 440px; line-height: 1.5;">Sincronizando de forma segura con el catálogo en alta resolución.</p></div></div>
+<div class="grid-fotos" id="contenedor-fotos">
+<div class="estado-caja" style="grid-column: 1 / -1; padding: 60px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #161616; border: 1px dashed #2a2a2a; border-radius: 14px;">
+<span class="material-symbols-outlined" style="font-size: 40px; color: #38bdf8; animation: spin 1.5s linear infinite;">sync</span>
+<h3 style="font-size: 1.15rem; font-weight: 600; color: #ffffff; letter-spacing: 0.3px;">Cargando fotografías oficiales desde Google Drive...</h3>
+<p style="font-size: 0.84rem; color: #999999; max-width: 440px; line-height: 1.5;">Sincronizando de forma segura con el catálogo en alta resolución.</p>
+</div>
+</div>
 </main>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
 <div class="barra-compras-fija" id="barra-pedidos" style="display: flex;">
@@ -586,7 +597,7 @@ header {
 </div>
 <button class="" onclick="limpiarSeleccionCompleta()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar todo</button>
 </div>
-<div class="acciones-compra"><a href="pedido.html" id="btn-ir-pedido" style="background: #1e293b; color: #93c5fd; font-weight: 600; font-size: 0.84rem; padding: 10px 14px; border-radius: 10px; border: 1px solid #3b82f6; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: all 0.2s;"><span class="material-symbols-outlined" style="font-size: 18px;">shopping_cart_checkout</span><span>Ver Resumen</span></a><button class="btn-enviar-wa" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()"><span class="material-symbols-outlined" style="font-size: 20px;">chat</span><span>Enviar Pedido por WhatsApp</span></button></div>
+<div class="acciones-compra"><a href="pedido.html" id="btn-ir-pedido" onclick="guardarPedidoLocalStorage()" style="background: #1e293b; color: #93c5fd; font-weight: 600; font-size: 0.84rem; padding: 10px 14px; border-radius: 10px; border: 1px solid #3b82f6; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: all 0.2s;"><span class="material-symbols-outlined" style="font-size: 18px;">shopping_cart_checkout</span><span>Ver Resumen</span></a><button class="btn-enviar-wa" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()"><span class="material-symbols-outlined" style="font-size: 20px;">chat</span><span>Enviar Pedido por WhatsApp</span></button></div>
 </div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
@@ -615,18 +626,15 @@ let WHATSAPP_FOTOGRAFO = '5492613175222';
 
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-let listaFotos = [
-  { id: '4822', name: 'DSC_4822.jpg', thumb: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&auto=format&fit=crop&q=80', full: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&auto=format&fit=crop&q=80' },
-  { id: '4823', name: 'DSC_4823.jpg', thumb: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80', full: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=80' }
-];
-
-// Conjuntos de selección dual
-const seleccionImpresas = new Set(['4822', '4823']);
-const seleccionDigitales = new Set(['4822']);
+// Catálogo y selección 100% dinámicos
+let listaFotos = [];
+const seleccionImpresas = new Set();
+const seleccionDigitales = new Set();
 
 let indiceVisor = 0;
 let esGaleriaPrivada = false;
-let tituloEvento = 'Gala de Fin de Año 2024';
+let tituloEvento = '';
+let currentFolderId = '';
 
 function extraerIdDrive(input) {
   if (!input) return '';
@@ -665,7 +673,6 @@ function actualizarUIPrecios() {
   if (lblImp) lblImp.innerText = formatearMoneda(TARIFA_IMPRESA);
   if (lblDig) lblDig.innerText = formatearMoneda(TARIFA_DIGITAL);
 
-  // Actualizar también dentro de las tarjetas ya renderizadas
   listaFotos.forEach(foto => {
     const pImp = document.querySelector(`#btn-impresa-${foto.id} .txt-precio`);
     const pDig = document.querySelector(`#btn-digital-${foto.id} .txt-precio`);
@@ -768,11 +775,47 @@ function limpiarSeleccionCompleta() {
   actualizarTotales();
 }
 
+// PERSISTENCIA DEL PEDIDO ANTES DE IR A RESUMEN
+function guardarPedidoLocalStorage() {
+  try {
+    const pedido = {
+      evento: tituloEvento || 'Galería de Fotos',
+      evento_id: currentFolderId,
+      impresas: Array.from(seleccionImpresas).map(id => {
+        const f = listaFotos.find(item => item.id === id);
+        return { id, name: f ? obtenerNombreConPrefijo(f.name) : `#${id}`, thumb: f ? f.thumb : '' };
+      }),
+      digitales: Array.from(seleccionDigitales).map(id => {
+        const f = listaFotos.find(item => item.id === id);
+        return { id, name: f ? obtenerNombreConPrefijo(f.name) : `#${id}`, thumb: f ? f.thumb : '' };
+      }),
+      tarifa_impresa: TARIFA_IMPRESA,
+      tarifa_digital: TARIFA_DIGITAL,
+      timestamp: Date.now()
+    };
+    localStorage.setItem('pedido_actual', JSON.stringify(pedido));
+    if (currentFolderId) {
+      localStorage.setItem('galeria_activa_id', currentFolderId);
+      localStorage.setItem('pedido_evento_folder', currentFolderId);
+    }
+    if (tituloEvento) {
+      localStorage.setItem('galeria_activa_titulo', tituloEvento);
+    }
+  } catch (e) {
+    console.warn("Error guardando pedido en localStorage:", e);
+  }
+}
+
 // RENDERIZADO EXCLUSIVO CON TARJETA DUAL EXACTA
 function renderizarFotos() {
   const contenedor = document.getElementById('contenedor-fotos');
   if (!contenedor) return;
   contenedor.innerHTML = '';
+
+  if (!listaFotos || listaFotos.length === 0) {
+    mostrarMensajeVacio(currentFolderId || 'General');
+    return;
+  }
 
   listaFotos.forEach((foto, index) => {
     const numTag = extraerNumeroFoto(foto.name);
@@ -793,7 +836,7 @@ function renderizarFotos() {
           <div class="marca-agua">
             <div class="marca-agua-badge">
               <div class="linea-1">MUESTRA OFICIAL</div>
-              <div class="linea-2">SERGIO MOLINA</div>
+              <div class="linea-2">SERGIO RICARDO MOLINA</div>
             </div>
           </div>
         ` : ''}
@@ -890,17 +933,24 @@ async function iniciarGaleria() {
   const paramKey = params.get('key') || '';
   const paramPrivada = params.get('privada') || '';
 
+  // 1. Resolver título: parámetro URL -> localStorage -> fallback genérico
   if (paramTitulo) {
     tituloEvento = decodeURIComponent(paramTitulo);
-    const elTit = document.getElementById('titulo-galeria');
-    if (elTit) elTit.innerText = tituloEvento;
+  } else {
+    const savedTitulo = localStorage.getItem('galeria_activa_titulo') || localStorage.getItem('pedido_evento_titulo');
+    if (savedTitulo) tituloEvento = savedTitulo;
+    else tituloEvento = 'Galería de Fotografías';
   }
+  const elTit = document.getElementById('titulo-galeria');
+  if (elTit) elTit.innerText = tituloEvento;
 
+  // 2. Resolver si es privada
   if (paramPrivada === 'true' || (paramKey && paramKey.trim().length > 0)) {
     esGaleriaPrivada = true;
     configurarModoPrivado();
   }
 
+  // 3. Resolver ID de Drive: Folder -> ID -> LocalStorage
   let folderId = '';
   if (paramFolder && paramFolder.trim().length > 15) {
     folderId = extraerIdDrive(paramFolder);
@@ -908,6 +958,15 @@ async function iniciarGaleria() {
     folderId = extraerIdDrive(paramId);
   }
 
+  // Si no está en URL como folder directo, buscar en LocalStorage
+  if (!folderId) {
+    const savedId = localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || localStorage.getItem('pedido_evento_id');
+    if (savedId && savedId.trim().length > 15) {
+      folderId = extraerIdDrive(savedId);
+    }
+  }
+
+  // Si se pasó un ID numérico o password de Supabase, resolver folder desde base de datos
   if (!folderId && (paramId || paramKey) && supabaseClient) {
     try {
       let query = supabaseClient.from('galeria').select('*');
@@ -919,7 +978,6 @@ async function iniciarGaleria() {
       if (data) {
         if (data.titulo && !paramTitulo) {
           tituloEvento = data.titulo;
-          const elTit = document.getElementById('titulo-galeria');
           if (elTit) elTit.innerText = tituloEvento;
         }
         if (data.es_privada || data.password) {
@@ -934,13 +992,20 @@ async function iniciarGaleria() {
     }
   }
 
+  // Si sigue sin resolver y había paramId con forma de hash Drive
   if (!folderId && paramId) folderId = extraerIdDrive(paramId);
 
+  // Guardar en localStorage para persistencia bidireccional con pedido.html
   if (folderId) {
+    currentFolderId = folderId;
+    try {
+      localStorage.setItem('galeria_activa_id', folderId);
+      if (tituloEvento) localStorage.setItem('galeria_activa_titulo', tituloEvento);
+    } catch (_) {}
     cargarFotosDrive(folderId);
   } else {
-    // Si no hay carpeta en URL, mantener las fotos de muestra predeterminadas con tarjeta dual
-    renderizarFotos();
+    // Si no hay carpeta en URL ni en localStorage
+    mostrarMensajeSinEvento();
   }
 }
 
@@ -962,10 +1027,21 @@ function configurarModoPrivado() {
 
 // CONSULTA DE GOOGLE DRIVE Y GENERACIÓN DE NUEVAS TARJETAS
 async function cargarFotosDrive(folderId) {
+  const contenedor = document.getElementById('contenedor-fotos');
+  if (contenedor) {
+    contenedor.innerHTML = `
+      <div class="estado-caja" style="grid-column: 1 / -1; padding: 60px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #161616; border: 1px dashed #2a2a2a; border-radius: 14px;">
+        <span class="material-symbols-outlined" style="font-size: 40px; color: #38bdf8; animation: spin 1.5s linear infinite;">sync</span>
+        <h3 style="font-size: 1.15rem; font-weight: 600; color: #ffffff; letter-spacing: 0.3px;">Cargando fotografías oficiales desde Google Drive...</h3>
+        <p style="font-size: 0.84rem; color: #999999; max-width: 440px; line-height: 1.5;">Sincronizando de forma segura con el catálogo en alta resolución.</p>
+      </div>
+    `;
+  }
+
   const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 8500);
+  const timeoutId = setTimeout(() => controller.abort(), 9000);
 
   try {
     const res = await fetch(urlDrive, { signal: controller.signal });
@@ -991,16 +1067,40 @@ async function cargarFotosDrive(folderId) {
       full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
     }));
 
-    // Resetear selecciones para las fotos reales cargadas
-    seleccionImpresas.clear();
-    seleccionDigitales.clear();
+    // Recuperar selecciones previas si existían en localStorage
+    recuperarSeleccionPrevia();
 
-    // Renderizar garantizando el nuevo diseño dual
+    // Renderizar fotos reales obtenidas
     renderizarFotos();
   } catch (err) {
     clearTimeout(timeoutId);
     console.error("Error al obtener fotos Drive:", err);
     mostrarMensajeError("Conexión con el Servidor", "No se pudieron obtener las imágenes. Verificá tu conexión o reintentá nuevamente.");
+  }
+}
+
+function recuperarSeleccionPrevia() {
+  try {
+    const raw = localStorage.getItem('pedido_actual');
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (data && (data.evento_id === currentFolderId || !data.evento_id)) {
+        if (Array.isArray(data.impresas)) {
+          data.impresas.forEach(item => {
+            const id = typeof item === 'object' ? item.id : item;
+            if (id) seleccionImpresas.add(id);
+          });
+        }
+        if (Array.isArray(data.digitales)) {
+          data.digitales.forEach(item => {
+            const id = typeof item === 'object' ? item.id : item;
+            if (id) seleccionDigitales.add(id);
+          });
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Error recuperando selección previa:", e);
   }
 }
 
@@ -1011,11 +1111,28 @@ function mostrarMensajeVacio(folderId) {
       <span class="material-symbols-outlined">hide_image</span>
       <h3>No se encontraron fotografías en este álbum</h3>
       <p>La carpeta seleccionada se encuentra vacía o aún está procesando las tomas.</p>
-      <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#777;">ID: ${folderId}</div>
+      <div style="margin-top: 12px; font-family: monospace; font-size:0.75rem; color:#777;">ID Carpeta: ${folderId}</div>
       <button onclick="iniciarGaleria()" class="btn-accion-estado">
         <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
         <span>Reintentar</span>
       </button>
+    </div>
+  `;
+}
+
+function mostrarMensajeSinEvento() {
+  const contenedor = document.getElementById('contenedor-fotos');
+  const tit = document.getElementById('titulo-galeria');
+  if (tit) tit.innerText = 'Seleccionar un Evento';
+  contenedor.innerHTML = `
+    <div class="estado-caja">
+      <span class="material-symbols-outlined">photo_library</span>
+      <h3>No se ha seleccionado ningún evento</h3>
+      <p>Para ver las fotos oficiales, por favor elegí una galería desde la sección de eventos.</p>
+      <a href="eventos.html" class="btn-accion-estado" style="display:inline-flex; align-items:center; gap:6px; margin-top:16px;">
+        <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
+        <span>Ir a Cartelera de Eventos</span>
+      </a>
     </div>
   `;
 }
@@ -1054,6 +1171,8 @@ function enviarPedidoWhatsAppDirecto() {
     alert('Por favor seleccioná al menos una foto (marcando Impresa o Digital) antes de enviar tu pedido.');
     return;
   }
+
+  guardarPedidoLocalStorage();
 
   const subtotalImp = fotosImpresas.length * TARIFA_IMPRESA;
   const subtotalDig = fotosDigitales.length * TARIFA_DIGITAL;
