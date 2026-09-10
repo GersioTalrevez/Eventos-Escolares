@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport">
 <title>Revisá tu Pedido | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Raleway:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Raleway:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -576,111 +574,35 @@
 <!-- TOAST SEGURIDAD -->
 <div id="toast-seguridad">
 <span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
-<span>Fotografía protegida • Sergio Ricardo Molina</span>
+<span class="">Fotografía protegida • Sergio Ricardo Molina</span>
 </div>
 <!-- HEADER -->
 <header>
 <div class="marca-personal">
 <span class="material-symbols-outlined icon">photo_camera</span>
-<span>Sergio Ricardo Molina</span>
+<span class="">Sergio Ricardo Molina</span>
 </div>
-<a class="btn-volver-nav" href="galeria.html" id="btn-volver-atras">
+<a class="btn-volver-nav" href="galeria.html?id=&amp;folder=&amp;titulo=Cobertura%20Fotogr%C3%A1fica" id="btn-volver-atras">
 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
-<span>Volver</span>
+<span class="">Volver</span>
 </a>
 </header>
 <main>
-<section class="checkout-hero">
-<div class="badge-checkout">
-<span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span>
-<span>Confirmar Encargo</span>
-</div>
-<h1>Revisá tu Pedido</h1>
-<p class="sub" id="sub-evento-titulo">Evento: Cobertura Oficial</p>
-</section>
+<section class="checkout-hero"><div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; border-bottom:1px solid #27272a; padding-bottom:14px;"><div><div class="badge-checkout"><span class="material-symbols-outlined" style="font-size: 13px;">receipt_long</span><span class="">Orden de Encargo&nbsp;</span></div><h1 style="font-size: 1.75rem; margin-top: 4px;" class="">Comprobante de Pedido Fotográfico</h1><p class="sub" id="sub-evento-titulo" style="color: rgb(148, 163, 184); margin-top: 2px;">Evento: Cobertura Oficial</p></div><div style="text-align:right; font-size:0.78rem; color:#9ca3af; background:#18181b; border:1px solid #27272a; border-radius:8px; padding:8px 12px;"><div><strong style="color:#e5e7eb;">Fecha de Emisión:</strong> <span id="remito-fecha-hoy" class="">12/10/2024</span></div><div style="margin-top:2px;"><strong style="color:#e5e7eb;">Estado:</strong> <span style="color: rgb(250, 204, 21); font-weight: 700;" class="">● Pendiente de confirmación</span></div><div style="margin-top: 2px;" class=""><strong style="color:#e5e7eb;">Fotógrafo:</strong> Sergio R. Molina · Mendoza</div></div></div></section>
 <!-- 1. FOTOS SELECCIONADAS -->
-<div class="tarjeta-checkout">
-<div class="titulo-tarjeta">
-<div class="titulo-tarjeta-izq">
-<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">photo_library</span>
-<span>Fotos Seleccionadas</span>
-</div>
-<span class="badge-conteo" id="txt-total-fotos-badge">0 fotos</span>
-</div>
-<!-- Cuadrícula dinámica -->
-<div class="grid-items-pedido" id="grid-items-pedido"></div>
-<!-- ESTADO VACÍO -->
-<div class="vacio-caja" id="estado-sin-fotos" style="display: none;">
-<span class="material-symbols-outlined" style="font-size: 36px; color: #38bdf8; margin-bottom: 8px;">add_photo_alternate</span>
-<p style="font-size: 0.9rem; color: #fff; margin-bottom: 12px; font-weight: 600;">No tenés fotos en tu selección</p>
-<a class="btn-ir-galeria" href="galeria.html" id="btn-regresar-galeria-vacia" style="margin: 0 auto;">
-<span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
-<span>Ir a la Galería</span>
-</a>
-</div>
-<!-- BOTÓN COMPACTO AGREGAR MÁS FOTOS -->
-<div class="box-agregar-mas" id="box-agregar-mas">
-<div class="box-agregar-label">
-<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">library_add</span>
-<span>¿Querés sumar más fotos?</span>
-</div>
-<a class="btn-ir-galeria" href="galeria.html" id="btn-sumar-mas-fotos">
-<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
-<span>+ Sumar más fotos</span>
-</a>
-</div>
-</div>
+<div class="tarjeta-checkout"><div class="titulo-tarjeta"><div class="titulo-tarjeta-izq"><span class="material-symbols-outlined" style="color: rgb(56, 189, 248); font-size: 20px;">fact_check</span><span class="">Detalle de Ítems / Tomas Solicitadas</span></div><span class="badge-conteo" id="txt-total-fotos-badge">3 fotos</span></div><div style="overflow-x:auto;"><table style="width: 100%; border-collapse: collapse; font-size: 0.84rem; text-align: left;" class=""><thead><tr style="border-bottom:1px solid #2f2f2f; color:#8b9199; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.6px;"><th style="padding: 10px 8px;" class="">N° Toma / Archivo</th><th style="padding: 10px 8px;" class="">Formato Seleccionado</th><th style="padding: 10px 8px; text-align: right;" class="">Precio Unit.</th><th style="padding: 10px 8px; text-align: right;" class="">Subtotal</th><th style="padding: 10px 8px; text-align: center;" class="">Acción</th></tr></thead><tbody id="grid-items-pedido"><tr style="border-bottom:1px solid #222222;"><td style="padding: 12px 8px;" class=""><div style="display:flex; flex-direction:column;"><span style="font-family: monospace; font-weight: 700; color: rgb(255, 255, 255); font-size: 0.86rem;" class="">#DSC_4821.jpg</span></div></td><td style="padding: 12px 8px;" class=""><div class="formato-selector" style="max-width:240px; margin:0;"><button type="button" class="btn-formato activo-impresa"><div class="btn-header-chk"><span class="chk-box">✓</span><span class="">Impresa</span></div><span class="precio-tag">$7.500</span></button><button type="button" class="btn-formato"><div class="btn-header-chk"><span class="chk-box"></span><span class="">Digital</span></div><span class="precio-tag">$2.500</span></button></div></td><td style="padding: 12px 8px; text-align: right; color: rgb(192, 199, 207); font-size: 0.84rem;" class="">$7.500</td><td style="padding: 12px 8px; text-align: right; font-weight: 700; color: rgb(250, 204, 21); font-size: 0.88rem;" class="">$7.500</td><td style="padding: 12px 8px; text-align: center;" class=""><button style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(248, 113, 113); cursor: pointer; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;" type="button" class=""><span class="material-symbols-outlined" style="font-size: 16px;">delete</span> Quitar</button></td></tr><tr style="border-bottom:1px solid #222222;"><td style="padding: 12px 8px;" class=""><div style="display:flex; flex-direction:column;"><span style="font-family: monospace; font-weight: 700; color: rgb(255, 255, 255); font-size: 0.86rem;" class="">#DSC_4822.jpg</span></div></td><td style="padding: 12px 8px;" class=""><div class="formato-selector" style="max-width:240px; margin:0;"><button type="button" class="btn-formato activo-impresa"><div class="btn-header-chk"><span class="chk-box">✓</span><span class="">Impresa</span></div><span class="precio-tag">$7.500</span></button><button type="button" class="btn-formato"><div class="btn-header-chk"><span class="chk-box"></span><span class="">Digital</span></div><span class="precio-tag">$2.500</span></button></div></td><td style="padding: 12px 8px; text-align: right; color: rgb(192, 199, 207); font-size: 0.84rem;" class="">$7.500</td><td style="padding: 12px 8px; text-align: right; font-weight: 700; color: rgb(250, 204, 21); font-size: 0.88rem;" class="">$7.500</td><td style="padding: 12px 8px; text-align: center;" class=""><button style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(248, 113, 113); cursor: pointer; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;" type="button" class=""><span class="material-symbols-outlined" style="font-size: 16px;">delete</span> Quitar</button></td></tr><tr style="border-bottom:1px solid #222222;"><td style="padding: 12px 8px;" class=""><div style="display:flex; flex-direction:column;"><span style="font-family: monospace; font-weight: 700; color: rgb(255, 255, 255); font-size: 0.86rem;" class="">#DSC_4823.jpg</span></div></td><td style="padding: 12px 8px;" class=""><div class="formato-selector" style="max-width:240px; margin:0;"><button type="button" class="btn-formato"><div class="btn-header-chk"><span class="chk-box"></span><span class="">Impresa</span></div><span class="precio-tag">$7.500</span></button><button type="button" class="btn-formato activo-digital"><div class="btn-header-chk"><span class="chk-box">✓</span><span class="">Digital</span></div><span class="precio-tag">$2.500</span></button></div></td><td style="padding: 12px 8px; text-align: right; color: rgb(192, 199, 207); font-size: 0.84rem;" class="">$2.500</td><td style="padding: 12px 8px; text-align: right; font-weight: 700; color: rgb(56, 189, 248); font-size: 0.88rem;" class="">$2.500</td><td style="padding: 12px 8px; text-align: center;" class=""><button style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(248, 113, 113); cursor: pointer; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;" type="button" class=""><span class="material-symbols-outlined" style="font-size: 16px;">delete</span> Quitar</button></td></tr></tbody></table></div><div class="vacio-caja" id="estado-sin-fotos" style="display: none;"><span class="material-symbols-outlined" style="font-size: 36px; color: rgb(56, 189, 248); margin-bottom: 8px;">add_photo_alternate</span><p style="font-size: 0.9rem; color: rgb(255, 255, 255); margin-bottom: 12px; font-weight: 600;" class="">No tenés fotos en tu selección</p><a class="btn-ir-galeria" href="galeria.html?id=&amp;folder=&amp;titulo=Cobertura%20Fotogr%C3%A1fica" id="btn-regresar-galeria-vacia" style="margin: 0px auto;"><span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span><span class="">Ir a la Galería</span></a></div><div class="box-agregar-mas" id="box-agregar-mas" style="display: flex;"><div class="box-agregar-label"><span class="material-symbols-outlined" style="color: rgb(56, 189, 248); font-size: 20px;">library_add</span><span class="">¿Querés agregar más tomas a este remito?</span></div><a class="btn-ir-galeria" href="galeria.html?id=&amp;folder=&amp;titulo=Cobertura%20Fotogr%C3%A1fica" id="btn-sumar-mas-fotos"><span class="material-symbols-outlined" style="font-size: 16px;">add</span><span class="">+ Sumar más fotos</span></a></div></div>
 <!-- 2. DATOS DE ENTREGA -->
 <div class="tarjeta-checkout">
 <div class="titulo-tarjeta">
 <div class="titulo-tarjeta-izq">
-<span class="material-symbols-outlined" style="color: #facc15; font-size: 20px;">badge</span>
-<span>Datos de Entrega</span>
+<span class="material-symbols-outlined" style="color: rgb(250, 204, 21); font-size: 20px;">badge</span>
+<span class="">Datos de Entrega</span>
 </div>
 </div>
-<form class="form-cliente" id="form-datos-cliente" onsubmit="event.preventDefault();">
-<div class="campo-form">
-<label for="cliente-nombre">Nombre y Apellido *</label>
-<input id="cliente-nombre" placeholder="Tu nombre completo" required="" type="text"/>
-</div>
-<div class="campo-form">
-<label for="cliente-colegio">Colegio / Grado</label>
-<input id="cliente-colegio" placeholder="Ej: San Martín 5to B" type="text"/>
-</div>
-<div class="campo-form full-width">
-<label for="cliente-notas">Notas o indicaciones</label>
-<input id="cliente-notas" placeholder="Aclaraciones especiales (opcional)" type="text"/>
-</div>
-</form>
+<form class="form-cliente" id="form-datos-cliente" onsubmit="event.preventDefault();"><div class="campo-form"><label for="cliente-nombre" class="">Nombre y Apellido del Titular *</label><input id="cliente-nombre" placeholder="Ej: Laura Gómez" required="" type="text"></div><div class="campo-form"><label for="cliente-colegio" class="">Institución / Grado / Egresado</label><input id="cliente-colegio" placeholder="Ej: San Martín - 5to B (Egresados 2024)" type="text"></div><div class="campo-form full-width"><label for="cliente-notas" class="">Observaciones&nbsp;</label><input id="cliente-notas" placeholder="Aclaraciones sobre edición, encuadre o entrega (opcional)" type="text"></div></form>
 </div>
 <!-- 3. RESUMEN Y TOTAL -->
-<div class="tarjeta-checkout">
-<div class="titulo-tarjeta">
-<div class="titulo-tarjeta-izq">
-<span class="material-symbols-outlined" style="color: #4ade80; font-size: 20px;">receipt_long</span>
-<span>Total del Pedido</span>
-</div>
-</div>
-<div class="resumen-filas">
-<div class="resumen-fila">
-<span>Copias Impresas 15x21 (<span id="cant-impresas-lbl">0</span> un.):</span>
-<strong id="subtotal-impresas-lbl" style="color: #facc15;">$0</strong>
-</div>
-<div class="resumen-fila">
-<span>Archivos Digitales HD (<span id="cant-digitales-lbl">0</span> un.):</span>
-<strong id="subtotal-digitales-lbl" style="color: #38bdf8;">$0</strong>
-</div>
-<div class="resumen-fila destacada">
-<span>TOTAL:</span>
-<strong id="total-estimado-lbl">$0</strong>
-</div>
-</div>
-<!-- BOTÓN WHATSAPP -->
-<button class="btn-confirmar-whatsapp" onclick="enviarPedidoFinalWhatsApp()">
-<span class="material-symbols-outlined" style="font-size: 24px;">chat</span>
-<span>Confirmar por WhatsApp</span>
-</button>
-</div>
+<div class="tarjeta-checkout"><div class="resumen-filas" style="background:#141414; padding:14px; border-radius:8px; border:1px solid #282828;"><div class="resumen-fila"><span class="">Copias Fotográficas 15x21 cm (<span id="cant-impresas-lbl" class="">2</span> un. × $7.500):</span><strong id="subtotal-impresas-lbl" style="color: #facc15;">$15.000</strong></div><div class="resumen-fila"><span class="">Archivos Digitales HD vía Enlace Seguro (<span id="cant-digitales-lbl" class="">1</span> un. × $2.500):</span><strong id="subtotal-digitales-lbl" style="color: #38bdf8;">$2.500</strong></div><div class="resumen-fila destacada" style="border-top: 1px solid #383838; padding-top: 12px; margin-top: 6px;"><span class="">TOTAL GENERAL A LIQUIDAR:</span><strong id="total-estimado-lbl" style="color:#22c55e;">$17.500</strong></div></div><div style="display:flex; flex-direction:column; gap:8px; margin-top:14px;"><button class="btn-confirmar-whatsapp" onclick="enviarPedidoFinalWhatsApp()" style="margin-top: 0px;"><span class="material-symbols-outlined" style="font-size: 24px;">send</span><span class="">Enviar Pedido y Remito por WhatsApp</span></button><button onclick="window.print()" style="width: 100%; background: rgb(32, 32, 32); color: rgb(229, 231, 235); border: 1px solid rgb(56, 56, 56); border-radius: 10px; padding: 12px; min-height: 44px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" type="button" class=""><span class="material-symbols-outlined" style="font-size: 18px; color: rgb(56, 189, 248);">print</span><span class="">Imprimir / Guardar Remito (PDF)</span></button></div></div>
 </main>
 <!-- SCRIPT -->
 <script>
@@ -1051,4 +973,6 @@
       cargarDatosCheckout();
     });
   </script>
+
+
 </body></html>
