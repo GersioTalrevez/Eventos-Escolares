@@ -1,1013 +1,684 @@
 <!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
-<title>Comprobante de Pedido Fotográfico | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Raleway:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobante de Pedido Fotográfico | Sergio Ricardo Molina</title>
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #111111;
-      color: #e5e2e1;
-      padding: 16px 16px 60px;
-      max-width: 860px;
+      color: #ffffff;
+      padding: 24px 16px 80px;
+      max-width: 820px;
       margin: 0 auto;
       min-height: 100vh;
-      -webkit-tap-highlight-color: transparent;
     }
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-
-    /* ENCABEZADO DE REMITO */
-    .remito-header {
-      padding: 12px 0 20px;
+    header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 16px;
+      padding-bottom: 20px;
       border-bottom: 1px solid #242424;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .badge-orden {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: rgba(0, 85, 128, 0.25);
-      border: 1px solid rgba(56, 189, 248, 0.45);
-      color: #38bdf8;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 8px;
+      background: rgba(0, 85, 128, 0.25);
+      border: 1px solid #0088cc;
+      color: #38bdf8;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 6px;
     }
     h1 {
-      font-family: 'Raleway', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 700;
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       color: #ffffff;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
     }
-    @media (min-width: 640px) {
-      h1 { font-size: 2rem; }
-      body { padding: 24px 24px 64px; }
-    }
-    p.sub-evento {
-      color: #94a3b8;
+    .subtitulo-evento {
       font-size: 0.88rem;
-      margin-top: 5px;
+      color: #888888;
+      margin-top: 4px;
     }
-
-    .info-meta-remito {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      background: #171717;
-      border: 1px solid #242424;
-      border-radius: 8px;
-      padding: 10px 14px;
-      line-height: 1.5;
+    .meta-fiscal {
       text-align: right;
+      font-size: 0.78rem;
+      color: #aaaaaa;
+      line-height: 1.4;
     }
-    .badge-estado-pendiente {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: #facc15;
-      font-weight: 700;
-    }
-
-    /* TARJETAS CONTENEDORAS */
-    .tarjeta-remito {
-      background: #171717;
-      border: 1px solid #242424;
+    .meta-fiscal strong { color: #ffffff; }
+    .card-seccion {
+      background: #161616;
+      border: 1.5px solid #282828;
       border-radius: 12px;
       padding: 18px 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
-    .titulo-seccion {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #ffffff;
+    .titulo-seccion-card {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #222222;
       padding-bottom: 10px;
-      border-bottom: 1px solid #242424;
     }
-    .titulo-seccion-izq {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .badge-conteo {
-      font-size: 0.75rem;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      padding: 2px 9px;
-      border-radius: 12px;
-      font-weight: 700;
-    }
-
-    /* TABLA FORMAL DE ITEMS (SIN MINIATURAS) */
-    .table-container {
-      overflow-x: auto;
-      margin: 0 -4px;
-    }
-    table.tabla-items {
+    .tabla-remito {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
+    }
+    .tabla-remito th {
       text-align: left;
-      min-width: 600px;
-    }
-    table.tabla-items th {
-      padding: 10px 12px;
-      border-bottom: 1px solid #282828;
-      color: #8b9199;
+      color: #777777;
       font-size: 0.72rem;
-      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.8px;
+      padding: 8px 10px;
+      border-bottom: 1px solid #242424;
     }
-    table.tabla-items td {
-      padding: 12px 12px;
-      border-bottom: 1px solid #222222;
+    .tabla-remito td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #202020;
       vertical-align: middle;
     }
-    table.tabla-items tbody tr:hover {
-      background: rgba(255, 255, 255, 0.015);
-    }
-    .col-nombre-archivo {
+    .toma-tag {
       font-family: monospace;
       font-weight: 700;
       color: #ffffff;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
     }
-
-    /* SELECTOR DUAL DE FORMATOS EN TABLA */
-    .formato-selector-tbl {
-      display: inline-flex;
-      align-items: center;
+    .controles-formato {
+      display: flex;
       gap: 6px;
-      background: #0f0f0f;
-      padding: 4px;
-      border-radius: 8px;
-      border: 1px solid #242424;
-    }
-    .btn-formato-tbl {
-      border: 1px solid #2a2a2a;
-      background: #141414;
-      color: #777777;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-      user-select: none;
     }
-    .btn-formato-tbl:hover {
-      border-color: #444444;
-      color: #aaaaaa;
-    }
-    .btn-formato-tbl .chk-box {
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      border: 1.2px solid #555555;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      line-height: 1;
-    }
-
-    /* Activo Impresa */
-    .btn-formato-tbl.activo-impresa {
-      background: #181608;
-      border-color: #facc15;
-      color: #facc15;
-      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.15);
-    }
-    .btn-formato-tbl.activo-impresa .chk-box {
-      border-color: #facc15;
-      background: #facc15;
-      color: #000000;
-    }
-
-    /* Activo Digital */
-    .btn-formato-tbl.activo-digital {
-      background: #072538;
-      border-color: #38bdf8;
-      color: #38bdf8;
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.2);
-    }
-    .btn-formato-tbl.activo-digital .chk-box {
-      border-color: #38bdf8;
-      background: #38bdf8;
-      color: #001e30;
-    }
-
-    .btn-quitar-fila {
-      background: none;
-      border: none;
-      color: #f87171;
-      cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 600;
+    .btn-toggle-mini {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      opacity: 0.85;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1.5px solid;
+      background: #111111;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .btn-toggle-impresa {
+      border-color: #eab308;
+      color: #facc15;
+    }
+    .btn-toggle-impresa.activo {
+      background: rgba(234, 179, 8, 0.2);
+    }
+    .btn-toggle-digital {
+      border-color: #0088cc;
+      color: #38bdf8;
+    }
+    .btn-toggle-digital.activo {
+      background: rgba(0, 136, 204, 0.25);
+    }
+    .btn-quitar-fila {
+      background: transparent;
+      border: none;
+      color: #f87171;
+      font-size: 0.74rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      opacity: 0.8;
       transition: opacity 0.15s;
-      padding: 4px 6px;
-      border-radius: 4px;
     }
-    .btn-quitar-fila:hover {
-      opacity: 1;
-      background: rgba(248, 113, 113, 0.1);
-    }
-
-    /* BLOQUE SUMAR MÁS FOTOS */
-    .box-agregar-mas {
-      background: #121b22;
-      border: 1px dashed #005580;
+    .btn-quitar-fila:hover { opacity: 1; text-decoration: underline; }
+    .fila-sumar-fotos {
+      background: #19232e;
+      border: 1px dashed #0088cc;
       border-radius: 10px;
       padding: 12px 16px;
       margin-top: 14px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .box-agregar-label {
-      display: flex;
       align-items: center;
-      gap: 8px;
-      color: #cbd5e1;
-      font-size: 0.85rem;
-      font-weight: 600;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .btn-sumar-galeria {
+    .btn-sumar-fotos {
+      background: #005580;
+      border: 1px solid #38bdf8;
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      background: #005580;
-      color: #ffffff;
-      border: 1px solid #38bdf8;
-      padding: 7px 14px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.15s;
+      gap: 5px;
+      transition: background 0.15s ease;
     }
-    .btn-sumar-galeria:hover {
-      background: #0077b3;
-    }
-
-    /* FORMULARIO DIRECTO */
+    .btn-sumar-fotos:hover { background: #0077b3; }
     .form-entrega {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 14px;
     }
     @media (min-width: 600px) {
       .form-entrega {
         grid-template-columns: 1fr 1fr;
       }
+      .col-span-full {
+        grid-column: 1 / -1;
+      }
     }
-    .campo-remito {
+    .campo-grupo {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
-    .campo-remito.full-col {
-      grid-column: 1 / -1;
-    }
-    .campo-remito label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #8b9199;
+    .campo-grupo label {
+      font-size: 0.74rem;
+      color: #aaaaaa;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      font-weight: 600;
     }
-    .campo-remito input,
-    .campo-remito textarea {
+    .campo-grupo input, .campo-grupo textarea {
       background: #111111;
-      border: 1px solid #282828;
+      border: 1px solid #333333;
       border-radius: 8px;
-      padding: 11px 12px;
+      padding: 10px 12px;
       color: #ffffff;
-      font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       outline: none;
+      font-family: inherit;
       transition: border-color 0.2s;
     }
-    .campo-remito input:focus,
-    .campo-remito textarea:focus {
+    .campo-grupo input:focus, .campo-grupo textarea:focus {
       border-color: #38bdf8;
     }
-    .campo-remito textarea {
-      resize: vertical;
-      min-height: 72px;
+    .caja-totales {
+      background: #161616;
+      border: 1.5px solid #282828;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
     }
-    .campo-remito input::placeholder,
-    .campo-remito textarea::placeholder {
-      color: #555555;
-    }
-
-    /* LIQUIDACIÓN CONTABLE */
-    .desglose-liquidacion {
-      background: #111111;
-      padding: 16px 18px;
-      border-radius: 8px;
-      border: 1px solid #242424;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      font-size: 0.88rem;
-    }
-    .fila-liquidacion {
+    .fila-total-linea {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #cbd5e1;
+      padding: 6px 0;
+      font-size: 0.86rem;
+      color: #bbbbbb;
     }
-    .fila-liquidacion.destacada {
-      border-top: 1px solid #282828;
+    .fila-total-linea strong { color: #ffffff; }
+    .fila-total-principal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding-top: 14px;
-      margin-top: 6px;
-      font-size: 1.15rem;
-      font-weight: 800;
+      margin-top: 10px;
+      border-top: 1px solid #282828;
+    }
+    .fila-total-principal .lbl-total {
+      font-size: 1.05rem;
+      font-weight: 700;
       color: #ffffff;
+      letter-spacing: 0.5px;
     }
-    .fila-liquidacion.destacada .monto-total {
-      color: #4ade80;
-      font-size: 1.35rem;
+    .fila-total-principal .val-total {
+      font-size: 1.7rem;
       font-weight: 800;
-      font-family: 'Raleway', sans-serif;
+      color: #4ade80;
     }
-
-    /* ACCIONES FINALES */
-    .btn-enviar-wa {
+    .btn-enviar-wsp {
       width: 100%;
       background: #22c55e;
-      color: #05240f;
+      color: #0b2512;
       border: none;
-      border-radius: 10px;
       padding: 14px 20px;
-      min-height: 50px;
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
-      transition: all 0.2s ease;
-      margin-top: 16px;
-    }
-    .btn-enviar-wa:hover {
-      background: #2ee672;
-      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45);
-    }
-    .btn-enviar-wa:active {
-      transform: scale(0.99);
-    }
-    .btn-imprimir-remito {
-      width: 100%;
-      background: #1c1c1c;
-      color: #e5e7eb;
-      border: 1px solid #333333;
       border-radius: 10px;
-      padding: 11px;
-      min-height: 42px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-size: 1.05rem;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-top: 10px;
-      transition: background 0.15s;
+      transition: background 0.15s ease, transform 0.15s ease;
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
     }
-    .btn-imprimir-remito:hover {
-      background: #262626;
-      border-color: #444;
+    .btn-enviar-wsp:hover {
+      background: #16a34a;
+      color: #ffffff;
+      transform: translateY(-1px);
     }
-
-    /* ESTADO SIN FOTOS */
-    .caja-vacia-tbl {
-      text-align: center;
-      padding: 32px 16px;
+    .btn-imprimir-pdf {
+      width: 100%;
+      background: transparent;
+      border: 1px solid #333333;
       color: #888888;
-      font-size: 0.88rem;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
-
+    .btn-imprimir-pdf:hover { color: #ffffff; border-color: #555555; }
     @media print {
-      body {
-        background: #ffffff;
-        color: #000000;
-        padding: 0;
-      }
-      .remito-header, .tarjeta-remito, .desglose-liquidacion {
-        background: #ffffff !important;
-        border-color: #cccccc !important;
-        box-shadow: none !important;
-        color: #000000 !important;
-      }
-      h1, .col-nombre-archivo, .titulo-seccion, .fila-liquidacion.destacada {
-        color: #000000 !important;
-      }
-      .btn-enviar-wa, .btn-imprimir-remito, .box-agregar-mas, .btn-quitar-fila {
-        display: none !important;
-      }
+      body { background: #ffffff; color: #000000; padding: 0; }
+      .card-seccion, .caja-totales { background: #ffffff; border: 1px solid #cccccc; color: #000000; box-shadow: none; }
+      .fila-sumar-fotos, .btn-enviar-wsp, .btn-imprimir-pdf { display: none; }
+      .titulo-seccion-card { color: #000000; border-color: #cccccc; }
+      .fila-total-principal .val-total { color: #000000; }
     }
-</style>
+  </style>
 </head>
 <body>
-<!-- 1. ENCABEZADO DE REMITO -->
-<header class="remito-header">
-<div>
-<div class="badge-orden">
-<span class="material-symbols-outlined" style="font-size: 13px;">receipt_long</span>
-<span class="">ORDEN DE ENCARGO</span>
-</div>
-<h1 class="">Comprobante de Pedido Fotográfico</h1>
-<p class="sub-evento" id="sub-evento-titulo">Evento: Cobertura Oficial Escolar</p>
-</div>
-<div class="info-meta-remito">
-<div><strong style="color:#ffffff;">Fecha de Emisión:</strong> <span class="" id="remito-fecha-hoy">10/09/2026</span></div>
-<div style="margin-top: 2px;">
-<strong style="color:#ffffff;">Estado:</strong>
-<span class="badge-estado-pendiente">● Pendiente de confirmación</span>
-</div>
-<div class="" style="margin-top: 2px;">
-<strong style="color:#ffffff;">Fotógrafo:</strong> Sergio R. Molina · Mendoza
-    </div>
-</div>
-</header>
-<main>
-<!-- 2. DETALLE DE ÍTEMS / TOMAS SOLICITADAS -->
-<section class="tarjeta-remito">
-<div class="titulo-seccion">
-<div class="titulo-seccion-izq">
-<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">fact_check</span>
-<span class="">Detalle de Ítems / Tomas Solicitadas</span>
-</div>
-<span class="badge-conteo" id="badge-contador-fotos">3 fotos</span>
-</div>
-<div class="table-container">
-<table class="tabla-items">
-<thead>
-<tr>
-<th class="" style="width: 28%;">Nº Toma / Archivo</th>
-<th class="" style="width: 36%;">Formato Seleccionado</th>
-<th class="" style="text-align: right; width: 14%;">Precio Unit.</th>
-<th class="" style="text-align: right; width: 14%;">Subtotal</th>
-<th class="" style="text-align: center; width: 8%;">Acción</th>
-</tr>
-</thead>
-<tbody id="tbody-items-pedido"><tr>
-<td class="">
-<span class="col-nombre-archivo">#DSC_4821.jpg</span>
-</td>
-<td class="">
-<div class="formato-selector-tbl">
-<button class="btn-formato-tbl activo-impresa" onclick="toggleFormato(0, 'impresa')" title="Copias en papel fotográfico 15x21 cm" type="button">
-<span class="chk-box">✓</span>
-<span class="">Impresa $7.500</span>
-</button>
-<button class="btn-formato-tbl" onclick="toggleFormato(0, 'digital')" title="Archivo Digital en Alta Calidad HD" type="button">
-<span class="chk-box"></span>
-<span class="">Digital $2.500</span>
-</button>
-</div>
-</td>
-<td class="" style="text-align: right; color: #94a3b8; font-size: 0.82rem;">
-          $7.500
-        </td>
-<td class="" style="text-align: right; font-weight: 700; color: #facc15; font-size: 0.88rem;">
-          $7.500
-        </td>
-<td class="" style="text-align: center;">
-<button class="btn-quitar-fila" onclick="quitarFila(0)" title="Quitar toma del remito" type="button">
-<span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
-<span class="">Quitar</span>
-</button>
-</td>
-</tr><tr>
-<td class="">
-<span class="col-nombre-archivo">#DSC_4822.jpg</span>
-</td>
-<td class="">
-<div class="formato-selector-tbl">
-<button class="btn-formato-tbl activo-impresa" onclick="toggleFormato(1, 'impresa')" title="Copias en papel fotográfico 15x21 cm" type="button">
-<span class="chk-box">✓</span>
-<span class="">Impresa $7.500</span>
-</button>
-<button class="btn-formato-tbl" onclick="toggleFormato(1, 'digital')" title="Archivo Digital en Alta Calidad HD" type="button">
-<span class="chk-box"></span>
-<span class="">Digital $2.500</span>
-</button>
-</div>
-</td>
-<td class="" style="text-align: right; color: #94a3b8; font-size: 0.82rem;">
-          $7.500
-        </td>
-<td class="" style="text-align: right; font-weight: 700; color: #facc15; font-size: 0.88rem;">
-          $7.500
-        </td>
-<td class="" style="text-align: center;">
-<button class="btn-quitar-fila" onclick="quitarFila(1)" title="Quitar toma del remito" type="button">
-<span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
-<span class="">Quitar</span>
-</button>
-</td>
-</tr><tr>
-<td class="">
-<span class="col-nombre-archivo">#DSC_4823.jpg</span>
-</td>
-<td class="">
-<div class="formato-selector-tbl">
-<button class="btn-formato-tbl" onclick="toggleFormato(2, 'impresa')" title="Copias en papel fotográfico 15x21 cm" type="button">
-<span class="chk-box"></span>
-<span class="">Impresa $7.500</span>
-</button>
-<button class="btn-formato-tbl activo-digital" onclick="toggleFormato(2, 'digital')" title="Archivo Digital en Alta Calidad HD" type="button">
-<span class="chk-box">✓</span>
-<span class="">Digital $2.500</span>
-</button>
-</div>
-</td>
-<td class="" style="text-align: right; color: #94a3b8; font-size: 0.82rem;">
-          $2.500
-        </td>
-<td class="" style="text-align: right; font-weight: 700; color: #38bdf8; font-size: 0.88rem;">
-          $2.500
-        </td>
-<td class="" style="text-align: center;">
-<button class="btn-quitar-fila" onclick="quitarFila(2)" title="Quitar toma del remito" type="button">
-<span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
-<span class="">Quitar</span>
-</button>
-</td>
-</tr></tbody>
-</table>
-<div class="caja-vacia-tbl" id="caja-vacia-aviso" style="display: none;">
-        No hay tomas cargadas en este pedido.
+
+  <header>
+    <div>
+      <div class="badge-orden">
+        <span class="material-symbols-outlined" style="font-size: 13px;">receipt_long</span>
+        <span>ORDEN DE ENCARGO</span>
       </div>
-</div>
-<!-- Botón Sumar más fotos -->
-<div class="box-agregar-mas" id="box-agregar-mas">
-<div class="box-agregar-label">
-<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 19px;">library_add</span>
-<span class="">¿Querés agregar más tomas a este remito?</span>
-</div>
-<a class="btn-sumar-galeria" href="galeria.html" id="btn-sumar-mas-fotos" onclick="volverAGaleria(event)"><span class="material-symbols-outlined" style="font-size: 15px;">add</span><span>Sumar más fotos</span></a>
-</div>
-</section>
-<!-- 3. DATOS DE ENTREGA -->
-<section class="tarjeta-remito">
-<div class="titulo-seccion">
-<div class="titulo-seccion-izq">
-<span class="material-symbols-outlined" style="color: #facc15; font-size: 20px;">badge</span>
-<span class="">Datos de Entrega</span>
-</div>
-</div>
-<form class="form-entrega" onsubmit="event.preventDefault();">
-<div class="campo-remito">
-<label class="" for="cliente-nombre">Nombre y Apellido del Titular *</label>
-<input id="cliente-nombre" placeholder="Ej: Laura Gómez" required="" type="text"/>
-</div>
-<div class="campo-remito">
-<label class="" for="cliente-colegio">Institución / Grado / Egresado</label>
-<input id="cliente-colegio" placeholder="Ej: San Martín - 5to B (Egresados 2024)" type="text"/>
-</div>
-<div class="campo-remito full-col">
-<label class="" for="cliente-observaciones">Observaciones</label>
-<textarea id="cliente-observaciones" placeholder="Aclaraciones sobre edición, encuadre o entrega (opcional)"></textarea>
-</div>
-</form>
-</section>
-<!-- 4. LIQUIDACIÓN CONTABLE & ACCIONES -->
-<section class="tarjeta-remito">
-<div class="desglose-liquidacion">
-<div class="fila-liquidacion">
-<span class="">Copias Fotográficas 15x21 cm (<span class="" id="txt-cant-impresas">2</span> un. × $7.500):</span>
-<strong id="txt-subtotal-impresas" style="color: #facc15;">$15.000</strong>
-</div>
-<div class="fila-liquidacion">
-<span class="">Archivos Digitales HD vía Enlace Seguro (<span class="" id="txt-cant-digitales">1</span> un. × $2.500):</span>
-<strong id="txt-subtotal-digitales" style="color: #38bdf8;">$2.500</strong>
-</div>
-<div class="fila-liquidacion destacada">
-<span class="">TOTAL GENERAL A LIQUIDAR:</span>
-<span class="monto-total" id="txt-total-general">$17.500</span>
-</div>
-</div>
-<!-- 5. Acciones Finales -->
-<button class="btn-enviar-wa" onclick="enviarPedidoFinalWhatsApp()" type="button">
-<span class="material-symbols-outlined" style="font-size: 22px;">send</span>
-<span class="">Enviar Pedido por WhatsApp</span>
-</button>
-<button class="btn-imprimir-remito" onclick="window.print()" type="button">
-<span class="material-symbols-outlined" style="font-size: 18px; color: #38bdf8;">print</span>
-<span class="">Imprimir / Guardar Remito (PDF)</span>
-</button>
-</section>
-</main>
-<!-- 6. JAVASCRIPT COMPLETO -->
-<script>
-  const TARIFA_IMPRESA = 7500;
-  const TARIFA_DIGITAL = 2500;
-  const WHATSAPP_NUMERO = '5492613175222';
+      <h1>Comprobante de Pedido Fotográfico</h1>
+      <div id="subtitulo-evento" class="subtitulo-evento">Evento: Cobertura Oficial Escolar</div>
+    </div>
+    <div class="meta-fiscal">
+      <div>Fecha de Emisión: <strong id="lbl-fecha-emision">--/--/----</strong></div>
+      <div>Estado: <strong style="color: #facc15;">&bull; Pendiente de confirmación</strong></div>
+      <div>Fotógrafo: <strong>Sergio R. Molina &bull; Mendoza</strong></div>
+    </div>
+  </header>
 
-  let itemsPedido = [];
-  let tituloEvento = 'Cobertura Oficial Escolar';
-  let folderId = '';
+  <div class="card-seccion">
+    <div class="titulo-seccion-card">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <span class="material-symbols-outlined" style="font-size: 18px;">featured_play_list</span>
+        <span>Detalle de Ítems / Tomas Solicitadas</span>
+      </div>
+      <span id="badge-total-items" style="font-size:0.74rem; background:#222; padding:3px 8px; border-radius:10px; color:#aaa;">0 fotos</span>
+    </div>
 
-  function formatearFechaHoy() {
-    const d = new Date();
-    const dia = String(d.getDate()).padStart(2, '0');
-    const mes = String(d.getMonth() + 1).padStart(2, '0');
-    const anio = d.getFullYear();
-    return `${dia}/${mes}/${anio}`;
-  }
+    <table class="tabla-remito">
+      <thead>
+        <tr>
+          <th>Nº Toma / Archivo</th>
+          <th>Formato Seleccionado</th>
+          <th style="text-align: right;">Precio Unit.</th>
+          <th style="text-align: right;">Subtotal</th>
+          <th style="text-align: center;">Acción</th>
+        </tr>
+      </thead>
+      <tbody id="lista-items-remito">
+        <tr>
+          <td colspan="5" style="text-align:center; color:#777; padding:30px 10px;">
+            No hay tomas cargadas en este remito.
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  function formatoPesos(num) {
-    return '$' + Number(num).toLocaleString('es-AR');
-  }
+    <div class="fila-sumar-fotos">
+      <div style="font-size: 0.82rem; color: #8ec9fa; display:flex; align-items:center; gap:6px;">
+        <span class="material-symbols-outlined" style="font-size: 17px;">add_photo_alternate</span>
+        <span>¿Querés agregar más tomas a este remito?</span>
+      </div>
+      <a href="galeria.html" class="btn-sumar-fotos" onclick="volverAGaleria(event)">
+        <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+        <span>Sumar más fotos</span>
+      </a>
+    </div>
+  </div>
 
-  // Extrae y normaliza el nombre real de archivo fotográfico genuino de Google Drive
-  function extraerNombreArchivoLimpio(crudo, idRespaldo) {
-    if (!crudo && !idRespaldo) return 'Foto.jpg';
-    let str = String(crudo || idRespaldo || '').trim();
+  <div class="card-seccion">
+    <div class="titulo-seccion-card" style="color: #facc15;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <span class="material-symbols-outlined" style="font-size: 18px;">badge</span>
+        <span>Datos de Entrega</span>
+      </div>
+    </div>
+    <div class="form-entrega">
+      <div class="campo-grupo">
+        <label>Nombre y Apellido del Titular *</label>
+        <input type="text" id="input-nombre-titular" placeholder="Ej: Laura Gómez" required>
+      </div>
+      <div class="campo-grupo">
+        <label>Institución / Grado / Egresado</label>
+        <input type="text" id="input-grado-colegio" placeholder="Ej: San Martín - 5to B (Egresados 2024)">
+      </div>
+      <div class="campo-grupo col-span-full">
+        <label>Observaciones</label>
+        <textarea id="input-observaciones" rows="2" placeholder="Aclaraciones sobre edición, encuadre o entrega (opcional)"></textarea>
+      </div>
+    </div>
+  </div>
 
-    // Si viene codificado en URL
-    try {
-      str = decodeURIComponent(str);
-    } catch (e) {}
+  <div class="caja-totales">
+    <div class="fila-total-linea">
+      <span>Copias Fotográficas 15x21 cm (<span id="txt-cant-impresas">0</span> un. &times; <span id="lbl-unit-imp">$7.500</span>):</span>
+      <strong id="val-subtotal-impresas">$0</strong>
+    </div>
+    <div class="fila-total-linea">
+      <span>Archivos Digitales HD vía Enlace Seguro (<span id="txt-cant-digitales">0</span> un. &times; <span id="lbl-unit-dig">$2.500</span>):</span>
+      <strong id="val-subtotal-digitales">$0</strong>
+    </div>
+    <div class="fila-total-principal">
+      <div>
+        <div class="lbl-total">TOTAL GENERAL A LIQUIDAR:</div>
+      </div>
+      <div class="val-total" id="val-total-general">$0</div>
+    </div>
+  </div>
 
-    // Si contiene URL o ruta con slashes
-    if (str.includes('/')) {
-      str = str.split('?')[0].split('#')[0];
-      const segmentos = str.split('/').filter(Boolean);
-      str = segmentos[segmentos.length - 1] || str;
-    }
+  <button class="btn-enviar-wsp" onclick="enviarRemitoPorWhatsApp()">
+    <span class="material-symbols-outlined" style="font-size: 22px;">send</span>
+    <span>Enviar Pedido por WhatsApp</span>
+  </button>
 
-    // Limpiar query params residuales o hashes
-    str = str.split('?')[0].split('&')[0].split('#')[0].trim();
+  <button class="btn-imprimir-pdf" onclick="window.print()">
+    <span class="material-symbols-outlined" style="font-size: 17px;">print</span>
+    <span>Imprimir / Guardar Remito (PDF)</span>
+  </button>
 
-    // Eliminar prefijo '#' si ya lo traía
-    if (str.startsWith('#')) {
-      str = str.slice(1).trim();
-    }
+  <script>
+    let TARIFA_IMPRESA = 7500;
+    let TARIFA_DIGITAL = 2500;
+    let WHATSAPP_FOTOGRAFO = '5492613175222';
 
-    // Detectar si parece un ID técnico de Google Drive o URL residual sin nombre legible
-    const esIdODescarga = /^(uc|export|download|view|open|file|d)$/i.test(str) ||
-                          str.includes('id=') ||
-                          str.includes('google') ||
-                          (/^[a-zA-Z0-9_-]{25,}$/.test(str) && !/\.(jpe?g|png|raw|cr2|nef|arw|dng|webp)$/i.test(str));
+    let itemsSeleccionados = {}; // { [fotoId]: { impresa: bool, digital: bool, name: string, thumb: string } }
+    let eventoTitulo = 'Cobertura Oficial Escolar';
+    let eventoFolderId = '';
 
-    if (esIdODescarga) {
-      if (idRespaldo && idRespaldo !== crudo) {
-        return extraerNombreArchivoLimpio(idRespaldo, null);
-      }
-      return 'Foto.jpg';
-    }
+    function inicializarRemito() {
+      // Fecha de hoy formateada
+      const hoy = new Date();
+      const fechaTxt = `${String(hoy.getDate()).padStart(2, '0')}/${String(hoy.getMonth() + 1).padStart(2, '0')}/${hoy.getFullYear()}`;
+      document.getElementById('lbl-fecha-emision').innerText = fechaTxt;
 
-    // Si no tiene extensión reconocible de imagen, agregar .jpg como estándar fotográfico
-    if (!/\.(jpe?g|png|raw|cr2|nef|arw|dng|webp)$/i.test(str)) {
-      str = str + '.jpg';
-    }
+      // Recuperar tarifas dinámicas
+      const storedImp = localStorage.getItem('tarifa_impresa');
+      const storedDig = localStorage.getItem('tarifa_digital');
+      const storedWa = localStorage.getItem('numero_whatsapp');
+      if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
+      if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
+      if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
 
-    return str;
-  }
+      document.getElementById('lbl-unit-imp').innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+      document.getElementById('lbl-unit-dig').innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
 
-  function normalizarItem(it) {
-    let impresa = false;
-    let digital = false;
+      // Recuperar evento y carpeta de origen
+      eventoFolderId = localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
+      eventoTitulo = localStorage.getItem('galeria_activa_titulo') || localStorage.getItem('pedido_evento_titulo') || 'Cobertura Oficial Escolar';
+      document.getElementById('subtitulo-evento').innerText = `Evento: ${eventoTitulo}`;
 
-    if (typeof it.impresa === 'boolean' || typeof it.digital === 'boolean') {
-      impresa = !!it.impresa;
-      digital = !!it.digital;
-    } else if (it.formato === 'digital') {
-      digital = true;
-    } else if (it.formato === 'impresa') {
-      impresa = true;
-    } else if (it.formato === 'ambos') {
-      impresa = true;
-      digital = true;
-    } else {
-      impresa = true;
-    }
-
-    // Priorizar estrictamente el nombre real original del archivo devuelto por Google Drive API
-    const candidatoNombre = it.name || it.nombre || it.filename || it.fileName || it.title || it.titulo || it.archivo;
-    const candidatoId = it.id;
-    const nombreLimpio = extraerNombreArchivoLimpio(candidatoNombre, candidatoId);
-
-    return {
-      id: it.id || nombreLimpio,
-      name: `#${nombreLimpio}`,
-      nombreLimpio: nombreLimpio,
-      impresa: impresa,
-      digital: digital
-    };
-  }
-
-  function inicializarDatos() {
-    // 1. Fecha de Emisión Dinámica
-    document.getElementById('remito-fecha-hoy').innerText = formatearFechaHoy();
-
-    // 2. Parámetros URL (si viene de una galería específica)
-    const params = new URLSearchParams(window.location.search);
-    const paramTitulo = params.get('titulo');
-    folderId = params.get('folder') || params.get('id') || '';
-
-    if (paramTitulo) {
-      tituloEvento = decodeURIComponent(paramTitulo);
-    }
-    document.getElementById('sub-evento-titulo').innerText = `Evento: ${tituloEvento}`;
-
-    const linkGaleria = `galeria.html${folderId ? '?id=' + encodeURIComponent(folderId) + '&folder=' + encodeURIComponent(folderId) + '&titulo=' + encodeURIComponent(tituloEvento) : ''}`;
-    document.getElementById('btn-sumar-mas-fotos').href = linkGaleria;
-
-    // 3. Carga desde localStorage ('pedido_fotos' o 'fotos_seleccionadas_checkout')
-    let cargados = false;
-    try {
-      const raw = localStorage.getItem('pedido_fotos') || localStorage.getItem('fotos_seleccionadas_checkout');
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          itemsPedido = parsed.map(normalizarItem);
-          cargados = true;
+      // Recuperar items seleccionados en galeria.html
+      try {
+        let datos = localStorage.getItem('pedido_items_dual');
+        if (!datos && eventoFolderId) {
+          datos = localStorage.getItem(`seleccion_dual_${eventoFolderId}`);
         }
-      }
-    } catch (e) {
-      console.warn("Error leyendo selección local:", e);
-    }
-
-    // 4. Parámetro URL de fotos o Mock de muestra
-    if (!cargados) {
-      const paramFotos = params.get('fotos');
-      if (paramFotos) {
-        const lista = paramFotos.split(',');
-        itemsPedido = lista.map(itemStr => {
-          const limpio = extraerNombreArchivoLimpio(itemStr.trim(), null);
-          return {
-            id: limpio,
-            name: `#${limpio}`,
-            nombreLimpio: limpio,
-            impresa: true,
-            digital: false
-          };
-        });
-      } else {
-        // Mock oficial limpio con nombres reales de archivo
-        itemsPedido = [
-          { id: 'DSC_4821', name: '#DSC_4821.jpg', nombreLimpio: 'DSC_4821.jpg', impresa: true, digital: false },
-          { id: 'DSC_4822', name: '#DSC_4822.jpg', nombreLimpio: 'DSC_4822.jpg', impresa: true, digital: false },
-          { id: 'DSC_4823', name: '#DSC_4823.jpg', nombreLimpio: 'DSC_4823.jpg', impresa: false, digital: true }
-        ];
-      }
-    }
-
-    renderizarTabla();
-    recalcularTotales();
-  }
-
-  function renderizarTabla() {
-    const tbody = document.getElementById('tbody-items-pedido');
-    const badgeContador = document.getElementById('badge-contador-fotos');
-    const cajaVacia = document.getElementById('caja-vacia-aviso');
-
-    tbody.innerHTML = '';
-    badgeContador.innerText = `${itemsPedido.length} ${itemsPedido.length === 1 ? 'foto' : 'fotos'}`;
-
-    if (itemsPedido.length === 0) {
-      cajaVacia.style.display = 'block';
-      return;
-    }
-    cajaVacia.style.display = 'none';
-
-    itemsPedido.forEach((item, index) => {
-      // Subtotal de la fila
-      let subtotalFila = 0;
-      let precioUnitTxt = '-';
-
-      if (item.impresa && item.digital) {
-        subtotalFila = TARIFA_IMPRESA + TARIFA_DIGITAL;
-        precioUnitTxt = 'Dual';
-      } else if (item.impresa) {
-        subtotalFila = TARIFA_IMPRESA;
-        precioUnitTxt = formatoPesos(TARIFA_IMPRESA);
-      } else if (item.digital) {
-        subtotalFila = TARIFA_DIGITAL;
-        precioUnitTxt = formatoPesos(TARIFA_DIGITAL);
-      } else {
-        subtotalFila = 0;
-        precioUnitTxt = '$0';
+        if (datos) {
+          itemsSeleccionados = JSON.parse(datos);
+        }
+      } catch (e) {
+        console.warn("Falla al parsear items de pedido:", e);
       }
 
-      const colorSubtotal = item.impresa ? '#facc15' : (item.digital ? '#38bdf8' : '#888888');
+      renderizarTablaRemito();
+    }
 
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>
-          <span class="col-nombre-archivo">${item.name}</span>
-        </td>
-        <td>
-          <div class="formato-selector-tbl">
-            <button 
-              type="button" 
-              class="btn-formato-tbl ${item.impresa ? 'activo-impresa' : ''}" 
-              onclick="toggleFormato(${index}, 'impresa')"
-              title="Copias en papel fotográfico 15x21 cm"
-            >
-              <span class="chk-box">${item.impresa ? '✓' : ''}</span>
-              <span>Impresa $7.500</span>
+    function renderizarTablaRemito() {
+      const tbody = document.getElementById('lista-items-remito');
+      const ids = Object.keys(itemsSeleccionados);
+
+      if (ids.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" style="text-align:center; color:#888; padding:32px 10px;">
+              No tenés tomas seleccionadas actualmente.<br>
+              <a href="galeria.html" onclick="volverAGaleria(event)" style="color:#38bdf8; font-weight:700; margin-top:8px; display:inline-block;">Hacé clic acá para volver a la galería y elegir fotos.</a>
+            </td>
+          </tr>
+        `;
+        document.getElementById('badge-total-items').innerText = '0 fotos';
+        calcularTotales();
+        return;
+      }
+
+      document.getElementById('badge-total-items').innerText = `${ids.length} ${ids.length === 1 ? 'foto' : 'fotos'}`;
+      tbody.innerHTML = '';
+
+      ids.forEach(id => {
+        const item = itemsSeleccionados[id];
+        const tr = document.createElement('tr');
+
+        // Formato genuino de nombre de archivo
+        let nombreLimpio = item.name || id;
+        if (!nombreLimpio.startsWith('#')) nombreLimpio = `#${nombreLimpio}`;
+
+        // Cálculo de subtotal por toma
+        let subtotalFila = 0;
+        let unitText = '';
+        if (item.impresa && item.digital) {
+          subtotalFila = TARIFA_IMPRESA + TARIFA_DIGITAL;
+          unitText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')} + $${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+        } else if (item.impresa) {
+          subtotalFila = TARIFA_IMPRESA;
+          unitText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+        } else if (item.digital) {
+          subtotalFila = TARIFA_DIGITAL;
+          unitText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+        } else {
+          subtotalFila = 0;
+          unitText = '$0';
+        }
+
+        tr.innerHTML = `
+          <td>
+            <div class="toma-tag">${nombreLimpio}</div>
+          </td>
+          <td>
+            <div class="controles-formato">
+              <button type="button" class="btn-toggle-mini btn-toggle-impresa ${item.impresa ? 'activo' : ''}" onclick="toggleFormato('${id}', 'impresa')">
+                <input type="checkbox" ${item.impresa ? 'checked' : ''} style="pointer-events:none;">
+                <span>Impresa</span>
+                <span style="opacity:0.8;">$${TARIFA_IMPRESA.toLocaleString('es-AR')}</span>
+              </button>
+              <button type="button" class="btn-toggle-mini btn-toggle-digital ${item.digital ? 'activo' : ''}" onclick="toggleFormato('${id}', 'digital')">
+                <input type="checkbox" ${item.digital ? 'checked' : ''} style="pointer-events:none;">
+                <span>Digital</span>
+                <span style="opacity:0.8;">$${TARIFA_DIGITAL.toLocaleString('es-AR')}</span>
+              </button>
+            </div>
+          </td>
+          <td style="text-align: right; color: #888; font-size: 0.78rem;">
+            ${unitText}
+          </td>
+          <td style="text-align: right; font-weight: 700; color: #facc15;">
+            $${subtotalFila.toLocaleString('es-AR')}
+          </td>
+          <td style="text-align: center;">
+            <button class="btn-quitar-fila" onclick="eliminarFila('${id}')">
+              <span class="material-symbols-outlined" style="font-size: 15px;">delete</span>
+              <span>Quitar</span>
             </button>
-            <button 
-              type="button" 
-              class="btn-formato-tbl ${item.digital ? 'activo-digital' : ''}" 
-              onclick="toggleFormato(${index}, 'digital')"
-              title="Archivo Digital en Alta Calidad HD"
-            >
-              <span class="chk-box">${item.digital ? '✓' : ''}</span>
-              <span>Digital $2.500</span>
-            </button>
-          </div>
-        </td>
-        <td style="text-align: right; color: #94a3b8; font-size: 0.82rem;">
-          ${precioUnitTxt}
-        </td>
-        <td style="text-align: right; font-weight: 700; color: ${colorSubtotal}; font-size: 0.88rem;">
-          ${formatoPesos(subtotalFila)}
-        </td>
-        <td style="text-align: center;">
-          <button type="button" class="btn-quitar-fila" onclick="quitarFila(${index})" title="Quitar toma del remito">
-            <span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
-            <span>Quitar</span>
-          </button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
 
-  function toggleFormato(index, tipo) {
-    if (!itemsPedido[index]) return;
-
-    if (tipo === 'impresa') {
-      itemsPedido[index].impresa = !itemsPedido[index].impresa;
-    } else if (tipo === 'digital') {
-      itemsPedido[index].digital = !itemsPedido[index].digital;
+      calcularTotales();
     }
 
-    guardarEstado();
-    renderizarTabla();
-    recalcularTotales();
-  }
+    function toggleFormato(id, tipo) {
+      if (!itemsSeleccionados[id]) return;
+      itemsSeleccionados[id][tipo] = !itemsSeleccionados[id][tipo];
 
-  function quitarFila(index) {
-    if (!itemsPedido[index]) return;
-    itemsPedido.splice(index, 1);
-    guardarEstado();
-    renderizarTabla();
-    recalcularTotales();
-  }
+      // Si desmarcó ambas, eliminar la fila
+      if (!itemsSeleccionados[id].impresa && !itemsSeleccionados[id].digital) {
+        delete itemsSeleccionados[id];
+      }
 
-  function recalcularTotales() {
-    let cantImpresas = 0;
-    let cantDigitales = 0;
-
-    itemsPedido.forEach(it => {
-      if (it.impresa) cantImpresas++;
-      if (it.digital) cantDigitales++;
-    });
-
-    const subtotalImpresas = cantImpresas * TARIFA_IMPRESA;
-    const subtotalDigitales = cantDigitales * TARIFA_DIGITAL;
-    const totalGeneral = subtotalImpresas + subtotalDigitales;
-
-    document.getElementById('txt-cant-impresas').innerText = cantImpresas;
-    document.getElementById('txt-cant-digitales').innerText = cantDigitales;
-    document.getElementById('txt-subtotal-impresas').innerText = formatoPesos(subtotalImpresas);
-    document.getElementById('txt-subtotal-digitales').innerText = formatoPesos(subtotalDigitales);
-    document.getElementById('txt-total-general').innerText = formatoPesos(totalGeneral);
-  }
-
-  function guardarEstado() {
-    try {
-      localStorage.setItem('pedido_fotos', JSON.stringify(itemsPedido));
-      localStorage.setItem('fotos_seleccionadas_checkout', JSON.stringify(itemsPedido));
-    } catch (e) {
-      console.warn("Error guardando selección:", e);
-    }
-  }
-
-  function enviarPedidoFinalWhatsApp() {
-    if (itemsPedido.length === 0) {
-      alert("Por favor agregá al menos una toma a tu pedido.");
-      return;
+      guardarCambios();
+      renderizarTablaRemito();
     }
 
-    // Utilizar el nombre real de archivo original sin IDs técnicos
-    const fotosImpresas = itemsPedido.filter(it => it.impresa).map(it => it.name);
-    const fotosDigitales = itemsPedido.filter(it => it.digital).map(it => it.name);
-
-    if (fotosImpresas.length === 0 && fotosDigitales.length === 0) {
-      alert("Por favor marcá al menos un formato (Impresa o Digital) para tus tomas solicitadas.");
-      return;
+    function eliminarFila(id) {
+      delete itemsSeleccionados[id];
+      guardarCambios();
+      renderizarTablaRemito();
     }
 
-    const clienteNombre = document.getElementById('cliente-nombre').value.trim();
-    if (!clienteNombre) {
-      alert("Por favor ingresá el Nombre y Apellido del Titular.");
-      document.getElementById('cliente-nombre').focus();
-      return;
+    function guardarCambios() {
+      if (eventoFolderId) {
+        localStorage.setItem(`seleccion_dual_${eventoFolderId}`, JSON.stringify(itemsSeleccionados));
+      }
+      localStorage.setItem('pedido_items_dual', JSON.stringify(itemsSeleccionados));
     }
 
-    const institucion = document.getElementById('cliente-colegio').value.trim();
-    const observaciones = document.getElementById('cliente-observaciones').value.trim();
+    function calcularTotales() {
+      let cantImp = 0;
+      let cantDig = 0;
+      const ids = Object.keys(itemsSeleccionados);
 
-    const cantImp = fotosImpresas.length;
-    const cantDig = fotosDigitales.length;
-    const subImp = cantImp * TARIFA_IMPRESA;
-    const subDig = cantDig * TARIFA_DIGITAL;
-    const total = subImp + subDig;
+      ids.forEach(id => {
+        if (itemsSeleccionados[id].impresa) cantImp++;
+        if (itemsSeleccionados[id].digital) cantDig++;
+      });
 
-    let mensaje = `📋 *COMPROBANTE DE PEDIDO FOTOGRÁFICO*\n` +
-                  `Sergio Ricardo Molina · Mendoza\n` +
-                  `-----------------------------------------\n` +
-                  `👤 *Titular:* ${clienteNombre}\n`;
+      const subImp = cantImp * TARIFA_IMPRESA;
+      const subDig = cantDig * TARIFA_DIGITAL;
+      const totalGeneral = subImp + subDig;
 
-    if (institucion) {
-      mensaje += `🏫 *Institución / Grado:* ${institucion}\n`;
+      document.getElementById('txt-cant-impresas').innerText = cantImp;
+      document.getElementById('txt-cant-digitales').innerText = cantDig;
+      document.getElementById('val-subtotal-impresas').innerText = `$${subImp.toLocaleString('es-AR')}`;
+      document.getElementById('val-subtotal-digitales').innerText = `$${subDig.toLocaleString('es-AR')}`;
+      document.getElementById('val-total-general').innerText = `$${totalGeneral.toLocaleString('es-AR')}`;
     }
 
-    mensaje += `📅 *Evento:* ${tituloEvento}\n` +
-               `🗓️ *Fecha:* ${formatearFechaHoy()}\n` +
-               `-----------------------------------------\n` +
-               `*DETALLE DE TOMAS SOLICITADAS:*\n\n`;
+    // Retorno inteligente: no pierde el evento ni las fotos
+    function volverAGaleria(event) {
+      if (event) event.preventDefault();
 
-    if (cantImp > 0) {
-      mensaje += `📸 *Copias Impresas 15x21 cm (${cantImp} un. × $7.500):*\n` +
-                 `   ${fotosImpresas.join(', ')}\n` +
-                 `   Subtotal: ${formatoPesos(subImp)}\n\n`;
+      // Guardar el estado actual antes de salir
+      guardarCambios();
+
+      // Si venimos navegando desde la galería, history.back() conserva el scroll y la carga
+      if (window.history.length > 1 && document.referrer && document.referrer.includes('galeria.html')) {
+        window.history.back();
+        return;
+      }
+
+      // Si no, abre galeria.html con los parámetros exactos del evento
+      const folderId = eventoFolderId || localStorage.getItem('galeria_activa_id') || localStorage.getItem('pedido_evento_folder') || '';
+      const titulo = eventoTitulo || localStorage.getItem('galeria_activa_titulo') || '';
+
+      if (folderId) {
+        window.location.href = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
+      } else {
+        window.location.href = 'eventos.html';
+      }
     }
 
-    if (cantDig > 0) {
-      mensaje += `💾 *Archivos Digitales HD (${cantDig} un. × $2.500):*\n` +
-                 `   ${fotosDigitales.join(', ')}\n` +
-                 `   Subtotal: ${formatoPesos(subDig)}\n\n`;
+    function enviarRemitoPorWhatsApp() {
+      const ids = Object.keys(itemsSeleccionados);
+      if (ids.length === 0) {
+        alert("El remito está vacío. Por favor sumá tomas desde la galería antes de enviar.");
+        return;
+      }
+
+      const nombreTitular = document.getElementById('input-nombre-titular').value.trim();
+      const gradoColegio = document.getElementById('input-grado-colegio').value.trim();
+      const observaciones = document.getElementById('input-observaciones').value.trim();
+
+      if (!nombreTitular) {
+        alert("Por favor completá el Nombre y Apellido del titular para registrar el pedido.");
+        document.getElementById('input-nombre-titular').focus();
+        return;
+      }
+
+      let impresas = [];
+      let digitales = [];
+
+      ids.forEach(id => {
+        const item = itemsSeleccionados[id];
+        const nom = item.name.startsWith('#') ? item.name : `#${item.name}`;
+        if (item.impresa) impresas.push(nom);
+        if (item.digital) digitales.push(nom);
+      });
+
+      const cantImp = impresas.length;
+      const cantDig = digitales.length;
+      const subImp = cantImp * TARIFA_IMPRESA;
+      const subDig = cantDig * TARIFA_DIGITAL;
+      const total = subImp + subDig;
+
+      let msg = `*COMPROBANTE DE PEDIDO FOTOGRÁFICO*\n` +
+        `Fotógrafo: Sergio Ricardo Molina\n` +
+        `-----------------------------------------\n` +
+        `*Evento:* ${eventoTitulo}\n` +
+        `*Titular:* ${nombreTitular}\n`;
+
+      if (gradoColegio) msg += `*Institución/Egresado:* ${gradoColegio}\n`;
+      if (observaciones) msg += `*Observaciones:* ${observaciones}\n`;
+
+      msg += `-----------------------------------------\n` +
+        `*DETALLE DE TOMAS SOLICITADAS:*\n`;
+
+      if (cantImp > 0) {
+        msg += `\n🟡 *Copias Impresas 15x21 cm* (${cantImp} un. a $${TARIFA_IMPRESA.toLocaleString('es-AR')} = $${subImp.toLocaleString('es-AR')}):\n` +
+          `${impresas.join(', ')}\n`;
+      }
+
+      if (cantDig > 0) {
+        msg += `\n🔵 *Archivos Digitales HD* (${cantDig} un. a $${TARIFA_DIGITAL.toLocaleString('es-AR')} = $${subDig.toLocaleString('es-AR')}):\n` +
+          `${digitales.join(', ')}\n`;
+      }
+
+      msg += `\n-----------------------------------------\n` +
+        `*TOTAL GENERAL A LIQUIDAR:* $${total.toLocaleString('es-AR')}\n` +
+        `-----------------------------------------\n` +
+        `¿Me confirmás los datos de transferencia y plazos de entrega? Muchas gracias.`;
+
+      const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(msg)}`;
+      window.open(urlWa, '_blank');
     }
 
-    const fotosAmbos = itemsPedido.filter(it => it.impresa && it.digital).map(it => it.name);
-    if (fotosAmbos.length > 0) {
-      mensaje += `⭐ *En ambos formatos (Impresa + Digital):*\n   ${fotosAmbos.join(', ')}\n\n`;
-    }
-
-    mensaje += `-----------------------------------------\n` +
-               `💰 *TOTAL GENERAL A LIQUIDAR: ${formatoPesos(total)}*\n`;
-
-    if (observaciones) {
-      mensaje += `\n📝 *Observaciones:* ${observaciones}\n`;
-    }
-
-    mensaje += `\n¿Me confirmás los datos para la transferencia y la recepción de mi pedido? ¡Muchas gracias!`;
-
-    const urlWa = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`;
-    window.open(urlWa, '_blank');
-  }
-
-  document.addEventListener('DOMContentLoaded', inicializarDatos);
-</script>
-</body></html>
+    document.addEventListener('DOMContentLoaded', inicializarRemito);
+  </script>
+</body>
+</html>
