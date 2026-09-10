@@ -563,7 +563,7 @@ header {
 <!-- CONTENEDOR DINÁMICO DE FOTOS -->
 <div class="grid-fotos" id="contenedor-fotos"><div class="tarjeta-foto" id="card-foto-4822">
       <div class="contenedor-img" onclick="abrirVisor(0)">
-        
+        <div class="badge-numero-foto">#4822</div>
         <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="DSC_4822.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/4822';">
         
           <div class="marca-agua">
@@ -575,7 +575,7 @@ header {
         
       </div>
       <div class="cuerpo-tarjeta">
-        
+        <div class="nombre-archivo-foto" title="#DSC_4822.jpg">#DSC_4822.jpg</div>
         
           <div class="caja-controles-dual">
             <div class="grid-botones-opcion">
@@ -596,7 +596,7 @@ header {
       </div>
     </div><div class="tarjeta-foto" id="card-foto-4823">
       <div class="contenedor-img" onclick="abrirVisor(1)">
-        
+        <div class="badge-numero-foto">#4823</div>
         <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="DSC_4823.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/4823';">
         
           <div class="marca-agua">
@@ -608,7 +608,7 @@ header {
         
       </div>
       <div class="cuerpo-tarjeta">
-        
+        <div class="nombre-archivo-foto" title="#DSC_4823.jpg">#DSC_4823.jpg</div>
         
           <div class="caja-controles-dual">
             <div class="grid-botones-opcion">
@@ -651,10 +651,7 @@ header {
 <button onclick="limpiarSeleccionCompleta()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;" class="">Vaciar todo</button>
 </div>
 <div class="acciones-compra">
-<button class="btn-enviar-wa" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()">
-<span class="material-symbols-outlined" style="font-size: 20px;">chat</span>
-<span class="">Enviar Pedido por WhatsApp</span>
-</button>
+<button class="btn-enviar-wa" id="btn-enviar-whatsapp" onclick="const ids = [...new Set([...seleccionImpresas, ...seleccionDigitales])]; if(ids.length === 0){ alert('Por favor seleccioná al menos una fotografía antes de continuar con el pedido'); return; } const pedidoFotos = ids.map(id =&gt; { const f = listaFotos.find(item =&gt; item.id === id); return { id: id, nombre: f ? f.name : id, thumb: f ? f.thumb : '', impresa: seleccionImpresas.has(id), digital: seleccionDigitales.has(id) }; }); localStorage.setItem('pedido_fotos', JSON.stringify(pedidoFotos)); localStorage.setItem('pedido_evento', tituloEvento || 'Galería'); window.location.href = 'pedido.html';"><span class="material-symbols-outlined" style="font-size: 20px;">shopping_cart_checkout</span><span class="">Continuar con el Pedido</span></button>
 </div>
 </div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
@@ -663,7 +660,12 @@ header {
 <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
 <div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
 <img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="">
-<div class="marca-agua" id="marca-visor" style="display: none; background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 0px, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px, transparent 28px), rgba(0, 0, 0, 0.25);"><div class="marca-agua-badge" style="transform: rotate(-24deg); padding: 14px 28px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.25);"><div class="linea-1" style="font-size: 1.15rem; letter-spacing: 3px;">MUESTRA OFICIAL</div><div class="linea-2" style="font-size: 0.95rem; letter-spacing: 2px;">SERGIO RICARDO MOLINA</div></div></div>
+<div class="marca-agua" id="marca-visor" style="display: none;">
+<div class="marca-agua-badge" style="transform: rotate(-24deg); padding: 12px 24px;">
+<div class="linea-1" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL</div>
+<div class="linea-2" style="font-size: 0.95rem; letter-spacing: 2px;">SERGIO RICARDO MOLINA</div>
+</div>
+</div>
 </div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
 </div>
