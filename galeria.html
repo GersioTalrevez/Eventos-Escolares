@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Galería de Fotos | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -21,8 +20,6 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   position: relative;
-  -webkit-user-select: none;
-  user-select: none;
 }
 header {
   padding: 12px 0 16px;
@@ -176,7 +173,6 @@ header {
   user-select: none;
   -webkit-user-drag: none;
   transition: transform 0.25s ease;
-  pointer-events: none;
 }
 .tarjeta-foto:hover .contenedor-img img {
   transform: scale(1.03);
@@ -353,20 +349,13 @@ header {
   white-space: nowrap;
 }
 .btn-pedido-impresas {
-  background: rgba(250, 204, 21, 0.08);
-  border: 1px solid #facc15;
-  color: #facc15;
-}
-.btn-pedido-impresas .material-symbols-outlined {
-  color: #facc15;
+  background: #1c1c1c;
+  border: 1px solid #444444;
+  color: #ffffff;
 }
 .btn-pedido-impresas:hover {
-  background: rgba(250, 204, 21, 0.18);
-  border-color: #fde047;
-  color: #fde047;
-}
-.btn-pedido-impresas:hover .material-symbols-outlined {
-  color: #fde047;
+  border-color: #facc15;
+  color: #facc15;
 }
 .btn-pedido-digitales {
   background: #005580;
@@ -390,7 +379,6 @@ header {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
-  pointer-events: none;
 }
 .btn-cerrar-visor {
   position: absolute;
@@ -436,95 +424,102 @@ header {
 }
 </style>
 </head>
-<body oncontextmenu="return false;" ondragstart="return false;">
+<body>
+
 <!-- ENCABEZADO -->
 <header>
-<div class="marca-personal">
-<span class="material-symbols-outlined icon">photo_camera</span>
-<span class="">SERGIO RICARDO MOLINA</span>
-</div>
-<a class="btn-volver-nav" href="eventos.html">
-<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
-<span class="">Volver a Eventos</span>
-</a>
+  <div class="marca-personal">
+    <span class="material-symbols-outlined icon">photo_camera</span>
+    <span class="">SERGIO RICARDO MOLINA</span>
+  </div>
+  <a class="btn-volver-nav" href="eventos.html">
+    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+    <span class="">Volver a Eventos</span>
+  </a>
 </header>
+
 <main>
-<section class="hero-galeria">
-<div class="badge-tipo-galeria badge-publica" id="badge-tipo">
-<span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
-<span class="" id="texto-tipo-badge">Galería Oficial Pública</span>
-</div>
-<h1 class="titulo-galeria" id="titulo-galeria">Cargando álbum...</h1>
-<p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
-</section>
-<!-- BANNER DINÁMICO DE TARIFAS -->
-<div class="banner-tarifas" data-pricing-source="supabase-live" id="banner-tarifas">
-<div class="tarifa-item">
-<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 18px;">payments</span>
-<span class="" id="texto-tarifas-banner">
-        TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.500</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$2.500</strong>
-</span>
-</div>
-<div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 15px; color: rgb(74, 222, 128);">cloud_done</span><span class="" id="lbl-sync-status">Precios oficiales sincronizados en vivo</span><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
-</div>
-<!-- CONTENEDOR DE FOTOS -->
-<div class="grid-fotos" id="contenedor-fotos">
-<div class="estado-caja">
-<span class="material-symbols-outlined" style="color: #ef4444;">error</span>
-<h3 class="">Galería no especificada</h3>
-<p class="">No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum.</p>
-<button class="btn-accion-estado" onclick="iniciarGaleria()">
-<span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
-<span class="">Reintentar</span>
-</button>
-<a class="btn-accion-estado" href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" style="background:#075e54; margin-left:8px;" target="_blank">
-<span class="material-symbols-outlined" style="font-size:18px;">chat</span>
-<span class="">Soporte WhatsApp</span>
-</a>
-</div>
-</div>
+  <section class="hero-galeria">
+    <div class="badge-tipo-galeria badge-publica" id="badge-tipo">
+      <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
+      <span id="texto-tipo-badge" class="">Galería Oficial Pública</span>
+    </div>
+    <h1 class="titulo-galeria" id="titulo-galeria">Cargando álbum...</h1>
+    <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
+  </section>
+
+  <!-- BANNER DINÁMICO DE TARIFAS -->
+  <div class="banner-tarifas" id="banner-tarifas" data-pricing-source="supabase-live">
+    <div class="tarifa-item">
+      <span class="material-symbols-outlined" style="color: #38bdf8; font-size: 18px;">payments</span>
+      <span id="texto-tarifas-banner" class="">
+        TARIFAS: Copia Impresa 15x21 cm: <strong id="lbl-tarifa-impresa">$7.000</strong>  •  Archivo Digital HD: <strong id="lbl-tarifa-digital">$4.200</strong>
+      </span>
+    </div>
+    <div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 15px; color: rgb(74, 222, 128);">cloud_done</span><span id="lbl-sync-status" class="">Precios oficiales sincronizados</span><span style="margin-left: 8px; color: rgb(102, 102, 102);" class="">• Entrega en papel fotográfico de laboratorio</span></div>
+  </div>
+
+  <!-- CONTENEDOR DE FOTOS -->
+  <div class="grid-fotos" id="contenedor-fotos">
+    <div class="estado-caja">
+      <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
+      <h3 class="">Galería no especificada</h3>
+      <p class="">No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum.</p>
+      <button onclick="iniciarGaleria()" class="btn-accion-estado">
+        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+        <span class="">Reintentar</span>
+      </button>
+      <a href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
+        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
+        <span class="">Soporte WhatsApp</span>
+      </a>
+    </div>
+  </div>
 </main>
+
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
 <div class="barra-compras-fija" id="barra-pedidos" style="display: none;">
-<div class="resumen-seleccion">
-<div style="display:flex; align-items:center; gap:6px;">
-<span class="" style="color: #38bdf8; font-size: 16px;">●</span>
-<span class="" style="font-weight: 600;">SELECCIÓN:</span>
-<span class="contador-badge" id="contador-fotos">0 fotos</span>
+  <div class="resumen-seleccion">
+    <div style="display:flex; align-items:center; gap:6px;">
+      <span style="color: #38bdf8; font-size: 16px;" class="">●</span>
+      <span style="font-weight: 600;" class="">SELECCIÓN:</span>
+      <span class="contador-badge" id="contador-fotos">0 fotos</span>
+    </div>
+    <button onclick="limpiarSeleccion()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;" class="">Vaciar</button>
+  </div>
+  <div class="acciones-compra">
+    <button class="btn-pedido btn-pedido-impresas" onclick="pedirPorWhatsApp('impresas')">
+      <span class="material-symbols-outlined" style="font-size: 16px;">print</span>
+      <span id="btn-label-impresas" class="">Impresas 15x21 ($7.000 c/u)</span>
+    </button>
+    <button class="btn-pedido btn-pedido-digitales" onclick="pedirPorWhatsApp('digitales')">
+      <span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span>
+      <span id="btn-label-digitales" class="">Digital HD ($4.200 c/u)</span>
+    </button>
+  </div>
 </div>
-<button class="" onclick="limpiarSeleccion()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar</button>
-</div>
-<div class="acciones-compra">
-<button class="btn-pedido btn-pedido-impresas" onclick="pedirPorWhatsApp('impresas')">
-<span class="material-symbols-outlined" style="font-size: 16px;">print</span>
-<span class="" id="btn-label-impresas">Impresas 15x21 ($7.500 c/u)</span>
-</button>
-<button class="btn-pedido btn-pedido-digitales" onclick="pedirPorWhatsApp('digitales')">
-<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span>
-<span class="" id="btn-label-digitales">Digital HD ($2.500 c/u)</span>
-</button>
-</div>
-</div>
+
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
-<span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
-<span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
-<div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
-<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src=""/>
-<div class="marca-agua" id="marca-visor" style="display: none;">
-<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br/>SERGIO RICARDO MOLINA</div>
+  <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
+  <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
+  <div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
+    <img alt="Vista Previa" id="img-ampliada" src="">
+    <div id="marca-visor" class="marca-agua" style="display: none;">
+      <div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br>SERGIO RICARDO MOLINA</div>
+    </div>
+  </div>
+  <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
 </div>
-</div>
-<span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
-</div>
+
 <script>
 // CREDENCIALES OFICIALES Y CONSTANTES
 const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
 
-let TARIFA_IMPRESA = 7500;
-let TARIFA_DIGITAL = 2500;
+let TARIFA_IMPRESA = 7000;
+let TARIFA_DIGITAL = 4200;
 let WHATSAPP_FOTOGRAFO = '5492613175222';
 
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
@@ -554,104 +549,33 @@ function extraerIdDrive(input) {
   return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
 }
 
-// ACTUALIZAR INTERFAZ DE TARIFAS
-function actualizarUIPrecios() {
-  const lblImp = document.getElementById('lbl-tarifa-impresa');
-  const lblDig = document.getElementById('lbl-tarifa-digital');
-  if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
-  if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
-
-  const btnImp = document.getElementById('btn-label-impresas');
-  const btnDig = document.getElementById('btn-label-digitales');
-  if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
-  if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
-}
-
-// SINCRONIZAR TARIFAS ASÍNCRONA DESDE SUPABASE 'configuracion'
-async function sincronizarPrecios() {
-  // a) Leer primero de localStorage('tarifa_impresa') y localStorage('tarifa_digital') si existen
+// SINCRONIZAR TARIFAS
+function sincronizarPrecios() {
   try {
     const storedImp = localStorage.getItem('tarifa_impresa');
     const storedDig = localStorage.getItem('tarifa_digital');
     const storedWa = localStorage.getItem('numero_whatsapp');
-    if (storedImp && !isNaN(storedImp) && Number(storedImp) > 0) TARIFA_IMPRESA = Number(storedImp);
-    if (storedDig && !isNaN(storedDig) && Number(storedDig) > 0) TARIFA_DIGITAL = Number(storedDig);
+    if (storedImp && !isNaN(storedImp)) TARIFA_IMPRESA = Number(storedImp);
+    if (storedDig && !isNaN(storedDig)) TARIFA_DIGITAL = Number(storedDig);
     if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
+
+    const lblImp = document.getElementById('lbl-tarifa-impresa');
+    const lblDig = document.getElementById('lbl-tarifa-digital');
+    if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+    if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
+
+    const btnImp = document.getElementById('btn-label-impresas');
+    const btnDig = document.getElementById('btn-label-digitales');
+    if (btnImp) btnImp.innerText = `Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
+    if (btnDig) btnDig.innerText = `Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
   } catch (e) {
-    console.warn("Error leyendo localStorage inicial:", e);
-  }
-  actualizarUIPrecios();
-
-  // b) Consultar en tiempo real a Supabase a la tabla 'configuracion' con limit(1)
-  if (supabaseClient) {
-    try {
-      const consultaConfig = async () => {
-        const { data, error } = await supabaseClient
-          .from('configuracion')
-          .select('*')
-          .limit(1);
-
-        if (!error && data && data.length > 0) {
-          return data[0];
-        }
-        return null;
-      };
-
-      const config = await Promise.race([
-        consultaConfig(),
-        new Promise(resolve => setTimeout(() => resolve(null), 3000))
-      ]);
-
-      if (config) {
-        let imp = null;
-        let dig = null;
-        let wa = null;
-
-        if (config.tarifa_impresa !== undefined && config.tarifa_impresa !== null) imp = Number(config.tarifa_impresa);
-        if (config.tarifa_digital !== undefined && config.tarifa_digital !== null) dig = Number(config.tarifa_digital);
-        if (config.whatsapp || config.numero_whatsapp) wa = String(config.whatsapp || config.numero_whatsapp);
-
-        // Si viene estructurado dentro de 'valor'
-        if ((imp === null || dig === null) && config.valor) {
-          let val = config.valor;
-          if (typeof val === 'string') {
-            try { val = JSON.parse(val); } catch (_) {}
-          }
-          if (val && typeof val === 'object') {
-            if (val.tarifa_impresa) imp = Number(val.tarifa_impresa);
-            if (val.tarifa_digital) dig = Number(val.tarifa_digital);
-            if (val.whatsapp || val.numero_whatsapp) wa = String(val.whatsapp || val.numero_whatsapp);
-          }
-        }
-
-        if (imp && !isNaN(imp) && imp > 0) {
-          TARIFA_IMPRESA = imp;
-          try { localStorage.setItem('tarifa_impresa', String(imp)); } catch (_) {}
-        }
-        if (dig && !isNaN(dig) && dig > 0) {
-          TARIFA_DIGITAL = dig;
-          try { localStorage.setItem('tarifa_digital', String(dig)); } catch (_) {}
-        }
-        if (wa && wa.trim().length > 5) {
-          WHATSAPP_FOTOGRAFO = wa.replace(/\D/g, '');
-          try { localStorage.setItem('numero_whatsapp', WHATSAPP_FOTOGRAFO); } catch (_) {}
-        }
-
-        // c) Actualizar de inmediato los textos del banner y los labels de los botones
-        actualizarUIPrecios();
-        const syncLbl = document.getElementById('lbl-sync-status');
-        if (syncLbl) syncLbl.innerText = 'Precios oficiales sincronizados en vivo';
-      }
-    } catch (errSupabase) {
-      console.warn("No se pudo sincronizar tarifas en vivo desde Supabase 'configuracion':", errSupabase);
-    }
+    console.warn("Uso de tarifas estándar:", e);
   }
 }
 
 // INICIAR GALERÍA CON CARGA INMEDIATA SIN BLOQUEO EN SUPABASE
 async function iniciarGaleria() {
   sincronizarPrecios();
-
   const params = new URLSearchParams(window.location.search);
   const paramId = params.get('id') || '';
   const paramFolder = params.get('folder') || '';
@@ -696,6 +620,7 @@ async function iniciarGaleria() {
         return data;
       })();
 
+      // Timeout protector para que nunca se quede colgado en "consultando..."
       const data = await Promise.race([
         promiseSupabase,
         new Promise(resolve => setTimeout(() => resolve(null), 2500))
@@ -756,6 +681,7 @@ function configurarModoPrivado() {
 
 // CONSULTA DIRECTA A GOOGLE DRIVE API
 async function cargarFotosDrive(folderId) {
+  const contenedor = document.getElementById('contenedor-fotos');
   const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
 
   const controller = new AbortController();
@@ -780,7 +706,7 @@ async function cargarFotosDrive(folderId) {
       return;
     }
 
-    // Mapeo con miniaturas oficiales de Google
+    // Mapeo ultrarrápido con miniaturas oficiales de Google
     listaFotos = datos.files.map(f => ({
       id: f.id,
       name: f.name || 'Fotografía',
@@ -806,7 +732,7 @@ async function cargarFotosDrive(folderId) {
   }
 }
 
-// RENDERIZADO FLUIDO EN 2 COLUMNAS MÓVIL Y 4 EN ESCRITORIO CON PROTECCIÓN ANTI-DESCARGA
+// RENDERIZADO FLUIDO EN 2 COLUMNAS MÓVIL Y 4 EN ESCRITORIO
 function renderizarFotos() {
   const contenedor = document.getElementById('contenedor-fotos');
   contenedor.innerHTML = '';
@@ -822,7 +748,7 @@ function renderizarFotos() {
 
     tarjeta.innerHTML = `
       <div class="contenedor-img" onclick="abrirVisor(${index})">
-        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
+        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
         ${!esGaleriaPrivada ? `
           <div class="marca-agua">
             <div class="texto-marca-agua">MUESTRA OFICIAL<br>SERGIO MOLINA</div>
@@ -976,21 +902,7 @@ function cambiarFoto(dir, event) {
   document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
 }
 
-// SEGURIDAD ANTI-COPIA: BLOQUEO DE ATAJOS Y CONTEXTMENU
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-  return false;
-});
-
 document.addEventListener('keydown', (e) => {
-  // Atajos para descarga o inspección
-  if (
-    (e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U' || e.key === 'p' || e.key === 'P') ||
-    e.key === 'F12'
-  ) {
-    e.preventDefault();
-    return false;
-  }
   const modal = document.getElementById('modal-visor');
   if (modal && modal.style.display === 'flex') {
     if (e.key === 'Escape') cerrarVisor();
@@ -1012,4 +924,8 @@ modalEl.addEventListener('touchend', e => {
 // Iniciar de inmediato
 document.addEventListener('DOMContentLoaded', iniciarGaleria);
 </script>
+
+
+
+
 </body></html>
