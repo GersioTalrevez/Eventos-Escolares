@@ -367,7 +367,7 @@ footer {
     <p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 22px; line-height: 1.4;" class="">Ingresá la clave de tu evento, sesión privada o colegio para acceder a tu álbum en alta resolución.</p>
     
     <form onsubmit="validarClaveAcceso(event)" style="display: flex; flex-direction: column; gap: 14px;">
-      <input autocomplete="off" id="input-clave-cliente" placeholder="Ej: brenda, familia2026..." style="background: #101010; border: 1px solid #334155; border-radius: 8px; color: #ffffff; padding: 12px 16px; font-size: 1rem; outline: none; text-align: center; letter-spacing: 1px; transition: border-color 0.2s;" type="password">
+      <input autocomplete="off" id="input-clave-cliente" placeholder="Contraseña de tu álbum o sesión" style="background: rgb(16, 16, 16); border: 1px solid rgb(51, 65, 85); border-radius: 8px; color: rgb(255, 255, 255); padding: 12px 16px; font-size: 1rem; outline: none; text-align: center; letter-spacing: 1px; transition: border-color 0.2s;" type="password">
       <div id="error-clave-cliente" style="display: none; color: #f87171; font-size: 0.84rem; margin-top: -6px;" class="">Contraseña incorrecta o álbum no encontrado. Verificá e intentá de nuevo.</div>
       <button id="btn-submit-clave" style="background: #005580; color: #ffffff; border: 1px solid #38bdf8; border-radius: 8px; padding: 12px 18px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;" type="submit">
         <span class="material-symbols-outlined" style="font-size: 20px;">key</span>
@@ -583,6 +583,8 @@ modal.addEventListener('touchend', e => {
   else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
 }, false);
 </script>
+
+
 
 
 
