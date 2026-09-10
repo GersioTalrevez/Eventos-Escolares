@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+<title>Revisá tu Pedido | Sergio Ricardo Molina</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Raleway:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #e5e2e1;
+      padding: 12px 14px 48px;
+      max-width: 880px;
+      margin: 0 auto;
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    input, textarea, button {
+      user-select: auto;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* HEADER */
+    header {
+      padding: 8px 0 14px;
+      border-bottom: 1px solid #222222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .marca-personal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    .marca-personal .icon {
+      color: #38bdf8;
+      font-size: 20px;
+    }
+    .btn-volver-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: #1c1c1c;
+      border: 1px solid #282828;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      min-height: 38px;
+      transition: all 0.2s ease;
+    }
+    .btn-volver-nav:hover, .btn-volver-nav:active {
+      background: #262626;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+
+    /* HERO RESUMIDO */
+    .checkout-hero {
+      padding: 18px 0 12px;
+    }
+    .badge-checkout {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(0, 85, 128, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 640px) {
+      h1 { font-size: 2rem; }
+      body { padding: 18px 20px 60px; }
+    }
+    p.sub {
+      color: #94a3b8;
+      font-size: 0.84rem;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* TARJETAS CONTENEDORAS */
+    .tarjeta-checkout {
+      background: #1a1a1a;
+      border: 1px solid #282828;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+    }
+    @media (min-width: 640px) {
+      .tarjeta-checkout {
+        padding: 20px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+      }
+    }
+    .titulo-tarjeta {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #242424;
+    }
+    .titulo-tarjeta-izq {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge-conteo {
+      font-size: 0.75rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    /* GRID DE FOTOS RESPONSIVE */
+    .grid-items-pedido {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 640px) {
+      .grid-items-pedido {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+    }
+
+    .item-foto-card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .item-foto-card:hover {
+      border-color: #38bdf8;
+    }
+    .item-foto-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+    .item-foto-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+    .item-foto-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: repeating-linear-gradient(
+        -35deg,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) 24px,
+        rgba(255, 255, 255, 0.08) 25px,
+        rgba(0, 0, 0, 0) 26px
+      );
+      pointer-events: none;
+    }
+    .item-foto-watermark span {
+      transform: rotate(-28deg);
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .item-foto-id {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid #333333;
+      font-family: monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+    }
+    .item-foto-datos {
+      padding: 8px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .item-foto-nombre {
+      font-size: 0.72rem;
+      font-family: monospace;
+      color: #aaaaaa;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* SELECTOR DUAL TÁCTIL Y LIMPIO */
+    .formato-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background: #0f0f0f;
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid #242424;
+    }
+    .btn-formato {
+      min-height: 38px;
+      padding: 6px 4px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+      gap: 2px;
+      color: #777777;
+      background: transparent;
+      transition: all 0.15s ease;
+    }
+    .btn-formato span.precio-tag {
+      font-size: 0.62rem;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+    .btn-formato.activo-impresa {
+      background: rgba(250, 204, 21, 0.16);
+      border-color: #facc15;
+      color: #facc15;
+    }
+    .btn-formato.activo-digital {
+      background: rgba(0, 85, 128, 0.4);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .btn-quitar-foto {
+      background: none;
+      border: none;
+      color: #f87171;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 4px 0 0;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .btn-quitar-foto:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* BLOQUE SUMAR MÁS FOTOS COMPACTO */
+    .box-agregar-mas {
+      background: #131d24;
+      border: 1.5px dashed #0077b3;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .box-agregar-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e2e8f0;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .btn-ir-galeria {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #005580;
+      color: #ffffff;
+      border: 1px solid #38bdf8;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      min-height: 38px;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+    .btn-ir-galeria:hover, .btn-ir-galeria:active {
+      background: #0077b3;
+    }
+
+    /* FORMULARIO DIRECTO */
+    .form-cliente {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 600px) {
+      .form-cliente {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+    }
+    .campo-form {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .campo-form.full-width {
+      grid-column: 1 / -1;
+    }
+    .campo-form label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #8b9199;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .campo-form input {
+      background: #111111;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 11px 12px;
+      color: #ffffff;
+      font-size: 0.88rem;
+      outline: none;
+      min-height: 44px;
+      transition: border-color 0.2s;
+    }
+    .campo-form input:focus {
+      border-color: #38bdf8;
+    }
+    .campo-form input::placeholder {
+      color: #555555;
+    }
+
+    /* RESUMEN COMPACTO */
+    .resumen-filas {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    .resumen-fila {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #cccccc;
+    }
+    .resumen-fila.destacada {
+      border-top: 1px solid #282828;
+      padding-top: 12px;
+      margin-top: 4px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .resumen-fila.destacada strong {
+      color: #4ade80;
+      font-size: 1.35rem;
+    }
+
+    /* BOTÓN WHATSAPP DESTACADO TÁCTIL */
+    .btn-confirmar-whatsapp {
+      width: 100%;
+      background: #25d366;
+      color: #05230e;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 20px;
+      min-height: 52px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+      transition: all 0.2s ease;
+      margin-top: 12px;
+    }
+    .btn-confirmar-whatsapp:hover {
+      background: #2ee672;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+    }
+    .btn-confirmar-whatsapp:active {
+      transform: scale(0.98);
+    }
+
+    /* ESTADO VACÍO */
+    .vacio-caja {
+      text-align: center;
+      padding: 36px 16px;
+      background: #141414;
+      border: 1px dashed #333333;
+      border-radius: 10px;
+      color: #888888;
+    }
+
+    /* TOAST DE SEGURIDAD */
+    #toast-seguridad {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(18, 18, 18, 0.95);
+      border: 1px solid #005580;
+      color: #38bdf8;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+    #toast-seguridad.activo {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+<!-- TOAST SEGURIDAD -->
+<div id="toast-seguridad">
+<span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+<span>Fotografía protegida • Sergio Molina</span>
+</div>
+<!-- HEADER -->
+<header>
+<div class="marca-personal">
+<span class="material-symbols-outlined icon">photo_camera</span>
+<span>Sergio Ricardo Molina</span>
+</div>
+<a class="btn-volver-nav" href="galeria.html" id="btn-volver-atras">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+<span>Volver</span>
+</a>
+</header>
+<main>
+<section class="checkout-hero">
+<div class="badge-checkout">
+<span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span>
+<span>Confirmar Encargo</span>
+</div>
+<h1>Revisá tu Pedido</h1>
+<p class="sub" id="sub-evento-titulo">Evento: Cobertura Oficial</p>
+</section>
+<!-- 1. FOTOS SELECCIONADAS -->
+<div class="tarjeta-checkout">
+<div class="titulo-tarjeta">
+<div class="titulo-tarjeta-izq">
+<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">photo_library</span>
+<span>Fotos Seleccionadas</span>
+</div>
+<span class="badge-conteo" id="txt-total-fotos-badge">0 fotos</span>
+</div>
+<!-- Cuadrícula dinámica -->
+<div class="grid-items-pedido" id="grid-items-pedido"></div>
+<!-- ESTADO VACÍO -->
+<div class="vacio-caja" id="estado-sin-fotos" style="display: none;">
+<span class="material-symbols-outlined" style="font-size: 36px; color: #38bdf8; margin-bottom: 8px;">add_photo_alternate</span>
+<p style="font-size: 0.9rem; color: #fff; margin-bottom: 12px; font-weight: 600;">No tenés fotos en tu selección</p>
+<a class="btn-ir-galeria" href="galeria.html" id="btn-regresar-galeria-vacia" style="margin: 0 auto;">
+<span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+<span>Ir a la Galería</span>
+</a>
+</div>
+<!-- BOTÓN COMPACTO AGREGAR MÁS FOTOS -->
+<div class="box-agregar-mas" id="box-agregar-mas">
+<div class="box-agregar-label">
+<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">library_add</span>
+<span>¿Querés sumar más fotos?</span>
+</div>
+<a class="btn-ir-galeria" href="galeria.html" id="btn-sumar-mas-fotos">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+<span>+ Sumar más fotos</span>
+</a>
+</div>
+</div>
+<!-- 2. DATOS DE ENTREGA -->
+<div class="tarjeta-checkout">
+<div class="titulo-tarjeta">
+<div class="titulo-tarjeta-izq">
+<span class="material-symbols-outlined" style="color: #facc15; font-size: 20px;">badge</span>
+<span>Datos de Entrega</span>
+</div>
+</div>
+<form class="form-cliente" id="form-datos-cliente" onsubmit="event.preventDefault();">
+<div class="campo-form">
+<label for="cliente-nombre">Nombre y Apellido *</label>
+<input id="cliente-nombre" placeholder="Tu nombre completo" required="" type="text"/>
+</div>
+<div class="campo-form">
+<label for="cliente-colegio">Colegio / Grado</label>
+<input id="cliente-colegio" placeholder="Ej: San Martín 5to B" type="text"/>
+</div>
+<div class="campo-form full-width">
+<label for="cliente-notas">Notas o indicaciones</label>
+<input id="cliente-notas" placeholder="Aclaraciones especiales (opcional)" type="text"/>
+</div>
+</form>
+</div>
+<!-- 3. RESUMEN Y TOTAL -->
+<div class="tarjeta-checkout">
+<div class="titulo-tarjeta">
+<div class="titulo-tarjeta-izq">
+<span class="material-symbols-outlined" style="color: #4ade80; font-size: 20px;">receipt_long</span>
+<span>Total del Pedido</span>
+</div>
+</div>
+<div class="resumen-filas">
+<div class="resumen-fila">
+<span>Copias Impresas 15x21 (<span id="cant-impresas-lbl">0</span> un.):</span>
+<strong id="subtotal-impresas-lbl" style="color: #facc15;">$0</strong>
+</div>
+<div class="resumen-fila">
+<span>Archivos Digitales HD (<span id="cant-digitales-lbl">0</span> un.):</span>
+<strong id="subtotal-digitales-lbl" style="color: #38bdf8;">$0</strong>
+</div>
+<div class="resumen-fila destacada">
+<span>TOTAL:</span>
+<strong id="total-estimado-lbl">$0</strong>
+</div>
+</div>
+<!-- BOTÓN WHATSAPP -->
+<button class="btn-confirmar-whatsapp" onclick="enviarPedidoFinalWhatsApp()">
+<span class="material-symbols-outlined" style="font-size: 24px;">chat</span>
+<span>Confirmar por WhatsApp</span>
+</button>
+</div>
+</main>
+<!-- SCRIPT -->
+<script>
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+
+    let TARIFA_IMPRESA = 7500;
+    let TARIFA_DIGITAL = 2500;
+    let WHATSAPP_FOTOGRAFO = '5492613175222';
+
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    let itemsPedido = [];
+    let tituloEvento = 'Cobertura Fotográfica';
+    let folderId = '';
+
+    // SEGURIDAD / ANTI-COPIA
+    let toastTimer = null;
+    function mostrarAvisoSeguridad() {
+      const toast = document.getElementById('toast-seguridad');
+      if (!toast) return;
+      toast.classList.add('activo');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('activo');
+      }, 2000);
+    }
+
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IMG' || e.target.closest('.item-foto-thumb')) {
+        e.preventDefault();
+        mostrarAvisoSeguridad();
+        return false;
+      }
+    });
+
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    window.addEventListener('keydown', function(e) {
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const ctrl = isMac ? e.metaKey : e.ctrlKey;
+      const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+      if (
+        (ctrl && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U' || e.key === 'p' || e.key === 'P')) ||
+        (!isInput && ctrl && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c')) ||
+        (!isInput && e.key === 'F12')
+      ) {
+        e.preventDefault();
+        mostrarAvisoSeguridad();
+        return false;
+      }
+    });
+
+    async function sincronizarPrecios() {
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('configuracion')
+            .select('*')
+            .limit(1)
+            .maybeSingle();
+
+          if (!error && data) {
+            if (data.tarifa_impresa && Number(data.tarifa_impresa) > 0) TARIFA_IMPRESA = Number(data.tarifa_impresa);
+            if (data.tarifa_digital && Number(data.tarifa_digital) > 0) TARIFA_DIGITAL = Number(data.tarifa_digital);
+            if (data.numero_whatsapp && String(data.numero_whatsapp).length > 5) WHATSAPP_FOTOGRAFO = String(data.numero_whatsapp).replace(/\D/g, '');
+          }
+        } catch (e) {
+          console.warn("Tarifas por defecto activas:", e);
+        }
+      }
+    }
+
+    function cargarDatosCheckout() {
+      const params = new URLSearchParams(window.location.search);
+      const paramTitulo = params.get('titulo');
+      folderId = params.get('folder') || params.get('id') || '';
+
+      if (paramTitulo) {
+        tituloEvento = decodeURIComponent(paramTitulo);
+        document.getElementById('sub-evento-titulo').innerText = `Evento: ${tituloEvento}`;
+      }
+
+      const linkVolver = `galeria.html?id=${encodeURIComponent(folderId)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(tituloEvento)}`;
+      document.getElementById('btn-volver-atras').href = linkVolver;
+      document.getElementById('btn-sumar-mas-fotos').href = linkVolver;
+      document.getElementById('btn-regresar-galeria-vacia').href = linkVolver;
+
+      try {
+        const rawLocal = localStorage.getItem('fotos_seleccionadas_checkout');
+        if (rawLocal) {
+          const parsed = JSON.parse(rawLocal);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            itemsPedido = parsed;
+          }
+        }
+      } catch (e) {
+        console.warn("Error selección local:", e);
+      }
+
+      if (itemsPedido.length === 0) {
+        const paramFotos = params.get('fotos');
+        const formatoInicial = params.get('tipo') === 'digitales' ? 'digital' : 'impresa';
+        if (paramFotos) {
+          const listaIds = paramFotos.split(',');
+          itemsPedido = listaIds.map(fId => {
+            const clean = fId.trim();
+            return {
+              id: clean,
+              name: clean.startsWith('#') ? clean : `#${clean}`,
+              thumb: `https://lh3.googleusercontent.com/d/${clean}=w600`,
+              formato: formatoInicial
+            };
+          });
+        }
+      }
+
+      if (itemsPedido.length === 0) {
+        itemsPedido = [
+          {
+            id: '4821',
+            name: '#DSC_4821.jpg',
+            thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSSlr6nX7JSdoBz_CBuDc4Mzuz6LS137lC4lzvDt0rTFHBe_gsxzZcNw_OkSTJCUBI8iRULfScf1PyEY-X16a3RNaMpYI1SzTqWSeQql2S20dz2EarcqdhJK0EPT_cWyix6wBA-sT8_-L4Swp2IcV9PQecMj9eh8aETAj_LBLGg5QBQewwlcMWiPOgdtCkYzqPeTVck2wjJMaUpuezEDLReGWdN5phgyru06kwrqJ-RHYaIe_HONjp',
+            formato: 'impresa'
+          },
+          {
+            id: '4822',
+            name: '#DSC_4822.jpg',
+            thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg5WD0GziT1g9Ot_stxTdzc4phKMb_z40oVSCS0Wq56Ai5XTId5QH760XdQG7HexGOvedT6Xtp44svBKRqfajAM70R0_yhFrmQPNTnqlT_ulS3XmI08PTZQ6s8AvN7DPZmbP_wGCeInOCEsN7mUpNZ1GcT1S-UbGEupkLytoPZ3tja5w7tsbsSt4mrBDo0d6FB85WN7ek2TyIoPcM1Ler6hI0jC1C8z3zRvh7klMYbJ_Bo0Bj2O61k',
+            formato: 'impresa'
+          },
+          {
+            id: '4823',
+            name: '#DSC_4823.jpg',
+            thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC_wud0VjwMmzXK7jYyxLHXTaji9V6oKEXFgwy39YILX1vY2bdGVJU_1hY3mSnKJIvy8E9q0rTcglRcOc1qwBySq3XoC0xvV5MQ5h6KyuD9GIPKe_JEB7m9uYc2eQn5-yGYxhN0Wwr0a1YdNHsRq8SuTWYVCWRYD-jOcAZbPnGaEDcKs8xVQYZP66kq6IlIHH2VhIYgTt-5dNBOc8unbZLNDPIk0f6lQGTUIaebg2lw7YvynWBZfej7',
+            formato: 'digital'
+          }
+        ];
+      }
+
+      renderizarItems();
+      calcularTotales();
+    }
+
+    function renderizarItems() {
+      const grid = document.getElementById('grid-items-pedido');
+      const vacio = document.getElementById('estado-sin-fotos');
+      const boxAgregar = document.getElementById('box-agregar-mas');
+      const badgeTotal = document.getElementById('txt-total-fotos-badge');
+
+      if (itemsPedido.length === 0) {
+        grid.innerHTML = '';
+        vacio.style.display = 'block';
+        boxAgregar.style.display = 'none';
+        badgeTotal.innerText = '0 fotos';
+        return;
+      }
+
+      vacio.style.display = 'none';
+      boxAgregar.style.display = 'flex';
+      badgeTotal.innerText = `${itemsPedido.length} ${itemsPedido.length === 1 ? 'foto' : 'fotos'}`;
+      grid.innerHTML = '';
+
+      itemsPedido.forEach((item, index) => {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'item-foto-card';
+        tarjeta.innerHTML = `
+          <div class="item-foto-thumb">
+            <img src="${item.thumb}" alt="${item.name}" loading="lazy" onerror="this.src='https://lh3.googleusercontent.com/d/${item.id}'">
+            <div class="item-foto-watermark">
+              <span>MUESTRA<br>SERGIO MOLINA</span>
+            </div>
+            <div class="item-foto-id">#${item.id}</div>
+          </div>
+          <div class="item-foto-datos">
+            <span class="item-foto-nombre" title="${item.name}">${item.name}</span>
+            <div class="formato-selector">
+              <button 
+                type="button" 
+                class="btn-formato ${item.formato === 'impresa' ? 'activo-impresa' : ''}" 
+                onclick="cambiarFormato(${index}, 'impresa')"
+              >
+                <span>Impresa</span>
+                <span class="precio-tag">$${TARIFA_IMPRESA.toLocaleString('es-AR')}</span>
+              </button>
+              <button 
+                type="button" 
+                class="btn-formato ${item.formato === 'digital' ? 'activo-digital' : ''}" 
+                onclick="cambiarFormato(${index}, 'digital')"
+              >
+                <span>Digital</span>
+                <span class="precio-tag">$${TARIFA_DIGITAL.toLocaleString('es-AR')}</span>
+              </button>
+            </div>
+            <button type="button" class="btn-quitar-foto" onclick="quitarFoto(${index})">
+              <span class="material-symbols-outlined" style="font-size:13px;">delete</span>
+              <span>Quitar</span>
+            </button>
+          </div>
+        `;
+        grid.appendChild(tarjeta);
+      });
+    }
+
+    function cambiarFormato(index, nuevoFormato) {
+      if (itemsPedido[index]) {
+        itemsPedido[index].formato = nuevoFormato;
+        guardarLocalmente();
+        renderizarItems();
+        calcularTotales();
+      }
+    }
+
+    function quitarFoto(index) {
+      if (itemsPedido[index]) {
+        itemsPedido.splice(index, 1);
+        guardarLocalmente();
+        renderizarItems();
+        calcularTotales();
+      }
+    }
+
+    function guardarLocalmente() {
+      try {
+        localStorage.setItem('fotos_seleccionadas_checkout', JSON.stringify(itemsPedido));
+      } catch (e) {
+        console.warn("Error guardando:", e);
+      }
+    }
+
+    function calcularTotales() {
+      let cantImpresas = 0;
+      let cantDigitales = 0;
+
+      itemsPedido.forEach(it => {
+        if (it.formato === 'digital') cantDigitales++;
+        else cantImpresas++;
+      });
+
+      const subtotalImpresas = cantImpresas * TARIFA_IMPRESA;
+      const subtotalDigitales = cantDigitales * TARIFA_DIGITAL;
+      const totalFinal = subtotalImpresas + subtotalDigitales;
+
+      document.getElementById('cant-impresas-lbl').innerText = cantImpresas;
+      document.getElementById('cant-digitales-lbl').innerText = cantDigitales;
+      document.getElementById('subtotal-impresas-lbl').innerText = `$${subtotalImpresas.toLocaleString('es-AR')}`;
+      document.getElementById('subtotal-digitales-lbl').innerText = `$${subtotalDigitales.toLocaleString('es-AR')}`;
+      document.getElementById('total-estimado-lbl').innerText = `$${totalFinal.toLocaleString('es-AR')}`;
+    }
+
+    function enviarPedidoFinalWhatsApp() {
+      if (itemsPedido.length === 0) {
+        alert("Agregá al menos una foto a tu pedido.");
+        return;
+      }
+
+      const nombreCliente = document.getElementById('cliente-nombre').value.trim() || 'Cliente';
+      const colegioEgresado = document.getElementById('cliente-colegio').value.trim();
+      const notas = document.getElementById('cliente-notas').value.trim();
+
+      const impresasArray = itemsPedido.filter(it => it.formato === 'impresa').map(it => it.name);
+      const digitalesArray = itemsPedido.filter(it => it.formato === 'digital').map(it => it.name);
+
+      const cantImpresas = impresasArray.length;
+      const cantDigitales = digitalesArray.length;
+      const subtotalImp = cantImpresas * TARIFA_IMPRESA;
+      const subtotalDig = cantDigitales * TARIFA_DIGITAL;
+      const totalGeneral = subtotalImp + subtotalDig;
+
+      let mensaje = `Hola Sergio, quiero confirmar mi pedido:\n\n` +
+        `👤 Nombre: ${nombreCliente}\n`;
+
+      if (colegioEgresado) {
+        mensaje += `🏫 Colegio / Grado: ${colegioEgresado}\n`;
+      }
+
+      mensaje += `📅 Evento: ${tituloEvento}\n\n` +
+        `📦 DETALLE:\n`;
+
+      if (cantImpresas > 0) {
+        mensaje += `• Impresas 15x21 (${cantImpresas}): ${impresasArray.join(', ')} ($${subtotalImp.toLocaleString('es-AR')})\n`;
+      }
+
+      if (cantDigitales > 0) {
+        mensaje += `• Digitales HD (${cantDigitales}): ${digitalesArray.join(', ')} ($${subtotalDig.toLocaleString('es-AR')})\n`;
+      }
+
+      mensaje += `\n💰 TOTAL: $${totalGeneral.toLocaleString('es-AR')}\n`;
+
+      if (notas) {
+        mensaje += `📝 Notas: ${notas}\n`;
+      }
+
+      mensaje += `\n¿Me confirmás datos de pago y plazos de entrega?`;
+
+      const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
+      window.open(urlWa, '_blank');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await sincronizarPrecios();
+      cargarDatosCheckout();
+    });
+  </script>
+</body></html>
