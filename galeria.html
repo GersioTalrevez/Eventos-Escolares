@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="es" style=""><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Galería de Fotos | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -468,150 +466,54 @@ header {
 <div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
 </div>
 <!-- CONTENEDOR DE FOTOS -->
-<div class="grid-fotos" id="contenedor-fotos"><!-- Tarjeta 1 (Con Impresa y Digital activadas como la imagen de referencia) -->
-<div class="tarjeta-foto tiene-seleccion" id="card-foto-4822">
-<div class="contenedor-img" onclick="abrirVisor(0)">
-<div class="badge-numero-foto">#4822</div>
-<img alt="DSC_4822.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiBLgS-412iYlX8lDs16_rwLFqOdb4aHH87vNzHU8KPKJUB-Z4NBe5AlTEArcrH9Aez3jSNhES-5NIo5siA8-5oV0lw1zdISnUnwAU2Y_ivf8h6UAJDSVekmsGlnDXsLRDIZLptFKJJNQi0dplNt7HI98BzACVkogNHYWUM80wOt7B5yrJUv_gV_9rktSft43agLA1fmdVZvv65NCaTWQr3PAHX7C4tkIWI5UZ783ABfRTjjCoHeen"/>
-<div class="marca-agua-badge">
-<div class="linea-1">MUESTRA OFICIAL</div>
-<div class="linea-2">SERGIO MOLINA</div>
-</div>
-</div>
-<div class="cuerpo-tarjeta">
-<div class="nombre-archivo-foto" title="#DSC_4822.jpg">#DSC_4822.jpg</div>
-<div class="grid-botones-opcion">
-<button class="btn-opcion-compra btn-opcion-impresa activo" id="btn-impresa-4822" onclick="toggleOpcion('4822', 'impresa', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-impresa-4822">☑</span> Impresa</div>
-<div class="txt-precio" id="lbl-card-imp-4822">$7.500</div>
-</button>
-<button class="btn-opcion-compra btn-opcion-digital activo" id="btn-digital-4822" onclick="toggleOpcion('4822', 'digital', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-digital-4822">☑</span> Digital</div>
-<div class="txt-precio" id="lbl-card-dig-4822">$2.500</div>
-</button>
-</div>
-<button class="btn-quitar-foto" onclick="quitarSeleccion('4822', event)" type="button">
-<span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-    </button>
-</div>
-</div>
-<!-- Tarjeta 2 -->
-<div class="tarjeta-foto tiene-seleccion" id="card-foto-4823">
-<div class="contenedor-img" onclick="abrirVisor(1)">
-<div class="badge-numero-foto">#4823</div>
-<img alt="DSC_4823.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIH1Ay1if3sAVikfhS2osoJtK89FbUo90cXylg4CCLIu7GQEYGrwdJcRpJFk_lZ-U-1CIhVYTbrBmN5EQ0x3Whwqyg9bhF0mSMDWU3hjr2CvXjfvHFde8Pf4Ii9JPUWcN7QXceCJ4aWVS8zzlfK4L2Svi45bYNt3hfjoagBrIIkBdGXLSN9rJ70sfEiAbbaXgF0CRhjbVuJ9o_waHNkJTwfE01t_Bc140jhBHVuboivDIQgmBnxz_I"/>
-<div class="marca-agua-badge">
-<div class="linea-1">MUESTRA OFICIAL</div>
-<div class="linea-2">SERGIO MOLINA</div>
-</div>
-</div>
-<div class="cuerpo-tarjeta">
-<div class="nombre-archivo-foto" title="#DSC_4823.jpg">#DSC_4823.jpg</div>
-<div class="grid-botones-opcion">
-<button class="btn-opcion-compra btn-opcion-impresa activo" id="btn-impresa-4823" onclick="toggleOpcion('4823', 'impresa', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-impresa-4823">☑</span> Impresa</div>
-<div class="txt-precio" id="lbl-card-imp-4823">$7.500</div>
-</button>
-<button class="btn-opcion-compra btn-opcion-digital" id="btn-digital-4823" onclick="toggleOpcion('4823', 'digital', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-digital-4823">☐</span> Digital</div>
-<div class="txt-precio" id="lbl-card-dig-4823">$2.500</div>
-</button>
-</div>
-<button class="btn-quitar-foto" onclick="quitarSeleccion('4823', event)" type="button">
-<span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-    </button>
-</div>
-</div>
-<!-- Tarjeta 3 -->
-<div class="tarjeta-foto" id="card-foto-4824">
-<div class="contenedor-img" onclick="abrirVisor(2)">
-<div class="badge-numero-foto">#4824</div>
-<img alt="DSC_4824.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG3I6VvzBUEEcy-30LH29XsSXE-BbUpeSbjtSA5p2mGFUEpYELygrmJwiByhOf3mVGMNvuM-LCWkkNr-P1AQD80AfALG17N5NP8YB-1JVWJCoMynJY7AhbAm8owJWv41vTdAt_Tv7YK_h9sdJJGAS0zuB2WGetJBseZsxajrz2RhxhrYDddmz3ejlyyftuPvGKiVsK7iOY_rc87Ja1pPlpC9nJER1BXP2llEDebPBMB8dn4SAwXnk0"/>
-<div class="marca-agua-badge">
-<div class="linea-1">MUESTRA OFICIAL</div>
-<div class="linea-2">SERGIO MOLINA</div>
-</div>
-</div>
-<div class="cuerpo-tarjeta">
-<div class="nombre-archivo-foto" title="#DSC_4824.jpg">#DSC_4824.jpg</div>
-<div class="grid-botones-opcion">
-<button class="btn-opcion-compra btn-opcion-impresa" id="btn-impresa-4824" onclick="toggleOpcion('4824', 'impresa', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-impresa-4824">☐</span> Impresa</div>
-<div class="txt-precio" id="lbl-card-imp-4824">$7.500</div>
-</button>
-<button class="btn-opcion-compra btn-opcion-digital" id="btn-digital-4824" onclick="toggleOpcion('4824', 'digital', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-digital-4824">☐</span> Digital</div>
-<div class="txt-precio" id="lbl-card-dig-4824">$2.500</div>
-</button>
-</div>
-<button class="btn-quitar-foto" onclick="quitarSeleccion('4824', event)" type="button">
-<span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-    </button>
-</div>
-</div>
-<!-- Tarjeta 4 -->
-<div class="tarjeta-foto" id="card-foto-4825">
-<div class="contenedor-img" onclick="abrirVisor(3)">
-<div class="badge-numero-foto">#4825</div>
-<img alt="DSC_4825.jpg" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhHDq1B-4Pzv22vDU3tgvxH5TdB0bnw5FkC3s1uH6uCoRpd6hW6fyAJayd2bFYRGAAi9_ZFLUUKuJ8cuZleT94-GR9jcNaoFLoMuxLzX4kQdzDGUjkQtujPT8edDlNRLm23A10mRfqrsw3uPDGmronLxdMn0ex1QsQuOV4PbGorkox68WHk6JUM3eZeZOtEFtLKdrrtP7K1mHPHvMhwISspMGc9R20r0aMMVzyetvF_gefhEGWe1sC"/>
-<div class="marca-agua-badge">
-<div class="linea-1">MUESTRA OFICIAL</div>
-<div class="linea-2">SERGIO MOLINA</div>
-</div>
-</div>
-<div class="cuerpo-tarjeta">
-<div class="nombre-archivo-foto" title="#DSC_4825.jpg">#DSC_4825.jpg</div>
-<div class="grid-botones-opcion">
-<button class="btn-opcion-compra btn-opcion-impresa" id="btn-impresa-4825" onclick="toggleOpcion('4825', 'impresa', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-impresa-4825">☐</span> Impresa</div>
-<div class="txt-precio" id="lbl-card-imp-4825">$7.500</div>
-</button>
-<button class="btn-opcion-compra btn-opcion-digital" id="btn-digital-4825" onclick="toggleOpcion('4825', 'digital', event)" type="button">
-<div class="txt-etiqueta"><span id="chk-digital-4825">☐</span> Digital</div>
-<div class="txt-precio" id="lbl-card-dig-4825">$2.500</div>
-</button>
-</div>
-<button class="btn-quitar-foto" onclick="quitarSeleccion('4825', event)" type="button">
-<span class="material-symbols-outlined" style="font-size: 14px;">delete</span> Quitar
-    </button>
-</div>
-</div></div>
+<div class="grid-fotos" id="contenedor-fotos">
+    <div class="estado-caja">
+      <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
+      <h3 class="">Galería no especificada</h3>
+      <p class="">No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum.</p>
+      <button onclick="iniciarGaleria()" class="btn-accion-estado">
+        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+        <span class="">Reintentar</span>
+      </button>
+      <a href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
+        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
+        <span class="">Soporte WhatsApp</span>
+      </a>
+    </div>
+  </div>
 </main><div class="" id="toast-proteccion" style="display: none; position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1px solid #facc15; color: #facc15; padding: 10px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 16px; color: rgb(250, 204, 21);">lock</span> Fotografía protegida • Sergio Ricardo Molina</div>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
-<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;"><div class="resumen-seleccion" style="display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
-<div style="display:flex; align-items:center; gap:6px;">
-<span style="color: #38bdf8; font-size: 14px;">●</span>
-<span style="font-weight: 700; font-size: 0.82rem; letter-spacing:0.5px;">SELECCIÓN:</span>
-<span class="contador-badge" id="contador-fotos" style="background:#005580; color:#fff; font-weight:700; padding:3px 9px; border-radius:12px; font-size:0.78rem;">2 fotos</span>
+<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;"><div class="resumen-seleccion">
+  <div style="display: flex; align-items: center; gap: 6px;">
+    <span style="color: #38bdf8; font-size: 13px;" class="">●</span>
+    <span style="font-weight: 700; font-size: 0.82rem; letter-spacing: 0.5px;" class="">SELECCIÓN:</span>
+    <span class="contador-badge" id="contador-fotos">2 fotos</span>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px; font-size: 0.82rem;">
+    <span style="color: #facc15; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
+      <span class="material-symbols-outlined" style="font-size: 15px;">photo</span> Impresas: <strong id="lbl-cant-impresas" style="color: #ffffff; margin-left: 2px;">2 ($15.000)</strong>
+    </span>
+    <span style="color: #38bdf8; font-weight: 600; display: flex; align-items: center; gap: 4px;" class="">
+      <span class="material-symbols-outlined" style="font-size: 15px;">cloud_download</span> Digitales: <strong id="lbl-cant-digitales" style="color: #ffffff; margin-left: 2px;">1 ($2.500)</strong>
+    </span>
+    <span style="color: #ffffff; font-weight: 700; margin-left: 4px; font-size: 0.84rem;" class="">
+      Total: <span id="lbl-total-monto" style="color: #38bdf8; font-size: 0.94rem; font-weight: 800;" class="">$17.500</span>
+    </span>
+  </div>
+  <button onclick="limpiarSeleccionCompleta()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;" class="">Vaciar todo</button>
 </div>
-<div style="display:flex; align-items:center; gap:10px; font-size:0.8rem;">
-<span style="color:#facc15; font-weight:600; display:flex; align-items:center; gap:3px;">
-<span class="material-symbols-outlined" style="font-size:15px;">photo</span> Impresas: <strong id="lbl-cant-impresas" style="color:#fff; margin-left:2px;">2</strong>
-</span>
-<span style="color:#38bdf8; font-weight:600; display:flex; align-items:center; gap:3px;">
-<span class="material-symbols-outlined" style="font-size:15px;">cloud_download</span> Digitales: <strong id="lbl-cant-digitales" style="color:#fff; margin-left:2px;">1</strong>
-</span>
-<span style="color:#ffffff; font-weight:700; margin-left:4px; font-size:0.84rem;">
-      Total: <span id="lbl-total-monto" style="color:#38bdf8; font-size:0.92rem;">$17.500</span>
-</span>
-</div>
-<button onclick="limpiarSeleccionCompleta()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar todo</button>
-</div>
-<div class="acciones-compra">
-<button class="btn-pedido" onclick="continuarAlPedido()" style="background: #22c55e; color: #ffffff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size:0.86rem; display:inline-flex; align-items:center; gap:6px; cursor:pointer; box-shadow:0 4px 14px rgba(34,197,94,0.3); transition: transform 0.15s ease;">
-<span class="material-symbols-outlined" style="font-size: 18px;">shopping_cart_checkout</span>
-<span>Continuar Pedido</span>
-<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
-</button>
-</div></div>
+<div class="acciones-compra"><button class="btn-pedido" id="btn-enviar-whatsapp" onclick="enviarPedidoWhatsAppDirecto()" style="background: rgb(34, 197, 94); color: rgb(5, 46, 22); font-weight: 700; font-size: 0.88rem; padding: 10px 18px; border-radius: 10px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: rgba(34, 197, 94, 0.4) 0px 4px 14px; transition: 0.2s;">
+    <span class="material-symbols-outlined" style="font-size: 20px; color: #052e16;">chat</span>
+    <span class="">Enviar Pedido por WhatsApp 💬</span>
+  </button></div></div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
 <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
 <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
 <div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
-<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src=""/>
+<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="">
 <div class="marca-agua" id="marca-visor" style="display: none;">
-<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br/>SERGIO RICARDO MOLINA</div>
+<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br>SERGIO RICARDO MOLINA</div>
 </div>
 </div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
@@ -1151,7 +1053,9 @@ function tramitarPedido(formato) {
   window.location.href = urlDestino.toString();
 }
 </script>
-</body><div id="logica-carrito-script"><script>
+
+
+<div id="logica-carrito-script"><script>
 // Diccionario de selección por foto: { [fotoId]: { impresa: boolean, digital: boolean, name: string, thumb: string, full: string } }
 window.carritoSeleccion = {
   '4822': { impresa: true, digital: true, name: '#DSC_4822.jpg', thumb: '', full: '' },
@@ -1398,4 +1302,63 @@ window.renderizarFotos = function() {
 
 // Inicializar totales de la vista
 actualizarResumenTotales();
-</script></div></html>
+</script><script>
+function enviarPedidoWhatsAppDirecto() {
+  const seleccionadasArray = [];
+  const fotosImpresas = [];
+  const fotosDigitales = [];
+
+  for (const id in window.carritoSeleccion) {
+    const item = window.carritoSeleccion[id];
+    if (item && (item.impresa || item.digital)) {
+      seleccionadasArray.push(item);
+      if (item.impresa) fotosImpresas.push(item.name || ('#' + id));
+      if (item.digital) fotosDigitales.push(item.name || ('#' + id));
+    }
+  }
+
+  if (seleccionadasArray.length === 0) {
+    alert('Por favor seleccioná al menos una foto (Impresa o Digital) antes de enviar tu pedido.');
+    return;
+  }
+
+  const tarifaImp = (typeof TARIFA_IMPRESA !== 'undefined') ? TARIFA_IMPRESA : 7500;
+  const tarifaDig = (typeof TARIFA_DIGITAL !== 'undefined') ? TARIFA_DIGITAL : 2500;
+  const subtotalImp = fotosImpresas.length * tarifaImp;
+  const subtotalDig = fotosDigitales.length * tarifaDig;
+  const totalGral = subtotalImp + subtotalDig;
+  const eventoNombre = (typeof tituloEvento !== 'undefined' && tituloEvento) ? tituloEvento : 'Álbum Fotográfico';
+  const waNum = (typeof WHATSAPP_FOTOGRAFO !== 'undefined' && WHATSAPP_FOTOGRAFO) ? WHATSAPP_FOTOGRAFO : '5492613175222';
+
+  let mensaje = `📸 *NUEVO PEDIDO DE FOTOGRAFÍAS*\n`;
+  mensaje += `*Sergio Ricardo Molina - Fotografía*\n`;
+  mensaje += `----------------------------------------\n`;
+  mensaje += `🎯 *Evento:* ${eventoNombre}\n\n`;
+
+  if (fotosImpresas.length > 0) {
+    mensaje += `🖼️ *COPIAS IMPRESAS 15x21 cm* (${fotosImpresas.length}):\n`;
+    fotosImpresas.forEach(f => { mensaje += `  • ${f}\n`; });
+    mensaje += `  *Subtotal Impresas:* $${subtotalImp.toLocaleString('es-AR')} ($${tarifaImp.toLocaleString('es-AR')} c/u)\n\n`;
+  }
+
+  if (fotosDigitales.length > 0) {
+    mensaje += `💾 *ARCHIVOS DIGITALES HD* (${fotosDigitales.length}):\n`;
+    fotosDigitales.forEach(f => { mensaje += `  • ${f}\n`; });
+    mensaje += `  *Subtotal Digitales:* $${subtotalDig.toLocaleString('es-AR')} ($${tarifaDig.toLocaleString('es-AR')} c/u)\n\n`;
+  }
+
+  mensaje += `----------------------------------------\n`;
+  mensaje += `💰 *TOTAL GENERAL: $${totalGral.toLocaleString('es-AR')}*\n`;
+  mensaje += `----------------------------------------\n\n`;
+  mensaje += `Hola Sergio, confirmo este pedido. ¿Podrías indicarme los datos bancarios para realizar la transferencia y el tiempo estimado de entrega? Muchas gracias!`;
+
+  const urlWa = `https://wa.me/${waNum}?text=${encodeURIComponent(mensaje)}`;
+  window.open(urlWa, '_blank');
+}
+
+window.continuarAlPedido = enviarPedidoWhatsAppDirecto;
+window.irAlPedido = enviarPedidoWhatsAppDirecto;
+window.tramitarPedido = enviarPedidoWhatsAppDirecto;
+</script></div>
+
+</body></html>
