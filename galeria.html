@@ -1,12 +1,14 @@
-<!DOCTYPE html><html lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Galería de Fotos | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -452,7 +454,7 @@ header {
 <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
 <span class="" id="texto-tipo-badge">Galería Pública</span>
 </div>
-<h1 class="titulo-galeria" id="titulo-galeria">Cargando álbum...</h1>
+<h1 class="titulo-galeria" id="titulo-galeria">Gala de Fin de Año 2024</h1>
 <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
 </section>
 <!-- BANNER DINÁMICO DE TARIFAS -->
@@ -466,42 +468,28 @@ header {
 <div style="color: #aaaaaa; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;"><span class="" style="margin-left: 8px; color: rgb(102, 102, 102);">• Entrega en papel fotográfico de laboratorio</span></div>
 </div>
 <!-- CONTENEDOR DE FOTOS -->
-<div class="grid-fotos" id="contenedor-fotos">
-    <div class="estado-caja">
-      <span class="material-symbols-outlined" style="color: #ef4444;">error</span>
-      <h3 class="">Galería no especificada</h3>
-      <p class="">No se indicó una carpeta de fotos para este evento. Regresá a Eventos para seleccionar un álbum.</p>
-      <button onclick="iniciarGaleria()" class="btn-accion-estado">
-        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
-        <span class="">Reintentar</span>
-      </button>
-      <a href="https://wa.me/5492613175222?text=Hola%20Sergio,%20tengo%20un%20inconveniente%20para%20ver%20la%20galeria" target="_blank" class="btn-accion-estado" style="background:#075e54; margin-left:8px;">
-        <span class="material-symbols-outlined" style="font-size:18px;">chat</span>
-        <span class="">Soporte WhatsApp</span>
-      </a>
-    </div>
-  </div>
-</main><div id="toast-proteccion" style="display: none; position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1px solid #facc15; color: #facc15; padding: 10px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none; align-items: center; gap: 8px;" class=""><span class="material-symbols-outlined" style="font-size: 16px; color: #facc15;">lock</span> Fotografía protegida • Sergio Ricardo Molina</div>
+<div class="grid-fotos" id="contenedor-fotos"><div class="tarjeta-foto seleccionada" id="card-foto-1"><div class="contenedor-img" onclick="abrirVisor(0)"><img alt="#DSC_0482" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiBLgS-412iYlX8lDs16_rwLFqOdb4aHH87vNzHU8KPKJUB-Z4NBe5AlTEArcrH9Aez3jSNhES-5NIo5siA8-5oV0lw1zdISnUnwAU2Y_ivf8h6UAJDSVekmsGlnDXsLRDIZLptFKJJNQi0dplNt7HI98BzACVkogNHYWUM80wOt7B5yrJUv_gV_9rktSft43agLA1fmdVZvv65NCaTWQr3PAHX7C4tkIWI5UZ783ABfRTjjCoHeen"/><div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div></div><div class="pie-foto"><span class="nombre-foto" title="DSC_0482.jpg">#DSC_0482</span><button class="btn-check-foto" onclick="toggleSeleccion('1', event)"><span class="material-symbols-outlined" id="icon-check-1" style="font-size: 14px;">check</span><span id="txt-check-1">Elegida</span></button></div></div><div class="tarjeta-foto seleccionada" id="card-foto-2"><div class="contenedor-img" onclick="abrirVisor(1)"><img alt="#DSC_0489" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIH1Ay1if3sAVikfhS2osoJtK89FbUo90cXylg4CCLIu7GQEYGrwdJcRpJFk_lZ-U-1CIhVYTbrBmN5EQ0x3Whwqyg9bhF0mSMDWU3hjr2CvXjfvHFde8Pf4Ii9JPUWcN7QXceCJ4aWVS8zzlfK4L2Svi45bYNt3hfjoagBrIIkBdGXLSN9rJ70sfEiAbbaXgF0CRhjbVuJ9o_waHNkJTwfE01t_Bc140jhBHVuboivDIQgmBnxz_I"/><div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div></div><div class="pie-foto"><span class="nombre-foto" title="DSC_0489.jpg">#DSC_0489</span><button class="btn-check-foto" onclick="toggleSeleccion('2', event)"><span class="material-symbols-outlined" id="icon-check-2" style="font-size: 14px;">check</span><span id="txt-check-2">Elegida</span></button></div></div><div class="tarjeta-foto" id="card-foto-3"><div class="contenedor-img" onclick="abrirVisor(2)"><img alt="#DSC_0512" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG3I6VvzBUEEcy-30LH29XsSXE-BbUpeSbjtSA5p2mGFUEpYELygrmJwiByhOf3mVGMNvuM-LCWkkNr-P1AQD80AfALG17N5NP8YB-1JVWJCoMynJY7AhbAm8owJWv41vTdAt_Tv7YK_h9sdJJGAS0zuB2WGetJBseZsxajrz2RhxhrYDddmz3ejlyyftuPvGKiVsK7iOY_rc87Ja1pPlpC9nJER1BXP2llEDebPBMB8dn4SAwXnk0"/><div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div></div><div class="pie-foto"><span class="nombre-foto" title="DSC_0512.jpg">#DSC_0512</span><button class="btn-check-foto" onclick="toggleSeleccion('3', event)"><span class="material-symbols-outlined" id="icon-check-3" style="font-size: 14px;">add</span><span id="txt-check-3">Elegir</span></button></div></div><div class="tarjeta-foto" id="card-foto-4"><div class="contenedor-img" onclick="abrirVisor(3)"><img alt="#DSC_0534" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhHDq1B-4Pzv22vDU3tgvxH5TdB0bnw5FkC3s1uH6uCoRpd6hW6fyAJayd2bFYRGAAi9_ZFLUUKuJ8cuZleT94-GR9jcNaoFLoMuxLzX4kQdzDGUjkQtujPT8edDlNRLm23A10mRfqrsw3uPDGmronLxdMn0ex1QsQuOV4PbGorkox68WHk6JUM3eZeZOtEFtLKdrrtP7K1mHPHvMhwISspMGc9R20r0aMMVzyetvF_gefhEGWe1sC"/><div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div></div><div class="pie-foto"><span class="nombre-foto" title="DSC_0534.jpg">#DSC_0534</span><button class="btn-check-foto" onclick="toggleSeleccion('4', event)"><span class="material-symbols-outlined" id="icon-check-4" style="font-size: 14px;">add</span><span id="txt-check-4">Elegir</span></button></div></div></div>
+</main><div class="" id="toast-proteccion" style="display: none; position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1px solid #facc15; color: #facc15; padding: 10px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="font-size: 16px; color: rgb(250, 204, 21);">lock</span> Fotografía protegida • Sergio Ricardo Molina</div>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
-<div class="barra-compras-fija" id="barra-pedidos" style="display: none;">
+<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;">
 <div class="resumen-seleccion">
 <div style="display:flex; align-items:center; gap:6px;">
 <span class="" style="color: #38bdf8; font-size: 16px;">●</span>
 <span class="" style="font-weight: 600;">SELECCIÓN:</span>
-<span class="contador-badge" id="contador-fotos">0 fotos</span>
+<span class="contador-badge" id="contador-fotos">2 fotos</span>
 </div>
 <button class="" onclick="limpiarSeleccion()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.75rem; cursor: pointer;">Vaciar</button>
 </div>
-<div class="acciones-compra"><button class="btn-pedido btn-pedido-impresas" onclick="tramitarPedido('impresas')" style="border: 2px solid rgb(250, 204, 21); color: rgb(250, 204, 21); background: rgba(250, 204, 21, 0.12); box-shadow: rgba(250, 204, 21, 0.25) 0px 0px 12px;"><span class="material-symbols-outlined" style="font-size: 16px;">print</span><span id="btn-label-impresas" class="">Impresas 15x21 ($7.500 c/u)</span></button><button class="btn-pedido btn-pedido-digitales" onclick="tramitarPedido('digitales')"><span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span><span id="btn-label-digitales" class="">Digital HD ($2.500 c/u)</span></button><button class="btn-pedido" onclick="tramitarPedido()" style="background: rgb(34, 197, 94); color: rgb(255, 255, 255); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 8px 14px; font-weight: 700;"><span class="material-symbols-outlined" style="font-size: 16px;">shopping_cart_checkout</span><span class="">Revisar Pedido</span></button></div>
+<div class="acciones-compra"><button class="btn-pedido btn-pedido-impresas" onclick="irAlPedido('impresa')" style="border: 2px solid rgb(250, 204, 21); color: rgb(250, 204, 21); background: rgba(250, 204, 21, 0.12); box-shadow: rgba(250, 204, 21, 0.25) 0px 0px 12px;"><span class="material-symbols-outlined" style="font-size: 16px;">print</span><span class="" id="btn-label-impresas">Impresas 15x21 ($7.500 c/u)</span></button><button class="btn-pedido btn-pedido-digitales" onclick="irAlPedido('digital')"><span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span><span class="" id="btn-label-digitales">Digital HD ($2.500 c/u)</span></button><button class="btn-pedido" onclick="irAlPedido()" style="background: rgb(34, 197, 94); color: rgb(255, 255, 255); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 8px 14px; font-weight: 700;"><span class="material-symbols-outlined" style="font-size: 16px;">shopping_cart_checkout</span><span class="">Continuar Pedido</span></button></div>
 </div>
 <!-- VISOR MODAL CON MARCA DE AGUA EN ALTA RESOLUCIÓN -->
 <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
 <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
 <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
 <div style="position: relative; display: inline-block; max-width: 92%; max-height: 85vh;">
-<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="">
+<img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src=""/>
 <div class="marca-agua" id="marca-visor" style="display: none;">
-<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br>SERGIO RICARDO MOLINA</div>
+<div class="texto-marca-agua" style="font-size: 1.1rem; letter-spacing: 3px;">MUESTRA OFICIAL<br/>SERGIO RICARDO MOLINA</div>
 </div>
 </div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
@@ -1001,10 +989,6 @@ modalEl.addEventListener('touchend', e => {
 // Iniciar de inmediato
 document.addEventListener('DOMContentLoaded', iniciarGaleria);
 </script>
-
-
-
-
 <script>
 function tramitarPedido(formato) {
   if (seleccionadas.size === 0) {
@@ -1044,4 +1028,93 @@ function tramitarPedido(formato) {
   }
   window.location.href = urlDestino.toString();
 }
-</script></body></html>
+</script>
+</body><div id="logica-carrito-script"><script>
+function irAlPedido(formato) {
+  if (!seleccionadas || seleccionadas.size === 0) {
+    alert("Por favor seleccioná al menos una fotografía haciendo clic en 'Elegir' sobre las fotos.");
+    return;
+  }
+  const params = new URLSearchParams(window.location.search);
+  const currentFolder = params.get('folder') || params.get('id') || '';
+  
+  const fotosArray = Array.from(seleccionadas).map(id => {
+    const f = (typeof listaFotos !== 'undefined' && listaFotos.length > 0) 
+      ? listaFotos.find(item => item.id === id) 
+      : null;
+    return {
+      id: id,
+      name: f ? f.name : id,
+      thumb: f ? f.thumb : `https://lh3.googleusercontent.com/d/${id}=w600`,
+      full: f ? f.full : `https://lh3.googleusercontent.com/d/${id}=w1600`,
+      impresa: formato === 'digital' ? false : true,
+      digital: formato === 'digital' ? true : false
+    };
+  });
+
+  const carritoData = {
+    evento: (typeof tituloEvento !== 'undefined' && tituloEvento) ? tituloEvento : 'Álbum Fotográfico',
+    folderId: currentFolder,
+    fotos: fotosArray
+  };
+
+  try {
+    localStorage.setItem('carrito_evento_actual', JSON.stringify(carritoData));
+    localStorage.setItem('pedido_fotos_seleccionadas', JSON.stringify(fotosArray));
+    localStorage.setItem('pedido_fotos_nombres', JSON.stringify(fotosArray.map(f => f.name)));
+    localStorage.setItem('pedido_evento_titulo', carritoData.evento);
+    localStorage.setItem('pedido_folder_id', currentFolder);
+    if (typeof TARIFA_IMPRESA !== 'undefined') localStorage.setItem('tarifa_impresa', String(TARIFA_IMPRESA));
+    if (typeof TARIFA_DIGITAL !== 'undefined') localStorage.setItem('tarifa_digital', String(TARIFA_DIGITAL));
+  } catch (err) {
+    console.warn('Error guardando pedido en localStorage:', err);
+  }
+
+  const destino = 'pedido.html?id=' + encodeURIComponent(currentFolder) + '&titulo=' + encodeURIComponent(carritoData.evento);
+  window.location.href = destino;
+}
+
+window.irAlPedido = irAlPedido;
+window.tramitarPedido = irAlPedido;
+
+// Hook para sincronizar fotos previamente seleccionadas en 'carrito_evento_actual'
+(function hookSincronizacionPrevia() {
+  const origRender = window.renderizarFotos;
+  if (typeof origRender === 'function') {
+    window.renderizarFotos = function() {
+      try {
+        const saved = localStorage.getItem('carrito_evento_actual');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const params = new URLSearchParams(window.location.search);
+          const currentFolder = params.get('folder') || params.get('id') || '';
+          if (!parsed.folderId || parsed.folderId === currentFolder || (parsed.evento && parsed.evento === tituloEvento)) {
+            if (Array.isArray(parsed.fotos)) {
+              parsed.fotos.forEach(f => {
+                if (f && f.id) seleccionadas.add(f.id);
+              });
+            }
+          }
+        }
+      } catch(e) { console.warn('Error restaurando carrito previo:', e); }
+      
+      origRender.apply(this, arguments);
+
+      if (seleccionadas && seleccionadas.size > 0) {
+        seleccionadas.forEach(id => {
+          const card = document.getElementById(`card-foto-${id}`);
+          const icon = document.getElementById(`icon-check-${id}`);
+          const txt = document.getElementById(`txt-check-${id}`);
+          if (card) card.classList.add('seleccionada');
+          if (icon) icon.innerText = 'check';
+          if (txt) txt.innerText = 'Elegida';
+        });
+        const contador = document.getElementById('contador-fotos');
+        if (contador) contador.innerText = `${seleccionadas.size} fotos`;
+        const barra = document.getElementById('barra-pedidos');
+        if (barra && !esGaleriaPrivada) barra.style.display = 'flex';
+      }
+    };
+  }
+})();
+</script></div></html>
