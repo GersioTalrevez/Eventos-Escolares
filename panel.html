@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control | Sergio Ricardo Molina</title>
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <!-- Supabase JS Client Oficial -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Panel de Control | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<!-- Supabase JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
+  <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -34,7 +35,6 @@
       flex-shrink: 0;
       min-height: 100vh;
     }
-
     .marca-panel {
       display: flex;
       flex-direction: column;
@@ -43,7 +43,6 @@
       border-bottom: 1px solid #222222;
       margin-bottom: 20px;
     }
-
     .marca-panel .tag-estado {
       font-size: 0.7rem;
       text-transform: uppercase;
@@ -54,27 +53,23 @@
       gap: 5px;
       font-weight: 700;
     }
-
     .marca-panel h2 {
       font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: 0.5px;
       color: #ffffff;
     }
-
     .marca-panel span.sub {
       font-size: 0.75rem;
       color: #777777;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
     .menu-lateral {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
-
     .item-menu {
       display: flex;
       align-items: center;
@@ -88,43 +83,49 @@
       transition: all 0.2s ease;
       border: 1px solid transparent;
     }
-
     .item-menu:hover {
       background: #202020;
       color: #ffffff;
       border-color: #333333;
     }
-
     .item-menu.activo {
       background: #004466;
       color: #ffffff;
       border-color: #0088cc;
     }
-
     .item-menu .material-symbols-outlined {
       font-size: 20px;
+    }
+
+    /* ENLACES DE RETORNO ARRIBA */
+    .bloque-retorno-top {
+      border-top: 1px solid #222222;
+      margin-top: 8px;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .item-retorno {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #888888;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .item-retorno:hover {
+      color: #38bdf8;
+      background: #1c1c1c;
     }
 
     .footer-aside {
       padding-top: 20px;
       border-top: 1px solid #222222;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .btn-enlace-publico {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #888888;
-      text-decoration: none;
-      font-size: 0.8rem;
-      transition: color 0.2s ease;
-    }
-
-    .btn-enlace-publico:hover {
-      color: #38bdf8;
     }
 
     /* CONTENIDO PRINCIPAL */
@@ -134,7 +135,6 @@
       max-width: 1200px;
       overflow-y: auto;
     }
-
     .encabezado-seccion {
       display: flex;
       justify-content: space-between;
@@ -143,7 +143,6 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-
     .encabezado-seccion h1 {
       font-size: 1.7rem;
       font-weight: 600;
@@ -151,12 +150,10 @@
       color: #ffffff;
       margin-bottom: 4px;
     }
-
     .encabezado-seccion p {
       color: #888888;
       font-size: 0.88rem;
     }
-
     .btn-cargar-nueva {
       display: inline-flex;
       align-items: center;
@@ -172,7 +169,6 @@
       transition: all 0.2s ease;
       box-shadow: 0 4px 14px rgba(0, 85, 128, 0.4);
     }
-
     .btn-cargar-nueva:hover {
       background: #0077b3;
       border-color: #38bdf8;
@@ -186,7 +182,6 @@
       gap: 14px;
       margin-bottom: 28px;
     }
-
     .tarjeta-metrica {
       background: #181818;
       border: 1px solid #282828;
@@ -196,7 +191,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .tarjeta-metrica .info h4 {
       font-size: 0.72rem;
       text-transform: uppercase;
@@ -204,20 +198,17 @@
       color: #888888;
       margin-bottom: 6px;
     }
-
     .tarjeta-metrica .info .valor {
       font-size: 1.65rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1;
     }
-
     .tarjeta-metrica .info .subtext {
       font-size: 0.72rem;
       color: #666666;
       margin-top: 4px;
     }
-
     .tarjeta-metrica .icono-metrica {
       width: 44px;
       height: 44px;
@@ -238,13 +229,11 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-
     .busqueda-caja {
       position: relative;
       flex: 1;
       max-width: 420px;
     }
-
     .busqueda-caja input {
       width: 100%;
       background: #181818;
@@ -256,11 +245,9 @@
       outline: none;
       transition: border-color 0.2s;
     }
-
     .busqueda-caja input:focus {
       border-color: #0077b3;
     }
-
     .busqueda-caja .material-symbols-outlined {
       position: absolute;
       left: 10px;
@@ -269,7 +256,6 @@
       color: #666666;
       font-size: 18px;
     }
-
     .filtros-tipo {
       display: flex;
       gap: 6px;
@@ -278,7 +264,6 @@
       border-radius: 8px;
       border: 1px solid #282828;
     }
-
     .btn-filtro {
       background: none;
       border: none;
@@ -290,7 +275,6 @@
       cursor: pointer;
       transition: all 0.15s;
     }
-
     .btn-filtro.activo {
       background: #005580;
       color: #ffffff;
@@ -302,7 +286,6 @@
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 18px;
     }
-
     .tarjeta-galeria {
       background: #181818;
       border: 1.5px solid #282828;
@@ -313,12 +296,10 @@
       transition: all 0.2s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-
     .tarjeta-galeria:hover {
       border-color: #0077b3;
       transform: translateY(-2px);
     }
-
     .portada-wrap {
       position: relative;
       width: 100%;
@@ -326,13 +307,11 @@
       background: #0d0d0d;
       overflow: hidden;
     }
-
     .portada-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     .portada-vacia {
       width: 100%;
       height: 100%;
@@ -344,12 +323,10 @@
       gap: 6px;
       font-size: 0.78rem;
     }
-
     .portada-vacia .material-symbols-outlined {
       font-size: 36px;
       color: #38bdf8;
     }
-
     .badge-estado-portada {
       position: absolute;
       top: 10px;
@@ -363,19 +340,16 @@
       gap: 4px;
       backdrop-filter: blur(4px);
     }
-
     .badge-publica {
       background: rgba(0, 85, 128, 0.85);
       border: 1px solid #0088cc;
       color: #ffffff;
     }
-
     .badge-privada {
       background: rgba(234, 179, 8, 0.2);
       border: 1px solid #eab308;
       color: #facc15;
     }
-
     .detalle-galeria {
       padding: 14px 16px;
       display: flex;
@@ -383,7 +357,6 @@
       flex: 1;
       justify-content: space-between;
     }
-
     .detalle-galeria h3 {
       font-size: 1.05rem;
       font-weight: 600;
@@ -391,7 +364,6 @@
       line-height: 1.3;
       margin-bottom: 8px;
     }
-
     .meta-fila {
       display: flex;
       flex-direction: column;
@@ -400,7 +372,6 @@
       color: #888888;
       margin-bottom: 14px;
     }
-
     .meta-item {
       display: flex;
       align-items: center;
@@ -410,19 +381,16 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-
     .meta-item .material-symbols-outlined {
       font-size: 14px;
       color: #0088cc;
     }
-
     .acciones-tarjeta {
       display: flex;
       gap: 8px;
       padding-top: 12px;
       border-top: 1px solid #242424;
     }
-
     .btn-borrar {
       flex: 1;
       background: rgba(239, 68, 68, 0.1);
@@ -439,13 +407,11 @@
       gap: 5px;
       transition: all 0.2s ease;
     }
-
     .btn-borrar:hover {
       background: #ef4444;
       color: #ffffff;
       border-color: #ef4444;
     }
-
     .estado-vacio {
       grid-column: 1 / -1;
       text-align: center;
@@ -455,20 +421,17 @@
       border-radius: 12px;
       color: #888888;
     }
-
     .estado-vacio .material-symbols-outlined {
       font-size: 48px;
       color: #005580;
       margin-bottom: 12px;
     }
-
     .estado-vacio h3 {
       font-size: 1.15rem;
       color: #ffffff;
       font-weight: 600;
       margin-bottom: 6px;
     }
-
     .estado-vacio p {
       font-size: 0.86rem;
       max-width: 440px;
@@ -484,129 +447,152 @@
   </style>
 </head>
 <body>
-<!-- BARRA LATERAL IZQUIERDA CON ENLACES OFICIALES -->
-<aside>
-<div>
-<div class="marca-panel">
-<div class="tag-estado">
-<span style="font-size: 8px;">●</span> SISTEMA ACTIVO
+
+  <!-- BARRA LATERAL IZQUIERDA CON ENLACES OFICIALES -->
+  <aside>
+    <div>
+      <div class="marca-panel">
+        <div class="tag-estado">
+          <span style="font-size: 8px;">●</span> SISTEMA ACTIVO
         </div>
-<h2>SERGIO RICARDO MOLINA</h2>
-<span class="sub">Panel de Control</span>
-</div>
-<!-- MENÚ DE NAVEGACIÓN LATERAL -->
-<nav class="menu-lateral">
-<!-- 1. Galerías Creadas (Página Actual) -->
-<a class="item-menu activo" href="panel.html">
-<span class="material-symbols-outlined">photo_library</span>
-<span>Galerías</span>
-</a>
-<!-- 2. Cargas y Enlaces (Dirige a cargas.html) -->
-<a class="item-menu" href="cargas.html">
-<span class="material-symbols-outlined">cloud_upload</span>
-<span>Cargas y Enlaces</span>
-</a>
-<!-- 3. Tarifas y Precios (Dirige a precios.html) -->
-<a class="item-menu" href="precios.html">
-<span class="material-symbols-outlined">payments</span>
-<span>Tarifas y Precios</span>
-</a>
-</nav>
-</div>
-<!-- ENLACES DE RETORNO AL SITIO PÚBLICO -->
-<div class="footer-aside">
-<a class="btn-enlace-publico" href="eventos.html">
-<span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
-<span>Volver a Eventos</span>
-</a>
-<a class="btn-enlace-publico" href="index.html">
-<span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
-<span>Ver Portafolio</span>
-</a>
-<div style="font-size: 0.7rem; color: #444; margin-top: 6px;">
-        ESTUDIO FOTOGRÁFICO  •  v2.5
+        <h2>SERGIO RICARDO MOLINA</h2>
+        <span class="sub">Panel de Control</span>
       </div>
-</div>
-</aside>
-<!-- ÁREA DE GESTIÓN CENTRAL -->
-<main>
-<div class="encabezado-seccion">
-<div>
-<div style="color: #38bdf8; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
-<span class="material-symbols-outlined" style="font-size: 15px;">photo_camera</span>
+
+      <!-- MENÚ DE NAVEGACIÓN LATERAL -->
+      <nav class="menu-lateral">
+        <!-- 1. Galerías (Página Actual) -->
+        <a href="panel.html" class="item-menu activo">
+          <span class="material-symbols-outlined">photo_library</span>
+          <span>Galerías</span>
+        </a>
+
+        <!-- 2. Cargas y Enlaces -->
+        <a href="cargas.html" class="item-menu">
+          <span class="material-symbols-outlined">cloud_upload</span>
+          <span>Cargas y Enlaces</span>
+        </a>
+
+        <!-- 3. Tarifas y Precios -->
+        <a href="precios.html" class="item-menu">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Tarifas y Precios</span>
+        </a>
+
+        <!-- 4. Métricas y Visitas -->
+        <a href="metricas.html" class="item-menu">
+          <span class="material-symbols-outlined">analytics</span>
+          <span>Métricas y Visitas</span>
+        </a>
+
+        <!-- ENLACES DE RETORNO UBICADOS ARRIBA BAJO MÉTRICAS -->
+        <div class="bloque-retorno-top">
+          <a href="eventos.html" class="item-retorno">
+            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+            <span>Volver a Eventos</span>
+          </a>
+          <a href="index.html" class="item-retorno">
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+            <span>Ver Portafolio</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-aside">
+      <div style="font-size: 0.7rem; color: #444;">
+        ESTUDIO FOTOGRÁFICO &nbsp;•&nbsp; v2.5
+      </div>
+    </div>
+  </aside>
+
+  <!-- ÁREA DE GESTIÓN CENTRAL -->
+  <main>
+    <div class="encabezado-seccion">
+      <div>
+        <div style="color: #38bdf8; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+          <span class="material-symbols-outlined" style="font-size: 15px;">photo_camera</span>
           MÓDULO DE GESTIÓN DE ÁLBUMES
         </div>
-<h1>Galerías Publicadas y Registradas</h1>
-<p>Panel exclusivo de visualización y administración de álbumes escolares conectados a Supabase y Google Drive.</p>
-</div>
-<!-- BOTÓN DIRECTO PARA VINCULAR NUEVAS CARPETAS EN CARGAS.HTML -->
-<a class="btn-cargar-nueva" href="cargas.html">
-<span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
-<span>+ CARGAR NUEVA GALERÍA</span>
-</a>
-</div>
-<!-- TARJETAS DE MÉTRICAS RÁPIDAS -->
-<div class="metricas-grid">
-<div class="tarjeta-metrica">
-<div class="info">
-<h4>Total Registradas</h4>
-<div class="valor" id="lbl-total-galerias">0</div>
-<div class="subtext">Sincronizadas con nube</div>
-</div>
-<div class="icono-metrica">
-<span class="material-symbols-outlined">collections_bookmark</span>
-</div>
-</div>
-<div class="tarjeta-metrica">
-<div class="info">
-<h4>Álbumes Públicos</h4>
-<div class="valor" id="lbl-publicas-count" style="color: #38bdf8;">0</div>
-<div class="subtext">Acceso irrestricto</div>
-</div>
-<div class="icono-metrica" style="color: #38bdf8;">
-<span class="material-symbols-outlined">public</span>
-</div>
-</div>
-<div class="tarjeta-metrica">
-<div class="info">
-<h4>Privadas con Clave</h4>
-<div class="valor" id="lbl-privadas-count" style="color: #facc15;">0</div>
-<div class="subtext">Protegidas con PIN</div>
-</div>
-<div class="icono-metrica" style="color: #facc15;">
-<span class="material-symbols-outlined">lock</span>
-</div>
-</div>
-</div>
-<!-- FILTROS Y BÚSQUEDA -->
-<div class="barra-filtros">
-<div class="busqueda-caja">
-<span class="material-symbols-outlined">search</span>
-<input id="input-busqueda" onkeyup="filtrarLista()" placeholder="Buscar por colegio, evento o ID Drive..." type="text"/>
-</div>
-<div class="filtros-tipo">
-<button class="btn-filtro activo" onclick="cambiarFiltro('todas', this)">Todas</button>
-<button class="btn-filtro" onclick="cambiarFiltro('publicas', this)">Solo Públicas</button>
-<button class="btn-filtro" onclick="cambiarFiltro('privadas', this)">Solo Privadas</button>
-</div>
-<button onclick="cargarListaEventos()" style="background:#181818; border:1px solid #282828; color:#aaa; border-radius:8px; padding:8px 12px; cursor:pointer; font-size:0.8rem; display:flex; align-items:center; gap:4px;">
-<span class="material-symbols-outlined" style="font-size:16px;">refresh</span>
-</button>
-</div>
-<!-- CUADRÍCULA DINÁMICA DE ÁLBUMES -->
-<div class="grid-galerias" id="lista-eventos">
-<div class="estado-vacio">
-<span class="material-symbols-outlined">sync</span>
-<h3>Sincronizando con base de datos...</h3>
-<p>Consultando eventos escolares y carpetas en Supabase.</p>
-</div>
-</div>
-</main>
-<script>
+        <h1>Galerías Publicadas y Registradas</h1>
+        <p>Panel exclusivo de visualización y administración de álbumes escolares conectados a Supabase y Google Drive.</p>
+      </div>
+
+      <!-- BOTÓN DIRECTO PARA VINCULAR NUEVAS CARPETAS EN CARGAS.HTML -->
+      <a href="cargas.html" class="btn-cargar-nueva">
+        <span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
+        <span>+ CARGAR NUEVA GALERÍA</span>
+      </a>
+    </div>
+
+    <!-- TARJETAS DE MÉTRICAS RÁPIDAS -->
+    <div class="metricas-grid">
+      <div class="tarjeta-metrica">
+        <div class="info">
+          <h4>Total Registradas</h4>
+          <div class="valor" id="lbl-total-galerias">0</div>
+          <div class="subtext">Sincronizadas con nube</div>
+        </div>
+        <div class="icono-metrica">
+          <span class="material-symbols-outlined">collections_bookmark</span>
+        </div>
+      </div>
+
+      <div class="tarjeta-metrica">
+        <div class="info">
+          <h4>Álbumes Públicos</h4>
+          <div class="valor" id="lbl-publicas-count" style="color: #38bdf8;">0</div>
+          <div class="subtext">Acceso irrestricto</div>
+        </div>
+        <div class="icono-metrica" style="color: #38bdf8;">
+          <span class="material-symbols-outlined">public</span>
+        </div>
+      </div>
+
+      <div class="tarjeta-metrica">
+        <div class="info">
+          <h4>Privadas con Clave</h4>
+          <div class="valor" id="lbl-privadas-count" style="color: #facc15;">0</div>
+          <div class="subtext">Protegidas con PIN</div>
+        </div>
+        <div class="icono-metrica" style="color: #facc15;">
+          <span class="material-symbols-outlined">lock</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTROS Y BÚSQUEDA -->
+    <div class="barra-filtros">
+      <div class="busqueda-caja">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="input-busqueda" placeholder="Buscar por colegio, evento o ID Drive..." onkeyup="filtrarLista()">
+      </div>
+
+      <div class="filtros-tipo">
+        <button class="btn-filtro activo" onclick="cambiarFiltro('todas', this)">Todas</button>
+        <button class="btn-filtro" onclick="cambiarFiltro('publicas', this)">Solo Públicas</button>
+        <button class="btn-filtro" onclick="cambiarFiltro('privadas', this)">Solo Privadas</button>
+      </div>
+
+      <button onclick="cargarListaEventos()" style="background:#181818; border:1px solid #282828; color:#aaa; border-radius:8px; padding:8px 12px; cursor:pointer; font-size:0.8rem; display:flex; align-items:center; gap:4px;" title="Actualizar lista">
+        <span class="material-symbols-outlined" style="font-size:16px;">refresh</span>
+      </button>
+    </div>
+
+    <!-- CUADRÍCULA DINÁMICA DE ÁLBUMES -->
+    <div id="lista-eventos" class="grid-galerias">
+      <div class="estado-vacio">
+        <span class="material-symbols-outlined">sync</span>
+        <h3>Sincronizando con base de datos...</h3>
+        <p>Consultando eventos escolares y carpetas en Supabase.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
     // CREDENCIALES OFICIALES DE SUPABASE
     const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-
     const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
     let listaGlobal = [];
@@ -617,7 +603,7 @@
       const contenedor = document.getElementById('lista-eventos');
       let eventos = [];
 
-      // A) Consultar Supabase
+      // A) Consultar Supabase (tabla 'galeria' y 'galerias')
       if (supabaseClient) {
         try {
           let { data, error } = await supabaseClient
@@ -625,7 +611,7 @@
             .select('*')
             .order('created_at', { ascending: false });
 
-          if (error || !data) {
+          if (error || !data || data.length === 0) {
             const intentoDos = await supabaseClient
               .from('galerias')
               .select('*')
@@ -646,8 +632,8 @@
         const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
         locales.forEach(loc => {
           const yaExiste = eventos.some(ev => 
-            String(ev.id) === String(loc.id) || 
-            (loc.drive_url && ev.drive_url === loc.drive_url)
+            String(ev.id) === String(loc.id) ||
+            (loc.drive_url && (ev.drive_url === loc.drive_url || ev.enlace_drive === loc.drive_url))
           );
           if (!yaExiste) eventos.unshift(loc);
         });
@@ -671,17 +657,17 @@
       document.getElementById('lbl-privadas-count').innerText = privadas;
     }
 
-    // 3. RENDERIZAR TARJETAS CON BOTÓN DE BORRADO OPERATIVO
+    // 3. RENDERIZAR TARJETAS CON BOTÓN DE BORRADO OPERATIVO (SIN VISOR)
     function renderizarTarjetas() {
       const contenedor = document.getElementById('lista-eventos');
       const busqueda = document.getElementById('input-busqueda').value.toLowerCase().trim();
 
       let filtradas = listaGlobal.filter(item => {
         const titulo = (item.titulo || '').toLowerCase();
-        const driveUrl = (item.drive_url || item.url_drive || '').toLowerCase();
+        const driveUrl = (item.drive_url || item.url_drive || item.enlace_drive || '').toLowerCase();
         const matchTexto = titulo.includes(busqueda) || driveUrl.includes(busqueda);
-
         const esPriv = item.es_privada || (item.password && String(item.password).trim().length > 0);
+
         if (filtroActivo === 'publicas') return matchTexto && !esPriv;
         if (filtroActivo === 'privadas') return matchTexto && esPriv;
         return matchTexto;
@@ -705,7 +691,7 @@
       contenedor.innerHTML = '';
       filtradas.forEach(item => {
         const esPrivada = item.es_privada || (item.password && String(item.password).trim().length > 0);
-        const driveEnlace = item.drive_url || item.url_drive || '';
+        const driveEnlace = item.drive_url || item.url_drive || item.enlace_drive || '';
         const folderId = extraerIdDrive(driveEnlace);
 
         let portadaImg = item.portada_url || item.portada || '';
@@ -718,7 +704,7 @@
         tarjeta.innerHTML = `
           <div class="portada-wrap">
             ${portadaImg ? `
-              <img src="${portadaImg}" alt="${item.titulo}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\\'portada-vacia\\\'><span class=\\\'material-symbols-outlined\\\'>photo_camera</span><span>Sin Portada Disponible</span></div>'">
+              <img src="${portadaImg}" alt="${item.titulo}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'portada-vacia\\'><span class=\\'material-symbols-outlined\\'>photo_camera</span><span>Sin Portada Disponible</span></div>'">
             ` : `
               <div class="portada-vacia">
                 <span class="material-symbols-outlined">photo_camera</span>
@@ -761,39 +747,41 @@
       });
     }
 
-    // 4. FUNCIÓN PARA ELIMINAR GALERÍA (CORREGIDA: SÓLO COLUMNA drive_url)
+    // 4. ELIMINAR GALERÍA (SUPABASE + LOCALSTORAGE)
     async function borrarGaleria(id, driveUrl, titulo, event) {
       if (event) event.stopPropagation();
+
       const confirma = confirm(`¿Estás seguro de que deseas eliminar permanentemente la galería:\n"${titulo}"?\n\nEsta acción quitará el evento tanto del sitio web como de la base de datos.`);
       if (!confirma) return;
 
-      // A) Borrar de Supabase usando exclusivamente columnas reales
-      if (supabaseClient) {
-        try {
-          if (id && !isNaN(id)) {
-            const { error } = await supabaseClient.from('galeria').delete().eq('id', id);
-            if (error) console.warn("Aviso al borrar por id:", error);
-          }
-          if (driveUrl) {
-            const { error } = await supabaseClient.from('galeria').delete().eq('drive_url', driveUrl);
-            if (error) console.warn("Aviso al borrar por drive_url:", error);
-          }
-        } catch (errSupabase) {
-          console.warn("Error Supabase:", errSupabase);
-        }
-      }
-
-      // B) Limpiar cualquier copia residual en localStorage
+      // A) Borrar del Respaldo Local (localStorage)
       try {
         let locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
-        locales = locales.filter(g => String(g.id) !== String(id) && g.drive_url !== driveUrl);
+        locales = locales.filter(g => String(g.id) !== String(id) && g.drive_url !== driveUrl && g.enlace_drive !== driveUrl);
         localStorage.setItem('galerias_locales', JSON.stringify(locales));
       } catch (errLocal) {
         console.warn("Aviso local:", errLocal);
       }
 
-      // C) Recargar lista
-      await cargarListaEventos();
+      // B) Borrar de Supabase
+      if (supabaseClient) {
+        try {
+          if (id && !isNaN(id)) {
+            await supabaseClient.from('galeria').delete().eq('id', id);
+            await supabaseClient.from('galerias').delete().eq('id', id);
+          }
+          if (driveUrl) {
+            await supabaseClient.from('galeria').delete().eq('drive_url', driveUrl);
+            await supabaseClient.from('galeria').delete().eq('enlace_drive', driveUrl);
+            await supabaseClient.from('galerias').delete().eq('drive_url', driveUrl);
+          }
+        } catch (errSupabase) {
+          console.warn("Aviso Supabase:", errSupabase);
+        }
+      }
+
+      // C) Refrescar visualmente la lista
+      cargarListaEventos();
     }
 
     // 5. FILTROS Y UTILIDADES
@@ -822,4 +810,5 @@
 
     document.addEventListener('DOMContentLoaded', cargarListaEventos);
   </script>
-</body></html>
+</body>
+</html>
