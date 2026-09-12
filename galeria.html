@@ -11,515 +11,529 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #111111;
-  color: #ffffff;
-  padding: 16px 12px 140px;
-  max-width: 1100px;
-  margin: 0 auto;
-  min-height: 100vh;
-  position: relative;
-  -webkit-user-select: none;
-  user-select: none;
-}
-header {
-  padding: 12px 0 16px;
-  border-bottom: 1px solid #222222;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.btn-volver-nav {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #bbbbbb;
-  text-decoration: none;
-  font-size: 0.84rem;
-  font-weight: 500;
-  background: #1c1c1c;
-  border: 1px solid #005580;
-  padding: 7px 16px;
-  border-radius: 20px;
-  transition: all 0.2s ease;
-}
-.btn-volver-nav:hover {
-  background: #242424;
-  color: #ffffff;
-  border-color: #38bdf8;
-  transform: translateX(-2px);
-}
-.marca-personal {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-}
-.marca-personal span.icon { color: #38bdf8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      padding: 16px 12px 140px;
+      max-width: 1100px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    header {
+      padding: 12px 0 16px;
+      border-bottom: 1px solid #222222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-volver-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #bbbbbb;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 500;
+      background: #1c1c1c;
+      border: 1px solid #005580;
+      padding: 7px 16px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+    .btn-volver-nav:hover {
+      background: #242424;
+      color: #ffffff;
+      border-color: #38bdf8;
+      transform: translateX(-2px);
+    }
+    .marca-personal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .marca-personal span.icon { color: #38bdf8; }
 
-.hero-galeria { padding: 20px 0 14px; }
-.badge-tipo-galeria {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin-bottom: 8px;
-}
-.badge-publica {
-  background: rgba(0, 85, 128, 0.28);
-  border: 1px solid #0077b3;
-  color: #38bdf8;
-}
-.titulo-galeria {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.85rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  margin-bottom: 6px;
-}
-.subtitulo-galeria {
-  color: #9ca3af;
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.45;
-  max-width: 720px;
-}
-.banner-tarifas {
-  background: #171717;
-  border: 1px solid #005580;
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin: 16px 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 0.85rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-.tarifa-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.tarifa-item strong.imp {
-  color: #facc15;
-  font-weight: 700;
-}
-.tarifa-item strong.dig {
-  color: #38bdf8;
-  font-weight: 700;
-}
+    .hero-galeria { padding: 20px 0 14px; }
+    .badge-tipo-galeria {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .badge-publica {
+      background: rgba(0, 85, 128, 0.28);
+      border: 1px solid #0077b3;
+      color: #38bdf8;
+    }
+    .titulo-galeria {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .subtitulo-galeria {
+      color: #9ca3af;
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.45;
+      max-width: 720px;
+    }
+    .banner-tarifas {
+      background: #171717;
+      border: 1px solid #005580;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 16px 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .tarifa-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tarifa-item strong.imp {
+      color: #facc15;
+      font-weight: 700;
+    }
+    .tarifa-item strong.dig {
+      color: #38bdf8;
+      font-weight: 700;
+    }
 
-/* CUADRÍCULA DE FOTOS: 2 COLUMNAS EN MÓVIL, 4 EN ESCRITORIO */
-.grid-fotos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 12px;
-}
-@media (min-width: 640px) {
-  .grid-fotos {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-  }
-}
-@media (min-width: 960px) {
-  .grid-fotos {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-}
-.tarjeta-foto {
-  background: #191919;
-  border: 1.5px solid #292929;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.tarjeta-foto:hover {
-  border-color: #0077b3;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-}
-.tarjeta-foto.seleccionada {
-  border-color: #facc15;
-  background: #181c20;
-  box-shadow: 0 0 16px rgba(250, 204, 21, 0.15);
-}
-.contenedor-img {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: #0d0d0d;
-  overflow: hidden;
-  cursor: pointer;
-}
-.contenedor-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: none;
-  transition: transform 0.3s ease;
-}
-.tarjeta-foto:hover .contenedor-img img {
-  transform: scale(1.04);
-}
-.marca-agua {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    -35deg,
-    rgba(0, 0, 0, 0) 0,
-    rgba(0, 0, 0, 0) 28px,
-    rgba(255, 255, 255, 0.08) 29px,
-    rgba(255, 255, 255, 0.08) 31px,
-    rgba(0, 0, 0, 0) 32px
-  );
-  z-index: 2;
-}
-.texto-marca-agua {
-  transform: rotate(-30deg);
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.9);
-  user-select: none;
-  text-align: center;
-  line-height: 1.25;
-}
-.pie-foto {
-  padding: 8px 10px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-top: 1px solid #262626;
-  background: #191919;
-}
-.header-pie {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nombre-foto {
-  color: #aaaaaa;
-  font-family: monospace;
-  font-size: 0.76rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.badge-foto-seleccionada {
-  display: none;
-  align-items: center;
-  gap: 2px;
-  color: #facc15;
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-.tarjeta-foto.seleccionada .badge-foto-seleccionada {
-  display: inline-flex;
-}
+    /* CUADRÍCULA DE FOTOS: 2 COLUMNAS EN MÓVIL, 4 EN ESCRITORIO */
+    .grid-fotos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (min-width: 640px) {
+      .grid-fotos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+    }
+    @media (min-width: 960px) {
+      .grid-fotos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+    }
+    .tarjeta-foto {
+      background: #191919;
+      border: 1.5px solid #292929;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tarjeta-foto:hover {
+      border-color: #0077b3;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .tarjeta-foto.seleccionada {
+      border-color: #facc15;
+      background: #181c20;
+      box-shadow: 0 0 16px rgba(250, 204, 21, 0.15);
+    }
+    .contenedor-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #0d0d0d;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .contenedor-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta-foto:hover .contenedor-img img {
+      transform: scale(1.04);
+    }
+    .marca-agua {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        -35deg,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) 28px,
+        rgba(255, 255, 255, 0.08) 29px,
+        rgba(255, 255, 255, 0.08) 31px,
+        rgba(0, 0, 0, 0) 32px
+      );
+      z-index: 2;
+    }
+    .texto-marca-agua {
+      transform: rotate(-30deg);
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      user-select: none;
+      text-align: center;
+      line-height: 1.25;
+    }
+    .pie-foto {
+      padding: 8px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid #262626;
+      background: #191919;
+    }
+    .header-pie {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nombre-foto {
+      color: #aaaaaa;
+      font-family: monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .badge-foto-seleccionada {
+      display: none;
+      align-items: center;
+      gap: 2px;
+      color: #facc15;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .tarjeta-foto.seleccionada .badge-foto-seleccionada {
+      display: inline-flex;
+    }
 
-/* BOTONES DE ELECCIÓN EN CADA TARJETA */
-.botones-eleccion {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-.btn-select-tarjeta {
-  padding: 6px 4px;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  transition: all 0.15s ease;
-  white-space: nowrap;
-}
-.btn-select-impresa {
-  background: rgba(250, 204, 21, 0.08);
-  border: 1px solid #facc15;
-  color: #facc15;
-}
-.btn-select-impresa:hover, .btn-select-impresa.activo {
-  background: #facc15;
-  color: #111111;
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
-}
-.btn-select-digital {
-  background: rgba(56, 189, 248, 0.08);
-  border: 1px solid #38bdf8;
-  color: #38bdf8;
-}
-.btn-select-digital:hover, .btn-select-digital.activo {
-  background: #38bdf8;
-  color: #002236;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-}
+    /* BOTONES DE ELECCIÓN EN CADA TARJETA */
+    .botones-eleccion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .btn-select-tarjeta {
+      padding: 6px 4px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-select-impresa {
+      background: rgba(250, 204, 21, 0.08);
+      border: 1px solid #facc15;
+      color: #facc15;
+    }
+    .btn-select-impresa:hover, .btn-select-impresa.activo {
+      background: #facc15;
+      color: #111111;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+    }
+    .btn-select-digital {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+    .btn-select-digital:hover, .btn-select-digital.activo {
+      background: #38bdf8;
+      color: #002236;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
 
-.btn-select-quitar {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid #ef4444;
-  color: #ef4444;
-}
-.btn-select-quitar:hover {
-  background: #ef4444;
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
-}
+    .btn-select-quitar {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+    .btn-select-quitar:hover {
+      background: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    }
 
-.estado-caja {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 48px 16px;
-  background: #181818;
-  border: 1px dashed #333333;
-  border-radius: 14px;
-  color: #999999;
-  margin: 16px 0;
-}
-.estado-caja .material-symbols-outlined {
-  font-size: 46px;
-  color: #0088cc;
-  margin-bottom: 12px;
-}
-.estado-caja h3 {
-  font-size: 1.2rem;
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.estado-caja p {
-  font-size: 0.88rem;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.45;
-}
-.btn-accion-estado {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #005580;
-  color: #ffffff;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-top: 16px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.15s ease;
-}
-.btn-accion-estado:hover { background: #0077b3; }
+    .estado-caja {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 56px 20px;
+      background: #171717;
+      border: 1px dashed #333333;
+      border-radius: 14px;
+      color: #999999;
+      margin: 16px 0;
+    }
+    .estado-caja .material-symbols-outlined {
+      font-size: 48px;
+      color: #0088cc;
+      margin-bottom: 12px;
+    }
+    .estado-caja h3 {
+      font-size: 1.25rem;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .estado-caja p {
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .btn-accion-estado {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #005580;
+      color: #ffffff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn-accion-estado:hover { background: #0077b3; }
 
-/* BARRA INFERIOR FIJA PARA PEDIDOS */
-.barra-compras-fija {
-  position: fixed;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 24px);
-  max-width: 900px;
-  background: rgba(18, 18, 18, 0.96);
-  backdrop-filter: blur(14px);
-  border: 1.5px solid #005580;
-  border-radius: 16px;
-  padding: 10px 16px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.85);
-  z-index: 100;
-}
-.resumen-seleccion {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.88rem;
-}
-.contador-badge {
-  background: #005580;
-  color: #ffffff;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-}
-.total-badge {
-  color: #facc15;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-.acciones-compra {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.btn-pedido {
-  padding: 9px 14px;
-  border-radius: 10px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-  transition: all 0.15s ease;
-  white-space: nowrap;
-  text-decoration: none;
-}
-.btn-pedido-impresas {
-  background: rgba(250, 204, 21, 0.12);
-  border: 1.5px solid #facc15;
-  color: #facc15;
-  box-shadow: 0 0 12px rgba(250, 204, 21, 0.2);
-}
-.btn-pedido-impresas:hover {
-  background: #facc15;
-  color: #111111;
-}
-.btn-pedido-digitales {
-  background: rgba(56, 189, 248, 0.12);
-  border: 1.5px solid #38bdf8;
-  color: #38bdf8;
-}
-.btn-pedido-digitales:hover {
-  background: #38bdf8;
-  color: #002236;
-}
-.btn-pedido-wa {
-  background: #22c55e;
-  color: #ffffff;
-}
-.btn-pedido-wa:hover {
-  background: #16a34a;
-  box-shadow: 0 0 14px rgba(34, 197, 94, 0.4);
-}
+    /* SPINNER DE CARGA SOBRIO */
+    .spinner-cargando {
+      width: 42px;
+      height: 42px;
+      border: 3px solid rgba(56, 189, 248, 0.2);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: girar 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes girar {
+      to { transform: rotate(360deg); }
+    }
 
-/* VISOR MODAL EN ALTA RESOLUCIÓN */
-.modal-visor {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.97);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-.modal-visor-box {
-  position: relative;
-  display: inline-block;
-  max-width: 92%;
-  max-height: 85vh;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(0,0,0,0.9);
-}
-.modal-visor img {
-  max-width: 92vw;
-  max-height: 85vh;
-  object-fit: contain;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: none;
-}
-.marca-visor-diagonal {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    -35deg,
-    rgba(0, 0, 0, 0) 0,
-    rgba(0, 0, 0, 0) 36px,
-    rgba(255, 255, 255, 0.11) 37px,
-    rgba(255, 255, 255, 0.11) 39px,
-    rgba(0, 0, 0, 0) 40px
-  );
-  z-index: 10;
-}
-.btn-cerrar-visor {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  font-size: 26px;
-  color: #ffffff;
-  cursor: pointer;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10001;
-  transition: background 0.15s ease;
-}
-.btn-cerrar-visor:hover { background: rgba(255,255,255,0.22); }
-.btn-nav-visor {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28px;
-  color: #ffffff;
-  cursor: pointer;
-  background: rgba(0,0,0,0.5);
-  padding: 12px 16px;
-  border-radius: 50%;
-  user-select: none;
-  z-index: 10001;
-  transition: background 0.15s ease;
-}
-.btn-nav-visor:hover { background: rgba(0,85,128,0.7); }
-.btn-nav-prev { left: 16px; }
-.btn-nav-next { right: 16px; }
+    /* BARRA INFERIOR FIJA PARA PEDIDOS */
+    .barra-compras-fija {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 900px;
+      background: rgba(18, 18, 18, 0.96);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid #005580;
+      border-radius: 16px;
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
+      z-index: 100;
+    }
+    .resumen-seleccion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+    .contador-badge {
+      background: #005580;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+    .total-badge {
+      color: #facc15;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .acciones-compra {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-pedido {
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn-pedido-impresas {
+      background: rgba(250, 204, 21, 0.12);
+      border: 1.5px solid #facc15;
+      color: #facc15;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.2);
+    }
+    .btn-pedido-impresas:hover {
+      background: #facc15;
+      color: #111111;
+    }
+    .btn-pedido-digitales {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+    }
+    .btn-pedido-digitales:hover {
+      background: #38bdf8;
+      color: #002236;
+    }
+    .btn-pedido-wa {
+      background: #22c55e;
+      color: #ffffff;
+    }
+    .btn-pedido-wa:hover {
+      background: #16a34a;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.4);
+    }
 
-@media (max-width: 680px) {
-  .btn-nav-visor { display: none; }
-  .acciones-compra { width: 100%; justify-content: stretch; }
-  .btn-pedido { flex: 1; justify-content: center; font-size: 0.74rem; padding: 8px 6px; }
-  .resumen-seleccion { width: 100%; justify-content: space-between; }
-}
-</style>
+    /* VISOR MODAL EN ALTA RESOLUCIÓN */
+    .modal-visor {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.97);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-visor-box {
+      position: relative;
+      display: inline-block;
+      max-width: 92%;
+      max-height: 85vh;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,0.9);
+    }
+    .modal-visor img {
+      max-width: 92vw;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+    .marca-visor-diagonal {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        -35deg,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) 36px,
+        rgba(255, 255, 255, 0.11) 37px,
+        rgba(255, 255, 255, 0.11) 39px,
+        rgba(0, 0, 0, 0) 40px
+      );
+      z-index: 10;
+    }
+    .btn-cerrar-visor {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      font-size: 26px;
+      color: #ffffff;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      transition: background 0.15s ease;
+    }
+    .btn-cerrar-visor:hover { background: rgba(255,255,255,0.22); }
+    .btn-nav-visor {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      color: #ffffff;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      padding: 12px 16px;
+      border-radius: 50%;
+      user-select: none;
+      z-index: 10001;
+      transition: background 0.15s ease;
+    }
+    .btn-nav-visor:hover { background: rgba(0,85,128,0.7); }
+    .btn-nav-prev { left: 16px; }
+    .btn-nav-next { right: 16px; }
+
+    @media (max-width: 680px) {
+      .btn-nav-visor { display: none; }
+      .acciones-compra { width: 100%; justify-content: stretch; }
+      .btn-pedido { flex: 1; justify-content: center; font-size: 0.74rem; padding: 8px 6px; }
+      .resumen-seleccion { width: 100%; justify-content: space-between; }
+    }
+  </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;">
 <!-- ENCABEZADO -->
@@ -539,7 +553,7 @@ header {
 <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
 <span id="texto-tipo-badge">Galería Pública</span>
 </div>
-<h1 class="titulo-galeria" id="titulo-galeria">Gala de Fin de Año 2024</h1>
+<h1 class="titulo-galeria" id="titulo-galeria">Galería de Fotografías</h1>
 <p class="subtitulo-galeria" id="subtitulo-galeria">Seleccione las fotografías deseadas y confirme su pedido impreso o digital directo a mi WhatsApp.</p>
 </section>
 <!-- BANNER DINÁMICO DE TARIFAS -->
@@ -547,79 +561,19 @@ header {
 <div class="tarifa-item">
 <span class="material-symbols-outlined" style="color: #38bdf8; font-size: 18px;">payments</span>
 <span id="texto-tarifas-banner">
-        TARIFAS: Copia Impresa 15x21 cm: <strong class="imp" id="lbl-tarifa-impresa">$7.500</strong> • Archivo Digital HD: <strong class="dig" id="lbl-tarifa-digital">$2.500</strong>
+          TARIFAS: Copia Impresa 15x21 cm: <strong class="imp" id="lbl-tarifa-impresa">$7.500</strong> • Archivo Digital HD: <strong class="dig" id="lbl-tarifa-digital">$2.500</strong>
 </span>
 </div>
 <div style="color: #888888; font-size: 0.78rem; display: flex; align-items: center; gap: 4px;">
 <span>• Papel fotográfico químico de laboratorio • Garantía Sergio Molina</span>
 </div>
 </div>
-<!-- CONTENEDOR DE FOTOS -->
+<!-- CONTENEDOR DE FOTOS REALES (SIN MOCKS FICTICIOS) -->
 <div class="grid-fotos" id="contenedor-fotos">
-<!-- Carga inicial simulada con 4 fotos de muestra si se abre sin parámetros de Drive -->
-<div class="tarjeta-foto seleccionada" id="card-foto-1">
-<div class="contenedor-img" onclick="abrirVisor(0)">
-<img alt="#DSC_4821.jpg" loading="lazy" src="https://lh3.googleusercontent.com/aida/AEtjO1Vlo7Y4rt61fH5p6NehxUxag7DAA1PI0QMlaKRRfR88KIyNtSIOD-v_Wp6qE24lj-XSqCeutzTh1jZDpAxzSaplhEcqf4hKEn5ZXqPadKiu46YCYnVNgOAPBqgU8Z37E_ldqJt3i8qkldyjLT2RMxV4R6mqVlBGdHZRyyGjMtX-sVestUW1AJdBt6AP74NoEtsTKqUtUNLbFnImrEGIWvd-a5T096DrGVFYj4etKupRYpHeG4R81C8SqCQ"/>
-<div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div>
-</div>
-<div class="pie-foto">
-<div class="header-pie">
-<span class="nombre-foto">#DSC_4821.jpg</span>
-<span class="badge-foto-seleccionada"><span class="material-symbols-outlined" style="font-size:12px;">check_circle</span> Seleccionada</span>
-</div>
-<div class="botones-eleccion">
-<button class="btn-select-tarjeta btn-select-impresa activo" onclick="elegirFormatoFoto('1', 'impresa', event)"><span class="material-symbols-outlined" style="font-size:13px;">print</span> Impresa</button>
-<button class="btn-select-tarjeta btn-select-digital" onclick="elegirFormatoFoto('1', 'digital', event)"><span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital</button>
-</div>
-</div>
-</div>
-<div class="tarjeta-foto seleccionada" id="card-foto-2">
-<div class="contenedor-img" onclick="abrirVisor(1)">
-<img alt="#DSC_4822.jpg" loading="lazy" src="https://lh3.googleusercontent.com/aida/AEtjO1XQlTzyt0AxeD1x0ClU1QR4LKlIoKHotdyLstiRqearY4-R9BTjhX3nagWPFrncUgUOQdD0kJ-V93au3z0GIjybJdVDzWfyPZsQubD6IBRwK7JbwWlo8J2iXnEMlBra65If-0hQo5uYRbFg3o6BZr32-IEfZX1Cq1GGJm5CJxbCzF5IJBLJ1BQJPdr-zS0_9YSFEGkOinYWnld4IzUgiVPBlscvasPdsuveaRtp0SukyAlObKxP7Qn1Chk"/>
-<div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div>
-</div>
-<div class="pie-foto">
-<div class="header-pie">
-<span class="nombre-foto">#DSC_4822.jpg</span>
-<span class="badge-foto-seleccionada"><span class="material-symbols-outlined" style="font-size:12px;">check_circle</span> Seleccionada</span>
-</div>
-<div class="botones-eleccion">
-<button class="btn-select-tarjeta btn-select-impresa activo" onclick="elegirFormatoFoto('2', 'impresa', event)"><span class="material-symbols-outlined" style="font-size:13px;">print</span> Impresa</button>
-<button class="btn-select-tarjeta btn-select-digital" onclick="elegirFormatoFoto('2', 'digital', event)"><span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital</button>
-</div>
-</div>
-</div>
-<div class="tarjeta-foto" id="card-foto-3">
-<div class="contenedor-img" onclick="abrirVisor(2)">
-<img alt="#DSC_4823.jpg" loading="lazy" src="https://lh3.googleusercontent.com/aida/AEtjO1VPKDF_zwue5yK75jhULRW85fgrVy0vRPX7MwMXQOExzy9lgPRKETBPwWRZJF6ZxF8Si0mBO5h4Ll42hKpTJzB1-Wp-wHfRiTJvzQUQ3_FSeyHqXygC6Pq4VOBfXcP3hU85EY84q3v_nvaSxv1NJxZunsi9Gyihe8R-EW_RNkCAnHi_KIlIxbWMrtvxxsH4jvDburjh8iS_jowzbjrvM8oyXuBeXeX0Byqec_IXrfgF-9EVHThtKTQEAHM"/>
-<div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div>
-</div>
-<div class="pie-foto">
-<div class="header-pie">
-<span class="nombre-foto">#DSC_4823.jpg</span>
-<span class="badge-foto-seleccionada"><span class="material-symbols-outlined" style="font-size:12px;">check_circle</span> Seleccionada</span>
-</div>
-<div class="botones-eleccion">
-<button class="btn-select-tarjeta btn-select-impresa" onclick="elegirFormatoFoto('3', 'impresa', event)"><span class="material-symbols-outlined" style="font-size:13px;">print</span> Impresa</button>
-<button class="btn-select-tarjeta btn-select-digital" onclick="elegirFormatoFoto('3', 'digital', event)"><span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital</button>
-</div>
-</div>
-</div>
-<div class="tarjeta-foto" id="card-foto-4">
-<div class="contenedor-img" onclick="abrirVisor(3)">
-<img alt="#DSC_4824.jpg" loading="lazy" src="https://lh3.googleusercontent.com/aida/AEtjO1Ufw6ofj3uS8iR8R94ik5-VeAygK-oiMOtGUQw53LU39EB8lMP6_D8Y3gxhWAQVJfj8OcGQrc5QyidFOu4qwMUuZzJbl-0HDjGL80SENIGDkgXQZgpQPMTRTEHtlxdtQOukXcfgCRFZ0tse4m4vRLiZpYckIgRcWpnfIgb8q8c2NlFxOi4m1D2X_RGijR_E8ztqiOXlhHZt4JAt3iMdjXevIoeQljzuEbpSJsBBfX47hAfAPU0TS6e3xQk"/>
-<div class="marca-agua"><div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div></div>
-</div>
-<div class="pie-foto">
-<div class="header-pie">
-<span class="nombre-foto">#DSC_4824.jpg</span>
-<span class="badge-foto-seleccionada"><span class="material-symbols-outlined" style="font-size:12px;">check_circle</span> Seleccionada</span>
-</div>
-<div class="botones-eleccion">
-<button class="btn-select-tarjeta btn-select-impresa" onclick="elegirFormatoFoto('4', 'impresa', event)"><span class="material-symbols-outlined" style="font-size:13px;">print</span> Impresa</button>
-<button class="btn-select-tarjeta btn-select-digital" onclick="elegirFormatoFoto('4', 'digital', event)"><span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital</button>
-</div>
-</div>
+<div class="estado-caja" id="estado-inicial">
+<div class="spinner-cargando"></div>
+<h3>Conectando con la galería...</h3>
+<p>Sincronizando fotografías oficiales desde Google Drive.</p>
 </div>
 </div>
 </main>
@@ -629,13 +583,13 @@ header {
 <span>Fotografía con derechos de autor protegidos • Sergio Ricardo Molina</span>
 </div>
 <!-- BARRA INFERIOR FIJA PARA PEDIDOS -->
-<div class="barra-compras-fija" id="barra-pedidos" style="display: flex;">
+<div class="barra-compras-fija" id="barra-pedidos" style="display: none;">
 <div class="resumen-seleccion">
 <div style="display:flex; align-items:center; gap:8px;">
 <span style="color: #38bdf8; font-size: 16px;">●</span>
 <span style="font-weight: 700; font-size:0.85rem;">SELECCIÓN:</span>
-<span class="contador-badge" id="contador-fotos">2 fotos</span>
-<span class="total-badge" id="total-acumulado-barra">$15.000</span>
+<span class="contador-badge" id="contador-fotos">0 fotos</span>
+<span class="total-badge" id="total-acumulado-barra">$0</span>
 </div>
 <button onclick="limpiarSeleccion()" style="background: none; border: none; color: #888888; text-decoration: underline; font-size: 0.76rem; cursor: pointer; padding-left: 4px;">Vaciar</button>
 </div>
@@ -662,607 +616,626 @@ header {
 <img alt="Vista Previa" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src=""/>
 <div class="marca-visor-diagonal" id="marca-visor">
 <div class="texto-marca-agua" style="font-size: 1.15rem; letter-spacing: 3px; font-weight: 800;">
-        MUESTRA OFICIAL<br/>SERGIO RICARDO MOLINA
-      </div>
+          MUESTRA OFICIAL<br/>SERGIO MOLINA
+        </div>
 </div>
 </div>
 <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
 </div>
 <script>
-// ============================================================================
-// 1. GUARDIA DE SEGURIDAD ESTRICTA: REDIRIGIR GALERÍAS PRIVADAS A 'privadas.html'
-// ============================================================================
-(function guardiaSeguridadPrivadas() {
-  const params = new URLSearchParams(window.location.search);
-  const paramKey = params.get('key');
-  const paramClave = params.get('clave');
-  const paramPassword = params.get('password');
-  const paramPrivada = params.get('privada');
+    // ============================================================================
+    // 1. GUARDIA DE SEGURIDAD ESTRICTA: REDIRIGIR GALERÍAS PRIVADAS A 'privadas.html'
+    // ============================================================================
+    (function guardiaSeguridadPrivadas() {
+      const params = new URLSearchParams(window.location.search);
+      const paramKey = params.get('key');
+      const paramClave = params.get('clave');
+      const paramPassword = params.get('password');
+      const paramPrivada = params.get('privada');
 
-  const tieneParametroPrivado = (
-    (paramKey && paramKey.trim().length > 0) ||
-    (paramClave && paramClave.trim().length > 0) ||
-    (paramPassword && paramPassword.trim().length > 0) ||
-    paramPrivada === 'true'
-  );
+      const tieneParametroPrivado = (
+        (paramKey && paramKey.trim().length > 0) ||
+        (paramClave && paramClave.trim().length > 0) ||
+        (paramPassword && paramPassword.trim().length > 0) ||
+        paramPrivada === 'true'
+      );
 
-  if (tieneParametroPrivado) {
-    // Redirección inmediata a privadas.html conservando la cadena de búsqueda exacta
-    window.location.replace('privadas.html' + window.location.search);
-  }
-})();
-
-// CREDENCIALES OFICIALES Y CONSTANTES
-const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
-
-let TARIFA_IMPRESA = 7500;
-let TARIFA_DIGITAL = 2500;
-let WHATSAPP_FOTOGRAFO = '5492613175222';
-
-const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
-
-let listaFotos = [
-  { id: '1', name: '#DSC_4821.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1Vlo7Y4rt61fH5p6NehxUxag7DAA1PI0QMlaKRRfR88KIyNtSIOD-v_Wp6qE24lj-XSqCeutzTh1jZDpAxzSaplhEcqf4hKEn5ZXqPadKiu46YCYnVNgOAPBqgU8Z37E_ldqJt3i8qkldyjLT2RMxV4R6mqVlBGdHZRyyGjMtX-sVestUW1AJdBt6AP74NoEtsTKqUtUNLbFnImrEGIWvd-a5T096DrGVFYj4etKupRYpHeG4R81C8SqCQ', full: 'https://lh3.googleusercontent.com/aida/AEtjO1Vlo7Y4rt61fH5p6NehxUxag7DAA1PI0QMlaKRRfR88KIyNtSIOD-v_Wp6qE24lj-XSqCeutzTh1jZDpAxzSaplhEcqf4hKEn5ZXqPadKiu46YCYnVNgOAPBqgU8Z37E_ldqJt3i8qkldyjLT2RMxV4R6mqVlBGdHZRyyGjMtX-sVestUW1AJdBt6AP74NoEtsTKqUtUNLbFnImrEGIWvd-a5T096DrGVFYj4etKupRYpHeG4R81C8SqCQ' },
-  { id: '2', name: '#DSC_4822.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1XQlTzyt0AxeD1x0ClU1QR4LKlIoKHotdyLstiRqearY4-R9BTjhX3nagWPFrncUgUOQdD0kJ-V93au3z0GIjybJdVDzWfyPZsQubD6IBRwK7JbwWlo8J2iXnEMlBra65If-0hQo5uYRbFg3o6BZr32-IEfZX1Cq1GGJm5CJxbCzF5IJBLJ1BQJPdr-zS0_9YSFEGkOinYWnld4IzUgiVPBlscvasPdsuveaRtp0SukyAlObKxP7Qn1Chk', full: 'https://lh3.googleusercontent.com/aida/AEtjO1XQlTzyt0AxeD1x0ClU1QR4LKlIoKHotdyLstiRqearY4-R9BTjhX3nagWPFrncUgUOQdD0kJ-V93au3z0GIjybJdVDzWfyPZsQubD6IBRwK7JbwWlo8J2iXnEMlBra65If-0hQo5uYRbFg3o6BZr32-IEfZX1Cq1GGJm5CJxbCzF5IJBLJ1BQJPdr-zS0_9YSFEGkOinYWnld4IzUgiVPBlscvasPdsuveaRtp0SukyAlObKxP7Qn1Chk' },
-  { id: '3', name: '#DSC_4823.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1VPKDF_zwue5yK75jhULRW85fgrVy0vRPX7MwMXQOExzy9lgPRKETBPwWRZJF6ZxF8Si0mBO5h4Ll42hKpTJzB1-Wp-wHfRiTJvzQUQ3_FSeyHqXygC6Pq4VOBfXcP3hU85EY84q3v_nvaSxv1NJxZunsi9Gyihe8R-EW_RNkCAnHi_KIlIxbWMrtvxxsH4jvDburjh8iS_jowzbjrvM8oyXuBeXeX0Byqec_IXrfgF-9EVHThtKTQEAHM', full: 'https://lh3.googleusercontent.com/aida/AEtjO1VPKDF_zwue5yK75jhULRW85fgrVy0vRPX7MwMXQOExzy9lgPRKETBPwWRZJF6ZxF8Si0mBO5h4Ll42hKpTJzB1-Wp-wHfRiTJvzQUQ3_FSeyHqXygC6Pq4VOBfXcP3hU85EY84q3v_nvaSxv1NJxZunsi9Gyihe8R-EW_RNkCAnHi_KIlIxbWMrtvxxsH4jvDburjh8iS_jowzbjrvM8oyXuBeXeX0Byqec_IXrfgF-9EVHThtKTQEAHM' },
-  { id: '4', name: '#DSC_4824.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1Ufw6ofj3uS8iR8R94ik5-VeAygK-oiMOtGUQw53LU39EB8lMP6_D8Y3gxhWAQVJfj8OcGQrc5QyidFOu4qwMUuZzJbl-0HDjGL80SENIGDkgXQZgpQPMTRTEHtlxdtQOukXcfgCRFZ0tse4m4vRLiZpYckIgRcWpnfIgb8q8c2NlFxOi4m1D2X_RGijR_E8ztqiOXlhHZt4JAt3iMdjXevIoeQljzuEbpSJsBBfX47hAfAPU0TS6e3xQk', full: 'https://lh3.googleusercontent.com/aida/AEtjO1Ufw6ofj3uS8iR8R94ik5-VeAygK-oiMOtGUQw53LU39EB8lMP6_D8Y3gxhWAQVJfj8OcGQrc5QyidFOu4qwMUuZzJbl-0HDjGL80SENIGDkgXQZgpQPMTRTEHtlxdtQOukXcfgCRFZ0tse4m4vRLiZpYckIgRcWpnfIgb8q8c2NlFxOi4m1D2X_RGijR_E8ztqiOXlhHZt4JAt3iMdjXevIoeQljzuEbpSJsBBfX47hAfAPU0TS6e3xQk' }
-];
-
-// Mapa de elecciones: { fotoId: { impresa: boolean, digital: boolean } }
-let mapaSeleccion = new Map([
-  ['1', { impresa: true, digital: false }],
-  ['2', { impresa: true, digital: false }]
-]);
-
-let indiceVisor = 0;
-let tituloEvento = 'Gala de Fin de Año 2024';
-
-function extraerIdDrive(input) {
-  if (!input) return '';
-  const str = String(input).trim();
-  const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]{20,})/);
-  if (matchFolder && matchFolder[1]) return matchFolder[1];
-  const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]{20,})/);
-  if (matchId && matchId[1]) return matchId[1];
-  const matchD = str.match(/\/d\/([a-zA-Z0-9_-]{20,})/);
-  if (matchD && matchD[1]) return matchD[1];
-  const matchLargo = str.match(/([a-zA-Z0-9_-]{25,})/);
-  if (matchLargo && matchLargo[1]) return matchLargo[1];
-  return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
-}
-
-function actualizarUIPrecios() {
-  const lblImp = document.getElementById('lbl-tarifa-impresa');
-  const lblDig = document.getElementById('lbl-tarifa-digital');
-  if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
-  if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
-
-  const btnImp = document.getElementById('btn-label-impresas');
-  const btnDig = document.getElementById('btn-label-digitales');
-  if (btnImp) btnImp.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">print</span> Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
-  if (btnDig) btnDig.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span> Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
-
-  actualizarTotalesBarra();
-}
-
-async function sincronizarPrecios() {
-  try {
-    const storedImp = localStorage.getItem('tarifa_impresa');
-    const storedDig = localStorage.getItem('tarifa_digital');
-    const storedWa = localStorage.getItem('numero_whatsapp');
-    if (storedImp && !isNaN(storedImp) && Number(storedImp) > 0) TARIFA_IMPRESA = Number(storedImp);
-    if (storedDig && !isNaN(storedDig) && Number(storedDig) > 0) TARIFA_DIGITAL = Number(storedDig);
-    if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
-  } catch (e) {
-    console.warn("Error leyendo localStorage:", e);
-  }
-  actualizarUIPrecios();
-
-  if (supabaseClient) {
-    try {
-      const consultaConfig = async () => {
-        const { data, error } = await supabaseClient.from('configuracion').select('*').limit(1);
-        if (!error && data && data.length > 0) return data[0];
-        return null;
-      };
-
-      const config = await Promise.race([
-        consultaConfig(),
-        new Promise(resolve => setTimeout(() => resolve(null), 2500))
-      ]);
-
-      if (config) {
-        let imp = config.tarifa_impresa !== undefined ? Number(config.tarifa_impresa) : null;
-        let dig = config.tarifa_digital !== undefined ? Number(config.tarifa_digital) : null;
-        let wa = config.whatsapp || config.numero_whatsapp;
-
-        if ((imp === null || dig === null) && config.valor) {
-          let val = config.valor;
-          if (typeof val === 'string') {
-            try { val = JSON.parse(val); } catch (_) {}
-          }
-          if (val && typeof val === 'object') {
-            if (val.tarifa_impresa) imp = Number(val.tarifa_impresa);
-            if (val.tarifa_digital) dig = Number(val.tarifa_digital);
-            if (val.whatsapp || val.numero_whatsapp) wa = String(val.whatsapp || val.numero_whatsapp);
-          }
-        }
-
-        if (imp && !isNaN(imp) && imp > 0) {
-          TARIFA_IMPRESA = imp;
-          try { localStorage.setItem('tarifa_impresa', String(imp)); } catch (_) {}
-        }
-        if (dig && !isNaN(dig) && dig > 0) {
-          TARIFA_DIGITAL = dig;
-          try { localStorage.setItem('tarifa_digital', String(dig)); } catch (_) {}
-        }
-        if (wa && String(wa).trim().length > 5) {
-          WHATSAPP_FOTOGRAFO = String(wa).replace(/\D/g, '');
-          try { localStorage.setItem('numero_whatsapp', WHATSAPP_FOTOGRAFO); } catch (_) {}
-        }
-        actualizarUIPrecios();
+      if (tieneParametroPrivado) {
+        window.location.replace('privadas.html' + window.location.search);
       }
-    } catch (errSupabase) {
-      console.warn("Aviso supabase config:", errSupabase);
+    })();
+
+    // CREDENCIALES OFICIALES Y CONSTANTES
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+    let TARIFA_IMPRESA = 7500;
+    let TARIFA_DIGITAL = 2500;
+    let WHATSAPP_FOTOGRAFO = '5492613175222';
+
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    // Arreglo estrictamente poblado desde Drive - CERO imágenes mock de prueba
+    let listaFotos = [];
+
+    // Mapa de elecciones: { fotoId: { impresa: boolean, digital: boolean } }
+    let mapaSeleccion = new Map();
+
+    let indiceVisor = 0;
+    let tituloEvento = 'Galería de Fotografías';
+
+    function extraerIdDrive(input) {
+      if (!input) return '';
+      const str = String(input).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]{20,})/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]{20,})/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]{20,})/);
+      if (matchD && matchD[1]) return matchD[1];
+      const matchLargo = str.match(/([a-zA-Z0-9_-]{25,})/);
+      if (matchLargo && matchLargo[1]) return matchLargo[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
     }
-  }
-}
 
-async function iniciarGaleria() {
-  sincronizarPrecios();
+    function actualizarUIPrecios() {
+      const lblImp = document.getElementById('lbl-tarifa-impresa');
+      const lblDig = document.getElementById('lbl-tarifa-digital');
+      if (lblImp) lblImp.innerText = `$${TARIFA_IMPRESA.toLocaleString('es-AR')}`;
+      if (lblDig) lblDig.innerText = `$${TARIFA_DIGITAL.toLocaleString('es-AR')}`;
 
-  const params = new URLSearchParams(window.location.search);
-  const paramId = params.get('id') || '';
-  const paramFolder = params.get('folder') || '';
-  const paramTitulo = params.get('titulo') || '';
+      const btnImp = document.getElementById('btn-label-impresas');
+      const btnDig = document.getElementById('btn-label-digitales');
+      if (btnImp) btnImp.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">print</span> Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
+      if (btnDig) btnDig.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span> Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
 
-  if (paramTitulo) {
-    tituloEvento = decodeURIComponent(paramTitulo);
-    const tituloEl = document.getElementById('titulo-galeria');
-    if (tituloEl) tituloEl.innerText = tituloEvento;
-  }
+      actualizarTotalesBarra();
+    }
 
-  let folderId = '';
-  if (paramFolder && paramFolder.trim().length > 15) {
-    folderId = extraerIdDrive(paramFolder);
-  } else if (paramId && paramId.trim().length > 20 && isNaN(paramId)) {
-    folderId = extraerIdDrive(paramId);
-  }
+    async function sincronizarPrecios() {
+      try {
+        const storedImp = localStorage.getItem('tarifa_impresa');
+        const storedDig = localStorage.getItem('tarifa_digital');
+        const storedWa = localStorage.getItem('numero_whatsapp');
+        if (storedImp && !isNaN(storedImp) && Number(storedImp) > 0) TARIFA_IMPRESA = Number(storedImp);
+        if (storedDig && !isNaN(storedDig) && Number(storedDig) > 0) TARIFA_DIGITAL = Number(storedDig);
+        if (storedWa && storedWa.trim().length > 5) WHATSAPP_FOTOGRAFO = storedWa.replace(/\D/g, '');
+      } catch (e) {
+        console.warn("Error leyendo localStorage:", e);
+      }
+      actualizarUIPrecios();
 
-  if (!folderId && paramId && supabaseClient) {
-    try {
-      const promiseSupabase = (async () => {
-        let query = supabaseClient.from('galeria').select('*');
-        if (!isNaN(paramId)) {
-          query = query.eq('id', paramId);
-        } else {
-          query = query.eq('id', paramId);
+      if (supabaseClient) {
+        try {
+          const consultaConfig = async () => {
+            // Sincronización con tabla 'configuracion' buscando id=1 o clave 'tarifas_oficiales'
+            let { data, error } = await supabaseClient.from('configuracion').select('*').or('id.eq.1,clave.eq.tarifas_oficiales').limit(2);
+            if (!error && data && data.length > 0) return data[0];
+            const fallback = await supabaseClient.from('configuracion').select('*').limit(1);
+            if (!fallback.error && fallback.data && fallback.data.length > 0) return fallback.data[0];
+            return null;
+          };
+
+          const config = await Promise.race([
+            consultaConfig(),
+            new Promise(resolve => setTimeout(() => resolve(null), 2500))
+          ]);
+
+          if (config) {
+            let imp = config.tarifa_impresa !== undefined ? Number(config.tarifa_impresa) : null;
+            let dig = config.tarifa_digital !== undefined ? Number(config.tarifa_digital) : null;
+            let wa = config.whatsapp || config.numero_whatsapp;
+
+            if ((imp === null || dig === null) && config.valor) {
+              let val = config.valor;
+              if (typeof val === 'string') {
+                try { val = JSON.parse(val); } catch (_) {}
+              }
+              if (val && typeof val === 'object') {
+                if (val.tarifa_impresa) imp = Number(val.tarifa_impresa);
+                if (val.tarifa_digital) dig = Number(val.tarifa_digital);
+                if (val.whatsapp || val.numero_whatsapp) wa = String(val.whatsapp || val.numero_whatsapp);
+              }
+            }
+
+            if (imp && !isNaN(imp) && imp > 0) {
+              TARIFA_IMPRESA = imp;
+              try { localStorage.setItem('tarifa_impresa', String(imp)); } catch (_) {}
+            }
+            if (dig && !isNaN(dig) && dig > 0) {
+              TARIFA_DIGITAL = dig;
+              try { localStorage.setItem('tarifa_digital', String(dig)); } catch (_) {}
+            }
+            if (wa && String(wa).trim().length > 5) {
+              WHATSAPP_FOTOGRAFO = String(wa).replace(/\D/g, '');
+              try { localStorage.setItem('numero_whatsapp', WHATSAPP_FOTOGRAFO); } catch (_) {}
+            }
+            actualizarUIPrecios();
+          }
+        } catch (errSupabase) {
+          console.warn("Aviso supabase config:", errSupabase);
         }
-        const { data } = await query.maybeSingle();
-        return data;
-      })();
+      }
+    }
 
-      const data = await Promise.race([
-        promiseSupabase,
-        new Promise(resolve => setTimeout(() => resolve(null), 2500))
-      ]);
+    async function iniciarGaleria() {
+      await sincronizarPrecios();
 
-      if (data) {
-        if (data.es_privada || data.password) {
-          window.location.replace('privadas.html' + window.location.search);
+      const params = new URLSearchParams(window.location.search);
+      const paramId = params.get('id') || '';
+      const paramFolder = params.get('folder') || '';
+      const paramTitulo = params.get('titulo') || '';
+
+      if (paramTitulo) {
+        tituloEvento = decodeURIComponent(paramTitulo);
+        const tituloEl = document.getElementById('titulo-galeria');
+        if (tituloEl) tituloEl.innerText = tituloEvento;
+      }
+
+      let folderId = '';
+      if (paramFolder && paramFolder.trim().length > 15) {
+        folderId = extraerIdDrive(paramFolder);
+      } else if (paramId && paramId.trim().length > 20 && isNaN(paramId)) {
+        folderId = extraerIdDrive(paramId);
+      }
+
+      // Si tenemos paramId numérico o identificador de Supabase, buscar datos del evento
+      if (paramId && supabaseClient) {
+        try {
+          const promiseSupabase = (async () => {
+            let query = supabaseClient.from('galeria').select('*').eq('id', paramId);
+            const { data } = await query.maybeSingle();
+            return data;
+          })();
+
+          const data = await Promise.race([
+            promiseSupabase,
+            new Promise(resolve => setTimeout(() => resolve(null), 3000))
+          ]);
+
+          if (data) {
+            if (data.es_privada || data.password) {
+              window.location.replace('privadas.html' + window.location.search);
+              return;
+            }
+            if (data.titulo && !paramTitulo) {
+              tituloEvento = data.titulo;
+              const tEl = document.getElementById('titulo-galeria');
+              if (tEl) tEl.innerText = tituloEvento;
+            }
+            const enlace = data.drive_url || data.url_drive || data.enlace_drive || data.folder_id || '';
+            if (!folderId && enlace) {
+              folderId = extraerIdDrive(enlace);
+            }
+          }
+        } catch (e) {
+          console.warn("Aviso supabase álbum:", e);
+        }
+      }
+
+      if (!folderId && paramId) {
+        folderId = extraerIdDrive(paramId);
+      }
+
+      // Si no hay carpeta o no se pudo extraer, no renderizamos fotos de muestra ficticias
+      if (!folderId) {
+        mostrarMensajeVacio('');
+        return;
+      }
+
+      cargarFotosDrive(folderId);
+    }
+
+    // CARGA REAL DESDE GOOGLE DRIVE CON PAGINACIÓN COMPLETA (SOPORTE 350+ FOTOS)
+    async function cargarFotosDrive(folderId) {
+      const contenedor = document.getElementById('contenedor-fotos');
+      contenedor.innerHTML = `
+        <div class="estado-caja">
+          <div class="spinner-cargando"></div>
+          <h3>Cargando fotografías oficiales...</h3>
+          <p>Obteniendo álbum desde Google Drive. Esto puede demorar unos segundos...</p>
+        </div>
+      `;
+
+      let archivosEncontrados = [];
+      let pageToken = '';
+
+      try {
+        do {
+          let urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&pageSize=1000&fields=nextPageToken,files(id,name)&key=${API_KEY_DRIVE}`;
+          if (pageToken) {
+            urlDrive += `&pageToken=${encodeURIComponent(pageToken)}`;
+          }
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 14000);
+
+          const res = await fetch(urlDrive, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          const datos = await res.json();
+
+          if (datos.error) {
+            console.error("Error devuelto por Google Drive API:", datos.error);
+            break;
+          }
+
+          if (datos.files && datos.files.length > 0) {
+            archivosEncontrados = archivosEncontrados.concat(datos.files);
+          }
+
+          pageToken = datos.nextPageToken || '';
+        } while (pageToken);
+
+        if (archivosEncontrados.length === 0) {
+          mostrarMensajeVacio(folderId);
           return;
         }
-        if (data.titulo && !paramTitulo) {
-          tituloEvento = data.titulo;
-          document.getElementById('titulo-galeria').innerText = tituloEvento;
+
+        // Construir catálogo exclusivo con fotos reales
+        listaFotos = archivosEncontrados.map(f => ({
+          id: f.id,
+          name: f.name ? (f.name.startsWith('#') ? f.name : `#${f.name}`) : `#IMG_${f.id.slice(-6)}`,
+          thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
+          full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
+        }));
+
+        mapaSeleccion.clear();
+        renderizarFotos();
+      } catch (err) {
+        console.warn("Error cargando fotos de Google Drive:", err);
+        if (archivosEncontrados.length > 0) {
+          listaFotos = archivosEncontrados.map(f => ({
+            id: f.id,
+            name: f.name ? (f.name.startsWith('#') ? f.name : `#${f.name}`) : `#IMG_${f.id.slice(-6)}`,
+            thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
+            full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
+          }));
+          mapaSeleccion.clear();
+          renderizarFotos();
+        } else {
+          mostrarMensajeVacio(folderId);
         }
-        const enlace = data.drive_url || data.url_drive || data.enlace_drive || data.folder_id || '';
-        folderId = extraerIdDrive(enlace);
       }
-    } catch (e) {
-      console.warn("Aviso supabase álbum:", e);
-    }
-  }
-
-  if (!folderId && paramId) {
-    folderId = extraerIdDrive(paramId);
-  }
-
-  if (folderId) {
-    cargarFotosDrive(folderId);
-  } else {
-    // Si no hay parámetro explícito, mostramos la galería escolar de demostración por defecto
-    actualizarTotalesBarra();
-  }
-}
-
-async function cargarFotosDrive(folderId) {
-  let archivosEncontrados = [];
-  let pageToken = '';
-
-  try {
-    do {
-      let urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&pageSize=1000&fields=nextPageToken,files(id,name)&key=${API_KEY_DRIVE}`;
-      if (pageToken) {
-        urlDrive += `&pageToken=${encodeURIComponent(pageToken)}`;
-      }
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 12000);
-
-      const res = await fetch(urlDrive, { signal: controller.signal });
-      clearTimeout(timeoutId);
-      const datos = await res.json();
-
-      if (datos.error) {
-        console.error("Error devuelto por Google Drive API:", datos.error);
-        break;
-      }
-
-      if (datos.files && datos.files.length > 0) {
-        archivosEncontrados = archivosEncontrados.concat(datos.files);
-      }
-
-      pageToken = datos.nextPageToken || '';
-    } while (pageToken);
-
-    if (archivosEncontrados.length === 0) {
-      mostrarMensajeVacio(folderId);
-      return;
     }
 
-    listaFotos = archivosEncontrados.map(f => ({
-      id: f.id,
-      name: f.name ? (f.name.startsWith('#') ? f.name : `#${f.name}`) : '#Foto',
-      thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
-      full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
-    }));
+    function renderizarFotos() {
+      const contenedor = document.getElementById('contenedor-fotos');
+      contenedor.innerHTML = '';
 
-    mapaSeleccion.clear();
-    renderizarFotos();
-  } catch (err) {
-    console.warn("Error cargando fotos de Google Drive:", err);
-    if (archivosEncontrados.length > 0) {
-      listaFotos = archivosEncontrados.map(f => ({
-        id: f.id,
-        name: f.name ? (f.name.startsWith('#') ? f.name : `#${f.name}`) : '#Foto',
-        thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
-        full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
-      }));
+      if (!listaFotos || listaFotos.length === 0) {
+        mostrarMensajeVacio('');
+        return;
+      }
+
+      listaFotos.forEach((foto, index) => {
+        const tarjeta = document.createElement('div');
+        const seleccion = mapaSeleccion.get(foto.id);
+        const estaSeleccionada = seleccion && (seleccion.impresa || seleccion.digital);
+
+        tarjeta.className = `tarjeta-foto ${estaSeleccionada ? 'seleccionada' : ''}`;
+        tarjeta.id = `card-foto-${foto.id}`;
+
+        tarjeta.innerHTML = `
+          <div class="contenedor-img" onclick="abrirVisor(${index})">
+            <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
+            <div class="marca-agua">
+              <div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div>
+            </div>
+          </div>
+          <div class="pie-foto">
+            <div class="header-pie">
+              <span class="nombre-foto" title="${foto.name}">${foto.name}</span>
+              <span class="badge-foto-seleccionada"><span class="material-symbols-outlined" style="font-size:12px;">check_circle</span> Seleccionada</span>
+            </div>
+            <div class="botones-eleccion">
+              <button class="btn-select-tarjeta btn-select-impresa ${seleccion && seleccion.impresa ? 'activo' : ''}" id="btn-imp-${foto.id}" onclick="elegirFormatoFoto('${foto.id}', 'impresa', event)">
+                <span class="material-symbols-outlined" style="font-size:13px;">print</span> Impresa
+              </button>
+              <button class="btn-select-tarjeta btn-select-digital ${seleccion && seleccion.digital ? 'activo' : ''}" id="btn-dig-${foto.id}" onclick="elegirFormatoFoto('${foto.id}', 'digital', event)">
+                <span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital
+              </button>
+            </div>
+            ${estaSeleccionada ? `
+              <button class="btn-select-tarjeta btn-select-quitar" style="width: 100%; margin-top: 2px;" onclick="quitarSeleccionFoto('${foto.id}', event)">
+                <span class="material-symbols-outlined" style="font-size:13px;">delete</span> Quitar selección
+              </button>
+            ` : ''}
+          </div>
+        `;
+        contenedor.appendChild(tarjeta);
+      });
+
+      actualizarTotalesBarra();
+    }
+
+    function elegirFormatoFoto(fotoId, tipo, event) {
+      if (event) event.stopPropagation();
+
+      let estado = mapaSeleccion.get(fotoId) || { impresa: false, digital: false };
+
+      if (tipo === 'impresa') {
+        estado.impresa = !estado.impresa;
+      } else if (tipo === 'digital') {
+        estado.digital = !estado.digital;
+      }
+
+      if (!estado.impresa && !estado.digital) {
+        mapaSeleccion.delete(fotoId);
+      } else {
+        mapaSeleccion.set(fotoId, estado);
+      }
+
+      actualizarTarjetaDOM(fotoId);
+      actualizarTotalesBarra();
+    }
+
+    function quitarSeleccionFoto(fotoId, event) {
+      if (event) event.stopPropagation();
+      mapaSeleccion.delete(fotoId);
+      actualizarTarjetaDOM(fotoId);
+      actualizarTotalesBarra();
+    }
+
+    function actualizarTarjetaDOM(fotoId) {
+      const card = document.getElementById(`card-foto-${fotoId}`);
+      if (!card) return;
+
+      const estado = mapaSeleccion.get(fotoId) || { impresa: false, digital: false };
+      const esActivo = estado.impresa || estado.digital;
+
+      if (esActivo) {
+        card.classList.add('seleccionada');
+      } else {
+        card.classList.remove('seleccionada');
+      }
+
+      const btnImp = document.getElementById(`btn-imp-${fotoId}`) || card.querySelector('.btn-select-impresa');
+      const btnDig = document.getElementById(`btn-dig-${fotoId}`) || card.querySelector('.btn-select-digital');
+
+      if (btnImp) {
+        if (estado.impresa) btnImp.classList.add('activo');
+        else btnImp.classList.remove('activo');
+      }
+
+      if (btnDig) {
+        if (estado.digital) btnDig.classList.add('activo');
+        else btnDig.classList.remove('activo');
+      }
+
+      let btnQuitar = card.querySelector('.btn-select-quitar');
+      const pie = card.querySelector('.pie-foto');
+      if (esActivo && !btnQuitar && pie) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-select-tarjeta btn-select-quitar';
+        btn.style.width = '100%';
+        btn.style.marginTop = '2px';
+        btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:13px;">delete</span> Quitar selección';
+        btn.onclick = (e) => quitarSeleccionFoto(fotoId, e);
+        pie.appendChild(btn);
+      } else if (!esActivo && btnQuitar) {
+        btnQuitar.remove();
+      }
+    }
+
+    function actualizarTotalesBarra() {
+      let cantFotos = mapaSeleccion.size;
+      let cantImpresas = 0;
+      let cantDigitales = 0;
+
+      mapaSeleccion.forEach((val) => {
+        if (val.impresa) cantImpresas++;
+        if (val.digital) cantDigitales++;
+      });
+
+      const barra = document.getElementById('barra-pedidos');
+      if (barra) {
+        barra.style.display = cantFotos > 0 ? 'flex' : 'none';
+      }
+
+      const total = (cantImpresas * TARIFA_IMPRESA) + (cantDigitales * TARIFA_DIGITAL);
+
+      const badgeFotos = document.getElementById('contador-fotos');
+      if (badgeFotos) badgeFotos.innerText = `${cantFotos} ${cantFotos === 1 ? 'foto' : 'fotos'}`;
+
+      const badgeTotal = document.getElementById('total-acumulado-barra');
+      if (badgeTotal) badgeTotal.innerText = `$${total.toLocaleString('es-AR')}`;
+    }
+
+    function limpiarSeleccion() {
       mapaSeleccion.clear();
-      renderizarFotos();
-    } else {
-      mostrarMensajeVacio(folderId);
+      document.querySelectorAll('.tarjeta-foto').forEach(c => {
+        c.classList.remove('seleccionada');
+        const bq = c.querySelector('.btn-select-quitar');
+        if (bq) bq.remove();
+      });
+      document.querySelectorAll('.btn-select-tarjeta').forEach(b => b.classList.remove('activo'));
+      actualizarTotalesBarra();
     }
-  }
-}
 
-function renderizarFotos() {
-  const contenedor = document.getElementById('contenedor-fotos');
-  contenedor.innerHTML = '';
+    // PEDIR DIRECTO POR WHATSAPP CON FORMATEO PROFESIONAL
+    function pedirPorWhatsAppDirecto() {
+      if (mapaSeleccion.size === 0) {
+        mostrarToastProteccion("Por favor selecciona al menos una fotografía para continuar el pedido.");
+        return;
+      }
 
-  listaFotos.forEach((foto, index) => {
-    const tarjeta = document.createElement('div');
-    const seleccion = mapaSeleccion.get(foto.id);
-    const estaSeleccionada = seleccion && (seleccion.impresa || seleccion.digital);
+      const itemsDetalle = [];
+      let cantImpresas = 0;
+      let cantDigitales = 0;
 
-    tarjeta.className = `tarjeta-foto ${estaSeleccionada ? 'seleccionada' : ''}`;
-    tarjeta.id = `card-foto-${foto.id}`;
+      mapaSeleccion.forEach((formatos, id) => {
+        const f = listaFotos.find(item => item.id === id);
+        const nombre = f ? f.name : `#Foto_${id}`;
+        let tipos = [];
+        if (formatos.impresa) {
+          tipos.push('Impresa 15x21');
+          cantImpresas++;
+        }
+        if (formatos.digital) {
+          tipos.push('Digital HD');
+          cantDigitales++;
+        }
+        itemsDetalle.push(`• ${nombre}: ${tipos.join(' + ')}`);
+      });
 
-    tarjeta.innerHTML = `
-      <div class="contenedor-img" onclick="abrirVisor(${index})">
-        <img src="${foto.thumb}" alt="${foto.name}" loading="lazy" oncontextmenu="return false;" ondragstart="return false;" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/${foto.id}';">
-        <div class="marca-agua">
-          <div class="texto-marca-agua">MUESTRA OFICIAL<br/>SERGIO MOLINA</div>
-        </div>
-      </div>
-      <div class="pie-foto">
-        <div class="header-pie">
-          <span class="nombre-foto" title="${foto.name}">${foto.name}</span>
-          <span class="badge-foto-seleccionada"><span class="material-symbols-outlined" style="font-size:12px;">check_circle</span> Seleccionada</span>
-        </div>
-        <div class="botones-eleccion">
-          <button class="btn-select-tarjeta btn-select-impresa ${seleccion && seleccion.impresa ? 'activo' : ''}" id="btn-imp-${foto.id}" onclick="elegirFormatoFoto('${foto.id}', 'impresa', event)">
-            <span class="material-symbols-outlined" style="font-size:13px;">print</span> Impresa
-          </button>
-          <button class="btn-select-tarjeta btn-select-digital ${seleccion && seleccion.digital ? 'activo' : ''}" id="btn-dig-${foto.id}" onclick="elegirFormatoFoto('${foto.id}', 'digital', event)">
-            <span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital
-          </button>
-        </div>
-        ${estaSeleccionada ? `
-          <button class="btn-select-tarjeta btn-select-quitar" style="width: 100%; margin-top: 2px;" onclick="quitarSeleccionFoto('${foto.id}', event)">
-            <span class="material-symbols-outlined" style="font-size:13px;">delete</span> Quitar selección
-          </button>
-        ` : ''}
-      </div>
-    `;
-    contenedor.appendChild(tarjeta);
-  });
+      const total = (cantImpresas * TARIFA_IMPRESA) + (cantDigitales * TARIFA_DIGITAL);
 
-  actualizarTotalesBarra();
-}
+      let mensaje = `📸 *NUEVO PEDIDO DE FOTOGRAFÍAS ESCOLARES*\n` +
+        `*Evento:* ${tituloEvento}\n` +
+        `*Cantidad de Fotos:* ${mapaSeleccion.size}\n\n` +
+        `*Detalle de Selección:*\n${itemsDetalle.join('\n')}\n\n` +
+        `*Copias Impresas:* ${cantImpresas} ($${(cantImpresas * TARIFA_IMPRESA).toLocaleString('es-AR')})\n` +
+        `*Archivos Digitales HD:* ${cantDigitales} ($${(cantDigitales * TARIFA_DIGITAL).toLocaleString('es-AR')})\n` +
+        `💰 *TOTAL A PAGAR:* $${total.toLocaleString('es-AR')}\n\n` +
+        `Hola Sergio, deseo encargar estas fotografías. ¿Me confirmas los medios de pago (transferencia / alias) para completar la orden?`;
 
-function elegirFormatoFoto(fotoId, tipo, event) {
-  if (event) event.stopPropagation();
-
-  let estado = mapaSeleccion.get(fotoId) || { impresa: false, digital: false };
-
-  if (tipo === 'impresa') {
-    estado.impresa = !estado.impresa;
-  } else if (tipo === 'digital') {
-    estado.digital = !estado.digital;
-  }
-
-  if (!estado.impresa && !estado.digital) {
-    mapaSeleccion.delete(fotoId);
-  } else {
-    mapaSeleccion.set(fotoId, estado);
-  }
-
-  actualizarTarjetaDOM(fotoId);
-  actualizarTotalesBarra();
-}
-
-function quitarSeleccionFoto(fotoId, event) {
-  if (event) event.stopPropagation();
-  mapaSeleccion.delete(fotoId);
-  actualizarTarjetaDOM(fotoId);
-  actualizarTotalesBarra();
-}
-
-function actualizarTarjetaDOM(fotoId) {
-  const card = document.getElementById(`card-foto-${fotoId}`);
-  if (!card) return;
-
-  const estado = mapaSeleccion.get(fotoId) || { impresa: false, digital: false };
-  const esActivo = estado.impresa || estado.digital;
-
-  if (esActivo) {
-    card.classList.add('seleccionada');
-  } else {
-    card.classList.remove('seleccionada');
-  }
-
-  const btnImp = document.getElementById(`btn-imp-${fotoId}`) || card.querySelector('.btn-select-impresa');
-  const btnDig = document.getElementById(`btn-dig-${fotoId}`) || card.querySelector('.btn-select-digital');
-
-  if (btnImp) {
-    if (estado.impresa) btnImp.classList.add('activo');
-    else btnImp.classList.remove('activo');
-  }
-
-  if (btnDig) {
-    if (estado.digital) btnDig.classList.add('activo');
-    else btnDig.classList.remove('activo');
-  }
-
-  // Manejar el botón quitar dinámicamente si no se re-renderiza toda la cuadrícula
-  let btnQuitar = card.querySelector('.btn-select-quitar');
-  const pie = card.querySelector('.pie-foto');
-  if (esActivo && !btnQuitar && pie) {
-    const btn = document.createElement('button');
-    btn.className = 'btn-select-tarjeta btn-select-quitar';
-    btn.style.width = '100%';
-    btn.style.marginTop = '2px';
-    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:13px;">delete</span> Quitar selección';
-    btn.onclick = (e) => quitarSeleccionFoto(fotoId, e);
-    pie.appendChild(btn);
-  } else if (!esActivo && btnQuitar) {
-    btnQuitar.remove();
-  }
-}
-
-function actualizarTotalesBarra() {
-  let cantFotos = mapaSeleccion.size;
-  let cantImpresas = 0;
-  let cantDigitales = 0;
-
-  mapaSeleccion.forEach((val) => {
-    if (val.impresa) cantImpresas++;
-    if (val.digital) cantDigitales++;
-  });
-
-  const total = (cantImpresas * TARIFA_IMPRESA) + (cantDigitales * TARIFA_DIGITAL);
-
-  const badgeFotos = document.getElementById('contador-fotos');
-  if (badgeFotos) badgeFotos.innerText = `${cantFotos} ${cantFotos === 1 ? 'foto' : 'fotos'}`;
-
-  const badgeTotal = document.getElementById('total-acumulado-barra');
-  if (badgeTotal) badgeTotal.innerText = `$${total.toLocaleString('es-AR')}`;
-}
-
-function limpiarSeleccion() {
-  mapaSeleccion.clear();
-  document.querySelectorAll('.tarjeta-foto').forEach(c => {
-    c.classList.remove('seleccionada');
-    const bq = c.querySelector('.btn-select-quitar');
-    if (bq) bq.remove();
-  });
-  document.querySelectorAll('.btn-select-tarjeta').forEach(b => b.classList.remove('activo'));
-  actualizarTotalesBarra();
-}
-
-// PEDIR DIRECTO POR WHATSAPP CON FORMATEO PROFESIONAL
-function pedirPorWhatsAppDirecto() {
-  if (mapaSeleccion.size === 0) {
-    mostrarToastProteccion("Por favor selecciona al menos una fotografía para continuar el pedido.");
-    return;
-  }
-
-  const itemsDetalle = [];
-  let cantImpresas = 0;
-  let cantDigitales = 0;
-
-  mapaSeleccion.forEach((formatos, id) => {
-    const f = listaFotos.find(item => item.id === id);
-    const nombre = f ? f.name : `#Foto_${id}`;
-    let tipos = [];
-    if (formatos.impresa) {
-      tipos.push('Impresa 15x21');
-      cantImpresas++;
+      const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
+      window.open(urlWa, '_blank');
     }
-    if (formatos.digital) {
-      tipos.push('Digital HD');
-      cantDigitales++;
+
+    function irAlPedido(formatoForzado) {
+      if (mapaSeleccion.size === 0) {
+        mostrarToastProteccion("Por favor selecciona al menos una fotografía para continuar.");
+        return;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const currentFolder = params.get('folder') || params.get('id') || '';
+
+      const fotosArray = [];
+      mapaSeleccion.forEach((formatos, id) => {
+        const f = listaFotos.find(item => item.id === id);
+        fotosArray.push({
+          id: id,
+          name: f ? f.name : id,
+          thumb: f ? f.thumb : `https://lh3.googleusercontent.com/d/${id}=w600`,
+          full: f ? f.full : `https://lh3.googleusercontent.com/d/${id}=w1600`,
+          impresa: formatoForzado === 'digital' ? false : (formatoForzado === 'impresa' ? true : formatos.impresa),
+          digital: formatoForzado === 'impresa' ? false : (formatoForzado === 'digital' ? true : formatos.digital)
+        });
+      });
+
+      const carritoData = {
+        evento: tituloEvento,
+        folderId: currentFolder,
+        fotos: fotosArray
+      };
+
+      try {
+        localStorage.setItem('carrito_evento_actual', JSON.stringify(carritoData));
+        localStorage.setItem('pedido_fotos_seleccionadas', JSON.stringify(fotosArray));
+        localStorage.setItem('pedido_fotos_nombres', JSON.stringify(fotosArray.map(f => f.name)));
+        localStorage.setItem('pedido_evento_titulo', carritoData.evento);
+        localStorage.setItem('tarifa_impresa', String(TARIFA_IMPRESA));
+        localStorage.setItem('tarifa_digital', String(TARIFA_DIGITAL));
+      } catch (err) {
+        console.warn('Error en storage:', err);
+      }
+
+      const destino = 'pedido.html?id=' + encodeURIComponent(currentFolder) + '&titulo=' + encodeURIComponent(tituloEvento);
+      window.location.href = destino;
     }
-    itemsDetalle.push(`• ${nombre}: ${tipos.join(' + ')}`);
-  });
 
-  const total = (cantImpresas * TARIFA_IMPRESA) + (cantDigitales * TARIFA_DIGITAL);
+    // VISOR EN ALTA RESOLUCIÓN CON GESTOS SWIPE
+    function abrirVisor(index) {
+      if (!listaFotos || listaFotos.length === 0) return;
+      indiceVisor = index;
+      document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+      document.getElementById('modal-visor').style.display = 'flex';
+    }
 
-  let mensaje = `📸 *NUEVO PEDIDO DE FOTOGRAFÍAS ESCOLARES*\n` +
-    `*Evento:* ${tituloEvento}\n` +
-    `*Cantidad de Fotos:* ${mapaSeleccion.size}\n\n` +
-    `*Detalle de Selección:*\n${itemsDetalle.join('\n')}\n\n` +
-    `*Copias Impresas:* ${cantImpresas} ($${(cantImpresas * TARIFA_IMPRESA).toLocaleString('es-AR')})\n` +
-    `*Archivos Digitales HD:* ${cantDigitales} ($${(cantDigitales * TARIFA_DIGITAL).toLocaleString('es-AR')})\n` +
-    `💰 *TOTAL A PAGAR:* $${total.toLocaleString('es-AR')}\n\n` +
-    `Hola Sergio, deseo encargar estas fotografías. ¿Me confirmas los medios de pago (transferencia / alias) para completar la orden?`;
+    function cerrarVisor() {
+      document.getElementById('modal-visor').style.display = 'none';
+    }
 
-  const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
-  window.open(urlWa, '_blank');
-}
+    function cerrarVisorFondo(e) {
+      if (e.target && e.target.id === 'modal-visor') cerrarVisor();
+    }
 
-function irAlPedido(formatoForzado) {
-  if (mapaSeleccion.size === 0) {
-    mostrarToastProteccion("Por favor selecciona al menos una fotografía para continuar.");
-    return;
-  }
+    function cambiarFoto(dir, event) {
+      if (event) event.stopPropagation();
+      if (!listaFotos || listaFotos.length === 0) return;
+      indiceVisor += dir;
+      if (indiceVisor >= listaFotos.length) indiceVisor = 0;
+      else if (indiceVisor < 0) indiceVisor = listaFotos.length - 1;
+      document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
+    }
 
-  const params = new URLSearchParams(window.location.search);
-  const currentFolder = params.get('folder') || params.get('id') || '';
+    // GESTOS TÁCTILES (SWIPE)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const modalEl = document.getElementById('modal-visor');
+    modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    modalEl.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX + 45 < touchStartX) cambiarFoto(1);
+      else if (touchEndX > touchStartX + 45) cambiarFoto(-1);
+    }, false);
 
-  const fotosArray = [];
-  mapaSeleccion.forEach((formatos, id) => {
-    const f = listaFotos.find(item => item.id === id);
-    fotosArray.push({
-      id: id,
-      name: f ? f.name : id,
-      thumb: f ? f.thumb : `https://lh3.googleusercontent.com/d/${id}=w600`,
-      full: f ? f.full : `https://lh3.googleusercontent.com/d/${id}=w1600`,
-      impresa: formatoForzado === 'digital' ? false : (formatoForzado === 'impresa' ? true : formatos.impresa),
-      digital: formatoForzado === 'impresa' ? false : (formatoForzado === 'digital' ? true : formatos.digital)
+    // BLINDAJE TOTAL ANTI-DESCARGA: CLIC DERECHO, ATAJOS Y TOAST
+    function mostrarToastProteccion(mensajeOpcional) {
+      const toast = document.getElementById('toast-proteccion');
+      if (toast) {
+        if (mensajeOpcional) {
+          const spanTxt = toast.querySelector('span:last-child');
+          if (spanTxt) spanTxt.innerText = mensajeOpcional;
+        }
+        toast.style.display = 'inline-flex';
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => {
+          toast.style.display = 'none';
+        }, 2800);
+      }
+    }
+
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      mostrarToastProteccion();
+      return false;
     });
-  });
 
-  const carritoData = {
-    evento: tituloEvento,
-    folderId: currentFolder,
-    fotos: fotosArray
-  };
+    document.addEventListener('keydown', (e) => {
+      if (
+        ((e.ctrlKey || e.metaKey) && ['s', 'S', 'u', 'U', 'p', 'P', 'c', 'C'].includes(e.key)) ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        mostrarToastProteccion();
+        return false;
+      }
 
-  try {
-    localStorage.setItem('carrito_evento_actual', JSON.stringify(carritoData));
-    localStorage.setItem('pedido_fotos_seleccionadas', JSON.stringify(fotosArray));
-    localStorage.setItem('pedido_fotos_nombres', JSON.stringify(fotosArray.map(f => f.name)));
-    localStorage.setItem('pedido_evento_titulo', carritoData.evento);
-    localStorage.setItem('tarifa_impresa', String(TARIFA_IMPRESA));
-    localStorage.setItem('tarifa_digital', String(TARIFA_DIGITAL));
-  } catch (err) {
-    console.warn('Error en storage:', err);
-  }
+      const modal = document.getElementById('modal-visor');
+      if (modal && modal.style.display === 'flex') {
+        if (e.key === 'Escape') cerrarVisor();
+        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
+        else if (e.key === 'ArrowRight') cambiarFoto(1);
+      }
+    });
 
-  const destino = 'pedido.html?id=' + encodeURIComponent(currentFolder) + '&titulo=' + encodeURIComponent(tituloEvento);
-  window.location.href = destino;
-}
-
-// VISOR EN ALTA RESOLUCIÓN CON GESTOS SWIPE
-function abrirVisor(index) {
-  if (!listaFotos || listaFotos.length === 0) return;
-  indiceVisor = index;
-  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
-  document.getElementById('modal-visor').style.display = 'flex';
-}
-
-function cerrarVisor() {
-  document.getElementById('modal-visor').style.display = 'none';
-}
-
-function cerrarVisorFondo(e) {
-  if (e.target && e.target.id === 'modal-visor') cerrarVisor();
-}
-
-function cambiarFoto(dir, event) {
-  if (event) event.stopPropagation();
-  indiceVisor += dir;
-  if (indiceVisor >= listaFotos.length) indiceVisor = 0;
-  else if (indiceVisor < 0) indiceVisor = listaFotos.length - 1;
-  document.getElementById('img-ampliada').src = listaFotos[indiceVisor].full;
-}
-
-// GESTOS TÁCTILES (SWIPE)
-let touchStartX = 0;
-let touchEndX = 0;
-const modalEl = document.getElementById('modal-visor');
-modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
-modalEl.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  if (touchEndX + 45 < touchStartX) cambiarFoto(1);
-  else if (touchEndX > touchStartX + 45) cambiarFoto(-1);
-}, false);
-
-// BLINDAJE TOTAL ANTI-DESCARGA: CLIC DERECHO, ATAJOS Y TOAST
-function mostrarToastProteccion(mensajeOpcional) {
-  const toast = document.getElementById('toast-proteccion');
-  if (toast) {
-    if (mensajeOpcional) {
-      const spanTxt = toast.querySelector('span:last-child');
-      if (spanTxt) spanTxt.innerText = mensajeOpcional;
+    function mostrarMensajeVacio(folderId) {
+      const contenedor = document.getElementById('contenedor-fotos');
+      contenedor.innerHTML = `
+        <div class="estado-caja">
+          <span class="material-symbols-outlined">folder_off</span>
+          <h3>No se encontraron fotografías disponibles</h3>
+          <p>No se encontraron fotografías disponibles en esta carpeta de Google Drive o el enlace aún está sincronizando.</p>
+          ${folderId ? `<div style="margin-top: 10px; font-family: monospace; font-size:0.75rem; color:#777;">Carpeta ID: ${folderId}</div>` : ''}
+          <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+            <button onclick="iniciarGaleria()" class="btn-accion-estado">
+              <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+              <span>Reintentar</span>
+            </button>
+            <a href="eventos.html" class="btn-accion-estado" style="background:#262626;">
+              <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
+              <span>Volver a Eventos</span>
+            </a>
+          </div>
+        </div>
+      `;
+      actualizarTotalesBarra();
     }
-    toast.style.display = 'inline-flex';
-    clearTimeout(window.__toastTimer);
-    window.__toastTimer = setTimeout(() => {
-      toast.style.display = 'none';
-    }, 2800);
-  }
-}
 
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-  mostrarToastProteccion();
-  return false;
-});
-
-document.addEventListener('keydown', (e) => {
-  if (
-    ((e.ctrlKey || e.metaKey) && ['s', 'S', 'u', 'U', 'p', 'P', 'c', 'C'].includes(e.key)) ||
-    e.key === 'F12'
-  ) {
-    e.preventDefault();
-    mostrarToastProteccion();
-    return false;
-  }
-
-  const modal = document.getElementById('modal-visor');
-  if (modal && modal.style.display === 'flex') {
-    if (e.key === 'Escape') cerrarVisor();
-    else if (e.key === 'ArrowLeft') cambiarFoto(-1);
-    else if (e.key === 'ArrowRight') cambiarFoto(1);
-  }
-});
-
-function mostrarMensajeVacio(folderId) {
-  const contenedor = document.getElementById('contenedor-fotos');
-  contenedor.innerHTML = `
-    <div class="estado-caja">
-      <span class="material-symbols-outlined">hide_image</span>
-      <h3>Álbum escolar en preparación</h3>
-      <p>No se encontraron fotografías públicas disponibles para esta carpeta o el enlace aún está sincronizando.</p>
-      <div style="margin-top: 10px; font-family: monospace; font-size:0.75rem; color:#777;">Carpeta ID: ${folderId || 'No provista'}</div>
-      <button onclick="iniciarGaleria()" class="btn-accion-estado">
-        <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
-        <span>Reintentar</span>
-      </button>
-      <a href="eventos.html" class="btn-accion-estado" style="background:#262626; margin-left:8px;">
-        <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
-        <span>Volver a Eventos</span>
-      </a>
-    </div>
-  `;
-}
-
-document.addEventListener('DOMContentLoaded', iniciarGaleria);
-</script>
+    document.addEventListener('DOMContentLoaded', iniciarGaleria);
+  </script>
 </body></html>
