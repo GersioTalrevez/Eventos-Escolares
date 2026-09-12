@@ -2,113 +2,39 @@
 
 <html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>Tarifas y Precios Oficiales | SERGIO RICARDO MOLINA</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
+        screens: {
+          'xs': '480px',
+          'sm': '640px',
+          'md': '800px', // Alineado al requerimiento exacto: < 800px móvil, >= 800px desktop
+          'lg': '1024px',
+          'xl': '1280px'
+        },
         extend: {
-          "colors": {
+          colors: {
+            "primary": "#91cdfe",
             "primary-container": "#005580",
-            "outline-variant": "#41474e",
-            "secondary-fixed-dim": "#9bccf4",
-            "on-secondary": "#00344f",
-            "inverse-on-surface": "#313030",
-            "error-container": "#93000a",
-            "tertiary": "#ffb878",
-            "surface-container-highest": "#353534",
-            "on-error-container": "#ffdad6",
-            "surface-container-high": "#2a2a2a",
-            "on-tertiary-container": "#ffb36e",
-            "on-primary-fixed": "#001e30",
-            "on-secondary-container": "#8dbee6",
+            "surface": "#131313",
+            "surface-container": "#181818",
+            "surface-container-high": "#222222",
             "outline": "#8b9199",
             "on-surface": "#e5e2e1",
-            "on-error": "#690005",
-            "on-primary": "#003350",
-            "secondary-container": "#124d70",
-            "surface-container-lowest": "#0e0e0e",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "surface-dim": "#131313",
-            "on-primary-fixed-variant": "#004b72",
-            "inverse-surface": "#e5e2e1",
-            "error": "#ffb4ab",
-            "background": "#131313",
-            "tertiary-fixed-dim": "#ffb878",
-            "primary": "#91cdfe",
-            "on-secondary-fixed": "#001e30",
-            "surface-bright": "#3a3939",
-            "surface-tint": "#91cdfe",
-            "surface": "#131313",
-            "primary-fixed": "#cbe6ff",
-            "tertiary-container": "#794303",
-            "primary-fixed-dim": "#91cdfe",
-            "inverse-primary": "#1e638f",
-            "on-tertiary-fixed": "#2e1500",
-            "on-background": "#e5e2e1",
-            "surface-container-low": "#1c1b1b",
-            "secondary-fixed": "#cae6ff",
-            "on-primary-container": "#8ec9fa",
-            "on-surface-variant": "#c0c7cf",
-            "secondary": "#9bccf4",
-            "on-tertiary": "#4c2700",
-            "surface-container": "#201f1f",
-            "tertiary-fixed": "#ffdcc1",
-            "surface-variant": "#353534"
+            "on-surface-variant": "#c0c7cf"
           },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-2xs": "0.25rem",
-            "gutter-desktop": "2rem",
-            "space-xl": "2rem",
-            "space-lg": "1.5rem",
-            "gutter-mobile": "1rem",
-            "space-4xl": "6rem",
-            "container-max": "1440px",
-            "space-2xl": "3rem",
-            "space-sm": "0.75rem",
-            "space-xs": "0.5rem",
-            "gutter-tablet": "1.5rem",
-            "space-md": "1rem",
-            "space-3xl": "4.5rem"
-          },
-          "fontFamily": {
-            "display-hero": ["Raleway"],
-            "display-hero-mobile": ["Raleway"],
-            "headline-md": ["Raleway"],
-            "label-md": ["Manrope"],
-            "headline-lg-mobile": ["Raleway"],
-            "label-sm": ["Manrope"],
-            "headline-lg": ["Raleway"],
-            "body-lg": ["Manrope"],
-            "headline-sm": ["Raleway"],
-            "body-md": ["Manrope"]
-          },
-          "fontSize": {
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            headline: ['Raleway', 'sans-serif']
           }
         }
       }
@@ -119,229 +45,317 @@
       background-color: #111111;
       color: #e5e2e1;
       font-family: 'Manrope', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
+      height: 6px;
+      width: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #111111;
+      background: #141414;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #2a2a2a;
+      background: #2b2b2b;
       border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #3a3a3a;
     }
   </style>
 </head>
-<body class="bg-[#111111] text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-white">
-<!-- Top Global Bar -->
-<header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-40">
-<div class="flex justify-between items-center w-full px-space-lg max-w-container-max mx-auto h-16">
-<div class="flex items-center gap-space-md">
-<a class="flex items-center gap-space-xs text-primary font-bold text-headline-sm font-headline-sm tracking-tight" href="panel.html">
-<span class="material-symbols-outlined text-primary text-[26px]">photo_camera</span>
-<span class="text-white tracking-wide">Gestion de Tarifas</span>
+<body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col antialiased selection:bg-[#005580] selection:text-white">
+<!-- Header Superior Global -->
+<header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-4 md:px-6 max-w-7xl mx-auto h-16">
+<!-- Brand & Mobile Toggle -->
+<div class="flex items-center gap-3">
+<button aria-label="Abrir menú" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-[#181818] border border-[#262626] text-[#e5e2e1] hover:text-[#38bdf8] active:scale-95 transition-all" id="btnMobileMenu" type="button">
+<span class="material-symbols-outlined text-[24px]" id="menuIcon">menu</span>
+</button>
+<a class="flex items-center gap-2.5 text-[#38bdf8] font-bold text-lg font-headline tracking-tight" href="precios.html">
+<span class="material-symbols-outlined text-[#38bdf8] text-[26px]">photo_camera</span>
+<span class="text-white tracking-wide font-semibold text-base sm:text-lg">Gestión de Tarifas</span>
+</a>
+</div>
+<!-- Header Sync Indicator & Quick Actions -->
+<div class="flex items-center gap-2 sm:gap-3">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#181818] border border-emerald-800/60 text-emerald-400 text-xs font-semibold rounded-full uppercase tracking-wider" id="cloudSyncBadge">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" id="cloudSyncDot"></span>
+<span class="hidden xs:inline text-[11px]" id="cloudSyncText">Supabase Conectado</span>
+<span class="xs:hidden text-[10px]">Sync OK</span>
+</div>
+<a class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#333333] hover:border-[#444444] bg-[#181818] text-xs font-medium text-[#c0c7cf] hover:text-white transition-all" href="panel.html">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Panel</span>
+</a>
+</div>
+</div>
+<!-- Menú Desplegable Móvil (< 800px) -->
+<div class="hidden md:hidden border-b border-[#222222] bg-[#141414] px-4 py-4 space-y-4 shadow-2xl transition-all duration-300 animate-fadeIn" id="mobileDrawer">
+<!-- Identidad Sergio Molina -->
+<div class="px-2 pb-2 border-b border-[#222222]">
+<h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+<p class="text-[11px] text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
+</div>
+<!-- Links Principales del Sistema -->
+<nav class="space-y-1">
+<a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="panel.html">
+<span class="material-symbols-outlined text-[20px]">photo_library</span>
+<span>Galerías</span>
+</a>
+<a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="cargas.html">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+<span>Cargas y Enlaces</span>
+</a>
+<a class="flex items-center gap-3 text-white px-3 py-2.5 text-sm font-semibold rounded-lg bg-[#004466] border border-[#0088cc] shadow-sm" href="precios.html">
+<span class="material-symbols-outlined text-[20px] text-[#38bdf8]">payments</span>
+<span>Tarifas y Precios</span>
+</a>
+<a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="metricas.html">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+<span>Métricas y Visitas</span>
+</a>
+</nav>
+<!-- Bloque de Retorno Accesos Directos -->
+<div class="pt-3 border-t border-[#222222] space-y-1">
+<p class="text-[10px] font-bold text-[#8b9199] uppercase tracking-wider px-3 mb-1">Accesos Directos</p>
+<a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b] transition-all" href="eventos.html">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-[#8b9199]">arrow_back</span>
+<span>Volver a Eventos</span>
+</div>
+<span class="material-symbols-outlined text-[14px] text-[#8b9199]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b] transition-all" href="index.html">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-[#8b9199]">visibility</span>
+<span>Ver Portafolio</span>
+</div>
+<span class="material-symbols-outlined text-[14px] text-[#8b9199]">open_in_new</span>
 </a>
 </div>
 </div>
 </header>
+<!-- Layout Principal con Aside Fijo en >= 800px -->
 <div class="flex-1 flex overflow-hidden">
-<!-- Sidebar Navigation (Darkroom estética limpia) -->
-<aside class="w-64 bg-[#131313] border-r border-[#222222] flex flex-col justify-between shrink-0 hidden md:flex">
-<div class="p-space-md">
-<!-- Brand Header Identity -->
-<div class="mb-space-lg px-space-xs">
-<h2 class="text-headline-sm font-headline-sm text-white font-bold tracking-tight">SERGIO RICARDO MOLINA</h2>
-<p class="text-label-sm font-label-sm text-outline tracking-wider uppercase mt-1">Fotografía Profesional</p>
+<!-- Sidebar Desktop (>= 800px) -->
+<aside class="w-64 bg-[#131313] border-r border-[#222222] flex-col justify-between shrink-0 hidden md:flex">
+<div class="p-5">
+<!-- Identidad -->
+<div class="mb-6 px-1">
+<h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+<p class="text-[10px] font-semibold text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
 </div>
-<!-- Navigation items -->
+<!-- Navegación Primaria -->
 <nav class="space-y-1.5">
-<!-- Item 1 -->
-<a class="flex items-center gap-space-sm text-on-surface-variant px-space-md py-space-sm font-body-md text-body-md rounded-lg hover:bg-surface-container hover:text-white transition-all duration-150" href="panel.html">
+<a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all duration-150" href="panel.html">
 <span class="material-symbols-outlined text-[20px]">photo_library</span>
-<span class="">Galerías</span>
+<span>Galerías</span>
 </a>
-<!-- Item 2 -->
-<a class="flex items-center gap-space-sm text-on-surface-variant px-space-md py-space-sm font-body-md text-body-md rounded-lg hover:bg-surface-container hover:text-white transition-all duration-150" href="cargas.html">
+<a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all duration-150" href="cargas.html">
 <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
-<span class="">Cargas y Enlaces</span>
+<span>Cargas y Enlaces</span>
 </a>
-<!-- Item 3: Active Tab -->
-<a class="flex items-center gap-space-sm bg-primary-container text-white rounded-lg px-space-md py-space-sm font-label-md text-label-md font-semibold border-l-4 border-[#38bdf8] shadow-sm" href="precios.html">
+<!-- Activo con fondo #004466 y borde #0088cc -->
+<a class="flex items-center gap-3 bg-[#004466] border border-[#0088cc] text-white rounded-lg px-3 py-2.5 text-sm font-semibold shadow-sm" href="precios.html">
 <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">payments</span>
-<span class="">Tarifas y Precios</span>
+<span>Tarifas y Precios</span>
+</a>
+<a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all duration-150" href="metricas.html">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+<span>Métricas y Visitas</span>
 </a>
 </nav>
 </div>
-<!-- Bottom Direct Shortcuts -->
-<div class="p-space-md border-t border-[#222222] bg-[#0e0e0e]/50 space-y-1.5">
-<p class="text-label-sm font-label-sm text-outline uppercase px-space-xs mb-2">Accesos Directos</p>
-<a class="flex items-center justify-between text-on-surface-variant hover:text-primary px-space-xs py-1.5 rounded text-body-md font-body-md transition-colors group" href="eventos.html">
+<!-- Bloque de Retorno Desktop -->
+<div class="p-4 border-t border-[#222222] bg-[#0f0f0f]/80 space-y-1">
+<p class="text-[10px] font-bold text-[#8b9199] uppercase tracking-wider px-2 mb-2">Accesos Directos</p>
+<a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm transition-all hover:bg-[#1a1a1a] group" href="eventos.html">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary transition-colors">arrow_back</span>
-<span class="">Volver a Eventos</span>
+<span class="material-symbols-outlined text-[18px] text-[#8b9199] group-hover:text-[#38bdf8] transition-colors">arrow_back</span>
+<span>Volver a Eventos</span>
 </div>
-<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="material-symbols-outlined text-[14px] text-[#8b9199]">chevron_right</span>
 </a>
-<a class="flex items-center justify-between text-on-surface-variant hover:text-primary px-space-xs py-1.5 rounded text-body-md font-body-md transition-colors group" href="index.html">
+<a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm transition-all hover:bg-[#1a1a1a] group" href="index.html">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary transition-colors">visibility</span>
-<span class="">Ver Portafolio</span>
+<span class="material-symbols-outlined text-[18px] text-[#8b9199] group-hover:text-[#38bdf8] transition-colors">visibility</span>
+<span>Ver Portafolio</span>
 </div>
-<span class="material-symbols-outlined text-[14px] text-outline">open_in_new</span>
+<span class="material-symbols-outlined text-[14px] text-[#8b9199]">open_in_new</span>
 </a>
 </div>
 </aside>
-<!-- Main Content Canvas -->
-<main class="flex-1 overflow-y-auto custom-scrollbar p-space-lg md:p-space-xl max-w-container-max mx-auto w-full">
-<!-- Page Title & Overview Header -->
-<div class="mb-space-xl">
+<!-- Área de Contenido Principal -->
+<main class="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full pb-20 md:pb-8">
+<!-- Encabezado de la Sección -->
+<div class="mb-6 sm:mb-8">
 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 <div>
-<div class="flex items-center gap-2">
-<span class="px-2 py-0.5 bg-primary-container/40 border border-[#005580] text-[#38bdf8] text-label-sm font-label-sm rounded uppercase tracking-wider">Control Comercial</span>
-<span class="text-label-sm font-label-sm text-outline">Actualización inmediata de catálogo</span>
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#111111] border border-emerald-800/60 text-emerald-400 text-label-sm font-label-sm rounded uppercase tracking-wider" id="cloudSyncBadge"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" id="cloudSyncDot"></span><span class="" id="cloudSyncText">Sincronizado con Supabase</span></span></div>
-<h1 class="text-headline-lg font-headline-lg text-white mt-1">Tarifas y Precios Oficiales</h1>
-<p class="text-body-md font-body-md text-on-surface-variant max-w-3xl mt-1">
-              Configurá los precios de venta para copias impresas en papel de laboratorio y descargas digitales en alta resolución. Los valores se sincronizan automáticamente con la tabla oficial de configuración y las galerías.
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="px-2.5 py-0.5 bg-[#005580]/40 border border-[#005580] text-[#38bdf8] text-[11px] font-semibold rounded uppercase tracking-wider">Control Comercial</span>
+<span class="text-xs text-[#8b9199]">Actualización inmediata de catálogo escolar</span>
+</div>
+<h1 class="text-2xl sm:text-3xl font-headline font-bold text-white tracking-tight">Tarifas y Precios Oficiales</h1>
+<p class="text-sm text-[#c0c7cf] max-w-3xl mt-1.5 leading-relaxed">
+              Configurá los precios de venta para copias impresas en papel fotográfico de laboratorio y descargas de fotos digitales en alta resolución. Se sincronizan en tiempo real con Supabase y las galerías activas.
             </p>
 </div>
-<!-- Action bar -->
-<div class="flex items-center gap-space-sm shrink-0">
-<button class="px-4 py-2.5 rounded-lg border border-[#333333] text-on-surface hover:bg-[#1f1e1e] active:scale-[0.98] transition-all font-label-md text-label-md flex items-center gap-2" id="btnResetValues" type="button">
+<!-- Barra de Acciones / Guardar -->
+<div class="flex items-center gap-3 pt-2 md:pt-0">
+<button class="flex-1 sm:flex-none px-4 py-2.5 min-h-[44px] rounded-lg border border-[#333333] hover:border-[#555555] bg-[#181818] text-[#e5e2e1] hover:text-white active:scale-95 transition-all text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5" id="btnResetValues" type="button">
 <span class="material-symbols-outlined text-[18px]">restart_alt</span>
-<span class="">Revertir</span>
+<span>Revertir</span>
 </button>
-<button class="px-5 py-2.5 rounded-lg bg-[#004466] border border-[#005580] text-white hover:bg-[#005580] active:scale-[0.98] transition-all font-label-md text-label-md font-semibold flex items-center gap-2 shadow-lg shadow-black/40" id="btnSavePrices" type="button">
+<button class="flex-1 sm:flex-none px-5 py-2.5 min-h-[44px] rounded-lg bg-[#005580] border border-[#0088cc] hover:bg-[#006699] text-white active:scale-95 transition-all text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-black/50" id="btnSavePrices" type="button">
 <span class="material-symbols-outlined text-[18px]">save</span>
 <span id="btnSaveText">Guardar Nuevas Tarifas</span>
 </button>
 </div>
 </div>
-<!-- Alert Notification Box (Confirmation toast) -->
-<div class="hidden mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-md" id="saveToast">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px] text-[#38bdf8]" id="toastIcon">check_circle</span>
-<span class="text-body-md font-body-md font-medium text-white" id="toastMessage">¡Tarifas actualizadas con éxito en Supabase y respaldo local!</span>
+<!-- Notificación Toast Dinámica -->
+<div class="hidden mt-4 p-3.5 rounded-xl bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-lg" id="saveToast">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]" id="toastIcon">check_circle</span>
+<span class="text-xs sm:text-sm font-medium text-white" id="toastMessage">¡Tarifas actualizadas con éxito en Supabase y respaldo local!</span>
 </div>
-<span class="text-label-sm font-label-sm text-outline ml-4 shrink-0" id="timestampSaved">Hace unos segundos</span>
+<span class="text-[11px] text-[#8b9199] ml-2 shrink-0 hidden xs:inline" id="timestampSaved">Recién</span>
 </div>
 </div>
-<!-- Bento Configuration Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg mb-space-2xl">
-<!-- Card 1: Copia Impresa 15x21 cm -->
-<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm hover:border-[#333333] transition-all flex flex-col justify-between">
+<!-- Bento Grid de Tarifas: Copia Impresa & Archivo Digital HD -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
+<!-- Tarjeta 1: Copia Impresa 15x21 -->
+<div class="bg-[#181818] border border-[#222222] hover:border-[#38bdf8]/40 rounded-xl p-5 sm:p-6 shadow-md transition-all flex flex-col justify-between group">
 <div>
-<div class="flex items-start justify-between pb-3 border-b border-[#222222]">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-[#111111] border border-[#333333] flex items-center justify-center text-[#38bdf8]">
-<span class="material-symbols-outlined text-[22px]">photo_size_select_actual</span>
+<div class="flex items-start justify-between pb-4 border-b border-[#242424]">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#38bdf8] group-hover:border-[#38bdf8]/60 transition-colors">
+<span class="material-symbols-outlined text-[24px]">photo_size_select_actual</span>
 </div>
 <div>
-<h3 class="text-headline-sm font-headline-sm text-white">Copia Impresa 15x21 cm</h3>
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Papel fotográfico de laboratorio profesional</p>
+<h3 class="text-base sm:text-lg font-headline font-bold text-white">Copia Impresa 15x21 cm</h3>
+<p class="text-[11px] text-[#8b9199] uppercase tracking-wider font-semibold">Papel de laboratorio químico profesional</p>
 </div>
 </div>
+<span class="hidden xs:inline-flex px-2 py-0.5 rounded text-[11px] font-semibold bg-[#111111] text-[#38bdf8] border border-[#292929]">Físico</span>
 </div>
-<div class="mt-4">
-<label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputPrintPrice">Precio de Venta al Público (ARS)</label>
+<!-- Input Numérico Táctil -->
+<div class="mt-5">
+<label class="block text-xs font-semibold text-[#c0c7cf] uppercase tracking-wider mb-2" for="inputPrintPrice">
+                Precio de Venta al Público (ARS)
+              </label>
 <div class="relative">
-<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-semibold">$</span>
-<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputPrintPrice" type="text" value="7.000"/>
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#8b9199] font-bold text-lg pointer-events-none">$</span>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#38bdf8] focus:ring-1 focus:ring-[#38bdf8] rounded-xl pl-9 pr-4 py-3 min-h-[48px] text-white font-headline text-lg sm:text-xl font-bold outline-none transition-all" id="inputPrintPrice" inputmode="numeric" placeholder="7.500" type="text" value="7.500"/>
 </div>
-<p class="text-label-sm font-label-sm text-outline mt-1.5">Sugerido según inflación del mes: $6.800 - $7.500</p>
+<p class="text-xs text-[#8b9199] mt-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#facc15]">info</span>
+<span>Rango sugerido escolar: $7.000 a $8.000</span>
+</p>
 </div>
 </div>
-<div class="mt-4 pt-3 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2">
+<div class="mt-5 pt-3.5 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2 text-xs">
 <div class="flex items-center gap-2">
-<span class="text-label-sm font-label-sm text-outline">Incluye:</span>
-<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">Entrega en Colegio</span>
+<span class="text-[#8b9199]">Modalidad:</span>
+<span class="px-2.5 py-1 rounded bg-[#121212] text-[#e5e2e1] border border-[#282828] font-medium">Entrega en Colegio</span>
 </div>
-<span class="text-label-sm font-label-sm text-primary">Catálogo Escolar</span>
+<span class="text-[#38bdf8] font-semibold">Catálogo Escolar</span>
 </div>
 </div>
-<!-- Card 2: Archivo Digital HD -->
-<div class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm hover:border-[#333333] transition-all flex flex-col justify-between">
+<!-- Tarjeta 2: Archivo Digital HD -->
+<div class="bg-[#181818] border border-[#222222] hover:border-[#38bdf8]/40 rounded-xl p-5 sm:p-6 shadow-md transition-all flex flex-col justify-between group">
 <div>
-<div class="flex items-start justify-between pb-3 border-b border-[#222222]">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-[#111111] border border-[#333333] flex items-center justify-center text-[#38bdf8]">
-<span class="material-symbols-outlined text-[22px]">download_for_offline</span>
+<div class="flex items-start justify-between pb-4 border-b border-[#242424]">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#38bdf8] group-hover:border-[#38bdf8]/60 transition-colors">
+<span class="material-symbols-outlined text-[24px]">download_for_offline</span>
 </div>
 <div>
-<h3 class="text-headline-sm font-headline-sm text-white">Archivo Digital HD</h3>
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Entrega en alta resolución sin marca de agua</p>
+<h3 class="text-base sm:text-lg font-headline font-bold text-white">Archivo Digital HD</h3>
+<p class="text-[11px] text-[#8b9199] uppercase tracking-wider font-semibold">Máxima resolución sin marca de agua</p>
 </div>
 </div>
+<span class="hidden xs:inline-flex px-2 py-0.5 rounded text-[11px] font-semibold bg-[#111111] text-[#38bdf8] border border-[#292929]">Online</span>
 </div>
-<div class="mt-4">
-<label class="block text-label-sm font-label-sm text-on-surface-variant uppercase mb-1" for="inputDigitalPrice">Precio por Fotografía Digital (ARS)</label>
+<!-- Input Numérico Táctil -->
+<div class="mt-5">
+<label class="block text-xs font-semibold text-[#c0c7cf] uppercase tracking-wider mb-2" for="inputDigitalPrice">
+                Precio por Fotografía Digital (ARS)
+              </label>
 <div class="relative">
-<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-semibold">$</span>
-<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#005580] focus:ring-1 focus:ring-[#005580] rounded-xl pl-8 pr-3 py-2.5 text-white font-headline-sm text-headline-sm outline-none transition-all" id="inputDigitalPrice" type="text" value="4.200"/>
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#8b9199] font-bold text-lg pointer-events-none">$</span>
+<input class="w-full bg-[#111111] border border-[#333333] focus:border-[#38bdf8] focus:ring-1 focus:ring-[#38bdf8] rounded-xl pl-9 pr-4 py-3 min-h-[48px] text-white font-headline text-lg sm:text-xl font-bold outline-none transition-all" id="inputDigitalPrice" inputmode="numeric" placeholder="2.500" type="text" value="2.500"/>
 </div>
-<p class="text-label-sm font-label-sm text-outline mt-1.5">Descarga directa desde enlace de galería privada</p>
+<p class="text-xs text-[#8b9199] mt-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#38bdf8]">bolt</span>
+<span>Habilita descarga inmediata post confirmación</span>
+</p>
 </div>
 </div>
-<div class="mt-4 pt-3 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2">
+<div class="mt-5 pt-3.5 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2 text-xs">
 <div class="flex items-center gap-2">
-<span class="text-label-sm font-label-sm text-outline">Formato:</span>
-<span class="px-2 py-0.5 rounded bg-[#111111] text-label-sm font-label-sm text-on-surface-variant border border-[#262626]">JPG Alta Definición (300 DPI)</span>
+<span class="text-[#8b9199]">Formato:</span>
+<span class="px-2.5 py-1 rounded bg-[#121212] text-[#e5e2e1] border border-[#282828] font-medium">JPG 300 DPI Original</span>
 </div>
-<span class="text-label-sm font-label-sm text-primary">Descarga Directa</span>
+<span class="text-[#38bdf8] font-semibold">Descarga Directa</span>
 </div>
 </div>
 </div>
-<!-- History Table: Auditoría de Modificaciones Recientes -->
-<section class="bg-[#181818] border border-[#222222] rounded-xl p-space-lg shadow-sm mb-space-2xl">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#222222]">
+<!-- Historial de Actualizaciones de Tarifas -->
+<section class="bg-[#181818] border border-[#222222] rounded-xl p-4 sm:p-6 shadow-md mb-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#222222]">
 <div>
-<h3 class="text-headline-sm font-headline-sm text-white">Historial de Actualizaciones de Tarifas</h3>
-<p class="text-label-sm font-label-sm text-outline">Registro auditable sincronizado con base de datos central (tabla configuracion)</p>
+<h3 class="text-base sm:text-lg font-headline font-bold text-white">Historial de Actualizaciones de Tarifas</h3>
+<p class="text-xs text-[#8b9199] mt-0.5">Registro oficial centralizado con base de datos Supabase (tabla configuracion)</p>
 </div>
-<span class="text-label-sm font-label-sm text-on-surface-variant bg-[#111111] border border-[#333333] px-3 py-1 rounded-full">Registro oficial activo</span>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#111111] border border-[#2d2d2d] text-[#c0c7cf]">
+              Auditado y Activo
+            </span>
 </div>
-<div class="overflow-x-auto mt-3">
-<table class="w-full text-left border-collapse">
+</div>
+<!-- Contenedor con scroll horizontal suave y seguro en móvil -->
+<div class="overflow-x-auto custom-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0 mt-3">
+<table class="w-full text-left border-collapse min-w-[620px]">
 <thead>
-<tr class="border-b border-[#222222] text-label-sm font-label-sm text-outline uppercase tracking-wider">
+<tr class="border-b border-[#242424] text-[11px] font-bold text-[#8b9199] uppercase tracking-wider">
 <th class="py-3 px-3">Fecha y Hora</th>
 <th class="py-3 px-3">Copia 15x21</th>
 <th class="py-3 px-3">Archivo HD</th>
 <th class="py-3 px-3">WhatsApp Oficial</th>
-<th class="py-3 px-3">Usuario</th>
+<th class="py-3 px-3">Responsable</th>
 <th class="py-3 px-3 text-right">Estado</th>
 </tr>
 </thead>
-<tbody class="text-body-md font-body-md text-on-surface divide-y divide-[#222222]">
-<tr class="hover:bg-[#1f1e1e] transition-colors">
-<td class="py-3 px-3 font-mono text-label-md text-outline" id="tableRowTimestamp">Hoy, vigencia activa</td>
-<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentPrint">$7.000</td>
-<td class="py-3 px-3 text-white font-semibold" id="tableRowCurrentDigital">$4.200</td>
-<td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
-<td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
+<tbody class="text-xs sm:text-sm divide-y divide-[#222222]">
+<tr class="hover:bg-[#1e1e1e] transition-colors">
+<td class="py-3 px-3 font-mono text-xs text-[#8b9199]" id="tableRowTimestamp">Hoy, vigencia activa</td>
+<td class="py-3 px-3 font-headline font-bold text-[#38bdf8]" id="tableRowCurrentPrint">$7.500</td>
+<td class="py-3 px-3 font-headline font-bold text-[#38bdf8]" id="tableRowCurrentDigital">$2.500</td>
+<td class="py-3 px-3 font-mono text-xs text-[#c0c7cf]">+54 9 261 317-5222</td>
+<td class="py-3 px-3 text-[#c0c7cf]">S. Molina (Admin)</td>
 <td class="py-3 px-3 text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">Vigente</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">Vigente</span>
 </td>
 </tr>
-<tr class="hover:bg-[#1f1e1e] transition-colors">
-<td class="py-3 px-3 font-mono text-label-md text-outline">12 Abr 2025</td>
-<td class="py-3 px-3 text-on-surface-variant">$5.800</td>
-<td class="py-3 px-3 text-on-surface-variant">$3.500</td>
-<td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
-<td class="py-3 px-3 text-on-surface-variant">S. Molina (Admin)</td>
+<tr class="hover:bg-[#1e1e1e] transition-colors">
+<td class="py-3 px-3 font-mono text-xs text-[#8b9199]">12 Abr 2025, 10:15</td>
+<td class="py-3 px-3 font-headline text-[#c0c7cf] font-medium">$5.800</td>
+<td class="py-3 px-3 font-headline text-[#c0c7cf] font-medium">$3.500</td>
+<td class="py-3 px-3 font-mono text-xs text-[#c0c7cf]">+54 9 261 317-5222</td>
+<td class="py-3 px-3 text-[#c0c7cf]">S. Molina (Admin)</td>
 <td class="py-3 px-3 text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm text-outline bg-[#111111] border border-[#2a2a2a]">Reemplazado</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] text-[#8b9199] bg-[#111111] border border-[#2a2a2a]">Reemplazado</span>
 </td>
 </tr>
-<tr class="hover:bg-[#1f1e1e] transition-colors">
-<td class="py-3 px-3 font-mono text-label-md text-outline">01 Mar 2025</td>
-<td class="py-3 px-3 text-on-surface-variant">$4.500</td>
-<td class="py-3 px-3 text-on-surface-variant">$2.800</td>
-<td class="py-3 px-3 font-mono text-label-md text-on-surface-variant">+54 9 261 317-5222</td>
-<td class="py-3 px-3 text-on-surface-variant">Apertura Temporada</td>
+<tr class="hover:bg-[#1e1e1e] transition-colors">
+<td class="py-3 px-3 font-mono text-xs text-[#8b9199]">01 Mar 2025, 08:30</td>
+<td class="py-3 px-3 font-headline text-[#c0c7cf] font-medium">$4.500</td>
+<td class="py-3 px-3 font-headline text-[#c0c7cf] font-medium">$2.800</td>
+<td class="py-3 px-3 font-mono text-xs text-[#c0c7cf]">+54 9 261 317-5222</td>
+<td class="py-3 px-3 text-[#c0c7cf]">Apertura Temporada</td>
 <td class="py-3 px-3 text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm text-outline bg-[#111111] border border-[#2a2a2a]">Histórico</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] text-[#8b9199] bg-[#111111] border border-[#2a2a2a]">Histórico</span>
 </td>
 </tr>
 </tbody>
@@ -350,232 +364,273 @@
 </section>
 </main>
 </div>
-<!-- Mobile Bottom Tab Bar -->
-<nav class="md:hidden bg-[#131313] border-t border-[#222222] fixed bottom-0 left-0 right-0 z-50 px-2 py-1 flex justify-around items-center">
-<a class="flex flex-col items-center p-2 text-outline hover:text-white" href="panel.html">
-<span class="material-symbols-outlined text-[22px]">photo_library</span>
-<span class="text-[10px] font-label-sm">Galerías</span>
+<!-- Barra de Navegación Inferior Móvil (< 800px) -->
+<nav class="md:hidden bg-[#131313]/95 backdrop-blur-md border-t border-[#222222] fixed bottom-0 left-0 right-0 z-40 px-2 py-1 flex justify-around items-center">
+<a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="panel.html">
+<span class="material-symbols-outlined text-[20px]">photo_library</span>
+<span class="text-[10px] mt-0.5 font-medium">Galerías</span>
 </a>
-<a class="flex flex-col items-center p-2 text-outline hover:text-white" href="cargas.html">
-<span class="material-symbols-outlined text-[22px]">cloud_upload</span>
-<span class="text-[10px] font-label-sm">Cargas</span>
+<a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="cargas.html">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+<span class="text-[10px] mt-0.5 font-medium">Cargas</span>
 </a>
-<a class="flex flex-col items-center p-2 text-[#38bdf8] font-bold" href="precios.html">
-<span class="material-symbols-outlined text-[22px]">payments</span>
-<span class="text-[10px] font-label-sm">Tarifas</span>
+<a class="flex flex-col items-center py-1 px-2 text-[#38bdf8] font-bold" href="precios.html">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-[10px] mt-0.5">Tarifas</span>
 </a>
-<a class="flex flex-col items-center p-2 text-outline hover:text-white" href="eventos.html">
-<span class="material-symbols-outlined text-[22px]">arrow_back</span>
-<span class="text-[10px] font-label-sm">Eventos</span>
+<a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="metricas.html">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+<span class="text-[10px] mt-0.5 font-medium">Métricas</span>
 </a>
 </nav>
-<!-- Unified Persistence & 100% Compatible 'configuracion' Table Sync -->
+<!-- Lógica de Sincronización en Tiempo Real Supabase + Fallback Robusto -->
 <script>
-  (function() {
-    // 1. Client initialization
-    let supabaseClient = null;
-    try {
-      const SUPABASE_URL = window.SUPABASE_URL || localStorage.getItem('supabase_url') || localStorage.getItem('SUPABASE_URL');
-      const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_anon_key') || localStorage.getItem('SUPABASE_ANON_KEY');
-      if (window.supabase && SUPABASE_URL && SUPABASE_ANON_KEY) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      } else if (window._supabase) {
-        supabaseClient = window._supabase;
-      }
-    } catch (err) {
-      console.warn('Supabase client check:', err);
-    }
+    (function() {
+      const DEFAULT_PRINT = 7500;
+      const DEFAULT_DIGITAL = 2500;
+      const WHATSAPP_OFICIAL = '5492613175222';
 
-    // DOM References
-    const inputPrint = document.getElementById('inputPrintPrice');
-    const inputDigital = document.getElementById('inputDigitalPrice');
-    const btnSave = document.getElementById('btnSavePrices');
-    const btnSaveText = document.getElementById('btnSaveText');
-    const btnReset = document.getElementById('btnResetValues');
-    const toast = document.getElementById('saveToast');
-    const toastMessage = document.getElementById('toastMessage');
-    const toastIcon = document.getElementById('toastIcon');
-    const timestampSaved = document.getElementById('timestampSaved');
-    const cloudSyncText = document.getElementById('cloudSyncText');
-    const cloudSyncDot = document.getElementById('cloudSyncDot');
-    const tableRowCurrentPrint = document.getElementById('tableRowCurrentPrint');
-    const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
-    const tableRowTimestamp = document.getElementById('tableRowTimestamp');
-
-    function showNotification(message, isError = false) {
-      if (!toast || !toastMessage) return;
-      toastMessage.textContent = message;
-      if (isError) {
-        toast.className = 'mt-4 p-3 rounded-lg bg-red-950/40 border border-red-500/60 text-red-400 flex items-center justify-between transition-all duration-300 shadow-md';
-        if (toastIcon) toastIcon.textContent = 'error';
-      } else {
-        toast.className = 'mt-4 p-3 rounded-lg bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-md';
-        if (toastIcon) toastIcon.textContent = 'check_circle';
-      }
-      const now = new Date();
-      if (timestampSaved) {
-        timestampSaved.textContent = `Actualizado ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-      }
-      toast.classList.remove('hidden');
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 6000);
-    }
-
-    function syncUIValues(printVal, digitalVal) {
-      if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + String(printVal).replace('$', '').trim();
-      if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + String(digitalVal).replace('$', '').trim();
-      if (tableRowTimestamp) {
-        const now = new Date();
-        tableRowTimestamp.textContent = `Hoy, ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-      }
-    }
-
-    // 4. Carga inicial desde Supabase tabla 'configuracion' con .select('*').limit(1)
-    async function cargarTarifasDesdeSupabase() {
-      // Respaldo inmediato desde LocalStorage primero
-      const localPrint = localStorage.getItem('tarifa_impresa');
-      const localDigital = localStorage.getItem('tarifa_digital');
-      if (localPrint) inputPrint.value = localPrint;
-      if (localDigital) inputDigital.value = localDigital;
-      syncUIValues(inputPrint.value, inputDigital.value);
-
-      if (!supabaseClient) {
-        if (cloudSyncText) cloudSyncText.textContent = 'Almacenamiento Local Activo';
-        return;
-      }
-
+      // 1. Detección o inicialización de Supabase
+      let supabaseClient = null;
       try {
-        if (cloudSyncText) cloudSyncText.textContent = 'Consultando Supabase...';
-        const { data, error } = await supabaseClient
-          .from('configuracion')
-          .select('*')
-          .limit(1);
+        const supaUrl = window.SUPABASE_URL || localStorage.getItem('supabase_url') || localStorage.getItem('SUPABASE_URL');
+        const supaKey = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_anon_key') || localStorage.getItem('SUPABASE_ANON_KEY');
+        if (window.supabase && supaUrl && supaKey) {
+          supabaseClient = window.supabase.createClient(supaUrl, supaKey);
+        } else if (window._supabase) {
+          supabaseClient = window._supabase;
+        }
+      } catch (e) {
+        console.warn('Supabase init status:', e);
+      }
 
-        if (error) {
-          console.warn('Error al leer configuracion en Supabase:', error);
+      // Elementos del DOM
+      const btnMobileMenu = document.getElementById('btnMobileMenu');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const menuIcon = document.getElementById('menuIcon');
+
+      const inputPrint = document.getElementById('inputPrintPrice');
+      const inputDigital = document.getElementById('inputDigitalPrice');
+      const btnSave = document.getElementById('btnSavePrices');
+      const btnSaveText = document.getElementById('btnSaveText');
+      const btnReset = document.getElementById('btnResetValues');
+      
+      const toast = document.getElementById('saveToast');
+      const toastMessage = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      const timestampSaved = document.getElementById('timestampSaved');
+
+      const cloudSyncBadge = document.getElementById('cloudSyncBadge');
+      const cloudSyncDot = document.getElementById('cloudSyncDot');
+      const cloudSyncText = document.getElementById('cloudSyncText');
+
+      const tableRowCurrentPrint = document.getElementById('tableRowCurrentPrint');
+      const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
+      const tableRowTimestamp = document.getElementById('tableRowTimestamp');
+
+      // Toggle Menú Hamburguesa en Pantallas Pequeñas (< 800px)
+      if (btnMobileMenu && mobileDrawer) {
+        btnMobileMenu.addEventListener('click', () => {
+          const isHidden = mobileDrawer.classList.contains('hidden');
+          if (isHidden) {
+            mobileDrawer.classList.remove('hidden');
+            if (menuIcon) menuIcon.textContent = 'close';
+          } else {
+            mobileDrawer.classList.add('hidden');
+            if (menuIcon) menuIcon.textContent = 'menu';
+          }
+        });
+      }
+
+      // Funciones de formateo numérico de pesos argentinos
+      function formatNumber(val) {
+        const num = parseInt(String(val).replace(/\D/g, ''), 10);
+        if (isNaN(num)) return String(val);
+        return num.toLocaleString('es-AR');
+      }
+
+      function parseNumeric(val) {
+        const clean = String(val).replace(/\D/g, '');
+        return clean ? parseInt(clean, 10) : 0;
+      }
+
+      // Formateo dinámico al tipear en los inputs móviles/desktop
+      [inputPrint, inputDigital].forEach(input => {
+        if (!input) return;
+        input.addEventListener('input', (e) => {
+          const cursorPos = e.target.selectionStart;
+          const prevLen = e.target.value.length;
+          const rawNum = parseNumeric(e.target.value);
+          if (rawNum > 0) {
+            e.target.value = formatNumber(rawNum);
+            const newLen = e.target.value.length;
+            const newPos = Math.max(cursorPos + (newLen - prevLen), 1);
+            try { e.target.setSelectionRange(newPos, newPos); } catch(_) {}
+          }
+        });
+      });
+
+      function notify(msg, isErr = false) {
+        if (!toast || !toastMessage) return;
+        toastMessage.textContent = msg;
+        if (isErr) {
+          toast.className = 'mt-4 p-3.5 rounded-xl bg-red-950/40 border border-red-500/60 text-red-400 flex items-center justify-between transition-all duration-300 shadow-lg';
+          if (toastIcon) toastIcon.textContent = 'error';
+        } else {
+          toast.className = 'mt-4 p-3.5 rounded-xl bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-lg';
+          if (toastIcon) toastIcon.textContent = 'check_circle';
+        }
+        const now = new Date();
+        if (timestampSaved) {
+          timestampSaved.textContent = `${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        }
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 5000);
+      }
+
+      function updateUI(pPrint, pDigital) {
+        const strP = formatNumber(pPrint);
+        const strD = formatNumber(pDigital);
+        if (inputPrint) inputPrint.value = strP;
+        if (inputDigital) inputDigital.value = strD;
+        if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + strP;
+        if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + strD;
+        if (tableRowTimestamp) {
+          const now = new Date();
+          tableRowTimestamp.textContent = `Hoy, ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        }
+      }
+
+      // Cargar Tarifas desde Supabase (tabla configuracion o fallback localStorage)
+      async function cargarTarifas() {
+        const savedPrint = localStorage.getItem('tarifa_impresa');
+        const savedDigital = localStorage.getItem('tarifa_digital');
+        const initialP = savedPrint ? parseNumeric(savedPrint) : DEFAULT_PRINT;
+        const initialD = savedDigital ? parseNumeric(savedDigital) : DEFAULT_DIGITAL;
+
+        updateUI(initialP, initialD);
+
+        if (!supabaseClient) {
           if (cloudSyncText) cloudSyncText.textContent = 'Respaldo Local Activo';
           return;
         }
 
-        if (data && data.length > 0) {
-          const config = data[0];
-          // Asignar los valores vigentes a los inputs
-          if (config.tarifa_impresa !== undefined && config.tarifa_impresa !== null) {
-            inputPrint.value = String(config.tarifa_impresa);
-            localStorage.setItem('tarifa_impresa', String(config.tarifa_impresa));
-          }
-          if (config.tarifa_digital !== undefined && config.tarifa_digital !== null) {
-            inputDigital.value = String(config.tarifa_digital);
-            localStorage.setItem('tarifa_digital', String(config.tarifa_digital));
-          }
-          syncUIValues(inputPrint.value, inputDigital.value);
-          if (cloudSyncText) cloudSyncText.textContent = 'Sincronizado con Supabase';
-        } else {
-          if (cloudSyncText) cloudSyncText.textContent = 'Sin tarifas remotas previas';
-        }
-      } catch (err) {
-        console.warn('Fallo de conexión al cargar de Supabase:', err);
-        if (cloudSyncText) cloudSyncText.textContent = 'Modo Local (Sin Conexión)';
-      }
-    }
-
-    // 1 & 2. Guardar tarifas con estructura BIGINT y clave obligatoria
-    async function guardarTarifasEnSupabase() {
-      const precioImpresa = inputPrint.value.trim();
-      const precioDigital = inputDigital.value.trim();
-      const whatsapp = '5492613175222';
-      const updatedAt = new Date().toISOString();
-
-      if (!precioImpresa || !precioDigital) {
-        showNotification('Por favor ingrese valores válidos para ambas tarifas.', true);
-        return;
-      }
-
-      // 2. Guardar también en localStorage ('tarifa_impresa', 'tarifa_digital') como respaldo inmediato
-      localStorage.setItem('tarifa_impresa', precioImpresa);
-      localStorage.setItem('tarifa_digital', precioDigital);
-      localStorage.setItem('numero_whatsapp', whatsapp);
-
-      // Compatibilidad con broadcast channel entre pestañas abiertas
-      try {
-        if ('BroadcastChannel' in window) {
-          const bc = new BroadcastChannel('tarifas_escolar_channel');
-          bc.postMessage({
-            type: 'TARIFAS_UPDATED',
-            tarifa_impresa: precioImpresa,
-            tarifa_digital: precioDigital,
-            whatsapp: whatsapp,
-            updatedAt: updatedAt
-          });
-        }
-      } catch (e) {
-        console.warn('BroadcastChannel opcional:', e);
-      }
-
-      // Estado visual del botón durante el guardado
-      if (btnSaveText) btnSaveText.textContent = 'Guardando...';
-      btnSave.disabled = true;
-
-      // 1. Enviar upsert a la tabla 'configuracion' con id: 1, clave: 'tarifas_oficiales'
-      let remoteSuccess = false;
-      let remoteMessage = '';
-
-      if (supabaseClient) {
         try {
-          const payload = {
-            id: 1,
-            clave: 'tarifas_oficiales',
-            tarifa_impresa: precioImpresa,
-            tarifa_digital: precioDigital,
-            whatsapp: whatsapp,
-            updated_at: updatedAt
-          };
-
-          const { error } = await supabaseClient
+          if (cloudSyncText) cloudSyncText.textContent = 'Sincronizando...';
+          const { data, error } = await supabaseClient
             .from('configuracion')
-            .upsert(payload, { onConflict: 'id' });
+            .select('*')
+            .limit(1);
 
           if (error) {
-            console.error('Error al guardar en Supabase configuracion:', error);
-            remoteMessage = ' (Guardado localmente. Error en Supabase: ' + (error.message || 'tabla configuracion') + ')';
-          } else {
-            remoteSuccess = true;
+            console.warn('Lectura de tabla configuracion en Supabase:', error.message);
+            if (cloudSyncText) cloudSyncText.textContent = 'Modo Local Offline';
+            return;
           }
-        } catch (supaErr) {
-          console.error('Excepción al conectar con Supabase:', supaErr);
-          remoteMessage = ' (Guardado localmente. Supabase desconectado)';
+
+          if (data && data.length > 0) {
+            const conf = data[0];
+            const pVal = conf.tarifa_impresa !== undefined ? parseNumeric(conf.tarifa_impresa) : DEFAULT_PRINT;
+            const dVal = conf.tarifa_digital !== undefined ? parseNumeric(conf.tarifa_digital) : DEFAULT_DIGITAL;
+            updateUI(pVal, dVal);
+            localStorage.setItem('tarifa_impresa', String(pVal));
+            localStorage.setItem('tarifa_digital', String(dVal));
+            if (cloudSyncText) cloudSyncText.textContent = 'Supabase Conectado';
+            if (cloudSyncDot) cloudSyncDot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+          }
+        } catch (err) {
+          console.warn('Conexión Supabase no disponible:', err);
+          if (cloudSyncText) cloudSyncText.textContent = 'Modo Local';
         }
-      } else {
-        remoteMessage = ' (Guardado localmente. Configure Supabase para sincronización remota)';
       }
 
-      // Restaurar botón
-      btnSave.disabled = false;
-      if (btnSaveText) btnSaveText.textContent = 'Guardar Nuevas Tarifas';
-      syncUIValues(precioImpresa, precioDigital);
+      // Guardar y sincronizar tarifas
+      async function guardarTarifas() {
+        const printVal = parseNumeric(inputPrint.value) || DEFAULT_PRINT;
+        const digitalVal = parseNumeric(inputDigital.value) || DEFAULT_DIGITAL;
+        const updatedAt = new Date().toISOString();
 
-      // 3. Mostrar alerta clara de confirmación al guardar
-      if (remoteSuccess) {
-        showNotification('¡Tarifas guardadas exitosamente en Supabase (tabla configuracion) y respaldo local!');
-        if (cloudSyncText) cloudSyncText.textContent = 'Sincronizado con Supabase';
-        if (cloudSyncDot) cloudSyncDot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse';
-      } else {
-        showNotification(`Tarifas guardadas en almacenamiento local con éxito.${remoteMessage}`);
+        if (btnSaveText) btnSaveText.textContent = 'Guardando...';
+        btnSave.disabled = true;
+
+        // 1. Respaldo seguro en localStorage
+        localStorage.setItem('tarifa_impresa', String(printVal));
+        localStorage.setItem('tarifa_digital', String(digitalVal));
+        localStorage.setItem('numero_whatsapp', WHATSAPP_OFICIAL);
+
+        // 2. Transmisión entre pestañas abiertas vía BroadcastChannel
+        try {
+          if ('BroadcastChannel' in window) {
+            const channel = new BroadcastChannel('tarifas_escolar_channel');
+            channel.postMessage({
+              type: 'TARIFAS_UPDATED',
+              tarifa_impresa: printVal,
+              tarifa_digital: digitalVal,
+              whatsapp: WHATSAPP_OFICIAL,
+              timestamp: updatedAt
+            });
+          }
+        } catch (_) {}
+
+        // 3. Upsert a Supabase
+        let remoteOk = false;
+        if (supabaseClient) {
+          try {
+            const payload = {
+              id: 1,
+              clave: 'tarifas_oficiales',
+              tarifa_impresa: printVal,
+              tarifa_digital: digitalVal,
+              whatsapp: WHATSAPP_OFICIAL,
+              updated_at: updatedAt
+            };
+
+            const { error } = await supabaseClient
+              .from('configuracion')
+              .upsert(payload, { onConflict: 'id' });
+
+            if (!error) {
+              remoteOk = true;
+            } else {
+              console.warn('Error upsert configuracion:', error.message);
+            }
+          } catch (supaErr) {
+            console.warn('Excepción de red al guardar en Supabase:', supaErr);
+          }
+        }
+
+        btnSave.disabled = false;
+        if (btnSaveText) btnSaveText.textContent = 'Guardar Nuevas Tarifas';
+        updateUI(printVal, digitalVal);
+
+        if (remoteOk) {
+          notify('¡Tarifas guardadas y sincronizadas en Supabase y respaldo local!');
+          if (cloudSyncText) cloudSyncText.textContent = 'Supabase Conectado';
+        } else {
+          notify('Tarifas guardadas exitosamente en almacenamiento local.');
+        }
       }
-    }
 
-    // Event Listeners
-    btnSave.addEventListener('click', guardarTarifasEnSupabase);
+      // Listeners
+      if (btnSave) btnSave.addEventListener('click', guardarTarifas);
 
-    btnReset.addEventListener('click', function() {
-      inputPrint.value = '7.000';
-      inputDigital.value = '4.200';
-      syncUIValues('7.000', '4.200');
-    });
+      if (btnReset) {
+        btnReset.addEventListener('click', () => {
+          updateUI(DEFAULT_PRINT, DEFAULT_DIGITAL);
+          localStorage.setItem('tarifa_impresa', String(DEFAULT_PRINT));
+          localStorage.setItem('tarifa_digital', String(DEFAULT_DIGITAL));
+          notify('Valores restablecidos a predeterminados ($7.500 / $2.500). Presioná Guardar para sincronizar.');
+        });
+      }
 
-    // Iniciar carga de datos
-    cargarTarifasDesdeSupabase();
-  })();
-</script>
+      // Inicialización
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cargarTarifas);
+      } else {
+        cargarTarifas();
+      }
+    })();
+  </script>
 </body></html>
