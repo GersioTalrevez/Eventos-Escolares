@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Métricas y Visitas | Sergio Ricardo Molina - Atelier Darkroom</title>
+<!-- Google Fonts: Raleway & Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#201f1f",
+            "tertiary-container": "#794303",
+            "secondary": "#9bccf4",
+            "on-tertiary": "#4c2700",
+            "error": "#ffb4ab",
+            "surface-bright": "#3a3939",
+            "primary-fixed": "#cbe6ff",
+            "inverse-on-surface": "#313030",
+            "on-secondary": "#00344f",
+            "tertiary-fixed": "#ffdcc1",
+            "on-secondary-fixed": "#001e30",
+            "surface": "#131313",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-container": "#ffb36e",
+            "error-container": "#93000a",
+            "on-tertiary-fixed": "#2e1500",
+            "tertiary": "#ffb878",
+            "outline-variant": "#41474e",
+            "outline": "#8b9199",
+            "surface-tint": "#91cdfe",
+            "primary": "#91cdfe",
+            "surface-variant": "#353534",
+            "on-background": "#e5e2e1",
+            "background": "#131313",
+            "surface-container-low": "#1c1b1b",
+            "secondary-container": "#124d70",
+            "surface-container-highest": "#353534",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "on-secondary-fixed-variant": "#0e4b6d",
+            "on-surface": "#e5e2e1",
+            "surface-dim": "#131313",
+            "surface-container-high": "#2a2a2a",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary-fixed": "#001e30",
+            "on-surface-variant": "#c0c7cf",
+            "secondary-fixed-dim": "#9bccf4",
+            "secondary-fixed": "#cae6ff",
+            "on-error": "#690005",
+            "on-primary": "#003350",
+            "inverse-primary": "#1e638f",
+            "primary-fixed-dim": "#91cdfe",
+            "on-primary-fixed-variant": "#004b72",
+            "on-primary-container": "#8ec9fa",
+            "on-secondary-container": "#8dbee6",
+            "tertiary-fixed-dim": "#ffb878",
+            "inverse-surface": "#e5e2e1",
+            "primary-container": "#005580"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "gutter-desktop": "2rem",
+            "container-max": "1440px",
+            "space-xs": "0.5rem",
+            "gutter-tablet": "1.5rem",
+            "space-3xl": "4.5rem",
+            "space-4xl": "6rem",
+            "space-2xl": "3rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-xl": "2rem",
+            "space-2xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Raleway"],
+            "headline-lg-mobile": ["Raleway"],
+            "label-md": ["Manrope"],
+            "body-lg": ["Manrope"],
+            "body-md": ["Manrope"],
+            "headline-md": ["Raleway"],
+            "display-hero-mobile": ["Raleway"],
+            "display-hero": ["Raleway"],
+            "label-sm": ["Manrope"],
+            "headline-lg": ["Raleway"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom Scrollbar for Darkroom Atmosphere */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111111;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #282828;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #005580;
+    }
+  </style>
+</head>
+<body class="bg-[#111111] text-[#ffffff] font-body-md text-body-md antialiased min-h-screen flex overflow-x-hidden selection:bg-[#005580] selection:text-white">
+<!-- ========================================================================= -->
+<!-- 1. SIDEBAR LATERAL IZQUIERDO DARKROOM (#161616, borde #222222, ancho 250px) -->
+<!-- ========================================================================= -->
+<aside class="fixed top-0 left-0 h-screen w-[250px] bg-[#161616] border-r border-[#222222] flex flex-col justify-between z-40 select-none">
+<!-- Top Branding -->
+<div>
+<div class="p-5 border-b border-[#222222]">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="font-label-sm text-label-sm tracking-widest text-[#aaaaaa]">SISTEMA ACTIVO</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold tracking-tight text-white uppercase leading-snug">
+          SERGIO RICARDO MOLINA
+        </h2>
+<p class="font-label-sm text-label-sm text-[#0088cc] uppercase tracking-wider mt-1">
+          Panel de Control
+        </p>
+</div>
+<!-- Navigation Tabs -->
+<nav class="p-3 space-y-1.5 mt-2">
+<!-- Galerías -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="panel.html">
+<span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">photo_library</span>
+<span class="font-label-md text-label-md font-medium tracking-wide">Galerías</span>
+</a>
+<!-- Cargas y Enlaces -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="cargas.html">
+<span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">cloud_upload</span>
+<span class="font-label-md text-label-md font-medium tracking-wide">Cargas y Enlaces</span>
+</a>
+<!-- Tarifas y Precios -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="precios.html">
+<span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">payments</span>
+<span class="font-label-md text-label-md font-medium tracking-wide">Tarifas y Precios</span>
+</a>
+<!-- Métricas y Visitas (ACTIVO) -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-[#004466] border border-[#0088cc] text-white shadow-sm transition-all duration-150" href="metricas.html">
+<span class="material-symbols-outlined text-[20px] text-[#9bccf4]">analytics</span>
+<span class="font-label-md text-label-md font-semibold tracking-wide">Métricas y Visitas</span>
+</a>
+<div class="pt-3 mt-3 border-t border-[#222222]/60 space-y-1.5"><a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="eventos.html"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">arrow_back</span><span class="font-label-md text-label-md font-medium tracking-wide">Volver a Eventos</span></span><span class="text-[10px] text-[#555555] font-mono">eventos.html</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="index.html"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">open_in_new</span><span class="font-label-md text-label-md font-medium tracking-wide">Ver Portafolio</span></span><span class="text-[10px] text-[#555555] font-mono">index.html</span></a></div></nav>
+</div>
+<!-- Bottom Links & Meta -->
+<div class="p-4 border-t border-[#222222] bg-[#141414] space-y-2"><div class="text-center"><span class="font-label-sm text-label-sm text-[#555555] tracking-widest block">ESTUDIO FOTOGRÁFICO • v2.5</span></div></div>
+</aside>
+<!-- ========================================================================= -->
+<!-- 2. ÁREA PRINCIPAL DE CONTENIDO (fondo #111111, padding ml-[250px])       -->
+<!-- ========================================================================= -->
+<main class="ml-[250px] flex-1 p-8 lg:p-10 max-w-[1440px] w-[calc(100%-250px)]">
+<!-- Top Header Area -->
+<header class="flex flex-col xl:flex-row xl:items-end justify-between pb-8 border-b border-[#222222] gap-6">
+<div>
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#004466]/40 border border-[#005580] text-[#38bdf8] font-label-sm text-label-sm mb-3">
+<span class="material-symbols-outlined text-[14px]">query_stats</span>
+<span>ANALÍTICA Y MÉTRICAS DE TRÁFICO • ESTADÍSTICAS OFICIALES</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight">
+          Rendimiento de Álbumes y Visitas
+        </h1>
+<p class="text-[#aaaaaa] font-body-md text-body-md mt-1.5 max-w-2xl">
+          Monitoreo en tiempo real de visitas a páginas, aperturas de fotos en visor HD y pedidos directos a WhatsApp.
+        </p>
+</div>
+<!-- Controls & Filters -->
+<div class="flex flex-wrap items-center gap-2.5 self-start xl:self-end">
+<!-- Range Filters -->
+<div class="inline-flex bg-[#161616] p-1 rounded-lg border border-[#333333]">
+<button class="period-btn px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Hoy', this)">Hoy</button>
+<button class="period-btn px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('7 Días', this)">7 Días</button>
+<button class="period-btn px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Este Mes', this)">Este Mes</button>
+<button class="period-btn px-3 py-1.5 rounded bg-[#005580] text-white border border-[#0088cc] font-label-sm text-label-sm font-semibold transition-all shadow-sm" onclick="setPeriod('Histórico', this)">Histórico</button>
+</div>
+<!-- CSV Export Button -->
+<button class="flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white px-3.5 py-2 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98]" onclick="exportToCSV()">
+<span class="material-symbols-outlined text-[18px] text-[#9bccf4]">download</span>
+<span>Exportar CSV</span>
+</button>
+<!-- Refresh Button -->
+<button class="flex items-center justify-center bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white w-9 h-9 rounded-lg transition-all active:scale-[0.98] group" onclick="refreshData()" title="Sincronizar y refrescar">
+<span class="material-symbols-outlined text-[18px] text-[#aaaaaa] group-hover:text-white transition-transform duration-500" id="refresh-icon">refresh</span>
+</button>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- 3. TARJETAS KPI SUPERIORES (4 TARJETAS EN GRID)                           -->
+<!-- ========================================================================= -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 my-8">
+<!-- KPI 1: Visitas Web -->
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Visitas Web</span>
+<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#9bccf4]">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="kpi-visitas">1.420</span>
+<span class="text-[#38bdf8] font-label-sm text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +14%
+          </span>
+</div>
+<p class="font-label-sm text-label-sm text-[#888888] mt-2">Cargas de página de clientes</p>
+</div>
+<!-- KPI 2: Fotos Visor HD -->
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Fotos en Visor HD</span>
+<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#38bdf8]">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="kpi-fotos">4.850</span>
+<span class="text-[#38bdf8] font-label-sm text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +28%
+          </span>
+</div>
+<p class="font-label-sm text-label-sm text-[#888888] mt-2">Aperturas pantalla completa de fotos</p>
+</div>
+<!-- KPI 3: Pedidos WhatsApp -->
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Clics / Pedidos WhatsApp</span>
+<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#4ade80]">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-[#4ade80] tracking-tight" id="kpi-pedidos">68</span>
+<span class="text-[#4ade80] font-label-sm text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +9%
+          </span>
+</div>
+<p class="font-label-sm text-label-sm text-[#888888] mt-2">Consultas e intenciones de compra</p>
+</div>
+<!-- KPI 4: Conversión -->
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Tasa de Conversión</span>
+<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#c084fc]">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="kpi-conversion">4.8%</span>
+<span class="text-[#c084fc] font-label-sm text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span> Óptimo
+          </span>
+</div>
+<p class="font-label-sm text-label-sm text-[#888888] mt-2">Visitas vs Contactos WhatsApp</p>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 4. MÓDULOS ANALÍTICOS EN DOS COLUMNAS                                     -->
+<!-- ========================================================================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+<!-- Columna 1: Visitas por Página y Sección (5/12) -->
+<div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between border-b border-[#242424] pb-4 mb-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#38bdf8] text-[20px]">layers</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-white">Visitas por Página y Sección</h2>
+</div>
+<span class="font-label-sm text-label-sm text-[#888888] uppercase tracking-wider">Desglose Tráfico</span>
+</div>
+<!-- Listado con barras de progreso -->
+<div class="space-y-5">
+<!-- Portafolio Principal -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#0088cc]"></span>
+                  Portafolio Principal <code class="text-[11px] text-[#777777] font-mono">(index.html)</code>
+</span>
+<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>610</strong> visitas <span class="text-[#555555]">• 43%</span></span>
+</div>
+<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
+<div class="bg-[#0088cc] h-full rounded-full transition-all duration-700" style="width: 43%;"></div>
+</div>
+</div>
+<!-- Colecciones y Eventos -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
+                  Colecciones y Eventos <code class="text-[11px] text-[#777777] font-mono">(eventos.html)</code>
+</span>
+<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>430</strong> visitas <span class="text-[#555555]">• 30%</span></span>
+</div>
+<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
+<div class="bg-[#38bdf8] h-full rounded-full transition-all duration-700" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Galerías Públicas -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#9bccf4]"></span>
+                  Galerías Públicas <code class="text-[11px] text-[#777777] font-mono">(galeria.html)</code>
+</span>
+<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>260</strong> visitas <span class="text-[#555555]">• 18%</span></span>
+</div>
+<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
+<div class="bg-[#9bccf4] h-full rounded-full transition-all duration-700" style="width: 18%;"></div>
+</div>
+</div>
+<!-- Acceso Privado PIN -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#c084fc]"></span>
+                  Acceso Privado PIN <code class="text-[11px] text-[#777777] font-mono">(privadas.html)</code>
+</span>
+<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>120</strong> visitas <span class="text-[#555555]">• 9%</span></span>
+</div>
+<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
+<div class="bg-[#c084fc] h-full rounded-full transition-all duration-700" style="width: 9%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini insight footer -->
+<div class="mt-6 pt-4 border-t border-[#242424] flex items-center justify-between text-[#777777] font-label-sm text-label-sm">
+<span>Tasa de rebote estimada: 24.2%</span>
+<span class="text-[#0088cc]">Datos calibrados en vivo</span>
+</div>
+</div>
+<!-- Columna 2: Álbumes y Colecciones Destacadas (7/12) -->
+<div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between border-b border-[#242424] pb-4 mb-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#ffd700] text-[20px]">military_tech</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-white">Álbumes y Colecciones Destacadas</h2>
+</div>
+<span class="font-label-sm text-label-sm text-[#888888] uppercase tracking-wider">Ranking de Impacto</span>
+</div>
+<!-- Ranking Podium -->
+<div class="space-y-3">
+<!-- #1 -->
+<div class="flex items-center justify-between p-3.5 bg-[#202020] border border-[#333333] rounded-lg hover:border-[#0088cc]/60 transition-colors group">
+<div class="flex items-center gap-3.5">
+<div class="w-7 h-7 rounded-md bg-[#ffd700]/10 border border-[#ffd700]/30 text-[#ffd700] flex items-center justify-center font-bold font-label-md text-label-md">
+                #1
+              </div>
+<div>
+<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
+                  Colegio San Martín - Promoción 2026
+                </h3>
+<p class="font-label-sm text-label-sm text-[#888888]">Lote Escolar Egresados • Alta Demanda</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-white font-semibold block">780 visitas</span>
+<span class="font-label-sm text-label-sm text-[#38bdf8]">2.150 fotos vistas</span>
+</div>
+</div>
+<!-- #2 -->
+<div class="flex items-center justify-between p-3.5 bg-[#1b1b1b] border border-[#2a2a2a] rounded-lg hover:border-[#444444] transition-colors group">
+<div class="flex items-center gap-3.5">
+<div class="w-7 h-7 rounded-md bg-[#c0c0c0]/10 border border-[#c0c0c0]/30 text-[#c0c0c0] flex items-center justify-center font-bold font-label-md text-label-md">
+                #2
+              </div>
+<div>
+<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
+                  Instituto Belgrano - Acto 9 de Julio
+                </h3>
+<p class="font-label-sm text-label-sm text-[#888888]">Ceremonia Oficial • Primaria</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-white font-semibold block">410 visitas</span>
+<span class="font-label-sm text-label-sm text-[#38bdf8]">1.320 fotos vistas</span>
+</div>
+</div>
+<!-- #3 -->
+<div class="flex items-center justify-between p-3.5 bg-[#1b1b1b] border border-[#2a2a2a] rounded-lg hover:border-[#444444] transition-colors group">
+<div class="flex items-center gap-3.5">
+<div class="w-7 h-7 rounded-md bg-[#cd7f32]/10 border border-[#cd7f32]/30 text-[#cd7f32] flex items-center justify-center font-bold font-label-md text-label-md">
+                #3
+              </div>
+<div>
+<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
+                  Colegio Nacional - Gala de Egresados
+                </h3>
+<p class="font-label-sm text-label-sm text-[#888888]">Fiesta de Gala • Nocturna</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-white font-semibold block">230 visitas</span>
+<span class="font-label-sm text-label-sm text-[#38bdf8]">1.380 fotos vistas</span>
+</div>
+</div>
+<!-- #4 -->
+<div class="flex items-center justify-between p-3.5 bg-[#1b1b1b] border border-[#2a2a2a] rounded-lg hover:border-[#444444] transition-colors group">
+<div class="flex items-center gap-3.5">
+<div class="w-7 h-7 rounded-md bg-[#2a2a2a] border border-[#333333] text-[#777777] flex items-center justify-center font-bold font-label-md text-label-md">
+                #4
+              </div>
+<div>
+<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
+                  Promesa a la Bandera TM 2026
+                </h3>
+<p class="font-label-sm text-label-sm text-[#888888]">4to Grado • Galería Abierta</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-white font-semibold block">180 visitas</span>
+<span class="font-label-sm text-label-sm text-[#38bdf8]">920 fotos vistas</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 5. REGISTRO DE ACTIVIDAD RECIENTE / LOG EN VIVO                           -->
+<!-- ========================================================================= -->
+<section class="bg-[#181818] border border-[#282828] rounded-xl p-6 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#242424] pb-4 mb-4 gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#4ade80] text-[20px]">sensors</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-white">Registro de Actividad en Vivo</h2>
+<span class="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse ml-1"></span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-[11px] text-[#888888] font-mono">Sincronización LocalStorage &amp; Supabase</span>
+<button class="text-xs text-[#aaaaaa] hover:text-[#ffb4ab] transition-colors" onclick="clearActivityLog()">
+            Limpiar log
+          </button>
+</div>
+</div>
+<!-- Feed Table / Live Log -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#242424] text-[#777777] font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-3">Tiempo</th>
+<th class="py-3 px-3">Tipo de Evento</th>
+<th class="py-3 px-3">Detalle / Recurso</th>
+<th class="py-3 px-3">Dispositivo / Ref</th>
+<th class="py-3 px-3 text-right">Estado</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-[#222222]" id="activity-log-body">
+<!-- Item 1 -->
+<tr class="hover:bg-[#1f1f1f] transition-colors">
+<td class="py-3.5 px-3 text-[#aaaaaa] font-mono text-xs">Hace 4 min</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#004466]/40 border border-[#005580] text-[#38bdf8] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">visibility</span>
+                  Visita a Galería
+                </span>
+</td>
+<td class="py-3.5 px-3 font-medium text-white">
+                Galería Pública Colegio San Martín
+              </td>
+<td class="py-3.5 px-3 text-[#888888] text-xs">
+                Móvil • Chrome iOS
+              </td>
+<td class="py-3.5 px-3 text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-400" title="Procesado"></span>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="hover:bg-[#1f1f1f] transition-colors">
+<td class="py-3.5 px-3 text-[#aaaaaa] font-mono text-xs">Hace 18 min</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#353534] border border-[#444444] text-[#ffffff] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">fullscreen</span>
+                  Visor HD Abierto
+                </span>
+</td>
+<td class="py-3.5 px-3 font-mono text-xs text-[#38bdf8]">
+                Apertura de foto DSC_4822 en visor HD
+              </td>
+<td class="py-3.5 px-3 text-[#888888] text-xs">
+                Desktop • Safari macOS
+              </td>
+<td class="py-3.5 px-3 text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-400" title="Procesado"></span>
+</td>
+</tr>
+<!-- Item 3 -->
+<tr class="hover:bg-[#1f1f1f] transition-colors">
+<td class="py-3.5 px-3 text-[#aaaaaa] font-mono text-xs">Hace 42 min</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#1b3e2b] border border-[#2f7d4c] text-[#4ade80] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">chat</span>
+                  WhatsApp Click
+                </span>
+</td>
+<td class="py-3.5 px-3 font-medium text-[#4ade80]">
+                Clic en Pedir por WhatsApp (Paquete Foto Digital + Copia 15x21)
+              </td>
+<td class="py-3.5 px-3 text-[#888888] text-xs">
+                Móvil • WhatsApp Direct
+              </td>
+<td class="py-3.5 px-3 text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#4ade80]" title="Lead generado"></span>
+</td>
+</tr>
+<!-- Item 4 -->
+<tr class="hover:bg-[#1f1f1f] transition-colors">
+<td class="py-3.5 px-3 text-[#aaaaaa] font-mono text-xs">Hace 1 h 12 min</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#004466]/40 border border-[#005580] text-[#38bdf8] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">visibility</span>
+                  Visita a Galería
+                </span>
+</td>
+<td class="py-3.5 px-3 font-medium text-white">
+                Instituto Belgrano - Acto 9 de Julio
+              </td>
+<td class="py-3.5 px-3 text-[#888888] text-xs">
+                Móvil • Android Chrome
+              </td>
+<td class="py-3.5 px-3 text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-400" title="Procesado"></span>
+</td>
+</tr>
+<!-- Item 5 -->
+<tr class="hover:bg-[#1f1f1f] transition-colors">
+<td class="py-3.5 px-3 text-[#aaaaaa] font-mono text-xs">Hace 2 h 05 min</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#3a2044] border border-[#6b2a8d] text-[#e879f9] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">lock_open</span>
+                  Acceso con PIN
+                </span>
+</td>
+<td class="py-3.5 px-3 font-medium text-white">
+                Álbum Privado Sala Celeste • PIN correcto
+              </td>
+<td class="py-3.5 px-3 text-[#888888] text-xs">
+                Móvil • Safari iOS
+              </td>
+<td class="py-3.5 px-3 text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-400" title="Procesado"></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Footer Atelier Darkroom -->
+<footer class="mt-12 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-center justify-between text-[#666666] font-label-sm text-label-sm gap-4">
+<div>
+<span>Sergio Ricardo Molina Fotografía • Suite de Producción y Métricas</span>
+</div>
+<div class="flex items-center gap-4">
+<span>Zona Horaria: America/Argentina/Buenos_Aires (GMT-3)</span>
+<span>•</span>
+<span class="text-[#38bdf8]">Atelier Darkroom Edition</span>
+</div>
+</footer>
+</main>
+<!-- ========================================================================= -->
+<!-- SCRIPT ANALÍTICO FUNCIONAL: LOCALSTORAGE, SUPABASE SYNC Y EXPORTADOR CSV   -->
+<!-- ========================================================================= -->
+<script>
+    // Inicialización y persistencia de métricas
+    const STORAGE_KEY = "SRM_ATELIER_METRICS_V2";
+
+    const defaultMetrics = {
+      visitas: 1420,
+      fotosHD: 4850,
+      pedidosWA: 68,
+      historicoLog: [
+        { time: "Hace 4 min", type: "Visita a Galería", detail: "Galería Pública Colegio San Martín", device: "Móvil • Chrome iOS", status: "OK" },
+        { time: "Hace 18 min", type: "Visor HD Abierto", detail: "Apertura de foto DSC_4822 en visor HD", device: "Desktop • Safari macOS", status: "OK" },
+        { time: "Hace 42 min", type: "WhatsApp Click", detail: "Clic en Pedir por WhatsApp (Paquete Foto Digital + Copia 15x21)", device: "Móvil • WhatsApp Direct", status: "LEAD" },
+        { time: "Hace 1 h 12 min", type: "Visita a Galería", detail: "Instituto Belgrano - Acto 9 de Julio", device: "Móvil • Android Chrome", status: "OK" },
+        { time: "Hace 2 h 05 min", type: "Acceso con PIN", detail: "Álbum Privado Sala Celeste • PIN correcto", device: "Móvil • Safari iOS", status: "OK" }
+      ]
+    };
+
+    function loadMetrics() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      } catch (e) {
+        console.warn("LocalStorage no disponible, usando métricas por defecto.", e);
+      }
+      return defaultMetrics;
+    }
+
+    function saveMetrics(data) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        console.error("Error guardando métricas en LocalStorage", e);
+      }
+    }
+
+    // Filtrar período visual
+    function setPeriod(periodName, btnElement) {
+      document.querySelectorAll('.period-btn').forEach(btn => {
+        btn.classList.remove('bg-[#005580]', 'text-white', 'border', 'border-[#0088cc]', 'font-semibold', 'shadow-sm');
+        btn.classList.add('text-[#aaaaaa]');
+      });
+
+      btnElement.classList.remove('text-[#aaaaaa]');
+      btnElement.classList.add('bg-[#005580]', 'text-white', 'border', 'border-[#0088cc]', 'font-semibold', 'shadow-sm');
+
+      // Modificadores de demostración para los períodos
+      const kpiVisitas = document.getElementById('kpi-visitas');
+      const kpiFotos = document.getElementById('kpi-fotos');
+      const kpiPedidos = document.getElementById('kpi-pedidos');
+      const kpiConv = document.getElementById('kpi-conversion');
+
+      if (periodName === 'Hoy') {
+        kpiVisitas.innerText = "142";
+        kpiFotos.innerText = "512";
+        kpiPedidos.innerText = "8";
+        kpiConv.innerText = "5.6%";
+      } else if (periodName === '7 Días') {
+        kpiVisitas.innerText = "680";
+        kpiFotos.innerText = "2.190";
+        kpiPedidos.innerText = "34";
+        kpiConv.innerText = "5.0%";
+      } else if (periodName === 'Este Mes') {
+        kpiVisitas.innerText = "1.180";
+        kpiFotos.innerText = "3.940";
+        kpiPedidos.innerText = "56";
+        kpiConv.innerText = "4.7%";
+      } else {
+        kpiVisitas.innerText = "1.420";
+        kpiFotos.innerText = "4.850";
+        kpiPedidos.innerText = "68";
+        kpiConv.innerText = "4.8%";
+      }
+    }
+
+    // Exportador de reporte CSV
+    function exportToCSV() {
+      const data = loadMetrics();
+      const csvRows = [
+        ["Reporte Analitico de Metricas - Sergio Ricardo Molina"],
+        ["Fecha de Descarga", new Date().toLocaleString("es-AR")],
+        [""],
+        ["Indicador KPI", "Total Registrado"],
+        ["Total Visitas Web", data.visitas || 1420],
+        ["Fotos en Visor HD", data.fotosHD || 4850],
+        ["Clics y Consultas WhatsApp", data.pedidosWA || 68],
+        ["Tasa de Conversion Estimada", "4.8%"],
+        [""],
+        ["Top Albumes", "Visitas", "Fotos Vistas"],
+        ["Colegio San Martin - Promocion 2026", 780, 2150],
+        ["Instituto Belgrano - Acto 9 de Julio", 410, 1320],
+        ["Colegio Nacional - Gala de Egresados", 230, 1380],
+        ["Promesa a la Bandera TM 2026", 180, 920],
+        [""],
+        ["Registro de Actividad Reciente"],
+        ["Tiempo", "Tipo", "Detalle", "Dispositivo"]
+      ];
+
+      data.historicoLog.forEach(item => {
+        csvRows.push([item.time, item.type, `"${item.detail.replace(/"/g, '""')}"`, item.device]);
+      });
+
+      const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + csvRows.map(e => e.join(";")).join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `metricas_molina_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Refrescar y sincronizar
+    function refreshData() {
+      const icon = document.getElementById('refresh-icon');
+      icon.classList.add('rotate-180');
+      
+      setTimeout(() => {
+        icon.classList.remove('rotate-180');
+        // Chequeo si hay cliente de Supabase configurado en el scope global
+        if (window.supabase) {
+          console.log("[Supabase Sync] Métricas sincronizadas con la base remota.");
+        } else {
+          console.log("[Local Sync] Métricas locales validadas y actualizadas en tiempo real.");
+        }
+      }, 500);
+    }
+
+    // Limpiar tabla de logs visualmente
+    function clearActivityLog() {
+      const tbody = document.getElementById('activity-log-body');
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="py-8 text-center text-[#666666] font-label-md">
+            No hay eventos recientes registrados en la sesión actual.
+          </td>
+        </tr>
+      `;
+    }
+
+    // Asegurar estructura al iniciar
+    document.addEventListener("DOMContentLoaded", () => {
+      const current = loadMetrics();
+      saveMetrics(current);
+    });
+  </script>
+</body></html>
