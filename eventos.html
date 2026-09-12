@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Eventos Escolares | Sergio Ricardo Molina Fotografía Profesional</title>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Supabase JS Client v2 Oficial -->
@@ -139,7 +137,7 @@
 <header class="sticky top-0 z-40 bg-[#111111]/90 backdrop-blur-md border-b border-[#262626] transition-all duration-200 select-none">
 <div class="flex items-center justify-between w-full max-w-[1200px] mx-auto px-4 sm:px-6 h-18 py-3">
 <a class="flex items-center gap-3.5 group" href="index.html">
-<img alt="Sergio Ricardo Molina" class="w-11 h-11 rounded-full border border-sky-400/60 object-cover shadow-sm group-hover:scale-105 transition-transform pointer-events-none" draggable="false" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
+<img alt="Sergio Ricardo Molina" class="w-11 h-11 rounded-full border border-sky-400/60 object-cover shadow-sm group-hover:scale-105 transition-transform pointer-events-none" draggable="false" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
 <div class="flex flex-col text-left">
 <span class="font-['Raleway'] text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors">
             SERGIO RICARDO MOLINA
@@ -172,7 +170,7 @@
 <div class="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800 select-none">
 <div class="flex items-center gap-2 text-xs font-semibold text-neutral-400 tracking-widest uppercase">
 <span class="material-symbols-outlined text-sky-400 text-base">photo_library</span>
-<span id="gallery-counter">0 GALERÍAS DISPONIBLES</span>
+<span id="gallery-counter" class="">2 GALERÍAS DISPONIBLES</span>
 </div>
 </div>
 <!-- Empty State (oculto por defecto hasta verificar) -->
@@ -185,16 +183,53 @@
           No se encontraron coberturas públicas disponibles.</p>
 </div>
 <!-- Public Grid Container: 2 cols en mobile, 3 cols en desktop -->
-<div class="grid grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6" id="galleries-grid"></div>
+<div class="grid grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6" id="galleries-grid">
+          <a class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block select-none" href="galeria.html?id=1WOnmaidKHVu071hNQhtC016rVne5tWEJ&amp;titulo=Promesa%20a%20La%20Bandera%20TM%202026">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+              
+                <img alt="Promesa a La Bandera TM 2026" draggable="false" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out select-none" loading="lazy" src="https://lh3.googleusercontent.com/d/1nGLKoDm3FnFsJYO7SZXwLUeMhCGbmlTp=w600" onerror="this.onerror=null; this.parentElement.innerHTML='&lt;div class=\'w-full h-full flex items-center justify-center bg-[#181818] text-neutral-600\'&gt;&lt;span class=\'material-symbols-outlined text-4xl\'&gt;photo&lt;/span&gt;&lt;/div&gt;';">
+              
+              <div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm pointer-events-none">
+                <span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
+              </div>
+              
+            </div>
+            <div class="p-3.5 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+              <div>
+                
+                <h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+                  Promesa a La Bandera TM 2026
+                </h3>
+              </div>
+            </div>
+          </a>
+        
+          <a class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block select-none" href="galeria.html?id=1YxwsZ0Kv-vLWN8RcXNPIrQKZ5n6gYwzl&amp;titulo=Practicas%20CCT6014%20Electricidad%20TT%202026%20">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
+              
+                <img alt="Practicas CCT6014 Electricidad TT 2026 " draggable="false" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out select-none" loading="lazy" src="https://lh3.googleusercontent.com/d/12l9zeTaNCzY2C6NNPUokQvp5oYFhMd8c=w600" onerror="this.onerror=null; this.parentElement.innerHTML='&lt;div class=\'w-full h-full flex items-center justify-center bg-[#181818] text-neutral-600\'&gt;&lt;span class=\'material-symbols-outlined text-4xl\'&gt;photo&lt;/span&gt;&lt;/div&gt;';">
+              
+              <div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm pointer-events-none">
+                <span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
+              </div>
+              
+            </div>
+            <div class="p-3.5 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
+              <div>
+                
+                <h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+                  Practicas CCT6014 Electricidad TT 2026 
+                </h3>
+              </div>
+            </div>
+          </a>
+        </div>
 </section>
 <!-- 4. Bloque 'Acceso Privado Clientes' -->
 <section class="mb-5 w-full">
-<button class="btn-acceso-privado-box group" onclick="abrirModalPrivado()" type="button">
-<span class="material-symbols-outlined text-[#38bdf8] text-3xl mb-2 transition-transform group-hover:scale-110">lock</span>
-<span class="text-white font-bold text-lg sm:text-xl font-['Raleway'] tracking-wide">
-          Acceso Privado Clientes 🔒
-        </span>
-</button>
+
 </section>
 <!-- 5. Bloque de Redes Sociales: 3 columnas -->
 <section class="mb-14">
@@ -223,14 +258,14 @@
 </div>
 </footer>
 <!-- Toast Notificación de Seguridad Elegante -->
-<div id="security-toast">
+<div id="security-toast" class="">
 <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#181818]/95 backdrop-blur-md border border-neutral-700/80 shadow-2xl text-xs sm:text-sm text-neutral-200">
 <span class="material-symbols-outlined text-sky-400 text-base">shield</span>
 <span class="font-medium tracking-wide">Galería protegida · Sergio Ricardo Molina</span>
 </div>
 </div>
 <!-- Modal Acceso Privado Clientes -->
-<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" id="modal-privado">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden" id="modal-privado">
 <div class="relative w-full max-w-md bg-[#1a1a1a] border border-neutral-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl transition-all">
 <!-- Botón Cerrar -->
 <button aria-label="Cerrar modal" class="absolute top-4 right-4 text-neutral-400 hover:text-white transition-colors p-1" onclick="cerrarModalPrivado()" type="button">
@@ -253,16 +288,16 @@
             Contraseña de acceso
           </label>
 <div class="relative">
-<input autocomplete="current-password" class="w-full bg-[#111111] border border-neutral-700 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 transition-colors outline-none" id="input-clave" placeholder="Contraseña de tu álbum o sesión" required="" type="password"/>
+<input autocomplete="current-password" class="w-full bg-[#111111] border border-neutral-700 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 transition-colors outline-none" id="input-clave" placeholder="Contraseña de tu álbum o sesión" required="" type="password">
 </div>
 <p class="hidden text-xs text-rose-400 mt-2 flex items-center gap-1" id="msg-error">
 <span class="material-symbols-outlined text-sm">error</span>
-<span id="msg-error-text">Contraseña incorrecta o álbum no encontrado.</span>
+<span id="msg-error-text" class="">Contraseña incorrecta o álbum no encontrado.</span>
 </p>
 </div>
 <div class="flex flex-col gap-2.5 mt-6">
 <button class="w-full flex items-center justify-center gap-2 bg-[#006699] hover:bg-[#0077b3] active:scale-[0.98] text-white font-semibold py-3 px-4 rounded-lg transition-all shadow-md text-sm uppercase tracking-wider" id="btn-submit-clave" type="submit">
-<span>Ingresar a la Galería</span>
+<span class="">Ingresar a la Galería</span>
 <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 <button class="w-full py-2.5 text-xs text-neutral-400 hover:text-neutral-200 transition-colors uppercase tracking-wider font-medium" onclick="cerrarModalPrivado()" type="button">
@@ -785,4 +820,6 @@
       cargarEventosPublicos();
     }
   </script>
+
+
 </body></html>
