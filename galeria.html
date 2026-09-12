@@ -288,6 +288,17 @@ header {
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
+.btn-select-quitar {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+}
+.btn-select-quitar:hover {
+  background: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
 .estado-caja {
   grid-column: 1 / -1;
   text-align: center;
@@ -693,10 +704,10 @@ let WHATSAPP_FOTOGRAFO = '5492613175222';
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 let listaFotos = [
-  { id: '1', name: '#DSC_0482', thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiBLgS-412iYlX8lDs16_rwLFqOdb4aHH87vNzHU8KPKJUB-Z4NBe5AlTEArcrH9Aez3jSNhES-5NIo5siA8-5oV0lw1zdISnUnwAU2Y_ivf8h6UAJDSVekmsGlnDXsLRDIZLptFKJJNQi0dplNt7HI98BzACVkogNHYWUM80wOt7B5yrJUv_gV_9rktSft43agLA1fmdVZvv65NCaTWQr3PAHX7C4tkIWI5UZ783ABfRTjjCoHeen', full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiBLgS-412iYlX8lDs16_rwLFqOdb4aHH87vNzHU8KPKJUB-Z4NBe5AlTEArcrH9Aez3jSNhES-5NIo5siA8-5oV0lw1zdISnUnwAU2Y_ivf8h6UAJDSVekmsGlnDXsLRDIZLptFKJJNQi0dplNt7HI98BzACVkogNHYWUM80wOt7B5yrJUv_gV_9rktSft43agLA1fmdVZvv65NCaTWQr3PAHX7C4tkIWI5UZ783ABfRTjjCoHeen' },
-  { id: '2', name: '#DSC_0489', thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBIH1Ay1if3sAVikfhS2osoJtK89FbUo90cXylg4CCLIu7GQEYGrwdJcRpJFk_lZ-U-1CIhVYTbrBmN5EQ0x3Whwqyg9bhF0mSMDWU3hjr2CvXjfvHFde8Pf4Ii9JPUWcN7QXceCJ4aWVS8zzlfK4L2Svi45bYNt3hfjoagBrIIkBdGXLSN9rJ70sfEiAbbaXgF0CRhjbVuJ9o_waHNkJTwfE01t_Bc140jhBHVuboivDIQgmBnxz_I', full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBIH1Ay1if3sAVikfhS2osoJtK89FbUo90cXylg4CCLIu7GQEYGrwdJcRpJFk_lZ-U-1CIhVYTbrBmN5EQ0x3Whwqyg9bhF0mSMDWU3hjr2CvXjfvHFde8Pf4Ii9JPUWcN7QXceCJ4aWVS8zzlfK4L2Svi45bYNt3hfjoagBrIIkBdGXLSN9rJ70sfEiAbbaXgF0CRhjbVuJ9o_waHNkJTwfE01t_Bc140jhBHVuboivDIQgmBnxz_I' },
-  { id: '3', name: '#DSC_0512', thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCG3I6VvzBUEEcy-30LH29XsSXE-BbUpeSbjtSA5p2mGFUEpYELygrmJwiByhOf3mVGMNvuM-LCWkkNr-P1AQD80AfALG17N5NP8YB-1JVWJCoMynJY7AhbAm8owJWv41vTdAt_Tv7YK_h9sdJJGAS0zuB2WGetJBseZsxajrz2RhxhrYDddmz3ejlyyftuPvGKiVsK7iOY_rc87Ja1pPlpC9nJER1BXP2llEDebPBMB8dn4SAwXnk0', full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCG3I6VvzBUEEcy-30LH29XsSXE-BbUpeSbjtSA5p2mGFUEpYELygrmJwiByhOf3mVGMNvuM-LCWkkNr-P1AQD80AfALG17N5NP8YB-1JVWJCoMynJY7AhbAm8owJWv41vTdAt_Tv7YK_h9sdJJGAS0zuB2WGetJBseZsxajrz2RhxhrYDddmz3ejlyyftuPvGKiVsK7iOY_rc87Ja1pPlpC9nJER1BXP2llEDebPBMB8dn4SAwXnk0' },
-  { id: '4', name: '#DSC_0534', thumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhHDq1B-4Pzv22vDU3tgvxH5TdB0bnw5FkC3s1uH6uCoRpd6hW6fyAJayd2bFYRGAAi9_ZFLUUKuJ8cuZleT94-GR9jcNaoFLoMuxLzX4kQdzDGUjkQtujPT8edDlNRLm23A10mRfqrsw3uPDGmronLxdMn0ex1QsQuOV4PbGorkox68WHk6JUM3eZeZOtEFtLKdrrtP7K1mHPHvMhwISspMGc9R20r0aMMVzyetvF_gefhEGWe1sC', full: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhHDq1B-4Pzv22vDU3tgvxH5TdB0bnw5FkC3s1uH6uCoRpd6hW6fyAJayd2bFYRGAAi9_ZFLUUKuJ8cuZleT94-GR9jcNaoFLoMuxLzX4kQdzDGUjkQtujPT8edDlNRLm23A10mRfqrsw3uPDGmronLxdMn0ex1QsQuOV4PbGorkox68WHk6JUM3eZeZOtEFtLKdrrtP7K1mHPHvMhwISspMGc9R20r0aMMVzyetvF_gefhEGWe1sC' }
+  { id: '1', name: '#DSC_4821.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1Vlo7Y4rt61fH5p6NehxUxag7DAA1PI0QMlaKRRfR88KIyNtSIOD-v_Wp6qE24lj-XSqCeutzTh1jZDpAxzSaplhEcqf4hKEn5ZXqPadKiu46YCYnVNgOAPBqgU8Z37E_ldqJt3i8qkldyjLT2RMxV4R6mqVlBGdHZRyyGjMtX-sVestUW1AJdBt6AP74NoEtsTKqUtUNLbFnImrEGIWvd-a5T096DrGVFYj4etKupRYpHeG4R81C8SqCQ', full: 'https://lh3.googleusercontent.com/aida/AEtjO1Vlo7Y4rt61fH5p6NehxUxag7DAA1PI0QMlaKRRfR88KIyNtSIOD-v_Wp6qE24lj-XSqCeutzTh1jZDpAxzSaplhEcqf4hKEn5ZXqPadKiu46YCYnVNgOAPBqgU8Z37E_ldqJt3i8qkldyjLT2RMxV4R6mqVlBGdHZRyyGjMtX-sVestUW1AJdBt6AP74NoEtsTKqUtUNLbFnImrEGIWvd-a5T096DrGVFYj4etKupRYpHeG4R81C8SqCQ' },
+  { id: '2', name: '#DSC_4822.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1XQlTzyt0AxeD1x0ClU1QR4LKlIoKHotdyLstiRqearY4-R9BTjhX3nagWPFrncUgUOQdD0kJ-V93au3z0GIjybJdVDzWfyPZsQubD6IBRwK7JbwWlo8J2iXnEMlBra65If-0hQo5uYRbFg3o6BZr32-IEfZX1Cq1GGJm5CJxbCzF5IJBLJ1BQJPdr-zS0_9YSFEGkOinYWnld4IzUgiVPBlscvasPdsuveaRtp0SukyAlObKxP7Qn1Chk', full: 'https://lh3.googleusercontent.com/aida/AEtjO1XQlTzyt0AxeD1x0ClU1QR4LKlIoKHotdyLstiRqearY4-R9BTjhX3nagWPFrncUgUOQdD0kJ-V93au3z0GIjybJdVDzWfyPZsQubD6IBRwK7JbwWlo8J2iXnEMlBra65If-0hQo5uYRbFg3o6BZr32-IEfZX1Cq1GGJm5CJxbCzF5IJBLJ1BQJPdr-zS0_9YSFEGkOinYWnld4IzUgiVPBlscvasPdsuveaRtp0SukyAlObKxP7Qn1Chk' },
+  { id: '3', name: '#DSC_4823.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1VPKDF_zwue5yK75jhULRW85fgrVy0vRPX7MwMXQOExzy9lgPRKETBPwWRZJF6ZxF8Si0mBO5h4Ll42hKpTJzB1-Wp-wHfRiTJvzQUQ3_FSeyHqXygC6Pq4VOBfXcP3hU85EY84q3v_nvaSxv1NJxZunsi9Gyihe8R-EW_RNkCAnHi_KIlIxbWMrtvxxsH4jvDburjh8iS_jowzbjrvM8oyXuBeXeX0Byqec_IXrfgF-9EVHThtKTQEAHM', full: 'https://lh3.googleusercontent.com/aida/AEtjO1VPKDF_zwue5yK75jhULRW85fgrVy0vRPX7MwMXQOExzy9lgPRKETBPwWRZJF6ZxF8Si0mBO5h4Ll42hKpTJzB1-Wp-wHfRiTJvzQUQ3_FSeyHqXygC6Pq4VOBfXcP3hU85EY84q3v_nvaSxv1NJxZunsi9Gyihe8R-EW_RNkCAnHi_KIlIxbWMrtvxxsH4jvDburjh8iS_jowzbjrvM8oyXuBeXeX0Byqec_IXrfgF-9EVHThtKTQEAHM' },
+  { id: '4', name: '#DSC_4824.jpg', thumb: 'https://lh3.googleusercontent.com/aida/AEtjO1Ufw6ofj3uS8iR8R94ik5-VeAygK-oiMOtGUQw53LU39EB8lMP6_D8Y3gxhWAQVJfj8OcGQrc5QyidFOu4qwMUuZzJbl-0HDjGL80SENIGDkgXQZgpQPMTRTEHtlxdtQOukXcfgCRFZ0tse4m4vRLiZpYckIgRcWpnfIgb8q8c2NlFxOi4m1D2X_RGijR_E8ztqiOXlhHZt4JAt3iMdjXevIoeQljzuEbpSJsBBfX47hAfAPU0TS6e3xQk', full: 'https://lh3.googleusercontent.com/aida/AEtjO1Ufw6ofj3uS8iR8R94ik5-VeAygK-oiMOtGUQw53LU39EB8lMP6_D8Y3gxhWAQVJfj8OcGQrc5QyidFOu4qwMUuZzJbl-0HDjGL80SENIGDkgXQZgpQPMTRTEHtlxdtQOukXcfgCRFZ0tse4m4vRLiZpYckIgRcWpnfIgb8q8c2NlFxOi4m1D2X_RGijR_E8ztqiOXlhHZt4JAt3iMdjXevIoeQljzuEbpSJsBBfX47hAfAPU0TS6e3xQk' }
 ];
 
 // Mapa de elecciones: { fotoId: { impresa: boolean, digital: boolean } }
@@ -868,22 +879,41 @@ async function iniciarGaleria() {
 }
 
 async function cargarFotosDrive(folderId) {
-  const urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
-
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 9000);
+  let archivosEncontrados = [];
+  let pageToken = '';
 
   try {
-    const res = await fetch(urlDrive, { signal: controller.signal });
-    clearTimeout(timeoutId);
-    const datos = await res.json();
+    do {
+      let urlDrive = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&pageSize=1000&fields=nextPageToken,files(id,name)&key=${API_KEY_DRIVE}`;
+      if (pageToken) {
+        urlDrive += `&pageToken=${encodeURIComponent(pageToken)}`;
+      }
 
-    if (datos.error || !datos.files || datos.files.length === 0) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+      const res = await fetch(urlDrive, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      const datos = await res.json();
+
+      if (datos.error) {
+        console.error("Error devuelto por Google Drive API:", datos.error);
+        break;
+      }
+
+      if (datos.files && datos.files.length > 0) {
+        archivosEncontrados = archivosEncontrados.concat(datos.files);
+      }
+
+      pageToken = datos.nextPageToken || '';
+    } while (pageToken);
+
+    if (archivosEncontrados.length === 0) {
       mostrarMensajeVacio(folderId);
       return;
     }
 
-    listaFotos = datos.files.map(f => ({
+    listaFotos = archivosEncontrados.map(f => ({
       id: f.id,
       name: f.name ? (f.name.startsWith('#') ? f.name : `#${f.name}`) : '#Foto',
       thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
@@ -893,8 +923,19 @@ async function cargarFotosDrive(folderId) {
     mapaSeleccion.clear();
     renderizarFotos();
   } catch (err) {
-    clearTimeout(timeoutId);
-    mostrarMensajeVacio(folderId);
+    console.warn("Error cargando fotos de Google Drive:", err);
+    if (archivosEncontrados.length > 0) {
+      listaFotos = archivosEncontrados.map(f => ({
+        id: f.id,
+        name: f.name ? (f.name.startsWith('#') ? f.name : `#${f.name}`) : '#Foto',
+        thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
+        full: `https://lh3.googleusercontent.com/d/${f.id}=w1600`
+      }));
+      mapaSeleccion.clear();
+      renderizarFotos();
+    } else {
+      mostrarMensajeVacio(folderId);
+    }
   }
 }
 
@@ -930,6 +971,11 @@ function renderizarFotos() {
             <span class="material-symbols-outlined" style="font-size:13px;">cloud_download</span> Digital
           </button>
         </div>
+        ${estaSeleccionada ? `
+          <button class="btn-select-tarjeta btn-select-quitar" style="width: 100%; margin-top: 2px;" onclick="quitarSeleccionFoto('${foto.id}', event)">
+            <span class="material-symbols-outlined" style="font-size:13px;">delete</span> Quitar selección
+          </button>
+        ` : ''}
       </div>
     `;
     contenedor.appendChild(tarjeta);
@@ -955,15 +1001,32 @@ function elegirFormatoFoto(fotoId, tipo, event) {
     mapaSeleccion.set(fotoId, estado);
   }
 
-  const card = document.getElementById(`card-foto-${fotoId}`);
-  const btnImp = document.getElementById(`btn-imp-${fotoId}`) || (card ? card.querySelector('.btn-select-impresa') : null);
-  const btnDig = document.getElementById(`btn-dig-${fotoId}`) || (card ? card.querySelector('.btn-select-digital') : null);
+  actualizarTarjetaDOM(fotoId);
+  actualizarTotalesBarra();
+}
 
+function quitarSeleccionFoto(fotoId, event) {
+  if (event) event.stopPropagation();
+  mapaSeleccion.delete(fotoId);
+  actualizarTarjetaDOM(fotoId);
+  actualizarTotalesBarra();
+}
+
+function actualizarTarjetaDOM(fotoId) {
+  const card = document.getElementById(`card-foto-${fotoId}`);
+  if (!card) return;
+
+  const estado = mapaSeleccion.get(fotoId) || { impresa: false, digital: false };
   const esActivo = estado.impresa || estado.digital;
-  if (card) {
-    if (esActivo) card.classList.add('seleccionada');
-    else card.classList.remove('seleccionada');
+
+  if (esActivo) {
+    card.classList.add('seleccionada');
+  } else {
+    card.classList.remove('seleccionada');
   }
+
+  const btnImp = document.getElementById(`btn-imp-${fotoId}`) || card.querySelector('.btn-select-impresa');
+  const btnDig = document.getElementById(`btn-dig-${fotoId}`) || card.querySelector('.btn-select-digital');
 
   if (btnImp) {
     if (estado.impresa) btnImp.classList.add('activo');
@@ -975,7 +1038,20 @@ function elegirFormatoFoto(fotoId, tipo, event) {
     else btnDig.classList.remove('activo');
   }
 
-  actualizarTotalesBarra();
+  // Manejar el botón quitar dinámicamente si no se re-renderiza toda la cuadrícula
+  let btnQuitar = card.querySelector('.btn-select-quitar');
+  const pie = card.querySelector('.pie-foto');
+  if (esActivo && !btnQuitar && pie) {
+    const btn = document.createElement('button');
+    btn.className = 'btn-select-tarjeta btn-select-quitar';
+    btn.style.width = '100%';
+    btn.style.marginTop = '2px';
+    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:13px;">delete</span> Quitar selección';
+    btn.onclick = (e) => quitarSeleccionFoto(fotoId, e);
+    pie.appendChild(btn);
+  } else if (!esActivo && btnQuitar) {
+    btnQuitar.remove();
+  }
 }
 
 function actualizarTotalesBarra() {
@@ -999,7 +1075,11 @@ function actualizarTotalesBarra() {
 
 function limpiarSeleccion() {
   mapaSeleccion.clear();
-  document.querySelectorAll('.tarjeta-foto').forEach(c => c.classList.remove('seleccionada'));
+  document.querySelectorAll('.tarjeta-foto').forEach(c => {
+    c.classList.remove('seleccionada');
+    const bq = c.querySelector('.btn-select-quitar');
+    if (bq) bq.remove();
+  });
   document.querySelectorAll('.btn-select-tarjeta').forEach(b => b.classList.remove('activo'));
   actualizarTotalesBarra();
 }
