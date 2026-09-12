@@ -135,27 +135,32 @@
     }
   </style>
 </head>
-<body class="bg-[#111111] text-[#ffffff] font-body-md text-body-md antialiased min-h-screen flex overflow-x-hidden selection:bg-[#005580] selection:text-white">
+<body class="bg-[#111111] text-[#ffffff] font-body-md text-body-md antialiased min-h-screen flex flex-col lg:flex-row overflow-x-hidden selection:bg-[#005580] selection:text-white">
 <!-- ========================================================================= -->
 <!-- 1. SIDEBAR LATERAL IZQUIERDO DARKROOM (#161616, borde #222222, ancho 250px) -->
 <!-- ========================================================================= -->
-<aside class="fixed top-0 left-0 h-screen w-[250px] bg-[#161616] border-r border-[#222222] flex flex-col justify-between z-40 select-none">
-<!-- Top Branding -->
+<aside class="w-full lg:w-[250px] lg:fixed lg:top-0 lg:left-0 lg:h-screen bg-[#161616] border-b lg:border-b-0 lg:border-r border-[#222222] flex flex-col justify-between z-40 select-none">
 <div>
-<div class="p-5 border-b border-[#222222]">
-<div class="flex items-center gap-2 mb-2">
+<div class="p-4 sm:p-5 border-b border-[#222222] flex items-center justify-between lg:block">
+<div>
+<div class="flex items-center gap-2 mb-1.5 sm:mb-2">
 <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
 <span class="font-label-sm text-label-sm tracking-widest text-[#aaaaaa]">SISTEMA ACTIVO</span>
 </div>
-<h2 class="font-headline-sm text-headline-sm font-bold tracking-tight text-white uppercase leading-snug">
+<h2 class="font-headline-sm text-[16px] sm:text-headline-sm font-bold tracking-tight text-white uppercase leading-snug">
           SERGIO RICARDO MOLINA
         </h2>
-<p class="font-label-sm text-label-sm text-[#0088cc] uppercase tracking-wider mt-1">
+<p class="font-label-sm text-label-sm text-[#0088cc] uppercase tracking-wider mt-0.5 sm:mt-1">
           Panel de Control
         </p>
 </div>
+<button aria-label="Alternar menú de navegación" class="lg:hidden p-2 rounded-lg bg-[#202020] border border-[#333333] text-[#aaaaaa] hover:text-white transition-colors" onclick="const m = document.getElementById('mobile-nav-panel'); m.classList.toggle('hidden');" type="button">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+</button>
+</div>
 <!-- Navigation Tabs -->
-<nav class="p-3 space-y-1.5 mt-2">
+<div class="hidden lg:block" id="mobile-nav-panel">
+<nav class="p-3 space-y-1.5 mt-1 sm:mt-2">
 <!-- Galerías -->
 <a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="panel.html">
 <span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">photo_library</span>
@@ -176,45 +181,67 @@
 <span class="material-symbols-outlined text-[20px] text-[#9bccf4]">analytics</span>
 <span class="font-label-md text-label-md font-semibold tracking-wide">Métricas y Visitas</span>
 </a>
-<div class="pt-3 mt-3 border-t border-[#222222]/60 space-y-1.5"><a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="eventos.html"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">arrow_back</span><span class="font-label-md text-label-md font-medium tracking-wide">Volver a Eventos</span></span><span class="text-[10px] text-[#555555] font-mono">eventos.html</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="index.html"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">open_in_new</span><span class="font-label-md text-label-md font-medium tracking-wide">Ver Portafolio</span></span><span class="text-[10px] text-[#555555] font-mono">index.html</span></a></div></nav>
+<div class="pt-3 mt-3 border-t border-[#222222]/60 space-y-1.5">
+<a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="eventos.html">
+<span class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">arrow_back</span>
+<span class="font-label-md text-label-md font-medium tracking-wide">Volver a Eventos</span>
+</span>
+<span class="text-[10px] text-[#555555] font-mono">eventos.html</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="index.html">
+<span class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">open_in_new</span>
+<span class="font-label-md text-label-md font-medium tracking-wide">Ver Portafolio</span>
+</span>
+<span class="text-[10px] text-[#555555] font-mono">index.html</span>
+</a>
+</div>
+</nav>
+</div>
 </div>
 <!-- Bottom Links & Meta -->
-<div class="p-4 border-t border-[#222222] bg-[#141414] space-y-2"><div class="text-center"><span class="font-label-sm text-label-sm text-[#555555] tracking-widest block">ESTUDIO FOTOGRÁFICO • v2.5</span></div></div>
+<div class="hidden lg:block p-4 border-t border-[#222222] bg-[#141414] space-y-2">
+<div class="text-center">
+<span class="font-label-sm text-label-sm text-[#555555] tracking-widest block">ESTUDIO FOTOGRÁFICO • v2.5</span>
+</div>
+</div>
 </aside>
 <!-- ========================================================================= -->
 <!-- 2. ÁREA PRINCIPAL DE CONTENIDO (fondo #111111, padding ml-[250px])       -->
 <!-- ========================================================================= -->
-<main class="ml-[250px] flex-1 p-8 lg:p-10 max-w-[1440px] w-[calc(100%-250px)]">
+<main class="w-full lg:ml-[250px] lg:w-[calc(100%-250px)] flex-1 p-4 sm:p-6 lg:p-10 max-w-[1440px]">
 <!-- Top Header Area -->
-<header class="flex flex-col xl:flex-row xl:items-end justify-between pb-8 border-b border-[#222222] gap-6">
+<header class="flex flex-col xl:flex-row xl:items-end justify-between pb-6 sm:pb-8 border-b border-[#222222] gap-5 sm:gap-6">
 <div>
 <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#004466]/40 border border-[#005580] text-[#38bdf8] font-label-sm text-label-sm mb-3">
 <span class="material-symbols-outlined text-[14px]">query_stats</span>
 <span>ANALÍTICA Y MÉTRICAS DE TRÁFICO • ESTADÍSTICAS OFICIALES</span>
 </div>
-<h1 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight">
+<h1 class="font-headline-lg text-2xl sm:text-headline-lg font-bold text-white tracking-tight">
           Rendimiento de Álbumes y Visitas
         </h1>
-<p class="text-[#aaaaaa] font-body-md text-body-md mt-1.5 max-w-2xl">
+<p class="text-[#aaaaaa] font-body-md text-sm sm:text-body-md mt-1.5 max-w-2xl">
           Monitoreo en tiempo real de visitas a páginas, aperturas de fotos en visor HD y pedidos directos a WhatsApp.
         </p>
 </div>
-<!-- Controls & Filters -->
-<div class="flex flex-wrap items-center gap-2.5 self-start xl:self-end">
+<!-- Controls & Filters (horizontal scrollable on mobile) -->
+<div class="flex items-center gap-2.5 overflow-x-auto pb-1 max-w-full xl:self-end">
 <!-- Range Filters -->
-<div class="inline-flex bg-[#161616] p-1 rounded-lg border border-[#333333]">
-<button class="period-btn px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Hoy', this)">Hoy</button>
-<button class="period-btn px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('7 Días', this)">7 Días</button>
-<button class="period-btn px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Este Mes', this)">Este Mes</button>
-<button class="period-btn px-3 py-1.5 rounded bg-[#005580] text-white border border-[#0088cc] font-label-sm text-label-sm font-semibold transition-all shadow-sm" onclick="setPeriod('Histórico', this)">Histórico</button>
+<div class="inline-flex bg-[#161616] p-1 rounded-lg border border-[#333333] shrink-0">
+<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Hoy', this)">Hoy</button>
+<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('7 Días', this)">7 Días</button>
+<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Este Mes', this)">Este Mes</button>
+<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded bg-[#005580] text-white border border-[#0088cc] font-label-sm text-label-sm font-semibold transition-all shadow-sm" onclick="setPeriod('Histórico', this)">Histórico</button>
 </div>
 <!-- CSV Export Button -->
-<button class="flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white px-3.5 py-2 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98]" onclick="exportToCSV()">
+<button class="flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white px-3 py-2 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98] shrink-0" onclick="exportToCSV()">
 <span class="material-symbols-outlined text-[18px] text-[#9bccf4]">download</span>
-<span>Exportar CSV</span>
+<span class="hidden sm:inline">Exportar CSV</span>
+<span class="sm:hidden">CSV</span>
 </button>
 <!-- Refresh Button -->
-<button class="flex items-center justify-center bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white w-9 h-9 rounded-lg transition-all active:scale-[0.98] group" onclick="refreshData()" title="Sincronizar y refrescar">
+<button class="flex items-center justify-center bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white w-9 h-9 rounded-lg transition-all active:scale-[0.98] group shrink-0" onclick="refreshData()" title="Sincronizar y refrescar">
 <span class="material-symbols-outlined text-[18px] text-[#aaaaaa] group-hover:text-white transition-transform duration-500" id="refresh-icon">refresh</span>
 </button>
 </div>
@@ -222,70 +249,70 @@
 <!-- ========================================================================= -->
 <!-- 3. TARJETAS KPI SUPERIORES (4 TARJETAS EN GRID)                           -->
 <!-- ========================================================================= -->
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 my-8">
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 my-6 sm:my-8">
 <!-- KPI 1: Visitas Web -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Visitas Web</span>
-<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#9bccf4]">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
+<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate">Total Visitas Web</span>
+<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#9bccf4] shrink-0">
+<span class="material-symbols-outlined text-[16px] sm:text-[18px]">visibility</span>
 </div>
 </div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="kpi-visitas">1.420</span>
-<span class="text-[#38bdf8] font-label-sm text-label-sm flex items-center font-medium">
-<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +14%
+<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
+<span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-white tracking-tight" id="kpi-visitas">1.420</span>
+<span class="text-[#38bdf8] font-label-sm text-[11px] sm:text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[12px] sm:text-[14px]">arrow_upward</span> +14%
           </span>
 </div>
-<p class="font-label-sm text-label-sm text-[#888888] mt-2">Cargas de página de clientes</p>
+<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Cargas de página de clientes</p>
 </div>
 <!-- KPI 2: Fotos Visor HD -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Fotos en Visor HD</span>
-<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#38bdf8]">
-<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
+<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate">Fotos en Visor HD</span>
+<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#38bdf8] shrink-0">
+<span class="material-symbols-outlined text-[16px] sm:text-[18px]">photo_camera</span>
 </div>
 </div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="kpi-fotos">4.850</span>
-<span class="text-[#38bdf8] font-label-sm text-label-sm flex items-center font-medium">
-<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +28%
+<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
+<span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-white tracking-tight" id="kpi-fotos">4.850</span>
+<span class="text-[#38bdf8] font-label-sm text-[11px] sm:text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[12px] sm:text-[14px]">arrow_upward</span> +28%
           </span>
 </div>
-<p class="font-label-sm text-label-sm text-[#888888] mt-2">Aperturas pantalla completa de fotos</p>
+<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Aperturas pantalla completa</p>
 </div>
 <!-- KPI 3: Pedidos WhatsApp -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Clics / Pedidos WhatsApp</span>
-<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#4ade80]">
-<span class="material-symbols-outlined text-[18px]">chat</span>
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
+<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate">Clics WhatsApp</span>
+<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#4ade80] shrink-0">
+<span class="material-symbols-outlined text-[16px] sm:text-[18px]">chat</span>
 </div>
 </div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-[#4ade80] tracking-tight" id="kpi-pedidos">68</span>
-<span class="text-[#4ade80] font-label-sm text-label-sm flex items-center font-medium">
-<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +9%
+<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
+<span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-[#4ade80] tracking-tight" id="kpi-pedidos">68</span>
+<span class="text-[#4ade80] font-label-sm text-[11px] sm:text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[12px] sm:text-[14px]">arrow_upward</span> +9%
           </span>
 </div>
-<p class="font-label-sm text-label-sm text-[#888888] mt-2">Consultas e intenciones de compra</p>
+<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Consultas y pedidos</p>
 </div>
 <!-- KPI 4: Conversión -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-5 hover:border-[#444444] transition-all duration-200">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-3">
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Tasa de Conversión</span>
-<div class="w-8 h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#c084fc]">
-<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200">
+<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
+<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate">Conversión</span>
+<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#c084fc] shrink-0">
+<span class="material-symbols-outlined text-[16px] sm:text-[18px]">trending_up</span>
 </div>
 </div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-white tracking-tight" id="kpi-conversion">4.8%</span>
-<span class="text-[#c084fc] font-label-sm text-label-sm flex items-center font-medium">
-<span class="material-symbols-outlined text-[14px]">check</span> Óptimo
+<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
+<span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-white tracking-tight" id="kpi-conversion">4.8%</span>
+<span class="text-[#c084fc] font-label-sm text-[11px] sm:text-label-sm flex items-center font-medium">
+<span class="material-symbols-outlined text-[12px] sm:text-[14px]">check</span> Óptimo
           </span>
 </div>
-<p class="font-label-sm text-label-sm text-[#888888] mt-2">Visitas vs Contactos WhatsApp</p>
+<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Visitas vs Contactos WA</p>
 </div>
 </section>
 <!-- ========================================================================= -->
@@ -453,7 +480,7 @@
 <!-- ========================================================================= -->
 <!-- 5. REGISTRO DE ACTIVIDAD RECIENTE / LOG EN VIVO                           -->
 <!-- ========================================================================= -->
-<section class="bg-[#181818] border border-[#282828] rounded-xl p-6 shadow-sm">
+<section class="bg-[#181818] border border-[#282828] rounded-xl p-4 sm:p-6 shadow-sm">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#242424] pb-4 mb-4 gap-2">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[#4ade80] text-[20px]">sensors</span>
