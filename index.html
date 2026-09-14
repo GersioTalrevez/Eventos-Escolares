@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Sergio Ricardo Molina | Fotografía Profesional</title>
-  <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sergio Ricardo Molina | Fotografía Profesional</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -260,7 +259,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* MODAL VISOR PROTEGIDO */
+    /* MODAL VISOR PROTEGIDO CON MARCA DE AGUA FIRMA */
     .modal {
       display: none;
       position: fixed;
@@ -273,8 +272,16 @@
       align-items: center;
       z-index: 1000;
     }
-    .modal img {
+    .modal-contenido-wrapper {
+      position: relative;
       max-width: 92%;
+      max-height: 85vh;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal img {
+      max-width: 100%;
       max-height: 85vh;
       object-fit: contain;
       user-select: none;
@@ -284,6 +291,44 @@
       border-radius: 4px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.8);
       pointer-events: auto;
+      display: block;
+    }
+    .marca-agua-firma {
+      position: absolute;
+      bottom: 16px;
+      left: 18px;
+      z-index: 1002;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 8px 14px;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      max-width: calc(100% - 36px);
+    }
+    .firma-autor {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.2;
+    }
+    .firma-detalles {
+      font-size: 0.72rem;
+      color: #38bdf8;
+      margin-top: 3px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .btn-nav {
       position: absolute;
@@ -327,127 +372,136 @@
     }
     @media (max-width: 600px) {
       .btn-nav { display: none; }
+      .marca-agua-firma {
+        bottom: 12px;
+        left: 12px;
+        padding: 6px 10px;
+      }
+      .firma-autor { font-size: 0.74rem; }
+      .firma-detalles { font-size: 0.68rem; }
     }
   </style>
 </head>
 <body>
-
-  <!-- VISTA 1: MENÚ PRINCIPAL -->
-  <div id="vista-menu">
-    <header>
-      <img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" onclick="clickAvatarAcceso()">
-      <h1>Sergio Ricardo Molina<span>Fotografía Profesional</span></h1>
-    </header>
-
-    <main>
-      <div class="grid-categorias">
-        <div class="card-categoria" onclick="abrirSeccionTexto()">
-          <span class="material-symbols-outlined card-icon">person</span>
-          <span>Sobre mí</span>
+<!-- VISTA 1: MENÚ PRINCIPAL -->
+<div id="vista-menu">
+<header>
+<img alt="Sergio Ricardo Molina" class="avatar-header" onclick="clickAvatarAcceso()" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
+<h1>Sergio Ricardo Molina<span>Fotografía Profesional</span></h1>
+</header>
+<main>
+<div class="grid-categorias">
+<div class="card-categoria" onclick="abrirSeccionTexto()">
+<span class="material-symbols-outlined card-icon">person</span>
+<span>Sobre mí</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
+<span class="material-symbols-outlined card-icon">auto_awesome</span>
+<span>Ensayos</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Paisajes', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
+<span class="material-symbols-outlined card-icon">landscape</span>
+<span>Paisajes</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
+<span class="material-symbols-outlined card-icon">face</span>
+<span>Retratos</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
+<span class="material-symbols-outlined card-icon">photo_camera</span>
+<span>Sesiones</span>
+</div>
+<a class="card-categoria" href="eventos.html" style="text-decoration: none;">
+<span class="material-symbols-outlined card-icon" style="color: rgb(56, 189, 248);">school</span>
+<span>Eventos</span>
+</a>
+<div class="card-categoria btn-clientes" onclick="abrirModalCliente()">
+<span class="material-symbols-outlined" style="font-size: 24px; color: rgb(56, 189, 248);">lock</span>
+<span style="font-size: 1.05rem; font-weight: 600;">Acceso Privado Clientes 🔒</span>
+</div>
+</div>
+<!-- REDES SOCIALES Y CONTACTO -->
+<div class="redes-sociales">
+<a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
+<span class="material-symbols-outlined">chat</span>
+<span>Chat WhatsApp</span>
+</a>
+<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Catálogo</span>
+</a>
+<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
+<span class="material-symbols-outlined">photo_camera_back</span>
+<span>Instagram</span>
+</a>
+</div>
+</main>
+<footer>
+<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+</footer>
+</div>
+<!-- VISTA 2: GALERÍA DE FOTOS -->
+<div class="contenedor-galeria" id="vista-galeria">
+<div class="cabecera-galeria">
+<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
+<h2 class="titulo-categoria" id="titulo-categoria">Ensayos</h2>
+</div>
+<!-- Contenedor dinámico estructurado: Nombre de subcarpeta / Foto Foto Foto Foto -->
+<main id="galeria-contenedor-secciones"></main>
+</div>
+<!-- VISTA 3: SOBRE MÍ -->
+<div class="contenedor-galeria" id="vista-sobre-mi">
+<div class="cabecera-galeria">
+<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
+<h2 class="titulo-categoria">Sobre mí</h2>
+</div>
+<div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
+<img alt="Sergio Ricardo Molina" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin-bottom: 25px; border: 2px solid rgb(0, 85, 128); box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 20px;"/>
+<p style="margin-bottom: 18px; color: rgb(229, 229, 229); font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
+<p style="color: rgb(204, 204, 204); font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
+<div style="margin-top: 30px;">
+<a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration: none; padding: 10px 20px; font-size: 0.95rem; border-color: rgb(74, 222, 128); color: rgb(74, 222, 128);" target="_blank">Consultar por Sesiones Privadas 💬</a>
+</div>
+</div>
+</div>
+<!-- MODAL ACCESO PRIVADO A CLIENTES -->
+<div id="modal-cliente" style="display: none; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 1200; align-items: center; justify-content: center; padding: 20px;">
+<div style="background: #181818; border: 1px solid #005580; border-radius: 16px; max-width: 440px; width: 100%; padding: 28px 24px; box-shadow: 0 10px 35px rgba(0, 85, 128, 0.25); text-align: center; position: relative;">
+<span onclick="cerrarModalCliente()" style="position: absolute; top: 14px; right: 18px; color: rgb(136, 136, 136); font-size: 24px; cursor: pointer; line-height: 1;">×</span>
+<div style="width: 52px; height: 52px; background: rgba(0, 85, 128, 0.2); border: 1px solid #005580; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+<span class="material-symbols-outlined" style="font-size: 28px; color: rgb(56, 189, 248);">lock</span>
+</div>
+<h3 style="font-size: 1.3rem; font-weight: 600; color: rgb(255, 255, 255); margin-bottom: 8px;">Acceso Privado a Clientes</h3>
+<p style="font-size: 0.88rem; color: rgb(148, 163, 184); margin-bottom: 22px; line-height: 1.4;">Ingresá la clave de tu evento, sesión privada o colegio para acceder a tu álbum en alta resolución.</p>
+<form onsubmit="validarClaveAcceso(event)" style="display: flex; flex-direction: column; gap: 14px;">
+<input autocomplete="off" id="input-clave-cliente" onblur="this.style.borderColor='#334155'" onfocus="this.style.borderColor='#38bdf8'" placeholder="Ingresá tu contraseña..." style="background: rgb(16, 16, 16); border: 1px solid rgb(51, 65, 85); border-radius: 8px; color: rgb(255, 255, 255); padding: 12px 16px; font-size: 0.95rem; outline: none; text-align: center; letter-spacing: 1px; transition: border-color 0.2s;" type="password"/>
+<div id="error-clave-cliente" style="display: none; color: rgb(248, 113, 113); font-size: 0.82rem; margin-top: -6px;">Contraseña incorrecta. Por favor, verificá e intentá de nuevo.</div>
+<button id="btn-submit-clave" style="background: rgb(0, 85, 128); color: rgb(255, 255, 255); border: 1px solid rgb(56, 189, 248); border-radius: 8px; padding: 12px 18px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;" type="submit">
+<span class="material-symbols-outlined" style="font-size: 20px;">key</span>
+<span id="texto-btn-clave">Desbloquear Álbum</span>
+</button>
+</form>
+</div>
+</div>
+<!-- VISOR MODAL PROTEGIDO CON MARCA DE AGUA ELEGANTE -->
+<div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
+<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<div class="modal-contenido-wrapper">
+<img alt="Vista Previa" draggable="false" id="img-ampliada" oncontextmenu="return false;" src=""/>
+<div class="marca-agua-firma">
+<div class="firma-autor">
+<span class="material-symbols-outlined" style="font-size: 14px; color: #38bdf8;">photo_camera</span>
+<span>Sergio Ricardo Molina · Fotografía Profesional</span>
+</div>
+<div class="firma-detalles" id="firma-detalles-texto">
+          General • Fotografía
         </div>
-        <div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
-          <span class="material-symbols-outlined card-icon">auto_awesome</span>
-          <span>Ensayos</span>
-        </div>
-        <div class="card-categoria" onclick="abrirGaleria('Paisajes', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
-          <span class="material-symbols-outlined card-icon">landscape</span>
-          <span>Paisajes</span>
-        </div>
-        <div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
-          <span class="material-symbols-outlined card-icon">face</span>
-          <span>Retratos</span>
-        </div>
-        <div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
-          <span class="material-symbols-outlined card-icon">photo_camera</span>
-          <span>Sesiones</span>
-        </div>
-        <a class="card-categoria" href="eventos.html" style="text-decoration: none;">
-          <span class="material-symbols-outlined card-icon" style="color: rgb(56, 189, 248);">school</span>
-          <span>Eventos</span>
-        </a>
-        <div class="card-categoria btn-clientes" onclick="abrirModalCliente()">
-          <span class="material-symbols-outlined" style="font-size: 24px; color: rgb(56, 189, 248);">lock</span>
-          <span style="font-size: 1.05rem; font-weight: 600;">Acceso Privado Clientes 🔒</span>
-        </div>
-      </div>
-
-      <!-- REDES SOCIALES Y CONTACTO -->
-      <div class="redes-sociales">
-        <a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
-          <span class="material-symbols-outlined">chat</span>
-          <span>Chat WhatsApp</span>
-        </a>
-        <a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
-          <span class="material-symbols-outlined">inventory_2</span>
-          <span>Catálogo</span>
-        </a>
-        <a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
-          <span class="material-symbols-outlined">photo_camera_back</span>
-          <span>Instagram</span>
-        </a>
-      </div>
-    </main>
-
-    <footer>
-      <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-    </footer>
-  </div>
-
-  <!-- VISTA 2: GALERÍA DE FOTOS -->
-  <div class="contenedor-galeria" id="vista-galeria">
-    <div class="cabecera-galeria">
-      <button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
-      <h2 class="titulo-categoria" id="titulo-categoria">Ensayos</h2>
-    </div>
-    <!-- Contenedor dinámico estructurado: Nombre de subcarpeta / Foto Foto Foto Foto -->
-    <main id="galeria-contenedor-secciones"></main>
-  </div>
-
-  <!-- VISTA 3: SOBRE MÍ -->
-  <div class="contenedor-galeria" id="vista-sobre-mi">
-    <div class="cabecera-galeria">
-      <button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
-      <h2 class="titulo-categoria">Sobre mí</h2>
-    </div>
-    <div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
-      <img alt="Sergio Ricardo Molina" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin-bottom: 25px; border: 2px solid rgb(0, 85, 128); box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 20px;">
-      <p style="margin-bottom: 18px; color: rgb(229, 229, 229); font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
-      <p style="color: rgb(204, 204, 204); font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
-      <div style="margin-top: 30px;">
-        <a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration: none; padding: 10px 20px; font-size: 0.95rem; border-color: rgb(74, 222, 128); color: rgb(74, 222, 128);" target="_blank">Consultar por Sesiones Privadas 💬</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL ACCESO PRIVADO A CLIENTES -->
-  <div id="modal-cliente" style="display: none; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 1200; align-items: center; justify-content: center; padding: 20px;">
-    <div style="background: #181818; border: 1px solid #005580; border-radius: 16px; max-width: 440px; width: 100%; padding: 28px 24px; box-shadow: 0 10px 35px rgba(0, 85, 128, 0.25); text-align: center; position: relative;">
-      <span onclick="cerrarModalCliente()" style="position: absolute; top: 14px; right: 18px; color: rgb(136, 136, 136); font-size: 24px; cursor: pointer; line-height: 1;">×</span>
-      <div style="width: 52px; height: 52px; background: rgba(0, 85, 128, 0.2); border: 1px solid #005580; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-        <span class="material-symbols-outlined" style="font-size: 28px; color: rgb(56, 189, 248);">lock</span>
-      </div>
-      <h3 style="font-size: 1.3rem; font-weight: 600; color: rgb(255, 255, 255); margin-bottom: 8px;">Acceso Privado a Clientes</h3>
-      <p style="font-size: 0.88rem; color: rgb(148, 163, 184); margin-bottom: 22px; line-height: 1.4;">Ingresá la clave de tu evento, sesión privada o colegio para acceder a tu álbum en alta resolución.</p>
-      <form onsubmit="validarClaveAcceso(event)" style="display: flex; flex-direction: column; gap: 14px;">
-        <input autocomplete="off" id="input-clave-cliente" onblur="this.style.borderColor='#334155'" onfocus="this.style.borderColor='#38bdf8'" placeholder="Ingresá tu contraseña..." style="background: rgb(16, 16, 16); border: 1px solid rgb(51, 65, 85); border-radius: 8px; color: rgb(255, 255, 255); padding: 12px 16px; font-size: 0.95rem; outline: none; text-align: center; letter-spacing: 1px; transition: border-color 0.2s;" type="password">
-        <div id="error-clave-cliente" style="display: none; color: rgb(248, 113, 113); font-size: 0.82rem; margin-top: -6px;">Contraseña incorrecta. Por favor, verificá e intentá de nuevo.</div>
-        <button id="btn-submit-clave" style="background: rgb(0, 85, 128); color: rgb(255, 255, 255); border: 1px solid rgb(56, 189, 248); border-radius: 8px; padding: 12px 18px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;" type="submit">
-          <span class="material-symbols-outlined" style="font-size: 20px;">key</span>
-          <span id="texto-btn-clave">Desbloquear Álbum</span>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- VISOR MODAL PROTEGIDO (SIN MARCA DE AGUA) -->
-  <div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
-    <span class="btn-cerrar" onclick="cerrarVisor()">×</span>
-    <span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
-    <img alt="Vista Previa" id="img-ampliada" src="" oncontextmenu="return false;" draggable="false">
-    <span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
-  </div>
-
-  <script>
+</div>
+</div>
+<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
+<script>
     const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
     let fotosActuales = [];
     let indiceFotoActual = 0;
@@ -649,7 +703,11 @@
       listaArchivos.forEach((archivo) => {
         const indexGlobal = fotosActuales.length;
         const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
-        fotosActuales.push(urlAltaRes);
+        fotosActuales.push({
+          url: urlAltaRes,
+          subcarpeta: tituloCarpeta || 'General',
+          nombreArchivo: archivo.name || 'Fotografía'
+        });
 
         const img = document.createElement('img');
         img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
@@ -711,12 +769,25 @@
       }
     });
 
+    // ACTUALIZAR CONTENIDO DE LA FIRMA / MARCA DE AGUA
+    function actualizarFirmaVisor() {
+      const fotoObj = fotosActuales[indiceFotoActual];
+      const firmaTexto = document.getElementById('firma-detalles-texto');
+      if (fotoObj && firmaTexto) {
+        const sub = fotoObj.subcarpeta || 'General';
+        const nom = fotoObj.nombreArchivo || 'Fotografía';
+        firmaTexto.innerText = `${sub} • ${nom}`;
+      }
+    }
+
     // VISOR MODAL
     function abrirVisor(index) {
       indiceFotoActual = index;
       const img = document.getElementById('img-ampliada');
-      img.src = fotosActuales[indiceFotoActual];
+      const fotoObj = fotosActuales[indiceFotoActual];
+      img.src = fotoObj ? (fotoObj.url || fotoObj) : '';
       img.draggable = false;
+      actualizarFirmaVisor();
       document.getElementById('modal').style.display = 'flex';
     }
 
@@ -733,7 +804,9 @@
       indiceFotoActual += direccion;
       if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
       else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
-      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+      const fotoObj = fotosActuales[indiceFotoActual];
+      document.getElementById('img-ampliada').src = fotoObj ? (fotoObj.url || fotoObj) : '';
+      actualizarFirmaVisor();
     }
 
     // BLOQUEO DE ATAJOS Y CLIC DERECHO
@@ -779,5 +852,4 @@
       else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
     }, false);
   </script>
-</body>
-</html>
+</body></html>
