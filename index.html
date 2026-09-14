@@ -455,7 +455,7 @@
 <!-- VISTA 1: MENÚ PRINCIPAL (PORTAFOLIO) -->
 <div id="vista-menu" style="display: block;">
 <header>
-<img alt="Sergio Ricardo Molina" class="avatar-header" data-hint="admin-access" onclick="handleAvatarTripleClick()" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="cursor: pointer;"/>
+<img alt="Sergio Ricardo Molina" class="avatar-header" data-hint="admin-access" onclick="handleAvatarSecretClick()" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="cursor: pointer;"/>
 <h1 class="">Sergio Ricardo Molina<span class="">Fotografía Profesional</span></h1>
 </header>
 <main>
@@ -517,7 +517,182 @@
 </main>
 <footer>
 <p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-</footer><div aria-hidden="true" id="proteccion-fotos-layer" style="display:none;"></div>
+</footer><div aria-hidden="true" id="proteccion-fotos-layer" style="display:none;"></div><script>
+  // Manejador secreto de 4 clics en el avatar hacia login.html
+  let avatarSecretClicks = [];
+  function handleAvatarSecretClick() {
+    const now = Date.now();
+    avatarSecretClicks.push(now);
+    if (avatarSecretClicks.length > 4) {
+      avatarSecretClicks.shift();
+    }
+    if (avatarSecretClicks.length === 4) {
+      if (avatarSecretClicks[3] - avatarSecretClicks[0] <= 1400) {
+        window.location.href = 'login.html';
+      }
+    }
+  }
+  function handleAvatarTripleClick() {
+    handleAvatarSecretClick();
+  }
+
+  // Función auxiliar para consultar todos los archivos con paginación usando encodeURIComponent
+  async function fetchDriveItems(query) {
+    let items = [];
+    let pageToken = '';
+    do {
+      let url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&orderBy=name&pageSize=1000&key=${API_KEY}&fields=nextPageToken,files(id,name,mimeType)`;
+      if (pageToken) {
+        url += `&pageToken=${encodeURIComponent(pageToken)}`;
+      }
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.error) {
+        console.error('Error Google Drive:', data.error);
+        throw new Error(data.error.message || 'Error al consultar Google Drive');
+      }
+      if (data.files && data.files.length > 0) {
+        items = items.concat(data.files);
+      }
+      pageToken = data.nextPageToken || '';
+    } while (pageToken);
+    return items;
+  }
+
+  function esImagen(item) {
+    if (!item) return false;
+    if (item.mimeType && item.mimeType.startsWith('image/')) return true;
+    return /\.(jpe?g|png|webp|heic|cr2|cr3|nef|raw|tiff)$/i.test(item.name || '');
+  }
+
+  // CARGA DE FOTOS DESDE GOOGLE DRIVE CON DETECCIÓN ROBUSTA DE SUBCARPETAS
+  async function cargarFotos(folderId) {
+    const contenedor = document.getElementById('galeria');
+    if (!contenedor) return;
+    contenedor.innerHTML = '<div class="cargando" style="text-align:center; color:#94a3b8; padding:50px 0; font-size:0.95rem;">Cargando fotos en alta resolución...</div>';
+    fotosActuales = [];
+
+    try {
+      // 1. Consultar todos los elementos de la carpeta raíz usando encodeURIComponent y trashed = false
+      const itemsRaiz = await fetchDriveItems(`'${folderId}' in parents and trashed = false`);
+
+      // 2. Separar subcarpetas y fotos directas
+      const subcarpetas = itemsRaiz.filter(item => item.mimeType === 'application/vnd.google-apps.folder');
+      const fotosRaiz = itemsRaiz.filter(item => esImagen(item));
+
+      if (subcarpetas.length === 0 && fotosRaiz.length === 0) {
+        contenedor.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:40px 0;">No se encontraron fotos ni carpetas en este álbum.</p>';
+        return;
+      }
+
+      // 3. Consultar en paralelo las fotos de cada subcarpeta con paginación completa
+      const promesasSubcarpetas = subcarpetas.map(async (sub) => {
+        try {
+          const itemsSub = await fetchDriveItems(`'${sub.id}' in parents and trashed = false`);
+          const fotos = itemsSub.filter(item => esImagen(item));
+          return { id: sub.id, nombre: sub.name, fotos };
+        } catch (err) {
+          console.warn('Error al cargar subcarpeta ' + sub.name, err);
+          return { id: sub.id, nombre: sub.name, fotos: [] };
+        }
+      });
+
+      const subcarpetasConFotos = await Promise.all(promesasSubcarpetas);
+      contenedor.innerHTML = '';
+
+      // 4. Renderizar fotos de la raíz si existen
+      if (fotosRaiz.length > 0) {
+        const seccionRaiz = document.createElement('div');
+        seccionRaiz.style.marginBottom = subcarpetasConFotos.length > 0 ? '36px' : '0px';
+        seccionRaiz.style.width = '100%';
+
+        if (subcarpetasConFotos.length > 0) {
+          const encabezado = document.createElement('div');
+          encabezado.style.display = 'flex';
+          encabezado.style.alignItems = 'center';
+          encabezado.style.justifyContent = 'space-between';
+          encabezado.style.padding = '8px 4px 12px';
+          encabezado.style.marginBottom = '12px';
+          encabezado.style.borderBottom = '1px solid #282828';
+          encabezado.innerHTML = `<h3 style="font-size:1.15rem; font-weight:600; color:#e5e2e1; margin:0;">Fotos generales</h3><span style="font-size:0.82rem; color:#94a3b8;">${fotosRaiz.length} fotos</span>`;
+          seccionRaiz.appendChild(encabezado);
+        }
+
+        const gridRaiz = document.createElement('div');
+        gridRaiz.className = 'galeria';
+        fotosRaiz.forEach((archivo) => {
+          const index = fotosActuales.length;
+          const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+          fotosActuales.push(urlAltaRes);
+
+          const img = document.createElement('img');
+          img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+          img.alt = archivo.name || 'Fotografía';
+          img.loading = 'lazy';
+          img.draggable = false;
+          img.oncontextmenu = () => false;
+          img.ondragstart = () => false;
+          img.style.userSelect = 'none';
+          img.style.webkitUserSelect = 'none';
+          img.style.webkitTouchCallout = 'none';
+          img.onclick = () => abrirVisor(index);
+          gridRaiz.appendChild(img);
+        });
+        seccionRaiz.appendChild(gridRaiz);
+        contenedor.appendChild(seccionRaiz);
+      }
+
+      // 5. Renderizar cada subcarpeta en su propia sección titulada
+      subcarpetasConFotos.forEach((sub) => {
+        if (sub.fotos.length === 0) return;
+
+        const seccionSub = document.createElement('div');
+        seccionSub.style.marginBottom = '36px';
+        seccionSub.style.width = '100%';
+
+        const encabezado = document.createElement('div');
+        encabezado.style.display = 'flex';
+        encabezado.style.alignItems = 'center';
+        encabezado.style.justifyContent = 'space-between';
+        encabezado.style.padding = '8px 4px 12px';
+        encabezado.style.marginBottom = '14px';
+        encabezado.style.borderBottom = '1px solid #282828';
+        encabezado.innerHTML = `<h3 style="font-size:1.15rem; font-weight:600; color:#38bdf8; margin:0; display:flex; align-items:center; gap:8px;"><span class="material-symbols-outlined" style="font-size:20px;">folder</span>${sub.nombre}</h3><span style="font-size:0.82rem; color:#94a3b8;">${sub.fotos.length} fotos</span>`;
+        seccionSub.appendChild(encabezado);
+
+        const gridSub = document.createElement('div');
+        gridSub.className = 'galeria';
+        sub.fotos.forEach((archivo) => {
+          const index = fotosActuales.length;
+          const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+          fotosActuales.push(urlAltaRes);
+
+          const img = document.createElement('img');
+          img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+          img.alt = archivo.name || sub.nombre;
+          img.loading = 'lazy';
+          img.draggable = false;
+          img.oncontextmenu = () => false;
+          img.ondragstart = () => false;
+          img.style.userSelect = 'none';
+          img.style.webkitUserSelect = 'none';
+          img.style.webkitTouchCallout = 'none';
+          img.onclick = () => abrirVisor(index);
+          gridSub.appendChild(img);
+        });
+        seccionSub.appendChild(gridSub);
+        contenedor.appendChild(seccionSub);
+      });
+
+      if (fotosActuales.length === 0) {
+        contenedor.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:40px 0;">No se encontraron imágenes en las subcarpetas.</p>';
+      }
+    } catch (error) {
+      console.error('Error general al cargar galería:', error);
+      contenedor.innerHTML = '<p style="text-align:center; color:#ff6b6b; padding:40px 0;">Error al consultar Google Drive. Verificá permisos o conexión.</p>';
+    }
+  }
+</script>
 </div>
 <!-- VISTA 2: GALERÍA DE FOTOS -->
 <div class="contenedor-galeria" id="vista-galeria" oncontextmenu="return false;" style="display: none;">
@@ -525,7 +700,7 @@
 <button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
 <h2 class="titulo-categoria" id="titulo-categoria">Paisajes</h2>
 </div>
-<main class="galeria" id="galeria"></main>
+<main class="galeria-contenedor" id="galeria" style="width: 100%;"></main>
 </div>
 <!-- VISTA 3: SOBRE MÍ -->
 <div class="contenedor-galeria" id="vista-sobre-mi" style="display: none;">
