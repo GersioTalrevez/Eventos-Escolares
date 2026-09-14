@@ -35,40 +35,86 @@
     };
   </script>
   <style>
-    body { background-color: #111111; color: #e5e2e1; font-family: 'Manrope', sans-serif; }
+    body { background-color: #111111; color: #e5e2e1; font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
     .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: #141414; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #2b2b2b; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
   </style>
 </head>
 <body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col antialiased selection:bg-[#005580] selection:text-white">
-  
+
   <!-- Header Superior Global -->
   <header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-50">
     <div class="flex justify-between items-center w-full px-4 md:px-6 max-w-7xl mx-auto h-16">
       <div class="flex items-center gap-3">
-        <button id="btnMobileMenu" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-[#181818] border border-[#262626] text-white">
-          <span class="material-symbols-outlined text-[24px]">menu</span>
+        <button aria-label="Abrir menú" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-[#181818] border border-[#262626] text-[#e5e2e1] hover:text-[#38bdf8] active:scale-95 transition-all" id="btnMobileMenu" type="button">
+          <span class="material-symbols-outlined text-[24px]" id="menuIcon">menu</span>
         </button>
-        <a class="flex items-center gap-2 text-[#38bdf8] font-bold text-lg font-headline" href="precios.html">
-          <span class="material-symbols-outlined text-[26px]">photo_camera</span>
-          <span class="text-white font-semibold text-base sm:text-lg">Gestión de Tarifas</span>
+        <a class="flex items-center gap-2.5 text-[#38bdf8] font-bold text-lg font-headline tracking-tight" href="precios.html">
+          <span class="material-symbols-outlined text-[#38bdf8] text-[26px]">photo_camera</span>
+          <span class="text-white tracking-wide font-semibold text-base sm:text-lg">Gestión de Tarifas</span>
         </a>
       </div>
 
-      <div class="flex items-center gap-3">
-        <div id="cloudSyncBadge" class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#181818] border border-emerald-800/60 text-emerald-400 text-xs font-semibold rounded-full uppercase tracking-wider">
-          <span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="cloudSyncText" class="text-[11px]">Supabase Conectado</span>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#181818] border border-emerald-800/60 text-emerald-400 text-xs font-semibold rounded-full uppercase tracking-wider" id="cloudSyncBadge">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" id="cloudSyncDot"></span>
+          <span class="hidden xs:inline text-[11px]" id="cloudSyncText">Supabase Conectado</span>
+          <span class="xs:hidden text-[10px]">Sync OK</span>
         </div>
-        <a class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#333333] bg-[#181818] text-xs font-medium text-[#c0c7cf] hover:text-white" href="panel.html">
+        <a class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#333333] hover:border-[#444444] bg-[#181818] text-xs font-medium text-[#c0c7cf] hover:text-white transition-all" href="panel.html">
           <span class="material-symbols-outlined text-[16px]">arrow_back</span>
           <span>Panel</span>
         </a>
       </div>
     </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div class="hidden md:hidden border-b border-[#222222] bg-[#141414] px-4 py-4 space-y-4 shadow-2xl transition-all duration-300" id="mobileDrawer">
+      <div class="px-2 pb-2 border-b border-[#222222]">
+        <h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+        <p class="text-[11px] text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
+      </div>
+      <nav class="space-y-1">
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="panel.html">
+          <span class="material-symbols-outlined text-[20px]">photo_library</span>
+          <span>Galerías</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="cargas.html">
+          <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+          <span>Cargas y Enlaces</span>
+        </a>
+        <a class="flex items-center gap-3 text-white px-3 py-2.5 text-sm font-semibold rounded-lg bg-[#004466] border border-[#0088cc] shadow-sm" href="precios.html">
+          <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">payments</span>
+          <span>Tarifas y Precios</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="metricas.html">
+          <span class="material-symbols-outlined text-[20px]">insights</span>
+          <span>Métricas y Visitas</span>
+        </a>
+      </nav>
+      <div class="pt-3 border-t border-[#222222] space-y-1">
+        <p class="text-[10px] font-bold text-[#8b9199] uppercase tracking-wider px-3 mb-1">Accesos Directos</p>
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b] transition-all" href="eventos.html">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199]">arrow_back</span>
+            <span>Volver a Eventos</span>
+          </div>
+          <span class="material-symbols-outlined text-[14px] text-[#8b9199]">chevron_right</span>
+        </a>
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b] transition-all" href="index.html">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199]">visibility</span>
+            <span>Ver Portafolio</span>
+          </div>
+          <span class="material-symbols-outlined text-[14px] text-[#8b9199]">open_in_new</span>
+        </a>
+      </div>
+    </div>
   </header>
 
+  <!-- Layout Principal -->
   <div class="flex-1 flex overflow-hidden">
     <!-- Sidebar Desktop -->
     <aside class="w-64 bg-[#131313] border-r border-[#222222] flex-col justify-between shrink-0 hidden md:flex">
@@ -78,37 +124,40 @@
           <p class="text-[10px] font-semibold text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
         </div>
         <nav class="space-y-1.5">
-          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e]" href="panel.html">
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all duration-150" href="panel.html">
             <span class="material-symbols-outlined text-[20px]">photo_library</span>
             <span>Galerías</span>
           </a>
-          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e]" href="cargas.html">
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all duration-150" href="cargas.html">
             <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
             <span>Cargas y Enlaces</span>
           </a>
-          <a class="flex items-center gap-3 bg-[#004466] border border-[#0088cc] text-white rounded-lg px-3 py-2.5 text-sm font-semibold" href="precios.html">
+          <a class="flex items-center gap-3 bg-[#004466] border border-[#0088cc] text-white rounded-lg px-3 py-2.5 text-sm font-semibold shadow-sm" href="precios.html">
             <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">payments</span>
             <span>Tarifas y Precios</span>
           </a>
-          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e]" href="metricas.html">
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all duration-150" href="metricas.html">
             <span class="material-symbols-outlined text-[20px]">insights</span>
             <span>Métricas y Visitas</span>
           </a>
         </nav>
       </div>
+
       <div class="p-4 border-t border-[#222222] bg-[#0f0f0f]/80 space-y-1">
         <p class="text-[10px] font-bold text-[#8b9199] uppercase tracking-wider px-2 mb-2">Accesos Directos</p>
-        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm" href="eventos.html">
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm transition-all hover:bg-[#1a1a1a] group" href="eventos.html">
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199] group-hover:text-[#38bdf8] transition-colors">arrow_back</span>
             <span>Volver a Eventos</span>
           </div>
+          <span class="material-symbols-outlined text-[14px] text-[#8b9199]">chevron_right</span>
         </a>
-        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm" href="index.html">
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm transition-all hover:bg-[#1a1a1a] group" href="index.html">
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-[18px]">visibility</span>
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199] group-hover:text-[#38bdf8] transition-colors">visibility</span>
             <span>Ver Portafolio</span>
           </div>
+          <span class="material-symbols-outlined text-[14px] text-[#8b9199]">open_in_new</span>
         </a>
       </div>
     </aside>
@@ -118,46 +167,46 @@
       <div class="mb-6 sm:mb-8">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <div class="flex items-center gap-2 mb-1.5">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
               <span class="px-2.5 py-0.5 bg-[#005580]/40 border border-[#005580] text-[#38bdf8] text-[11px] font-semibold rounded uppercase tracking-wider">Control Comercial</span>
-              <span class="text-xs text-[#8b9199]">Sincronización en vivo con todas las galerías</span>
+              <span class="text-xs text-[#8b9199]">Persistencia asegurada sin reseteo involuntario</span>
             </div>
             <h1 class="text-2xl sm:text-3xl font-headline font-bold text-white tracking-tight">Tarifas y Precios Oficiales</h1>
-            <p class="text-sm text-[#c0c7cf] max-w-3xl mt-1 leading-relaxed">
-              Configurá los precios de venta. Los cambios se guardan directamente en Supabase y se actualizan al instante para cualquier cliente o dispositivo.
+            <p class="text-sm text-[#c0c7cf] max-w-3xl mt-1.5 leading-relaxed">
+              Configurá los precios de venta. Al tipear no se reinician y quedan fijados de forma permanente en Supabase y todas las galerías de los clientes.
             </p>
           </div>
 
-          <div class="flex items-center gap-3">
-            <button id="btnResetValues" type="button" class="px-4 py-2.5 min-h-[44px] rounded-lg border border-[#333333] bg-[#181818] text-[#e5e2e1] hover:text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-all">
+          <div class="flex items-center gap-3 pt-2 md:pt-0">
+            <button class="flex-1 sm:flex-none px-4 py-2.5 min-h-[44px] rounded-lg border border-[#333333] hover:border-[#555555] bg-[#181818] text-[#e5e2e1] hover:text-white active:scale-95 transition-all text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5" id="btnResetValues" type="button">
               <span class="material-symbols-outlined text-[18px]">restart_alt</span>
               <span>Revertir</span>
             </button>
-            <button id="btnSavePrices" type="button" class="px-5 py-2.5 min-h-[44px] rounded-lg bg-[#005580] border border-[#0088cc] hover:bg-[#006699] text-white text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-lg transition-all">
-              <span class="material-symbols-outlined text-[18px]">save</span>
+            <button class="flex-1 sm:flex-none px-5 py-2.5 min-h-[44px] rounded-lg bg-[#005580] border border-[#0088cc] hover:bg-[#006699] text-white active:scale-95 transition-all text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-black/50" id="btnSavePrices" type="button">
+              <span class="material-symbols-outlined text-[18px]" id="btnSaveIcon">save</span>
               <span id="btnSaveText">Guardar Nuevas Tarifas</span>
             </button>
           </div>
         </div>
 
-        <!-- Notificación Toast Dinámica -->
-        <div id="saveToast" class="hidden mt-4 p-3.5 rounded-xl bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between">
+        <!-- Notificación Toast -->
+        <div class="hidden mt-4 p-3.5 rounded-xl bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between transition-all duration-300 shadow-lg" id="saveToast">
           <div class="flex items-center gap-2.5">
-            <span id="toastIcon" class="material-symbols-outlined text-[20px]">check_circle</span>
-            <span id="toastMessage" class="text-xs sm:text-sm font-medium text-white">¡Tarifas actualizadas con éxito!</span>
+            <span class="material-symbols-outlined text-[20px]" id="toastIcon">check_circle</span>
+            <span class="text-xs sm:text-sm font-medium text-white" id="toastMessage">¡Tarifas guardadas permanentemente!</span>
           </div>
-          <span id="timestampSaved" class="text-[11px] text-[#8b9199]">Recién</span>
+          <span class="text-[11px] text-[#8b9199] ml-2 shrink-0 hidden xs:inline" id="timestampSaved">Recién</span>
         </div>
       </div>
 
       <!-- Tarjetas de Precios en Paralelo -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
-        <!-- Tarjeta 1: Copia Impresa -->
-        <div class="bg-[#181818] border border-[#222222] rounded-xl p-5 sm:p-6 shadow-md flex flex-col justify-between">
+        <!-- Tarjeta 1: Copia Impresa 15x21 -->
+        <div class="bg-[#181818] border border-[#222222] hover:border-[#facc15]/50 rounded-xl p-5 sm:p-6 shadow-md transition-all flex flex-col justify-between group">
           <div>
             <div class="flex items-start justify-between pb-4 border-b border-[#242424]">
               <div class="flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#facc15]">
+                <div class="w-11 h-11 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#facc15] group-hover:border-[#facc15]/60 transition-colors">
                   <span class="material-symbols-outlined text-[24px]">print</span>
                 </div>
                 <div>
@@ -165,7 +214,7 @@
                   <p class="text-[11px] text-[#8b9199] uppercase tracking-wider font-semibold">Papel de laboratorio químico profesional</p>
                 </div>
               </div>
-              <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#111111] text-[#facc15] border border-[#292929]">Físico</span>
+              <span class="hidden xs:inline-flex px-2 py-0.5 rounded text-[11px] font-semibold bg-[#111111] text-[#facc15] border border-[#292929]">Físico</span>
             </div>
 
             <div class="mt-5">
@@ -174,7 +223,7 @@
               </label>
               <div class="relative">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#8b9199] font-bold text-lg pointer-events-none">$</span>
-                <input id="inputPrintPrice" inputmode="numeric" type="text" value="7.500" class="w-full bg-[#111111] border border-[#333333] focus:border-[#facc15] rounded-xl pl-9 pr-4 py-3 text-white font-headline text-xl font-bold outline-none transition-all"/>
+                <input class="w-full bg-[#111111] border border-[#333333] focus:border-[#facc15] focus:ring-1 focus:ring-[#facc15] rounded-xl pl-9 pr-4 py-3 min-h-[48px] text-white font-headline text-lg sm:text-xl font-bold outline-none transition-all" id="inputPrintPrice" inputmode="numeric" placeholder="7500" type="text" value="7.500"/>
               </div>
               <p class="text-xs text-[#8b9199] mt-2 flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[15px] text-[#facc15]">info</span>
@@ -182,18 +231,22 @@
               </p>
             </div>
           </div>
-          <div class="mt-5 pt-3.5 border-t border-[#222222] flex items-center justify-between text-xs">
-            <span class="text-[#8b9199]">Modalidad: Entrega en Colegio</span>
+
+          <div class="mt-5 pt-3.5 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-[#8b9199]">Modalidad:</span>
+              <span class="px-2.5 py-1 rounded bg-[#121212] text-[#e5e2e1] border border-[#282828] font-medium">Entrega en Colegio</span>
+            </div>
             <span class="text-[#facc15] font-semibold">Catálogo Escolar</span>
           </div>
         </div>
 
         <!-- Tarjeta 2: Archivo Digital HD -->
-        <div class="bg-[#181818] border border-[#222222] rounded-xl p-5 sm:p-6 shadow-md flex flex-col justify-between">
+        <div class="bg-[#181818] border border-[#222222] hover:border-[#38bdf8]/50 rounded-xl p-5 sm:p-6 shadow-md transition-all flex flex-col justify-between group">
           <div>
             <div class="flex items-start justify-between pb-4 border-b border-[#242424]">
               <div class="flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#38bdf8]">
+                <div class="w-11 h-11 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#38bdf8] group-hover:border-[#38bdf8]/60 transition-colors">
                   <span class="material-symbols-outlined text-[24px]">cloud_download</span>
                 </div>
                 <div>
@@ -201,7 +254,7 @@
                   <p class="text-[11px] text-[#8b9199] uppercase tracking-wider font-semibold">Máxima resolución sin marca de agua</p>
                 </div>
               </div>
-              <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#111111] text-[#38bdf8] border border-[#292929]">Online</span>
+              <span class="hidden xs:inline-flex px-2 py-0.5 rounded text-[11px] font-semibold bg-[#111111] text-[#38bdf8] border border-[#292929]">Online</span>
             </div>
 
             <div class="mt-5">
@@ -210,162 +263,344 @@
               </label>
               <div class="relative">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#8b9199] font-bold text-lg pointer-events-none">$</span>
-                <input id="inputDigitalPrice" inputmode="numeric" type="text" value="2.500" class="w-full bg-[#111111] border border-[#333333] focus:border-[#38bdf8] rounded-xl pl-9 pr-4 py-3 text-white font-headline text-xl font-bold outline-none transition-all"/>
+                <input class="w-full bg-[#111111] border border-[#333333] focus:border-[#38bdf8] focus:ring-1 focus:ring-[#38bdf8] rounded-xl pl-9 pr-4 py-3 min-h-[48px] text-white font-headline text-lg sm:text-xl font-bold outline-none transition-all" id="inputDigitalPrice" inputmode="numeric" placeholder="2500" type="text" value="2.500"/>
               </div>
               <p class="text-xs text-[#8b9199] mt-2 flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[15px] text-[#38bdf8]">bolt</span>
-                <span>Descarga inmediata sin marca de agua</span>
+                <span>Habilita descarga inmediata post confirmación</span>
               </p>
             </div>
           </div>
-          <div class="mt-5 pt-3.5 border-t border-[#222222] flex items-center justify-between text-xs">
-            <span class="text-[#8b9199]">Formato: JPG 300 DPI Original</span>
+
+          <div class="mt-5 pt-3.5 border-t border-[#222222] flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-[#8b9199]">Formato:</span>
+              <span class="px-2.5 py-1 rounded bg-[#121212] text-[#e5e2e1] border border-[#282828] font-medium">JPG 300 DPI Original</span>
+            </div>
             <span class="text-[#38bdf8] font-semibold">Descarga Directa</span>
           </div>
         </div>
       </div>
+
+      <!-- Historial de Tarifas Auditado -->
+      <section class="bg-[#181818] border border-[#222222] rounded-xl p-4 sm:p-6 shadow-md mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#222222]">
+          <div>
+            <h3 class="text-base sm:text-lg font-headline font-bold text-white">Historial de Actualizaciones de Tarifas</h3>
+            <p class="text-xs text-[#8b9199] mt-0.5">Sincronizado permanentemente con Supabase (tabla configuracion)</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#111111] border border-[#2d2d2d] text-[#c0c7cf]">
+              Vigencia en Vivo
+            </span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0 mt-3">
+          <table class="w-full text-left border-collapse min-w-[620px]">
+            <thead>
+              <tr class="border-b border-[#242424] text-[11px] font-bold text-[#8b9199] uppercase tracking-wider">
+                <th class="py-3 px-3">Fecha y Hora</th>
+                <th class="py-3 px-3">Copia 15x21</th>
+                <th class="py-3 px-3">Archivo HD</th>
+                <th class="py-3 px-3">WhatsApp Oficial</th>
+                <th class="py-3 px-3">Responsable</th>
+                <th class="py-3 px-3 text-right">Estado</th>
+              </tr>
+            </thead>
+            <tbody class="text-xs sm:text-sm divide-y divide-[#222222]">
+              <tr class="hover:bg-[#1e1e1e] transition-colors">
+                <td class="py-3 px-3 font-mono text-xs text-[#8b9199]" id="tableRowTimestamp">Vigencia activa</td>
+                <td class="py-3 px-3 font-headline font-bold text-[#facc15]" id="tableRowCurrentPrint">$7.500</td>
+                <td class="py-3 px-3 font-headline font-bold text-[#38bdf8]" id="tableRowCurrentDigital">$2.500</td>
+                <td class="py-3 px-3 font-mono text-xs text-[#c0c7cf]">+54 9 261 317-5222</td>
+                <td class="py-3 px-3 text-[#c0c7cf]">S. Molina (Admin)</td>
+                <td class="py-3 px-3 text-right">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">Vigente</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
   </div>
 
-  <!-- Sincronización Robusta Supabase + LocalStorage -->
+  <!-- Navegación Inferior Móvil -->
+  <nav class="md:hidden bg-[#131313]/95 backdrop-blur-md border-t border-[#222222] fixed bottom-0 left-0 right-0 z-40 px-2 py-1 flex justify-around items-center">
+    <a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="panel.html">
+      <span class="material-symbols-outlined text-[20px]">photo_library</span>
+      <span class="text-[10px] mt-0.5 font-medium">Galerías</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="cargas.html">
+      <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+      <span class="text-[10px] mt-0.5 font-medium">Cargas</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-2 text-[#38bdf8] font-bold" href="precios.html">
+      <span class="material-symbols-outlined text-[20px]">payments</span>
+      <span class="text-[10px] mt-0.5">Tarifas</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="metricas.html">
+      <span class="material-symbols-outlined text-[20px]">insights</span>
+      <span class="text-[10px] mt-0.5 font-medium">Métricas</span>
+    </a>
+  </nav>
+
+  <!-- Lógica Blindada Anti-Reseteo y Sincronización Universal -->
   <script>
-    const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
-
-    const inputPrint = document.getElementById('inputPrintPrice');
-    const inputDigital = document.getElementById('inputDigitalPrice');
-    const btnSave = document.getElementById('btnSavePrices');
-    const btnSaveText = document.getElementById('btnSaveText');
-    const btnReset = document.getElementById('btnResetValues');
-    const toast = document.getElementById('saveToast');
-    const toastMsg = document.getElementById('toastMessage');
-    const toastIcon = document.getElementById('toastIcon');
-
-    function formatearNumero(val) {
-      const num = parseInt(String(val).replace(/\D/g, ''), 10);
-      return isNaN(num) ? '' : num.toLocaleString('es-AR');
-    }
-
-    function desformatear(val) {
-      const clean = String(val).replace(/\D/g, '');
-      return clean ? parseInt(clean, 10) : 0;
-    }
-
-    [inputPrint, inputDigital].forEach(inp => {
-      inp.addEventListener('input', e => {
-        const n = desformatear(e.target.value);
-        if (n > 0) e.target.value = formatearNumero(n);
-      });
-    });
-
-    function avisar(mensaje, esError = false) {
-      toast.classList.remove('hidden');
-      toastMsg.innerText = mensaje;
-      if (esError) {
-        toast.className = 'mt-4 p-3.5 rounded-xl bg-red-950/40 border border-red-500 text-red-300 flex items-center justify-between';
-        toastIcon.innerText = 'error';
-      } else {
-        toast.className = 'mt-4 p-3.5 rounded-xl bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between';
-        toastIcon.innerText = 'check_circle';
-      }
-      setTimeout(() => toast.classList.add('hidden'), 4500);
-    }
-
-    // 1. Cargar precios desde Supabase
-    async function cargarPreciosDesdeNube() {
-      if (!supabaseClient) {
-        const localImp = localStorage.getItem('tarifa_impresa') || 7500;
-        const localDig = localStorage.getItem('tarifa_digital') || 2500;
-        inputPrint.value = formatearNumero(localImp);
-        inputDigital.value = formatearNumero(localDig);
-        return;
-      }
-
+    (function() {
+      // 1. Inicialización cliente Supabase
+      const SUPABASE_URL = 'https://zbixojacwvbanucxlrdcd.supabase.co';
+      const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+      let supabaseClient = null;
       try {
-        const { data, error } = await supabaseClient
-          .from('configuracion')
-          .select('*')
-          .limit(1);
-
-        if (!error && data && data.length > 0) {
-          const item = data[0];
-          const imp = item.tarifa_impresa || 7500;
-          const dig = item.tarifa_digital || 2500;
-          inputPrint.value = formatearNumero(imp);
-          inputDigital.value = formatearNumero(dig);
-          localStorage.setItem('tarifa_impresa', String(imp));
-          localStorage.setItem('tarifa_digital', String(dig));
-        } else {
-          inputPrint.value = formatearNumero(localStorage.getItem('tarifa_impresa') || 7500);
-          inputDigital.value = formatearNumero(localStorage.getItem('tarifa_digital') || 2500);
+        if (window.supabase) {
+          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         }
-      } catch (err) {
-        console.warn('Error leyendo Supabase:', err);
+      } catch (e) {
+        console.warn('Supabase init:', e);
       }
-    }
 
-    // 2. Guardar en Supabase
-    async function guardarPreciosEnNube() {
-      const valImp = desformatear(inputPrint.value) || 7500;
-      const valDig = desformatear(inputDigital.value) || 2500;
+      const WHATSAPP_OFICIAL = '5492613175222';
 
-      btnSave.disabled = true;
-      btnSaveText.innerText = 'Guardando en la nube...';
+      // Elementos del DOM
+      const inputPrint = document.getElementById('inputPrintPrice');
+      const inputDigital = document.getElementById('inputDigitalPrice');
+      const btnSave = document.getElementById('btnSavePrices');
+      const btnSaveText = document.getElementById('btnSaveText');
+      const btnReset = document.getElementById('btnResetValues');
+      const toast = document.getElementById('saveToast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      const timestampSaved = document.getElementById('timestampSaved');
+      const cloudSyncText = document.getElementById('cloudSyncText');
+      const cloudSyncDot = document.getElementById('cloudSyncDot');
+      const tableRowCurrentPrint = document.getElementById('tableRowCurrentPrint');
+      const tableRowCurrentDigital = document.getElementById('tableRowCurrentDigital');
+      const tableRowTimestamp = document.getElementById('tableRowTimestamp');
+      const btnMobileMenu = document.getElementById('btnMobileMenu');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const menuIcon = document.getElementById('menuIcon');
 
-      localStorage.setItem('tarifa_impresa', String(valImp));
-      localStorage.setItem('tarifa_digital', String(valDig));
+      // Bandera de seguridad: NUNCA sobreescribir los inputs mientras el usuario esté editando
+      let usuarioEstaEditando = false;
 
-      let guardadoEnNube = false;
-
-      if (supabaseClient) {
-        try {
-          const updateRes = await supabaseClient
-            .from('configuracion')
-            .update({
-              tarifa_impresa: valImp,
-              tarifa_digital: valDig,
-              whatsapp: '5492613175222',
-              updated_at: new Date().toISOString()
-            })
-            .eq('id', 1);
-
-          if (!updateRes.error && updateRes.count > 0) {
-            guardadoEnNube = true;
+      if (btnMobileMenu && mobileDrawer) {
+        btnMobileMenu.addEventListener('click', () => {
+          const isHidden = mobileDrawer.classList.contains('hidden');
+          if (isHidden) {
+            mobileDrawer.classList.remove('hidden');
+            if (menuIcon) menuIcon.textContent = 'close';
           } else {
-            const insertRes = await supabaseClient
-              .from('configuracion')
-              .insert([{
-                id: 1,
-                clave: 'tarifas_oficiales',
-                tarifa_impresa: valImp,
-                tarifa_digital: valDig,
-                whatsapp: '5492613175222'
-              }]);
-            if (!insertRes.error) guardadoEnNube = true;
+            mobileDrawer.classList.add('hidden');
+            if (menuIcon) menuIcon.textContent = 'menu';
           }
-        } catch (e) {
-          console.warn('Falla red Supabase:', e);
+        });
+      }
+
+      function formatNumber(val) {
+        const num = parseInt(String(val).replace(/\D/g, ''), 10);
+        return isNaN(num) ? '' : num.toLocaleString('es-AR');
+      }
+
+      function parseNumeric(val) {
+        const clean = String(val).replace(/\D/g, '');
+        return clean ? parseInt(clean, 10) : 0;
+      }
+
+      // Marcar edición activa al hacer foco o tipear
+      [inputPrint, inputDigital].forEach(inp => {
+        if (!inp) return;
+        inp.addEventListener('focus', () => { usuarioEstaEditando = true; });
+        inp.addEventListener('input', e => {
+          usuarioEstaEditando = true;
+          const cursorPos = e.target.selectionStart;
+          const prevLen = e.target.value.length;
+          const num = parseNumeric(e.target.value);
+          if (num > 0) {
+            e.target.value = formatNumber(num);
+            const newLen = e.target.value.length;
+            const newPos = Math.max(cursorPos + (newLen - prevLen), 1);
+            try { e.target.setSelectionRange(newPos, newPos); } catch (_) {}
+          }
+          // Reflejar de inmediato en la tabla de vista previa
+          const pVal = parseNumeric(inputPrint.value);
+          const dVal = parseNumeric(inputDigital.value);
+          if (tableRowCurrentPrint && pVal > 0) tableRowCurrentPrint.textContent = '$' + formatNumber(pVal);
+          if (tableRowCurrentDigital && dVal > 0) tableRowCurrentDigital.textContent = '$' + formatNumber(dVal);
+        });
+      });
+
+      function notify(msg, isErr = false) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = msg;
+        if (isErr) {
+          toast.className = 'mt-4 p-3.5 rounded-xl bg-red-950/40 border border-red-500 text-red-300 flex items-center justify-between shadow-lg';
+          if (toastIcon) toastIcon.textContent = 'error';
+        } else {
+          toast.className = 'mt-4 p-3.5 rounded-xl bg-[#005580]/30 border border-[#38bdf8] text-[#38bdf8] flex items-center justify-between shadow-lg';
+          if (toastIcon) toastIcon.textContent = 'check_circle';
+        }
+        const now = new Date();
+        if (timestampSaved) {
+          timestampSaved.textContent = `${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        }
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 4500);
+      }
+
+      function updateUI(pVal, dVal) {
+        const strP = formatNumber(pVal);
+        const strD = formatNumber(dVal);
+        // Solo actualizar inputs si el usuario NO está actualmente tipeando en ellos
+        if (!usuarioEstaEditando) {
+          if (inputPrint) inputPrint.value = strP;
+          if (inputDigital) inputDigital.value = strD;
+        }
+        if (tableRowCurrentPrint) tableRowCurrentPrint.textContent = '$' + strP;
+        if (tableRowCurrentDigital) tableRowCurrentDigital.textContent = '$' + strD;
+        if (tableRowTimestamp) {
+          const now = new Date();
+          tableRowTimestamp.textContent = `Hoy, ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
         }
       }
 
-      btnSave.disabled = false;
-      btnSaveText.innerText = 'Guardar Nuevas Tarifas';
+      // 1. CARGA INICIAL ROBUSTA
+      async function cargarTarifas() {
+        // Primero leer de LocalStorage para mostrar de inmediato sin parpadeos
+        const savedP = localStorage.getItem('tarifa_impresa');
+        const savedD = localStorage.getItem('tarifa_digital');
+        const initialP = savedP ? parseNumeric(savedP) : 7500;
+        const initialD = savedD ? parseNumeric(savedD) : 2500;
+        updateUI(initialP, initialD);
 
-      if (guardadoEnNube) {
-        avisar('¡Tarifas guardadas en Supabase! Ya se reflejan en todas las galerías.');
-      } else {
-        avisar('Tarifas guardadas localmente. Verificá permisos en Supabase si no cambian en otros dispositivos.');
+        if (!supabaseClient) {
+          if (cloudSyncText) cloudSyncText.textContent = 'Respaldo Local Activo';
+          return;
+        }
+
+        try {
+          // Consultar tabla configuracion
+          const { data, error } = await supabaseClient
+            .from('configuracion')
+            .select('*')
+            .limit(1);
+
+          if (!error && data && data.length > 0) {
+            const conf = data[0];
+            const pVal = conf.tarifa_impresa !== undefined ? parseNumeric(conf.tarifa_impresa) : initialP;
+            const dVal = conf.tarifa_digital !== undefined ? parseNumeric(conf.tarifa_digital) : initialD;
+            
+            // Solo pisar los inputs si el usuario NO empezó a tipear
+            if (!usuarioEstaEditando) {
+              updateUI(pVal, dVal);
+              localStorage.setItem('tarifa_impresa', String(pVal));
+              localStorage.setItem('tarifa_digital', String(dVal));
+            }
+            if (cloudSyncText) cloudSyncText.textContent = 'Supabase Conectado';
+            if (cloudSyncDot) cloudSyncDot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+          }
+        } catch (err) {
+          console.warn('Consulta tarifas Supabase:', err);
+        }
       }
-    }
 
-    btnSave.addEventListener('click', guardarPreciosEnNube);
-    btnReset.addEventListener('click', () => {
-      inputPrint.value = '7.500';
-      inputDigital.value = '2.500';
-    });
+      // 2. GUARDADO INFALIBLE Y TRANSMISIÓN INSTANTÁNEA
+      async function guardarTarifas() {
+        usuarioEstaEditando = false; // finalizó edición
+        const printVal = parseNumeric(inputPrint.value) || 7500;
+        const digitalVal = parseNumeric(inputDigital.value) || 2500;
+        const updatedAt = new Date().toISOString();
 
-    document.addEventListener('DOMContentLoaded', cargarPreciosDesdeNube);
+        if (btnSaveText) btnSaveText.textContent = 'Guardando...';
+        btnSave.disabled = true;
+
+        // A. Guardado síncrono e inamovible en LocalStorage
+        localStorage.setItem('tarifa_impresa', String(printVal));
+        localStorage.setItem('tarifa_digital', String(digitalVal));
+        localStorage.setItem('numero_whatsapp', WHATSAPP_OFICIAL);
+
+        // B. Transmisión entre pestañas abiertas en el navegador (BroadcastChannel)
+        try {
+          if ('BroadcastChannel' in window) {
+            const ch = new BroadcastChannel('tarifas_escolar_channel');
+            ch.postMessage({
+              type: 'TARIFAS_UPDATED',
+              tarifa_impresa: printVal,
+              tarifa_digital: digitalVal,
+              whatsapp: WHATSAPP_OFICIAL,
+              timestamp: updatedAt
+            });
+          }
+        } catch (_) {}
+
+        // C. Persistencia en Supabase
+        let remoteOk = false;
+        if (supabaseClient) {
+          try {
+            // 1. Intentar actualizar fila con id=1
+            const updateRes = await supabaseClient
+              .from('configuracion')
+              .update({
+                tarifa_impresa: printVal,
+                tarifa_digital: digitalVal,
+                whatsapp: WHATSAPP_OFICIAL,
+                updated_at: updatedAt
+              })
+              .eq('id', 1);
+
+            if (!updateRes.error && updateRes.count > 0) {
+              remoteOk = true;
+            } else {
+              // 2. Si no existía, insertar o upsert
+              const upsertRes = await supabaseClient
+                .from('configuracion')
+                .upsert({
+                  id: 1,
+                  clave: 'tarifas_oficiales',
+                  tarifa_impresa: printVal,
+                  tarifa_digital: digitalVal,
+                  whatsapp: WHATSAPP_OFICIAL,
+                  updated_at: updatedAt
+                }, { onConflict: 'id' });
+              
+              if (!upsertRes.error) remoteOk = true;
+            }
+          } catch (supaErr) {
+            console.warn('Error al guardar en Supabase:', supaErr);
+          }
+        }
+
+        btnSave.disabled = false;
+        if (btnSaveText) btnSaveText.textContent = 'Guardar Nuevas Tarifas';
+        updateUI(printVal, digitalVal);
+
+        if (remoteOk) {
+          notify(`¡Tarifas guardadas! Copia $${formatNumber(printVal)} / Digital $${formatNumber(digitalVal)} activas en Supabase.`);
+          if (cloudSyncText) cloudSyncText.textContent = 'Supabase Conectado';
+        } else {
+          notify(`¡Tarifas guardadas localmente! Copia $${formatNumber(printVal)} / Digital $${formatNumber(digitalVal)}.`);
+        }
+      }
+
+      if (btnSave) btnSave.addEventListener('click', guardarTarifas);
+      if (btnReset) {
+        btnReset.addEventListener('click', () => {
+          usuarioEstaEditando = true;
+          inputPrint.value = '7.500';
+          inputDigital.value = '2.500';
+          updateUI(7500, 2500);
+          notify('Valores restablecidos a $7.500 / $2.500. Presioná Guardar para fijar.');
+        });
+      }
+
+      // Inicializar al cargar
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cargarTarifas);
+      } else {
+        cargarTarifas();
+      }
+    })();
   </script>
 </body>
 </html>
