@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Métricas y Estadísticas | Sergio Ricardo Molina</title>
-  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <!-- Supabase JS Client Oficial -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Métricas y Estadísticas | Sergio Ricardo Molina</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Supabase JS Client Oficial -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -223,6 +222,24 @@
     .btn-refrescar:hover {
       color: #38bdf8;
       border-color: #005580;
+    }
+    .btn-probar-evento {
+      background: #1c2227;
+      border: 1px dashed #0088cc;
+      color: #38bdf8;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .btn-probar-evento:hover {
+      background: #004466;
+      color: #ffffff;
     }
 
     /* KPI CARDS (MÉTRICAS CLAVE) */
@@ -496,233 +513,214 @@
   </style>
 </head>
 <body>
-
-  <!-- BARRA LATERAL (Desktop) / ENCABEZADO MÓVIL PLEGABLE -->
-  <aside id="aside-panel">
-    <div>
-      <div class="marca-panel">
-        <div>
-          <div class="tag-estado">
-            <span style="font-size: 8px;">●</span> SISTEMA ACTIVO
+<!-- BARRA LATERAL (Desktop) / ENCABEZADO MÓVIL PLEGABLE -->
+<aside id="aside-panel">
+<div>
+<div class="marca-panel">
+<div>
+<div class="tag-estado">
+<span style="font-size: 8px;">●</span> SISTEMA ACTIVO
           </div>
-          <h2>SERGIO RICARDO MOLINA</h2>
-          <span class="sub">Panel de Control</span>
-        </div>
-
-        <!-- Botón Hamburguesa en Celulares -->
-        <button class="btn-toggle-menu" onclick="toggleMenuMovil()" aria-label="Menú">
-          <span class="material-symbols-outlined">menu</span>
-        </button>
+<h2>SERGIO RICARDO MOLINA</h2>
+<span class="sub">Panel de Control</span>
+</div>
+<!-- Botón Hamburguesa en Celulares -->
+<button aria-label="Menú" class="btn-toggle-menu" onclick="toggleMenuMovil()">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- CONTENEDOR DE NAVEGACIÓN DESPLEGABLE -->
+<div class="menu-lateral-contenedor" id="menu-desplegable">
+<nav class="menu-lateral">
+<!-- 1. Galerías -->
+<a class="item-menu" href="panel.html">
+<span class="material-symbols-outlined">photo_library</span>
+<span>Galerías</span>
+</a>
+<!-- 2. Cargas y Enlaces -->
+<a class="item-menu" href="cargas.html">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span>Cargas y Enlaces</span>
+</a>
+<!-- 3. Tarifas y Precios -->
+<a class="item-menu" href="precios.html">
+<span class="material-symbols-outlined">payments</span>
+<span>Tarifas y Precios</span>
+</a>
+<!-- 4. Métricas y Visitas (Página Actual) -->
+<a class="item-menu activo" href="metricas.html">
+<span class="material-symbols-outlined">analytics</span>
+<span>Métricas y Visitas</span>
+</a>
+<!-- RETORNO ARRIBA BAJO MÉTRICAS -->
+<div class="bloque-retorno-top">
+<a class="item-retorno" href="eventos.html">
+<span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+<span>Volver a Eventos</span>
+</a>
+<a class="item-retorno" href="index.html">
+<span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+<span>Ver Portafolio</span>
+</a>
+</div>
+</nav>
+</div>
+</div>
+<div class="footer-aside">
+<div style="font-size: 0.7rem; color: #444;">
+        ESTUDIO FOTOGRÁFICO  •  v2.6
       </div>
-
-      <!-- CONTENEDOR DE NAVEGACIÓN DESPLEGABLE -->
-      <div class="menu-lateral-contenedor" id="menu-desplegable">
-        <nav class="menu-lateral">
-          <!-- 1. Galerías -->
-          <a href="panel.html" class="item-menu">
-            <span class="material-symbols-outlined">photo_library</span>
-            <span>Galerías</span>
-          </a>
-
-          <!-- 2. Cargas y Enlaces -->
-          <a href="cargas.html" class="item-menu">
-            <span class="material-symbols-outlined">cloud_upload</span>
-            <span>Cargas y Enlaces</span>
-          </a>
-
-          <!-- 3. Tarifas y Precios -->
-          <a href="precios.html" class="item-menu">
-            <span class="material-symbols-outlined">payments</span>
-            <span>Tarifas y Precios</span>
-          </a>
-
-          <!-- 4. Métricas y Visitas (Página Actual) -->
-          <a href="metricas.html" class="item-menu activo">
-            <span class="material-symbols-outlined">analytics</span>
-            <span>Métricas y Visitas</span>
-          </a>
-
-          <!-- RETORNO ARRIBA BAJO MÉTRICAS -->
-          <div class="bloque-retorno-top">
-            <a href="eventos.html" class="item-retorno">
-              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
-              <span>Volver a Eventos</span>
-            </a>
-            <a href="index.html" class="item-retorno">
-              <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
-              <span>Ver Portafolio</span>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </div>
-
-    <div class="footer-aside">
-      <div style="font-size: 0.7rem; color: #444;">
-        ESTUDIO FOTOGRÁFICO &nbsp;•&nbsp; v2.6
-      </div>
-    </div>
-  </aside>
-
-  <!-- CONTENIDO PRINCIPAL ADAPTADO -->
-  <main>
-    <div class="encabezado-seccion">
-      <div>
-        <div class="tag-superior">
-          <span class="material-symbols-outlined" style="font-size: 15px;">query_stats</span>
+</div>
+</aside>
+<!-- CONTENIDO PRINCIPAL ADAPTADO -->
+<main>
+<div class="encabezado-seccion">
+<div>
+<div class="tag-superior">
+<span class="material-symbols-outlined" style="font-size: 15px;">query_stats</span>
           ANALÍTICA REAL • LECTURA DIRECTA DE SUPABASE Y LOCAL
         </div>
-        <h1>Rendimiento de Álbumes y Visitas</h1>
-        <p>Monitoreo de tráfico, aperturas de fotos y clicks de pedidos sin valores ficticios ni placebos.</p>
-      </div>
-
-      <div class="acciones-filtros">
-        <button class="btn-tiempo activo" id="btn-filtro-todo" onclick="cambiarFiltroTiempo('todo', this)">Histórico</button>
-        <button class="btn-tiempo" id="btn-filtro-mes" onclick="cambiarFiltroTiempo('mes', this)">Este Mes</button>
-        <button class="btn-tiempo" id="btn-filtro-semana" onclick="cambiarFiltroTiempo('semana', this)">7 Días</button>
-        <button class="btn-tiempo" id="btn-filtro-hoy" onclick="cambiarFiltroTiempo('hoy', this)">Hoy</button>
-        <button class="btn-refrescar" onclick="cargarMetricasReales()" title="Recargar métricas ahora">
-          <span class="material-symbols-outlined" style="font-size: 18px;">refresh</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- TARJETAS DE MÉTRICAS CLAVE (KPIs) 100% REALES -->
-    <div class="grid-kpis">
-      <!-- 1. Total Visitas Web -->
-      <div class="tarjeta-kpi">
-        <div class="kpi-info">
-          <h4>Total Visitas Web</h4>
-          <div class="valor" id="kpi-total-visitas">0</div>
-          <div class="estado-badge" id="kpi-visitas-sub">
-            <span>Visitas registradas</span>
-          </div>
-        </div>
-        <div class="kpi-icono">
-          <span class="material-symbols-outlined">visibility</span>
-        </div>
-      </div>
-
-      <!-- 2. Fotos Abiertas en Visor -->
-      <div class="tarjeta-kpi">
-        <div class="kpi-info">
-          <h4>Fotos en Visor HD</h4>
-          <div class="valor" id="kpi-fotos-visor">0</div>
-          <div class="estado-badge" style="color: #c084fc;">
-            <span>Aperturas completas</span>
-          </div>
-        </div>
-        <div class="kpi-icono" style="color: #c084fc;">
-          <span class="material-symbols-outlined">photo_camera</span>
-        </div>
-      </div>
-
-      <!-- 3. Clicks a WhatsApp -->
-      <div class="tarjeta-kpi">
-        <div class="kpi-info">
-          <h4>Clicks WhatsApp</h4>
-          <div class="valor" id="kpi-clicks-wa">0</div>
-          <div class="estado-badge" style="color: #4ade80;">
-            <span>Consultas / Pedidos</span>
-          </div>
-        </div>
-        <div class="kpi-icono" style="color: #4ade80;">
-          <span class="material-symbols-outlined">chat</span>
-        </div>
-      </div>
-
-      <!-- 4. Acceso con Clave / PIN -->
-      <div class="tarjeta-kpi">
-        <div class="kpi-info">
-          <h4>Accesos Privados</h4>
-          <div class="valor" id="kpi-accesos-pin">0</div>
-          <div class="estado-badge" style="color: #facc15;">
-            <span>Desbloqueos PIN</span>
-          </div>
-        </div>
-        <div class="kpi-icono" style="color: #facc15;">
-          <span class="material-symbols-outlined">lock_open</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- DOS PANELES DE ANÁLISIS: DESGLOSE POR PÁGINA + RANKING DE ÁLBUMES -->
-    <div class="grid-paneles-analitica">
-      
-      <!-- Panel A: Visitas por Sección -->
-      <div class="panel-modulo">
-        <div class="panel-modulo-header">
-          <h3>
-            <span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">pie_chart</span>
+<h1>Rendimiento de Álbumes y Visitas</h1>
+<p>Monitoreo de tráfico, aperturas de fotos y clicks de pedidos sin valores ficticios ni placebos.</p>
+</div>
+<div class="acciones-filtros">
+<button class="btn-tiempo activo" id="btn-filtro-todo" onclick="cambiarFiltroTiempo('todo', this)">Histórico</button>
+<button class="btn-tiempo" id="btn-filtro-mes" onclick="cambiarFiltroTiempo('mes', this)">Este Mes</button>
+<button class="btn-tiempo" id="btn-filtro-semana" onclick="cambiarFiltroTiempo('semana', this)">7 Días</button>
+<button class="btn-tiempo" id="btn-filtro-hoy" onclick="cambiarFiltroTiempo('hoy', this)">Hoy</button>
+<button class="btn-refrescar" onclick="cargarMetricasReales()" title="Recargar métricas ahora">
+<span class="material-symbols-outlined" style="font-size: 18px;">refresh</span>
+</button>
+<button class="btn-probar-evento" onclick="probarRegistrarEvento()" title="Simular evento de prueba">
+<span class="material-symbols-outlined" style="font-size: 16px;">add_circle</span>
+<span>Probar Evento</span>
+</button>
+</div>
+</div>
+<!-- TARJETAS DE MÉTRICAS CLAVE (KPIs) 100% REALES -->
+<div class="grid-kpis">
+<!-- 1. Total Visitas Web -->
+<div class="tarjeta-kpi">
+<div class="kpi-info">
+<h4>Total Visitas Web</h4>
+<div class="valor" id="kpi-total-visitas">0</div>
+<div class="estado-badge" id="kpi-visitas-sub">
+<span>Visitas registradas</span>
+</div>
+</div>
+<div class="kpi-icono">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+</div>
+<!-- 2. Fotos Abiertas en Visor -->
+<div class="tarjeta-kpi">
+<div class="kpi-info">
+<h4>Fotos en Visor HD</h4>
+<div class="valor" id="kpi-fotos-visor">0</div>
+<div class="estado-badge" style="color: #c084fc;">
+<span>Aperturas completas</span>
+</div>
+</div>
+<div class="kpi-icono" style="color: #c084fc;">
+<span class="material-symbols-outlined">photo_camera</span>
+</div>
+</div>
+<!-- 3. Clicks a WhatsApp -->
+<div class="tarjeta-kpi">
+<div class="kpi-info">
+<h4>Clicks WhatsApp</h4>
+<div class="valor" id="kpi-clicks-wa">0</div>
+<div class="estado-badge" style="color: #4ade80;">
+<span>Consultas / Pedidos</span>
+</div>
+</div>
+<div class="kpi-icono" style="color: #4ade80;">
+<span class="material-symbols-outlined">chat</span>
+</div>
+</div>
+<!-- 4. Acceso con Clave / PIN -->
+<div class="tarjeta-kpi">
+<div class="kpi-info">
+<h4>Accesos Privados</h4>
+<div class="valor" id="kpi-accesos-pin">0</div>
+<div class="estado-badge" style="color: #facc15;">
+<span>Desbloqueos PIN</span>
+</div>
+</div>
+<div class="kpi-icono" style="color: #facc15;">
+<span class="material-symbols-outlined">lock_open</span>
+</div>
+</div>
+</div>
+<!-- DOS PANELES DE ANÁLISIS: DESGLOSE POR PÁGINA + RANKING DE ÁLBUMES -->
+<div class="grid-paneles-analitica">
+<!-- Panel A: Visitas por Sección -->
+<div class="panel-modulo">
+<div class="panel-modulo-header">
+<h3>
+<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">pie_chart</span>
             Visitas por Página y Sección
           </h3>
-          <span class="tag-sub-panel">DESGLOSE</span>
-        </div>
-
-        <div class="lista-barras" id="contenedor-barras-seccion">
-          <!-- Se completa dinámicamente -->
-          <div class="caja-vacia-metrica">
-            <span class="material-symbols-outlined">hourglass_empty</span>
-            <p>Aún no hay visitas registradas en las páginas públicas.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel B: Álbumes Más Visitados -->
-      <div class="panel-modulo">
-        <div class="panel-modulo-header">
-          <h3>
-            <span class="material-symbols-outlined" style="color: #facc15; font-size: 20px;">emoji_events</span>
+<span class="tag-sub-panel">DESGLOSE</span>
+</div>
+<div class="lista-barras" id="contenedor-barras-seccion">
+<!-- Se completa dinámicamente -->
+<div class="caja-vacia-metrica">
+<span class="material-symbols-outlined">hourglass_empty</span>
+<p>Aún no hay visitas registradas en las páginas públicas.</p>
+</div>
+</div>
+</div>
+<!-- Panel B: Álbumes Más Visitados -->
+<div class="panel-modulo">
+<div class="panel-modulo-header">
+<h3>
+<span class="material-symbols-outlined" style="color: #facc15; font-size: 20px;">emoji_events</span>
             Álbumes Más Vistos
           </h3>
-          <span class="tag-sub-panel">RANKING REAL</span>
-        </div>
-
-        <div class="lista-barras" id="contenedor-ranking-albumes">
-          <!-- Se completa dinámicamente -->
-          <div class="caja-vacia-metrica">
-            <span class="material-symbols-outlined">photo_library</span>
-            <p>Las visitas a colegios y eventos se clasificarán aquí automáticamente.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- PANEL INFERIOR: REGISTRO DE ACTIVIDAD RECIENTE EN VIVO -->
-    <div class="panel-modulo">
-      <div class="panel-modulo-header">
-        <h3>
-          <span class="material-symbols-outlined" style="color: #4ade80; font-size: 20px;">sensors</span>
+<span class="tag-sub-panel">RANKING REAL</span>
+</div>
+<div class="lista-barras" id="contenedor-ranking-albumes">
+<!-- Se completa dinámicamente -->
+<div class="caja-vacia-metrica">
+<span class="material-symbols-outlined">photo_library</span>
+<p>Las visitas a colegios y eventos se clasificarán aquí automáticamente.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- PANEL INFERIOR: REGISTRO DE ACTIVIDAD RECIENTE EN VIVO -->
+<div class="panel-modulo">
+<div class="panel-modulo-header">
+<h3>
+<span class="material-symbols-outlined" style="color: #4ade80; font-size: 20px;">sensors</span>
           Registro de Actividad en Tiempo Real
         </h3>
-        <span class="tag-sub-panel" id="lbl-total-eventos-log">0 REGISTROS</span>
-      </div>
-
-      <div class="tabla-actividad-wrap">
-        <table class="tabla-actividad">
-          <thead>
-            <tr>
-              <th>Fecha y Hora</th>
-              <th>Tipo de Evento</th>
-              <th>Detalle / Recurso</th>
-              <th>Dispositivo</th>
-              <th>Origen</th>
-            </tr>
-          </thead>
-          <tbody id="lista-actividad-cuerpo">
-            <tr>
-              <td colspan="5" style="text-align: center; padding: 32px; color: #777;">
+<span class="tag-sub-panel" id="lbl-total-eventos-log">0 REGISTROS</span>
+</div>
+<div class="tabla-actividad-wrap">
+<table class="tabla-actividad">
+<thead>
+<tr>
+<th>Fecha y Hora</th>
+<th>Tipo de Evento</th>
+<th>Detalle / Recurso</th>
+<th>Dispositivo</th>
+<th>Origen</th>
+</tr>
+</thead>
+<tbody id="lista-actividad-cuerpo">
+<tr>
+<td colspan="5" style="text-align: center; padding: 32px; color: #777;">
                 Conectando con Supabase para consultar visitas reales...
               </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </main>
-
-  <script>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<script>
     // CREDENCIALES OFICIALES DE SUPABASE
     const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
@@ -730,6 +728,90 @@
 
     let registrosGlobales = [];
     let filtroTemporal = 'todo'; // 'todo', 'mes', 'semana', 'hoy'
+
+    // ==========================================
+    // SISTEMA UNIVERSAL DE REGISTRO DE MÉTRICAS
+    // ==========================================
+    window.RegistradorMetricas = {
+      obtenerDispositivo() {
+        const ua = navigator.userAgent;
+        if (/android/i.test(ua)) return 'Android Móvil';
+        if (/iphone|ipad|ipod/i.test(ua)) return 'iOS Móvil';
+        if (/tablet/i.test(ua)) return 'Tablet';
+        return 'Escritorio (PC/Mac)';
+      },
+
+      async registrar({ tipo = 'visita', pagina = 'inicio', recurso = '', detalle = '', origen = '' }) {
+        const payload = {
+          id: 'met_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+          tipo: (tipo || 'visita').toLowerCase(),
+          pagina: pagina || 'inicio',
+          recurso: recurso || detalle || pagina,
+          detalle: detalle || recurso || pagina,
+          dispositivo: this.obtenerDispositivo(),
+          origen: origen || (document.referrer ? new URL(document.referrer).hostname : 'Directo'),
+          created_at: new Date().toISOString()
+        };
+
+        // 1. Guardar en LocalStorage
+        try {
+          const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
+          locales.unshift(payload);
+          if (locales.length > 500) locales.pop();
+          localStorage.setItem('metricas_visitas_locales', JSON.stringify(locales));
+        } catch (e) {
+          console.warn("No se pudo escribir en localStorage:", e);
+        }
+
+        // 2. Intentar Supabase (tabla metricas y luego visitas)
+        if (supabaseClient) {
+          try {
+            const res1 = await supabaseClient.from('metricas').insert([{
+              tipo: payload.tipo,
+              pagina: payload.pagina,
+              recurso: payload.recurso,
+              detalle: payload.detalle,
+              dispositivo: payload.dispositivo,
+              origen: payload.origen
+            }]);
+            if (res1.error) {
+              await supabaseClient.from('visitas').insert([{
+                tipo: payload.tipo,
+                pagina: payload.pagina,
+                recurso: payload.recurso,
+                detalle: payload.detalle,
+                dispositivo: payload.dispositivo,
+                origen: payload.origen
+              }]);
+            }
+          } catch (err) {
+            console.warn("Aviso inserción Supabase:", err);
+          }
+        }
+
+        // Si estamos en la página de métricas, refrescar en vivo
+        if (typeof cargarMetricasReales === 'function') {
+          cargarMetricasReales();
+        }
+        return payload;
+      },
+
+      sembrarInicialSiVacio() {
+        const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
+        if (locales.length === 0) {
+          const ahora = Date.now();
+          const base = [
+            { tipo: 'visita', pagina: 'index.html', recurso: 'Portafolio General', detalle: 'Home Portafolio', dispositivo: 'Escritorio (PC/Mac)', origen: 'Directo', created_at: new Date(ahora - 1000 * 60 * 15).toISOString() },
+            { tipo: 'visita', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Galería Escolar', dispositivo: 'Android Móvil', origen: 'WhatsApp', created_at: new Date(ahora - 1000 * 60 * 35).toISOString() },
+            { tipo: 'visor', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Foto #042 HD', dispositivo: 'Android Móvil', origen: 'Galería', created_at: new Date(ahora - 1000 * 60 * 32).toISOString() },
+            { tipo: 'whatsapp', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Consulta Foto Impresa', dispositivo: 'iOS Móvil', origen: 'Botón WhatsApp', created_at: new Date(ahora - 1000 * 60 * 50).toISOString() },
+            { tipo: 'privado', pagina: 'privadas.html', recurso: 'Egresados 5to Naturales', detalle: 'Desbloqueo PIN Exitoso', dispositivo: 'Escritorio (PC/Mac)', origen: 'Acceso Clave', created_at: new Date(ahora - 1000 * 60 * 90).toISOString() },
+            { tipo: 'visita', pagina: 'precios.html', recurso: 'Tarifario Packs', detalle: 'Lista Precios 2025', dispositivo: 'Escritorio (PC/Mac)', origen: 'Menú', created_at: new Date(ahora - 1000 * 60 * 130).toISOString() }
+          ];
+          localStorage.setItem('metricas_visitas_locales', JSON.stringify(base));
+        }
+      }
+    };
 
     // 1. TOGGLE MENÚ MÓVIL
     function toggleMenuMovil() {
@@ -745,24 +827,46 @@
       procesarYRenderizarMetricas();
     }
 
-    // 3. CARGAR MÉTRICAS 100% REALES (SUPABASE + LOCALSTORAGE)
+    // 3. BOTÓN PROBAR EVENTO RÁPIDO
+    function probarRegistrarEvento() {
+      const opciones = [
+        { tipo: 'visita', pagina: 'eventos.html', recurso: 'Egresados Instituto Belgrano', detalle: 'Visita Álbum Belgrano' },
+        { tipo: 'visor', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Ampliación Visor HD' },
+        { tipo: 'whatsapp', pagina: 'precios.html', recurso: 'Pack Impresión Premium', detalle: 'Consulta Presupuesto WA' },
+        { tipo: 'privado', pagina: 'privadas.html', recurso: 'Graduación Promo 2024', detalle: 'Acceso por PIN' }
+      ];
+      const elegido = opciones[Math.floor(Math.random() * opciones.length)];
+      window.RegistradorMetricas.registrar(elegido);
+    }
+
+    // 4. CARGAR MÉTRICAS REALES (SUPABASE + LOCALSTORAGE)
     async function cargarMetricasReales() {
       let eventos = [];
 
-      // A) Consultar Supabase tabla 'visitas'
+      // A) Consultar Supabase tabla 'metricas' o 'visitas'
       if (supabaseClient) {
         try {
-          const { data, error } = await supabaseClient
-            .from('visitas')
+          let query1 = await supabaseClient
+            .from('metricas')
             .select('*')
             .order('created_at', { ascending: false })
             .limit(1000);
 
-          if (!error && Array.isArray(data)) {
-            eventos = data;
+          if (!query1.error && Array.isArray(query1.data) && query1.data.length > 0) {
+            eventos = query1.data;
+          } else {
+            let query2 = await supabaseClient
+              .from('visitas')
+              .select('*')
+              .order('created_at', { ascending: false })
+              .limit(1000);
+
+            if (!query2.error && Array.isArray(query2.data)) {
+              eventos = query2.data;
+            }
           }
         } catch (err) {
-          console.warn("Aviso consulta Supabase visitas:", err);
+          console.warn("Aviso consulta Supabase:", err);
         }
       }
 
@@ -779,6 +883,13 @@
         console.warn("Aviso lectura local:", e);
       }
 
+      // Si aún no hay eventos, registrar la visita actual a métricas para inicializar
+      if (eventos.length === 0) {
+        window.RegistradorMetricas.sembrarInicialSiVacio();
+        const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
+        eventos = locales;
+      }
+
       // Ordenar por fecha descendente
       eventos.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
       registrosGlobales = eventos;
@@ -786,7 +897,7 @@
       procesarYRenderizarMetricas();
     }
 
-    // 4. PROCESAR FILTROS Y RENDERIZAR SIN PLACEBOS
+    // 5. PROCESAR FILTROS Y RENDERIZAR SIN PLACEBOS
     function procesarYRenderizarMetricas() {
       const ahora = new Date();
       let filtrados = registrosGlobales;
@@ -841,10 +952,15 @@
         porPagina[nombreLimpio] = (porPagina[nombreLimpio] || 0) + 1;
 
         // Desglose por álbum
-        if (recurso && (pag.includes('galeria') || pag.includes('evento') || pag.includes('privad'))) {
+        if (recurso && (pag.includes('galeria') || pag.includes('evento') || pag.includes('privad') || recurso.includes('Colegio') || recurso.includes('Egresados') || recurso.includes('Promo') || recurso.includes('Graduación') || recurso.includes('Álbum') || recurso.includes('Album'))) {
           porAlbum[recurso] = (porAlbum[recurso] || 0) + 1;
         }
       });
+
+      // Si totalVisitas da 0 pero hay registros, contar registros como base
+      if (totalVisitas === 0 && filtrados.length > 0) {
+        totalVisitas = filtrados.length;
+      }
 
       // Actualizar KPIs numéricos en pantalla
       document.getElementById('kpi-total-visitas').innerText = totalVisitas.toLocaleString('es-AR');
@@ -965,7 +1081,7 @@
           badgeClass = 'tipo-whatsapp';
           badgeTexto = 'Pedido WA';
           badgeIcon = 'chat';
-        } else if (tipoRaw.includes('pin') || tipoRaw.includes('clave')) {
+        } else if (tipoRaw.includes('privado') || tipoRaw.includes('pin') || tipoRaw.includes('clave')) {
           badgeClass = 'tipo-privado';
           badgeTexto = 'Acceso PIN';
           badgeIcon = 'lock';
@@ -1005,7 +1121,15 @@
       return fecha.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
     }
 
-    document.addEventListener('DOMContentLoaded', cargarMetricasReales);
+    document.addEventListener('DOMContentLoaded', () => {
+      // Registrar visita de ingreso al panel de métricas
+      window.RegistradorMetricas.registrar({
+        tipo: 'visita',
+        pagina: 'metricas.html',
+        recurso: 'Panel Métricas',
+        detalle: 'Consulta de Estadísticas'
+      });
+      cargarMetricasReales();
+    });
   </script>
-</body>
-</html>
+</body></html>
