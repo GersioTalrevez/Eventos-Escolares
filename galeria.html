@@ -737,13 +737,14 @@ function actualizarUIPrecios() {
 
   const btnImp = document.getElementById('btn-label-impresas');
   const btnDig = document.getElementById('btn-label-digitales');
-  if (btnImp) btnImp.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">print</span> Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)`;
-  if (btnDig) btnDig.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span> Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)`;
+  if (btnImp) btnImp.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">print</span> <span>Impresas 15x21 ($${TARIFA_IMPRESA.toLocaleString('es-AR')} c/u)</span>`;
+  if (btnDig) btnDig.innerHTML = `<span class="material-symbols-outlined" style="font-size: 16px;">cloud_download</span> <span>Digital HD ($${TARIFA_DIGITAL.toLocaleString('es-AR')} c/u)</span>`;
 
   actualizarTotalesBarra();
 }
 
 async function sincronizarPrecios() {
+  // 1. Fallback inmediato desde localStorage
   try {
     const storedImp = localStorage.getItem('tarifa_impresa');
     const storedDig = localStorage.getItem('tarifa_digital');
@@ -756,6 +757,7 @@ async function sincronizarPrecios() {
   }
   actualizarUIPrecios();
 
+  // 2. Consulta activa y en tiempo real a Supabase (tabla 'configuracion')
   if (supabaseClient) {
     try {
       const consultaConfig = async () => {
@@ -766,7 +768,7 @@ async function sincronizarPrecios() {
 
       const config = await Promise.race([
         consultaConfig(),
-        new Promise(resolve => setTimeout(() => resolve(null), 2500))
+        new Promise(resolve => setTimeout(() => resolve(null), 3500))
       ]);
 
       if (config) {
@@ -786,11 +788,11 @@ async function sincronizarPrecios() {
           }
         }
 
-        if (imp && !isNaN(imp) && imp > 0) {
+        if (imp !== null && !isNaN(imp) && imp > 0) {
           TARIFA_IMPRESA = imp;
           try { localStorage.setItem('tarifa_impresa', String(imp)); } catch (_) {}
         }
-        if (dig && !isNaN(dig) && dig > 0) {
+        if (dig !== null && !isNaN(dig) && dig > 0) {
           TARIFA_DIGITAL = dig;
           try { localStorage.setItem('tarifa_digital', String(dig)); } catch (_) {}
         }
@@ -798,16 +800,52 @@ async function sincronizarPrecios() {
           WHATSAPP_FOTOGRAFO = String(wa).replace(/\D/g, '');
           try { localStorage.setItem('numero_whatsapp', WHATSAPP_FOTOGRAFO); } catch (_) {}
         }
+
         actualizarUIPrecios();
       }
     } catch (errSupabase) {
-      console.warn("Aviso supabase config:", errSupabase);
+      console.warn("Aviso al sincronizar tarifas con Supabase:", errSupabase);
     }
   }
 }
 
+// 3. COMUNICACIÓN EN TIEMPO REAL CON PRECIOS.HTML
+try {
+  const canalTarifas = new BroadcastChannel('tarifas_escolar_channel');
+  canalTarifas.onmessage = (event) => {
+    if (event.data) {
+      if (event.data.tarifa_impresa && !isNaN(event.data.tarifa_impresa)) {
+        TARIFA_IMPRESA = Number(event.data.tarifa_impresa);
+      }
+      if (event.data.tarifa_digital && !isNaN(event.data.tarifa_digital)) {
+        TARIFA_DIGITAL = Number(event.data.tarifa_digital);
+      }
+      if (event.data.whatsapp) {
+        WHATSAPP_FOTOGRAFO = String(event.data.whatsapp).replace(/\D/g, '');
+      }
+      actualizarUIPrecios();
+    }
+  };
+} catch (e) {
+  console.warn("BroadcastChannel no soportado o deshabilitado:", e);
+}
+
+window.addEventListener('storage', (e) => {
+  if (e.key === 'tarifa_impresa' && e.newValue && !isNaN(e.newValue)) {
+    TARIFA_IMPRESA = Number(e.newValue);
+    actualizarUIPrecios();
+  }
+  if (e.key === 'tarifa_digital' && e.newValue && !isNaN(e.newValue)) {
+    TARIFA_DIGITAL = Number(e.newValue);
+    actualizarUIPrecios();
+  }
+  if (e.key === 'numero_whatsapp' && e.newValue) {
+    WHATSAPP_FOTOGRAFO = String(e.newValue).replace(/\D/g, '');
+  }
+});
+
 async function iniciarGaleria() {
-  sincronizarPrecios();
+  await sincronizarPrecios();
 
   const params = new URLSearchParams(window.location.search);
   const paramId = params.get('id') || '';
@@ -1080,7 +1118,7 @@ function limpiarSeleccion() {
   actualizarTotalesBarra();
 }
 
-// PEDIR DIRECTO POR WHATSAPP CON FORMATEO PROFESIONAL
+// PEDIR DIRECTO POR WHATSAPP CON FORMATEO PROFESIONAL Y TARIFAS REALES
 function pedirPorWhatsAppDirecto() {
   if (mapaSeleccion.size === 0) {
     mostrarToastProteccion("Por favor selecciona al menos una fotografía para continuar el pedido.");
@@ -1106,19 +1144,26 @@ function pedirPorWhatsAppDirecto() {
     itemsDetalle.push(`• ${nombre}: ${tipos.join(' + ')}`);
   });
 
-  const total = (cantImpresas * TARIFA_IMPRESA) + (cantDigitales * TARIFA_DIGITAL);
+  const subtotalImpresas = cantImpresas * TARIFA_IMPRESA;
+  const subtotalDigitales = cantDigitales * TARIFA_DIGITAL;
+  const total = subtotalImpresas + subtotalDigitales;
 
   let mensaje = `📸 *NUEVO PEDIDO DE FOTOGRAFÍAS ESCOLARES*\n` +
     `*Evento:* ${tituloEvento}\n` +
     `*Cantidad de Fotos:* ${mapaSeleccion.size}\n\n` +
     `*Detalle de Selección:*\n${itemsDetalle.join('\n')}\n\n` +
-    `*Copias Impresas:* ${cantImpresas} ($${(cantImpresas * TARIFA_IMPRESA).toLocaleString('es-AR')})\n` +
-    `*Archivos Digitales HD:* ${cantDigitales} ($${(cantDigitales * TARIFA_DIGITAL).toLocaleString('es-AR')})\n` +
+    `*Copias Impresas:* ${cantImpresas} ($${subtotalImpresas.toLocaleString('es-AR')})\n` +
+    `*Archivos Digitales HD:* ${cantDigitales} ($${subtotalDigitales.toLocaleString('es-AR')})\n` +
     `💰 *TOTAL A PAGAR:* $${total.toLocaleString('es-AR')}\n\n` +
     `Hola Sergio, deseo encargar estas fotografías. ¿Me confirmas los medios de pago (transferencia / alias) para completar la orden?`;
 
   const urlWa = `https://wa.me/${WHATSAPP_FOTOGRAFO}?text=${encodeURIComponent(mensaje)}`;
   window.open(urlWa, '_blank');
+}
+
+// Alias para compatibilidad
+function pedirPorWhatsApp() {
+  pedirPorWhatsAppDirecto();
 }
 
 function irAlPedido(formatoForzado) {
