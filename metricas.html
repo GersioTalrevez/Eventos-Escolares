@@ -7,7 +7,7 @@
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <!-- Supabase JS Client Oficial -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -54,6 +54,7 @@
       font-weight: 700;
     }
     .marca-panel h2 {
+      font-family: 'Raleway', sans-serif;
       font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: 0.5px;
@@ -167,6 +168,7 @@
       gap: 5px;
     }
     .encabezado-seccion h1 {
+      font-family: 'Raleway', sans-serif;
       font-size: 1.7rem;
       font-weight: 600;
       letter-spacing: 0.5px;
@@ -324,6 +326,7 @@
       border-bottom: 1px solid #242424;
     }
     .panel-modulo-header h3 {
+      font-family: 'Raleway', sans-serif;
       font-size: 0.96rem;
       font-weight: 600;
       color: #ffffff;
@@ -591,7 +594,7 @@
 <button class="btn-refrescar" onclick="cargarMetricasReales()" title="Recargar métricas ahora">
 <span class="material-symbols-outlined" style="font-size: 18px;">refresh</span>
 </button>
-<button class="btn-probar-evento" onclick="probarRegistrarEvento()" title="Simular evento de prueba">
+<button class="btn-probar-evento" onclick="probarRegistrarEvento()" title="Simular evento de prueba de cliente">
 <span class="material-symbols-outlined" style="font-size: 16px;">add_circle</span>
 <span>Probar Evento</span>
 </button>
@@ -605,7 +608,7 @@
 <h4>Total Visitas Web</h4>
 <div class="valor" id="kpi-total-visitas">0</div>
 <div class="estado-badge" id="kpi-visitas-sub">
-<span>Visitas registradas</span>
+<span>Visitas de clientes</span>
 </div>
 </div>
 <div class="kpi-icono">
@@ -661,7 +664,7 @@
 <span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">pie_chart</span>
             Visitas por Página y Sección
           </h3>
-<span class="tag-sub-panel">DESGLOSE</span>
+<span class="tag-sub-panel">CLIENTES</span>
 </div>
 <div class="lista-barras" id="contenedor-barras-seccion">
 <!-- Se completa dinámicamente -->
@@ -740,6 +743,22 @@
       },
 
       async registrar({ tipo = 'visita', pagina = 'inicio', recurso = '', detalle = '', origen = '' }) {
+        // EXCLUSIÓN ESTRICTA: Ignorar auto-visitas de metricas o panel de administración
+        const currentPath = (window.location.pathname || '').toLowerCase();
+        const currentHref = (window.location.href || '').toLowerCase();
+        const paginaNormalizada = (pagina || '').toLowerCase();
+
+        if (
+          currentPath.includes('metricas') ||
+          currentPath.includes('panel') ||
+          currentHref.includes('metricas') ||
+          currentHref.includes('panel') ||
+          paginaNormalizada.includes('metricas') ||
+          paginaNormalizada.includes('panel')
+        ) {
+          return null;
+        }
+
         const payload = {
           id: 'met_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
           tipo: (tipo || 'visita').toLowerCase(),
@@ -794,22 +813,36 @@
         return payload;
       },
 
-      sembrarInicialSiVacio() {
-        const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
-        if (locales.length === 0) {
-          const ahora = Date.now();
-          const base = [
-            { tipo: 'visita', pagina: 'index.html', recurso: 'Portafolio General', detalle: 'Home Portafolio', dispositivo: 'Escritorio (PC/Mac)', origen: 'Directo', created_at: new Date(ahora - 1000 * 60 * 15).toISOString() },
-            { tipo: 'visita', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Galería Escolar', dispositivo: 'Android Móvil', origen: 'WhatsApp', created_at: new Date(ahora - 1000 * 60 * 35).toISOString() },
-            { tipo: 'visor', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Foto #042 HD', dispositivo: 'Android Móvil', origen: 'Galería', created_at: new Date(ahora - 1000 * 60 * 32).toISOString() },
-            { tipo: 'whatsapp', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Consulta Foto Impresa', dispositivo: 'iOS Móvil', origen: 'Botón WhatsApp', created_at: new Date(ahora - 1000 * 60 * 50).toISOString() },
-            { tipo: 'privado', pagina: 'privadas.html', recurso: 'Egresados 5to Naturales', detalle: 'Desbloqueo PIN Exitoso', dispositivo: 'Escritorio (PC/Mac)', origen: 'Acceso Clave', created_at: new Date(ahora - 1000 * 60 * 90).toISOString() },
-            { tipo: 'visita', pagina: 'precios.html', recurso: 'Tarifario Packs', detalle: 'Lista Precios 2025', dispositivo: 'Escritorio (PC/Mac)', origen: 'Menú', created_at: new Date(ahora - 1000 * 60 * 130).toISOString() }
-          ];
-          localStorage.setItem('metricas_visitas_locales', JSON.stringify(base));
+      limpiarAutoRegistrosLocales() {
+        try {
+          const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
+          if (Array.isArray(locales) && locales.length > 0) {
+            const depurados = locales.filter(r => !esRegistroAdminOMetricas(r));
+            localStorage.setItem('metricas_visitas_locales', JSON.stringify(depurados));
+          }
+        } catch (e) {
+          console.warn("Aviso al limpiar registros locales:", e);
         }
       }
     };
+
+    // Función auxiliar para detectar registros internos a excluir
+    function esRegistroAdminOMetricas(r) {
+      if (!r) return false;
+      const pag = String(r.pagina || '').toLowerCase();
+      const rec = String(r.recurso || '').toLowerCase();
+      const det = String(r.detalle || '').toLowerCase();
+
+      return (
+        pag.includes('metricas') ||
+        pag.includes('panel') ||
+        rec.includes('metricas') ||
+        rec.includes('panel') ||
+        det.includes('metricas') ||
+        det.includes('estadísticas') ||
+        det.includes('estadisticas')
+      );
+    }
 
     // 1. TOGGLE MENÚ MÓVIL
     function toggleMenuMovil() {
@@ -825,20 +858,42 @@
       procesarYRenderizarMetricas();
     }
 
-    // 3. BOTÓN PROBAR EVENTO RÁPIDO
+    // 3. BOTÓN PROBAR EVENTO RÁPIDO (SIMULA CLIENTES REALES EN ÁLBUMES/PÁGINAS PÚBLICAS)
     function probarRegistrarEvento() {
       const opciones = [
-        { tipo: 'visita', pagina: 'eventos.html', recurso: 'Egresados Instituto Belgrano', detalle: 'Visita Álbum Belgrano' },
+        { tipo: 'visita', pagina: 'eventos.html', recurso: 'Egresados Belgrano 2024', detalle: 'Visita Álbum Belgrano' },
         { tipo: 'visor', pagina: 'eventos.html', recurso: 'Colegio San Martín 2024', detalle: 'Ampliación Visor HD' },
-        { tipo: 'whatsapp', pagina: 'precios.html', recurso: 'Pack Impresión Premium', detalle: 'Consulta Presupuesto WA' },
-        { tipo: 'privado', pagina: 'privadas.html', recurso: 'Graduación Promo 2024', detalle: 'Acceso por PIN' }
+        { tipo: 'whatsapp', pagina: 'galeria.html', recurso: 'Pack Impresión Premium', detalle: 'Consulta Pedido WA' },
+        { tipo: 'privado', pagina: 'privadas.html', recurso: 'Graduación Promo 2024', detalle: 'Acceso por PIN' },
+        { tipo: 'visita', pagina: 'index.html', recurso: 'Portafolio General', detalle: 'Home Portafolio' }
       ];
       const elegido = opciones[Math.floor(Math.random() * opciones.length)];
-      window.RegistradorMetricas.registrar(elegido);
+      
+      const payload = {
+        id: 'met_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+        tipo: elegido.tipo,
+        pagina: elegido.pagina,
+        recurso: elegido.recurso,
+        detalle: elegido.detalle,
+        dispositivo: window.RegistradorMetricas.obtenerDispositivo(),
+        origen: 'Directo',
+        created_at: new Date().toISOString()
+      };
+
+      try {
+        const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
+        locales.unshift(payload);
+        localStorage.setItem('metricas_visitas_locales', JSON.stringify(locales));
+      } catch (e) {}
+
+      cargarMetricasReales();
     }
 
     // 4. CARGAR MÉTRICAS REALES (SUPABASE + LOCALSTORAGE)
     async function cargarMetricasReales() {
+      // Limpiar auto-registros antiguos guardados en localStorage
+      window.RegistradorMetricas.limpiarAutoRegistrosLocales();
+
       let eventos = [];
 
       // A) Consultar Supabase tabla 'metricas' o 'visitas'
@@ -868,7 +923,7 @@
         }
       }
 
-      // B) Combinar con LocalStorage (registro local en este navegador)
+      // B) Combinar con LocalStorage
       try {
         const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
         if (Array.isArray(locales) && locales.length > 0) {
@@ -881,12 +936,8 @@
         console.warn("Aviso lectura local:", e);
       }
 
-      // Si aún no hay eventos, registrar la visita actual a métricas para inicializar
-      if (eventos.length === 0) {
-        window.RegistradorMetricas.sembrarInicialSiVacio();
-        const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
-        eventos = locales;
-      }
+      // Filtrar estrictamente cualquier auto-visita o registro de métricas / panel
+      eventos = eventos.filter(r => !esRegistroAdminOMetricas(r));
 
       // Ordenar por fecha descendente
       eventos.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
@@ -898,17 +949,17 @@
     // 5. PROCESAR FILTROS Y RENDERIZAR SIN PLACEBOS
     function procesarYRenderizarMetricas() {
       const ahora = new Date();
-      let filtrados = registrosGlobales;
+      let filtrados = registrosGlobales.filter(r => !esRegistroAdminOMetricas(r));
 
       if (filtroTemporal === 'hoy') {
         const inicioHoy = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());
-        filtrados = registrosGlobales.filter(r => new Date(r.created_at) >= inicioHoy);
+        filtrados = filtrados.filter(r => new Date(r.created_at) >= inicioHoy);
       } else if (filtroTemporal === 'semana') {
         const hace7Dias = new Date(ahora.getTime() - (7 * 24 * 60 * 60 * 1000));
-        filtrados = registrosGlobales.filter(r => new Date(r.created_at) >= hace7Dias);
+        filtrados = filtrados.filter(r => new Date(r.created_at) >= hace7Dias);
       } else if (filtroTemporal === 'mes') {
         const inicioMes = new Date(ahora.getFullYear(), ahora.getMonth(), 1);
-        filtrados = registrosGlobales.filter(r => new Date(r.created_at) >= inicioMes);
+        filtrados = filtrados.filter(r => new Date(r.created_at) >= inicioMes);
       }
 
       // Conteos de KPIs
@@ -922,11 +973,16 @@
 
       filtrados.forEach(r => {
         const tipo = (r.tipo || r.tipo_evento || '').toLowerCase();
-        const pag = (r.pagina || r.seccion || 'inicio').toLowerCase();
+        const pag = (r.pagina || r.seccion || '').toLowerCase();
         const recurso = r.recurso || r.detalle || r.evento_id || '';
 
+        // Omitir metricas o panel
+        if (pag.includes('metricas') || pag.includes('panel')) {
+          return;
+        }
+
         // Contar visitas generales
-        if (tipo === 'visita' || pag.includes('index') || pag.includes('eventos') || pag.includes('galeria') || pag.includes('portafolio')) {
+        if (tipo === 'visita' || pag.includes('index') || pag.includes('eventos') || pag.includes('galeria') || pag.includes('portafolio') || pag.includes('privad') || pag.includes('pedido')) {
           totalVisitas++;
         }
 
@@ -945,9 +1001,11 @@
           accesosPin++;
         }
 
-        // Desglose por página
+        // Desglose por página (solo páginas públicas de clientes)
         const nombreLimpio = normalizarNombrePagina(pag);
-        porPagina[nombreLimpio] = (porPagina[nombreLimpio] || 0) + 1;
+        if (nombreLimpio) {
+          porPagina[nombreLimpio] = (porPagina[nombreLimpio] || 0) + 1;
+        }
 
         // Desglose por álbum
         if (recurso && (pag.includes('galeria') || pag.includes('evento') || pag.includes('privad') || recurso.includes('Colegio') || recurso.includes('Egresados') || recurso.includes('Promo') || recurso.includes('Graduación') || recurso.includes('Álbum') || recurso.includes('Album'))) {
@@ -955,9 +1013,10 @@
         }
       });
 
-      // Si totalVisitas da 0 pero hay registros, contar registros como base
-      if (totalVisitas === 0 && filtrados.length > 0) {
-        totalVisitas = filtrados.length;
+      // Si totalVisitas es menor a las páginas contabilizadas, ajustar
+      const sumaVisitasPaginas = Object.values(porPagina).reduce((a, b) => a + b, 0);
+      if (sumaVisitasPaginas > totalVisitas) {
+        totalVisitas = sumaVisitasPaginas;
       }
 
       // Actualizar KPIs numéricos en pantalla
@@ -973,18 +1032,24 @@
       // Renderizar Ranking de Álbumes
       renderizarRankingAlbumes(porAlbum);
 
-      // Renderizar Tabla de Actividad
+      // Renderizar Tabla de Actividad (excluyendo estrictamente metricas y panel)
       renderizarTablaActividad(filtrados);
     }
 
     function normalizarNombrePagina(raw) {
-      if (raw.includes('index') || raw.includes('portafolio')) return 'Portafolio Principal (index.html)';
-      if (raw.includes('eventos')) return 'Eventos Escolares (eventos.html)';
-      if (raw.includes('privad')) return 'Galerías Privadas (privadas.html)';
-      if (raw.includes('galeria')) return 'Galerías Públicas (galeria.html)';
-      if (raw.includes('panel')) return 'Panel de Control (panel.html)';
-      if (raw.includes('precio')) return 'Tarifas y Precios (precios.html)';
-      return raw || 'Página General';
+      if (!raw) return null;
+      const str = raw.toLowerCase();
+      // Excluir estrictamente métricas o panel
+      if (str.includes('metricas') || str.includes('panel')) {
+        return null;
+      }
+      if (str.includes('index') || str.includes('portafolio') || str.includes('inicio')) return 'Portafolio Principal (index.html)';
+      if (str.includes('eventos')) return 'Eventos Escolares (eventos.html)';
+      if (str.includes('privad')) return 'Galerías Privadas (privadas.html)';
+      if (str.includes('galeria')) return 'Galerías Públicas (galeria.html)';
+      if (str.includes('pedido')) return 'Pedidos de Fotos (pedido.html)';
+      if (str.includes('precio')) return 'Tarifas y Precios (precios.html)';
+      return raw;
     }
 
     function renderizarBarrasSecciones(desglose, total) {
@@ -995,7 +1060,7 @@
         contenedor.innerHTML = `
           <div class="caja-vacia-metrica">
             <span class="material-symbols-outlined">hourglass_empty</span>
-            <p>No se registran visitas aún en el período seleccionado.</p>
+            <p>Aún no hay visitas registradas en las páginas públicas de clientes.</p>
           </div>
         `;
         return;
@@ -1052,19 +1117,20 @@
 
     function renderizarTablaActividad(items) {
       const cuerpo = document.getElementById('lista-actividad-cuerpo');
+      const itemsFiltrados = (items || []).filter(item => !esRegistroAdminOMetricas(item));
 
-      if (!items || items.length === 0) {
+      if (itemsFiltrados.length === 0) {
         cuerpo.innerHTML = `
           <tr>
             <td colspan="5" style="text-align: center; padding: 32px; color: #777;">
-              No hay eventos ni visitas registradas en este período.
+              No hay eventos ni visitas de clientes registradas en este período.
             </td>
           </tr>
         `;
         return;
       }
 
-      cuerpo.innerHTML = items.slice(0, 15).map(item => {
+      cuerpo.innerHTML = itemsFiltrados.slice(0, 15).map(item => {
         const fecha = item.created_at ? formatearFechaRelativa(item.created_at) : 'Reciente';
         const tipoRaw = (item.tipo || item.tipo_evento || 'Visita').toLowerCase();
         let badgeClass = 'tipo-visita';
@@ -1120,13 +1186,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Registrar visita de ingreso al panel de métricas
-      window.RegistradorMetricas.registrar({
-        tipo: 'visita',
-        pagina: 'metricas.html',
-        recurso: 'Panel Métricas',
-        detalle: 'Consulta de Estadísticas'
-      });
+      // Cargar métricas reales excluyendo auto-visitas del panel o metricas.html
       cargarMetricasReales();
     });
   </script>
