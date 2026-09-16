@@ -591,7 +591,7 @@
 <button class="btn-tiempo" id="btn-filtro-hoy" onclick="cambiarFiltroTiempo('hoy', this)">Hoy</button>
 <button class="btn-refrescar" onclick="cargarMetricasReales()" title="Recargar métricas ahora">
 <span class="material-symbols-outlined" style="font-size: 18px;">refresh</span>
-</button>
+</button><button class="btn-tiempo" onclick="resetearTodasLasMetricas()" title="Resetear todas las estadísticas a cero" style="color: rgb(255, 180, 171); border-color: rgba(255, 180, 171, 0.3); display: inline-flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 16px;">delete_sweep</span><span class="">Limpiar Métricas</span></button>
 
 </div>
 </div>
@@ -601,7 +601,7 @@
 <div class="tarjeta-kpi">
 <div class="kpi-info">
 <h4 class="">Total Visitas Web</h4>
-<div class="valor" id="kpi-total-visitas">1</div>
+<div class="valor" id="kpi-total-visitas">0</div>
 <div class="estado-badge" id="kpi-visitas-sub">
 <span class="">Visitas de clientes</span>
 </div>
@@ -661,17 +661,7 @@
           </h3>
 <span class="tag-sub-panel">CLIENTES</span>
 </div>
-<div class="lista-barras" id="contenedor-barras-seccion">
-          <div class="item-barra">
-            <div class="item-barra-labels">
-              <span class="nombre-pag">Portafolio Principal (index.html)</span>
-              <span class="conteo-pag">1 visitas (100%)</span>
-            </div>
-            <div class="pista-barra">
-              <div class="relleno-barra" style="width: 100%;"></div>
-            </div>
-          </div>
-        </div>
+<div class="lista-barras" id="contenedor-barras-seccion"><div class="caja-vacia-metrica"><span class="material-symbols-outlined">hourglass_empty</span><p class="">Sin visitas registradas aún.</p></div></div>
 </div>
 <!-- Panel B: Álbumes Más Visitados -->
 <div class="panel-modulo">
@@ -697,7 +687,7 @@
 <span class="material-symbols-outlined" style="color: #4ade80; font-size: 20px;">sensors</span>
           Registro de Actividad en Tiempo Real
         </h3>
-<span class="tag-sub-panel" id="lbl-total-eventos-log">1 REGISTROS</span>
+<span class="tag-sub-panel" id="lbl-total-eventos-log">0 REGISTROS</span>
 </div>
 <div class="tabla-actividad-wrap">
 <table class="tabla-actividad">
@@ -710,20 +700,7 @@
 <th class="">Origen</th>
 </tr>
 </thead>
-<tbody id="lista-actividad-cuerpo">
-          <tr>
-            <td style="color: #888; font-size: 0.76rem; white-space: nowrap;" class="">Hace 5 min</td>
-            <td class="">
-              <span class="badge-evento-tipo tipo-visita">
-                <span class="material-symbols-outlined" style="font-size: 13px;">visibility</span>
-                <span class="">Visita</span>
-              </span>
-            </td>
-            <td style="color: #ffffff; font-weight: 500;" class="">Inicialización oficial del sistema de métricas</td>
-            <td style="color: #aaa;" class="">desktop</td>
-            <td style="color: #888; font-size: 0.76rem;" class="">directo</td>
-          </tr>
-        </tbody>
+<tbody id="lista-actividad-cuerpo"><tr><td colspan="5" style="text-align: center; padding: 32px; color: #777;" class="">Sin visitas registradas aún.</td></tr></tbody>
 </table>
 </div>
 </div>
@@ -1199,4 +1176,24 @@
   </script>
 
 
-</body></html>
+
+
+<script>
+async function resetearTodasLasMetricas() {
+  const confirmar = confirm('¿Estás seguro de que deseas limpiar y resetear todas las métricas y estadísticas a cero? Esta acción no se puede deshacer.');
+  if (!confirmar) return;
+  try {
+    localStorage.removeItem('metricas_visitas_locales');
+    localStorage.removeItem('metricas_cache');
+    if (supabaseClient) {
+      await supabaseClient.from('metricas').delete().neq('id', '0');
+      await supabaseClient.from('visitas').delete().neq('id', '0');
+    }
+  } catch (err) {
+    console.warn('Error al resetear métricas en base de datos:', err);
+  }
+  registrosGlobales = [];
+  procesarYRenderizarMetricas();
+  alert('Todas las estadísticas han sido reseteadas a cero.');
+}
+</script></body></html>
