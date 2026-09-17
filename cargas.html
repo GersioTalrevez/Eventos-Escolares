@@ -350,10 +350,9 @@ main {
 <div>
 <div class="marca-panel">
 <div class="tag-estado">
-<span style="font-size: 8px;" class="">●</span> SISTEMA ACTIVO
-      </div>
+<span style="font-size: 8px;" class="">●</span> panel control</div>
 <h2 class="">SERGIO RICARDO MOLINA</h2>
-<span class="sub">Panel de Control</span>
+
 </div>
 <!-- MENÚ DE NAVEGACIÓN LATERAL DIRECTO -->
 <nav class="menu-lateral">
@@ -396,12 +395,9 @@ main {
         MÓDULO DE VINCULACIÓN DRIVE
       </div>
 <h1 class="">Carga de Galerías y Enlaces</h1>
-<p class="">Vinculá carpetas de Google Drive con detección automática de título y portada para sincronizar con Supabase.</p>
+
 </div>
-<a href="panel.html" style="background:#1a1a1a; border:1px solid #333; color:#ccc; text-decoration:none; padding:8px 14px; border-radius:8px; font-size:0.84rem; display:inline-flex; align-items:center; gap:6px;">
-<span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span>
-<span class="">Ver Galerías Creadas</span>
-</a>
+
 </div>
 <div class="layout-carga">
 <!-- COLUMNA IZQUIERDA: FORMULARIO -->
@@ -416,7 +412,7 @@ main {
 <span class="">Enlace o ID de Carpeta de Google Drive *</span>
 </label>
 <input id="input-drive-url" oninput="actualizarPreview()" placeholder="https://drive.google.com/drive/folders/1aBcD... o ID de carpeta" type="text">
-<span class="ayuda">Pegá el enlace completo de la carpeta compartida o su identificador alfanumérico.</span>
+
 </div>
 <div class="campo-grupo">
 <label for="input-titulo">
@@ -424,7 +420,7 @@ main {
 <span class="">Título del Evento / Escuela (Opcional)</span>
 </label>
 <input id="input-titulo" oninput="actualizarPreview()" placeholder="Ej: Egresados 2026 Colegio San Martín (Si se deja vacío, tomará el nombre de Drive)" type="text">
-<span class="ayuda">Si lo dejás vacío, consultaremos automáticamente a Google Drive para asignarle el nombre real de la carpeta.</span>
+
 </div>
 <div class="campo-grupo">
 <label for="input-portada">
@@ -432,14 +428,14 @@ main {
 <span class="">URL de Portada Manual (Opcional)</span>
 </label>
 <input id="input-portada" oninput="handleInputPortada(); actualizarPreview();" placeholder="https://lh3.googleusercontent.com/d/... (Si se deja vacío, toma la 1° foto de Drive)" type="text" class="">
-<span class="ayuda">Si lo dejás en blanco, la primera foto de la carpeta se convertirá en la portada oficial.</span>
+
 </div>
 <div class="bloque-checkbox-privada">
 <label class="fila-check">
 <input id="check-es-privada" onchange="toggleOpcionPrivada()" type="checkbox">
 <span class="">¿Es una galería privada de clientes?</span>
 </label>
-<span class="ayuda">Las galerías privadas no aparecen en la lista de eventos públicos y exigen una contraseña para desbloquearlas.</span>
+
 <div class="campo-grupo" id="campo-password-wrap" style="display: none; margin-top: 6px;">
 <label for="input-password" style="color: #facc15;">
 <span class="material-symbols-outlined" style="font-size: 16px; color:#facc15;">key</span>
@@ -582,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <p id="preview-id" class="">Drive ID: Sin asignar</p>
 </div>
 </div>
-<p style="font-size:0.78rem; color:#777; line-height:1.4;" class="">Al presionar <strong>Guardar</strong>, la galería se sincroniza directamente en la tabla <strong>galeria</strong> de <strong>Supabase</strong> con título, enlace Drive, portada y credenciales de acceso privada si corresponde, quedando disponible de inmediato en <strong>panel.html</strong> y <strong>eventos.html</strong>.</p>
+
 </div>
 </div>
 </main>
