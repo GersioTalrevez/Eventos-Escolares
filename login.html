@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="dark" lang="es"><head>
+<!DOCTYPE html><html class="dark" lang="es" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Darkroom Console · Autenticación Oficial Google OAuth Real &amp; Clave Maestra Blindada</title>
@@ -250,9 +250,8 @@
             </p>
 </div>
 <!-- Google Official CTA Button -->
-<button class="w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white text-surface-dim hover:bg-neutral-100 font-body-md font-bold transition-all duration-150 active:scale-[0.98] shadow-lg border border-neutral-300 group" id="googleOAuthSubmitBtn" onclick="handleGoogleOAuthLogin()">
-<!-- Google Official Multi-color SVG icon -->
-<svg class="w-5 h-5 transition-transform group-hover:scale-105" viewBox="0 0 24 24">
+<button class="w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white text-surface-dim hover:bg-neutral-100 font-body-md font-bold transition-all duration-150 active:scale-[0.98] shadow-lg border border-neutral-300 group cursor-pointer" id="googleOAuthSubmitBtn" onclick="iniciarGoogleOAuth()" type="button">
+<svg class="w-5 h-5 transition-transform group-hover:scale-105 shrink-0" viewBox="0 0 24 24">
 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
@@ -261,17 +260,18 @@
 <span class="tracking-wide">Continuar con Google Workspace</span>
 </button>
 <!-- Quick Return Fallback Action -->
-<div class="hidden p-3 rounded-lg bg-surface-container border border-primary/40 flex items-center justify-between" id="quickSessionBox">
-<div class="flex items-center gap-2 overflow-hidden">
-<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user">verified_user</span>
+<div class="p-3 rounded-lg bg-surface-container border border-primary/30 flex items-center justify-between gap-3 shadow-sm" id="quickSessionBox">
+<div class="flex items-center gap-2.5 overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0" data-icon="verified_user">verified_user</span>
 <div class="truncate">
-<p class="text-label-sm font-label-sm text-outline">SESIÓN PREVIA DETECTADA</p>
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Acceso Rápido Directo</p>
 <p class="text-body-md font-medium text-on-surface truncate" id="quickSessionEmail">molinaoksergio@gmail.com</p>
 </div>
 </div>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-primary transition-all active:scale-[0.98]" onclick="grantAccessAndRedirect('Sesión Supabase restaurada')">
-              Ingresar ya
-            </button>
+<button class="px-3.5 py-1.5 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-primary transition-all active:scale-[0.98] shrink-0 border border-primary/40 flex items-center gap-1 cursor-pointer" onclick="grantAccessAndRedirect('Acceso Rápido Directo Autorizado')" type="button">
+<span class="">Entrar</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
 </div>
 </div>
 <!-- VIEW 2: Master Password Fallback Section -->
