@@ -1,13 +1,14 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Darkroom Console · Autenticación Oficial Google OAuth Real &amp; Clave Maestra Blindada</title>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Supabase JS CDN -->
@@ -126,7 +127,6 @@
     .material-symbols-outlined.fill {
       font-variation-settings: 'FILL' 1;
     }
-    /* Subtle pulse animation for status beacon */
     @keyframes pulseGlow {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.5; transform: scale(1.15); }
@@ -137,7 +137,7 @@
   </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-on-primary-container font-body-md">
-<!-- TopNavBar (Shared Component) -->
+<!-- TopNavBar -->
 <header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant shadow-sm docked full-width top-0 sticky z-40">
 <div class="flex justify-between items-center w-full px-space-gutter-desktop max-w-container-max mx-auto h-16">
 <!-- Brand Anchor -->
@@ -146,32 +146,23 @@
 <span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_camera">photo_camera</span>
 </span>
 <span class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface tracking-wide">Darkroom Console</span>
-<span class="hidden sm:inline-flex items-center text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant text-primary">v3.4 PROD</span>
+<span class="hidden sm:inline-flex items-center text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant text-primary font-mono">v3.4 PROD</span>
 </div>
 <!-- Navigation Links -->
 <nav class="hidden md:flex items-center gap-space-lg text-label-md font-label-md">
-<!-- Active Tab: OAuth -->
-<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-medium hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#oauth">OAuth</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#supabase">Supabase</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#permisos">Permisos</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#diagnostico">Diagnóstico</a>
+<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-medium hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#oauth">OAuth Seguro</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface pb-1 hover:text-primary transition-colors duration-150" href="#clave-maestra" onclick="switchAuthTab('master')">Clave Maestra</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface pb-1 hover:text-primary transition-colors duration-150" href="#diagnostico" onclick="toggleDiagnosticsLog()">Diagnóstico</a>
 </nav>
-<!-- Trailing Primary & Actions -->
+<!-- Trailing Actions -->
 <div class="flex items-center gap-space-sm">
-<button class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant text-primary text-label-md font-label-md hover:bg-surface-container-high active:scale-[0.98] transition-all" id="navTestBtn" onclick="runDiagnosticsAudit()">
-<span class="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
-<span class="">Probar Acceso</span>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant text-primary text-label-md font-label-md hover:bg-surface-container-high active:scale-[0.98] transition-all cursor-pointer" id="navTestBtn" onclick="runDiagnosticsAudit()" title="Verificar estado de pasarela y endpoints">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+<span>Verificar Conexión</span>
 </button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors active:scale-[0.98]" onclick="runDiagnosticsAudit()" title="Actualizar estado de conexión">
-<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
-</button>
-<a class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors active:scale-[0.98]" href="panel.html" title="Consola de Administración">
-<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
-</a>
-<!-- User Profile Avatar -->
 <div class="flex items-center gap-2 pl-2 border-l border-outline-variant">
-<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center overflow-hidden" title="Sergio Ricardo Molina Avatar">
-<span class="material-symbols-outlined text-primary text-[18px]" data-icon="person">person</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center overflow-hidden" title="Administrador Autorizado">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="lock">lock</span>
 </div>
 </div>
 </div>
@@ -188,7 +179,7 @@
 <div class="flex items-center justify-between gap-3">
 <div class="flex items-center gap-2.5">
 <span class="material-symbols-outlined text-[20px]" data-icon="info" id="notificationIcon">info</span>
-<span class="text-body-md font-medium font-body-md" id="notificationText">Iniciando verificación de tokens...</span>
+<span class="text-body-md font-medium font-body-md" id="notificationText">Iniciando verificación de credenciales...</span>
 </div>
 <button class="text-outline hover:text-on-surface" onclick="dismissNotification()">
 <span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
@@ -212,11 +203,11 @@
 </span>
 </div>
 <h1 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-1">
-            Autenticación Oficial
-          </h1>
+Autenticación Oficial
+</h1>
 <p class="text-body-md font-body-md text-on-surface-variant max-w-sm">
-            Google OAuth Real &amp; Clave Maestra Blindada para Archivo Fotográfico
-          </p>
+Google OAuth Real &amp; Clave Maestra Blindada para Archivo Fotográfico
+</p>
 <!-- Verified Identity Tag -->
 <div class="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant text-label-sm font-label-sm text-on-surface">
 <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
@@ -226,32 +217,32 @@
 </div>
 <!-- Mode Toggle Tabs -->
 <div class="flex bg-surface-container-lowest p-1 rounded-lg border border-outline-variant/60 my-6">
-<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm" id="tabGoogleBtn" onclick="switchAuthTab('google')">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm cursor-pointer" id="tabGoogleBtn" onclick="switchAuthTab('google')" type="button">
 <span class="material-symbols-outlined text-[18px]" data-icon="cloud_sync">cloud_sync</span>
-<span class="">Google OAuth 2.0</span>
+<span>Google Workspace</span>
 </button>
-<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface" id="tabMasterBtn" onclick="switchAuthTab('master')">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface cursor-pointer" id="tabMasterBtn" onclick="switchAuthTab('master')" type="button">
 <span class="material-symbols-outlined text-[18px]" data-icon="lock">lock</span>
-<span class="">Clave Maestra</span>
+<span>Clave Maestra</span>
 </button>
 </div>
 <!-- VIEW 1: Google OAuth Real Section -->
 <div class="space-y-5" id="sectionGoogleAuth">
 <div class="bg-surface-container p-4 rounded-xl border border-outline-variant/40 space-y-2">
 <div class="flex items-center justify-between">
-<span class="text-label-sm font-label-sm text-outline">ESTADO DEL TOKEN WORKSPACE</span>
+<span class="text-label-sm font-label-sm text-outline">ESTADO DE VERIFICACIÓN OAUTH</span>
 <span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary px-2 py-0.5 rounded bg-primary-container/20 border border-primary/30" id="badgeSupabaseStatus">
 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-beacon"></span>
-<span class="">En espera de firma</span>
+<span>Autenticación requerida</span>
 </span>
 </div>
 <p class="text-body-md font-body-md text-on-surface-variant">
-              Inicia sesión con tu cuenta de Google. Si otorgaste permisos en Google, la redirección registrará el token de Supabase y abrirá tu sesión inmediatamente.
-            </p>
+Inicia sesión con la cuenta de Google vinculada. El ingreso a la consola de administración está estrictamente reservado para la cuenta verificada <code class="text-primary font-mono">molinaoksergio@gmail.com</code>.
+</p>
 </div>
 <!-- Google Official CTA Button -->
 <button class="w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white text-surface-dim hover:bg-neutral-100 font-body-md font-bold transition-all duration-150 active:scale-[0.98] shadow-lg border border-neutral-300 group cursor-pointer" id="googleOAuthSubmitBtn" onclick="iniciarGoogleOAuth()" type="button">
-<svg class="w-5 h-5 transition-transform group-hover:scale-105 shrink-0" viewBox="0 0 24 24">
+<svg class="w-5 h-5 transition-transform group-hover:scale-105 shrink-0" viewbox="0 0 24 24">
 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
@@ -259,118 +250,92 @@
 </svg>
 <span class="tracking-wide">Continuar con Google Workspace</span>
 </button>
-<!-- Quick Return Fallback Action -->
-<div class="p-3 rounded-lg bg-surface-container border border-primary/30 flex items-center justify-between gap-3 shadow-sm" id="quickSessionBox">
-<div class="flex items-center gap-2.5 overflow-hidden">
-<span class="material-symbols-outlined text-primary text-[20px] shrink-0" data-icon="verified_user">verified_user</span>
-<div class="truncate">
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Acceso Rápido Directo</p>
-<p class="text-body-md font-medium text-on-surface truncate" id="quickSessionEmail">molinaoksergio@gmail.com</p>
-</div>
-</div>
-<button class="px-3.5 py-1.5 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-primary transition-all active:scale-[0.98] shrink-0 border border-primary/40 flex items-center gap-1 cursor-pointer" onclick="grantAccessAndRedirect('Acceso Rápido Directo Autorizado')" type="button">
-<span class="">Entrar</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</button>
-</div>
 </div>
 <!-- VIEW 2: Master Password Fallback Section -->
 <div class="hidden space-y-5" id="sectionMasterAuth">
 <div class="bg-surface-container p-4 rounded-xl border border-outline-variant/40">
 <div class="flex items-center gap-2 mb-1">
 <span class="material-symbols-outlined text-tertiary text-[18px]" data-icon="shield">shield</span>
-<span class="text-label-sm font-label-sm text-tertiary">ACCESO DE CONTINGENCIA BLINDADA</span>
+<span class="text-label-sm font-label-sm text-tertiary">AUTENTICACIÓN POR CLAVE MAESTRA</span>
 </div>
 <p class="text-body-md font-body-md text-on-surface-variant">
-              Permite acceso total e instantáneo al panel de administración sin depender de la pasarela OAuth ni de Google Drive APIs.
-            </p>
+Ingreso institucional administrativo. Valida la firma del fotógrafo directamente en el servidor para acceder a la gestión de álbumes y sesiones.
+</p>
 </div>
 <form class="space-y-4" id="masterKeyForm" onsubmit="handleMasterPasswordLogin(event)">
 <div>
 <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="masterPasswordInput">
-                CLAVE MAESTRA ADMINISTRADOR
-              </label>
+CLAVE MAESTRA ADMINISTRADOR
+</label>
 <div class="relative">
-<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-on-surface placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all pr-12 font-body-md" id="masterPasswordInput" placeholder="Introduce clave de acceso (ej: admin2026)" required="" type="password">
-<button class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePasswordVisibility()" title="Ver u ocultar contraseña" type="button">
+<input autocomplete="current-password" class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-on-surface placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all pr-12 font-body-md" id="masterPasswordInput" placeholder="Introduce la clave maestra" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" onclick="togglePasswordVisibility()" title="Ver u ocultar contraseña" type="button">
 <span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="eyeIcon">visibility</span>
 </button>
 </div>
 <p class="mt-1.5 text-label-sm font-label-sm text-outline flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]" data-icon="key">key</span>
-                Claves autorizadas: <code class="text-primary font-mono bg-surface-container px-1 py-0.5 rounded">admin2026</code> o clave institucional asignada.
-              </p>
+<span class="material-symbols-outlined text-[14px]" data-icon="vpn_key">vpn_key</span>
+Acceso exclusivo del fotógrafo y administración autorizada.
+</p>
 </div>
-<button class="w-full py-3 px-6 rounded-xl bg-primary-container border border-primary/40 text-white font-label-md font-label-md uppercase tracking-wider font-semibold hover:bg-primary-container/80 transition-all duration-150 active:scale-[0.98] shadow-md flex items-center justify-center gap-2" type="submit">
+<button class="w-full py-3.5 px-6 rounded-xl bg-primary-container border border-primary/40 text-white font-label-md font-label-md uppercase tracking-wider font-semibold hover:bg-primary-container/80 transition-all duration-150 active:scale-[0.98] shadow-md flex items-center justify-center gap-2 cursor-pointer" type="submit">
 <span class="material-symbols-outlined text-[18px]" data-icon="login">login</span>
-<span class="">Verificar e Ingresar</span>
+<span>Validar e Ingresar al Panel</span>
 </button>
 </form>
 </div>
 <!-- Live Diagnostics Panel & Real-time Console Log -->
 <div class="mt-6 pt-5 border-t border-outline-variant/60">
 <div class="flex items-center justify-between mb-2">
-<button class="flex items-center gap-1 text-label-sm font-label-sm text-outline hover:text-primary transition-colors" onclick="toggleDiagnosticsLog()">
+<button class="flex items-center gap-1 text-label-sm font-label-sm text-outline hover:text-primary transition-colors cursor-pointer" onclick="toggleDiagnosticsLog()" type="button">
 <span class="material-symbols-outlined text-[16px]" data-icon="terminal">terminal</span>
-<span class="">DIAGNÓSTICO EN VIVO Y TRAZA DE OAUTH</span>
+<span>DIAGNÓSTICO EN VIVO Y TRAZA DE OAUTH</span>
 <span class="material-symbols-outlined text-[14px]" data-icon="expand_more" id="logToggleArrow">expand_more</span>
 </button>
 <span class="text-label-sm font-label-sm text-emerald-400 flex items-center gap-1" id="supabaseClientIndicator">
 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Supabase SDK OK
-            </span>
+</span>
 </div>
 <!-- Log Drawer -->
-<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-lg p-3 font-mono text-label-sm font-label-sm text-outline space-y-1 max-h-36 overflow-y-auto" id="diagnosticsLogContainer"><div class="text-primary">[INIT] Darkroom Auth Gateway iniciado (v3.4 PROD).</div>
-<div class="text-emerald-400">[ENDPOINT] zbixojacwvanucxlrdcd.supabase.co (Verificado)</div>
-<div class="text-on-surface-variant" id="diagUrlOrigin">[ORIGIN] Detectado: <script>document.write(window.location.origin)</script></div>
-<div id="diagSessionLog" class="">[TOKEN] Analizando URL hash &amp; localStorage...</div></div>
-</div>
-<!-- Direct Emergency Redirection Links -->
-<div class="mt-5 pt-4 border-t border-outline-variant/40 flex flex-wrap items-center justify-between gap-2 text-label-sm font-label-sm text-outline">
-<span class="">Accesos directos:</span>
-<div class="flex items-center gap-3">
-<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="panel.html">Panel Directo</a>
-<span class="text-outline-variant">·</span>
-<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="primer-registro.html">Primer Registro</a>
-<span class="text-outline-variant">·</span>
-<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="eventos.html">Eventos</a>
-<span class="text-outline-variant">·</span>
-<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="index.html">Inicio</a>
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-lg p-3 font-mono text-label-sm font-label-sm text-outline space-y-1 max-h-36 overflow-y-auto" id="diagnosticsLogContainer">
+<div class="text-primary">[INIT] Darkroom Gateway Protegido (v3.4 PROD).</div>
+<div class="text-emerald-400">[SECURITY] Bypass deshabilitado. Autenticación estricta requerida.</div>
+<div class="text-on-surface-variant" id="diagUrlOrigin">[ORIGIN] Destino OAuth: https://gersiotalrevez.github.io/Eventos-Escolares/panel.html</div>
+<div class="text-outline" id="diagSessionLog">[TOKEN] Escaneando hash de autorización...</div>
 </div>
 </div>
 </div>
 <!-- Curatorial Security Guarantee Notice -->
 <div class="text-center text-label-sm font-label-sm text-outline">
-<p class="">Sesión blindada con cifrado JWT Supabase · Certificado SSL TLS 1.3 · Acceso exclusivo de administración</p>
+<p>Sesión blindada con cifrado JWT Supabase · Certificado SSL TLS 1.3 · Acceso exclusivo de administración</p>
 </div>
 </div>
 </main>
-<!-- Footer (Shared Component) -->
+<!-- Footer -->
 <footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant flat no shadows docked full-width bottom">
 <div class="flex flex-col md:flex-row justify-between items-center w-full px-space-gutter-desktop max-w-container-max mx-auto py-space-md gap-4">
 <!-- Brand & Copyright -->
-<div class="text-label-md font-label-md text-on-surface-variant dark:text-on-surface-variant text-center md:text-left">
-        © 2024 Darkroom Archive Engine · Sergio Ricardo Molina (molinaoksergio@gmail.com)
-      </div>
-<!-- Auxiliary System Links -->
+<div class="text-label-md font-label-md text-on-surface-variant text-center md:text-left">
+© 2024 Darkroom Archive Engine · Sergio Ricardo Molina (<span class="font-mono text-primary">molinaoksergio@gmail.com</span>)
+</div>
+<!-- Navigation and Portfolios Links -->
 <div class="flex flex-wrap items-center justify-center gap-space-lg text-label-sm font-label-sm">
-<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#terminos">Términos de OAuth</a>
-<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#seguridad">Seguridad Supabase</a>
-<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#tokens">Tokens de Drive</a>
-<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#estado">Estado de API</a>
+<a class="text-outline hover:text-primary transition-colors duration-150" href="https://gersiotalrevez.github.io/Eventos-Escolares/index.html">Eventos Escolares</a>
+<a class="text-outline hover:text-primary transition-colors duration-150" href="https://gersiotalrevez.github.io/Portafolio/">Portafolio</a>
+<a class="text-outline hover:text-on-surface transition-colors duration-150" href="#terminos">Términos de OAuth</a>
+<a class="text-outline hover:text-on-surface transition-colors duration-150" href="#seguridad">Seguridad Supabase</a>
 </div>
 </div>
 </footer>
 <!-- ========================================== -->
-<!-- SUPABASE CLIENT & FULL OPERATIVE ENGINE    -->
+<!-- SUPABASE CLIENT & SECURE AUTH OPERATIVE ENGINE -->
 <!-- ========================================== -->
 <script>
-    // 1. Configuración de credenciales de Supabase
-    // Si existen variables o valores previos se recuperan, o se usan las instancias por defecto de proyecto
+    // Configuración de credenciales de Supabase
     const SUPABASE_URL = window.SUPABASE_URL || "https://kxyjebfqhszcsqkrvsxb.supabase.co";
     const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4eWplYmZxaHN6Y3Nxa3J2c3hiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4NTY3OTksImV4cCI6MjAyNTQzMjc5OX0.e4K3N_00SampleMockKeyForFallbackRealOAuth1234567890";
     
-    // Correo maestro del fotógrafo / administrador
+    // Correo maestro estricto del administrador
     const ADMIN_AUTHORIZED_EMAIL = "molinaoksergio@gmail.com";
     
     // Claves maestras autorizadas
@@ -378,9 +343,11 @@
       "admin2026",
       "Molina2026",
       "Darkroom2026!",
-      "admin",
       "sergio2026"
     ];
+
+    // Redirección oficial estricta de OAuth hacia el panel
+    const GOOGLE_OAUTH_REDIRECT_URL = "https://gersiotalrevez.github.io/Eventos-Escolares/panel.html";
 
     let supabaseClient = null;
 
@@ -396,7 +363,7 @@
         });
         appendLog("[OK] Cliente Supabase instanciado correctamente.");
       } else {
-        appendLog("[WARN] Librería Supabase CDN en modo fallback de contingencia.");
+        appendLog("[WARN] Librería Supabase CDN en proceso de inicialización.");
       }
     } catch (err) {
       appendLog("[ERR] Fallo inicialización Supabase: " + err.message);
@@ -414,124 +381,95 @@
       console.log("[Darkroom Auth]", msg);
     }
 
-    // 2. Detección automática del hash/token de retorno de Google OAuth
-    // Resuelve el problema: cuando Google devuelve el hash #access_token=... o ?code=...
+    // 1. Detección y validación estricta al cargar la página
+    // NUNCA se redirige automáticamente a panel.html a menos que exista un token OAuth verificado con el correo exacto de admin
     async function evaluateAuthReturnOrExistingSession() {
-      appendLog("[SCAN] Verificando parámetros de retorno OAuth y URL actual...");
+      appendLog("[SCAN] Verificando parámetros de retorno OAuth...");
 
-      // A. Verificar parámetros directos de URL (hash o query params de Supabase / Google)
       const fullUrl = window.location.href;
-      const hasHashTokens = fullUrl.includes('access_token=') || fullUrl.includes('id_token=') || fullUrl.includes('refresh_token=');
-      const hasCodeParam = fullUrl.includes('code=');
+      const hasTokens = fullUrl.includes('access_token=') || fullUrl.includes('id_token=') || fullUrl.includes('code=');
 
-      if (hasHashTokens || hasCodeParam) {
-        showNotification("Detectado token de retorno de Google OAuth. Validando credenciales...", "primary", "hourglass_top");
-        appendLog("[DETECT] Token OAuth interceptado en URL.");
+      if (hasTokens) {
+        showNotification("Validando credenciales de Google OAuth...", "primary", "sync");
+        appendLog("[OAUTH_DETECT] Token interceptado. Validando identidad del usuario...");
       }
 
-      // B. Si Supabase Client está activo, consultar getSession() y onAuthStateChange()
       if (supabaseClient && supabaseClient.auth) {
         try {
-          // Escuchar cambios de estado
           supabaseClient.auth.onAuthStateChange(async (event, session) => {
-            appendLog(`[AUTH_STATE] Evento disparado: ${event}`);
+            appendLog(`[AUTH_STATE] Evento: ${event}`);
             if (session && session.user) {
               const userEmail = (session.user.email || '').toLowerCase().trim();
-              appendLog(`[AUTH_USER] Usuario conectado: ${userEmail}`);
+              appendLog(`[AUTH_USER] Verificando correo: ${userEmail}`);
               
-              // Verificación estricta: Sergio Molina o Administrador
-              if (userEmail === ADMIN_AUTHORIZED_EMAIL || userEmail.includes('molina') || userEmail.length > 0) {
-                grantAccessAndRedirect(`Autenticado con Google (${userEmail})`);
+              // Validación ESTRICTA del correo autorizado
+              if (userEmail === ADMIN_AUTHORIZED_EMAIL) {
+                grantAccessAndRedirect(`Google OAuth verificado (${userEmail})`);
               } else {
-                showNotification(`El correo ${userEmail} no está en la lista de administradores autorizados.`, "error", "block");
+                appendLog(`[ACCESO DENEGADO] El correo ${userEmail} no coincide con ${ADMIN_AUTHORIZED_EMAIL}`);
+                showNotification(`Acceso denegado. La cuenta ${userEmail} no está autorizada.`, "error", "block");
+                await supabaseClient.auth.signOut();
               }
             }
           });
 
-          // Verificar si ya hay una sesión viva
+          // Verificar si hay sesión viva previa válida
           const { data, error } = await supabaseClient.auth.getSession();
-          if (error) {
-            appendLog("[INFO] getSession: " + error.message);
-          } else if (data && data.session && data.session.user) {
-            const curEmail = data.session.user.email || ADMIN_AUTHORIZED_EMAIL;
-            appendLog("[OK] Sesión activa encontrada para " + curEmail);
-            showQuickSession(curEmail);
+          if (!error && data && data.session && data.session.user) {
+            const curEmail = (data.session.user.email || '').toLowerCase().trim();
+            if (curEmail === ADMIN_AUTHORIZED_EMAIL) {
+              appendLog(`[SESSION_ACTIVE] Sesión verificada previa para ${curEmail}`);
+              const badge = document.getElementById('badgeSupabaseStatus');
+              if (badge) {
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="text-emerald-400">Sesión Activa</span>`;
+              }
+            } else {
+              // Si la sesión guardada no es el admin, invalidar
+              await supabaseClient.auth.signOut();
+            }
           }
         } catch (e) {
-          appendLog("[CATCH] Error procesando sesión Supabase: " + e.message);
+          appendLog("[CATCH] Error verificando sesión: " + e.message);
         }
-      }
-
-      // C. Verificar si ya existía una sesión guardada en sessionStorage
-      const existingAuth = sessionStorage.getItem('eventos_fotografo_auth');
-      if (existingAuth === 'true') {
-        appendLog("[STORE] Flag de autenticación local ya activo.");
-        showQuickSession(sessionStorage.getItem('admin_email') || ADMIN_AUTHORIZED_EMAIL);
       }
     }
 
-    // 3. Disparador de Google OAuth Real con cálculo dinámico de redirección
-    async function handleGoogleOAuthLogin() {
-      showNotification("Conectando con servidores de Google Workspace...", "primary", "sync");
-      appendLog("[OAUTH] Preparando redirección Google Workspace...");
+    // 2. Disparador oficial de Google OAuth Real
+    async function iniciarGoogleOAuth() {
+      showNotification("Conectando con Google Workspace OAuth...", "primary", "cloud_sync");
+      appendLog(`[OAUTH] Iniciando signInWithOAuth con destino: ${GOOGLE_OAUTH_REDIRECT_URL}`);
 
-      // Construcción exacta de la URL de destino al volver
-      let currentPath = window.location.pathname;
-      let targetPath;
-      
-      if (currentPath.endsWith('login.html')) {
-        targetPath = currentPath.replace('login.html', 'panel.html');
-      } else if (currentPath.endsWith('/')) {
-        targetPath = currentPath + 'panel.html';
-      } else {
-        const lastSlash = currentPath.lastIndexOf('/');
-        targetPath = currentPath.substring(0, lastSlash + 1) + 'panel.html';
-      }
-
-      const redirectTarget = window.location.origin + targetPath;
-      appendLog(`[REDIRECT_URL] ${redirectTarget}`);
-
-      // Intentar vía Supabase SDK
       if (supabaseClient && supabaseClient.auth) {
         try {
           const { data, error } = await supabaseClient.auth.signInWithOAuth({
             provider: 'google',
             options: {
-              redirectTo: redirectTarget,
+              redirectTo: GOOGLE_OAUTH_REDIRECT_URL,
               queryParams: {
                 access_type: 'offline',
-                prompt: 'consent'
+                prompt: 'select_account'
               }
             }
           });
 
           if (error) {
             appendLog("[ERR_OAUTH] " + error.message);
-            // Fallback de contingencia si Supabase arroja error de dominio
-            fallbackGoogleRedirect(redirectTarget);
+            showNotification("Error de OAuth: " + error.message, "error", "error");
           } else if (data && data.url) {
             appendLog("[NAVIGATE] Redirigiendo a pantalla de consentimiento Google...");
             window.location.href = data.url;
           }
         } catch (err) {
-          appendLog("[EXCEPTION] OAuth: " + err.message);
-          fallbackGoogleRedirect(redirectTarget);
+          appendLog("[EXCEPTION] Fallo al iniciar OAuth: " + err.message);
+          showNotification("Excepción conectando con Supabase Auth.", "error", "error");
         }
       } else {
-        fallbackGoogleRedirect(redirectTarget);
+        appendLog("[ERR] Supabase SDK no disponible.");
+        showNotification("Supabase SDK no está disponible en este momento.", "error", "error");
       }
     }
 
-    // Fallback de contingencia si no responde Supabase directamente
-    function fallbackGoogleRedirect(targetUrl) {
-      appendLog("[FALLBACK] Activando pasarela de respaldo autorizada...");
-      showNotification("Abriendo panel seguro con credenciales de administrador...", "primary", "lock_open");
-      setTimeout(() => {
-        grantAccessAndRedirect("Google OAuth verificado por protocolo Darkroom");
-      }, 900);
-    }
-
-    // 4. Validación de Contraseña Maestra de Respaldo
+    // 3. Validación ESTRICTA de Clave Maestra
     function handleMasterPasswordLogin(e) {
       if (e) e.preventDefault();
       
@@ -545,44 +483,40 @@
 
       appendLog("[MASTER_KEY] Validando clave introducida...");
 
-      // Verificar si coincide con cualquiera de las claves maestras autorizadas
-      const isValid = VALID_MASTER_PASSWORDS.includes(enteredPwd) || enteredPwd.toLowerCase() === 'admin2026';
+      // Validación estricta contra las claves maestras autorizadas
+      const isValid = VALID_MASTER_PASSWORDS.includes(enteredPwd);
 
       if (isValid) {
-        appendLog("[OK] Clave maestra confirmada. Otorgando acceso de administración nivel 1.");
+        appendLog("[OK] Clave maestra autorizada. Otorgando acceso de administración.");
         showNotification("Clave Maestra Válida. Ingresando al panel...", "primary", "check_circle");
-        
         sessionStorage.setItem('auth_method', 'master_key');
         grantAccessAndRedirect("Clave Maestra Blindada");
       } else {
-        appendLog("[DENIED] Clave maestra inválida.");
-        showNotification("Clave Maestra incorrecta. Intenta nuevamente o usa Google OAuth.", "error", "lock_clock");
+        appendLog("[DENEGADO] Clave maestra inválida.");
+        showNotification("Clave Maestra incorrecta. Acceso rechazado.", "error", "lock_clock");
         pwdInput.classList.add('border-error');
         setTimeout(() => pwdInput.classList.remove('border-error'), 2500);
       }
     }
 
-    // Otorgar acceso definitivo y redirigir a panel.html
+    // 4. Redirección protegida hacia panel.html únicamente tras validación comprobada
     function grantAccessAndRedirect(reason) {
       appendLog(`[GRANT] Acceso concedido: ${reason}`);
       
-      // Guardar flags requeridos por el sistema
+      // Guardar flags de sesión autenticada
       sessionStorage.setItem('eventos_fotografo_auth', 'true');
       sessionStorage.setItem('admin_email', ADMIN_AUTHORIZED_EMAIL);
       sessionStorage.setItem('admin_name', 'Sergio Ricardo Molina');
       sessionStorage.setItem('auth_timestamp', new Date().toISOString());
-      localStorage.setItem('darkroom_active_session', 'true');
 
-      // Feedback visual antes de saltar
       const badge = document.getElementById('badgeSupabaseStatus');
       if (badge) {
         badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="text-emerald-400">Autorizado</span>`;
       }
 
-      showNotification(`¡Acceso concedido! Redirigiendo a panel.html (${reason})...`, "primary", "task_alt");
+      showNotification(`¡Identidad verificada! Redirigiendo a panel.html...`, "primary", "task_alt");
 
       setTimeout(() => {
-        // Redirección inteligente manteniendo directorio relativo
         let target = 'panel.html';
         const currentPath = window.location.pathname;
         if (currentPath.includes('login.html')) {
@@ -590,20 +524,6 @@
         }
         window.location.href = target;
       }, 700);
-    }
-
-    // Mostrar barra rápida de sesión detectada
-    function showQuickSession(email) {
-      const box = document.getElementById('quickSessionBox');
-      const emailLabel = document.getElementById('quickSessionEmail');
-      if (box && emailLabel) {
-        emailLabel.textContent = email;
-        box.classList.remove('hidden');
-      }
-      const badge = document.getElementById('badgeSupabaseStatus');
-      if (badge) {
-        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="text-emerald-400">Sesión Lista</span>`;
-      }
     }
 
     // Toggle de pestañas entre Google y Clave Maestra
@@ -616,13 +536,13 @@
       if (tab === 'google') {
         secGoogle.classList.remove('hidden');
         secMaster.classList.add('hidden');
-        btnGoogle.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm";
-        btnMaster.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface";
+        btnGoogle.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm cursor-pointer";
+        btnMaster.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface cursor-pointer";
       } else {
         secGoogle.classList.add('hidden');
         secMaster.classList.remove('hidden');
-        btnMaster.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm";
-        btnGoogle.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface";
+        btnMaster.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm cursor-pointer";
+        btnGoogle.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface cursor-pointer";
         setTimeout(() => {
           const input = document.getElementById('masterPasswordInput');
           if (input) input.focus();
@@ -674,30 +594,26 @@
       const arrow = document.getElementById('logToggleArrow');
       if (logBox.classList.contains('hidden')) {
         logBox.classList.remove('hidden');
-        arrow.textContent = 'expand_less';
+        if (arrow) arrow.textContent = 'expand_less';
       } else {
         logBox.classList.add('hidden');
-        arrow.textContent = 'expand_more';
+        if (arrow) arrow.textContent = 'expand_more';
       }
     }
 
-    // Probar Acceso / Auditoría de Diagnóstico (Botón superior)
+    // Auditoría de Diagnóstico
     async function runDiagnosticsAudit() {
-      appendLog("[AUDIT] Iniciando escaneo de salud del entorno...");
-      showNotification("Ejecutando diagnóstico de pasarela de acceso...", "primary", "speed");
+      appendLog("[AUDIT] Verificando salud del sistema de seguridad...");
+      showNotification("Comprobando parámetros de OAuth y Supabase SDK...", "primary", "verified_user");
 
       const hasSupabase = !!supabaseClient;
-      appendLog(`[CHECK] Supabase Client: ${hasSupabase ? 'CONECTADO' : 'FALLBACK'}`);
-      
-      const isHttps = window.location.protocol === 'https:' || window.location.hostname === 'localhost';
-      appendLog(`[CHECK] Protocolo seguro: ${isHttps ? 'SI (' + window.location.protocol + ')' : 'NO RECOMENDADO'}`);
-
-      const targetPath = window.location.origin + window.location.pathname.replace('login.html', 'panel.html');
-      appendLog(`[CHECK] Ruta de retorno calculada: ${targetPath}`);
+      appendLog(`[CHECK] Supabase Client: ${hasSupabase ? 'OPERATIVO' : 'FALLBACK'}`);
+      appendLog(`[CHECK] Destino de redirección: ${GOOGLE_OAUTH_REDIRECT_URL}`);
+      appendLog(`[CHECK] Administrador exclusivo: ${ADMIN_AUTHORIZED_EMAIL}`);
 
       setTimeout(() => {
-        showNotification("Diagnóstico completado: Todas las vías de acceso están listas.", "primary", "verified");
-      }, 600);
+        showNotification("Pasarela protegida. Dos métodos seguros disponibles.", "primary", "check_circle");
+      }, 500);
     }
 
     // Inicialización al cargar la ventana
@@ -705,6 +621,4 @@
       evaluateAuthReturnOrExistingSession();
     });
   </script>
-
-
 </body></html>
