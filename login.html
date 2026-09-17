@@ -134,9 +134,7 @@
 <div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary-container/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
 <div class="fixed bottom-10 right-10 w-96 h-96 bg-tertiary-container/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
 <!-- Subtle Top Banner: Integration Context Info -->
-
 <!-- Top Navigation Utility (Suppressed Main Shell per Destination/Linear Rule) -->
-
 <!-- Central Authentication Canvas -->
 <main class="relative z-10 flex-grow flex items-center justify-center px-4 py-space-xl">
 <div class="w-full max-w-[440px]">
@@ -145,105 +143,80 @@
 <!-- Subtle Top Accent Lighting Bar -->
 <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
 <!-- Photographer / Identity Badge -->
-<div class="flex flex-col items-center text-center mb-space-lg">
-<div class="relative mb-space-sm group">
-<div class="absolute -inset-1 bg-gradient-to-r from-primary-container via-primary to-tertiary rounded-full blur-sm opacity-50 group-hover:opacity-75 transition duration-300"></div>
-<img alt="Fotógrafo Sergio Ricardo Molina" class="relative w-20 h-20 rounded-full object-cover border-2 border-[#005580] shadow-md bg-surface-container-lowest" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
-<div class="absolute bottom-0 right-0 w-5 h-5 bg-surface-container-lowest rounded-full border border-outline-variant flex items-center justify-center" title="Administrador Autenticado">
-<span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8]"></span>
-</div>
-</div>
-<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight font-semibold">
-            Portal de Administración
-          </h1>
-<p class="font-label-md text-label-md text-outline mt-1.5 max-w-xs">
-            Gestión de Galerías y Tarifas&nbsp;</p>
-</div>
+
 <!-- Authentication Form -->
 <div class="space-y-space-md" id="admin-login-form">
-  <!-- Access Mode Indicator / Context -->
-  <div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-tertiary text-lg" data-icon="shield_person">shield_person</span>
-      <span class="font-label-sm text-label-sm text-on-surface tracking-wide uppercase">Autenticación de Administrador</span>
-    </div>
-    <span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-primary-container/20 border border-primary-container/40">
+<!-- Access Mode Indicator / Context -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="shield_person">shield_person</span>
+<span class="font-label-sm text-label-sm text-on-surface tracking-wide uppercase">Autenticación de Administrador</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-primary-container/20 border border-primary-container/40">
       ROL: OWNER
     </span>
-  </div>
+</div>
+<!-- Authorized Account Context -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center gap-space-sm">
+<div class="relative flex-shrink-0">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/40 flex items-center justify-center text-primary font-semibold font-headline-md">S</div>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#38bdf8] border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0 flex-grow text-left">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Sergio Ricardo Molina</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="verified">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary truncate" id="authorized-email-display">molinaoksergio@gmail.com</span>
 
-  <!-- Authorized Account Context -->
-  <div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center gap-space-sm">
-    <div class="relative flex-shrink-0">
-      <div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/40 flex items-center justify-center text-primary font-semibold font-headline-md">S</div>
-      <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#38bdf8] border-2 border-surface-container-lowest"></span>
-    </div>
-    <div class="flex flex-col min-w-0 flex-grow text-left">
-      <div class="flex items-center gap-1.5">
-        <span class="font-label-md text-label-md text-on-surface font-semibold truncate">Sergio Ricardo Molina</span>
-        <span class="material-symbols-outlined text-secondary text-sm" data-icon="verified">verified</span>
-      </div>
-      <span class="font-label-sm text-label-sm text-secondary truncate" id="authorized-email-display">molinaoksergio@gmail.com</span>
-      <span class="font-label-sm text-label-sm text-outline mt-0.5">Identidad de gestión restringida</span>
-    </div>
-  </div>
-
-  <!-- Admin Password Authentication Form (Strict, No Auto-bypass) -->
-  <form id="credentials-form" onsubmit="event.preventDefault(); handleAdminPasswordLogin();" class="space-y-3">
-    <div class="space-y-1 text-left">
-      <label for="admin-password" class="block font-label-sm text-label-sm text-outline uppercase tracking-wider">Clave de Acceso Administrador</label>
-      <div class="relative flex items-center">
-        <input id="admin-password" type="password" required="" autocomplete="current-password" placeholder="Ingrese su contraseña maestra" class="w-full bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:outline-none text-on-surface py-2.5 pl-3 pr-10 rounded-lg font-body-md text-sm transition-colors placeholder:text-outline/60">
-        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-2.5 text-outline hover:text-on-surface transition-colors p-1 flex items-center justify-center" title="Mostrar / Ocultar contraseña">
-          <span id="password-icon" class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
-        </button>
-      </div>
-    </div>
-
-    <button type="submit" id="submit-password-btn" class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-primary-fixed hover:text-on-primary-fixed py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md cursor-pointer">
-      <span class="material-symbols-outlined text-base" data-icon="lock_open">lock_open</span>
-      <span class="">Ingresar con Contraseña</span>
-    </button>
-  </form>
-
-  <!-- Divider -->
-  <div class="relative my-2">
-    <div class="absolute inset-0 flex items-center">
-      <div class="w-full border-t border-outline-variant/30"></div>
-    </div>
-    <div class="relative flex justify-center text-label-sm">
-      <span class="bg-[#181818] px-3 text-outline text-label-sm">o autenticar con Google</span>
-    </div>
-  </div>
-
-  <!-- Google OAuth Real Auth Button (select_account prompt, no auto-bypass) -->
-  <div>
-    <button type="button" id="google-oauth-btn" onclick="handleGoogleLogin()" class="w-full flex items-center justify-center gap-3 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/60 hover:border-primary py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md group cursor-pointer">
-      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"></path><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"></path><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z"></path><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"></path></svg>
-      <span class="group-hover:text-primary transition-colors">Continuar con Google</span>
-    </button>
-  </div>
-
-  <!-- Dynamic Status Feedback Message -->
-  <div id="status-message" class="hidden p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all"></div>
+</div>
+</div>
+<!-- Admin Password Authentication Form (Strict, No Auto-bypass) -->
+<form class="space-y-3" id="credentials-form" onsubmit="event.preventDefault(); handleAdminPasswordLogin();">
+<div class="space-y-1 text-left">
+<label class="block font-label-sm text-label-sm text-outline uppercase tracking-wider" for="admin-password">Clave de Acceso Administrador</label>
+<div class="relative flex items-center">
+<input autocomplete="current-password" class="w-full bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:outline-none text-on-surface py-2.5 pl-3 pr-10 rounded-lg font-body-md text-sm transition-colors placeholder:text-outline/60" id="admin-password" placeholder="Ingrese su contraseña maestra" required="" type="password">
+<button class="absolute right-2.5 text-outline hover:text-on-surface transition-colors p-1 flex items-center justify-center" onclick="togglePasswordVisibility()" title="Mostrar / Ocultar contraseña" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="visibility" id="password-icon">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-primary-fixed hover:text-on-primary-fixed py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md cursor-pointer" id="submit-password-btn" type="submit">
+<span class="material-symbols-outlined text-base" data-icon="lock_open">lock_open</span>
+<span class="">Ingresar con Contraseña</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative my-2">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/30"></div>
+</div>
+<div class="relative flex justify-center text-label-sm">
+<span class="bg-[#181818] px-3 text-outline text-label-sm">o autenticar con Google</span>
+</div>
+</div>
+<!-- Google OAuth Real Auth Button (select_account prompt, no auto-bypass) -->
+<div>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/60 hover:border-primary py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md group cursor-pointer" id="google-oauth-btn" onclick="handleGoogleLogin()" type="button">
+<svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z" fill="#EA4335"></path><path d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z" fill="#4285F4"></path><path d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z" fill="#FBBC05"></path><path d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z" fill="#34A853"></path></svg>
+<span class="group-hover:text-primary transition-colors">Continuar con Google</span>
+</button>
+</div>
+<!-- Dynamic Status Feedback Message -->
+<div class="hidden p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all" id="status-message"></div>
 </div>
 <!-- Divider with darkroom aesthetic -->
 <div class="relative my-space-lg">
 <div class="absolute inset-0 flex items-center">
 <div class="w-full border-t border-outline-variant/30"></div>
 </div>
-
 </div>
 <!-- Supabase & Local Token Trust Badge -->
-<div class="space-y-2"><div class="flex items-center justify-between text-outline text-label-sm font-label-sm px-1"><span class="">Google OAuth / Supabase Auth</span><span class="flex items-center gap-1 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span> Acceso Restringido y Encriptado</span></div><div class="p-space-xs rounded-lg bg-surface-container-low border border-outline-variant/30 text-center font-label-sm text-outline">Autenticación requerida exclusivamente para <span class="text-on-surface font-semibold">molinaoksergio@gmail.com</span>. Se prohíbe el bypass automático sin validación activa.</div></div>
+<div class="space-y-2"><div class="flex items-center justify-between text-outline text-label-sm font-label-sm px-1"><span class="flex items-center gap-1 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span> Acceso Restringido y Encriptado</span></div></div>
 </div>
 <!-- Secondary Return Links for Flow Freedom -->
-<div class="mt-space-md text-center">
-<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-outline hover:text-on-surface transition-colors py-1 px-3 rounded hover:bg-surface-container-low" href="/eventos">
-<span class="material-symbols-outlined text-sm" data-icon="school">school</span>
-<span class="">Volver a Eventos Escolares</span>
-</a>
-</div>
+<div class="mt-space-md text-center"><div class="flex items-center justify-center gap-3 font-label-md text-label-md text-outline"><a class="inline-flex items-center gap-1.5 hover:text-on-surface transition-colors py-1 px-3 rounded hover:bg-surface-container-low" href="index.html"><span class="material-symbols-outlined text-sm" data-icon="photo_camera">photo_camera</span><span class="">Portafolio</span></a><span class="text-outline-variant">•</span><a class="inline-flex items-center gap-1.5 hover:text-on-surface transition-colors py-1 px-3 rounded hover:bg-surface-container-low" href="eventos.html"><span class="material-symbols-outlined text-sm" data-icon="school">school</span><span class="">Eventos Escolares</span></a></div></div>
 </div>
 </main>
 <!-- Ambient Minimal Footer -->
