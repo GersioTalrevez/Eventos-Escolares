@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head>
+<!DOCTYPE html><html lang="es" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Carga de Galerías y Enlaces | Sergio Ricardo Molina</title>
@@ -372,22 +372,20 @@ main {
 <span class="material-symbols-outlined">payments</span>
 <span class="">Tarifas y Precios</span>
 </a>
-</nav>
-</div>
-<!-- ENLACES DE RETORNO -->
-<div class="footer-aside">
-<a class="btn-enlace-publico" href="eventos.html">
-<span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+<div style="border-top: 1px solid #222222; margin: 6px 0; padding-top: 6px;"></div>
+<a class="item-menu" href="eventos.html" style="font-size: 0.82rem; color: #888888;">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
 <span class="">Volver a Eventos</span>
 </a>
-<a class="btn-enlace-publico" href="index.html">
-<span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+<a class="item-menu" href="index.html" style="font-size: 0.82rem; color: rgb(136, 136, 136);">
+<span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
 <span class="">Ver Portafolio</span>
-</a>
-<div style="font-size: 0.7rem; color: #555; margin-top: 6px;" class="">
-      ESTUDIO FOTOGRÁFICO &nbsp;•&nbsp; v2.6
-    </div>
+</a></nav>
 </div>
+<!-- ENLACES DE RETORNO -->
+<div class="footer-aside"><div style="font-size: 0.7rem; color: rgb(85, 85, 85); margin-top: 2px;" class="">
+      ESTUDIO FOTOGRÁFICO &nbsp;•&nbsp; v2.6
+    </div></div>
 </aside>
 <!-- CONTENIDO PRINCIPAL -->
 <main>
@@ -433,7 +431,7 @@ main {
 <span class="material-symbols-outlined" style="font-size: 16px; color:#0088cc;">image</span>
 <span class="">URL de Portada Manual (Opcional)</span>
 </label>
-<input id="input-portada" oninput="handleInputPortada(); actualizarPreview();" placeholder="https://lh3.googleusercontent.com/d/... (Si se deja vacío, toma la 1° foto de Drive)" type="text">
+<input id="input-portada" oninput="handleInputPortada(); actualizarPreview();" placeholder="https://lh3.googleusercontent.com/d/... (Si se deja vacío, toma la 1° foto de Drive)" type="text" class="">
 <span class="ayuda">Si lo dejás en blanco, la primera foto de la carpeta se convertirá en la portada oficial.</span>
 </div>
 <div class="bloque-checkbox-privada">
@@ -476,7 +474,7 @@ main {
 <span class="material-symbols-outlined">cloud_upload</span>
 <span id="btn-guardar-texto" class="">Guardar y Vincular Galería</span>
 </button>
-<div id="log-detallado-supa" style="display: none; margin-top: -8px; font-size: 0.72rem; color: rgb(119, 119, 119); font-family: monospace;"></div><script id="custom-cover-resolver">
+<div id="log-detallado-supa" style="display: none; margin-top: -8px; font-size: 0.72rem; color: rgb(119, 119, 119); font-family: monospace;"></div><script id="custom-cover-resolver" class="">
 function extraerIdArchivoDrive(url) {
   if (!url) return '';
   const s = String(url).trim();
