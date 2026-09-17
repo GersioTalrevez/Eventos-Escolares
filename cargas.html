@@ -348,37 +348,35 @@ main {
 </head>
 <body>
 <!-- BARRA LATERAL IZQUIERDA -->
-<aside><div class="marca-panel">
-<div class="marca-panel-texto">
+<aside>
+<div>
+<div class="marca-panel">
 <div class="tag-estado">
 <span style="font-size: 8px;">●</span> SISTEMA ACTIVO
-    </div>
+      </div>
 <h2>SERGIO RICARDO MOLINA</h2>
 <span class="sub">Panel de Control</span>
 </div>
-<button aria-label="Abrir menú" class="btn-menu-movil" id="btn-menu-toggle" onclick="toggleMenuMovil()">
-<span class="material-symbols-outlined" id="icono-menu-toggle">menu</span>
-</button>
-</div>
-<div class="aside-contenido-colapsable" id="aside-menu-colapsable">
+<!-- MENÚ DE NAVEGACIÓN LATERAL DIRECTO -->
 <nav class="menu-lateral">
+<!-- 1. Galerías (panel.html) -->
 <a class="item-menu" href="panel.html">
 <span class="material-symbols-outlined">photo_library</span>
 <span>Galerías</span>
 </a>
+<!-- 2. Cargas y Enlaces (cargas.html - Página Actual) -->
 <a class="item-menu activo" href="cargas.html">
 <span class="material-symbols-outlined">cloud_upload</span>
 <span>Cargas y Enlaces</span>
 </a>
+<!-- 3. Tarifas y Precios (precios.html) -->
 <a class="item-menu" href="precios.html">
 <span class="material-symbols-outlined">payments</span>
 <span>Tarifas y Precios</span>
 </a>
-<a class="item-menu" href="metricas.html">
-<span class="material-symbols-outlined">analytics</span>
-<span>Métricas y Visitas</span>
-</a>
 </nav>
+</div>
+<!-- ENLACES DE RETORNO -->
 <div class="footer-aside">
 <a class="btn-enlace-publico" href="eventos.html">
 <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
@@ -392,7 +390,7 @@ main {
       ESTUDIO FOTOGRÁFICO  •  v2.6
     </div>
 </div>
-</div></aside>
+</aside>
 <!-- CONTENIDO PRINCIPAL -->
 <main>
 <div class="encabezado-seccion">
@@ -477,9 +475,7 @@ main {
 <p id="preview-id">Drive ID: Sin asignar</p>
 </div>
 </div>
-<p style="font-size:0.78rem; color:#777; line-height:1.4;">
-        Al presionar <strong>Guardar</strong>, la galería quedará inmediatamente registrada en tu base de datos de <strong>Supabase</strong> y en la memoria local para que la veas al instante en <strong>panel.html</strong> y en <strong>eventos.html</strong>.
-      </p>
+<p style="font-size:0.78rem; color:#777; line-height:1.4;">Al presionar <strong>Guardar</strong>, la galería se sincroniza directamente en la tabla <strong>galeria</strong> de <strong>Supabase</strong> con título, enlace Drive, portada y credenciales de acceso privada si corresponde, quedando disponible de inmediato en <strong>panel.html</strong> y <strong>eventos.html</strong>.</p>
 </div>
 </div>
 </main>
