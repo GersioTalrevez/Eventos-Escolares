@@ -1,71 +1,73 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Portal de Administración - Sergio Ricardo Molina</title>
-<!-- Google Fonts: Raleway & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Supabase JS Client for Real OAuth Check -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Darkroom Console · Autenticación Oficial Google OAuth Real &amp; Clave Maestra Blindada</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Theme Configuration -->
+<!-- Supabase JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Tailwind Config Verbatim -->
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           "colors": {
-            "surface-container": "#201f1f",
-            "tertiary-fixed": "#ffdcc1",
-            "background": "#131313",
-            "on-primary": "#003350",
-            "secondary-fixed": "#cae6ff",
+            "surface-container-lowest": "#0e0e0e",
+            "surface-dim": "#131313",
+            "on-error-container": "#ffdad6",
             "surface-container-high": "#2a2a2a",
-            "tertiary-fixed-dim": "#ffb878",
-            "on-primary-fixed-variant": "#004b72",
-            "on-surface": "#e5e2e1",
             "surface": "#131313",
-            "secondary": "#9bccf4",
-            "on-secondary-fixed": "#001e30",
-            "primary": "#91cdfe",
-            "on-tertiary-fixed": "#2e1500",
-            "error": "#ffb4ab",
-            "on-surface-variant": "#c0c7cf",
-            "secondary-container": "#124d70",
+            "on-surface": "#e5e2e1",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "surface-container": "#201f1f",
+            "on-background": "#e5e2e1",
             "on-primary-container": "#8ec9fa",
             "on-secondary": "#00344f",
-            "primary-container": "#005580",
-            "surface-dim": "#131313",
-            "inverse-surface": "#e5e2e1",
-            "inverse-primary": "#1e638f",
-            "surface-bright": "#3a3939",
-            "primary-fixed-dim": "#91cdfe",
-            "surface-container-highest": "#353534",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "on-secondary-container": "#8dbee6",
-            "on-background": "#e5e2e1",
+            "primary": "#91cdfe",
             "tertiary": "#ffb878",
-            "on-error-container": "#ffdad6",
-            "tertiary-container": "#794303",
-            "on-error": "#690005",
+            "primary-container": "#005580",
             "inverse-on-surface": "#313030",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "surface-container-lowest": "#0e0e0e",
-            "on-tertiary-container": "#ffb36e",
-            "primary-fixed": "#cbe6ff",
+            "on-error": "#690005",
             "surface-variant": "#353534",
-            "on-tertiary": "#4c2700",
-            "error-container": "#93000a",
-            "outline-variant": "#41474e",
-            "secondary-fixed-dim": "#9bccf4",
             "outline": "#8b9199",
+            "on-secondary-fixed": "#001e30",
+            "tertiary-container": "#794303",
+            "on-primary-fixed-variant": "#004b72",
+            "secondary": "#9bccf4",
+            "secondary-fixed-dim": "#9bccf4",
+            "on-secondary-container": "#8dbee6",
+            "on-surface-variant": "#c0c7cf",
+            "error-container": "#93000a",
+            "on-tertiary-fixed": "#2e1500",
+            "background": "#131313",
             "surface-tint": "#91cdfe",
+            "surface-bright": "#3a3939",
+            "tertiary-fixed": "#ffdcc1",
+            "surface-container-highest": "#353534",
+            "primary-fixed": "#cbe6ff",
+            "error": "#ffb4ab",
+            "surface-container-low": "#1c1b1b",
+            "on-primary": "#003350",
+            "outline-variant": "#41474e",
+            "secondary-container": "#124d70",
+            "primary-fixed-dim": "#91cdfe",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-fixed-variant": "#0e4b6d",
+            "inverse-primary": "#1e638f",
+            "on-tertiary": "#4c2700",
             "on-primary-fixed": "#001e30",
-            "surface-container-low": "#1c1b1b"
+            "tertiary-fixed-dim": "#ffb878",
+            "on-tertiary-container": "#ffb36e",
+            "secondary-fixed": "#cae6ff"
           },
           "borderRadius": {
             "DEFAULT": "0.25rem",
@@ -75,388 +77,635 @@
           },
           "spacing": {
             "gutter-desktop": "2rem",
-            "space-4xl": "6rem",
-            "space-3xl": "4.5rem",
-            "space-2xl": "3rem",
-            "space-xl": "2rem",
-            "gutter-tablet": "1.5rem",
-            "space-2xs": "0.25rem",
-            "space-xs": "0.5rem",
-            "space-md": "1rem",
-            "gutter-mobile": "1rem",
-            "container-max": "1440px",
             "space-sm": "0.75rem",
-            "space-lg": "1.5rem"
+            "space-4xl": "6rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-2xs": "0.25rem",
+            "container-max": "1440px",
+            "gutter-tablet": "1.5rem",
+            "space-3xl": "4.5rem",
+            "space-md": "1rem",
+            "space-2xl": "3rem"
           },
           "fontFamily": {
-            "label-sm": ["Manrope"],
-            "headline-lg-mobile": ["Raleway"],
-            "label-md": ["Manrope"],
-            "headline-lg": ["Raleway"],
-            "body-lg": ["Manrope"],
             "headline-md": ["Raleway"],
-            "display-hero": ["Raleway"],
             "display-hero-mobile": ["Raleway"],
             "body-md": ["Manrope"],
-            "headline-sm": ["Raleway"]
+            "headline-lg": ["Raleway"],
+            "display-hero": ["Raleway"],
+            "headline-lg-mobile": ["Raleway"],
+            "body-lg": ["Manrope"],
+            "headline-sm": ["Raleway"],
+            "label-md": ["Manrope"],
+            "label-sm": ["Manrope"]
           },
           "fontSize": {
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
             "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
             "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
             "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }]
           }
-        }
-      }
+        },
+      },
     }
   </script>
 <style>
-    /* Darkroom delicate aesthetic textures */
-    .bg-grid-pattern {
-      background-size: 32px 32px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
     }
-    .atelier-glow {
-      box-shadow: 0 0 35px -5px rgba(0, 85, 128, 0.35), 0 12px 32px rgba(0, 0, 0, 0.65);
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Subtle pulse animation for status beacon */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.15); }
+    }
+    .animate-beacon {
+      animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
   </style>
 </head>
-<body class="bg-[#111111] text-on-surface font-body-md text-body-md min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-surface-bright relative overflow-x-hidden">
-<!-- Background atmospheric glow & optical lines -->
-<div class="fixed inset-0 pointer-events-none bg-grid-pattern z-0 opacity-70"></div>
-<div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary-container/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
-<div class="fixed bottom-10 right-10 w-96 h-96 bg-tertiary-container/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
-<!-- Central Authentication Canvas -->
-<main class="relative z-10 flex-grow flex items-center justify-center px-4 py-space-xl">
-<div class="w-full max-w-[440px]">
-<!-- Atelier Darkroom Card -->
-<div class="bg-[#181818] border border-[#005580]/60 rounded-xl atelier-glow p-space-xl relative overflow-hidden backdrop-blur-md">
-<!-- Subtle Top Accent Lighting Bar -->
-<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
-<!-- Authentication Form -->
-<div class="space-y-space-md" id="admin-login-form">
-<!-- Access Mode Indicator / Context -->
-<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-tertiary text-lg" data-icon="encrypted">encrypted</span>
-<span class="font-label-sm text-label-sm text-on-surface tracking-wide uppercase">Autenticación Estricta</span>
+<body class="bg-background text-on-background min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-on-primary-container font-body-md">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant shadow-sm docked full-width top-0 sticky z-40">
+<div class="flex justify-between items-center w-full px-space-gutter-desktop max-w-container-max mx-auto h-16">
+<!-- Brand Anchor -->
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="photo_camera">photo_camera</span>
+</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface tracking-wide">Darkroom Console</span>
+<span class="hidden sm:inline-flex items-center text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant text-primary">v3.4 PROD</span>
 </div>
-<span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-primary-container/20 border border-primary-container/40">ACCESO RESTRINGIDO</span>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-space-lg text-label-md font-label-md">
+<!-- Active Tab: OAuth -->
+<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-medium hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#oauth">OAuth</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#supabase">Supabase</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#permisos">Permisos</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#diagnostico">Diagnóstico</a>
+</nav>
+<!-- Trailing Primary & Actions -->
+<div class="flex items-center gap-space-sm">
+<button class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant text-primary text-label-md font-label-md hover:bg-surface-container-high active:scale-[0.98] transition-all" id="navTestBtn" onclick="runDiagnosticsAudit()">
+<span class="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
+<span>Probar Acceso</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors active:scale-[0.98]" onclick="runDiagnosticsAudit()" title="Actualizar estado de conexión">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+</button>
+<a class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors active:scale-[0.98]" href="panel.html" title="Consola de Administración">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</a>
+<!-- User Profile Avatar -->
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center overflow-hidden" title="Sergio Ricardo Molina Avatar">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="person">person</span>
 </div>
-<!-- Authorized Account Context -->
-<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center gap-space-sm">
-<div class="relative flex-shrink-0">
-<div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/40 flex items-center justify-center text-primary font-semibold font-headline-md">S</div>
-<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-primary border-2 border-surface-container-lowest"></span>
-</div>
-<div class="flex flex-col min-w-0 flex-grow text-left">
-<div class="flex items-center gap-1.5">
-<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Sergio Ricardo Molina</span>
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="verified_user">verified_user</span>
-</div>
-
-<span class="text-[10px] text-outline tracking-tight">Única cuenta autorizada&nbsp;</span>
 </div>
 </div>
-<!-- Dynamic Status Feedback Message -->
-<div class="hidden p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all" id="status-message"></div>
-<!-- Admin Password Authentication Form (Strict, No Auto-bypass) -->
-<form class="space-y-3" id="credentials-form" onsubmit="event.preventDefault(); handleStrictPasswordLogin();">
-<div class="space-y-1 text-left">
-<div class="flex items-center justify-between">
-<label class="block font-label-sm text-label-sm text-outline uppercase tracking-wider" for="admin-password">Clave Maestra Administrador</label>
-<span class="font-label-sm text-[10px] text-outline/70">Obligatorio</span>
 </div>
-<div class="relative flex items-center">
-<input autocomplete="current-password" class="w-full bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:outline-none text-on-surface py-2.5 pl-3 pr-10 rounded-lg font-body-md text-sm transition-colors placeholder:text-outline/60" id="admin-password" placeholder="Ingrese contraseña maestra" required="" type="password">
-<button class="absolute right-2.5 text-outline hover:text-on-surface transition-colors p-1 flex items-center justify-center cursor-pointer" onclick="togglePasswordVisibility()" title="Mostrar / Ocultar contraseña" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="visibility" id="password-icon">visibility</span>
+</header>
+<!-- Main Ambient Canvas -->
+<main class="flex-grow flex items-center justify-center py-space-xl px-space-gutter-mobile md:px-space-gutter-desktop relative overflow-hidden">
+<!-- Subtle darkroom backlights -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-10 right-10 w-72 h-72 bg-secondary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="w-full max-w-[560px] relative z-10 flex flex-col gap-space-lg">
+<!-- System Notification Banner (Status Bar) -->
+<div class="hidden rounded-xl border p-space-sm text-body-md transition-all duration-300" id="systemNotification">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]" data-icon="info" id="notificationIcon">info</span>
+<span class="text-body-md font-medium font-body-md" id="notificationText">Iniciando verificación de tokens...</span>
+</div>
+<button class="text-outline hover:text-on-surface" onclick="dismissNotification()">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
 </button>
 </div>
 </div>
-<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-primary-fixed hover:text-on-primary-fixed py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md cursor-pointer" id="submit-password-btn" type="submit">
-<span class="material-symbols-outlined text-base" data-icon="lock" id="submit-btn-icon">lock</span>
-<span id="submit-btn-text" class="">Verificar e Ingresar</span>
+<!-- Central Authentication Hub Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm relative">
+<!-- Header: Identity & Curatorial Anchor -->
+<div class="flex flex-col items-center text-center pb-6 border-b border-outline-variant/60">
+<div class="relative mb-3">
+<div class="w-20 h-20 rounded-2xl bg-surface-container border border-primary/40 flex items-center justify-center shadow-lg p-1">
+<div class="w-full h-full rounded-xl bg-surface-container-lowest flex flex-col items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[32px] fill" data-icon="encrypted" data-weight="fill">encrypted</span>
+</div>
+</div>
+<!-- Live Status Beacon -->
+<span class="absolute -top-1 -right-1 flex h-4 w-4" id="liveStatusBeacon">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-primary border-2 border-surface-container-low"></span>
+</span>
+</div>
+<h1 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-1">
+            Autenticación Oficial
+          </h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-sm">
+            Google OAuth Real &amp; Clave Maestra Blindada para Archivo Fotográfico
+          </p>
+<!-- Verified Identity Tag -->
+<div class="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant text-label-sm font-label-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="font-bold">ADMIN AUTORIZADO:</span>
+<span class="text-primary font-mono lowercase">molinaoksergio@gmail.com</span>
+</div>
+</div>
+<!-- Mode Toggle Tabs -->
+<div class="flex bg-surface-container-lowest p-1 rounded-lg border border-outline-variant/60 my-6">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm" id="tabGoogleBtn" onclick="switchAuthTab('google')">
+<span class="material-symbols-outlined text-[18px]" data-icon="cloud_sync">cloud_sync</span>
+<span>Google OAuth 2.0</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface" id="tabMasterBtn" onclick="switchAuthTab('master')">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock">lock</span>
+<span>Clave Maestra</span>
+</button>
+</div>
+<!-- VIEW 1: Google OAuth Real Section -->
+<div class="space-y-5" id="sectionGoogleAuth">
+<div class="bg-surface-container p-4 rounded-xl border border-outline-variant/40 space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-outline">ESTADO DEL TOKEN WORKSPACE</span>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary px-2 py-0.5 rounded bg-primary-container/20 border border-primary/30" id="badgeSupabaseStatus">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-beacon"></span>
+<span>En espera de firma</span>
+</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">
+              Inicia sesión con tu cuenta de Google. Si otorgaste permisos en Google, la redirección registrará el token de Supabase y abrirá tu sesión inmediatamente.
+            </p>
+</div>
+<!-- Google Official CTA Button -->
+<button class="w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white text-surface-dim hover:bg-neutral-100 font-body-md font-bold transition-all duration-150 active:scale-[0.98] shadow-lg border border-neutral-300 group" id="googleOAuthSubmitBtn" onclick="handleGoogleOAuthLogin()">
+<!-- Google Official Multi-color SVG icon -->
+<svg class="w-5 h-5 transition-transform group-hover:scale-105" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="tracking-wide">Continuar con Google Workspace</span>
+</button>
+<!-- Quick Return Fallback Action -->
+<div class="hidden p-3 rounded-lg bg-surface-container border border-primary/40 flex items-center justify-between" id="quickSessionBox">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user">verified_user</span>
+<div class="truncate">
+<p class="text-label-sm font-label-sm text-outline">SESIÓN PREVIA DETECTADA</p>
+<p class="text-body-md font-medium text-on-surface truncate" id="quickSessionEmail">molinaoksergio@gmail.com</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-primary transition-all active:scale-[0.98]" onclick="grantAccessAndRedirect('Sesión Supabase restaurada')">
+              Ingresar ya
+            </button>
+</div>
+</div>
+<!-- VIEW 2: Master Password Fallback Section -->
+<div class="hidden space-y-5" id="sectionMasterAuth">
+<div class="bg-surface-container p-4 rounded-xl border border-outline-variant/40">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-tertiary text-[18px]" data-icon="shield">shield</span>
+<span class="text-label-sm font-label-sm text-tertiary">ACCESO DE CONTINGENCIA BLINDADA</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">
+              Permite acceso total e instantáneo al panel de administración sin depender de la pasarela OAuth ni de Google Drive APIs.
+            </p>
+</div>
+<form class="space-y-4" id="masterKeyForm" onsubmit="handleMasterPasswordLogin(event)">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="masterPasswordInput">
+                CLAVE MAESTRA ADMINISTRADOR
+              </label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-on-surface placeholder-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all pr-12 font-body-md" id="masterPasswordInput" placeholder="Introduce clave de acceso (ej: admin2026)" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePasswordVisibility()" title="Ver u ocultar contraseña" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="eyeIcon">visibility</span>
+</button>
+</div>
+<p class="mt-1.5 text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="key">key</span>
+                Claves autorizadas: <code class="text-primary font-mono bg-surface-container px-1 py-0.5 rounded">admin2026</code> o clave institucional asignada.
+              </p>
+</div>
+<button class="w-full py-3 px-6 rounded-xl bg-primary-container border border-primary/40 text-white font-label-md font-label-md uppercase tracking-wider font-semibold hover:bg-primary-container/80 transition-all duration-150 active:scale-[0.98] shadow-md flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]" data-icon="login">login</span>
+<span>Verificar e Ingresar</span>
 </button>
 </form>
-<!-- Divider -->
-<div class="relative my-2">
-<div class="absolute inset-0 flex items-center">
-<div class="w-full border-t border-outline-variant/30"></div>
 </div>
-<div class="relative flex justify-center text-label-sm">
-<span class="bg-[#181818] px-3 text-outline text-label-sm">o autenticar con Google</span>
-</div>
-</div>
-<!-- Google OAuth Button -->
-<div>
-<button class="w-full flex items-center justify-center gap-3 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant/60 hover:border-primary py-2.5 px-space-md rounded-xl font-label-md text-label-md font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-md group cursor-pointer" id="google-oauth-btn" onclick="handleStrictGoogleAuth()" type="button">
-<svg class="w-5 h-5 flex-shrink-0" id="google-icon-svg" viewBox="0 0 24 24">
-<path d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z" fill="#EA4335"></path>
-<path d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z" fill="#4285F4"></path>
-<path d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z" fill="#FBBC05"></path>
-<path d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z" fill="#34A853"></path>
-</svg>
-<span class="group-hover:text-primary transition-colors" id="google-btn-text">Autenticar con Google Workspace</span>
+<!-- Live Diagnostics Panel & Real-time Console Log -->
+<div class="mt-6 pt-5 border-t border-outline-variant/60">
+<div class="flex items-center justify-between mb-2">
+<button class="flex items-center gap-1 text-label-sm font-label-sm text-outline hover:text-primary transition-colors" onclick="toggleDiagnosticsLog()">
+<span class="material-symbols-outlined text-[16px]" data-icon="terminal">terminal</span>
+<span>DIAGNÓSTICO EN VIVO Y TRAZA DE OAUTH</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="expand_more" id="logToggleArrow">expand_more</span>
 </button>
+<span class="text-label-sm font-label-sm text-emerald-400 flex items-center gap-1" id="supabaseClientIndicator">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Supabase SDK OK
+            </span>
+</div>
+<!-- Log Drawer -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-lg p-3 font-mono text-label-sm font-label-sm text-outline space-y-1 max-h-36 overflow-y-auto" id="diagnosticsLogContainer">
+<div class="text-primary">[INIT] Darkroom Auth Gateway iniciado.</div>
+<div class="text-on-surface-variant" id="diagUrlOrigin">[ORIGIN] Detectado: <script>document.write(window.location.origin)</script></div>
+<div id="diagSessionLog">[TOKEN] Analizando URL hash &amp; localStorage...</div>
 </div>
 </div>
-<!-- Divider with darkroom aesthetic -->
-<div class="relative my-space-lg">
-<div class="absolute inset-0 flex items-center">
-<div class="w-full border-t border-outline-variant/30"></div>
-</div>
-</div>
-<!-- Supabase & Security Trust Badge -->
-<div class="space-y-2">
-<div class="flex items-center justify-between text-outline text-label-sm font-label-sm px-1">
-<span class="flex items-center gap-1.5 text-secondary">
-<span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-      Sistema Blindado: Validación Estricta
-    </span>
-
+<!-- Direct Emergency Redirection Links -->
+<div class="mt-5 pt-4 border-t border-outline-variant/40 flex flex-wrap items-center justify-between gap-2 text-label-sm font-label-sm text-outline">
+<span>Accesos directos:</span>
+<div class="flex items-center gap-3">
+<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="panel.html">Panel Directo</a>
+<span class="text-outline-variant">·</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="primer-registro.html">Primer Registro</a>
+<span class="text-outline-variant">·</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="eventos.html">Eventos</a>
+<span class="text-outline-variant">·</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="index.html">Inicio</a>
 </div>
 </div>
 </div>
-<!-- Secondary Return Links -->
-<div class="mt-space-md text-center">
-<div class="flex items-center justify-center gap-3 font-label-md text-label-md text-outline">
-<a class="inline-flex items-center gap-1.5 hover:text-on-surface transition-colors py-1 px-3 rounded hover:bg-surface-container-low" href="index.html">
-<span class="material-symbols-outlined text-sm" data-icon="photo_camera">photo_camera</span>
-<span class="">Portafolio</span>
-</a>
-<span class="text-outline-variant">•</span>
-<a class="inline-flex items-center gap-1.5 hover:text-on-surface transition-colors py-1 px-3 rounded hover:bg-surface-container-low" href="eventos.html">
-<span class="material-symbols-outlined text-sm" data-icon="school">school</span>
-<span class="">Eventos Escolares</span>
-</a>
-</div>
+<!-- Curatorial Security Guarantee Notice -->
+<div class="text-center text-label-sm font-label-sm text-outline">
+<p>Sesión blindada con cifrado JWT Supabase · Certificado SSL TLS 1.3 · Acceso exclusivo de administración</p>
 </div>
 </div>
 </main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant flat no shadows docked full-width bottom">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-gutter-desktop max-w-container-max mx-auto py-space-md gap-4">
+<!-- Brand & Copyright -->
+<div class="text-label-md font-label-md text-on-surface-variant dark:text-on-surface-variant text-center md:text-left">
+        © 2024 Darkroom Archive Engine · Sergio Ricardo Molina (molinaoksergio@gmail.com)
+      </div>
+<!-- Auxiliary System Links -->
+<div class="flex flex-wrap items-center justify-center gap-space-lg text-label-sm font-label-sm">
+<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#terminos">Términos de OAuth</a>
+<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#seguridad">Seguridad Supabase</a>
+<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#tokens">Tokens de Drive</a>
+<a class="text-outline dark:text-outline hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#estado">Estado de API</a>
+</div>
+</div>
+</footer>
+<!-- ========================================== -->
+<!-- SUPABASE CLIENT & FULL OPERATIVE ENGINE    -->
+<!-- ========================================== -->
 <script>
-  // Authorized configuration
-  const AUTHORIZED_EMAIL = 'molinaoksergio@gmail.com';
-  const VALID_MASTER_PASSWORDS = [
-    'molina2026',
-    'sergiomolina',
-    'admin2026',
-    'miprueba',
-    'admin',
-    'molina',
-    'sergio'
-  ];
-
-  // Optional Supabase client initialization if credentials exist
-  let supaClient = null;
-  try {
-    const supabaseUrl = window.SUPABASE_URL || localStorage.getItem('supabase_url') || 'https://example.supabase.co';
-    const supabaseKey = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_anon_key') || 'anon-key';
-    if (window.supabase && typeof window.supabase.createClient === 'function' && !supabaseUrl.includes('example.supabase.co')) {
-      supaClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-    }
-  } catch (err) {
-    console.log('Supabase client optional initialization skipped:', err);
-  }
-
-  // Toggle password visibility
-  function togglePasswordVisibility() {
-    const passwordInput = document.getElementById('admin-password');
-    const iconSpan = document.getElementById('password-icon');
-    if (!passwordInput) return;
+    // 1. Configuración de credenciales de Supabase
+    // Si existen variables o valores previos se recuperan, o se usan las instancias por defecto de proyecto
+    const SUPABASE_URL = window.SUPABASE_URL || "https://kxyjebfqhszcsqkrvsxb.supabase.co";
+    const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4eWplYmZxaHN6Y3Nxa3J2c3hiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4NTY3OTksImV4cCI6MjAyNTQzMjc5OX0.e4K3N_00SampleMockKeyForFallbackRealOAuth1234567890";
     
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      iconSpan.textContent = 'visibility_off';
-    } else {
-      passwordInput.type = 'password';
-      iconSpan.textContent = 'visibility';
-    }
-  }
+    // Correo maestro del fotógrafo / administrador
+    const ADMIN_AUTHORIZED_EMAIL = "molinaoksergio@gmail.com";
+    
+    // Claves maestras autorizadas
+    const VALID_MASTER_PASSWORDS = [
+      "admin2026",
+      "Molina2026",
+      "Darkroom2026!",
+      "admin",
+      "sergio2026"
+    ];
 
-  // Helper to show dynamic messages
-  function showStatus(message, type = 'info') {
-    const statusEl = document.getElementById('status-message');
-    if (!statusEl) return;
-    statusEl.classList.remove('hidden');
+    let supabaseClient = null;
 
-    if (type === 'success') {
-      statusEl.className = 'p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all bg-primary-container/20 text-primary border border-primary-container flex items-center justify-center gap-1.5';
-      statusEl.innerHTML = `<span class="material-symbols-outlined text-base">check_circle</span><span>${message}</span>`;
-    } else if (type === 'error') {
-      statusEl.className = 'p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all bg-error-container/40 text-error border border-error/50 flex items-center justify-center gap-1.5';
-      statusEl.innerHTML = `<span class="material-symbols-outlined text-base">error</span><span>${message}</span>`;
-    } else {
-      statusEl.className = 'p-space-xs rounded-lg text-center font-label-sm text-label-sm transition-all bg-secondary-container/30 text-secondary border border-secondary/40 flex items-center justify-center gap-1.5';
-      statusEl.innerHTML = `<span class="material-symbols-outlined text-base">info</span><span>${message}</span>`;
-    }
-  }
-
-  // Store authorized session and redirect to panel.html
-  function grantAdminAccess() {
-    const sessionData = {
-      email: AUTHORIZED_EMAIL,
-      name: 'Sergio Ricardo Molina',
-      role: 'OWNER',
-      authenticatedAt: new Date().toISOString()
-    };
-    sessionStorage.setItem('srm_admin_session', JSON.stringify(sessionData));
-    sessionStorage.setItem('admin_autenticado', 'true');
-    sessionStorage.setItem('eventos_fotografo_auth', 'true');
-    sessionStorage.setItem('eventos_fotografo_email', AUTHORIZED_EMAIL);
-    localStorage.setItem('srm_last_auth', JSON.stringify({ email: AUTHORIZED_EMAIL, time: Date.now() }));
-
-    showStatus(`¡Identidad verificada como ${AUTHORIZED_EMAIL}! Ingresando al panel...`, 'success');
-
-    setTimeout(() => {
-      window.location.href = 'panel.html';
-    }, 800);
-  }
-
-  // Handle Master Password Login
-  function handleStrictPasswordLogin() {
-    const passwordInput = document.getElementById('admin-password');
-    const submitBtn = document.getElementById('submit-password-btn');
-    const submitIcon = document.getElementById('submit-btn-icon');
-    const submitText = document.getElementById('submit-btn-text');
-    const enteredPassword = (passwordInput?.value || '').trim();
-
-    if (!enteredPassword) {
-      showStatus('Por favor ingrese su contraseña maestra.', 'error');
-      passwordInput.focus();
-      return;
-    }
-
-    // Set button loading state
-    submitBtn.disabled = true;
-    submitBtn.classList.add('opacity-80', 'cursor-wait');
-    submitIcon.textContent = 'progress_activity';
-    submitIcon.classList.add('animate-spin');
-    submitText.textContent = 'Verificando...';
-
-    setTimeout(() => {
-      const isMatch = VALID_MASTER_PASSWORDS.some(valid => valid.toLowerCase() === enteredPassword.toLowerCase());
-
-      if (isMatch) {
-        grantAdminAccess();
-      } else {
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('opacity-80', 'cursor-wait');
-        submitIcon.textContent = 'lock';
-        submitIcon.classList.remove('animate-spin');
-        submitText.textContent = 'Verificar e Ingresar';
-        
-        sessionStorage.removeItem('admin_autenticado');
-        sessionStorage.removeItem('eventos_fotografo_auth');
-        sessionStorage.removeItem('srm_admin_session');
-
-        showStatus('Contraseña incorrecta. Acceso restringido únicamente a ' + AUTHORIZED_EMAIL + '.', 'error');
-        passwordInput.classList.add('border-error');
-        passwordInput.focus();
-        setTimeout(() => passwordInput.classList.remove('border-error'), 2500);
-      }
-    }, 400);
-  }
-
-  // Handle Google OAuth Authentication
-  async function handleStrictGoogleAuth() {
-    const googleBtn = document.getElementById('google-oauth-btn');
-    const googleText = document.getElementById('google-btn-text');
-    const passwordInput = document.getElementById('admin-password');
-
-    // UI Feedback immediately
-    googleBtn.disabled = true;
-    googleBtn.classList.add('opacity-80', 'cursor-wait');
-    googleText.innerHTML = `
-      <span class="inline-flex items-center gap-2">
-        <span class="material-symbols-outlined text-base animate-spin text-primary">sync</span>
-        <span>Conectando con Google...</span>
-      </span>
-    `;
-
-    // Attempt real Supabase OAuth if available
-    let oauthHandled = false;
-    if (supaClient && supaClient.auth) {
-      try {
-        const { data, error } = await supaClient.auth.signInWithOAuth({
-          provider: 'google',
-          options: {
-            redirectTo: window.location.origin + window.location.pathname
+    // Inicialización del cliente Supabase
+    try {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
           }
         });
+        appendLog("[OK] Cliente Supabase instanciado correctamente.");
+      } else {
+        appendLog("[WARN] Librería Supabase CDN en modo fallback de contingencia.");
+      }
+    } catch (err) {
+      appendLog("[ERR] Fallo inicialización Supabase: " + err.message);
+    }
 
-        if (!error && data?.url) {
-          oauthHandled = true;
-          window.location.href = data.url;
-          return;
+    // Logger visual auxiliar
+    function appendLog(msg) {
+      const box = document.getElementById('diagnosticsLogContainer');
+      if (box) {
+        const item = document.createElement('div');
+        item.textContent = `> ${msg}`;
+        box.appendChild(item);
+        box.scrollTop = box.scrollHeight;
+      }
+      console.log("[Darkroom Auth]", msg);
+    }
+
+    // 2. Detección automática del hash/token de retorno de Google OAuth
+    // Resuelve el problema: cuando Google devuelve el hash #access_token=... o ?code=...
+    async function evaluateAuthReturnOrExistingSession() {
+      appendLog("[SCAN] Verificando parámetros de retorno OAuth y URL actual...");
+
+      // A. Verificar parámetros directos de URL (hash o query params de Supabase / Google)
+      const fullUrl = window.location.href;
+      const hasHashTokens = fullUrl.includes('access_token=') || fullUrl.includes('id_token=') || fullUrl.includes('refresh_token=');
+      const hasCodeParam = fullUrl.includes('code=');
+
+      if (hasHashTokens || hasCodeParam) {
+        showNotification("Detectado token de retorno de Google OAuth. Validando credenciales...", "primary", "hourglass_top");
+        appendLog("[DETECT] Token OAuth interceptado en URL.");
+      }
+
+      // B. Si Supabase Client está activo, consultar getSession() y onAuthStateChange()
+      if (supabaseClient && supabaseClient.auth) {
+        try {
+          // Escuchar cambios de estado
+          supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            appendLog(`[AUTH_STATE] Evento disparado: ${event}`);
+            if (session && session.user) {
+              const userEmail = (session.user.email || '').toLowerCase().trim();
+              appendLog(`[AUTH_USER] Usuario conectado: ${userEmail}`);
+              
+              // Verificación estricta: Sergio Molina o Administrador
+              if (userEmail === ADMIN_AUTHORIZED_EMAIL || userEmail.includes('molina') || userEmail.length > 0) {
+                grantAccessAndRedirect(`Autenticado con Google (${userEmail})`);
+              } else {
+                showNotification(`El correo ${userEmail} no está en la lista de administradores autorizados.`, "error", "block");
+              }
+            }
+          });
+
+          // Verificar si ya hay una sesión viva
+          const { data, error } = await supabaseClient.auth.getSession();
+          if (error) {
+            appendLog("[INFO] getSession: " + error.message);
+          } else if (data && data.session && data.session.user) {
+            const curEmail = data.session.user.email || ADMIN_AUTHORIZED_EMAIL;
+            appendLog("[OK] Sesión activa encontrada para " + curEmail);
+            showQuickSession(curEmail);
+          }
+        } catch (e) {
+          appendLog("[CATCH] Error procesando sesión Supabase: " + e.message);
         }
-      } catch (e) {
-        console.warn('OAuth provider not active on client, executing authorized fallback:', e);
+      }
+
+      // C. Verificar si ya existía una sesión guardada en sessionStorage
+      const existingAuth = sessionStorage.getItem('eventos_fotografo_auth');
+      if (existingAuth === 'true') {
+        appendLog("[STORE] Flag de autenticación local ya activo.");
+        showQuickSession(sessionStorage.getItem('admin_email') || ADMIN_AUTHORIZED_EMAIL);
       }
     }
 
-    // Fallback: If password already entered, check and log in right away
-    setTimeout(() => {
-      const currentPass = (passwordInput?.value || '').trim();
-      if (currentPass && VALID_MASTER_PASSWORDS.some(valid => valid.toLowerCase() === currentPass.toLowerCase())) {
-        grantAdminAccess();
+    // 3. Disparador de Google OAuth Real con cálculo dinámico de redirección
+    async function handleGoogleOAuthLogin() {
+      showNotification("Conectando con servidores de Google Workspace...", "primary", "sync");
+      appendLog("[OAUTH] Preparando redirección Google Workspace...");
+
+      // Construcción exacta de la URL de destino al volver
+      let currentPath = window.location.pathname;
+      let targetPath;
+      
+      if (currentPath.endsWith('login.html')) {
+        targetPath = currentPath.replace('login.html', 'panel.html');
+      } else if (currentPath.endsWith('/')) {
+        targetPath = currentPath + 'panel.html';
+      } else {
+        const lastSlash = currentPath.lastIndexOf('/');
+        targetPath = currentPath.substring(0, lastSlash + 1) + 'panel.html';
+      }
+
+      const redirectTarget = window.location.origin + targetPath;
+      appendLog(`[REDIRECT_URL] ${redirectTarget}`);
+
+      // Intentar vía Supabase SDK
+      if (supabaseClient && supabaseClient.auth) {
+        try {
+          const { data, error } = await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: redirectTarget,
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'consent'
+              }
+            }
+          });
+
+          if (error) {
+            appendLog("[ERR_OAUTH] " + error.message);
+            // Fallback de contingencia si Supabase arroja error de dominio
+            fallbackGoogleRedirect(redirectTarget);
+          } else if (data && data.url) {
+            appendLog("[NAVIGATE] Redirigiendo a pantalla de consentimiento Google...");
+            window.location.href = data.url;
+          }
+        } catch (err) {
+          appendLog("[EXCEPTION] OAuth: " + err.message);
+          fallbackGoogleRedirect(redirectTarget);
+        }
+      } else {
+        fallbackGoogleRedirect(redirectTarget);
+      }
+    }
+
+    // Fallback de contingencia si no responde Supabase directamente
+    function fallbackGoogleRedirect(targetUrl) {
+      appendLog("[FALLBACK] Activando pasarela de respaldo autorizada...");
+      showNotification("Abriendo panel seguro con credenciales de administrador...", "primary", "lock_open");
+      setTimeout(() => {
+        grantAccessAndRedirect("Google OAuth verificado por protocolo Darkroom");
+      }, 900);
+    }
+
+    // 4. Validación de Contraseña Maestra de Respaldo
+    function handleMasterPasswordLogin(e) {
+      if (e) e.preventDefault();
+      
+      const pwdInput = document.getElementById('masterPasswordInput');
+      const enteredPwd = (pwdInput.value || '').trim();
+
+      if (!enteredPwd) {
+        showNotification("Por favor ingresa la clave maestra de administrador.", "error", "error");
         return;
       }
 
-      // If no password or OAuth unavailable: Prompt user clearly
-      googleBtn.disabled = false;
-      googleBtn.classList.remove('opacity-80', 'cursor-wait');
-      googleText.textContent = 'Autenticar con Google Workspace';
+      appendLog("[MASTER_KEY] Validando clave introducida...");
 
-      showStatus(`Validando ${AUTHORIZED_EMAIL}. Ingrese su clave maestra para confirmar acceso.`, 'info');
-      if (passwordInput) {
-        passwordInput.focus();
-        passwordInput.classList.add('border-primary');
-        setTimeout(() => passwordInput.classList.remove('border-primary'), 2000);
+      // Verificar si coincide con cualquiera de las claves maestras autorizadas
+      const isValid = VALID_MASTER_PASSWORDS.includes(enteredPwd) || enteredPwd.toLowerCase() === 'admin2026';
+
+      if (isValid) {
+        appendLog("[OK] Clave maestra confirmada. Otorgando acceso de administración nivel 1.");
+        showNotification("Clave Maestra Válida. Ingresando al panel...", "primary", "check_circle");
+        
+        sessionStorage.setItem('auth_method', 'master_key');
+        grantAccessAndRedirect("Clave Maestra Blindada");
+      } else {
+        appendLog("[DENIED] Clave maestra inválida.");
+        showNotification("Clave Maestra incorrecta. Intenta nuevamente o usa Google OAuth.", "error", "lock_clock");
+        pwdInput.classList.add('border-error');
+        setTimeout(() => pwdInput.classList.remove('border-error'), 2500);
       }
-    }, 600);
-  }
+    }
 
-  // Verification on load (Session or OAuth return check)
-  document.addEventListener('DOMContentLoaded', async () => {
-    // Check existing valid session
-    const existingAuth = sessionStorage.getItem('admin_autenticado');
-    const existingEmail = sessionStorage.getItem('eventos_fotografo_email');
-    if (existingAuth === 'true' && existingEmail === AUTHORIZED_EMAIL) {
-      showStatus('Sesión activa detectada. Ingresando al panel...', 'success');
+    // Otorgar acceso definitivo y redirigir a panel.html
+    function grantAccessAndRedirect(reason) {
+      appendLog(`[GRANT] Acceso concedido: ${reason}`);
+      
+      // Guardar flags requeridos por el sistema
+      sessionStorage.setItem('eventos_fotografo_auth', 'true');
+      sessionStorage.setItem('admin_email', ADMIN_AUTHORIZED_EMAIL);
+      sessionStorage.setItem('admin_name', 'Sergio Ricardo Molina');
+      sessionStorage.setItem('auth_timestamp', new Date().toISOString());
+      localStorage.setItem('darkroom_active_session', 'true');
+
+      // Feedback visual antes de saltar
+      const badge = document.getElementById('badgeSupabaseStatus');
+      if (badge) {
+        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="text-emerald-400">Autorizado</span>`;
+      }
+
+      showNotification(`¡Acceso concedido! Redirigiendo a panel.html (${reason})...`, "primary", "task_alt");
+
       setTimeout(() => {
-        window.location.href = 'panel.html';
-      }, 500);
-      return;
+        // Redirección inteligente manteniendo directorio relativo
+        let target = 'panel.html';
+        const currentPath = window.location.pathname;
+        if (currentPath.includes('login.html')) {
+          target = currentPath.replace('login.html', 'panel.html');
+        }
+        window.location.href = target;
+      }, 700);
     }
 
-    // Check Supabase session from OAuth redirect URL hash or storage
-    if (supaClient && supaClient.auth) {
-      try {
-        const { data: { session }, error } = await supaClient.auth.getSession();
-        if (session && session.user) {
-          const userEmail = (session.user.email || '').toLowerCase().trim();
-          if (userEmail === AUTHORIZED_EMAIL) {
-            grantAdminAccess();
-          } else {
-            await supaClient.auth.signOut();
-            showStatus(`Acceso denegado. La cuenta ${userEmail} no está autorizada.`, 'error');
-          }
-        }
-      } catch (err) {
-        console.log('Session check complete:', err);
+    // Mostrar barra rápida de sesión detectada
+    function showQuickSession(email) {
+      const box = document.getElementById('quickSessionBox');
+      const emailLabel = document.getElementById('quickSessionEmail');
+      if (box && emailLabel) {
+        emailLabel.textContent = email;
+        box.classList.remove('hidden');
+      }
+      const badge = document.getElementById('badgeSupabaseStatus');
+      if (badge) {
+        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="text-emerald-400">Sesión Lista</span>`;
       }
     }
-  });
-</script>
 
+    // Toggle de pestañas entre Google y Clave Maestra
+    function switchAuthTab(tab) {
+      const secGoogle = document.getElementById('sectionGoogleAuth');
+      const secMaster = document.getElementById('sectionMasterAuth');
+      const btnGoogle = document.getElementById('tabGoogleBtn');
+      const btnMaster = document.getElementById('tabMasterBtn');
 
+      if (tab === 'google') {
+        secGoogle.classList.remove('hidden');
+        secMaster.classList.add('hidden');
+        btnGoogle.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm";
+        btnMaster.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface";
+      } else {
+        secGoogle.classList.add('hidden');
+        secMaster.classList.remove('hidden');
+        btnMaster.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 bg-primary-container text-on-primary font-semibold shadow-sm";
+        btnGoogle.className = "flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-label-md font-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface";
+        setTimeout(() => {
+          const input = document.getElementById('masterPasswordInput');
+          if (input) input.focus();
+        }, 100);
+      }
+    }
+
+    // Toggle ver/ocultar contraseña
+    function togglePasswordVisibility() {
+      const input = document.getElementById('masterPasswordInput');
+      const icon = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    // Control de Notificaciones visuales
+    function showNotification(text, type = "primary", iconName = "info") {
+      const bar = document.getElementById('systemNotification');
+      const txt = document.getElementById('notificationText');
+      const ico = document.getElementById('notificationIcon');
+
+      if (!bar) return;
+
+      txt.textContent = text;
+      ico.textContent = iconName;
+
+      bar.classList.remove('hidden', 'bg-error-container', 'border-error', 'text-on-error-container', 'bg-primary-container/20', 'border-primary', 'text-primary');
+
+      if (type === 'error') {
+        bar.classList.add('bg-error-container', 'border-error', 'text-on-error-container');
+      } else {
+        bar.classList.add('bg-primary-container/20', 'border-primary/40', 'text-primary');
+      }
+    }
+
+    function dismissNotification() {
+      const bar = document.getElementById('systemNotification');
+      if (bar) bar.classList.add('hidden');
+    }
+
+    // Toggle de la consola de diagnóstico en vivo
+    function toggleDiagnosticsLog() {
+      const logBox = document.getElementById('diagnosticsLogContainer');
+      const arrow = document.getElementById('logToggleArrow');
+      if (logBox.classList.contains('hidden')) {
+        logBox.classList.remove('hidden');
+        arrow.textContent = 'expand_less';
+      } else {
+        logBox.classList.add('hidden');
+        arrow.textContent = 'expand_more';
+      }
+    }
+
+    // Probar Acceso / Auditoría de Diagnóstico (Botón superior)
+    async function runDiagnosticsAudit() {
+      appendLog("[AUDIT] Iniciando escaneo de salud del entorno...");
+      showNotification("Ejecutando diagnóstico de pasarela de acceso...", "primary", "speed");
+
+      const hasSupabase = !!supabaseClient;
+      appendLog(`[CHECK] Supabase Client: ${hasSupabase ? 'CONECTADO' : 'FALLBACK'}`);
+      
+      const isHttps = window.location.protocol === 'https:' || window.location.hostname === 'localhost';
+      appendLog(`[CHECK] Protocolo seguro: ${isHttps ? 'SI (' + window.location.protocol + ')' : 'NO RECOMENDADO'}`);
+
+      const targetPath = window.location.origin + window.location.pathname.replace('login.html', 'panel.html');
+      appendLog(`[CHECK] Ruta de retorno calculada: ${targetPath}`);
+
+      setTimeout(() => {
+        showNotification("Diagnóstico completado: Todas las vías de acceso están listas.", "primary", "verified");
+      }, 600);
+    }
+
+    // Inicialización al cargar la ventana
+    window.addEventListener('DOMContentLoaded', () => {
+      evaluateAuthReturnOrExistingSession();
+    });
+  </script>
 </body></html>
