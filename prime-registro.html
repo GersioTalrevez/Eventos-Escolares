@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Primer Registro &amp; Autorización OAuth | Darkroom Console</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#8b9199",
+            "on-tertiary": "#4c2700",
+            "surface-container-high": "#2a2a2a",
+            "surface-tint": "#91cdfe",
+            "secondary-fixed": "#cae6ff",
+            "on-secondary": "#00344f",
+            "on-tertiary-container": "#ffb36e",
+            "inverse-surface": "#e5e2e1",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#001e30",
+            "on-primary-container": "#8ec9fa",
+            "surface": "#131313",
+            "secondary-container": "#124d70",
+            "on-primary-fixed-variant": "#004b72",
+            "tertiary-fixed-dim": "#ffb878",
+            "on-surface-variant": "#c0c7cf",
+            "surface-bright": "#3a3939",
+            "primary": "#91cdfe",
+            "outline-variant": "#41474e",
+            "inverse-primary": "#1e638f",
+            "on-secondary-fixed-variant": "#0e4b6d",
+            "on-tertiary-fixed": "#2e1500",
+            "surface-container-lowest": "#0e0e0e",
+            "on-surface": "#e5e2e1",
+            "primary-fixed": "#cbe6ff",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "surface-dim": "#131313",
+            "primary-container": "#005580",
+            "on-primary": "#003350",
+            "background": "#131313",
+            "on-background": "#e5e2e1",
+            "surface-container-low": "#1c1b1b",
+            "on-primary-fixed": "#001e30",
+            "secondary-fixed-dim": "#9bccf4",
+            "inverse-on-surface": "#313030",
+            "surface-variant": "#353534",
+            "on-secondary-container": "#8dbee6",
+            "tertiary-fixed": "#ffdcc1",
+            "error-container": "#93000a",
+            "primary-fixed-dim": "#91cdfe",
+            "tertiary-container": "#794303",
+            "on-error": "#690005",
+            "secondary": "#9bccf4",
+            "surface-container": "#201f1f",
+            "surface-container-highest": "#353534",
+            "tertiary": "#ffb878",
+            "on-error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-max": "1440px",
+            "space-lg": "1.5rem",
+            "space-2xs": "0.25rem",
+            "gutter-tablet": "1.5rem",
+            "space-3xl": "4.5rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "space-4xl": "6rem",
+            "space-2xl": "3rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Raleway"],
+            "body-md": ["Manrope"],
+            "headline-lg-mobile": ["Raleway"],
+            "display-hero-mobile": ["Raleway"],
+            "body-lg": ["Manrope"],
+            "headline-lg": ["Raleway"],
+            "headline-md": ["Raleway"],
+            "label-md": ["Manrope"],
+            "label-sm": ["Manrope"],
+            "headline-sm": ["Raleway"]
+          },
+          "fontSize": {
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Identification & Sub-Navigation Bar -->
+<div class="w-full bg-surface-container-lowest border-b border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-gutter-desktop py-space-xs flex justify-between items-center text-label-sm font-label-sm tracking-wider uppercase text-outline">
+<div class="flex items-center gap-space-sm">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-on-surface">SERGIO RICARDO MOLINA · Fotografía Profesional</span>
+<span class="text-outline/40">|</span>
+<span class="text-primary font-medium">Panel Maestro Atelier</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<a class="flex items-center gap-1 hover:text-primary transition-colors duration-150" href="index.html">
+<span class="material-symbols-outlined text-[14px]">arrow_back</span>
+<span>Volver al Portal</span>
+</a>
+<a class="flex items-center gap-1 hover:text-primary transition-colors duration-150" href="login.html">
+<span class="material-symbols-outlined text-[14px]">login</span>
+<span>Ir a Login</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Shared Component: TopNavBar -->
+<header class="bg-surface dark:bg-surface shadow-sm border-b border-outline-variant dark:border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-space-gutter-desktop max-w-container-max mx-auto h-16">
+<!-- Brand Logo / Product Name -->
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-[20px]">cc_attribution</span>
+</div>
+<a class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface tracking-wide hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+          Darkroom Console
+        </a>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-8 text-label-md font-label-md">
+<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-medium active:scale-[0.98] transition-transform duration-120" href="#oauth-step">
+          OAuth
+        </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#supabase-step">
+          Supabase
+        </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#permisos-step">
+          Permisos
+        </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-[0.98]" href="#diagnostico-section">
+          Diagnóstico
+        </a>
+</nav>
+<!-- Trailing Primary Action & Icon Actions -->
+<div class="flex items-center gap-space-md">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors active:scale-[0.98]" id="btn-refresh" title="Sincronizar estado">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors active:scale-[0.98]" id="btn-admin-panel" title="Configuración de Administrador">
+<span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+</button>
+<a class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-container border border-primary/40 text-on-surface font-label-md text-label-md hover:bg-primary-container/80 transition-colors active:scale-[0.98]" href="login.html">
+          Probar Acceso
+        </a>
+<!-- Sergio Avatar Profile -->
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant">
+<div class="w-8 h-8 rounded-full border border-primary/40 overflow-hidden flex items-center justify-center bg-surface-container-high text-primary font-bold text-xs" title="Sergio Ricardo Molina Avatar">
+            SR
+          </div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Work Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-desktop py-space-2xl space-y-space-3xl">
+<!-- Top Badge & Hero Statement -->
+<section class="space-y-space-md border-b border-outline-variant/30 pb-space-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-primary/30 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>CONFIGURACIÓN INICIAL &amp; AUTORIZACIÓN OAUTH 2.0</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+<div class="lg:col-span-8 space-y-space-sm">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">
+            Primer Registro y Permisos de Google Workspace
+          </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-3xl">
+            Este asistente de precisión vincula directamente tu identidad verificada de Google con Supabase Auth, aprovisionando los alcances criptográficos de lectura de metadatos y catálogos de archivo para el panel de control editorial.
+          </p>
+</div>
+<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-center gap-2 text-right">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container border border-outline-variant/40">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="text-label-md font-label-md text-on-surface">molinaoksergio@gmail.com</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Identidad de Propietario Exclusivo</span>
+</div>
+</div>
+</section>
+<!-- 3-Step Wizard Layout (Bento Grid Style) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Paso 1: Cuenta y Consentimiento -->
+<div class="lg:col-span-4 flex flex-col justify-between bg-surface-container-low rounded-xl border border-outline-variant/40 p-space-lg hover:border-primary/50 transition-all duration-200" id="oauth-step">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm px-2.5 py-1 rounded bg-surface-container border border-outline-variant text-outline">
+              PASO 01
+            </span>
+<span class="flex items-center gap-1 text-label-sm font-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px]">cloud_sync</span>
+              Google Cloud Ready
+            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">
+            Cuenta y Pantalla de Consentimiento
+          </h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Verificación de los identificadores de aplicación registrados en Google Cloud Console para la cuenta curatorial principal.
+          </p>
+<!-- Verified Account Capsule -->
+<div class="p-3 bg-surface rounded-lg border border-outline-variant/30 space-y-2">
+<div class="flex items-center justify-between text-label-sm">
+<span class="text-outline">CUENTA ASIGNADA</span>
+<span class="text-primary font-semibold">VERIFICADA</span>
+</div>
+<div class="font-body-md text-on-surface text-[13px] break-all font-mono">
+              molinaoksergio@gmail.com
+            </div>
+</div>
+<!-- Required Scopes List -->
+<div class="space-y-2 pt-2">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">
+              Scopes Solicitados (Alcance 2.0)
+            </span>
+<ul class="space-y-1.5 text-body-md text-[13px]">
+<li class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant/20">
+<span class="font-mono text-on-surface">userinfo.email</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</li>
+<li class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant/20">
+<span class="font-mono text-on-surface">userinfo.profile</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</li>
+<li class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant/20">
+<span class="font-mono text-on-surface">drive.readonly</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-label-sm text-outline">
+<span>Google API Console</span>
+<span class="text-primary flex items-center gap-0.5">Sincronizado <span class="material-symbols-outlined text-[14px]">done</span></span>
+</div>
+</div>
+<!-- Paso 2: Vinculación Supabase Auth -->
+<div class="lg:col-span-4 flex flex-col justify-between bg-surface-container-low rounded-xl border border-outline-variant/40 p-space-lg hover:border-primary/50 transition-all duration-200" id="supabase-step">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm px-2.5 py-1 rounded bg-surface-container border border-outline-variant text-outline">
+              PASO 02
+            </span>
+<span class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[16px]">database</span>
+              Supabase Instance
+            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">
+            Vinculación Supabase Auth
+          </h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Configuración de credenciales seguras del proveedor externo OAuth en la bóveda criptográfica del backend.
+          </p>
+<!-- Key Value Parameters -->
+<div class="space-y-2.5 pt-1">
+<div class="space-y-1">
+<label class="text-label-sm font-label-sm text-outline">CLIENT ID (GOOGLE)</label>
+<div class="p-2 bg-surface rounded-lg border border-outline-variant/30 text-[12px] font-mono text-on-surface truncate">
+                8927140921-atelier-photo-console.apps.googleusercontent.com
+              </div>
+</div>
+<div class="space-y-1">
+<label class="text-label-sm font-label-sm text-outline">CLIENT SECRET</label>
+<div class="p-2 bg-surface rounded-lg border border-outline-variant/30 text-[12px] font-mono text-outline flex items-center justify-between">
+<span>••••••••••••••••••••••••••••••••</span>
+<span class="text-primary text-label-sm font-label-sm cursor-pointer hover:underline">Oculto</span>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-label-sm font-label-sm text-outline">REDIRECT URL OFICIAL (SUPABASE)</label>
+<div class="p-2 bg-surface rounded-lg border border-outline-variant/30 text-[12px] font-mono text-on-surface truncate flex items-center justify-between">
+<span class="truncate">https://darkroom-atelier.supabase.co/auth/v1/callback</span>
+<button class="text-primary hover:text-on-surface ml-1" title="Copiar URL">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-label-sm text-outline">
+<span>Auth Callback Pipeline</span>
+<span class="text-secondary font-medium">Validado 200 OK</span>
+</div>
+</div>
+<!-- Paso 3: Concesión en Vivo -->
+<div class="lg:col-span-4 flex flex-col justify-between bg-surface-container rounded-xl border-2 border-primary/40 p-space-lg shadow-lg relative overflow-hidden" id="permisos-step">
+<div class="absolute -right-12 -top-12 w-36 h-36 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm px-2.5 py-1 rounded bg-primary-container text-on-primary-container border border-primary/50">
+              PASO 03 · ACCIÓN FINAL
+            </span>
+<span class="flex items-center gap-1 text-label-sm font-label-sm text-primary">
+<span class="material-symbols-outlined text-[16px]">security</span>
+              Handshake
+            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">
+            Concesión de Permisos en Vivo
+          </h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Inicia el flujo de consentimiento seguro. Al autorizar, Google emitirá los tokens de sesión de retorno para permitir el ingreso ordinario desde <code class="text-primary">login.html</code>.
+          </p>
+<!-- Interactive Authorization Trigger Box -->
+<div class="pt-space-sm space-y-3">
+<button class="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-lg bg-surface hover:bg-surface-container-high border border-primary/60 hover:border-primary text-on-surface font-label-md text-label-md tracking-wider transition-all duration-150 active:scale-[0.98] shadow-md group" id="btn-oauth-connect">
+<!-- Google Vector Icon -->
+<svg class="w-5 h-5 flex-shrink-0" viewbox="0 0 24 24">
+<path d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z" fill="#4285F4"></path>
+<path d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z" fill="#34A853"></path>
+<path d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z" fill="#FBBC05"></path>
+<path d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z" fill="#EA4335"></path>
+</svg>
+<span class="group-hover:text-primary transition-colors">Conectar y Otorgar Permisos a Google</span>
+</button>
+<!-- State feedback banner -->
+<div class="p-3 rounded bg-surface-container-low border border-outline-variant/30 flex items-start gap-2.5" id="connection-status-box">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">info</span>
+<div class="text-body-md text-[12px] text-on-surface-variant">
+<span class="text-on-surface font-semibold block">Listo para iniciar autorización:</span>
+                Al pulsar, se abrirá la ventana de confirmación de Google Identity Services.
+              </div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-label-sm text-outline">
+<span>Protocolo Seguro</span>
+<span class="text-primary font-mono">PKCE + SHA-256</span>
+</div>
+</div>
+</section>
+<!-- Diagnostic & Real-Time Status Panel -->
+<section class="bg-surface-container-low rounded-xl border border-outline-variant/40 p-space-xl space-y-space-lg" id="diagnostico-section">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md border-b border-outline-variant/20 pb-space-md">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">terminal</span>
+            Panel de Diagnóstico y Estado en Tiempo Real
+          </h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Monitoreo en vivo de tokens, handshake de callback y validación de sesión de administrador.
+          </p>
+</div>
+<!-- Session Status Badge -->
+<div class="flex items-center gap-3 bg-surface p-2.5 px-4 rounded-lg border border-outline-variant/30">
+<div class="flex flex-col text-right">
+<span class="text-label-sm font-label-sm text-outline uppercase">ESTADO DE SESIÓN</span>
+<span class="text-headline-sm font-headline-sm text-tertiary" id="session-status-text">Pendiente de Concesión</span>
+</div>
+<span class="w-3.5 h-3.5 rounded-full bg-tertiary animate-ping" id="session-status-icon"></span>
+</div>
+</div>
+<!-- Diagnostic Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-4 bg-surface rounded-lg border border-outline-variant/20 space-y-1">
+<span class="text-label-sm font-label-sm text-outline">TOKEN DE ACCESO (OAUTH)</span>
+<p class="font-mono text-[13px] text-on-surface" id="token-status">No emitido (Esperando Auth)</p>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden mt-2">
+<div class="h-full bg-outline w-1/4" id="token-bar"></div>
+</div>
+</div>
+<div class="p-4 bg-surface rounded-lg border border-outline-variant/20 space-y-1">
+<span class="text-label-sm font-label-sm text-outline">ALCANCE DRIVE FOTOTECA</span>
+<p class="font-mono text-[13px] text-on-surface" id="drive-scope-status">Lectura de Colecciones Lista</p>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden mt-2">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+</div>
+<div class="p-4 bg-surface rounded-lg border border-outline-variant/20 space-y-1">
+<span class="text-label-sm font-label-sm text-outline">AUDITORÍA DE CUENTA</span>
+<p class="font-mono text-[13px] text-primary truncate">molinaoksergio@gmail.com</p>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden mt-2">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+<!-- Direct Access and Emergency Bypass Dual Action -->
+<div class="pt-space-md border-t border-outline-variant/20 grid grid-cols-1 md:grid-cols-12 gap-space-lg items-center">
+<!-- Action 1: Direct Entry Button (Primary) -->
+<div class="md:col-span-7 flex flex-col sm:flex-row items-start sm:items-center gap-space-md">
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-primary-container hover:bg-primary-container/80 border border-primary/40 text-on-surface font-label-md text-label-md tracking-wider uppercase transition-all duration-150 active:scale-[0.98]" href="login.html" id="btn-probar-ingreso">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Probar Ingreso y Abrir Panel</span>
+</a>
+<span class="text-body-md text-outline text-[13px]">
+            Habilitado automáticamente tras completar la autorización Google.
+          </span>
+</div>
+<!-- Action 2: Emergency Unlock Modal Trigger -->
+<div class="md:col-span-5 flex items-center justify-end">
+<button class="inline-flex items-center gap-2 text-label-sm font-label-sm text-outline hover:text-error transition-colors p-2 rounded hover:bg-surface-container" id="btn-open-emergency">
+<span class="material-symbols-outlined text-[16px]">lock_reset</span>
+<span>Desbloqueo de Emergencia con Clave Maestra</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Emergency Key Unlock Drawer / Dialog (Hidden by Default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" id="emergency-modal">
+<div class="bg-surface-container-high border border-outline-variant max-w-lg w-full rounded-xl p-space-xl shadow-2xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-headline-sm font-headline-sm">Clave Maestra de Administrador</span>
+</div>
+<button class="text-outline hover:text-on-surface" id="btn-close-emergency">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="text-body-md text-on-surface-variant">
+          Usa este bypass para Sergio Ricardo Molina si el proveedor de Google OAuth reporta latencia o necesitas regenerar el token manualmente desde la CLI.
+        </p>
+<div class="space-y-2">
+<label class="text-label-sm font-label-sm text-outline">LLAVE SECRETA DE CONTINGENCIA</label>
+<input class="w-full bg-surface border border-outline-variant focus:border-primary rounded-lg px-3 py-2.5 text-on-surface font-mono text-[13px] outline-none" id="emergency-key-input" placeholder="ATELIER-ROOT-KEY-••••••••" type="password"/>
+</div>
+<div class="flex justify-end gap-3 pt-2">
+<button class="px-4 py-2 text-label-md font-label-md text-outline hover:text-on-surface" id="btn-cancel-emergency">
+            Cancelar
+          </button>
+<button class="px-5 py-2 text-label-md font-label-md bg-primary-container text-on-surface border border-primary/40 rounded-lg hover:bg-primary-container/90 transition-all" id="btn-apply-emergency">
+            Desbloquear Acceso
+          </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-gutter-desktop max-w-container-max mx-auto py-space-md text-body-md font-body-md gap-4">
+<!-- Brand & Copyright -->
+<div class="text-label-md font-label-md text-on-surface-variant dark:text-on-surface-variant text-center md:text-left">
+        © 2024 Darkroom Archive Engine · Sergio Ricardo Molina (molinaoksergio@gmail.com)
+      </div>
+<!-- Links from Shared Components JSON -->
+<div class="flex flex-wrap items-center justify-center gap-6 text-label-sm font-label-sm text-outline dark:text-outline">
+<a class="hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#">
+          Términos de OAuth
+        </a>
+<a class="hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#">
+          Seguridad Supabase
+        </a>
+<a class="hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#">
+          Tokens de Drive
+        </a>
+<a class="hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 active:scale-[0.98]" href="#">
+          Estado de API
+        </a>
+</div>
+</div>
+</footer>
+<!-- Micro-Interactions Script for Mocking Google OAuth Connection Flow -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnOAuth = document.getElementById('btn-oauth-connect');
+      const statusBox = document.getElementById('connection-status-box');
+      const sessionStatusText = document.getElementById('session-status-text');
+      const sessionStatusIcon = document.getElementById('session-status-icon');
+      const tokenStatus = document.getElementById('token-status');
+      const tokenBar = document.getElementById('token-bar');
+      const btnRefresh = document.getElementById('btn-refresh');
+
+      // Emergency modal controls
+      const emergencyModal = document.getElementById('emergency-modal');
+      const btnOpenEmergency = document.getElementById('btn-open-emergency');
+      const btnCloseEmergency = document.getElementById('btn-close-emergency');
+      const btnCancelEmergency = document.getElementById('btn-cancel-emergency');
+      const btnApplyEmergency = document.getElementById('btn-apply-emergency');
+
+      btnOAuth.addEventListener('click', () => {
+        // UI feedback simulation
+        btnOAuth.disabled = true;
+        btnOAuth.classList.add('opacity-75', 'cursor-not-allowed');
+        btnOAuth.innerHTML = `
+          <span class="material-symbols-outlined text-primary animate-spin text-[20px]">sync</span>
+          <span>Contactando con Google Accounts...</span>
+        `;
+
+        setTimeout(() => {
+          btnOAuth.innerHTML = `
+            <span class="material-symbols-outlined text-primary text-[20px]">task_alt</span>
+            <span class="text-primary font-bold">Permisos Otorgados con Éxito</span>
+          `;
+          btnOAuth.classList.remove('opacity-75', 'cursor-not-allowed');
+          btnOAuth.classList.add('border-primary', 'bg-surface-container-high');
+
+          statusBox.innerHTML = `
+            <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+            <div class="text-body-md text-[12px] text-on-surface">
+              <span class="text-primary font-bold block">Autorización Exitosa:</span>
+              Tokens de sesión registrados para <strong class="text-primary">molinaoksergio@gmail.com</strong>. Puedes ingresar directamente desde login.html.
+            </div>
+          `;
+
+          // Update Diagnostic Panel in real-time
+          sessionStatusText.textContent = "Autorizado & Listo";
+          sessionStatusText.className = "text-headline-sm font-headline-sm text-primary";
+          sessionStatusIcon.className = "w-3.5 h-3.5 rounded-full bg-primary";
+
+          tokenStatus.textContent = "Bearer ya29.a0AfH6SM... [Válido por 3600s]";
+          tokenStatus.className = "font-mono text-[13px] text-primary truncate";
+          tokenBar.className = "h-full bg-primary w-full transition-all duration-500";
+        }, 1400);
+      });
+
+      btnRefresh.addEventListener('click', () => {
+        btnRefresh.classList.add('rotate-180');
+        setTimeout(() => btnRefresh.classList.remove('rotate-180'), 400);
+      });
+
+      // Emergency modal triggers
+      btnOpenEmergency.addEventListener('click', () => emergencyModal.classList.remove('hidden'));
+      btnCloseEmergency.addEventListener('click', () => emergencyModal.classList.add('hidden'));
+      btnCancelEmergency.addEventListener('click', () => emergencyModal.classList.add('hidden'));
+      
+      btnApplyEmergency.addEventListener('click', () => {
+        emergencyModal.classList.add('hidden');
+        sessionStatusText.textContent = "Desbloqueado (Root Bypass)";
+        sessionStatusText.className = "text-headline-sm font-headline-sm text-primary";
+        sessionStatusIcon.className = "w-3.5 h-3.5 rounded-full bg-primary";
+        tokenStatus.textContent = "Master-Key Auth Override [Activo]";
+      });
+    });
+  </script>
+</body></html>
