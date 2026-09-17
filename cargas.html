@@ -1,857 +1,771 @@
-<!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Métricas y Rendimiento | Sergio Ricardo Molina</title>
-<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Carga de Galerías y Enlaces | Sergio Ricardo Molina</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "surface-dark": "#121212",
-            "panel-card": "#181818",
-            "border-subtle": "#222222",
-            "accent-blue": "#38bdf8",
-            "accent-cyan": "#0088cc",
-            "accent-gold": "#facc15",
-            "accent-purple": "#a855f7",
-            "accent-emerald": "#4ade80"
-          },
-          fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-            display: ['Raleway', 'sans-serif'],
-            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
 <style>
-    * { box-sizing: border-box; }
-    body {
-      background-color: #111111;
-      color: #e5e2e1;
-      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      min-height: 100vh;
-    }
-    .custom-scroll::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    .custom-scroll::-webkit-scrollbar-track {
-      background: #141414;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: #2a2a2a;
-      border-radius: 4px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb:hover {
-      background: #38bdf8;
-    }
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    .spinning {
-      animation: spin-slow 0.85s linear infinite;
-    }
-  </style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #111111;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* BARRA LATERAL IZQUIERDA */
+aside {
+  width: 250px;
+  background: #161616;
+  border-right: 1.5px solid #222222;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px;
+  flex-shrink: 0;
+  min-height: 100vh;
+}
+.marca-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #222222;
+  margin-bottom: 20px;
+}
+.marca-panel .tag-estado {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+}
+.marca-panel h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+.marca-panel span.sub {
+  font-size: 0.75rem;
+  color: #777777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.item-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #aaaaaa;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.item-menu:hover {
+  background: #202020;
+  color: #ffffff;
+  border-color: #333333;
+}
+.item-menu.activo {
+  background: #004466;
+  color: #ffffff;
+  border-color: #0088cc;
+}
+.item-menu .material-symbols-outlined {
+  font-size: 20px;
+}
+.footer-aside {
+  padding-top: 20px;
+  border-top: 1px solid #222222;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-enlace-publico {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s ease;
+}
+.btn-enlace-publico:hover {
+  color: #38bdf8;
+}
+
+/* ÁREA DE TRABAJO PRINCIPAL */
+main {
+  flex: 1;
+  padding: 30px 36px;
+  max-width: 1200px;
+  overflow-y: auto;
+}
+.encabezado-seccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.encabezado-seccion h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.encabezado-seccion p {
+  color: #888888;
+  font-size: 0.88rem;
+}
+
+/* CONTENEDOR DE CARGA EN DOS COLUMNAS */
+.layout-carga {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .layout-carga { grid-template-columns: 1fr; }
+}
+
+.tarjeta-formulario {
+  background: #181818;
+  border: 1px solid #282828;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.tarjeta-formulario h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #242424;
+  padding-bottom: 12px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.campo-grupo label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cccccc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.campo-grupo input[type="text"],
+.campo-grupo input[type="password"] {
+  background: #121212;
+  border: 1.5px solid #2c2c2c;
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: #ffffff;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.campo-grupo input:focus {
+  border-color: #0088cc;
+}
+.campo-grupo .ayuda {
+  font-size: 0.74rem;
+  color: #777777;
+}
+
+/* OPCIÓN PRIVADA */
+.bloque-checkbox-privada {
+  background: #131313;
+  border: 1px solid #262626;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.fila-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.fila-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0088cc;
+  cursor: pointer;
+}
+.fila-check span {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* PREVISUALIZACIÓN LATERAL */
+.tarjeta-preview {
+  background: #181818;
+  border: 1px solid #282828;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.tarjeta-preview h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #aaaaaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.preview-card-box {
+  background: #141414;
+  border: 1.5px solid #005580;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.preview-portada-box {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555555;
+  overflow: hidden;
+  position: relative;
+}
+.preview-portada-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.preview-portada-box .badge-preview {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 85, 128, 0.9);
+  color: #fff;
+}
+.preview-info-box {
+  padding: 14px 16px;
+}
+.preview-info-box h4 {
+  font-size: 1.05rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.preview-info-box p {
+  font-size: 0.76rem;
+  color: #888888;
+  font-family: monospace;
+}
+
+/* BOTONES */
+.btn-guardar {
+  background: #005580;
+  border: 1px solid #0077b3;
+  color: #ffffff;
+  padding: 13px 20px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 85, 128, 0.4);
+  width: 100%;
+}
+.btn-guardar:hover {
+  background: #0077b3;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.aviso-estado {
+  display: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.aviso-exito {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid #22c55e;
+  color: #86efac;
+}
+.aviso-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+}
+
+@media (max-width: 800px) {
+  body { flex-direction: column; }
+  aside { width: 100%; min-height: auto; border-right: none; border-bottom: 1.5px solid #222222; }
+  main { padding: 20px 16px; }
+}
+</style>
 </head>
-<body class="flex flex-col md:flex-row min-h-screen text-slate-200 antialiased selection:bg-sky-500/20 selection:text-sky-300 pb-20 md:pb-0">
-<!-- ==================== SIDEBAR (DESKTOP) ==================== -->
-<aside class="hidden md:flex w-64 flex-col justify-between border-r border-[#222222] bg-[#141414] p-5 shrink-0 min-h-screen fixed left-0 top-0 bottom-0 z-30">
-<div class="flex flex-col">
-<!-- Marca Atelier -->
-<div class="pb-5 mb-5 border-b border-[#222222]">
-<div class="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase font-bold text-sky-400 mb-1.5">
-<span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span> SISTEMA ACTIVO
-        </div>
-<h2 class="font-display font-bold text-sm tracking-wide text-white leading-tight">
-          SERGIO RICARDO MOLINA
-        </h2>
-<p class="text-[11px] text-neutral-400 tracking-wider font-light mt-0.5">Fotografía Profesional</p>
-<span class="inline-block mt-2 text-[10px] font-semibold text-neutral-500 uppercase tracking-widest bg-[#1c1c1c] px-2 py-0.5 rounded border border-[#262626]">
-          PANEL DE CONTROL
-        </span>
+<body>
+<!-- BARRA LATERAL IZQUIERDA -->
+<aside>
+<div>
+<div class="marca-panel">
+<div class="tag-estado">
+<span style="font-size: 8px;" class="">●</span> panel control</div>
+<h2 class="">SERGIO RICARDO MOLINA</h2>
+
 </div>
-<!-- Menú Unificado -->
-<nav class="flex flex-col gap-1.5">
-<!-- 1. Galerías -->
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-white hover:bg-[#1f1f1f] border border-transparent transition-all" href="panel.html">
-<span class="material-symbols-outlined text-[19px]">photo_library</span>
-<span>Galerías</span>
+<!-- MENÚ DE NAVEGACIÓN LATERAL DIRECTO -->
+<nav class="menu-lateral">
+<!-- 1. Galerías (panel.html) -->
+<a class="item-menu" href="panel.html">
+<span class="material-symbols-outlined">photo_library</span>
+<span class="">Galerías</span>
 </a>
-<!-- 2. Cargas y Enlaces -->
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-white hover:bg-[#1f1f1f] border border-transparent transition-all" href="cargas.html">
-<span class="material-symbols-outlined text-[19px]">cloud_upload</span>
-<span>Cargas y Enlaces</span>
+<!-- 2. Cargas y Enlaces (cargas.html - Página Actual) -->
+<a class="item-menu activo" href="cargas.html">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span class="">Cargas y Enlaces</span>
 </a>
-<!-- 3. Tarifas y Precios -->
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-white hover:bg-[#1f1f1f] border border-transparent transition-all" href="precios.html">
-<span class="material-symbols-outlined text-[19px]">payments</span>
-<span>Tarifas y Precios</span>
+<!-- 3. Tarifas y Precios (precios.html) -->
+<a class="item-menu" href="precios.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="">Tarifas y Precios</span>
 </a>
-<!-- 4. Métricas y Visitas (Activo) -->
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-white bg-[#004466] border border-[#0088cc] shadow-sm shadow-sky-950/50" href="metricas.html">
-<span class="material-symbols-outlined text-[19px] text-[#38bdf8]">analytics</span>
-<span>Métricas y Visitas</span>
+<div style="border-top: 1px solid #222222; margin: 6px 0; padding-top: 6px;"></div>
+<a class="item-menu" href="eventos.html" style="font-size: 0.82rem; color: #888888;">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+<span class="">Volver a Eventos</span>
 </a>
-<!-- Accesos Directos de Retorno -->
-<div class="mt-4 pt-4 border-t border-[#222222] flex flex-col gap-1">
-<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[11px] font-medium text-neutral-400 hover:text-sky-400 hover:bg-[#1c1c1c] transition-all" href="eventos.html">
-<span class="material-symbols-outlined text-[16px]">arrow_back</span>
-<span>Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[11px] font-medium text-neutral-400 hover:text-sky-400 hover:bg-[#1c1c1c] transition-all" href="index.html">
-<span class="material-symbols-outlined text-[16px]">open_in_new</span>
-<span>Ver Portafolio</span>
-</a>
+<a class="item-menu" href="index.html" style="font-size: 0.82rem; color: rgb(136, 136, 136);">
+<span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
+<span class="">Ver Portafolio</span>
+</a></nav>
 </div>
-</nav>
-</div>
-<!-- Footer Sidebar -->
-<div class="pt-4 border-t border-[#222222] flex flex-col gap-1 text-[11px] text-neutral-500 font-mono">
-<div class="flex items-center justify-between">
-<span>SUPABASE ENGINE</span>
-<span class="text-sky-400 font-semibold">ONLINE</span>
-</div>
-<span class="text-[10px] text-neutral-600">Atelier Darkroom · v3.2 PRO</span>
-</div>
+<!-- ENLACES DE RETORNO -->
+<div class="footer-aside"><div style="font-size: 0.7rem; color: rgb(85, 85, 85); margin-top: 2px;" class="">
+      ESTUDIO FOTOGRÁFICO &nbsp;•&nbsp; v2.6
+    </div></div>
 </aside>
-<!-- ==================== MOBILE HEADER & DRAWER ==================== -->
-<header class="md:hidden border-b border-[#222222] bg-[#141414] px-4 py-3 flex items-center justify-between sticky top-0 z-40">
-<div class="flex items-center gap-2.5">
-<span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+<!-- CONTENIDO PRINCIPAL -->
+<main>
+<div class="encabezado-seccion">
 <div>
-<h1 class="font-display font-bold text-xs tracking-wide text-white uppercase leading-none">
-          SERGIO RICARDO MOLINA
-        </h1>
-<p class="text-[10px] text-neutral-400 font-light mt-0.5">Métricas &amp; Rendimiento</p>
-</div>
-</div>
-<button aria-label="Abrir Menú" class="p-2 rounded-lg bg-[#1c1c1c] border border-[#2a2a2a] text-neutral-300 hover:text-white active:scale-95" onclick="toggleMenuDrawer()">
-<span class="material-symbols-outlined text-xl">menu</span>
-</button>
-</header>
-<!-- Mobile Drawer Overlay -->
-<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity" id="mobileDrawer">
-<div class="bg-[#161616] w-72 h-full p-5 border-r border-[#262626] flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between pb-4 border-b border-[#262626]">
-<span class="font-display text-sm font-bold tracking-wider text-white">PANEL DE CONTROL</span>
-<button class="p-1 rounded-md text-neutral-400 hover:text-white" onclick="toggleMenuDrawer()">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<nav class="flex flex-col gap-2 mt-4">
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-neutral-300 hover:bg-[#202020]" href="panel.html">
-<span class="material-symbols-outlined text-lg">photo_library</span> Galerías
-          </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-neutral-300 hover:bg-[#202020]" href="cargas.html">
-<span class="material-symbols-outlined text-lg">cloud_upload</span> Cargas y Enlaces
-          </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-neutral-300 hover:bg-[#202020]" href="precios.html">
-<span class="material-symbols-outlined text-lg">payments</span> Tarifas y Precios
-          </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-white bg-[#004466] border border-[#0088cc]" href="metricas.html">
-<span class="material-symbols-outlined text-lg text-sky-400">analytics</span> Métricas y Visitas
-          </a>
-<div class="mt-4 pt-3 border-t border-[#262626] flex flex-col gap-1.5">
-<a class="flex items-center gap-2.5 px-3 py-2 text-xs text-neutral-400 hover:text-sky-400" href="eventos.html">
-<span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Eventos
-            </a>
-<a class="flex items-center gap-2.5 px-3 py-2 text-xs text-neutral-400 hover:text-sky-400" href="index.html">
-<span class="material-symbols-outlined text-sm">open_in_new</span> Ver Portafolio
-            </a>
-</div>
-</nav>
-</div>
-<div class="text-[10px] text-neutral-500 font-mono">
-        Sergio Ricardo Molina · Atelier Darkroom
+<div style="color: #38bdf8; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;" class="">
+<span class="material-symbols-outlined" style="font-size: 15px;">cloud_upload</span>
+        MÓDULO DE VINCULACIÓN DRIVE
       </div>
+<h1 class="">Carga de Galerías y Enlaces</h1>
+
+</div>
+
+</div>
+<div class="layout-carga">
+<!-- COLUMNA IZQUIERDA: FORMULARIO -->
+<div class="tarjeta-formulario">
+<h2 class="">
+<span class="material-symbols-outlined" style="color: #38bdf8;">add_link</span>
+<span class="">Configuración de la Carpeta</span>
+</h2>
+<div class="campo-grupo">
+<label for="input-drive-url">
+<span class="material-symbols-outlined" style="font-size: 16px; color:#0088cc;">folder</span>
+<span class="">Enlace o ID de Carpeta de Google Drive *</span>
+</label>
+<input id="input-drive-url" oninput="actualizarPreview()" placeholder="https://drive.google.com/drive/folders/1aBcD... o ID de carpeta" type="text">
+
+</div>
+<div class="campo-grupo">
+<label for="input-titulo">
+<span class="material-symbols-outlined" style="font-size: 16px; color:#0088cc;">title</span>
+<span class="">Título del Evento / Escuela (Opcional)</span>
+</label>
+<input id="input-titulo" oninput="actualizarPreview()" placeholder="Ej: Egresados 2026 Colegio San Martín (Si se deja vacío, tomará el nombre de Drive)" type="text">
+
+</div>
+<div class="campo-grupo">
+<label for="input-portada">
+<span class="material-symbols-outlined" style="font-size: 16px; color:#0088cc;">image</span>
+<span class="">URL de Portada Manual (Opcional)</span>
+</label>
+<input id="input-portada" oninput="handleInputPortada(); actualizarPreview();" placeholder="https://lh3.googleusercontent.com/d/... (Si se deja vacío, toma la 1° foto de Drive)" type="text" class="">
+
+</div>
+<div class="bloque-checkbox-privada">
+<label class="fila-check">
+<input id="check-es-privada" onchange="toggleOpcionPrivada()" type="checkbox">
+<span class="">¿Es una galería privada de clientes?</span>
+</label>
+
+<div class="campo-grupo" id="campo-password-wrap" style="display: none; margin-top: 6px;">
+<label for="input-password" style="color: #facc15;">
+<span class="material-symbols-outlined" style="font-size: 16px; color:#facc15;">key</span>
+<span class="">Clave de Acceso para el Cliente *</span>
+</label>
+<input id="input-password" placeholder="Ej: BODA2026 o PIN del curso" type="text">
 </div>
 </div>
-<!-- ==================== MAIN CONTENT AREA ==================== -->
-<main class="flex-1 md:ml-64 p-4 sm:p-6 lg:p-8 max-w-[1380px]">
-<!-- ENCABEZADO Y CONTROLES TEMPORALES -->
-<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8 pb-6 border-b border-[#202020]">
-<div>
-<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-sky-950/40 border border-sky-800/50 text-[10px] uppercase font-bold tracking-[0.16em] text-sky-300 mb-2.5">
-<span class="material-symbols-outlined text-[13px]">monitoring</span>
-<span>AUDITORÍA EN TIEMPO REAL • ANÁLISIS DE TRÁFICO</span>
+<div class="aviso-estado" id="mensaje-estado" style="display: none;"></div>
+<div id="diagnostico-supabase-box" style="display: none; background: rgb(27, 20, 20); border: 1px solid rgb(127, 29, 29); border-radius: 8px; padding: 14px; font-size: 0.82rem; color: rgb(252, 165, 165);">
+  <div style="font-weight:700; display:flex; align-items:center; gap:6px; color:#f87171; margin-bottom:6px;">
+    <span class="material-symbols-outlined" style="font-size:18px;">error</span>
+    <span class="">Diagnóstico Supabase (Error en Inserción)</span>
+  </div>
+  <pre id="diagnostico-detalle" style="background:#110c0c; padding:10px; border-radius:6px; overflow-x:auto; font-size:0.75rem; color:#fecaca; font-family:monospace; line-height:1.4;"></pre>
+  <div style="margin-top:10px; font-size:0.75rem; color:#d1d5db; line-height:1.4;" class="">
+    Los datos se guardaron localmente en el navegador, pero no impactaron en la nube de Supabase. Verificá si la tabla <code>galeria</code> tiene habilitadas políticas RLS de INSERT para el rol <code>anon</code>.
+  </div>
 </div>
-<h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">
-          Métricas y Rendimiento
-        </h1>
-<p class="text-xs sm:text-sm text-neutral-400 max-w-2xl mt-1 leading-relaxed">
-          Estadísticas de tráfico en portafolio, apertura de álbumes escolares, fotos exploradas en visor y conversiones a WhatsApp.
-        </p>
+<div id="exito-supabase-box" style="display: none; background: rgb(15, 36, 26); border: 1px solid rgb(22, 101, 52); border-radius: 8px; padding: 14px; font-size: 0.84rem; color: rgb(134, 239, 172);">
+  <div style="font-weight:700; display:flex; align-items:center; gap:6px; color:#4ade80; margin-bottom:6px;">
+    <span class="material-symbols-outlined" style="font-size:18px;">check_circle</span>
+    <span id="exito-supabase-titulo" class="">¡Galería sincronizada en Supabase con éxito!</span>
+  </div>
+  <p id="exito-supabase-detalle" style="font-size:0.78rem; color:#bbf7d0; margin-bottom:12px;"></p>
+  <a href="panel.html" style="display:inline-flex; align-items:center; gap:6px; background:#15803d; color:#ffffff; text-decoration:none; padding:8px 16px; border-radius:6px; font-weight:600; font-size:0.82rem;">
+    <span class="">Ir a Ver Galerías en Panel</span>
+    <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+  </a>
 </div>
-<!-- Barra de Filtros y Acciones -->
-<div class="flex flex-wrap items-center gap-2">
-<div class="inline-flex p-1 rounded-lg bg-[#181818] border border-[#262626]">
-<button class="btn-tiempo-nav px-3 py-1.5 rounded-md text-xs font-semibold bg-[#005580] text-white border border-[#0077b3] transition-all" id="btn-filtro-todo" onclick="cambiarFiltroTiempo('todo', this)">Histórico</button>
-<button class="btn-tiempo-nav px-3 py-1.5 rounded-md text-xs font-semibold text-neutral-400 hover:text-white transition-all" id="btn-filtro-mes" onclick="cambiarFiltroTiempo('mes', this)">Este Mes</button>
-<button class="btn-tiempo-nav px-3 py-1.5 rounded-md text-xs font-semibold text-neutral-400 hover:text-white transition-all" id="btn-filtro-semana" onclick="cambiarFiltroTiempo('semana', this)">Últimos 7 Días</button>
-<button class="btn-tiempo-nav px-3 py-1.5 rounded-md text-xs font-semibold text-neutral-400 hover:text-white transition-all" id="btn-filtro-hoy" onclick="cambiarFiltroTiempo('hoy', this)">Hoy</button>
-</div>
-<button class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#181818] hover:bg-[#222222] border border-[#2a2a2a] text-xs font-semibold text-neutral-300 hover:text-sky-300 transition-all" id="btn-refrescar-accion" onclick="cargarMetricasReales()" title="Recargar base de datos">
-<span class="material-symbols-outlined text-[16px]" id="icono-refrescar">refresh</span>
-<span id="lbl-btn-refrescar">Actualizar</span>
+<button class="btn-guardar" id="btn-guardar" onclick="guardarGaleria()" type="button">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span id="btn-guardar-texto" class="">Guardar y Vincular Galería</span>
 </button>
-<button class="inline-flex items-center gap-1 px-2.5 py-2 rounded-lg bg-rose-950/20 hover:bg-rose-950/40 border border-rose-900/40 text-xs font-semibold text-rose-300 transition-all" onclick="resetearTodasLasMetricas()" title="Limpiar y reiniciar todas las métricas">
-<span class="material-symbols-outlined text-[15px]">delete_sweep</span>
-<span class="hidden sm:inline">Limpiar</span>
-</button>
-</div>
-</div>
-<!-- ==================== 4 TARJETAS BENTO DE KPIS ==================== -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-<!-- KPI 1: Visitas Web -->
-<div class="bg-[#181818] border border-[#222222] hover:border-sky-700/60 p-5 rounded-xl transition-all duration-200 group">
-<div class="flex items-start justify-between">
-<div>
-<span class="text-[11px] font-bold tracking-wider text-neutral-400 uppercase">Total Visitas Web</span>
-<div class="text-3xl font-bold font-mono text-white mt-1" id="kpi-total-visitas">0</div>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#202020] border border-[#2a2a2a] flex items-center justify-center text-[#38bdf8] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-xl">visibility</span>
-</div>
-</div>
-<div class="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#222222] text-[11px] font-semibold text-sky-400">
-<span class="material-symbols-outlined text-[14px]">travel_explore</span>
-<span>Tráfico de páginas</span>
-</div>
-</div>
-<!-- KPI 2: Aperturas de Álbumes -->
-<div class="bg-[#181818] border border-[#222222] hover:border-amber-700/60 p-5 rounded-xl transition-all duration-200 group">
-<div class="flex items-start justify-between">
-<div>
-<span class="text-[11px] font-bold tracking-wider text-neutral-400 uppercase">Álbumes Explorados</span>
-<div class="text-3xl font-bold font-mono text-white mt-1" id="kpi-apertura-albumes">0</div>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#202020] border border-[#2a2a2a] flex items-center justify-center text-[#facc15] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-xl">folder_open</span>
-</div>
-</div>
-<div class="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#222222] text-[11px] font-semibold text-amber-400">
-<span class="material-symbols-outlined text-[14px]">photo_library</span>
-<span>Eventos explorados</span>
-</div>
-</div>
-<!-- KPI 3: Fotos en Visor HD -->
-<div class="bg-[#181818] border border-[#222222] hover:border-purple-700/60 p-5 rounded-xl transition-all duration-200 group">
-<div class="flex items-start justify-between">
-<div>
-<span class="text-[11px] font-bold tracking-wider text-neutral-400 uppercase">Fotos en Visor HD</span>
-<div class="text-3xl font-bold font-mono text-white mt-1" id="kpi-fotos-visor">0</div>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#202020] border border-[#2a2a2a] flex items-center justify-center text-[#a855f7] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-xl">zoom_in</span>
-</div>
-</div>
-<div class="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#222222] text-[11px] font-semibold text-purple-400">
-<span class="material-symbols-outlined text-[14px]">photo_camera</span>
-<span>Ampliaciones de fotos</span>
-</div>
-</div>
-<!-- KPI 4: Clics en WhatsApp -->
-<div class="bg-[#181818] border border-[#222222] hover:border-emerald-700/60 p-5 rounded-xl transition-all duration-200 group">
-<div class="flex items-start justify-between">
-<div>
-<span class="text-[11px] font-bold tracking-wider text-neutral-400 uppercase">Clics en WhatsApp</span>
-<div class="text-3xl font-bold font-mono text-white mt-1" id="kpi-clicks-wa">0</div>
-</div>
-<div class="w-10 h-10 rounded-lg bg-[#202020] border border-[#2a2a2a] flex items-center justify-center text-[#4ade80] group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-xl">chat</span>
-</div>
-</div>
-<div class="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#222222] text-[11px] font-semibold text-emerald-400">
-<span class="material-symbols-outlined text-[14px]">send</span>
-<span>Consultas / Encargos</span>
-</div>
-</div>
-</div>
-<!-- ==================== DOS COLUMNAS DE ANÁLISIS ==================== -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-<!-- Columna 1: Visitas por Sección -->
-<div class="bg-[#181818] border border-[#222222] rounded-xl p-5 sm:p-6 flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between pb-3.5 mb-4 border-b border-[#242424]">
-<h2 class="font-display text-sm sm:text-base font-semibold text-white flex items-center gap-2">
-<span class="material-symbols-outlined text-sky-400 text-lg">pie_chart</span>
-              Visitas por Página y Sección
-            </h2>
-<span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500">TRÁFICO CLIENTES</span>
-</div>
-<div class="space-y-4" id="contenedor-barras-seccion">
-<div class="py-12 text-center text-neutral-500">
-<span class="material-symbols-outlined text-3xl mb-1 text-neutral-600 block">hourglass_empty</span>
-<p class="text-xs">Sin visitas registradas aún en el período seleccionado.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Columna 2: Álbumes Más Vistos -->
-<div class="bg-[#181818] border border-[#222222] rounded-xl p-5 sm:p-6 flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between pb-3.5 mb-4 border-b border-[#242424]">
-<h2 class="font-display text-sm sm:text-base font-semibold text-white flex items-center gap-2">
-<span class="material-symbols-outlined text-amber-400 text-lg">emoji_events</span>
-              Álbumes y Eventos Más Vistos
-            </h2>
-<span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500">RANKING REAL</span>
-</div>
-<div class="space-y-2.5" id="contenedor-ranking-albumes">
-<div class="py-12 text-center text-neutral-500">
-<span class="material-symbols-outlined text-3xl mb-1 text-neutral-600 block">photo_library</span>
-<p class="text-xs">No hay accesos registrados a eventos escolares o álbumes aún.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- ==================== TABLA AUDITORÍA EN TIEMPO REAL ==================== -->
-<div class="bg-[#181818] border border-[#222222] rounded-xl p-5 sm:p-6 mb-8">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-[#242424]">
-<div>
-<h2 class="font-display text-sm sm:text-base font-semibold text-white flex items-center gap-2">
-<span class="material-symbols-outlined text-emerald-400 text-lg">sensors</span>
-            Registro de Actividad en Tiempo Real
-          </h2>
-<p class="text-[11px] text-neutral-400 mt-0.5">Auditoría no bloqueante de eventos emitidos desde el portafolio público.</p>
-</div>
-<span class="text-[10px] font-mono font-bold tracking-widest text-sky-400 bg-sky-950/40 px-2.5 py-1 rounded border border-sky-800/40 self-start sm:self-auto" id="lbl-total-eventos-log">
-          0 REGISTROS
-        </span>
-</div>
-<div class="overflow-x-auto custom-scroll -mx-5 sm:mx-0">
-<table class="w-full text-left text-xs border-collapse min-w-[620px]">
-<thead>
-<tr class="border-b border-[#262626] text-neutral-500 text-[10px] uppercase font-bold tracking-wider">
-<th class="py-2.5 px-4 font-semibold">Fecha y Hora</th>
-<th class="py-2.5 px-4 font-semibold">Tipo de Evento</th>
-<th class="py-2.5 px-4 font-semibold">Detalle / Recurso</th>
-<th class="py-2.5 px-4 font-semibold">Dispositivo</th>
-<th class="py-2.5 px-4 font-semibold">Origen</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-[#202020] text-neutral-300" id="lista-actividad-cuerpo">
-<tr>
-<td class="py-10 text-center text-neutral-500" colspan="5">
-                Sin actividad registrada aún.
-              </td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- ==================== SCRIPT DE RASTREO COLAPSABLE ==================== -->
-<div class="bg-[#161616] border border-[#242424] rounded-xl overflow-hidden mb-12">
-<div class="px-5 py-4 flex items-center justify-between cursor-pointer hover:bg-[#1c1c1c] transition-colors select-none" onclick="toggleSnippetBox()">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-sky-400 text-lg">code</span>
-<span class="text-xs font-bold uppercase tracking-wider text-neutral-200">Integración y Script de Rastreo Universal</span>
-<span class="hidden sm:inline text-[10px] text-neutral-500 font-normal">(index.html, eventos.html, galeria.html)</span>
-</div>
-<div class="flex items-center gap-3">
-<button class="text-[11px] font-semibold text-sky-400 hover:text-sky-300 bg-sky-950/60 hover:bg-sky-900/60 px-2.5 py-1 rounded border border-sky-800/60 transition-colors" onclick="event.stopPropagation(); copiarSnippetTracker();">
-            Copiar Código
-          </button>
-<span class="material-symbols-outlined text-neutral-400 text-lg transition-transform duration-200" id="chevron-snippet">expand_more</span>
-</div>
-</div>
-<div class="hidden px-5 pb-5 pt-1 border-t border-[#222222] bg-[#111111]" id="contenedor-codigo-snippet">
-<p class="text-[11px] text-neutral-400 mb-2.5 leading-relaxed">
-          Pega este fragmento asíncrono y tolerante a fallos justo antes de la etiqueta <code class="text-sky-300 bg-[#1e1e1e] px-1 py-0.5 rounded">&lt;/body&gt;</code> en tus páginas públicas para auditar visitas y aperturas automáticamente sin bloquear la navegación:
-        </p>
-<pre class="text-[11px] font-mono text-sky-200 bg-[#0c0c0c] border border-[#202020] rounded-lg p-3.5 overflow-x-auto whitespace-pre custom-scroll" id="codigo-tracker-snippet">&lt;script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"&gt;&lt;/script&gt;
-&lt;script&gt;
-window.TrackerUniversal = {
-  url: 'https://zbixojacwvanucxlrdcd.supabase.co',
-  key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68',
-  enviar(tipo, recurso, detalle) {
-    const pag = window.location.pathname.split('/').pop() || 'index.html';
-    if (pag.includes('metricas') || pag.includes('panel')) return;
-    const payload = {
-      tipo: tipo || 'visita',
-      pagina: pag,
-      recurso: recurso || document.title,
-      detalle: detalle || document.title,
-      dispositivo: /iphone|ipad|ipod|android/i.test(navigator.userAgent) ? 'Móvil' : 'Escritorio',
-      origen: document.referrer ? new URL(document.referrer).hostname : 'Directo',
-      created_at: new Date().toISOString()
-    };
-    try {
-      const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
-      locales.unshift(payload);
-      localStorage.setItem('metricas_visitas_locales', JSON.stringify(locales.slice(0, 500)));
-    } catch(e){}
-    try {
-      fetch(`${this.url}/rest/v1/visitas`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'apikey': this.key, 'Authorization': `Bearer ${this.key}`, 'Prefer': 'return=minimal' },
-        body: JSON.stringify(payload),
-        keepalive: true
-      }).catch(()=&gt;{});
-    } catch(e){}
+<div id="log-detallado-supa" style="display: none; margin-top: -8px; font-size: 0.72rem; color: rgb(119, 119, 119); font-family: monospace;"></div><script id="custom-cover-resolver" class="">
+function extraerIdArchivoDrive(url) {
+  if (!url) return '';
+  const s = String(url).trim();
+  const mFile = s.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (mFile && mFile[1]) return mFile[1];
+  const mD = s.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (mD && mD[1]) return mD[1];
+  const mId = s.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (mId && mId[1]) return mId[1];
+  const mFolders = s.match(/\/folders\/([a-zA-Z0-9_-]+)/);
+  if (mFolders && mFolders[1]) return mFolders[1];
+  return '';
+}
+
+function resolveCoverImage(inputVal) {
+  if (!inputVal) return '';
+  const trimmed = String(inputVal).trim();
+  const fileId = extraerIdArchivoDrive(trimmed);
+  if (fileId) {
+    return `https://lh3.googleusercontent.com/d/${fileId}=w800`;
+  }
+  return trimmed;
+}
+
+function handleInputPortada() {
+  const input = document.getElementById('input-portada');
+  if (!input) return;
+  const rawVal = input.value.trim();
+  const fileId = extraerIdArchivoDrive(rawVal);
+  if (fileId && (rawVal.includes('drive.google.com') || (rawVal.includes('lh3.googleusercontent.com') && !rawVal.includes('=w800')))) {
+    const transformed = `https://lh3.googleusercontent.com/d/${fileId}=w800`;
+    input.value = transformed;
+  }
+}
+
+const origActualizarPreview = window.actualizarPreview;
+window.actualizarPreview = function() {
+  const urlDrive = document.getElementById('input-drive-url') ? document.getElementById('input-drive-url').value : '';
+  const folderId = typeof extraerIdDrive === 'function' ? extraerIdDrive(urlDrive) : '';
+  const titulo = document.getElementById('input-titulo') ? document.getElementById('input-titulo').value.trim() : '';
+  const rawPortada = document.getElementById('input-portada') ? document.getElementById('input-portada').value.trim() : '';
+  const esPrivada = document.getElementById('check-es-privada') ? document.getElementById('check-es-privada').checked : false;
+
+  const previewTitulo = document.getElementById('preview-titulo');
+  if (previewTitulo) {
+    previewTitulo.innerText = titulo || (folderId ? `Evento Escolar (${folderId.substring(0, 10)}...)` : 'Nombre del Evento');
+  }
+  const previewId = document.getElementById('preview-id');
+  if (previewId) {
+    previewId.innerText = `Drive ID: ${folderId || 'Sin asignar'}`;
+  }
+
+  const badge = document.getElementById('preview-badge');
+  if (badge) {
+    badge.innerText = esPrivada ? 'PRIVADA' : 'PÚBLICA';
+    badge.style.background = esPrivada ? 'rgba(234, 179, 8, 0.9)' : 'rgba(0, 85, 128, 0.9)';
+  }
+
+  const imgEl = document.getElementById('img-preview');
+  const iconoEl = document.getElementById('preview-placeholder-icono');
+
+  let imgFinal = resolveCoverImage(rawPortada);
+  if (!imgFinal && folderId) {
+    imgFinal = `https://lh3.googleusercontent.com/d/${folderId}=w800`;
+  }
+
+  if (imgEl && iconoEl) {
+    if (imgFinal) {
+      imgEl.src = imgFinal;
+      imgEl.style.display = 'block';
+      iconoEl.style.display = 'none';
+    } else {
+      imgEl.style.display = 'none';
+      iconoEl.style.display = 'flex';
+    }
   }
 };
-window.addEventListener('load', () =&gt; window.TrackerUniversal.enviar('visita'));
-&lt;/script&gt;</pre>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('input-portada');
+  if (inp) {
+    inp.addEventListener('paste', () => {
+      setTimeout(() => {
+        handleInputPortada();
+        actualizarPreview();
+      }, 50);
+    });
+  }
+});
+</script></div>
+<!-- COLUMNA DERECHA: PREVISUALIZACIÓN EN VIVO -->
+<div class="tarjeta-preview">
+<h3 class="">Vista Previa en Vivo</h3>
+<div class="preview-card-box">
+<div class="preview-portada-box" id="box-preview-portada">
+<span class="badge-preview" id="preview-badge">PÚBLICA</span>
+<div id="preview-placeholder-icono" style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+<span class="material-symbols-outlined" style="font-size: 40px; color:#38bdf8;">photo_camera</span>
+<span style="font-size:0.75rem; color:#888;" class="">La portada se reflejará aquí</span>
+</div>
+<img alt="Portada" id="img-preview" onerror="this.style.display='none'; document.getElementById('preview-placeholder-icono').style.display='flex';" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=" style="display:none;">
+</div>
+<div class="preview-info-box">
+<h4 id="preview-titulo" class="">Nombre del Evento</h4>
+<p id="preview-id" class="">Drive ID: Sin asignar</p>
+</div>
+</div>
+
 </div>
 </div>
 </main>
-<!-- ==================== MOBILE BOTTOM BAR ==================== -->
-<div class="md:hidden fixed bottom-0 left-0 right-0 h-14 bg-[#141414] border-t border-[#222222] z-40 flex items-center justify-around px-2">
-<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-white text-[10px] gap-0.5" href="panel.html">
-<span class="material-symbols-outlined text-[20px]">photo_library</span>
-<span>Galerías</span>
-</a>
-<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-white text-[10px] gap-0.5" href="cargas.html">
-<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
-<span>Cargas</span>
-</a>
-<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-white text-[10px] gap-0.5" href="precios.html">
-<span class="material-symbols-outlined text-[20px]">payments</span>
-<span>Tarifas</span>
-</a>
-<a class="flex flex-col items-center justify-center text-sky-400 font-semibold text-[10px] gap-0.5" href="metricas.html">
-<span class="material-symbols-outlined text-[20px]">analytics</span>
-<span>Métricas</span>
-</a>
-<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-white text-[10px] gap-0.5" href="index.html">
-<span class="material-symbols-outlined text-[20px]">open_in_new</span>
-<span>Sitio</span>
-</a>
-</div>
-<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-    // CREDENCIALES OFICIALES SUPABASE
-    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+// CREDENCIALES OFICIALES DE SUPABASE
+const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
 
-    let registrosGlobales = [];
-    let filtroTemporal = 'todo'; // 'todo', 'mes', 'semana', 'hoy'
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-    // Exclusión estricta de visitas de administrador
-    function esRegistroAdminOMetricas(r) {
-      if (!r) return false;
-      const pag = String(r.pagina || r.seccion || '').toLowerCase();
-      const rec = String(r.recurso || '').toLowerCase();
-      const det = String(r.detalle || '').toLowerCase();
+function extraerIdDrive(input) {
+  if (!input) return '';
+  const str = String(input).trim();
+  const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+  if (matchFolder && matchFolder[1]) return matchFolder[1];
+  const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (matchId && matchId[1]) return matchId[1];
+  const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (matchD && matchD[1]) return matchD[1];
+  return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+}
 
-      return (
-        pag.includes('metricas') ||
-        pag.includes('panel') ||
-        rec.includes('metricas') ||
-        rec.includes('panel') ||
-        det.includes('metricas') ||
-        det.includes('estadísticas') ||
-        det.includes('estadisticas')
-      );
+function toggleOpcionPrivada() {
+  const chk = document.getElementById('check-es-privada').checked;
+  const wrap = document.getElementById('campo-password-wrap');
+  wrap.style.display = chk ? 'flex' : 'none';
+  actualizarPreview();
+}
+
+function actualizarPreview() {
+  const urlDrive = document.getElementById('input-drive-url').value;
+  const folderId = extraerIdDrive(urlDrive);
+  const titulo = document.getElementById('input-titulo').value.trim();
+  const portada = document.getElementById('input-portada').value.trim();
+  const esPrivada = document.getElementById('check-es-privada').checked;
+
+  document.getElementById('preview-titulo').innerText = titulo || (folderId ? `Evento Escolar (${folderId.substring(0, 10)}...)` : 'Nombre del Evento');
+  document.getElementById('preview-id').innerText = `Drive ID: ${folderId || 'Sin asignar'}`;
+
+  const badge = document.getElementById('preview-badge');
+  badge.innerText = esPrivada ? 'PRIVADA' : 'PÚBLICA';
+  badge.style.background = esPrivada ? 'rgba(234, 179, 8, 0.9)' : 'rgba(0, 85, 128, 0.9)';
+
+  const imgEl = document.getElementById('img-preview');
+  const iconoEl = document.getElementById('preview-placeholder-icono');
+
+  let imgFinal = portada;
+  if (!imgFinal && folderId) {
+    imgFinal = `https://lh3.googleusercontent.com/d/${folderId}=w600`;
+  }
+
+  if (imgFinal) {
+    imgEl.src = imgFinal;
+    imgEl.style.display = 'block';
+    iconoEl.style.display = 'none';
+  } else {
+    imgEl.style.display = 'none';
+    iconoEl.style.display = 'flex';
+  }
+}
+
+async function obtenerMetaDrive(folderId) {
+  let resObj = { nombre: '', portada: '' };
+  try {
+    const urlCarpeta = `https://www.googleapis.com/drive/v3/files/${folderId}?fields=name&key=${API_KEY_DRIVE}`;
+    const rC = await fetch(urlCarpeta);
+    const dC = await rC.json();
+    if (dC.name) resObj.nombre = dC.name;
+
+    const urlFotos = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&pageSize=1&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+    const rF = await fetch(urlFotos);
+    const dF = await rF.json();
+    if (dF.files && dF.files.length > 0) {
+      resObj.portada = `https://lh3.googleusercontent.com/d/${dF.files[0].id}=w600`;
     }
+  } catch (e) {
+    console.warn("Consulta Drive API:", e);
+  }
+  return resObj;
+}
 
-    // Toggle Mobile Drawer
-    function toggleMenuDrawer() {
-      const drawer = document.getElementById('mobileDrawer');
-      if (drawer) drawer.classList.toggle('hidden');
-    }
+async function guardarGaleria() {
+  const urlDrive = document.getElementById('input-drive-url').value.trim();
+  const folderId = extraerIdDrive(urlDrive);
 
-    // Toggle Snippet Box
-    function toggleSnippetBox() {
-      const box = document.getElementById('contenedor-codigo-snippet');
-      const chev = document.getElementById('chevron-snippet');
-      if (box) {
-        const isHidden = box.classList.contains('hidden');
-        box.classList.toggle('hidden', !isHidden);
-        if (chev) {
-          chev.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
+  if (!folderId) {
+    mostrarMensaje("Por favor ingresá un enlace o ID válido de Google Drive.", "error");
+    return;
+  }
+
+  let titulo = document.getElementById('input-titulo').value.trim();
+  let portada = document.getElementById('input-portada').value.trim();
+  const esPrivada = document.getElementById('check-es-privada').checked;
+  const password = document.getElementById('input-password').value.trim();
+
+  if (esPrivada && !password) {
+    mostrarMensaje("Por favor asigná una contraseña para esta galería privada.", "error");
+    return;
+  }
+
+  const btn = document.getElementById('btn-guardar');
+  const txt = document.getElementById('btn-guardar-texto');
+  btn.disabled = true;
+  txt.innerText = "Consultando Google Drive y guardando...";
+
+  // Si no puso título o portada, consultar a Drive
+  if (!titulo || !portada) {
+    const meta = await obtenerMetaDrive(folderId);
+    if (!titulo && meta.nombre) titulo = meta.nombre;
+    if (!portada && meta.portada) portada = meta.portada;
+  }
+
+  if (!titulo) titulo = `Evento Escolar (${folderId.substring(0, 8)})`;
+  if (!portada) portada = `https://lh3.googleusercontent.com/d/${folderId}=w600`;
+
+  const nuevaGaleria = {
+    id: Date.now(),
+    titulo: titulo,
+    drive_url: urlDrive.includes('http') ? urlDrive : `https://drive.google.com/drive/folders/${folderId}`,
+    enlace_drive: urlDrive.includes('http') ? urlDrive : `https://drive.google.com/drive/folders/${folderId}`,
+    portada_url: portada,
+    portada: portada,
+    es_privada: esPrivada,
+    password: esPrivada ? password : null,
+    created_at: new Date().toISOString()
+  };
+
+  // 1. Guardar en Respaldo Local (localStorage)
+  try {
+    let locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+    locales.unshift(nuevaGaleria);
+    localStorage.setItem('galerias_locales', JSON.stringify(locales));
+  } catch (eLocal) {
+    console.warn("Aviso local:", eLocal);
+  }
+
+  // 2. Guardar en Supabase (tabla galeria o galerias)
+  let guardadoEnNube = false;
+  if (supabaseClient) {
+    try {
+      const { error: err1 } = await supabaseClient.from('galeria').insert([{
+        titulo: nuevaGaleria.titulo,
+        drive_url: nuevaGaleria.drive_url,
+        enlace_drive: nuevaGaleria.enlace_drive,
+        portada_url: nuevaGaleria.portada_url,
+        portada: nuevaGaleria.portada,
+        es_privada: nuevaGaleria.es_privada,
+        password: nuevaGaleria.password
+      }]);
+
+      if (!err1) {
+        guardadoEnNube = true;
+      } else {
+        const { error: err2 } = await supabaseClient.from('galerias').insert([{
+          titulo: nuevaGaleria.titulo,
+          drive_url: nuevaGaleria.drive_url,
+          portada_url: nuevaGaleria.portada_url,
+          password: nuevaGaleria.password
+        }]);
+        if (!err2) guardadoEnNube = true;
       }
+    } catch (errSupa) {
+      console.warn("Aviso Supabase:", errSupa);
     }
+  }
 
-    function copiarSnippetTracker() {
-      const codigo = document.getElementById('codigo-tracker-snippet').innerText;
-      navigator.clipboard.writeText(codigo).then(() => {
-        alert('Script de rastreo copiado al portapapeles. Pégalo antes de </body> en index.html, eventos.html y galeria.html.');
-      }).catch(() => {
-        alert('Copia el código directamente desde el recuadro desplegado.');
-      });
-    }
+  btn.disabled = false;
+  txt.innerText = "Guardar y Vincular Galería";
 
-    // Filtrar por período temporal
-    function cambiarFiltroTiempo(tiempo, btn) {
-      filtroTemporal = tiempo;
-      document.querySelectorAll('.btn-tiempo-nav').forEach(b => {
-        b.className = "btn-tiempo-nav px-3 py-1.5 rounded-md text-xs font-semibold text-neutral-400 hover:text-white transition-all";
-      });
-      if (btn) {
-        btn.className = "btn-tiempo-nav px-3 py-1.5 rounded-md text-xs font-semibold bg-[#005580] text-white border border-[#0077b3] transition-all";
-      }
-      procesarYRenderizarMetricas();
-    }
+  mostrarMensaje(`¡Galería "${titulo}" vinculada con éxito! Redirigiendo a Galerías...`, "exito");
 
-    // Carga de Métricas con persistencia y fallback
-    async function cargarMetricasReales() {
-      const iconoRefrescar = document.getElementById('icono-refrescar');
-      const lblRefrescar = document.getElementById('lbl-btn-refrescar');
-      if (iconoRefrescar) iconoRefrescar.classList.add('spinning');
-      if (lblRefrescar) lblRefrescar.innerText = 'Cargando...';
+  // Redirigir a panel.html para ver la tarjeta creada
+  setTimeout(() => {
+    window.location.href = "panel.html";
+  }, 1200);
+}
 
-      let eventos = [];
+function mostrarMensaje(texto, tipo) {
+  const box = document.getElementById('mensaje-estado');
+  box.innerText = texto;
+  box.className = `aviso-estado aviso-${tipo}`;
+  box.style.display = 'block';
+}
+</script>
 
-      // 1. Consulta a Supabase (tabla 'visitas' y 'metricas' en caso de compatibilidad)
-      if (supabaseClient) {
-        try {
-          const resVisitas = await supabaseClient
-            .from('visitas')
-            .select('*')
-            .order('created_at', { ascending: false })
-            .limit(1000);
 
-          if (!resVisitas.error && Array.isArray(resVisitas.data)) {
-            eventos = eventos.concat(resVisitas.data);
-          }
 
-          const resMetricas = await supabaseClient
-            .from('metricas')
-            .select('*')
-            .order('created_at', { ascending: false })
-            .limit(1000);
 
-          if (!resMetricas.error && Array.isArray(resMetricas.data)) {
-            resMetricas.data.forEach(item => {
-              if (!eventos.some(e => String(e.id) === String(item.id))) {
-                eventos.push(item);
-              }
-            });
-          }
-        } catch (err) {
-          console.warn("Consulta Supabase tolerante:", err);
-        }
-      }
-
-      // 2. Fallback a LocalStorage
-      try {
-        const locales = JSON.parse(localStorage.getItem('metricas_visitas_locales') || '[]');
-        if (Array.isArray(locales) && locales.length > 0) {
-          locales.forEach(loc => {
-            if (!eventos.some(e => String(e.id) === String(loc.id))) {
-              eventos.push(loc);
-            }
-          });
-        }
-      } catch (e) {
-        console.warn("Lectura localStorage:", e);
-      }
-
-      // Filtrar administración
-      eventos = eventos.filter(r => !esRegistroAdminOMetricas(r));
-
-      // Orden cronológico
-      eventos.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
-      registrosGlobales = eventos;
-
-      procesarYRenderizarMetricas();
-
-      setTimeout(() => {
-        if (iconoRefrescar) iconoRefrescar.classList.remove('spinning');
-        if (lblRefrescar) lblRefrescar.innerText = 'Actualizar';
-      }, 400);
-    }
-
-    // Procesar datos y renderizar interfaz
-    function procesarYRenderizarMetricas() {
-      const ahora = new Date();
-      let filtrados = registrosGlobales.filter(r => !esRegistroAdminOMetricas(r));
-
-      if (filtroTemporal === 'hoy') {
-        const inicioHoy = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());
-        filtrados = filtrados.filter(r => new Date(r.created_at) >= inicioHoy);
-      } else if (filtroTemporal === 'semana') {
-        const hace7Dias = new Date(ahora.getTime() - (7 * 24 * 60 * 60 * 1000));
-        filtrados = filtrados.filter(r => new Date(r.created_at) >= hace7Dias);
-      } else if (filtroTemporal === 'mes') {
-        const inicioMes = new Date(ahora.getFullYear(), ahora.getMonth(), 1);
-        filtrados = filtrados.filter(r => new Date(r.created_at) >= inicioMes);
-      }
-
-      let totalVisitas = 0;
-      let aperturasAlbumes = 0;
-      let fotosVisor = 0;
-      let clicksWa = 0;
-
-      const porPagina = {};
-      const porAlbum = {};
-
-      filtrados.forEach(r => {
-        const tipo = (r.tipo || r.tipo_evento || '').toLowerCase();
-        const pag = (r.pagina || r.seccion || '').toLowerCase();
-        const recurso = (r.recurso || r.detalle || r.evento_id || '').trim();
-        const detalle = (r.detalle || '').toLowerCase();
-
-        if (pag.includes('metricas') || pag.includes('panel')) return;
-
-        // KPI 1: Visitas Web
-        if (tipo === 'visita' || pag.includes('index') || pag.includes('eventos') || pag.includes('galeria') || pag.includes('privad') || pag.includes('pedido') || pag.includes('precio')) {
-          totalVisitas++;
-        }
-
-        // KPI 2: Álbumes
-        if (
-          tipo.includes('album') || 
-          tipo.includes('evento') || 
-          detalle.includes('álbum') || 
-          detalle.includes('album') || 
-          detalle.includes('evento') ||
-          pag.includes('galeria.html') ||
-          pag.includes('eventos.html')
-        ) {
-          aperturasAlbumes++;
-        }
-
-        // KPI 3: Fotos en Visor
-        if (tipo.includes('visor') || tipo.includes('foto') || detalle.includes('visor') || detalle.includes('ampliación') || detalle.includes('foto')) {
-          fotosVisor++;
-        }
-
-        // KPI 4: WhatsApp
-        if (tipo.includes('whatsapp') || tipo.includes('pedido') || detalle.includes('whatsapp') || detalle.includes('pedido') || detalle.includes('consulta')) {
-          clicksWa++;
-        }
-
-        // Desglose por Página
-        const nombrePagina = normalizarNombrePagina(pag);
-        if (nombrePagina) {
-          porPagina[nombrePagina] = (porPagina[nombrePagina] || 0) + 1;
-        }
-
-        // Desglose por Álbum
-        const nombreAlbum = extraerNombreAlbum(recurso, detalle, pag);
-        if (nombreAlbum) {
-          porAlbum[nombreAlbum] = (porAlbum[nombreAlbum] || 0) + 1;
-        }
-      });
-
-      // Sincronizar visitas
-      const sumaPaginas = Object.values(porPagina).reduce((a, b) => a + b, 0);
-      if (sumaPaginas > totalVisitas) {
-        totalVisitas = sumaPaginas;
-      }
-
-      // Actualizar KPIs en el DOM
-      document.getElementById('kpi-total-visitas').innerText = totalVisitas.toLocaleString('es-AR');
-      document.getElementById('kpi-apertura-albumes').innerText = aperturasAlbumes.toLocaleString('es-AR');
-      document.getElementById('kpi-fotos-visor').innerText = fotosVisor.toLocaleString('es-AR');
-      document.getElementById('kpi-clicks-wa').innerText = clicksWa.toLocaleString('es-AR');
-      document.getElementById('lbl-total-eventos-log').innerText = `${filtrados.length} REGISTROS`;
-
-      // Renderizar Barras y Tablas
-      renderizarBarras(porPagina, totalVisitas || 1);
-      renderizarRanking(porAlbum);
-      renderizarTabla(filtrados);
-    }
-
-    function normalizarNombrePagina(raw) {
-      if (!raw) return 'Portafolio Principal (index.html)';
-      const str = raw.toLowerCase();
-      if (str.includes('metricas') || str.includes('panel')) return null;
-      if (str.includes('index') || str.includes('inicio') || str === '/') return 'Portafolio Principal (index.html)';
-      if (str.includes('eventos')) return 'Eventos Escolares (eventos.html)';
-      if (str.includes('galeria')) return 'Galerías de Álbumes (galeria.html)';
-      if (str.includes('privad')) return 'Galerías Privadas con Clave (privadas.html)';
-      if (str.includes('pedido')) return 'Pedidos y Encargos (pedido.html)';
-      if (str.includes('precio') || str.includes('tarifas')) return 'Tarifas y Precios (precios.html)';
-      return raw;
-    }
-
-    function extraerNombreAlbum(recurso, detalle, pag) {
-      const texto = (recurso || detalle || '').trim();
-      if (!texto) return null;
-      const lower = texto.toLowerCase();
-      if (
-        lower === 'inicio' || 
-        lower === 'index.html' || 
-        lower === 'eventos.html' || 
-        lower === 'galeria.html' || 
-        lower.includes('metricas') || 
-        lower.includes('panel') ||
-        lower === 'portafolio general'
-      ) {
-        return null;
-      }
-      return texto;
-    }
-
-    function renderizarBarras(desglose, total) {
-      const contenedor = document.getElementById('contenedor-barras-seccion');
-      const entradas = Object.entries(desglose);
-
-      if (entradas.length === 0) {
-        contenedor.innerHTML = `
-          <div class="py-10 text-center text-neutral-500">
-            <span class="material-symbols-outlined text-3xl mb-1 text-neutral-600 block">hourglass_empty</span>
-            <p class="text-xs">Sin visitas registradas aún en el período seleccionado.</p>
-          </div>
-        `;
-        return;
-      }
-
-      entradas.sort((a, b) => b[1] - a[1]);
-
-      contenedor.innerHTML = entradas.map(([nombre, cant]) => {
-        const porcentaje = Math.min(100, Math.round((cant / total) * 100));
-        return `
-          <div class="space-y-1.5">
-            <div class="flex justify-between items-center text-xs">
-              <span class="text-neutral-300 font-medium">${nombre}</span>
-              <span class="text-sky-400 font-mono font-bold">${cant} <span class="text-neutral-500 font-normal">(${porcentaje}%)</span></span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-[#202020] overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-sky-600 to-sky-400 rounded-full transition-all duration-500" style="width: ${porcentaje}%;"></div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderizarRanking(porAlbum) {
-      const contenedor = document.getElementById('contenedor-ranking-albumes');
-      const entradas = Object.entries(porAlbum);
-
-      if (entradas.length === 0) {
-        contenedor.innerHTML = `
-          <div class="py-10 text-center text-neutral-500">
-            <span class="material-symbols-outlined text-3xl mb-1 text-neutral-600 block">photo_library</span>
-            <p class="text-xs">No hay accesos registrados a eventos escolares o álbumes aún.</p>
-          </div>
-        `;
-        return;
-      }
-
-      entradas.sort((a, b) => b[1] - a[1]);
-
-      contenedor.innerHTML = entradas.slice(0, 5).map(([nombre, cant], idx) => {
-        const medalColor = idx === 0 ? 'text-amber-400' : (idx === 1 ? 'text-slate-300' : 'text-amber-600');
-        return `
-          <div class="flex items-center justify-between p-3 rounded-lg bg-[#141414] border border-[#222222] hover:border-neutral-700 transition-colors">
-            <div class="flex items-center gap-2.5 truncate pr-2">
-              <span class="font-mono text-xs font-bold ${medalColor}">#${idx + 1}</span>
-              <span class="text-xs font-medium text-white truncate">${nombre}</span>
-            </div>
-            <span class="text-xs font-mono font-bold text-amber-400 shrink-0">${cant} <span class="text-[10px] text-neutral-500 font-normal">vistas</span></span>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderizarTabla(items) {
-      const cuerpo = document.getElementById('lista-actividad-cuerpo');
-      const filtrados = (items || []).filter(item => !esRegistroAdminOMetricas(item));
-
-      if (filtrados.length === 0) {
-        cuerpo.innerHTML = `
-          <tr>
-            <td colspan="5" class="py-10 text-center text-neutral-500 text-xs">
-              No hay eventos ni visitas de clientes registradas en este período.
-            </td>
-          </tr>
-        `;
-        return;
-      }
-
-      cuerpo.innerHTML = filtrados.slice(0, 20).map(item => {
-        const fecha = item.created_at ? formatearFechaRelativa(item.created_at) : 'Reciente';
-        const tipoRaw = (item.tipo || item.tipo_evento || 'visita').toLowerCase();
-        const detalleTexto = item.detalle || item.recurso || item.pagina || 'Visita al sitio';
-
-        let badgeHtml = `
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-sky-950/50 text-sky-400 border border-sky-800/40">
-            <span class="material-symbols-outlined text-[13px]">visibility</span> Visita Web
-          </span>
-        `;
-
-        if (tipoRaw.includes('album') || tipoRaw.includes('evento') || detalleTexto.toLowerCase().includes('álbum')) {
-          badgeHtml = `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-amber-950/50 text-amber-400 border border-amber-800/40">
-              <span class="material-symbols-outlined text-[13px]">photo_library</span> Álbum / Evento
-            </span>
-          `;
-        } else if (tipoRaw.includes('visor') || tipoRaw.includes('foto') || detalleTexto.toLowerCase().includes('visor')) {
-          badgeHtml = `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-purple-950/50 text-purple-400 border border-purple-800/40">
-              <span class="material-symbols-outlined text-[13px]">zoom_in</span> Visor HD
-            </span>
-          `;
-        } else if (tipoRaw.includes('whatsapp') || tipoRaw.includes('pedido') || detalleTexto.toLowerCase().includes('whatsapp')) {
-          badgeHtml = `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-950/50 text-emerald-400 border border-emerald-800/40">
-              <span class="material-symbols-outlined text-[13px]">chat</span> WhatsApp
-            </span>
-          `;
-        }
-
-        const dispositivo = item.dispositivo || 'Escritorio';
-        const origen = item.origen || 'Directo';
-
-        return `
-          <tr class="hover:bg-[#1c1c1c] transition-colors">
-            <td class="py-3 px-4 text-neutral-400 font-mono text-[11px] whitespace-nowrap">${fecha}</td>
-            <td class="py-3 px-4">${badgeHtml}</td>
-            <td class="py-3 px-4 text-white font-medium text-xs max-w-xs truncate">${detalleTexto}</td>
-            <td class="py-3 px-4 text-neutral-400 text-xs">${dispositivo}</td>
-            <td class="py-3 px-4 text-neutral-500 font-mono text-[11px]">${origen}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function formatearFechaRelativa(isoString) {
-      try {
-        const fecha = new Date(isoString);
-        const diffMs = new Date() - fecha;
-        const diffMin = Math.floor(diffMs / 60000);
-        const diffHoras = Math.floor(diffMin / 60);
-
-        if (diffMin < 1) return 'Hace instantes';
-        if (diffMin < 60) return `Hace ${diffMin} min`;
-        if (diffHoras < 24) return `Hace ${diffHoras} h`;
-        return fecha.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
-      } catch(e) {
-        return 'Reciente';
-      }
-    }
-
-    async function resetearTodasLasMetricas() {
-      const confirmar = confirm('¿Confirmas reiniciar todas las estadísticas a cero? Esta acción depurará los registros locales y de base de datos.');
-      if (!confirmar) return;
-      try {
-        localStorage.removeItem('metricas_visitas_locales');
-        localStorage.removeItem('metricas_cache');
-        if (supabaseClient) {
-          await supabaseClient.from('visitas').delete().neq('id', '0');
-          await supabaseClient.from('metricas').delete().neq('id', '0');
-        }
-      } catch (err) {
-        console.warn('Error al resetear métricas:', err);
-      }
-      registrosGlobales = [];
-      procesarYRenderizarMetricas();
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      cargarMetricasReales();
-    });
-  </script>
 </body></html>
