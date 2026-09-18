@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Darkroom Console · Administración Oficial Sergio Ricardo Molina</title>
 <!-- Google Fonts: Raleway (Headlines) & Manrope (Body/Data) -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS with custom plugins -->
@@ -226,7 +224,7 @@
 <a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg bg-primary-container text-white border border-primary/40 font-medium text-label-md font-label-md active:scale-[0.98] transition-transform" href="panel.html">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-primary" data-icon="photo_library">photo_library</span>
-<span>Galerías</span>
+<span class="">Galerías</span>
 </div>
 <span class="text-label-sm font-label-sm px-1.5 py-0.5 rounded bg-surface-container-lowest text-primary font-bold" id="badgeGalCount">0</span>
 </a>
@@ -234,7 +232,7 @@
 <a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="cargas.html">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-outline" data-icon="cloud_upload">cloud_upload</span>
-<span>Cargas y Enlaces</span>
+<span class="">Cargas y Enlaces</span>
 </div>
 <span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
 </a>
@@ -242,7 +240,7 @@
 <a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="precios.html">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
-<span>Tarifas y Precios</span>
+<span class="">Tarifas y Precios</span>
 </div>
 <span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
 </a>
@@ -250,24 +248,14 @@
 <a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="metricas.html">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-outline" data-icon="monitoring">monitoring</span>
-<span>Métricas y Analítica</span>
+<span class="">Métricas y Analítica</span>
 </div>
 <span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
 </a>
-</nav>
+<div class="pt-space-xs my-2 border-t border-outline-variant/60"><span class="px-space-xs text-label-sm font-label-sm text-outline block mb-1 uppercase tracking-wider">Portales Públicos</span></div><a class="flex items-center gap-space-xs px-space-sm py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="eventos.html"><span class="material-symbols-outlined text-base" data-icon="event">event</span><span class="">Volver a Eventos</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="index.html"><span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span><span class="">Ver Portafolio</span></a></nav>
 </div>
 <!-- Accesos Directos Inferiores de Navegación -->
-<div class="pt-space-md border-t border-outline-variant space-y-1">
-<span class="px-space-xs text-label-sm font-label-sm text-outline block mb-1">PORTALES PÚBLICOS</span>
-<a class="flex items-center gap-space-xs px-space-sm py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="eventos.html">
-<span class="material-symbols-outlined text-base" data-icon="event">event</span>
-<span>Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-space-xs px-space-sm py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low text-label-md font-label-md transition-colors active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
-<span>Ver Portafolio</span>
-</a>
-</div>
+
 </aside>
 <!-- Lienzo de Contenido Principal -->
 <main class="flex-1 flex flex-col space-y-space-lg min-w-0">
@@ -283,7 +271,7 @@
 <div class="flex-shrink-0">
 <a class="inline-flex items-center gap-space-xs px-space-lg py-3 rounded-lg text-label-md font-label-md uppercase tracking-wider text-white bg-primary-container border border-primary hover:bg-secondary-container active:scale-[0.98] transition-all shadow-md" href="cargas.html">
 <span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
-<span>+ Cargar Nueva Galería</span>
+<span class="">+ Cargar Nueva Galería</span>
 </a>
 </div>
 </section>
@@ -328,7 +316,7 @@
 <!-- Buscador Dinámico -->
 <div class="relative flex-1 min-w-[220px]">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
-<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-space-md py-2 text-on-surface text-body-md font-body-md placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" id="searchInput" placeholder="Filtrar por título, ID de Drive o clave..." type="text"/>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-space-md py-2 text-on-surface text-body-md font-body-md placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" id="searchInput" placeholder="Filtrar por título, ID de Drive o clave..." type="text">
 </div>
 <!-- Filtros Rápidos (Chips) y Botón Refrescar -->
 <div class="flex items-center gap-space-xs overflow-x-auto pb-1 sm:pb-0">
@@ -348,9 +336,7 @@
 </section>
 <!-- Cuadrícula de Álbumes (Supabase 'galeria' en tiempo real) -->
 <section>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-space-md" id="gridGalerias">
-<!-- Las tarjetas reales se inyectan dinámicamente desde Supabase -->
-</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-space-md" id="gridGalerias"></div>
 <!-- Estado Vacío Sobrio y Limpio -->
 <div class="flex flex-col items-center justify-center p-space-3xl rounded-xl border border-dashed border-outline-variant bg-surface-container-lowest text-center my-2" id="emptyState">
 <div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-space-md border border-outline-variant/60 text-primary">
@@ -362,7 +348,7 @@
         </p>
 <a class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded-lg text-label-md font-label-md uppercase tracking-wider text-white bg-primary-container border border-primary hover:bg-secondary-container active:scale-[0.98] transition-all shadow-md" href="cargas.html">
 <span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
-<span>+ Cargar Nueva Galería</span>
+<span class="">+ Cargar Nueva Galería</span>
 </a>
 </div>
 </section>
@@ -695,4 +681,6 @@
       fetchGaleriasFromSupabase();
     });
   </script>
+
+
 </body></html>
