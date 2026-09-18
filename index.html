@@ -414,14 +414,26 @@
 </div>
 </div>
 <!-- VISOR MODAL EN ALTA RESOLUCIÓN -->
-<div class="modal" id="modal-pass-clientes" onclick="cerrarModalPasswordFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1050; padding: 20px;"><div style="background: #1e1e1e; border: 2px solid #005580; border-radius: 14px; padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); text-align: center; position: relative;"><span class="btn-cerrar" onclick="cerrarModalPassword()" style="top: 12px; right: 14px; font-size: 1.5rem; padding: 2px 10px;">×</span><div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(56,189,248,0.1); border: 1px solid #005580; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;"><span class="material-symbols-outlined" style="color: #38bdf8; font-size: 26px;">lock</span></div><h3 style="color: #fff; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Acceso a Clientes</h3><p style="color: #aaaaaa; font-size: 0.88rem; margin-bottom: 20px;">Ingresá la clave de tu sesión privada</p><form onsubmit="validarAccesoCliente(event)"><input autocomplete="off" id="input-cliente-pass" placeholder="********" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #005580; background: #111111; color: #ffffff; font-size: 1.05rem; letter-spacing: 2px; text-align: center; margin-bottom: 16px; outline: none;" type="password"/><button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #005580; color: #ffffff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" type="submit">Ingresar a Galería</button></form><div id="msg-pass-error" style="color: #ff6b6b; font-size: 0.82rem; margin-top: 10px; display: none;">Clave incorrecta. Por favor verifique.</div></div></div><div class="modal" id="modal" onclick="cerrarVisorFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 1000;"><span class="btn-cerrar" onclick="cerrarVisor()">×</span><span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span><div style="position: relative; max-width: 92%; max-height: 85vh; display: flex; justify-content: center; align-items: center;"><img alt="Fotografía" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="" style="max-width: 100%; max-height: 85vh; object-fit: contain; user-select: none; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); pointer-events: auto;"/><!-- FIRMA DISCRETA Y SOBRIA EN ESQUINA INFERIOR IZQUIERDA --><div class="caja-firma-visor" id="caja-firma-visor"><div style="display: flex; align-items: center; gap: 6px; color: #ffffff; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.5px;"><span class="material-symbols-outlined" style="font-size: 16px; color: #38bdf8;">photo_camera</span><span>Sergio Molina</span></div><div style="font-size: 0.76rem; color: #c0c7cf; font-weight: 400;"><span id="visor-subcarpeta" style="color: #38bdf8; font-weight: 500;"></span> • <span id="visor-nombre-archivo"></span></div></div></div><span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span></div>
+<div class="modal" id="modal-pass-clientes" onclick="cerrarModalPasswordFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1050; padding: 20px;"><div style="background: #1e1e1e; border: 2px solid #005580; border-radius: 14px; padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); text-align: center; position: relative;"><span class="btn-cerrar" onclick="cerrarModalPassword()" style="top: 12px; right: 14px; font-size: 1.5rem; padding: 2px 10px;">×</span><div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(56,189,248,0.1); border: 1px solid #005580; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;"><span class="material-symbols-outlined" style="color: #38bdf8; font-size: 26px;">lock</span></div><h3 style="color: #fff; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Acceso a Clientes</h3><p style="color: #aaaaaa; font-size: 0.88rem; margin-bottom: 20px;">Ingresá la clave de tu sesión privada</p><form onsubmit="validarClaveAcceso(event)"><input autocomplete="off" id="input-cliente-pass" placeholder="********" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #005580; background: #111111; color: #ffffff; font-size: 1.05rem; letter-spacing: 2px; text-align: center; margin-bottom: 16px; outline: none;" type="password"/><button id="btn-submit-album" style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #005580; color: #ffffff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" type="submit">Desbloquear Álbum</button></form><div id="msg-pass-error" style="color: #ff6b6b; font-size: 0.82rem; margin-top: 10px; display: none;">Clave incorrecta o no encontrada. Por favor verifique.</div></div></div><div class="modal" id="modal" onclick="cerrarVisorFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 1000;"><span class="btn-cerrar" onclick="cerrarVisor()">×</span><span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span><div class="modal-frame" style="position: relative; display: inline-block; width: fit-content; height: fit-content; max-width: 90vw; max-height: 85vh; line-height: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 4px; overflow: hidden;"><img alt="Fotografía" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="" style="display: block; width: auto; height: auto; max-width: 90vw; max-height: 85vh; object-fit: contain; user-select: none; pointer-events: auto;"/><div class="caja-firma-visor firma-autor-visor" id="caja-firma-visor" style="position: absolute; bottom: 16px; left: 16px; z-index: 1002; pointer-events: none; user-select: none; background: rgba(12, 12, 12, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-left: 3px solid #38bdf8; border-radius: 8px; padding: 6px 12px; line-height: 1.35; display: flex; flex-direction: column; gap: 3px; text-align: left; box-shadow: 0 4px 16px rgba(0,0,0,0.6);"><div style="display: flex; align-items: center; gap: 6px; color: #ffffff; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.5px;"><span class="material-symbols-outlined" style="font-size: 16px; color: #38bdf8;">photo_camera</span><span>Sergio Molina</span></div><div style="font-size: 0.76rem; color: #c0c7cf; font-weight: 400;"><span id="visor-subcarpeta" style="color: #38bdf8; font-weight: 500;"></span> • <span id="visor-nombre-archivo" style="font-family: monospace, sans-serif; opacity: 0.9;"></span></div></div></div><span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span></div>
 <script>
     const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM'; 
     const clientes = {
-      "familia2026": "ID_CARPETA_FAMILIA_PEREZ",
-      "boda1234": "ID_CARPETA_BODA_JUAN_Y_MARIA",
-      "miprueba": "1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB" 
+      "familia2026": { folderId: "ID_CARPETA_FAMILIA_PEREZ", titulo: "Familia Pérez" },
+      "boda1234": { folderId: "ID_CARPETA_BODA_JUAN_Y_MARIA", titulo: "Boda Juan y María" },
+      "miprueba": { folderId: "1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB", titulo: "Sesión Privada" }
     };
+
+    // Configuración opcional / fallback de Supabase
+    let supabaseClient = null;
+    if (window.supabase) {
+      try {
+        const SUPABASE_URL = window.SUPABASE_URL || localStorage.getItem('supabase_url') || 'https://xyzcompany.supabase.co';
+        const SUPABASE_KEY = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_key') || 'public-anon-key';
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      } catch (e) {
+        console.warn('Supabase client inicializado condicionalmente:', e);
+      }
+    }
 
     let fotosActuales = [];
     let indiceFotoActual = 0;
@@ -451,19 +463,114 @@
       }
     }
 
-    function validarAccesoCliente(event) {
+    async function consultarGaleriaSupabase(pass) {
+      if (!supabaseClient) return null;
+      const tablas = ['galeria', 'galerias'];
+      const camposPass = ['password', 'clave', 'codigo'];
+
+      for (const tabla of tablas) {
+        for (const campo of camposPass) {
+          try {
+            const { data, error } = await supabaseClient
+              .from(tabla)
+              .select('*')
+              .eq(campo, pass)
+              .limit(1);
+
+            if (!error && data && data.length > 0) {
+              const row = data[0];
+              const folderId = row.folder_id || row.id_carpeta || row.folderId || row.drive_id || row.id_drive || row.id;
+              const titulo = row.titulo || row.nombre || row.name || row.cliente || 'Galería Privada';
+              if (folderId) {
+                return { folderId, titulo };
+              }
+            }
+          } catch (err) {
+            // continuar evaluando las siguientes tablas/campos
+          }
+        }
+      }
+      return null;
+    }
+
+    async function validarClaveAcceso(event) {
       if (event) event.preventDefault();
       const input = document.getElementById('input-cliente-pass');
-      const pass = input ? input.value.trim().toLowerCase() : '';
+      const btnSubmit = document.getElementById('btn-submit-album');
       const msgError = document.getElementById('msg-pass-error');
+      const pass = input ? input.value.trim() : '';
 
-      const idCarpeta = clientes[pass];
-      if (idCarpeta) {
-        cerrarModalPassword();
-        abrirGaleria('Tu Sesión Privada', idCarpeta);
-      } else {
-        if (msgError) msgError.style.display = 'block';
+      if (!pass) {
+        if (msgError) {
+          msgError.textContent = 'Por favor ingresá tu clave de acceso.';
+          msgError.style.display = 'block';
+        }
+        return;
       }
+
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerText = 'Verificando...';
+      }
+      if (msgError) msgError.style.display = 'none';
+
+      try {
+        let folderId = '';
+        let titulo = '';
+
+        // 1. Consulta en Supabase
+        const resultadoDb = await consultarGaleriaSupabase(pass.toLowerCase()).catch(() => null) 
+                          || await consultarGaleriaSupabase(pass).catch(() => null);
+
+        if (resultadoDb && resultadoDb.folderId) {
+          folderId = resultadoDb.folderId;
+          titulo = resultadoDb.titulo || 'Galería Privada';
+        }
+
+        // 2. Consulta en claves locales de respaldo
+        if (!folderId) {
+          const passLower = pass.toLowerCase();
+          const clienteLocal = clientes[passLower] || clientes[pass];
+          if (clienteLocal) {
+            if (typeof clienteLocal === 'string') {
+              folderId = clienteLocal;
+              titulo = 'Galería Privada';
+            } else if (clienteLocal.folderId) {
+              folderId = clienteLocal.folderId;
+              titulo = clienteLocal.titulo || 'Galería Privada';
+            }
+          }
+        }
+
+        // 3. Redirección blindada directamente a privadas.html con parámetros limpios
+        if (folderId) {
+          cerrarModalPassword();
+          window.location.href = `privadas.html?id=${encodeURIComponent(folderId)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(pass)}`;
+          return;
+        }
+
+        // Clave no encontrada
+        if (msgError) {
+          msgError.textContent = 'Clave incorrecta o no encontrada. Por favor verifique.';
+          msgError.style.display = 'block';
+        }
+      } catch (err) {
+        console.error('Error al validar acceso:', err);
+        if (msgError) {
+          msgError.textContent = 'Ocurrió un error al verificar. Intente nuevamente.';
+          msgError.style.display = 'block';
+        }
+      } finally {
+        if (btnSubmit) {
+          btnSubmit.disabled = false;
+          btnSubmit.innerText = 'Desbloquear Álbum';
+        }
+      }
+    }
+
+    // Alias de compatibilidad
+    function validarAccesoCliente(event) {
+      return validarClaveAcceso(event);
     }
 
     // Atajo de teclado global Ctrl+Alt+A a login.html
