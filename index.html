@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="es" style=""><head>
+<html lang="es"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sergio Ricardo Molina | Fotografía</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Sergio Ricardo Molina | Fotografía Profesional</title>
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -20,11 +21,7 @@
       margin: 0 auto;
       min-height: 100vh;
     }
-    
-    header {
-      text-align: center;
-      padding: 24px 0 20px;
-    }
+    header { text-align: center; padding: 24px 0 20px; }
     .avatar-header {
       width: 76px;
       height: 76px;
@@ -35,6 +32,8 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       display: block;
       cursor: default;
+      user-select: none;
+      -webkit-user-drag: none;
     }
     h1 {
       font-size: 1.65rem;
@@ -52,21 +51,19 @@
       font-weight: 300;
     }
 
-    /* VISTA 1: GRID DE CATEGORÍAS */
+    /* GRID CATEGORÍAS */
     .grid-categorias {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 14px;
       margin-top: 22px;
     }
-
     @media (min-width: 768px) {
       .grid-categorias {
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
       }
     }
-
     .card-categoria {
       background: #222222;
       border: 2px solid #005580;
@@ -87,86 +84,35 @@
       text-decoration: none;
       user-select: none;
     }
-
     .card-categoria:hover {
       background: #282828;
       border-color: #0077b3;
     }
-
     .card-categoria:active {
       transform: scale(0.96);
       background: #1f1f1f;
     }
+    .card-icon { font-size: 26px; color: #0088cc; }
 
-    .card-icon {
-      font-size: 26px;
-      color: #0088cc;
-    }
-
-    /* BOTÓN ESPECIAL EVENTOS ESCOLARES DESTACADO */
-    .card-eventos {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
-      border: 2px solid #38bdf8;
-      box-shadow: inset 0 0 0 2px #111111, 0 6px 18px rgba(0,100,200,0.25);
-      position: relative;
-      overflow: hidden;
-      padding: 16px;
-    }
-    .card-eventos:hover {
-      background: linear-gradient(135deg, #22334f 0%, #112236 100%);
-      border-color: #7dd3fc;
-    }
-    .badge-destacado {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: #0284c7;
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .card-eventos h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .card-eventos p {
-      font-size: 0.85rem;
-      color: #bae6fd;
-      margin-top: 4px;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      text-align: center;
-    }
-
-    /* BOTÓN ESPECIAL CLIENTES CON DOBLE BORDE */
+    /* BOTÓN CLIENTES */
     .btn-clientes {
       grid-column: 1 / -1;
       background: #004466;
       border: 2px solid #005580;
       box-shadow: inset 0 0 0 3px #222222, 0 4px 12px rgba(0,0,0,0.35);
-      min-height: 90px;
+      min-height: 80px;
+      flex-direction: row;
+      gap: 10px;
     }
-    .btn-clientes:hover {
-      background: #005580;
-    }
+    .btn-clientes:hover { background: #005580; }
 
-    /* SECCIÓN REDES Y CATÁLOGO */
+    /* REDES SOCIALES */
     .redes-sociales {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 24px;
     }
-
     .btn-red {
       background: #222222;
       border-radius: 12px;
@@ -177,25 +123,55 @@
       font-size: 0.88rem;
       font-weight: 600;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 4px;
     }
-
-    .btn-red:active {
-      transform: scale(0.96);
-      background: #2a2a2a;
-    }
-
-    /* BORDES DE REDES SOCIALES */
+    .btn-red:active { transform: scale(0.96); background: #2a2a2a; }
     .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
     .btn-cat { border: 2px solid #facc15; color: #facc15; }
     .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
 
-    /* VISTA 2 y 3: GALERÍA Y SECCIONES INTERNAS */
+    /* BOTÓN DISCRETO CONSOLA PROPIETARIO (ANCHO DE CATÁLOGO Y 1/3 ALTURA) */
+    .contenedor-admin-discreto {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+      width: 100%;
+    }
+    .btn-consola-propietario {
+      grid-column: 2;
+      width: 100%;
+      min-height: 30px;
+      padding: 6px 12px;
+      background: #181818;
+      border: 1px solid #005580;
+      border-radius: 8px;
+      color: #8b9199;
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-consola-propietario:hover {
+      background: #202020;
+      border-color: #38bdf8;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* CONTENEDOR GALERÍA */
     .contenedor-galeria { display: none; }
     .cabecera-galeria {
       display: flex;
@@ -206,64 +182,81 @@
       border-bottom: 1px solid #282828;
     }
     .btn-volver {
-      background: #222222;
+      background: #1c1c1c;
       color: #ffffff;
       border: 1px solid #005580;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 20px;
       font-size: 0.88rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
     }
-    .btn-volver:hover { background: #2f2f2f; }
+    .btn-volver:hover { background: #282828; border-color: #38bdf8; }
     .titulo-categoria { font-size: 1.3rem; font-weight: 300; letter-spacing: 1px; }
 
-    /* ENCABEZADO SUBCARPETA */
+    /* ESTRUCTURA SUBCARPETAS */
+    .seccion-subcarpeta { margin-bottom: 34px; }
     .encabezado-subcarpeta {
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: #38bdf8;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin: 28px 0 14px 0;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #222222;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
     }
-    .encabezado-subcarpeta .material-symbols-outlined {
-      font-size: 22px;
+    .titulo-subcarpeta {
+      font-size: 1.15rem;
+      font-weight: 600;
       color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
     }
 
-    /* GALERÍA DE FOTOS */
-    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 24px; }
-    @media (min-width: 600px) {
-      .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    }
-    @media (min-width: 768px) {
-      .galeria { grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    }
-    
-    .galeria img { 
-      width: 100%; 
-      aspect-ratio: 1 / 1; 
-      object-fit: cover; 
-      background: #000000; 
-      border-radius: 8px; 
-      cursor: pointer; 
-      transition: transform 0.2s ease, opacity 0.2s ease; 
+    /* GRID FOTOS */
+    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    @media (min-width: 600px) { .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
+    @media (min-width: 768px) { .galeria { grid-template-columns: repeat(4, 1fr); gap: 12px; } }
+    .galeria img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #000000;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
       border: 1px solid #2a2a2a;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
     }
-    
     .galeria img:hover { transform: scale(1.02); opacity: 0.95; }
     .galeria img:active { transform: scale(0.98); }
-
-    .cargando { text-align: center; color: #888888; grid-column: 1 / -1; padding: 50px 0; font-size: 0.95rem; }
+    .cargando {
+      text-align: center;
+      color: #aaaaaa;
+      padding: 50px 0;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .cargando-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(56,189,248,0.2);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     /* MODAL VISOR */
     .modal {
@@ -278,15 +271,77 @@
       align-items: center;
       z-index: 1000;
     }
-    .modal img {
-      max-width: 92%;
+    .modal-frame {
+      position: relative;
+      max-width: 90vw;
       max-height: 85vh;
+      width: fit-content;
+      height: fit-content;
+      display: inline-block;
+      line-height: 0;
+    }
+    .modal img {
+      max-width: 90vw;
+      max-height: 85vh;
+      width: auto;
+      height: auto;
       object-fit: contain;
       user-select: none;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
+      border-radius: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+      display: block;
     }
-    
+
+    /* FIRMA DE AUTOR SOBRE LA FOTO */
+    .firma-autor-visor {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 1002;
+      pointer-events: none;
+      background: rgba(12, 12, 12, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 3px solid #38bdf8;
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-align: left;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.7);
+      user-select: none;
+      line-height: 1.35;
+      max-width: calc(100% - 32px);
+    }
+    .firma-autor-nombre {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .firma-autor-meta {
+      font-size: 0.72rem;
+      color: #bbbbbb;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .firma-carpeta-badge {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
     .btn-nav {
       position: absolute;
       top: 50%;
@@ -318,28 +373,6 @@
       border-radius: 50%;
       line-height: 1;
     }
-
-    /* FIRMA Y MARCA DE AGUA DISCRETA EN VISOR */
-    .caja-firma-visor {
-      position: fixed;
-      bottom: 24px;
-      left: 24px;
-      background: rgba(14, 14, 14, 0.78);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-left: 3px solid #38bdf8;
-      border-radius: 0 8px 8px 0;
-      padding: 8px 14px;
-      z-index: 1002;
-      pointer-events: none;
-      user-select: none;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      text-align: left;
-    }
-
     footer {
       text-align: center;
       margin-top: 40px;
@@ -349,45 +382,80 @@
       font-size: 0.8rem;
       letter-spacing: 0.5px;
     }
-
     @media (max-width: 600px) {
       .btn-nav { display: none; }
-      .caja-firma-visor {
-        bottom: 16px;
-        left: 16px;
-        padding: 6px 10px;
-      }
+      .firma-autor-visor { bottom: 10px; left: 10px; padding: 5px 9px; }
+      .firma-autor-nombre { font-size: 0.74rem; }
+      .firma-autor-meta { font-size: 0.67rem; }
     }
   </style>
 </head>
 <body>
-<!-- VISTA 1: MENÚ PRINCIPAL (PORTAFOLIO COMO HOME) -->
+<!-- VISTA 1: MENÚ PRINCIPAL -->
 <div id="vista-menu">
 <header>
+<!-- FOTO REDONDA SUPERIOR ESTÁTICA SIN ENLACES NI CLICS -->
 <img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
-<h1 class="">Sergio Ricardo Molina<span class="">Fotografía Profesional</span></h1>
+<h1>Sergio Ricardo Molina<span>Fotografía Profesional</span></h1>
 </header>
 <main>
-<!-- ACCESO DESTACADO A EVENTOS ESCOLARES -->
-<div class="grid-categorias"><div class="card-categoria" onclick="abrirSeccionTexto()"><span class="material-symbols-outlined card-icon">person</span><span class="">Sobre mí</span></div><div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')"><span class="material-symbols-outlined card-icon">auto_awesome</span><span class="">Ensayos</span></div><div class="card-categoria" onclick="abrirGaleria('Postales', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')"><span class="material-symbols-outlined card-icon">landscape</span><span>Postales</span></div><div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')"><span class="material-symbols-outlined card-icon">face</span><span class="">Retratos</span></div><div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')"><span class="material-symbols-outlined card-icon">photo_camera</span><span class="">Sesiones</span></div><a class="card-categoria" href="eventos.html" style="text-decoration: none;"><span class="material-symbols-outlined card-icon" style="color: rgb(56, 189, 248);">school</span><span class="">Eventos</span></a><div class="card-categoria btn-clientes" onclick="abrirModalPassword()" style="cursor: pointer; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10px;"><span style="font-size: 1.05rem; font-weight: 600;">Acceso Privado Clientes</span><span class="material-symbols-outlined" style="font-size: 24px; color: rgb(56, 189, 248);">lock</span></div></div>
+<div class="grid-categorias">
+<div class="card-categoria" onclick="abrirSeccionTexto()">
+<span class="material-symbols-outlined card-icon">person</span>
+<span>Sobre mí</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
+<span class="material-symbols-outlined card-icon">auto_awesome</span>
+<span>Ensayos</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Postales', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
+<span class="material-symbols-outlined card-icon">landscape</span>
+<span>Postales</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Retratos', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
+<span class="material-symbols-outlined card-icon">face</span>
+<span>Retratos</span>
+</div>
+<div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
+<span class="material-symbols-outlined card-icon">photo_camera</span>
+<span>Sesiones</span>
+</div>
+<a class="card-categoria" href="eventos.html" style="text-decoration: none;">
+<span class="material-symbols-outlined card-icon" style="color: #38bdf8;">school</span>
+<span>Eventos</span>
+</a>
+<!-- BOTÓN ACCESO PRIVADO CLIENTES (UN SOLO CANDADO A LA DERECHA) -->
+<div class="card-categoria btn-clientes" onclick="abrirModalCliente()">
+<span style="font-size: 1.05rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+            Acceso Privado Clientes <span class="material-symbols-outlined" style="font-size: 22px; color: #38bdf8;">lock</span>
+</span>
+</div>
+</div>
 <!-- REDES SOCIALES Y CONTACTO -->
 <div class="redes-sociales">
 <a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
 <span class="material-symbols-outlined">chat</span>
-<span class="">Chat WhatsApp</span>
+<span>Chat WhatsApp</span>
 </a>
 <a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
 <span class="material-symbols-outlined">inventory_2</span>
-<span class="">Catálogo</span>
+<span>Catálogo</span>
 </a>
 <a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
 <span class="material-symbols-outlined">photo_camera_back</span>
-<span class="">Instagram</span>
+<span>Instagram</span>
 </a>
-</div><div class="contenedor-admin-discreto" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; width: 100%;"><a class="btn-consola-propietario" href="login.html" onmouseout="this.style.borderColor='#005580'; this.style.color='#8b9199'; this.style.background='#181818';" onmouseover="this.style.borderColor='#38bdf8'; this.style.color='#ffffff'; this.style.background='#252525';" style="grid-column: 2; width: 100%; max-width: none; min-height: 30px; padding: 6px 12px; background: #181818; border: 1px solid #005580; border-radius: 8px; color: #8b9199; text-decoration: none; font-size: 0.76rem; font-weight: 500; letter-spacing: 0.5px; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.25); user-select: none; display: flex; align-items: center; justify-content: center; gap: 6px;"><span class="material-symbols-outlined" style="font-size: 16px; opacity: 0.85;">admin_panel_settings</span><span class="">Consola Propietario</span></a></div>
+</div>
+<!-- BOTÓN DISCRETO CONSOLA PROPIETARIO (ANCHO DE CATÁLOGO Y 1/3 ALTURA) -->
+<div class="contenedor-admin-discreto">
+<a class="btn-consola-propietario" href="login.html" title="Consola del Propietario">
+<span class="material-symbols-outlined" style="font-size: 15px; color: #0088cc;">admin_panel_settings</span>
+<span>Consola Propietario</span>
+</a>
+</div>
 </main>
 <footer>
-<p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
 </footer>
 </div>
 <!-- VISTA 2: GALERÍA DE FOTOS -->
@@ -396,8 +464,7 @@
 <button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
 <h2 class="titulo-categoria" id="titulo-categoria">Categoría</h2>
 </div>
-<div id="contenedor-secciones-galeria"></div>
-<main class="galeria" id="galeria"></main>
+<main id="galeria-contenedor-secciones"></main>
 </div>
 <!-- VISTA 3: SOBRE MÍ -->
 <div class="contenedor-galeria" id="vista-sobre-mi">
@@ -406,315 +473,322 @@
 <h2 class="titulo-categoria">Sobre mí</h2>
 </div>
 <div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
-<img alt="Sergio Ricardo Molina" class="" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin-bottom: 25px; border: 2px solid rgb(0, 85, 128); box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 20px;"/>
-<p class="" style="margin-bottom: 18px; color: rgb(229, 229, 229); font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
-<p class="" style="color: rgb(204, 204, 204); font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
+<img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 180px; height: 180px; margin-bottom: 25px;"/>
+<p style="margin-bottom: 18px; color: #e5e5e5; font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
+<p style="color: #cccccc; font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
 <div style="margin-top: 30px;">
-<a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration: none; padding: 10px 20px; font-size: 0.95rem; border-color: rgb(74, 222, 128); color: rgb(74, 222, 128);" target="_blank">Consultar por Sesiones Privadas 💬</a>
+<a class="btn-volver" href="https://wa.me/542613175222" style="text-decoration:none; padding: 10px 20px; font-size: 0.95rem; border-color: #4ade80; color: #4ade80;" target="_blank">Consultar por Sesiones Privadas 💬</a>
 </div>
 </div>
 </div>
-<!-- VISOR MODAL EN ALTA RESOLUCIÓN -->
-<div class="modal" id="modal-pass-clientes" onclick="cerrarModalPasswordFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1050; padding: 20px;"><div style="background: #1e1e1e; border: 2px solid #005580; border-radius: 14px; padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); text-align: center; position: relative;"><span class="btn-cerrar" onclick="cerrarModalPassword()" style="top: 12px; right: 14px; font-size: 1.5rem; padding: 2px 10px;">×</span><div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(56,189,248,0.1); border: 1px solid #005580; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;"><span class="material-symbols-outlined" style="color: #38bdf8; font-size: 26px;">lock</span></div><h3 style="color: #fff; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Acceso a Clientes</h3><p style="color: #aaaaaa; font-size: 0.88rem; margin-bottom: 20px;">Ingresá la clave de tu sesión privada</p><form onsubmit="validarClaveAcceso(event)"><input autocomplete="off" id="input-cliente-pass" placeholder="********" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #005580; background: #111111; color: #ffffff; font-size: 1.05rem; letter-spacing: 2px; text-align: center; margin-bottom: 16px; outline: none;" type="password"/><button id="btn-submit-album" style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #005580; color: #ffffff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" type="submit">Desbloquear Álbum</button></form><div id="msg-pass-error" style="color: #ff6b6b; font-size: 0.82rem; margin-top: 10px; display: none;">Clave incorrecta o no encontrada. Por favor verifique.</div></div></div><div class="modal" id="modal" onclick="cerrarVisorFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 1000;"><span class="btn-cerrar" onclick="cerrarVisor()">×</span><span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span><div class="modal-frame" style="position: relative; display: inline-block; width: fit-content; height: fit-content; max-width: 90vw; max-height: 85vh; line-height: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 4px; overflow: hidden;"><img alt="Fotografía" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="" style="display: block; width: auto; height: auto; max-width: 90vw; max-height: 85vh; object-fit: contain; user-select: none; pointer-events: auto;"/><div class="caja-firma-visor firma-autor-visor" id="caja-firma-visor" style="position: absolute; bottom: 16px; left: 16px; z-index: 1002; pointer-events: none; user-select: none; background: rgba(12, 12, 12, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-left: 3px solid #38bdf8; border-radius: 8px; padding: 6px 12px; line-height: 1.35; display: flex; flex-direction: column; gap: 3px; text-align: left; box-shadow: 0 4px 16px rgba(0,0,0,0.6);"><div style="display: flex; align-items: center; gap: 6px; color: #ffffff; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.5px;"><span class="material-symbols-outlined" style="font-size: 16px; color: #38bdf8;">photo_camera</span><span>Sergio Molina</span></div><div style="font-size: 0.76rem; color: #c0c7cf; font-weight: 400;"><span id="visor-subcarpeta" style="color: #38bdf8; font-weight: 500;"></span> • <span id="visor-nombre-archivo" style="font-family: monospace, sans-serif; opacity: 0.9;"></span></div></div></div><span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span></div>
+<!-- MODAL ACCESO PRIVADO CLIENTES -->
+<div id="modal-cliente" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 1200; align-items: center; justify-content: center; padding: 20px;">
+<div style="background: #181818; border: 1px solid #005580; border-radius: 16px; max-width: 440px; width: 100%; padding: 28px 24px; box-shadow: 0 10px 35px rgba(0, 85, 128, 0.25); text-align: center; position: relative;">
+<span onclick="cerrarModalCliente()" style="position: absolute; top: 14px; right: 18px; color: #888; font-size: 24px; cursor: pointer; line-height: 1;">×</span>
+<div style="width: 52px; height: 52px; background: rgba(0, 85, 128, 0.2); border: 1px solid #005580; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+<span class="material-symbols-outlined" style="font-size: 28px; color: #38bdf8;">lock</span>
+</div>
+<h3 style="font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 8px;">Acceso Privado a Clientes</h3>
+<p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 22px; line-height: 1.4;">Ingresá la clave de tu evento o sesión privada para acceder a tu álbum en alta resolución.</p>
+<form onsubmit="validarClaveAcceso(event)" style="display: flex; flex-direction: column; gap: 14px;">
+<input autocomplete="off" id="input-clave-cliente" placeholder="********" style="background: #101010; border: 1px solid #334155; border-radius: 8px; color: #fff; padding: 12px 16px; font-size: 0.95rem; outline: none; text-align: center; letter-spacing: 2px;" type="password"/>
+<div id="error-clave-cliente" style="display: none; color: #f87171; font-size: 0.82rem; margin-top: -6px;">Contraseña incorrecta o álbum no encontrado.</div>
+<button id="btn-submit-clave" style="background: #005580; color: #fff; border: 1px solid #38bdf8; border-radius: 8px; padding: 12px 18px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" type="submit">
+<span class="material-symbols-outlined" style="font-size: 20px;">key</span>
+<span id="texto-btn-clave">Desbloquear Álbum</span>
+</button>
+</form>
+</div>
+</div>
+<!-- MODAL VISOR EN ALTA RESOLUCIÓN CON FIRMA SOBRE LA FOTO -->
+<div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
+<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<div class="modal-frame">
+<img alt="Vista Previa" draggable="false" id="img-ampliada" oncontextmenu="return false;" src=""/>
+<div class="firma-autor-visor" id="firma-visor">
+<div class="firma-autor-nombre">
+<span class="material-symbols-outlined" style="font-size: 15px; color: #38bdf8;">photo_camera</span>
+<span>Sergio Molina</span>
+</div>
+<div class="firma-autor-meta">
+<span class="firma-carpeta-badge" id="firma-nombre-carpeta">Carpeta</span>
+<span>•</span>
+<span id="firma-nombre-archivo">archivo.jpg</span>
+</div>
+</div>
+</div>
+<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
 <script>
-    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM'; 
-    const clientes = {
-      "familia2026": { folderId: "ID_CARPETA_FAMILIA_PEREZ", titulo: "Familia Pérez" },
-      "boda1234": { folderId: "ID_CARPETA_BODA_JUAN_Y_MARIA", titulo: "Boda Juan y María" },
-      "miprueba": { folderId: "1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB", titulo: "Sesión Privada" }
-    };
-
-    // Configuración opcional / fallback de Supabase
-    let supabaseClient = null;
-    if (window.supabase) {
-      try {
-        const SUPABASE_URL = window.SUPABASE_URL || localStorage.getItem('supabase_url') || 'https://xyzcompany.supabase.co';
-        const SUPABASE_KEY = window.SUPABASE_ANON_KEY || localStorage.getItem('supabase_key') || 'public-anon-key';
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-      } catch (e) {
-        console.warn('Supabase client inicializado condicionalmente:', e);
-      }
-    }
+    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 
     let fotosActuales = [];
     let indiceFotoActual = 0;
-    let categoriaActivaNombre = '';
 
     history.pushState({ vista: 'inicio' }, '', '');
 
-    function abrirModalPassword() {
-      const modal = document.getElementById('modal-pass-clientes');
-      const input = document.getElementById('input-cliente-pass');
-      const msgError = document.getElementById('msg-pass-error');
-      if (modal) {
-        modal.style.display = 'flex';
-        if (input) { input.value = ''; input.focus(); }
-        if (msgError) msgError.style.display = 'none';
-      }
-    }
-
-    function cerrarModalPassword() {
-      const modal = document.getElementById('modal-pass-clientes');
-      if (modal) modal.style.display = 'none';
-    }
-
-    function cerrarModalPasswordFondo(event) {
-      if (event.target.id === 'modal-pass-clientes') {
-        cerrarModalPassword();
-      }
-    }
-
-    async function consultarGaleriaSupabase(pass) {
-      if (!supabaseClient) return null;
-      const tablas = ['galeria', 'galerias'];
-      const camposPass = ['password', 'clave', 'codigo'];
-
-      for (const tabla of tablas) {
-        for (const campo of camposPass) {
-          try {
-            const { data, error } = await supabaseClient
-              .from(tabla)
-              .select('*')
-              .eq(campo, pass)
-              .limit(1);
-
-            if (!error && data && data.length > 0) {
-              const row = data[0];
-              const folderId = row.folder_id || row.id_carpeta || row.folderId || row.drive_id || row.id_drive || row.id;
-              const titulo = row.titulo || row.nombre || row.name || row.cliente || 'Galería Privada';
-              if (folderId) {
-                return { folderId, titulo };
-              }
-            }
-          } catch (err) {
-            // continuar evaluando las siguientes tablas/campos
-          }
-        }
-      }
-      return null;
-    }
-
-    async function validarClaveAcceso(event) {
-      if (event) event.preventDefault();
-      const input = document.getElementById('input-cliente-pass');
-      const btnSubmit = document.getElementById('btn-submit-album');
-      const msgError = document.getElementById('msg-pass-error');
-      const pass = input ? input.value.trim() : '';
-
-      if (!pass) {
-        if (msgError) {
-          msgError.textContent = 'Por favor ingresá tu clave de acceso.';
-          msgError.style.display = 'block';
-        }
-        return;
-      }
-
-      if (btnSubmit) {
-        btnSubmit.disabled = true;
-        btnSubmit.innerText = 'Verificando...';
-      }
-      if (msgError) msgError.style.display = 'none';
-
-      try {
-        let folderId = '';
-        let titulo = '';
-
-        // 1. Consulta en Supabase
-        const resultadoDb = await consultarGaleriaSupabase(pass.toLowerCase()).catch(() => null) 
-                          || await consultarGaleriaSupabase(pass).catch(() => null);
-
-        if (resultadoDb && resultadoDb.folderId) {
-          folderId = resultadoDb.folderId;
-          titulo = resultadoDb.titulo || 'Galería Privada';
-        }
-
-        // 2. Consulta en claves locales de respaldo
-        if (!folderId) {
-          const passLower = pass.toLowerCase();
-          const clienteLocal = clientes[passLower] || clientes[pass];
-          if (clienteLocal) {
-            if (typeof clienteLocal === 'string') {
-              folderId = clienteLocal;
-              titulo = 'Galería Privada';
-            } else if (clienteLocal.folderId) {
-              folderId = clienteLocal.folderId;
-              titulo = clienteLocal.titulo || 'Galería Privada';
-            }
-          }
-        }
-
-        // 3. Redirección blindada directamente a privadas.html con parámetros limpios
-        if (folderId) {
-          cerrarModalPassword();
-          window.location.href = `privadas.html?id=${encodeURIComponent(folderId)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}&key=${encodeURIComponent(pass)}`;
-          return;
-        }
-
-        // Clave no encontrada
-        if (msgError) {
-          msgError.textContent = 'Clave incorrecta o no encontrada. Por favor verifique.';
-          msgError.style.display = 'block';
-        }
-      } catch (err) {
-        console.error('Error al validar acceso:', err);
-        if (msgError) {
-          msgError.textContent = 'Ocurrió un error al verificar. Intente nuevamente.';
-          msgError.style.display = 'block';
-        }
-      } finally {
-        if (btnSubmit) {
-          btnSubmit.disabled = false;
-          btnSubmit.innerText = 'Desbloquear Álbum';
-        }
-      }
-    }
-
-    // Alias de compatibilidad
-    function validarAccesoCliente(event) {
-      return validarClaveAcceso(event);
-    }
-
-    // Atajo de teclado global Ctrl+Alt+A a login.html
+    // ATAJO SECRETO: Ctrl + Alt + A
     document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.altKey && (e.key === 'a' || e.key === 'A')) {
+      const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+      if (isCtrlOrCmd && e.altKey && (e.key === 'a' || e.key === 'A')) {
         e.preventDefault();
         window.location.href = 'login.html';
       }
     });
 
-    async function listarContenidoCarpeta(folderId) {
-      let items = [];
-      let pageToken = '';
-      const query = encodeURIComponent(`'${folderId}' in parents and trashed = false`);
-
-      try {
-        do {
-          let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=nextPageToken,files(id,name,mimeType)&pageSize=100&key=${API_KEY}`;
-          if (pageToken) {
-            url += `&pageToken=${pageToken}`;
-          }
-          const res = await fetch(url);
-          const data = await res.json();
-          if (data.error) {
-            console.error("Error API Drive:", data.error);
-            break;
-          }
-          if (data.files && data.files.length > 0) {
-            items = items.concat(data.files);
-          }
-          pageToken = data.nextPageToken;
-        } while (pageToken);
-      } catch (err) {
-        console.error("Error al listar carpeta:", err);
+    // MODAL ACCESO CLIENTES
+    function abrirModalCliente() {
+      const m = document.getElementById('modal-cliente');
+      if (m) {
+        m.style.display = 'flex';
+        const inp = document.getElementById('input-clave-cliente');
+        if (inp) { inp.value = ''; inp.focus(); }
+        const err = document.getElementById('error-clave-cliente');
+        if (err) err.style.display = 'none';
+        const btnTxt = document.getElementById('texto-btn-clave');
+        if (btnTxt) btnTxt.innerText = 'Desbloquear Álbum';
+        const btn = document.getElementById('btn-submit-clave');
+        if (btn) btn.disabled = false;
       }
-      return items;
     }
 
-    function esArchivoImagen(archivo) {
-      if (!archivo) return false;
-      if (archivo.mimeType && archivo.mimeType.startsWith('image/')) return true;
-      const extensiones = ['.jpg', '.jpeg', '.png', '.webp', '.raw', '.cr2', '.cr3', '.nef', '.dng'];
-      const nombre = (archivo.name || '').toLowerCase();
-      return extensiones.some(ext => nombre.endsWith(ext));
+    function cerrarModalCliente() {
+      const m = document.getElementById('modal-cliente');
+      if (m) m.style.display = 'none';
     }
 
+    function extraerId(enlace) {
+      if (!enlace) return '';
+      const str = String(enlace).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+    }
+
+    // VALIDACIÓN DIRECTA INFALIBLE HACIA privadas.html
+    window.validarClaveAcceso = async function(e) {
+      if (e) e.preventDefault();
+      const inp = document.getElementById('input-clave-cliente');
+      const pass = inp ? inp.value.trim() : '';
+      const err = document.getElementById('error-clave-cliente');
+      const btnTxt = document.getElementById('texto-btn-clave');
+      const btn = document.getElementById('btn-submit-clave');
+
+      if (!pass) return;
+      if (err) err.style.display = 'none';
+      if (btnTxt) btnTxt.innerText = 'Verificando...';
+      if (btn) btn.disabled = true;
+
+      const lowerPass = pass.toLowerCase();
+
+      // Paso A: Comprobación inmediata en claves locales
+      const clavesLocales = {
+        'brenda': '1jmfMxkvwbSTiVXjnxo-wovYch4QCxAlx',
+        'familia2026': 'ID_CARPETA_FAMILIA_PEREZ',
+        'boda1234': 'ID_CARPETA_BODA_JUAN_Y_MARIA',
+        'miprueba': '1jmfMxkvwbSTiVXjnxo-wovYch4QCxAlx'
+      };
+
+      if (clavesLocales[lowerPass]) {
+        const folderId = clavesLocales[lowerPass];
+        window.location.href = 'privadas.html?id=' + encodeURIComponent(folderId) + '&folder=' + encodeURIComponent(folderId) + '&titulo=' + encodeURIComponent('Tu Sesión Privada') + '&key=' + encodeURIComponent(pass);
+        return;
+      }
+
+      // Paso B: Consulta en localStorage
+      try {
+        const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+        const match = locales.find(g => (g.password && g.password.trim().toLowerCase() === lowerPass) || (g.clave && g.clave.trim().toLowerCase() === lowerPass));
+        if (match) {
+          const driveRaw = match.drive_url || match.url_drive || match.folder_id || '';
+          const folderId = extraerId(driveRaw) || driveRaw || 'privada';
+          const titulo = match.titulo || 'Tu Sesión Privada';
+          window.location.href = 'privadas.html?id=' + encodeURIComponent(folderId) + '&folder=' + encodeURIComponent(folderId) + '&titulo=' + encodeURIComponent(titulo) + '&key=' + encodeURIComponent(pass);
+          return;
+        }
+      } catch (_) {}
+
+      // Paso C: Consulta a Supabase con timeout estricto de 2000ms
+      try {
+        if (window.supabase) {
+          const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          
+          const fetchPromise = (async () => {
+            let { data, error } = await client.from('galeria').select('*').ilike('password', pass);
+            if (!data || data.length === 0) {
+              const res2 = await client.from('galerias').select('*').ilike('password', pass);
+              if (res2.data && res2.data.length > 0) data = res2.data;
+            }
+            return data;
+          })();
+
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject('timeout'), 2000));
+          const data = await Promise.race([fetchPromise, timeoutPromise]).catch(() => null);
+
+          if (data && data.length > 0) {
+            const evento = data[0];
+            const driveRaw = evento.drive_url || evento.url_drive || evento.enlace_drive || evento.folder_id || evento.id || '';
+            const folderId = extraerId(driveRaw) || driveRaw;
+            const titulo = evento.titulo || evento.nombre || 'Tu Sesión Privada';
+            window.location.href = 'privadas.html?id=' + encodeURIComponent(folderId) + '&folder=' + encodeURIComponent(folderId) + '&titulo=' + encodeURIComponent(titulo) + '&key=' + encodeURIComponent(pass);
+            return;
+          }
+        }
+      } catch (errSupa) {
+        console.warn('Error en Supabase:', errSupa);
+      }
+
+      // Bloque final si no se encontró en ninguna parte
+      if (err) {
+        err.innerText = 'Contraseña incorrecta o álbum no encontrado.';
+        err.style.display = 'block';
+      }
+      if (btnTxt) btnTxt.innerText = 'Desbloquear Álbum';
+      if (btn) btn.disabled = false;
+      if (inp) inp.focus();
+    };
+
+    // CARGA DE SUBCARPETAS Y FOTOS EN GOOGLE DRIVE
     async function cargarFotos(folderId) {
-      const contenedorSecciones = document.getElementById('contenedor-secciones-galeria');
-      const galeriaRaiz = document.getElementById('galeria');
-      contenedorSecciones.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
-      galeriaRaiz.innerHTML = '';
-      galeriaRaiz.style.display = 'none';
+      const contenedor = document.getElementById('galeria-contenedor-secciones');
+      contenedor.innerHTML = `
+        <div class="cargando">
+          <div class="cargando-spinner"></div>
+          <div>Explorando subcarpetas y fotografías en Google Drive...</div>
+        </div>
+      `;
       fotosActuales = [];
 
       try {
-        const elementos = await listarContenidoCarpeta(folderId);
-        contenedorSecciones.innerHTML = '';
+        let todosLosElementos = [];
+        let pageToken = '';
+        do {
+          const q = `'${folderId}' in parents and trashed = false`;
+          let url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}&pageSize=100&orderBy=name&key=${API_KEY}&fields=nextPageToken,files(id,name,mimeType)`;
+          if (pageToken) url += `&pageToken=${pageToken}`;
 
-        if (!elementos || elementos.length === 0) {
-          contenedorSecciones.innerHTML = '<p style="text-align:center; color:#aaaaaa; padding: 40px 0;">No hay elementos en esta carpeta.</p>';
+          const res = await fetch(url);
+          const data = await res.json();
+
+          if (data.error) {
+            console.error('Error Drive API:', data.error);
+            contenedor.innerHTML = '<p style="text-align:center; color:#ff6b6b; padding: 40px 0;">Error al consultar Google Drive. Verificá que la carpeta esté compartida como "Cualquier persona con el vínculo puede ver".</p>';
+            return;
+          }
+
+          if (data.files && data.files.length > 0) {
+            todosLosElementos = todosLosElementos.concat(data.files);
+          }
+          pageToken = data.nextPageToken || '';
+        } while (pageToken);
+
+        const subcarpetas = todosLosElementos.filter(item => item.mimeType === 'application/vnd.google-apps.folder');
+        const fotosRaiz = todosLosElementos.filter(item => 
+          (item.mimeType && item.mimeType.startsWith('image/')) || 
+          /\.(jpe?g|png|webp|heic|cr2|cr3|nef|raw)$/i.test(item.name)
+        );
+
+        contenedor.innerHTML = '';
+
+        if (subcarpetas.length === 0 && fotosRaiz.length === 0) {
+          contenedor.innerHTML = '<p style="text-align:center; color:#aaaaaa; padding: 40px 0;">No se encontraron fotografías ni subcarpetas disponibles en esta categoría.</p>';
           return;
         }
 
-        const subcarpetas = elementos.filter(it => it.mimeType === 'application/vnd.google-apps.folder');
-        const fotosDirectas = elementos.filter(esArchivoImagen);
-
-        // Ordenar alfabéticamente
-        subcarpetas.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-        fotosDirectas.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-
-        let totalRenderizadas = 0;
-
-        // 1. Renderizar fotos directas de la raíz si existen
-        if (fotosDirectas.length > 0) {
-          const gridRaiz = document.createElement('div');
-          gridRaiz.className = 'galeria';
-          fotosDirectas.forEach((archivo) => {
-            const indexGlobal = fotosActuales.length;
-            fotosActuales.push({
-              url: `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`,
-              subcarpeta: categoriaActivaNombre,
-              nombreArchivo: archivo.name || 'Fotografía'
-            });
-
-            const img = document.createElement('img');
-            img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
-            img.alt = archivo.name || "Fotografía";
-            img.loading = "lazy";
-            img.onclick = () => abrirVisor(indexGlobal);
-            gridRaiz.appendChild(img);
-            totalRenderizadas++;
-          });
-          contenedorSecciones.appendChild(gridRaiz);
+        if (fotosRaiz.length > 0) {
+          crearBloqueSeccion(contenedor, subcarpetas.length > 0 ? 'Fotografías Generales' : '', fotosRaiz);
         }
 
-        // 2. Procesar y renderizar cada subcarpeta
-        for (const carpeta of subcarpetas) {
-          const archivosHijos = await listarContenidoCarpeta(carpeta.id);
-          const imagenesHijas = archivosHijos.filter(esArchivoImagen);
-          imagenesHijas.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        if (subcarpetas.length > 0) {
+          for (const sub of subcarpetas) {
+            let fotosSub = [];
+            let subPageToken = '';
+            do {
+              const qSub = `'${sub.id}' in parents and trashed = false`;
+              let urlSub = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(qSub)}&pageSize=100&orderBy=name&key=${API_KEY}&fields=nextPageToken,files(id,name,mimeType)`;
+              if (subPageToken) urlSub += `&pageToken=${subPageToken}`;
 
-          if (imagenesHijas.length > 0) {
-            // Encabezado sobrio con cyan #38bdf8 sin contador de fotos
-            const encabezado = document.createElement('div');
-            encabezado.className = 'encabezado-subcarpeta';
-            encabezado.innerHTML = `<span class="material-symbols-outlined">folder_open</span><span>${carpeta.name}</span>`;
-            contenedorSecciones.appendChild(encabezado);
+              try {
+                const resSub = await fetch(urlSub);
+                const dataSub = await resSub.json();
+                if (dataSub.files && dataSub.files.length > 0) {
+                  const imgs = dataSub.files.filter(f => 
+                    (f.mimeType && f.mimeType.startsWith('image/')) || 
+                    /\.(jpe?g|png|webp|heic|cr2|cr3|nef|raw)$/i.test(f.name)
+                  );
+                  fotosSub = fotosSub.concat(imgs);
+                }
+                subPageToken = dataSub.nextPageToken || '';
+              } catch(e) {
+                console.warn(`Error al leer subcarpeta ${sub.name}:`, e);
+                break;
+              }
+            } while (subPageToken);
 
-            const gridSub = document.createElement('div');
-            gridSub.className = 'galeria';
-
-            imagenesHijas.forEach((archivo) => {
-              const indexGlobal = fotosActuales.length;
-              fotosActuales.push({
-                url: `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`,
-                subcarpeta: carpeta.name || categoriaActivaNombre,
-                nombreArchivo: archivo.name || 'Fotografía'
-              });
-
-              const img = document.createElement('img');
-              img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
-              img.alt = archivo.name || "Fotografía";
-              img.loading = "lazy";
-              img.onclick = () => abrirVisor(indexGlobal);
-              gridSub.appendChild(img);
-              totalRenderizadas++;
-            });
-            contenedorSecciones.appendChild(gridSub);
+            if (fotosSub.length > 0) {
+              crearBloqueSeccion(contenedor, sub.name, fotosSub);
+            }
           }
         }
 
-        if (totalRenderizadas === 0) {
-          contenedorSecciones.innerHTML = '<p style="text-align:center; color:#aaaaaa; padding: 40px 0;">No se encontraron fotografías en esta sección.</p>';
-        }
-
       } catch (error) {
-        console.error(error);
-        contenedorSecciones.innerHTML = '<p style="text-align:center; color:#ff6b6b; padding: 40px 0;">Error al consultar Google Drive. Verificá permisos y conexión.</p>';
+        console.error('Error al explorar Google Drive:', error);
+        contenedor.innerHTML = '<p style="text-align:center; color:#ff6b6b; padding: 40px 0;">Error de conexión con Google Drive. Verificá permisos.</p>';
       }
     }
 
+    function crearBloqueSeccion(contenedorPadre, tituloCarpeta, listaArchivos) {
+      const seccion = document.createElement('div');
+      seccion.className = 'seccion-subcarpeta';
+
+      if (tituloCarpeta) {
+        const encabezado = document.createElement('div');
+        encabezado.className = 'encabezado-subcarpeta';
+        encabezado.innerHTML = `
+          <h3 class="titulo-subcarpeta">
+            <span class="material-symbols-outlined" style="font-size: 20px;">folder_open</span>
+            <span>${tituloCarpeta}</span>
+          </h3>
+        `;
+        seccion.appendChild(encabezado);
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'galeria';
+
+      listaArchivos.forEach((archivo) => {
+        const indexGlobal = fotosActuales.length;
+        const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+        
+        fotosActuales.push({
+          url: urlAltaRes,
+          subcarpeta: tituloCarpeta || document.getElementById('titulo-categoria').innerText || 'Portafolio',
+          nombreArchivo: archivo.name || `Foto_${indexGlobal + 1}.jpg`
+        });
+
+        const img = document.createElement('img');
+        img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+        img.alt = archivo.name || "Fotografía";
+        img.loading = "lazy";
+        img.draggable = false;
+        img.setAttribute('oncontextmenu', 'return false;');
+        img.onclick = () => abrirVisor(indexGlobal);
+
+        grid.appendChild(img);
+      });
+
+      seccion.appendChild(grid);
+      contenedorPadre.appendChild(seccion);
+    }
+
     function abrirGaleria(nombreCategoria, folderId) {
-      categoriaActivaNombre = nombreCategoria;
       history.pushState({ vista: 'interior' }, '', '');
       document.getElementById('vista-menu').style.display = 'none';
       document.getElementById('vista-sobre-mi').style.display = 'none';
@@ -750,81 +824,78 @@
 
     window.addEventListener('popstate', (event) => {
       const modal = document.getElementById('modal');
-      const modalPass = document.getElementById('modal-pass-clientes');
       if (modal && modal.style.display === 'flex') {
         cerrarVisor();
         history.pushState({ vista: 'interior' }, '', '');
-      } else if (modalPass && modalPass.style.display === 'flex') {
-        cerrarModalPassword();
       } else {
         forzarVistaMenu();
         history.pushState({ vista: 'inicio' }, '', '');
       }
     });
 
+    // VISOR MODAL CON FIRMA SOBRE LA FOTO
     function abrirVisor(index) {
-      if (!fotosActuales || fotosActuales.length === 0) return;
       indiceFotoActual = index;
-      actualizarFotoVisor();
+      actualizarContenidoVisor();
       document.getElementById('modal').style.display = 'flex';
     }
 
-    function actualizarFotoVisor() {
-      const item = fotosActuales[indiceFotoActual];
-      if (!item) return;
-
+    function actualizarContenidoVisor() {
+      if (!fotosActuales || fotosActuales.length === 0) return;
+      const fotoObj = fotosActuales[indiceFotoActual];
       const img = document.getElementById('img-ampliada');
-      const txtSubcarpeta = document.getElementById('visor-subcarpeta');
-      const txtNombre = document.getElementById('visor-nombre-archivo');
+      img.src = fotoObj.url;
+      img.draggable = false;
 
-      if (typeof item === 'string') {
-        img.src = item;
-        if (txtSubcarpeta) txtSubcarpeta.innerText = categoriaActivaNombre || 'Galería';
-        if (txtNombre) txtNombre.innerText = 'Fotografía';
-      } else {
-        img.src = item.url;
-        if (txtSubcarpeta) txtSubcarpeta.innerText = item.subcarpeta || categoriaActivaNombre || 'Galería';
-        if (txtNombre) txtNombre.innerText = item.nombreArchivo || 'Fotografía';
+      const lblCarpeta = document.getElementById('firma-nombre-carpeta');
+      if (lblCarpeta) {
+        lblCarpeta.innerText = fotoObj.subcarpeta;
+      }
+      const lblArchivo = document.getElementById('firma-nombre-archivo');
+      if (lblArchivo) {
+        lblArchivo.innerText = fotoObj.nombreArchivo;
       }
     }
 
-    function cerrarVisor() { 
-      const modal = document.getElementById('modal');
-      if (modal) modal.style.display = 'none'; 
+    function cerrarVisor() {
+      document.getElementById('modal').style.display = 'none';
     }
-    function cerrarVisorFondo(event) { if (event.target.id === 'modal') cerrarVisor(); }
+
+    function cerrarVisorFondo(event) {
+      if (event.target.id === 'modal') cerrarVisor();
+    }
 
     function cambiarFoto(direccion, event) {
       if (event) event.stopPropagation();
-      if (!fotosActuales || fotosActuales.length === 0) return;
       indiceFotoActual += direccion;
       if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
       else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
-      actualizarFotoVisor();
+      actualizarContenidoVisor();
     }
 
-    // Teclado físico
-    document.addEventListener('keydown', (e) => {
-      const modal = document.getElementById('modal');
-      const modalPass = document.getElementById('modal-pass-clientes');
-      if (modal && modal.style.display === 'flex') {
-        if (e.key === 'Escape') cerrarVisor();
-        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
-        else if (e.key === 'ArrowRight') cambiarFoto(1);
-      } else if (modalPass && modalPass.style.display === 'flex') {
-        if (e.key === 'Escape') cerrarModalPassword();
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG' || e.target.closest('#galeria-contenedor-secciones') || e.target.closest('#modal')) {
+        e.preventDefault();
+        return false;
       }
     });
 
-    // Touch Swipe en móvil
+    document.addEventListener('dragstart', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // TOUCH SWIPE EN MÓVIL
     let touchStartX = 0;
     let touchEndX = 0;
     const modal = document.getElementById('modal');
-    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
     modal.addEventListener('touchend', e => {
       touchEndX = e.changedTouches[0].screenX;
       if (touchEndX + 50 < touchStartX) cambiarFoto(1);
       else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
-    }, { passive: true });
+    }, false);
   </script>
 </body></html>
