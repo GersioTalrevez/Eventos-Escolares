@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Raleway:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -160,7 +160,7 @@
     // =========================================================================
     const SUPABASE_PROJECT_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_PROJECT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
-    const REDIRECT_URL = 'https://gersiotalrevez.github.io/Eventos-Escolares/panel.html';
+    const REDIRECT_URL = window.location.origin + window.location.pathname;
     const CORREO_ADMIN = 'molinaoksergio@gmail.com';
 
     // Inicializar cliente Supabase oficial directamente con el proyecto verificado
@@ -195,7 +195,7 @@
 
       txt.textContent = msg;
       if (tipo === 'error') {
-        box.className = 'mt-4 p-3.5 rounded-xl border text-xs flex items-start gap-2.5 bg-red-950/50 border-red-500/60 text-red-300 font-semibold shadow-inner';
+        box.className = 'mt-4 p-3.5 rounded-xl border text-xs flex items-start gap-2.5 bg-red-950/70 border-red-500/80 text-red-200 font-semibold shadow-inner';
         icon.className = 'material-symbols-outlined text-[20px] text-red-400 shrink-0';
         icon.textContent = 'block';
       } else if (tipo === 'success') {
@@ -215,55 +215,61 @@
       if (box) box.classList.add('hidden');
     }
 
-    // Limpieza total de almacenamiento administrativo
-    function purgarSesionAdmin() {
-      sessionStorage.removeItem('admin_autenticado');
-      sessionStorage.removeItem('admin_email');
-      localStorage.removeItem('admin_autenticado');
-      localStorage.removeItem('admin_email');
-      localStorage.removeItem('admin_token_sesion');
-    }
+    // Flag de bloqueo y control de redirección
+    let sesionProcesando = false;
 
-    // 1. EVALUACIÓN Y BLINDAJE ESTRICTO DE USUARIO GOOGLE OAUTH
+    // 1. EVALUACIÓN Y BLINDAJE ESTRICTO E INFRANQUEABLE DE USUARIO GOOGLE OAUTH
     async function procesarSesionEstricta(session) {
-      if (!session || !session.user) return false;
+      if (!session || !session.user || sesionProcesando) return false;
+      sesionProcesando = true;
 
-      const userEmail = (session.user.email || '').trim().toLowerCase();
+      const userEmail = (session.user.email || '').toLowerCase().trim();
 
-      // Blindaje estricto 100%: solo molinaoksergio@gmail.com
-      if (userEmail !== CORREO_ADMIN) {
-        purgarSesionAdmin();
+      // 2. Si userEmail !== 'molinaoksergio@gmail.com' -> BLOQUEO TOTAL
+      if (userEmail !== 'molinaoksergio@gmail.com') {
+        // Ejecutar inmediatamente cierre de sesión
         if (supaClient) {
           try {
             await supaClient.auth.signOut();
           } catch (e) {
-            console.error('Error al revocar sesión ajena:', e);
+            console.error('Error al cerrar sesión no autorizada:', e);
           }
         }
+
+        // Limpieza total obligatoria
+        sessionStorage.clear();
+        localStorage.clear();
+
+        // Limpiar el hash de la URL
+        window.history.replaceState(null, null, window.location.pathname);
+
+        // Reactivar controles de interfaz
         const btn = document.getElementById('btnGoogleAuth');
         const txt = document.getElementById('btnGoogleText');
         if (btn) btn.disabled = false;
         if (txt) txt.textContent = 'Continuar con Google Workspace';
 
-        mostrarAlerta(`ACCESO DENEGADO: La cuenta ${userEmail || 'desconocida'} no es la cuenta propietaria autorizada (${CORREO_ADMIN}). Acceso bloqueado.`, 'error');
+        // Cartel rojo destacado de alerta
+        mostrarAlerta('ACCESO DENEGADO: La cuenta ' + userEmail + ' no está autorizada. Este panel es de acceso exclusivo para molinaoksergio@gmail.com.', 'error');
+        sesionProcesando = false;
         return false;
       }
 
-      // Usuario Propietario Oficial Confirmado
+      // 3. Solo si userEmail === 'molinaoksergio@gmail.com'
       sessionStorage.setItem('admin_autenticado', 'true');
-      sessionStorage.setItem('admin_email', CORREO_ADMIN);
-      localStorage.setItem('admin_autenticado', 'true');
-      localStorage.setItem('admin_email', CORREO_ADMIN);
-      localStorage.setItem('admin_token_sesion', 'auth_' + Date.now());
+      sessionStorage.setItem('admin_email', 'molinaoksergio@gmail.com');
 
-      mostrarAlerta(`¡Bienvenido Sergio Ricardo Molina! Acceso verificado correctamente (${CORREO_ADMIN}). Ingresando al panel...`, 'success');
+      // Limpiar hash de tokens
+      window.history.replaceState(null, null, window.location.pathname);
+
+      mostrarAlerta('¡Acceso verificado con éxito para molinaoksergio@gmail.com! Ingresando al panel...', 'success');
       setTimeout(() => {
         window.location.href = 'panel.html';
       }, 700);
       return true;
     }
 
-    // 2. INICIAR SESIÓN CON GOOGLE WORKSPACE (OAUTH OFICIAL)
+    // INICIAR SESIÓN CON GOOGLE WORKSPACE (OAUTH OFICIAL)
     async function iniciarSesionGoogle() {
       const btn = document.getElementById('btnGoogleAuth');
       const txt = document.getElementById('btnGoogleText');
@@ -300,7 +306,7 @@
       }
     }
 
-    // 3. INICIAR SESIÓN CON CLAVE MAESTRA
+    // INICIAR SESIÓN CON CLAVE MAESTRA
     function validarClaveMaestra(e) {
       if (e) e.preventDefault();
       const inp = document.getElementById('inputClaveAdmin');
@@ -311,10 +317,7 @@
       if (clavesValidas.includes(pass.toLowerCase())) {
         mostrarAlerta('¡Credencial verificada con éxito! Ingresando al panel...', 'success');
         sessionStorage.setItem('admin_autenticado', 'true');
-        sessionStorage.setItem('admin_email', CORREO_ADMIN);
-        localStorage.setItem('admin_autenticado', 'true');
-        localStorage.setItem('admin_email', CORREO_ADMIN);
-        localStorage.setItem('admin_token_sesion', 'auth_' + Date.now());
+        sessionStorage.setItem('admin_email', 'molinaoksergio@gmail.com');
         setTimeout(() => {
           window.location.href = 'panel.html';
         }, 600);
@@ -324,7 +327,7 @@
       }
     }
 
-    // 4. ESCUCHADOR DE ESTADO EN TIEMPO REAL Y CAPTURA DE RETORNO OAUTH
+    // ESCUCHADOR DE ESTADO EN TIEMPO REAL Y CAPTURA DE RETORNO OAUTH
     async function inicializarSeguridadAuth() {
       if (!supaClient) return;
 
