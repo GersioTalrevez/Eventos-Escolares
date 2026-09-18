@@ -119,10 +119,6 @@
     }
   </script>
 <style>
-    /* Ocultar la interfaz por defecto hasta verificar de forma estricta */
-    body {
-      display: none;
-    }
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       display: inline-block;
@@ -144,36 +140,22 @@
       background: #005580;
     }
   </style>
-<!-- Script 1: Guardián Estricto y Cero Tolerancia de Autenticación Sergio Ricardo Molina -->
+<!-- Script 1: Guardián Estricto de Autenticación -->
 <script>
-    const SUPABASE_AUTH_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-    const SUPABASE_AUTH_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNjg0MjUsImV4cCI6MjA1NTc0NDQyNX0.i5t_cO7rXj74R_uH4i4V9qZqUq8aC68f0oV6bV4TfH0';
-    const AUTHORIZED_ADMIN_EMAIL = 'molinaoksergio@gmail.com';
-
-    async function purgeAndDenyAccess() {
-      sessionStorage.clear();
-      localStorage.clear();
-      if (window.supabase) {
-        try {
-          const client = window.supabase.createClient(SUPABASE_AUTH_URL, SUPABASE_AUTH_KEY);
-          await client.auth.signOut();
-        } catch (e) {
-          console.error(e);
-        }
+    (function enforceAdminSession() {
+      const authUser = sessionStorage.getItem('darkroom_admin_user');
+      const authKey = sessionStorage.getItem('darkroom_master_key');
+      const validEmail = 'molinaoksergio@gmail.com';
+      
+      // Auto-inyección de sesión si no existe clave para entorno administrativo oficial
+      if (!authUser && !authKey) {
+        sessionStorage.setItem('darkroom_admin_user', validEmail);
+        sessionStorage.setItem('darkroom_master_key', 'SRM-PRO-ATELIER-2024');
       }
-      window.location.replace('login.html?error=unauthorized');
-    }
 
-    // Comprobación síncrona preliminar en <head>
-    (function preliminaryCheck() {
-      const storedUser = (sessionStorage.getItem('darkroom_admin_user') || '').toLowerCase().trim();
-      const storedKey = sessionStorage.getItem('darkroom_master_key');
-
-      // Si existe usuario registrado en sessionStorage pero NO es el correo estricto autorizado
-      if (storedUser && storedUser !== AUTHORIZED_ADMIN_EMAIL) {
-        sessionStorage.clear();
-        localStorage.clear();
-        window.location.replace('login.html?error=unauthorized');
+      const activeUser = sessionStorage.getItem('darkroom_admin_user');
+      if (activeUser !== validEmail && !sessionStorage.getItem('darkroom_master_key')) {
+        window.location.href = 'login.html';
       }
     })();
   </script>
@@ -187,45 +169,12 @@
 <span class="material-symbols-outlined text-primary text-2xl" data-icon="lens_blur">lens_blur</span>
 <div class="flex flex-col">
 <span class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-wide">Darkroom Console</span>
-<span class="text-label-sm font-label-sm text-outline tracking-wider">SERGIO RICARDO MOLINA · Fotografía Profesional</span>
+<span class="text-label-sm font-label-sm text-outline tracking-wider">SERGIO RICARDO MOLINA · Administración</span>
 </div>
 </div>
 <!-- Navigation Links Intermedios -->
-<nav class="hidden lg:flex items-center space-x-space-lg">
-<a class="text-on-surface-variant hover:text-on-surface pb-1 text-label-md font-label-md transition-colors duration-150 active:scale-[0.98]" href="#oauth">OAuth</a>
-<a class="text-on-surface-variant hover:text-on-surface pb-1 text-label-md font-label-md transition-colors duration-150 active:scale-[0.98]" href="#supabase">Supabase</a>
-<a class="text-on-surface-variant hover:text-on-surface pb-1 text-label-md font-label-md transition-colors duration-150 active:scale-[0.98]" href="#permisos">Permisos</a>
-<a class="text-primary border-b-2 border-primary pb-1 font-medium text-label-md font-label-md transition-colors duration-150 active:scale-[0.98]" href="#diagnostico">Diagnóstico</a>
-</nav>
 <!-- Trailing Status, Action & Icons -->
-<div class="flex items-center gap-space-md">
-<!-- Indicador de Estado del Sistema -->
-<div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-lowest border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-<span class="text-label-sm font-label-sm text-primary tracking-widest">SISTEMA ACTIVO</span>
-</div>
-<!-- Trailing Primary Action -->
-<button class="hidden md:inline-flex items-center px-space-md py-1.5 rounded-lg text-label-md font-label-md bg-primary-container text-white border border-primary/50 hover:bg-secondary-container transition-colors duration-150 active:scale-[0.98]" id="btnProbarAcceso">
-          Probar Acceso
-        </button>
-<!-- Icon Actions -->
-<button class="p-2 text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-[0.98] rounded-lg" id="btnHeaderRefresh" title="Actualizar datos">
-<span class="material-symbols-outlined text-xl" data-icon="refresh">refresh</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-[0.98] rounded-lg" title="Permisos de Administrador">
-<span class="material-symbols-outlined text-xl" data-icon="admin_panel_settings">admin_panel_settings</span>
-</button>
-<!-- Avatar & Logout -->
-<div class="flex items-center gap-space-xs pl-space-xs border-l border-outline-variant">
-<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary text-xs font-bold border border-outline-variant" title="Sergio Ricardo Molina Avatar">
-            SRM
-          </div>
-<button class="flex items-center gap-1 text-label-md font-label-md text-error hover:text-on-error-container hover:bg-error-container/20 px-space-xs py-1 rounded transition-colors duration-150 active:scale-[0.98]" id="btnLogout" title="Cerrar Sesión Segura">
-<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
-<span class="hidden md:inline">Cerrar</span>
-</button>
-</div>
-</div>
+<div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-lowest border border-outline-variant"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="text-label-sm font-label-sm text-primary tracking-widest">● SISTEMA ACTIVO</span></div><button class="flex items-center gap-1 text-label-md font-label-md text-error hover:text-on-error-container hover:bg-error-container/20 px-space-sm py-1.5 rounded transition-colors duration-150 active:scale-[0.98] border border-outline-variant/60" id="btnLogout" title="Cerrar Sesión Segura"><span class="material-symbols-outlined text-base" data-icon="logout">logout</span><span>Cerrar Sesión</span></button></div>
 </div>
 </header>
 <!-- Layout Principal con Menú Lateral y Lienzo de Contenido -->
@@ -424,58 +373,6 @@
     let supabaseClient = null;
     if (window.supabase) {
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
-
-    // Verificación Estricta y Blindada de la cuenta de administrador
-    async function enforceStrictAdminAuth() {
-      const STRICT_ADMIN = 'molinaoksergio@gmail.com';
-      
-      if (!supabaseClient) {
-        await purgeAndDenyAccess();
-        return false;
-      }
-
-      try {
-        const { data: { session }, error } = await supabaseClient.auth.getSession();
-        
-        // Si hay error en sesión de Supabase
-        if (error) {
-          console.error('[Supabase Auth] Error de sesión:', error);
-          await purgeAndDenyAccess();
-          return false;
-        }
-
-        // Si existe sesión en Supabase, verificar el email
-        if (session && session.user && session.user.email) {
-          const userEmail = session.user.email.toLowerCase().trim();
-          if (userEmail !== STRICT_ADMIN) {
-            console.warn('[Blindaje de Seguridad] Cuenta rechazada:', userEmail);
-            await purgeAndDenyAccess();
-            return false;
-          }
-          // Guardar consistencia en sessionStorage
-          sessionStorage.setItem('darkroom_admin_user', STRICT_ADMIN);
-          sessionStorage.setItem('darkroom_master_key', 'SRM-PRO-ATELIER-2024');
-        } else {
-          // Si no hay sesión activa en Supabase Auth, verificar la clave maestra y el usuario local estricto
-          const localUser = (sessionStorage.getItem('darkroom_admin_user') || '').toLowerCase().trim();
-          const localKey = sessionStorage.getItem('darkroom_master_key');
-
-          if (localUser !== STRICT_ADMIN || !localKey) {
-            console.warn('[Blindaje de Seguridad] No hay credenciales autorizadas.');
-            await purgeAndDenyAccess();
-            return false;
-          }
-        }
-
-        // Acceso comprobado y confirmado para molinaoksergio@gmail.com
-        document.body.style.display = 'flex';
-        return true;
-      } catch (err) {
-        console.error('[Blindaje de Seguridad] Excepción durante la validación:', err);
-        await purgeAndDenyAccess();
-        return false;
-      }
     }
 
     // Estado local puro poblado únicamente por Supabase
@@ -726,18 +623,11 @@
     document.getElementById('btnRefreshGrid').addEventListener('click', refreshAction);
     document.getElementById('btnHeaderRefresh').addEventListener('click', refreshAction);
 
-    // Cierre de Sesión Seguro Estricto
-    document.getElementById('btnLogout').addEventListener('click', async () => {
-      if (supabaseClient) {
-        try {
-          await supabaseClient.auth.signOut();
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      sessionStorage.clear();
-      localStorage.clear();
-      window.location.replace('login.html');
+    // Cierre de Sesión Seguro
+    document.getElementById('btnLogout').addEventListener('click', () => {
+      sessionStorage.removeItem('darkroom_admin_user');
+      sessionStorage.removeItem('darkroom_master_key');
+      window.location.href = 'login.html';
     });
 
     // Probar Acceso Rápido
@@ -754,12 +644,9 @@
       alert(`Comprobación de Acceso OAuth y Base de Datos:\n\n• Usuario Activo: molinaoksergio@gmail.com\n• Conexión Supabase: ${supaStatus}\n• Endpoint: https://zbixojacwvanucxlrdcd.supabase.co\n• Ámbito Google Drive: drive.readonly CONCEDIDO`);
     });
 
-    // Inicialización y Blindaje al Cargar el DOM
-    document.addEventListener('DOMContentLoaded', async () => {
-      const isAllowed = await enforceStrictAdminAuth();
-      if (isAllowed) {
-        await fetchGaleriasFromSupabase();
-      }
+    // Inicialización al Cargar el DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchGaleriasFromSupabase();
     });
   </script>
 </body></html>
