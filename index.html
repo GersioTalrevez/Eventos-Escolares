@@ -221,8 +221,26 @@
     .btn-volver:hover { background: #2f2f2f; }
     .titulo-categoria { font-size: 1.3rem; font-weight: 300; letter-spacing: 1px; }
 
+    /* ENCABEZADO SUBCARPETA */
+    .encabezado-subcarpeta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #38bdf8;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin: 28px 0 14px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #222222;
+    }
+    .encabezado-subcarpeta .material-symbols-outlined {
+      font-size: 22px;
+      color: #38bdf8;
+    }
+
     /* GALERÍA DE FOTOS */
-    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 24px; }
     @media (min-width: 600px) {
       .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; }
     }
@@ -300,6 +318,27 @@
       line-height: 1;
     }
 
+    /* FIRMA Y MARCA DE AGUA DISCRETA EN VISOR */
+    .caja-firma-visor {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(14, 14, 14, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 8px 8px 0;
+      padding: 8px 14px;
+      z-index: 1002;
+      pointer-events: none;
+      user-select: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-align: left;
+    }
+
     footer {
       text-align: center;
       margin-top: 40px;
@@ -312,6 +351,11 @@
 
     @media (max-width: 600px) {
       .btn-nav { display: none; }
+      .caja-firma-visor {
+        bottom: 16px;
+        left: 16px;
+        padding: 6px 10px;
+      }
     }
   </style>
 </head>
@@ -351,6 +395,7 @@
 <button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
 <h2 class="titulo-categoria" id="titulo-categoria">Categoría</h2>
 </div>
+<div id="contenedor-secciones-galeria"></div>
 <main class="galeria" id="galeria"></main>
 </div>
 <!-- VISTA 3: SOBRE MÍ -->
@@ -369,7 +414,7 @@
 </div>
 </div>
 <!-- VISOR MODAL EN ALTA RESOLUCIÓN -->
-<div class="modal" id="modal-pass-clientes" onclick="cerrarModalPasswordFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1050; padding: 20px;"><div style="background: #1e1e1e; border: 2px solid #005580; border-radius: 14px; padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); text-align: center; position: relative;"><span class="btn-cerrar" onclick="cerrarModalPassword()" style="top: 12px; right: 14px; font-size: 1.5rem; padding: 2px 10px;">×</span><div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(56,189,248,0.1); border: 1px solid #005580; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;"><span class="material-symbols-outlined" style="color: #38bdf8; font-size: 26px;">lock</span></div><h3 style="color: #fff; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Acceso a Clientes</h3><p style="color: #aaaaaa; font-size: 0.88rem; margin-bottom: 20px;">Ingresá la clave de tu sesión privada</p><form onsubmit="validarAccesoCliente(event)"><input autocomplete="off" id="input-cliente-pass" placeholder="********" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #005580; background: #111111; color: #ffffff; font-size: 1.05rem; letter-spacing: 2px; text-align: center; margin-bottom: 16px; outline: none;" type="password"/><button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #005580; color: #ffffff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" type="submit">Ingresar a Galería</button></form><div id="msg-pass-error" style="color: #ff6b6b; font-size: 0.82rem; margin-top: 10px; display: none;">Clave incorrecta. Por favor verifique.</div></div></div><div class="modal" id="modal" onclick="cerrarVisorFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 1000;"><span class="btn-cerrar" onclick="cerrarVisor()">×</span><span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span><div style="position: relative; max-width: 92%; max-height: 85vh; display: flex; justify-content: center; align-items: center;"><img alt="Fotografía" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="" style="max-width: 100%; max-height: 85vh; object-fit: contain; user-select: none; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); pointer-events: auto;"/><div id="watermark-signature" style="position: absolute; bottom: 12px; left: 16px; pointer-events: none; text-shadow: 0 2px 6px rgba(0,0,0,0.9); font-family: 'Manrope', sans-serif;"><div style="color: rgba(255,255,255,0.92); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">Sergio Molina</div><div id="watermark-info" style="color: rgba(200,225,255,0.75); font-size: 0.75rem; font-weight: 400; margin-top: 2px;">Fotografía</div></div></div><span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span></div>
+<div class="modal" id="modal-pass-clientes" onclick="cerrarModalPasswordFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1050; padding: 20px;"><div style="background: #1e1e1e; border: 2px solid #005580; border-radius: 14px; padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); text-align: center; position: relative;"><span class="btn-cerrar" onclick="cerrarModalPassword()" style="top: 12px; right: 14px; font-size: 1.5rem; padding: 2px 10px;">×</span><div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(56,189,248,0.1); border: 1px solid #005580; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;"><span class="material-symbols-outlined" style="color: #38bdf8; font-size: 26px;">lock</span></div><h3 style="color: #fff; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Acceso a Clientes</h3><p style="color: #aaaaaa; font-size: 0.88rem; margin-bottom: 20px;">Ingresá la clave de tu sesión privada</p><form onsubmit="validarAccesoCliente(event)"><input autocomplete="off" id="input-cliente-pass" placeholder="********" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #005580; background: #111111; color: #ffffff; font-size: 1.05rem; letter-spacing: 2px; text-align: center; margin-bottom: 16px; outline: none;" type="password"/><button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #005580; color: #ffffff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" type="submit">Ingresar a Galería</button></form><div id="msg-pass-error" style="color: #ff6b6b; font-size: 0.82rem; margin-top: 10px; display: none;">Clave incorrecta. Por favor verifique.</div></div></div><div class="modal" id="modal" onclick="cerrarVisorFondo(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 1000;"><span class="btn-cerrar" onclick="cerrarVisor()">×</span><span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span><div style="position: relative; max-width: 92%; max-height: 85vh; display: flex; justify-content: center; align-items: center;"><img alt="Fotografía" id="img-ampliada" oncontextmenu="return false;" ondragstart="return false;" src="" style="max-width: 100%; max-height: 85vh; object-fit: contain; user-select: none; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); pointer-events: auto;"/><!-- FIRMA DISCRETA Y SOBRIA EN ESQUINA INFERIOR IZQUIERDA --><div class="caja-firma-visor" id="caja-firma-visor"><div style="display: flex; align-items: center; gap: 6px; color: #ffffff; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.5px;"><span class="material-symbols-outlined" style="font-size: 16px; color: #38bdf8;">photo_camera</span><span>Sergio Molina</span></div><div style="font-size: 0.76rem; color: #c0c7cf; font-weight: 400;"><span id="visor-subcarpeta" style="color: #38bdf8; font-weight: 500;"></span> • <span id="visor-nombre-archivo"></span></div></div></div><span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span></div>
 <script>
     const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM'; 
     const clientes = {
@@ -380,48 +425,188 @@
 
     let fotosActuales = [];
     let indiceFotoActual = 0;
+    let categoriaActivaNombre = '';
 
     history.pushState({ vista: 'inicio' }, '', '');
 
-    function pedirPassword() {
-      const pass = prompt("Por favor, ingresá la contraseña de tu evento o sesión privada:");
-      if (pass === null) return; 
-      const idCarpeta = clientes[pass.toLowerCase()]; 
-      if (idCarpeta) {
-        abrirGaleria('Tu Sesión Privada', idCarpeta);
-      } else {
-        alert("Contraseña incorrecta. Por favor, intentá de nuevo.");
+    function abrirModalPassword() {
+      const modal = document.getElementById('modal-pass-clientes');
+      const input = document.getElementById('input-cliente-pass');
+      const msgError = document.getElementById('msg-pass-error');
+      if (modal) {
+        modal.style.display = 'flex';
+        if (input) { input.value = ''; input.focus(); }
+        if (msgError) msgError.style.display = 'none';
       }
     }
 
-    async function cargarFotos(folderId) {
-      const galeria = document.getElementById('galeria');
-      galeria.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
-      fotosActuales = []; 
-      
-      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
+    function cerrarModalPassword() {
+      const modal = document.getElementById('modal-pass-clientes');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function cerrarModalPasswordFondo(event) {
+      if (event.target.id === 'modal-pass-clientes') {
+        cerrarModalPassword();
+      }
+    }
+
+    function validarAccesoCliente(event) {
+      if (event) event.preventDefault();
+      const input = document.getElementById('input-cliente-pass');
+      const pass = input ? input.value.trim().toLowerCase() : '';
+      const msgError = document.getElementById('msg-pass-error');
+
+      const idCarpeta = clientes[pass];
+      if (idCarpeta) {
+        cerrarModalPassword();
+        abrirGaleria('Tu Sesión Privada', idCarpeta);
+      } else {
+        if (msgError) msgError.style.display = 'block';
+      }
+    }
+
+    // Atajo de teclado global Ctrl+Alt+A a login.html
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.altKey && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        window.location.href = 'login.html';
+      }
+    });
+
+    async function listarContenidoCarpeta(folderId) {
+      let items = [];
+      let pageToken = '';
+      const query = encodeURIComponent(`'${folderId}' in parents and trashed = false`);
 
       try {
-        const respuesta = await fetch(url);
-        const datos = await respuesta.json();
-        galeria.innerHTML = '';
-        if (datos.error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error al consultar Google Drive. Verificá permisos.</p>'; return; }
-        if (!datos.files || datos.files.length === 0) { galeria.innerHTML = '<p style="text-align:center; color:#aaaaaa; grid-column: 1/-1;">No hay fotos en esta carpeta.</p>'; return; }
+        do {
+          let url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=nextPageToken,files(id,name,mimeType)&pageSize=100&key=${API_KEY}`;
+          if (pageToken) {
+            url += `&pageToken=${pageToken}`;
+          }
+          const res = await fetch(url);
+          const data = await res.json();
+          if (data.error) {
+            console.error("Error API Drive:", data.error);
+            break;
+          }
+          if (data.files && data.files.length > 0) {
+            items = items.concat(data.files);
+          }
+          pageToken = data.nextPageToken;
+        } while (pageToken);
+      } catch (err) {
+        console.error("Error al listar carpeta:", err);
+      }
+      return items;
+    }
 
-        datos.files.forEach((archivo, index) => {
-          const urlAltaRes = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
-          fotosActuales.push(urlAltaRes);
-          const img = document.createElement('img');
-          img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
-          img.alt = archivo.name || "Fotografía";
-          img.loading = "lazy"; 
-          img.onclick = () => abrirVisor(index);
-          galeria.appendChild(img);
-        });
-      } catch (error) { galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column: 1/-1;">Error de conexión.</p>'; }
+    function esArchivoImagen(archivo) {
+      if (!archivo) return false;
+      if (archivo.mimeType && archivo.mimeType.startsWith('image/')) return true;
+      const extensiones = ['.jpg', '.jpeg', '.png', '.webp', '.raw', '.cr2', '.cr3', '.nef', '.dng'];
+      const nombre = (archivo.name || '').toLowerCase();
+      return extensiones.some(ext => nombre.endsWith(ext));
+    }
+
+    async function cargarFotos(folderId) {
+      const contenedorSecciones = document.getElementById('contenedor-secciones-galeria');
+      const galeriaRaiz = document.getElementById('galeria');
+      contenedorSecciones.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
+      galeriaRaiz.innerHTML = '';
+      galeriaRaiz.style.display = 'none';
+      fotosActuales = [];
+
+      try {
+        const elementos = await listarContenidoCarpeta(folderId);
+        contenedorSecciones.innerHTML = '';
+
+        if (!elementos || elementos.length === 0) {
+          contenedorSecciones.innerHTML = '<p style="text-align:center; color:#aaaaaa; padding: 40px 0;">No hay elementos en esta carpeta.</p>';
+          return;
+        }
+
+        const subcarpetas = elementos.filter(it => it.mimeType === 'application/vnd.google-apps.folder');
+        const fotosDirectas = elementos.filter(esArchivoImagen);
+
+        // Ordenar alfabéticamente
+        subcarpetas.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        fotosDirectas.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+
+        let totalRenderizadas = 0;
+
+        // 1. Renderizar fotos directas de la raíz si existen
+        if (fotosDirectas.length > 0) {
+          const gridRaiz = document.createElement('div');
+          gridRaiz.className = 'galeria';
+          fotosDirectas.forEach((archivo) => {
+            const indexGlobal = fotosActuales.length;
+            fotosActuales.push({
+              url: `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`,
+              subcarpeta: categoriaActivaNombre,
+              nombreArchivo: archivo.name || 'Fotografía'
+            });
+
+            const img = document.createElement('img');
+            img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+            img.alt = archivo.name || "Fotografía";
+            img.loading = "lazy";
+            img.onclick = () => abrirVisor(indexGlobal);
+            gridRaiz.appendChild(img);
+            totalRenderizadas++;
+          });
+          contenedorSecciones.appendChild(gridRaiz);
+        }
+
+        // 2. Procesar y renderizar cada subcarpeta
+        for (const carpeta of subcarpetas) {
+          const archivosHijos = await listarContenidoCarpeta(carpeta.id);
+          const imagenesHijas = archivosHijos.filter(esArchivoImagen);
+          imagenesHijas.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+
+          if (imagenesHijas.length > 0) {
+            // Encabezado sobrio con cyan #38bdf8 sin contador de fotos
+            const encabezado = document.createElement('div');
+            encabezado.className = 'encabezado-subcarpeta';
+            encabezado.innerHTML = `<span class="material-symbols-outlined">folder_open</span><span>${carpeta.name}</span>`;
+            contenedorSecciones.appendChild(encabezado);
+
+            const gridSub = document.createElement('div');
+            gridSub.className = 'galeria';
+
+            imagenesHijas.forEach((archivo) => {
+              const indexGlobal = fotosActuales.length;
+              fotosActuales.push({
+                url: `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`,
+                subcarpeta: carpeta.name || categoriaActivaNombre,
+                nombreArchivo: archivo.name || 'Fotografía'
+              });
+
+              const img = document.createElement('img');
+              img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+              img.alt = archivo.name || "Fotografía";
+              img.loading = "lazy";
+              img.onclick = () => abrirVisor(indexGlobal);
+              gridSub.appendChild(img);
+              totalRenderizadas++;
+            });
+            contenedorSecciones.appendChild(gridSub);
+          }
+        }
+
+        if (totalRenderizadas === 0) {
+          contenedorSecciones.innerHTML = '<p style="text-align:center; color:#aaaaaa; padding: 40px 0;">No se encontraron fotografías en esta sección.</p>';
+        }
+
+      } catch (error) {
+        console.error(error);
+        contenedorSecciones.innerHTML = '<p style="text-align:center; color:#ff6b6b; padding: 40px 0;">Error al consultar Google Drive. Verificá permisos y conexión.</p>';
+      }
     }
 
     function abrirGaleria(nombreCategoria, folderId) {
+      categoriaActivaNombre = nombreCategoria;
       history.pushState({ vista: 'interior' }, '', '');
       document.getElementById('vista-menu').style.display = 'none';
       document.getElementById('vista-sobre-mi').style.display = 'none';
@@ -457,9 +642,12 @@
 
     window.addEventListener('popstate', (event) => {
       const modal = document.getElementById('modal');
-      if (modal.style.display === 'flex') {
+      const modalPass = document.getElementById('modal-pass-clientes');
+      if (modal && modal.style.display === 'flex') {
         cerrarVisor();
         history.pushState({ vista: 'interior' }, '', '');
+      } else if (modalPass && modalPass.style.display === 'flex') {
+        cerrarModalPassword();
       } else {
         forzarVistaMenu();
         history.pushState({ vista: 'inicio' }, '', '');
@@ -467,29 +655,56 @@
     });
 
     function abrirVisor(index) {
+      if (!fotosActuales || fotosActuales.length === 0) return;
       indiceFotoActual = index;
-      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+      actualizarFotoVisor();
       document.getElementById('modal').style.display = 'flex';
     }
 
-    function cerrarVisor() { document.getElementById('modal').style.display = 'none'; }
+    function actualizarFotoVisor() {
+      const item = fotosActuales[indiceFotoActual];
+      if (!item) return;
+
+      const img = document.getElementById('img-ampliada');
+      const txtSubcarpeta = document.getElementById('visor-subcarpeta');
+      const txtNombre = document.getElementById('visor-nombre-archivo');
+
+      if (typeof item === 'string') {
+        img.src = item;
+        if (txtSubcarpeta) txtSubcarpeta.innerText = categoriaActivaNombre || 'Galería';
+        if (txtNombre) txtNombre.innerText = 'Fotografía';
+      } else {
+        img.src = item.url;
+        if (txtSubcarpeta) txtSubcarpeta.innerText = item.subcarpeta || categoriaActivaNombre || 'Galería';
+        if (txtNombre) txtNombre.innerText = item.nombreArchivo || 'Fotografía';
+      }
+    }
+
+    function cerrarVisor() { 
+      const modal = document.getElementById('modal');
+      if (modal) modal.style.display = 'none'; 
+    }
     function cerrarVisorFondo(event) { if (event.target.id === 'modal') cerrarVisor(); }
 
     function cambiarFoto(direccion, event) {
       if (event) event.stopPropagation();
+      if (!fotosActuales || fotosActuales.length === 0) return;
       indiceFotoActual += direccion;
       if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
       else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
-      document.getElementById('img-ampliada').src = fotosActuales[indiceFotoActual];
+      actualizarFotoVisor();
     }
 
     // Teclado físico
     document.addEventListener('keydown', (e) => {
       const modal = document.getElementById('modal');
-      if (modal.style.display === 'flex') {
+      const modalPass = document.getElementById('modal-pass-clientes');
+      if (modal && modal.style.display === 'flex') {
         if (e.key === 'Escape') cerrarVisor();
         else if (e.key === 'ArrowLeft') cambiarFoto(-1);
         else if (e.key === 'ArrowRight') cambiarFoto(1);
+      } else if (modalPass && modalPass.style.display === 'flex') {
+        if (e.key === 'Escape') cerrarModalPassword();
       }
     });
 
@@ -497,11 +712,11 @@
     let touchStartX = 0;
     let touchEndX = 0;
     const modal = document.getElementById('modal');
-    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
     modal.addEventListener('touchend', e => {
       touchEndX = e.changedTouches[0].screenX;
       if (touchEndX + 50 < touchStartX) cambiarFoto(1);
       else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
-    }, false);
+    }, { passive: true });
   </script>
 </body></html>
