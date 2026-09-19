@@ -1,951 +1,683 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-<title>Darkroom Console · Administración Oficial Sergio Ricardo Molina</title>
-<!-- Google Fonts: Raleway (Headlines) & Manrope (Body/Data) -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Supabase JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Tailwind CSS with custom plugins -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Configuration matching the Atelier Darkroom Design System -->
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-secondary-fixed": "#001e30",
-            "on-surface": "#e5e2e1",
-            "on-primary-container": "#8ec9fa",
-            "inverse-surface": "#e5e2e1",
-            "secondary-fixed": "#cae6ff",
-            "on-surface-variant": "#c0c7cf",
-            "on-primary-fixed-variant": "#004b72",
-            "inverse-primary": "#1e638f",
-            "error": "#ffb4ab",
-            "on-secondary-container": "#8dbee6",
-            "tertiary-container": "#794303",
-            "tertiary-fixed": "#ffdcc1",
-            "surface-container": "#201f1f",
-            "background": "#111111",
-            "surface-tint": "#91cdfe",
-            "primary-container": "#005580",
-            "surface-container-highest": "#353534",
-            "secondary-fixed-dim": "#9bccf4",
-            "inverse-on-surface": "#313030",
-            "on-primary": "#003350",
-            "on-tertiary-fixed": "#2e1500",
-            "on-secondary": "#00344f",
-            "on-secondary-fixed-variant": "#0e4b6d",
-            "surface-dim": "#111111",
-            "tertiary-fixed-dim": "#ffb878",
-            "secondary-container": "#124d70",
-            "on-primary-fixed": "#001e30",
-            "outline": "#8b9199",
-            "tertiary": "#ffb878",
-            "primary-fixed": "#cbe6ff",
-            "primary": "#38bdf8",
-            "surface-bright": "#3a3939",
-            "on-error-container": "#ffdad6",
-            "surface-container-lowest": "#0e0e0e",
-            "surface": "#111111",
-            "on-background": "#e5e2e1",
-            "on-error": "#690005",
-            "error-container": "#93000a",
-            "primary-fixed-dim": "#91cdfe",
-            "surface-container-high": "#2a2a2a",
-            "outline-variant": "#262626",
-            "surface-variant": "#353534",
-            "on-tertiary-container": "#ffb36e",
-            "surface-container-low": "#181818",
-            "secondary": "#9bccf4",
-            "on-tertiary": "#4c2700"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-2xs": "0.25rem",
-            "space-xs": "0.5rem",
-            "space-sm": "0.75rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
-            "space-xl": "2rem",
-            "space-2xl": "3rem",
-            "space-3xl": "4.5rem",
-            "space-4xl": "6rem",
-            "gutter-mobile": "1rem",
-            "gutter-tablet": "1.5rem",
-            "gutter-desktop": "2rem",
-            "container-max": "1440px"
-          },
-          "fontFamily": {
-            "headline-sm": ["Raleway", "sans-serif"],
-            "headline-md": ["Raleway", "sans-serif"],
-            "headline-lg": ["Raleway", "sans-serif"],
-            "headline-lg-mobile": ["Raleway", "sans-serif"],
-            "display-hero": ["Raleway", "sans-serif"],
-            "display-hero-mobile": ["Raleway", "sans-serif"],
-            "body-md": ["Manrope", "sans-serif"],
-            "body-lg": ["Manrope", "sans-serif"],
-            "label-sm": ["Manrope", "sans-serif"],
-            "label-md": ["Manrope", "sans-serif"]
-          },
-          "fontSize": {
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>Panel de Administración | SERGIO RICARDO MOLINA</title>
+  <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- GUARDIÁN DE SEGURIDAD ESTRICTO: VERIFICACIÓN INTERNA DE molinaoksergio@gmail.com -->
+  <script>
+    (async function() {
+      const CORREO_ADMIN = 'molinaoksergio@gmail.com';
+      const SUPABASE_PROJECT_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+      const SUPABASE_PROJECT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+
+      const isLocalOrPreview = window.location.hostname === 'localhost' || 
+        window.location.hostname === '127.0.0.1' || 
+        !window.location.hostname.includes('github.io');
+
+      if (isLocalOrPreview) return;
+
+      try {
+        const authLocal = sessionStorage.getItem('admin_autenticado');
+        const emailLocal = (sessionStorage.getItem('admin_email') || '').toLowerCase().trim();
+        if (authLocal === 'true' && emailLocal === CORREO_ADMIN) return;
+      } catch (_) {}
+
+      if (window.supabase) {
+        try {
+          const client = window.supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_PROJECT_KEY);
+          const { data: { session } } = await client.auth.getSession();
+          if (session && session.user) {
+            const userEmail = (session.user.email || '').toLowerCase().trim();
+            if (userEmail === CORREO_ADMIN) {
+              try {
+                sessionStorage.setItem('admin_autenticado', 'true');
+                sessionStorage.setItem('admin_email', CORREO_ADMIN);
+              } catch (_) {}
+              return;
+            } else {
+              await client.auth.signOut();
+            }
           }
+        } catch (e) {
+          console.warn('Guardián auth:', e);
         }
       }
-    }
+
+      try {
+        sessionStorage.clear();
+        localStorage.clear();
+      } catch (_) {}
+      window.location.replace('login.html?error=unauthorized');
+    })();
   </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
+
+  <style>
+    body {
+      background-color: #111111;
+      color: #e5e2e1;
+      font-family: 'Manrope', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #111111;
+      background: #141414;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #353534;
+      background: #2b2b2b;
       border-radius: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #005580;
     }
-    /* Animación suave para drawer */
-    #mobileDrawer {
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-    #mobileDrawerContent {
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    #mobileDrawer.open {
-      visibility: visible;
-      opacity: 1;
-      pointer-events: auto;
-    }
-    #mobileDrawer.open #mobileDrawerContent {
-      transform: translateX(0);
-    }
   </style>
-<!-- Script 1: Guardián Estricto de Autenticación con Bypass Seguro para Preview / Canvas -->
-<script>
-    (function enforceAdminSession() {
-      const validEmail = 'molinaoksergio@gmail.com';
-      try {
-        const authUser = sessionStorage.getItem('darkroom_admin_user');
-        const authKey = sessionStorage.getItem('darkroom_master_key');
-        
-        // Auto-inyección de sesión si no existe clave para permitir la renderización fluida
-        if (!authUser && !authKey) {
-          sessionStorage.setItem('darkroom_admin_user', validEmail);
-          sessionStorage.setItem('darkroom_master_key', 'SRM-PRO-ATELIER-2024');
-        }
-
-        const activeUser = sessionStorage.getItem('darkroom_admin_user');
-        if (activeUser !== validEmail && !sessionStorage.getItem('darkroom_master_key')) {
-          if (window.location.hostname !== 'localhost' && window.location.protocol !== 'file:' && window.top === window.self) {
-            window.location.href = 'login.html';
-          }
-        }
-      } catch (e) {
-        console.warn('Session check fallback', e);
-      }
-    })();
-  </script>
 </head>
-<body class="bg-[#111111] text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container antialiased">
-<!-- Header Superior Responsivo Mobile & Desktop -->
-<header class="bg-[#111111]/95 backdrop-blur-md sticky top-0 z-40 border-b border-[#262626] shadow-sm w-full">
-<div class="flex justify-between items-center w-full px-4 sm:px-gutter-desktop max-w-container-max mx-auto h-16">
-<!-- Brand Logo / Identidad + Botón Hamburguesa Móvil -->
-<div class="flex items-center gap-2 sm:gap-space-sm">
-<!-- Botón Menú Hamburguesa visible en móviles (<768px) -->
-<button aria-label="Abrir Menú de Navegación" class="md:hidden p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container active:scale-95 transition-all flex items-center justify-center" id="btnMobileMenu">
-<span class="material-symbols-outlined text-2xl" data-icon="menu">menu</span>
-</button>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-2xl shrink-0" data-icon="lens_blur">lens_blur</span>
-<div class="flex flex-col">
-<span class="text-base sm:text-headline-sm font-headline-sm font-bold text-on-surface tracking-wide leading-tight">Darkroom Console</span>
-<span class="text-[10px] font-label-sm text-outline tracking-wider leading-tight truncate max-w-[170px] sm:max-w-none">Administración · SERGIO RICARDO MOLINA</span>
-</div>
-</div>
-</div>
-<!-- Trailing Status & Acción Cerrar Sesión -->
-<div class="flex items-center gap-2 sm:gap-space-md">
-<!-- Badge Sistema Activo -->
-<div class="flex items-center gap-1.5 px-2 sm:px-space-sm py-1 rounded bg-[#0e0e0e] border border-[#262626]">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-<span class="text-[9px] sm:text-label-sm font-label-sm text-primary tracking-widest font-semibold uppercase whitespace-nowrap">● Sistema Activo</span>
-</div>
-<!-- Botón Cerrar Sesión -->
-<button class="flex items-center gap-1 text-label-sm sm:text-label-md font-label-md text-error hover:text-on-error-container hover:bg-error-container/20 px-2 sm:px-space-sm py-1.5 rounded transition-colors duration-150 active:scale-[0.98] border border-[#262626]" id="btnLogout" onclick="cerrarSesionAdmin()" title="Cerrar Sesión Segura">
-<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
-<span class="hidden sm:inline">Cerrar Sesión</span>
-</button>
-</div>
-</div>
-</header>
-<!-- Menú Desplegable Móvil (#mobileDrawer) -->
-<div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm invisible opacity-0 md:hidden pointer-events-none transition-all duration-300" id="mobileDrawer">
-<div class="fixed inset-0" id="drawerBackdrop"></div>
-<div class="relative z-10 w-4/5 max-w-xs h-full bg-[#111111] border-r border-[#262626] flex flex-col justify-between p-5 -translate-x-full shadow-2xl" id="mobileDrawerContent">
-<div class="space-y-4">
-<!-- Cabecera Drawer Móvil -->
-<div class="flex items-center justify-between pb-3 border-b border-[#262626]">
-<div>
-<span class="text-[11px] font-label-sm text-primary uppercase tracking-widest block font-bold">Consola de Control</span>
-<span class="text-xs font-semibold text-on-surface">SERGIO RICARDO MOLINA</span>
-<span class="text-[10px] text-outline block">Fotografía Profesional</span>
-</div>
-<button class="p-1.5 rounded-lg text-outline hover:text-on-surface bg-surface-container active:scale-95" id="btnCloseMobileMenu">
-<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
-</button>
-</div>
-<!-- Enlaces Menú Móvil -->
-<nav class="space-y-1.5 pt-1">
-<!-- 1. Galerías (Activo con fondo #004466, borde #0088cc y texto blanco) -->
-<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#004466] border border-[#0088cc] text-white font-medium text-sm transition-all active:scale-[0.98]" href="panel.html">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-xl" data-icon="photo_library">photo_library</span>
-<span class="">Galerías</span>
-</div>
-<span class="text-xs px-2 py-0.5 rounded bg-[#0e0e0e] text-primary font-bold" id="badgeDrawerGalCount">0</span>
-</a>
-<!-- 2. Cargas y Enlaces -->
-<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low text-sm transition-colors active:scale-[0.98]" href="cargas.html">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline text-xl" data-icon="cloud_upload">cloud_upload</span>
-<span class="">Cargas y Enlaces</span>
-</div>
-<span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</a>
-<!-- 3. Tarifas y Precios -->
-<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low text-sm transition-colors active:scale-[0.98]" href="precios.html">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline text-xl" data-icon="payments">payments</span>
-<span class="">Tarifas y Precios</span>
-</div>
-<span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</a>
-<!-- 4. Métricas y Analítica -->
-<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low text-sm transition-colors active:scale-[0.98]" href="metricas.html">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline text-xl" data-icon="monitoring">monitoring</span>
-<span class="">Métricas y Analítica</span>
-</div>
-<span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</a>
-<!-- Separador de Portales Públicos -->
-<div class="pt-3 my-2 border-t border-[#262626]">
-<span class="px-2 text-[10px] font-label-sm text-outline block mb-1 uppercase tracking-wider">Portales Públicos</span>
-</div>
-<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low text-sm transition-colors active:scale-[0.98]" href="eventos.html">
-<span class="material-symbols-outlined text-lg text-outline" data-icon="event">event</span>
-<span class="">Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low text-sm transition-colors active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-lg text-outline" data-icon="visibility">visibility</span>
-<span class="">Ver Portafolio</span>
-</a>
-</nav>
-</div>
-<div class="pt-4 border-t border-[#262626]">
-<button class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-error bg-error-container/10 border border-error/30 text-xs font-semibold active:scale-98 transition-colors" onclick="cerrarSesionAdmin()">
-<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
-<span class="">Cerrar Sesión de Administrador</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Layout Principal con Menú Lateral en Desktop y Lienzo Responsivo -->
-<div class="flex flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 pb-24 md:pb-8 gap-space-lg">
-<!-- Menú Lateral Izquierdo Fijo sólo en Desktop (hidden md:flex) -->
-<aside class="hidden md:flex w-64 flex-shrink-0 flex-col justify-between rounded-xl bg-[#0e0e0e] border border-[#262626] p-space-md shadow-sm h-fit sticky top-20">
-<div class="space-y-space-md">
-<!-- Encabezado Menú -->
-<div class="px-space-xs pb-space-xs border-b border-[#262626] flex items-center justify-between">
-<span class="text-label-sm font-label-sm text-outline tracking-wider">MÓDULO DE GESTIÓN</span>
-<span class="material-symbols-outlined text-sm text-primary" data-icon="terminal">terminal</span>
-</div>
-<!-- Enlaces Principales -->
-<nav class="space-y-1">
-<!-- 1. Galerías (Activo) -->
-<a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg bg-[#004466] text-white border border-[#0088cc] font-medium text-label-md font-label-md active:scale-[0.98] transition-transform" href="panel.html">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary" data-icon="photo_library">photo_library</span>
-<span class="">Galerías</span>
-</div>
-<span class="text-label-sm font-label-sm px-1.5 py-0.5 rounded bg-[#0e0e0e] text-primary font-bold" id="badgeGalCount">0</span>
-</a>
-<!-- 2. Cargas y Enlaces -->
-<a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-[#181818] text-label-md font-label-md transition-colors active:scale-[0.98]" href="cargas.html">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-outline" data-icon="cloud_upload">cloud_upload</span>
-<span class="">Cargas y Enlaces</span>
-</div>
-<span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</a>
-<!-- 3. Tarifas y Precios -->
-<a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-[#181818] text-label-md font-label-md transition-colors active:scale-[0.98]" href="precios.html">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
-<span class="">Tarifas y Precios</span>
-</div>
-<span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</a>
-<!-- 4. Métricas y Analítica -->
-<a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-[#181818] text-label-md font-label-md transition-colors active:scale-[0.98]" href="metricas.html">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-outline" data-icon="monitoring">monitoring</span>
-<span class="">Métricas y Analítica</span>
-</div>
-<span class="material-symbols-outlined text-xs text-outline" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</a>
-<div class="pt-space-xs my-2 border-t border-[#262626]">
-<span class="px-space-xs text-label-sm font-label-sm text-outline block mb-1 uppercase tracking-wider">Portales Públicos</span>
-</div>
-<a class="flex items-center gap-space-xs px-space-sm py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-[#181818] text-label-md font-label-md transition-colors active:scale-[0.98]" href="eventos.html">
-<span class="material-symbols-outlined text-base" data-icon="event">event</span>
-<span class="">Volver a Eventos</span>
-</a>
-<a class="flex items-center gap-space-xs px-space-sm py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-[#181818] text-label-md font-label-md transition-colors active:scale-[0.98]" href="index.html">
-<span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
-<span class="">Ver Portafolio</span>
-</a>
-</nav>
-</div>
-</aside>
-<!-- Lienzo de Contenido Principal Adaptado para Celulares y Computadoras -->
-<main class="flex-1 flex flex-col space-y-4 sm:space-y-6 min-w-0">
-<!-- Sección de Título y Botón Destacado '+ Cargar Nueva Galería' -->
-<section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#0e0e0e] border border-[#262626] rounded-xl p-4 sm:p-6 shadow-sm">
-<div class="space-y-1">
-<div class="flex items-center gap-1.5">
-<span class="text-[10px] sm:text-label-sm font-label-sm text-primary tracking-widest uppercase font-semibold">CONSOLA ATELIER · ARCHIVOS SUPABASE</span>
-</div>
-<h1 class="text-xl sm:text-headline-md font-headline-md text-on-surface font-semibold leading-tight">Administración de Galerías y Sesiones</h1>
-</div>
-<div class="flex-shrink-0 pt-1 sm:pt-0">
-<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md uppercase tracking-wider text-white bg-[#005580] border border-[#38bdf8] hover:bg-[#124d70] active:scale-[0.98] transition-all shadow-md font-semibold" href="cargas.html">
-<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
-<span class="">+ Cargar Nueva Galería</span>
-</a>
-</div>
-</section>
-<!-- Métricas Rápidas: 3 columnas de igual altura (#lblTotal, #lblPublicas, #lblPrivadas) -->
-<section class="grid sm:grid-cols-3 sm:gap-4 grid-cols-3 gap-2">
-<div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm min-h-[96px]">
-<div class="space-y-1 min-w-0">
-<span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">TOTAL REGISTROS</span>
-<div class="text-xl sm:text-headline-lg font-headline-lg text-on-surface font-bold leading-none" id="lblTotal">0</div>
-</div>
-<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-primary border border-[#262626] shrink-0 ml-1">
-<span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="folder_special">folder_special</span>
-</div>
-</div>
-<div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm min-h-[96px]">
-<div class="space-y-1 min-w-0">
-<span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">ÁLBUMES PÚBLICOS</span>
-<div class="text-xl sm:text-headline-lg font-headline-lg text-[#38bdf8] font-bold leading-none" id="lblPublicas">0</div>
-</div>
-<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-[#38bdf8] border border-[#262626] shrink-0 ml-1">
-<span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="lock_open">lock_open</span>
-</div>
-</div>
-<div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm min-h-[96px]">
-<div class="space-y-1 min-w-0">
-<span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">CON CLAVE</span>
-<div class="text-xl sm:text-headline-lg font-headline-lg text-yellow-400 font-bold leading-none" id="lblPrivadas">0</div>
-</div>
-<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-yellow-400 border border-[#262626] shrink-0 ml-1">
-<span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="key">key</span>
-</div>
-</div>
-</section>
-<!-- Barra de Filtros, Búsqueda Dinámica y Refresco adaptados a móviles -->
-<section class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#0e0e0e] p-3 sm:p-space-md rounded-xl border border-[#262626]">
-<!-- Buscador Dinámico (#inputBusqueda) -->
-<div class="relative flex-1">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
-<input class="w-full bg-[#181818] border border-[#262626] rounded-lg pl-10 pr-4 py-2.5 text-on-surface text-sm placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors min-h-[44px]" id="inputBusqueda" placeholder="Filtrar por título, ID de Drive o clave..." type="text">
-</div>
-<!-- Filtros Rápidos (Chips) y Botón Refrescar -->
-<div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
-<button class="filter-chip px-3 sm:px-space-md py-2 min-h-[40px] rounded-lg text-xs sm:text-label-md font-medium whitespace-nowrap bg-[#005580] border border-[#38bdf8] text-white transition-colors active:scale-[0.98]" data-filter="all" id="btnFiltroTodas" onclick="aplicarFiltro('all')">
-          Todas
+<body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col selection:bg-[#005580] selection:text-white pb-20 md:pb-0">
+
+  <!-- Header Superior Global -->
+  <header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-50">
+    <div class="flex justify-between items-center w-full px-4 md:px-6 max-w-7xl mx-auto h-16">
+      <div class="flex items-center gap-3">
+        <button id="btnMobileMenu" type="button" aria-label="Abrir menú" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-[#181818] border border-[#262626] text-[#e5e2e1] hover:text-[#38bdf8] active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[24px]" id="menuIcon">menu</span>
         </button>
-<button class="filter-chip px-3 sm:px-space-md py-2 min-h-[40px] rounded-lg text-xs sm:text-label-md font-medium whitespace-nowrap bg-[#181818] border border-[#262626] text-outline hover:text-on-surface transition-colors active:scale-[0.98]" data-filter="public" id="btnFiltroPublicas" onclick="aplicarFiltro('public')">
-          Solo Públicas
+        <a class="flex items-center gap-2 text-[#38bdf8] font-bold text-lg font-headline tracking-tight" href="panel.html">
+          <span class="material-symbols-outlined text-[#38bdf8] text-[24px] sm:text-[26px]">photo_camera</span>
+          <span class="text-white tracking-wide font-semibold text-base sm:text-lg">Darkroom Console</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#181818] border border-emerald-800/60 text-emerald-400 text-xs font-semibold rounded-full uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-[11px]" id="badgeSyncEstado">Supabase Conectado</span>
+        </div>
+        <button onclick="cerrarSesionAdmin()" type="button" class="hidden xs:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#333333] hover:border-red-500/50 bg-[#181818] hover:bg-red-950/30 text-xs font-semibold text-[#c0c7cf] hover:text-red-300 transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+          <span>Cerrar Sesión</span>
         </button>
-<button class="filter-chip px-3 sm:px-space-md py-2 min-h-[40px] rounded-lg text-xs sm:text-label-md font-medium whitespace-nowrap bg-[#181818] border border-[#262626] text-outline hover:text-on-surface transition-colors active:scale-[0.98]" data-filter="private" id="btnFiltroPrivadas" onclick="aplicarFiltro('private')">
-          Solo Privadas
-        </button>
-<button class="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-lg border border-[#262626] bg-[#181818] text-on-surface-variant hover:text-primary hover:border-primary transition-colors active:scale-[0.98]" id="btnRefreshGrid" onclick="cargarColecciones()" title="Recargar desde base de datos">
-<span class="material-symbols-outlined text-lg" data-icon="sync">sync</span>
-</button>
-</div>
-</section>
-<!-- Cuadrícula de Álbumes (#gridGalerias: 1 col en mobile, 2 en md) -->
-<section>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridGalerias"></div>
-<div class="flex-col items-center justify-center p-6 sm:p-space-3xl rounded-xl border border-dashed border-[#262626] bg-[#0e0e0e] text-center my-2 hidden" id="emptyState">
-<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#181818] flex items-center justify-center mb-3 sm:mb-space-md border border-[#262626] text-primary">
-<span class="material-symbols-outlined text-2xl sm:text-3xl" data-icon="collections_bookmark">collections_bookmark</span>
-</div>
-<h2 class="text-base sm:text-headline-sm font-headline-sm text-on-surface font-semibold mb-1 sm:mb-2">No hay galerías registradas en este momento</h2>
-<p class="text-xs sm:text-body-md font-body-md text-on-surface-variant max-w-lg mb-4 sm:mb-space-lg leading-relaxed">Crea una nueva colección desde Cargas y Enlaces o revisa los filtros aplicados arriba.</p>
-<a class="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md uppercase tracking-wider text-white bg-[#005580] border border-[#38bdf8] hover:bg-[#124d70] active:scale-[0.98] transition-all shadow-md font-semibold" href="cargas.html">
-<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
-<span class="">+ Cargar Nueva Galería</span>
-</a>
-</div>
-</section>
-</main>
-</div>
-<!-- Barra de Navegación Inferior Móvil Fija (MD:HIDDEN) con 4 accesos rápidos -->
-<nav class="fixed bottom-0 left-0 right-0 z-40 bg-[#111111]/95 backdrop-blur-md border-t border-[#262626] px-2 py-1.5 flex justify-around items-center md:hidden shadow-lg safe-area-inset-bottom">
-<!-- 1. Galerías (Activo #38bdf8) -->
-<a class="flex flex-col items-center justify-center py-1 px-3 text-[#38bdf8] min-h-[44px]" href="panel.html">
-<span class="material-symbols-outlined text-xl" data-icon="photo_library">photo_library</span>
-<span class="text-[10px] font-semibold mt-0.5 tracking-tight">Galerías</span>
-</a>
-<!-- 2. Cargas -->
-<a class="flex flex-col items-center justify-center py-1 px-3 text-outline hover:text-on-surface min-h-[44px] transition-colors" href="cargas.html">
-<span class="material-symbols-outlined text-xl" data-icon="cloud_upload">cloud_upload</span>
-<span class="text-[10px] font-medium mt-0.5 tracking-tight">Cargas</span>
-</a>
-<!-- 3. Tarifas -->
-<a class="flex flex-col items-center justify-center py-1 px-3 text-outline hover:text-on-surface min-h-[44px] transition-colors" href="precios.html">
-<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
-<span class="text-[10px] font-medium mt-0.5 tracking-tight">Tarifas</span>
-</a>
-<!-- 4. Métricas -->
-<a class="flex flex-col items-center justify-center py-1 px-3 text-outline hover:text-on-surface min-h-[44px] transition-colors" href="metricas.html">
-<span class="material-symbols-outlined text-xl" data-icon="monitoring">monitoring</span>
-<span class="text-[10px] font-medium mt-0.5 tracking-tight">Métricas</span>
-</a>
-</nav>
-<!-- Footer de Escritorio y Móvil -->
-<footer class="bg-[#0e0e0e] full-width bottom border-t border-[#262626] mt-auto mb-14 md:mb-0">
-<div class="flex flex-col md:flex-row justify-between items-center w-full px-4 sm:px-gutter-desktop max-w-container-max mx-auto py-space-md gap-space-sm text-center md:text-left">
-<div class="text-xs sm:text-label-md font-label-md text-on-surface-variant">
-      © 2026&nbsp; · Sergio Ricardo Molina</div>
-<div class="flex flex-wrap items-center justify-center gap-3 sm:gap-space-md">
-</div>
-</div>
-</footer>
-<!-- Modal de Confirmación para Borrado Real en Supabase y Local -->
-<div class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4" id="deleteModal">
-<div class="w-full max-w-md bg-[#181818] border border-[#262626] rounded-xl p-5 sm:p-space-lg shadow-2xl space-y-4 transform transition-all">
-<div class="flex items-center gap-3 text-error">
-<div class="w-10 h-10 rounded-full bg-error-container/30 flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-error text-2xl" data-icon="warning">warning</span>
-</div>
-<div>
-<h3 class="text-base sm:text-headline-sm font-headline-sm text-on-surface font-semibold">Confirmar Eliminación</h3>
-<span class="text-[10px] sm:text-label-sm font-label-sm text-outline">ACCIÓN IRREVERSIBLE</span>
-</div>
-</div>
-<p class="text-xs sm:text-body-md font-body-md text-on-surface-variant leading-relaxed">
-      ¿Está seguro de que desea eliminar permanentemente la galería <strong class="text-on-surface font-bold" id="modalGalTitle"></strong>? Se removerá de Supabase y del registro local.
-    </p>
-<div class="flex items-center justify-end gap-2 pt-2">
-<button class="px-4 py-2.5 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md border border-[#262626] text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors active:scale-[0.98]" id="btnCancelDelete" onclick="closeModal()">
-        Cancelar
-      </button>
-<button class="px-4 py-2.5 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md bg-error text-on-error hover:bg-error/90 font-bold transition-colors active:scale-[0.98] flex items-center gap-1.5" id="btnConfirmDelete">
-<span class="material-symbols-outlined text-base" data-icon="delete_forever">delete_forever</span>
-<span class="">Eliminar Galería</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Lógica JavaScript Oficial: Supabase + LocalStorage + Normalización Robusta -->
-<script>
-  // Inicialización de Supabase oficial
-  const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNjg0MjUsImV4cCI6MjA1NTc0NDQyNX0.i5t_cO7rXj74R_uH4i4V9qZqUq8aC68f0oV6bV4TfH0';
-  
-  let supabaseClient = null;
-  if (window.supabase) {
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="mobileDrawer" class="hidden md:hidden border-b border-[#222222] bg-[#141414] px-4 py-4 space-y-4 shadow-2xl">
+      <div class="px-2 pb-2 border-b border-[#222222]">
+        <h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+        <p class="text-[11px] text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
+      </div>
+      <nav class="space-y-1">
+        <a class="flex items-center gap-3 text-white px-3 py-2.5 text-sm font-semibold rounded-lg bg-[#004466] border border-[#0088cc] shadow-sm" href="panel.html">
+          <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">photo_library</span>
+          <span>Galerías</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="cargas.html">
+          <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+          <span>Cargas y Enlaces</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="precios.html">
+          <span class="material-symbols-outlined text-[20px]">payments</span>
+          <span>Tarifas y Precios</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e] hover:text-white transition-all" href="metricas.html">
+          <span class="material-symbols-outlined text-[20px]">insights</span>
+          <span>Métricas y Analítica</span>
+        </a>
+      </nav>
+      <div class="pt-3 border-t border-[#222222] space-y-1">
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b] transition-all" href="eventos.html">
+          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">arrow_back</span> Volver a Eventos</span>
+          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        </a>
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b] transition-all" href="index.html">
+          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">visibility</span> Ver Portafolio</span>
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Layout Principal con Aside Fijo en Desktop -->
+  <div class="flex-1 flex overflow-hidden">
+    <aside class="w-64 bg-[#131313] border-r border-[#222222] flex-col justify-between shrink-0 hidden md:flex">
+      <div class="p-5">
+        <div class="mb-6 px-1">
+          <h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+          <p class="text-[10px] font-semibold text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
+        </div>
+        <nav class="space-y-1.5">
+          <a class="flex items-center gap-3 bg-[#004466] border border-[#0088cc] text-white rounded-lg px-3 py-2.5 text-sm font-semibold shadow-sm" href="panel.html">
+            <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">photo_library</span>
+            <span>Galerías</span>
+          </a>
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all" href="cargas.html">
+            <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+            <span>Cargas y Enlaces</span>
+          </a>
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all" href="precios.html">
+            <span class="material-symbols-outlined text-[20px]">payments</span>
+            <span>Tarifas y Precios</span>
+          </a>
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all" href="metricas.html">
+            <span class="material-symbols-outlined text-[20px]">insights</span>
+            <span>Métricas y Analítica</span>
+          </a>
+
+          <div class="pt-3 mt-3 border-t border-[#222222] space-y-1">
+            <a class="flex items-center justify-between text-[#8b9199] hover:text-[#38bdf8] px-3 py-2 rounded-lg text-xs transition-all hover:bg-[#1a1a1a]" href="eventos.html">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                <span>Volver a Eventos</span>
+              </div>
+              <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+            </a>
+            <a class="flex items-center justify-between text-[#8b9199] hover:text-[#38bdf8] px-3 py-2 rounded-lg text-xs transition-all hover:bg-[#1a1a1a]" href="index.html">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">visibility</span>
+                <span>Ver Portafolio</span>
+              </div>
+              <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="p-4 border-t border-[#222222] bg-[#0f0f0f]/80 text-[11px] text-[#8b9199] flex items-center justify-between font-mono">
+        <span>ESTUDIO DARKROOM</span>
+        <span class="text-[#38bdf8]">v2.7 Universal</span>
+      </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 overflow-y-auto custom-scrollbar p-3.5 sm:p-6 md:p-8 max-w-7xl mx-auto w-full pb-24 md:pb-8">
+      
+      <!-- Encabezado de Sección y CTA Cargar -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 sm:gap-4 mb-5 sm:mb-8 pb-4 border-b border-[#222222]">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2 py-0.5 bg-[#005580]/40 border border-[#005580] text-[#38bdf8] text-[10px] sm:text-[11px] font-semibold rounded uppercase tracking-wider">Consola Atelier</span>
+            <span class="text-[11px] text-[#8b9199]">Sincronización Supabase Universal</span>
+          </div>
+          <h1 class="text-xl sm:text-3xl font-headline font-bold text-white tracking-tight leading-tight">Administración de Galerías y Sesiones</h1>
+          <p class="text-xs sm:text-sm text-[#c0c7cf] max-w-3xl mt-1 leading-relaxed">
+            Supervisión en tiempo real de colecciones escolares, graduaciones y producciones privadas vinculadas con Google Drive.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 pt-1 md:pt-0">
+          <a href="cargas.html" class="w-full sm:w-auto px-4 sm:px-5 py-2.5 min-h-[44px] rounded-lg bg-[#005580] border border-[#0088cc] hover:bg-[#006699] text-white active:scale-95 transition-all text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-black/50">
+            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+            <span>+ Cargar Nueva Galería</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Métricas Superiores en 3 Columnas Exactas -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-5 sm:mb-8">
+        <div class="bg-[#181818] border border-[#222222] rounded-xl p-2.5 sm:p-4 shadow-md flex items-center justify-between min-h-[76px] sm:min-h-[86px]">
+          <div class="min-w-0 pr-1">
+            <p class="text-[9px] sm:text-[11px] font-semibold text-[#8b9199] uppercase tracking-wider truncate">Total Reg.</p>
+            <h3 id="lblTotal" class="text-lg sm:text-2xl font-headline font-bold text-white mt-0.5">0</h3>
+          </div>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#38bdf8] shrink-0">
+            <span class="material-symbols-outlined text-[18px] sm:text-[22px]">folder_copy</span>
+          </div>
+        </div>
+
+        <div class="bg-[#181818] border border-[#222222] rounded-xl p-2.5 sm:p-4 shadow-md flex items-center justify-between min-h-[76px] sm:min-h-[86px]">
+          <div class="min-w-0 pr-1">
+            <p class="text-[9px] sm:text-[11px] font-semibold text-[#8b9199] uppercase tracking-wider truncate">Álbumes Públicos</p>
+            <h3 id="lblPublicas" class="text-lg sm:text-2xl font-headline font-bold text-[#38bdf8] mt-0.5">0</h3>
+          </div>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#38bdf8] shrink-0">
+            <span class="material-symbols-outlined text-[18px] sm:text-[22px]">public</span>
+          </div>
+        </div>
+
+        <div class="bg-[#181818] border border-[#222222] rounded-xl p-2.5 sm:p-4 shadow-md flex items-center justify-between min-h-[76px] sm:min-h-[86px]">
+          <div class="min-w-0 pr-1">
+            <p class="text-[9px] sm:text-[11px] font-semibold text-[#8b9199] uppercase tracking-wider truncate">Con Clave</p>
+            <h3 id="lblPrivadas" class="text-lg sm:text-2xl font-headline font-bold text-[#facc15] mt-0.5">0</h3>
+          </div>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-[#121212] border border-[#2c2c2c] flex items-center justify-center text-[#facc15] shrink-0">
+            <span class="material-symbols-outlined text-[18px] sm:text-[22px]">vpn_key</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Filtros y Búsqueda -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 bg-[#161616] p-2.5 sm:p-3.5 rounded-xl border border-[#222222] mb-5">
+        <div class="relative flex-1">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#8b9199] text-[18px]">search</span>
+          <input id="inputBusqueda" type="text" placeholder="Filtrar por título, ID de Drive o clave..." class="w-full bg-[#111111] border border-[#333333] focus:border-[#38bdf8] focus:ring-1 focus:ring-[#38bdf8] rounded-lg pl-9 pr-3 py-2 text-xs sm:text-sm text-white placeholder-[#666666] outline-none transition-all"/>
+        </div>
+
+        <div class="flex items-center justify-between sm:justify-start gap-1 bg-[#111111] p-1 rounded-lg border border-[#242424]">
+          <button id="btnFiltroTodas" onclick="aplicarFiltro('todas')" class="px-2.5 py-1.5 text-xs font-semibold rounded-md bg-[#005580] text-white transition-all">Todas</button>
+          <button id="btnFiltroPublicas" onclick="aplicarFiltro('publicas')" class="px-2.5 py-1.5 text-xs font-semibold rounded-md text-[#8b9199] hover:text-white transition-all">Solo Públicas</button>
+          <button id="btnFiltroPrivadas" onclick="aplicarFiltro('privadas')" class="px-2.5 py-1.5 text-xs font-semibold rounded-md text-[#8b9199] hover:text-white transition-all">Solo Privadas</button>
+          <button onclick="cargarColecciones()" title="Actualizar lista" class="p-1.5 bg-[#181818] border border-[#333333] hover:border-[#38bdf8] text-[#8b9199] hover:text-white rounded-md transition-all active:scale-95 flex items-center justify-center ml-1">
+            <span class="material-symbols-outlined text-[16px]">refresh</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuadrícula Dinámica de Galerías -->
+      <div id="gridGalerias" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-5">
+        <div class="col-span-full py-16 text-center text-[#8b9199]">
+          <span class="material-symbols-outlined text-4xl text-[#005580] animate-spin mb-3">sync</span>
+          <p class="text-xs sm:text-sm">Consultando base de datos Supabase en tiempo real...</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Barra Inferior Móvil Fija -->
+  <nav class="md:hidden bg-[#131313]/95 backdrop-blur-md border-t border-[#222222] fixed bottom-0 left-0 right-0 z-40 px-2 py-1.5 flex justify-around items-center">
+    <a class="flex flex-col items-center py-1 px-3 text-[#38bdf8] font-bold" href="panel.html">
+      <span class="material-symbols-outlined text-[20px]">photo_library</span>
+      <span class="text-[10px] mt-0.5">Galerías</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-3 text-[#8b9199] hover:text-white" href="cargas.html">
+      <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+      <span class="text-[10px] mt-0.5 font-medium">Cargas</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-3 text-[#8b9199] hover:text-white" href="precios.html">
+      <span class="material-symbols-outlined text-[20px]">payments</span>
+      <span class="text-[10px] mt-0.5 font-medium">Tarifas</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-3 text-[#8b9199] hover:text-white" href="metricas.html">
+      <span class="material-symbols-outlined text-[20px]">insights</span>
+      <span class="text-[10px] mt-0.5 font-medium">Métricas</span>
+    </a>
+  </nav>
+
+  <script>
+    const SUPABASE_PROJECT_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_PROJECT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+
+    let supaClient = null;
     try {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supaClient = window.supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_PROJECT_KEY);
+      }
     } catch(e) {
-      console.warn('[Supabase] Error en init client:', e);
+      console.warn('Error inicializando Supabase Client:', e);
     }
-  }
 
-  // Utilidad para extraer id limpio de Google Drive de URLs o texto
-  function extraerDriveId(val) {
-    if (!val) return '';
-    const str = String(val).trim();
-    // Casos: folders/ID, id=ID, d/ID
-    const folderMatch = str.match(/folders\/([a-zA-Z0-9_-]+)/);
-    if (folderMatch) return folderMatch[1];
-    const idParamMatch = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-    if (idParamMatch) return idParamMatch[1];
-    const dMatch = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    if (dMatch) return dMatch[1];
-    // Si no contiene '/', asumimos que ya es un ID limpio
-    if (!str.includes('/') && !str.includes('?')) return str;
-    return str;
-  }
+    let coleccionesGlobales = [];
+    let filtroSeleccionado = 'todas';
 
-  // Estado en memoria
-  let dbGalerias = [];
-  let currentFilter = 'all';
-  let searchQuery = '';
-  let itemPendingDelete = null;
+    function extraerIdDrive(enlace) {
+      if (!enlace) return '';
+      const str = String(enlace).trim();
+      const matchFolder = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchFolder && matchFolder[1]) return matchFolder[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str.split('?')[0].split('#')[0].replace(/.*drive\.google\.com\//, '').trim();
+    }
 
-  // Normalizador de campos de galería hiper-tolerante a variaciones de Supabase o localStorage
-  function normalizarGaleria(item) {
-    if (!item) return null;
-    const rawDrive = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || item.id_drive || item.driveId || '';
-    const driveClean = extraerDriveId(rawDrive) || (typeof item.id === 'string' && item.id.length > 10 ? item.id : 'DRIVE_ID');
-    const rawPass = item.password || item.clave || item.codigo || item.pin || '';
-    const passStr = String(rawPass || '').trim();
-    
-    // Condición de privada
-    const esPriv = Boolean(
-      item.es_privada === true || 
-      item.es_privada === 'true' || 
-      item.privada === true || 
-      item.privada === 'true' || 
-      item.is_private === true || 
-      passStr.length > 0
-    );
+    const btnMobileMenu = document.getElementById('btnMobileMenu');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const menuIcon = document.getElementById('menuIcon');
+    if (btnMobileMenu && mobileDrawer) {
+      btnMobileMenu.addEventListener('click', () => {
+        const isHidden = mobileDrawer.classList.contains('hidden');
+        if (isHidden) {
+          mobileDrawer.classList.remove('hidden');
+          if (menuIcon) menuIcon.textContent = 'close';
+        } else {
+          mobileDrawer.classList.add('hidden');
+          if (menuIcon) menuIcon.textContent = 'menu';
+        }
+      });
+    }
 
-    const tituloFinal = item.titulo || item.nombre || item.title || item.name || 'Galería sin título';
-    const portadaFinal = item.portada_url || item.portada || item.cover_url || item.cover || '';
-    const idFinal = item.id || driveClean || ('gal_' + Date.now() + Math.random().toString(36).substr(2, 6));
-    const createdFinal = item.created_at || item.fecha || item.date || new Date().toISOString();
+    // CONSULTA TOLERANTE Y UNIVERSAL A SUPABASE (SDK + REST API DIRECTA)
+    async function obtenerDatosSupabase() {
+      // Intento 1: SDK oficial de Supabase
+      if (supaClient) {
+        try {
+          let { data, error } = await supaClient
+            .from('galeria')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-    return {
-      id: String(idFinal),
-      titulo: tituloFinal,
-      drive_url: rawDrive || driveClean,
-      drive_id: driveClean,
-      portada_url: portadaFinal,
-      es_privada: esPriv,
-      password: passStr,
-      created_at: createdFinal
-    };
-  }
+          if (!error && Array.isArray(data) && data.length > 0) {
+            return data;
+          }
 
-  // Función hiper-robusta cargarColecciones() con fallback multi-fuente
-  async function cargarColecciones() {
-    const refreshBtn = document.getElementById('btnRefreshGrid');
-    const refreshIcon = refreshBtn ? refreshBtn.querySelector('.material-symbols-outlined') : null;
-    if (refreshIcon) refreshIcon.classList.add('animate-spin');
-
-    let remoteList = [];
-
-    // a) Supabase: Intentar tabla 'galeria' y fallback a 'galerias'
-    if (supabaseClient) {
-      try {
-        let { data, error } = await supabaseClient
-          .from('galeria')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error || !data || data.length === 0) {
-          const res2 = await supabaseClient
+          // Fallback a tabla 'galerias' en plural
+          const fallbackSDK = await supaClient
             .from('galerias')
             .select('*')
             .order('created_at', { ascending: false });
-          if (!res2.error && Array.isArray(res2.data) && res2.data.length > 0) {
-            data = res2.data;
-            error = null;
+
+          if (!fallbackSDK.error && Array.isArray(fallbackSDK.data) && fallbackSDK.data.length > 0) {
+            return fallbackSDK.data;
           }
+        } catch (eSDK) {
+          console.warn('Consulta SDK Supabase falló o fue bloqueada, activando REST API directa:', eSDK);
         }
-
-        if (!error && Array.isArray(data) && data.length > 0) {
-          remoteList = data.map(normalizarGaleria).filter(Boolean);
-        }
-      } catch (err) {
-        console.warn('[Supabase] Consulta remota falló o en espera, usando respaldos locales:', err);
       }
-    }
 
-    // b) Leer inmediatamente de localStorage: 'galerias_locales' y 'galerias'
-    let localList = [];
-    ['galerias_locales', 'galerias'].forEach(key => {
+      // Intento 2: Fetch nativo directo a la REST API de Supabase (inmune a bloqueos)
       try {
-        const raw = localStorage.getItem(key);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed)) {
-            parsed.forEach(p => {
-              const norm = normalizarGaleria(p);
-              if (norm) localList.push(norm);
-            });
+        const urlRest = `${SUPABASE_PROJECT_URL}/rest/v1/galeria?select=*&order=created_at.desc`;
+        const resp = await fetch(urlRest, {
+          method: 'GET',
+          headers: {
+            'apikey': SUPABASE_PROJECT_KEY,
+            'Authorization': `Bearer ${SUPABASE_PROJECT_KEY}`
+          }
+        });
+
+        if (resp.ok) {
+          const dataJson = await resp.json();
+          if (Array.isArray(dataJson) && dataJson.length > 0) {
+            return dataJson;
+          }
+        } else {
+          // Intento a vista 'galerias' en plural por REST
+          const respPlural = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/galerias?select=*&order=created_at.desc`, {
+            method: 'GET',
+            headers: {
+              'apikey': SUPABASE_PROJECT_KEY,
+              'Authorization': `Bearer ${SUPABASE_PROJECT_KEY}`
+            }
+          });
+          if (respPlural.ok) {
+            const dataPlural = await respPlural.json();
+            if (Array.isArray(dataPlural)) return dataPlural;
           }
         }
-      } catch(e) {
-        console.warn(`[LocalStorage] Error al leer ${key}:`, e);
+      } catch (errRest) {
+        console.warn('Falla en REST API directa de Supabase:', errRest);
       }
-    });
 
-    // c & d) Desduplicar la lista unificada por id y por ID de Drive
-    const mapComb = new Map();
-    // Agregar remotas
-    remoteList.forEach(item => {
-      const key = String(item.id || item.drive_id);
-      mapComb.set(key, item);
-      if (item.drive_id) mapComb.set(String(item.drive_id), item);
-    });
-    // Agregar locales asegurando sincronización instantánea
-    localList.forEach(item => {
-      const key = String(item.id || item.drive_id);
-      if (!mapComb.has(key) && (!item.drive_id || !mapComb.has(String(item.drive_id)))) {
-        mapComb.set(key, item);
-      }
-    });
-
-    // Extraer valores únicos
-    const uniqueValues = [];
-    const seenIds = new Set();
-    for (const item of mapComb.values()) {
-      const identifier = item.drive_id || item.id;
-      if (!seenIds.has(identifier)) {
-        seenIds.add(identifier);
-        uniqueValues.push(item);
-      }
+      return [];
     }
 
-    // Ordenar por created_at descendente
-    uniqueValues.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+    async function cargarColecciones() {
+      const grid = document.getElementById('gridGalerias');
+      const badgeSync = document.getElementById('badgeSyncEstado');
+      let listaCombinada = [];
 
-    dbGalerias = uniqueValues;
+      // 1. Obtener desde Supabase
+      const datosRemotos = await obtenerDatosSupabase();
+      if (Array.isArray(datosRemotos) && datosRemotos.length > 0) {
+        listaCombinada = datosRemotos.map(ev => ({
+          id: ev.id,
+          titulo: ev.titulo || ev.nombre || ev.title || 'Galería sin título',
+          drive_url: ev.drive_url || ev.url_drive || ev.enlace_drive || ev.folder_id || ev.drive_id || '',
+          portada_url: ev.portada_url || ev.portada || ev.cover_url || '',
+          es_privada: Boolean(ev.es_privada === true || ev.es_privada === 'true' || ev.privada === true || (ev.password && String(ev.password).trim().length > 0) || (ev.clave && String(ev.clave).trim().length > 0)),
+          password: ev.password || ev.clave || ev.codigo || '',
+          created_at: ev.created_at || new Date().toISOString()
+        }));
 
-    // e) Calcular y actualizar los 3 contadores superiores
-    actualizarContadores();
-
-    // f) Renderizar tarjetas en #gridGalerias
-    renderizarTarjetas();
-
-    if (refreshIcon) {
-      setTimeout(() => refreshIcon.classList.remove('animate-spin'), 300);
-    }
-  }
-
-  // e) Actualizar Contadores Superiores en Tiempo Real
-  function actualizarContadores() {
-    const total = dbGalerias.length;
-    const pubCount = dbGalerias.filter(g => !g.es_privada).length;
-    const privCount = dbGalerias.filter(g => g.es_privada).length;
-
-    const lblTot = document.getElementById('lblTotal');
-    const lblPub = document.getElementById('lblPublicas');
-    const lblPriv = document.getElementById('lblPrivadas');
-    const badgeDesk = document.getElementById('badgeGalCount');
-    const badgeDrawer = document.getElementById('badgeDrawerGalCount');
-
-    if (lblTot) lblTot.textContent = total;
-    if (lblPub) lblPub.textContent = pubCount;
-    if (lblPriv) lblPriv.textContent = privCount;
-    if (badgeDesk) badgeDesk.textContent = total;
-    if (badgeDrawer) badgeDrawer.textContent = total;
-  }
-
-  // Filtros dinámicos (Todas, Solo Públicas, Solo Privadas)
-  function aplicarFiltro(tipo) {
-    currentFilter = tipo;
-    const chips = document.querySelectorAll('.filter-chip');
-    chips.forEach(chip => {
-      const chipFilter = chip.getAttribute('data-filter');
-      if (chipFilter === tipo) {
-        chip.classList.add('bg-[#005580]', 'border-[#38bdf8]', 'text-white');
-        chip.classList.remove('bg-[#181818]', 'border-[#262626]', 'text-outline');
+        if (badgeSync) badgeSync.textContent = 'Supabase en Vivo';
       } else {
-        chip.classList.remove('bg-[#005580]', 'border-[#38bdf8]', 'text-white');
-        chip.classList.add('bg-[#181818]', 'border-[#262626]', 'text-outline');
-      }
-    });
-    renderizarTarjetas();
-  }
-
-  // f) Renderizar tarjetas en #gridGalerias con diseño Atelier
-  function renderizarTarjetas() {
-    const grid = document.getElementById('gridGalerias');
-    const empty = document.getElementById('emptyState');
-    if (!grid) return;
-    grid.innerHTML = '';
-
-    const filtered = dbGalerias.filter(item => {
-      const isPriv = item.es_privada;
-      const matchesFilter = (currentFilter === 'all') || 
-                            (currentFilter === 'public' && !isPriv) || 
-                            (currentFilter === 'private' && isPriv);
-      
-      const q = searchQuery.toLowerCase().trim();
-      const titulo = (item.titulo || '').toLowerCase();
-      const driveId = (item.drive_id || '').toLowerCase();
-      const pass = (item.password || '').toLowerCase();
-
-      const matchesSearch = !q || titulo.includes(q) || driveId.includes(q) || pass.includes(q);
-      return matchesFilter && matchesSearch;
-    });
-
-    if (filtered.length === 0) {
-      if (empty) {
-        empty.classList.remove('hidden');
-        empty.classList.add('flex');
-      }
-      return;
-    } else {
-      if (empty) {
-        empty.classList.add('hidden');
-        empty.classList.remove('flex');
-      }
-    }
-
-    filtered.forEach(gal => {
-      const card = document.createElement('article');
-      card.className = "flex flex-col bg-[#181818] border border-[#262626] rounded-xl overflow-hidden shadow-sm hover:border-[#38bdf8]/50 transition-all duration-200 group";
-      
-      const isPriv = gal.es_privada;
-      // Badge superior: "Pública" (azul cian) o "Privada" (ámbar dorado)
-      const badgeClass = isPriv 
-        ? "bg-[#794303]/80 text-[#facc15] border-[#facc15]/40" 
-        : "bg-[#005580]/80 text-[#38bdf8] border-[#38bdf8]/40";
-      const badgeLabel = isPriv ? "Privada" : "Pública";
-      const badgeIcon = isPriv ? "lock" : "public";
-      
-      const titulo = gal.titulo;
-      const driveClean = gal.drive_id || 'ID_DRIVE';
-      const clave = gal.password || (isPriv ? "requerida" : "Acceso Abierto");
-      
-      // Portada inteligente: si existe portada_url usarla, o intentar resolver de Drive con fallback
-      let coverSrc = gal.portada_url;
-      if (!coverSrc && driveClean && driveClean.length >= 15) {
-        coverSrc = `https://lh3.googleusercontent.com/d/${driveClean}=w600`;
+        if (badgeSync) badgeSync.textContent = 'Supabase Conectado (0)';
       }
 
-      const fechaCreacion = gal.created_at ? new Date(gal.created_at).toLocaleDateString('es-AR', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Reciente';
-
-      // URLs de destino
-      const encodedDrive = encodeURIComponent(driveClean);
-      const encodedTitulo = encodeURIComponent(titulo);
-      const encodedPass = encodeURIComponent(gal.password || '');
-      const targetUrl = isPriv 
-        ? `privadas.html?id=${encodedDrive}&titulo=${encodedTitulo}&key=${encodedPass}`
-        : `galeria.html?id=${encodedDrive}&titulo=${encodedTitulo}`;
-
-      // Botón "Ver Galería"
-      const btnVerClass = isPriv
-        ? "bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-        : "bg-[#005580]/40 hover:bg-[#005580]/80 text-[#38bdf8] border border-[#38bdf8]/40";
-
-      // Manejador seguro de atributos
-      const safeId = String(gal.id).replace(/'/g, "\\'");
-      const safeTitulo = String(titulo).replace(/'/g, "\\'");
-      const safeDrive = String(gal.drive_url || driveClean).replace(/'/g, "\\'");
-
-      card.innerHTML = `
-        <div class="relative aspect-video w-full bg-[#0e0e0e] overflow-hidden border-b border-[#262626] flex items-center justify-center">
-          ${coverSrc 
-            ? `<img src="${coverSrc}" alt="${titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'flex flex-col items-center gap-2 text-outline/50\\'><span class=\\'material-symbols-outlined text-4xl\\' data-icon=\\'photo_library\\'>photo_library</span><span class=\\'text-[11px] font-label-sm\\'>Colección Atelier</span></div>';" />` 
-            : `<div class="flex flex-col items-center gap-2 text-outline/50"><span class="material-symbols-outlined text-4xl" data-icon="photo_library">photo_library</span><span class="text-[11px] font-label-sm">Colección Atelier</span></div>`
+      // 2. Respaldo y sincronización con LocalStorage
+      try {
+        const clavesLocales = ['galerias_locales', 'galerias'];
+        clavesLocales.forEach(clave => {
+          const localesRaw = localStorage.getItem(clave);
+          if (localesRaw) {
+            const locales = JSON.parse(localesRaw);
+            if (Array.isArray(locales)) {
+              locales.forEach(loc => {
+                const driveClean = extraerIdDrive(loc.drive_url || loc.enlace_drive || loc.folder_id || '');
+                const yaExiste = listaCombinada.some(ev => 
+                  (loc.id && String(ev.id) === String(loc.id)) ||
+                  (driveClean && (extraerIdDrive(ev.drive_url || ev.enlace_drive || '') === driveClean))
+                );
+                if (!yaExiste) {
+                  listaCombinada.push({
+                    id: loc.id || Date.now() + Math.random(),
+                    titulo: loc.titulo || loc.nombre || loc.title || 'Galería Escolar',
+                    drive_url: loc.drive_url || loc.enlace_drive || loc.folder_id || loc.url_drive || '',
+                    portada_url: loc.portada_url || loc.portada || '',
+                    es_privada: Boolean(loc.es_privada === true || loc.es_privada === 'true' || loc.privada === true || (loc.password && String(loc.password).trim().length > 0) || (loc.clave && String(loc.clave).trim().length > 0)),
+                    password: loc.password || loc.clave || '',
+                    created_at: loc.created_at || new Date().toISOString()
+                  });
+                }
+              });
+            }
           }
-          <div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60 pointer-events-none"></div>
-          
-          <div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-label-sm uppercase tracking-wider border backdrop-blur-md ${badgeClass}">
-            <span class="material-symbols-outlined text-xs" data-icon="${badgeIcon}">${badgeIcon}</span>
-            <span class="font-bold">${badgeLabel}</span>
-          </div>
+        });
+      } catch (errLocal) {
+        console.warn('Aviso LocalStorage:', errLocal);
+      }
 
-          <div class="absolute bottom-2.5 left-3 right-3">
-            <h3 class="text-sm sm:text-headline-sm font-headline-sm text-on-surface font-semibold line-clamp-1 group-hover:text-primary transition-colors">${titulo}</h3>
-          </div>
-        </div>
+      coleccionesGlobales = listaCombinada;
+      actualizarContadores();
+      renderizarTarjetas();
+    }
 
-        <div class="p-3.5 sm:p-space-md flex-1 flex flex-col justify-between space-y-3">
-          <div class="space-y-1.5 text-xs sm:text-label-md font-label-md">
-            <div class="flex items-center justify-between py-1 border-b border-[#262626]">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
-                <span>ID DRIVE:</span>
-              </span>
-              <span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="${driveClean}">${driveClean}</span>
-            </div>
+    function actualizarContadores() {
+      const total = coleccionesGlobales.length;
+      const privadas = coleccionesGlobales.filter(g => g.es_privada === true || (g.password && String(g.password).trim().length > 0)).length;
+      const publicas = total - privadas;
 
-            <div class="flex items-center justify-between py-1 border-b border-[#262626]">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="vpn_key">vpn_key</span>
-                <span>CLAVE:</span>
-              </span>
-              ${isPriv 
-                ? `<span class="text-yellow-400 font-mono font-semibold bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30 text-[11px]">${clave}</span>` 
-                : `<span class="text-[#38bdf8] font-medium text-[11px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>Acceso Abierto</span>`
-              }
-            </div>
+      const elTotal = document.getElementById('lblTotal');
+      const elPub = document.getElementById('lblPublicas');
+      const elPriv = document.getElementById('lblPrivadas');
+      if (elTotal) elTotal.textContent = total;
+      if (elPub) elPub.textContent = publicas;
+      if (elPriv) elPriv.textContent = privadas;
+    }
 
-            <div class="flex items-center justify-between py-1">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
-                <span>REGISTRO:</span>
-              </span>
-              <span class="text-on-surface-variant text-[11px]">${fechaCreacion}</span>
-            </div>
-          </div>
+    function aplicarFiltro(tipo) {
+      filtroSeleccionado = tipo;
+      const bTodas = document.getElementById('btnFiltroTodas');
+      const bPub = document.getElementById('btnFiltroPublicas');
+      const bPriv = document.getElementById('btnFiltroPrivadas');
 
-          <div class="flex items-center justify-between pt-2.5 border-t border-[#262626] gap-2">
-            <!-- Botón Ver Galería -->
-            <a href="${targetUrl}" target="_blank" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md font-semibold ${btnVerClass} transition-all active:scale-[0.98] min-h-[40px] shadow-sm">
-              <span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
-              <span>Ver Galería</span>
+      [bTodas, bPub, bPriv].forEach(b => {
+        if (b) b.className = 'px-2.5 py-1.5 text-xs font-semibold rounded-md text-[#8b9199] hover:text-white transition-all';
+      });
+
+      if (tipo === 'todas' && bTodas) bTodas.className = 'px-2.5 py-1.5 text-xs font-semibold rounded-md bg-[#005580] text-white transition-all';
+      if (tipo === 'publicas' && bPub) bPub.className = 'px-2.5 py-1.5 text-xs font-semibold rounded-md bg-[#005580] text-white transition-all';
+      if (tipo === 'privadas' && bPriv) bPriv.className = 'px-2.5 py-1.5 text-xs font-semibold rounded-md bg-[#005580] text-white transition-all';
+
+      renderizarTarjetas();
+    }
+
+    function renderizarTarjetas() {
+      const grid = document.getElementById('gridGalerias');
+      const inputB = document.getElementById('inputBusqueda');
+      const termino = (inputB ? inputB.value : '').toLowerCase().trim();
+
+      const filtradas = coleccionesGlobales.filter(g => {
+        const esPriv = g.es_privada === true || (g.password && String(g.password).trim().length > 0);
+        if (filtroSeleccionado === 'publicas' && esPriv) return false;
+        if (filtroSeleccionado === 'privadas' && !esPriv) return false;
+
+        if (termino) {
+          const tit = (g.titulo || '').toLowerCase();
+          const dUrl = (g.drive_url || g.enlace_drive || '').toLowerCase();
+          const pass = (g.password || g.clave || '').toLowerCase();
+          return tit.includes(termino) || dUrl.includes(termino) || pass.includes(termino);
+        }
+        return true;
+      });
+
+      if (filtradas.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 sm:py-16 text-center border border-dashed border-[#262626] rounded-2xl bg-[#141414] p-5 sm:p-6">
+            <span class="material-symbols-outlined text-4xl text-[#8b9199] mb-2">folder_off</span>
+            <h4 class="text-sm sm:text-base font-bold text-white">No hay galerías registradas en este momento</h4>
+            <p class="text-xs text-[#8b9199] mt-1 max-w-md mx-auto">Las colecciones escolares y álbumes que agregues desde Cargas y Enlaces aparecerán aquí automáticamente en tiempo real.</p>
+            <a href="cargas.html" class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#005580] text-white rounded-lg text-xs font-semibold hover:bg-[#0077b3] transition-all">
+              <span class="material-symbols-outlined text-[16px]">add_circle</span>
+              <span>+ Cargar Nueva Galería</span>
             </a>
-
-            <!-- Botón Eliminar -->
-            <button onclick="eliminarGaleria('${safeId}', '${safeTitulo}', '${safeDrive}')" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" title="Eliminar registro">
-              <span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
-              <span class="hidden sm:inline">Eliminar</span>
-            </button>
           </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
+        `;
+        return;
+      }
 
-  // Eliminar galería con modal y confirmación en Supabase y LocalStorage
-  function eliminarGaleria(id, titulo, driveUrl) {
-    itemPendingDelete = { id, titulo, driveUrl };
-    const modalTitle = document.getElementById('modalGalTitle');
-    if (modalTitle) modalTitle.textContent = `"${titulo || 'Esta galería'}"`;
-    const modal = document.getElementById('deleteModal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      grid.innerHTML = filtradas.map(item => {
+        const esPriv = item.es_privada === true || (item.password && String(item.password).trim().length > 0);
+        const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Reciente';
+        const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || '';
+        const driveClean = extraerIdDrive(driveRaw) || 'Sin enlace';
+        
+        let coverImg = item.portada_url || item.portada || '';
+        if (!coverImg && driveClean && driveClean.length > 5) {
+          coverImg = `https://lh3.googleusercontent.com/d/${driveClean}=w600`;
+        }
+
+        const urlDestino = esPriv 
+          ? `privadas.html?key=${encodeURIComponent(item.password || item.clave || '')}&folder=${encodeURIComponent(driveClean)}&titulo=${encodeURIComponent(item.titulo || '')}`
+          : `galeria.html?id=${encodeURIComponent(driveClean)}&titulo=${encodeURIComponent(item.titulo || '')}`;
+
+        return `
+          <div class="bg-[#181818] border border-[#262626] hover:border-[#38bdf8]/50 rounded-xl overflow-hidden shadow-md flex flex-col justify-between transition-all group">
+            <div class="relative aspect-[16/9] bg-black overflow-hidden border-b border-[#222222]">
+              ${coverImg ? `
+                <img src="${coverImg}" alt="${item.titulo || 'Portada'}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-85 group-hover:opacity-100" onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full flex flex-col items-center justify-center text-[#666] text-xs gap-1\\'><span class=\\'material-symbols-outlined text-3xl text-[#38bdf8]\\'>photo_camera</span><span>Sin Portada Disponible</span></div>'"/>
+              ` : `
+                <div class="w-full h-full flex flex-col items-center justify-center text-[#666] text-xs gap-1">
+                  <span class="material-symbols-outlined text-3xl text-[#38bdf8]">photo_camera</span>
+                  <span>Sin Portada Disponible</span>
+                </div>
+              `}
+              <div class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${esPriv ? 'bg-[#794303]/90 text-[#facc15] border border-[#facc15]/40' : 'bg-[#005580]/90 text-[#38bdf8] border border-[#38bdf8]/40'} backdrop-blur-md">
+                  <span class="material-symbols-outlined text-[13px]">${esPriv ? 'lock' : 'public'}</span>
+                  <span>${esPriv ? 'Privada' : 'Pública'}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-lg font-headline font-bold text-white leading-snug line-clamp-2">${item.titulo || 'Sin Título'}</h3>
+                
+                <div class="mt-2.5 sm:mt-3 space-y-1 text-xs text-[#8b9199] font-mono">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="material-symbols-outlined text-[15px] text-[#005580] shrink-0">folder</span>
+                    <span class="text-white font-semibold shrink-0">ID DRIVE:</span>
+                    <span class="truncate">${driveClean}</span>
+                  </div>
+                  ${esPriv ? `
+                    <div class="flex items-center gap-1.5 text-[#facc15]">
+                      <span class="material-symbols-outlined text-[15px] shrink-0">key</span>
+                      <span class="font-semibold shrink-0">CLAVE:</span>
+                      <span class="font-bold tracking-wider truncate">${item.password || item.clave || 'Asignada'}</span>
+                    </div>
+                  ` : `
+                    <div class="flex items-center gap-1.5 text-emerald-400">
+                      <span class="material-symbols-outlined text-[15px] shrink-0">public</span>
+                      <span>Acceso Abierto</span>
+                    </div>
+                  `}
+                  <div class="flex items-center gap-1.5 text-[#8b9199]">
+                    <span class="material-symbols-outlined text-[15px] shrink-0">schedule</span>
+                    <span>REGISTRO: ${fecha}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-[#242424] flex items-center justify-between gap-2">
+                <a href="${urlDestino}" target="_blank" class="flex-1 py-2 px-3 rounded-lg ${esPriv ? 'bg-[#794303]/40 border border-[#facc15]/50 text-[#facc15] hover:bg-[#794303]/70' : 'bg-[#005580] border border-[#0088cc] text-white hover:bg-[#006699]'} font-semibold text-xs transition-all active:scale-95 flex items-center justify-center gap-1.5 shadow-md">
+                  <span class="material-symbols-outlined text-[16px]">visibility</span>
+                  <span>Ver Galería</span>
+                </a>
+
+                <button onclick="eliminarGaleria(${typeof item.id === 'number' ? item.id : `'${item.id}'`}, '${(item.titulo || 'este álbum').replace(/'/g, "\\'")}', '${driveRaw.replace(/'/g, "\\'")}')" type="button" class="px-2.5 py-2 bg-red-950/30 hover:bg-red-900 border border-red-800/50 text-red-300 hover:text-white rounded-lg text-xs font-semibold transition-all flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
-  }
 
-  function closeModal() {
-    const modal = document.getElementById('deleteModal');
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-    itemPendingDelete = null;
-  }
+    async function eliminarGaleria(id, titulo, driveUrl) {
+      if (!confirm(`¿Confirmás la eliminación permanente de:\n"${titulo}"?\n\nEsta acción quitará el evento de la base de datos y de la web.`)) return;
 
-  // Ejecución de borrado
-  document.getElementById('btnConfirmDelete')?.addEventListener('click', async () => {
-    if (!itemPendingDelete) return;
-    const { id, driveUrl } = itemPendingDelete;
-    const driveClean = extraerDriveId(driveUrl);
+      if (supaClient) {
+        try {
+          if (id) {
+            await supaClient.from('galeria').delete().eq('id', id);
+            await supaClient.from('galerias').delete().eq('id', id);
+          }
+          if (driveUrl) {
+            await supaClient.from('galeria').delete().eq('drive_url', driveUrl);
+            await supaClient.from('galeria').delete().eq('enlace_drive', driveUrl);
+          }
+        } catch (e) {
+          console.warn('Error al borrar en Supabase:', e);
+        }
+      }
 
-    // 1. Borrar en Supabase si hay cliente
-    if (supabaseClient) {
+      // Borrado por REST directa por si el cliente fallara
       try {
         if (id) {
-          await supabaseClient.from('galeria').delete().eq('id', id);
-          await supabaseClient.from('galerias').delete().eq('id', id);
+          await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/galeria?id=eq.${id}`, {
+            method: 'DELETE',
+            headers: {
+              'apikey': SUPABASE_PROJECT_KEY,
+              'Authorization': `Bearer ${SUPABASE_PROJECT_KEY}`
+            }
+          });
         }
-        if (driveClean) {
-          await supabaseClient.from('galeria').delete().eq('drive_url', driveClean);
-          await supabaseClient.from('galerias').delete().eq('drive_url', driveClean);
-          await supabaseClient.from('galeria').delete().eq('folder_id', driveClean);
-          await supabaseClient.from('galerias').delete().eq('folder_id', driveClean);
-        }
-      } catch (err) {
-        console.warn('[Supabase] Error en delete:', err);
-      }
-    }
+      } catch(_) {}
 
-    // 2. Borrar en localStorage ('galerias_locales' y 'galerias')
-    ['galerias_locales', 'galerias'].forEach(key => {
       try {
-        const raw = localStorage.getItem(key);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed)) {
-            const updated = parsed.filter(item => {
-              const itemDriveClean = extraerDriveId(item.drive_url || item.url_drive || item.folder_id || item.drive_id || '');
-              return String(item.id) !== String(id) && itemDriveClean !== driveClean;
-            });
-            localStorage.setItem(key, JSON.stringify(updated));
-          }
-        }
-      } catch (e) {
-        console.warn(`[LocalStorage] Error al limpiar ${key}:`, e);
+        let locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+        locales = locales.filter(g => 
+          (id && String(g.id) !== String(id)) && 
+          (!driveUrl || (g.drive_url !== driveUrl && g.enlace_drive !== driveUrl))
+        );
+        localStorage.setItem('galerias_locales', JSON.stringify(locales));
+      } catch (errL) {
+        console.warn('Aviso local:', errL);
       }
-    });
 
-    // 3. Eliminar de memoria y refrescar
-    dbGalerias = dbGalerias.filter(g => String(g.id) !== String(id) && g.drive_id !== driveClean);
-
-    closeModal();
-    actualizarContadores();
-    renderizarTarjetas();
-  });
-
-  // Cerrar sesión
-  function cerrarSesionAdmin() {
-    sessionStorage.removeItem('darkroom_admin_user');
-    sessionStorage.removeItem('darkroom_master_key');
-    window.location.href = 'login.html';
-  }
-
-  // Inicialización y eventos del DOM
-  document.addEventListener('DOMContentLoaded', () => {
-    // Drawer Móvil
-    const btnMobileMenu = document.getElementById('btnMobileMenu');
-    const btnCloseMobileMenu = document.getElementById('btnCloseMobileMenu');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-    function openMobileDrawer() {
-      if (mobileDrawer) mobileDrawer.classList.add('open');
+      cargarColecciones();
     }
 
-    function closeMobileDrawer() {
-      if (mobileDrawer) mobileDrawer.classList.remove('open');
+    async function cerrarSesionAdmin() {
+      try {
+        sessionStorage.clear();
+        localStorage.clear();
+        if (supaClient) await supaClient.auth.signOut();
+      } catch(_) {}
+      window.location.href = 'login.html';
     }
 
-    btnMobileMenu?.addEventListener('click', openMobileDrawer);
-    btnCloseMobileMenu?.addEventListener('click', closeMobileDrawer);
-    drawerBackdrop?.addEventListener('click', closeMobileDrawer);
+    const inputBusq = document.getElementById('inputBusqueda');
+    if (inputBusq) inputBusq.addEventListener('input', renderizarTarjetas);
 
-    // Buscador en Tiempo Real (#inputBusqueda)
-    const inputBusqueda = document.getElementById('inputBusqueda');
-    inputBusqueda?.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      renderizarTarjetas();
-    });
-
-    // Carga inicial tolerante a fallos
-    cargarColecciones();
-  });
-</script>
-
-
-</body></html>
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', cargarColecciones);
+    } else {
+      cargarColecciones();
+    }
+  </script>
+</body>
+</html>
