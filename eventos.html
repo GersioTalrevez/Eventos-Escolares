@@ -1,24 +1,54 @@
 <!DOCTYPE html><html class="dark" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Eventos Escolares | Sergio Ricardo Molina Fotografía Profesional</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Supabase JS Client v2 Oficial -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>Eventos Escolares | Sergio Ricardo Molina Fotografía Profesional</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Supabase JS Client Oficial -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#131313",
+            "surface-container": "#181818",
+            "surface-container-high": "#222222",
+            "primary": "#91cdfe",
+            "primary-container": "#005580",
+            "on-surface": "#e5e2e1",
+            "on-surface-variant": "#c0c7cf",
+            "outline": "#8b9199"
+          },
+          fontFamily: {
+            "sans": ["Manrope", "sans-serif"],
+            "display": ["Raleway", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
     body {
       background-color: #111111;
       color: #e5e2e1;
       font-family: 'Manrope', sans-serif;
       overflow-x: hidden;
-      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -26,22 +56,24 @@
       vertical-align: middle;
       line-height: 1;
     }
-    /* Protección anti-arrastre y copia de imágenes */
-    img, .card-img, .no-drag {
-      -webkit-user-drag: none;
-      -khtml-user-drag: none;
-      -moz-user-drag: none;
-      -o-user-drag: none;
-      user-drag: none;
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      pointer-events: auto;
-    }
     .card-zoom:hover .card-img {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
+
+    /* Cuadrícula responsiva: 2 columnas exactas en móvil, 3 en desktop */
+    .grid-eventos-escolares {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .grid-eventos-escolares {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+    }
+
+    /* Botón Acceso Privado Clientes */
     .btn-acceso-privado-box {
       background-color: #003d5c;
       border: 2px solid #0088cc;
@@ -65,21 +97,23 @@
     .btn-acceso-privado-box:active {
       transform: scale(0.985);
     }
+
+    /* Redes Sociales: 3 columnas estrictas */
     .redes-sociales-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 12px;
       width: 100%;
     }
     @media (max-width: 640px) {
       .redes-sociales-grid {
-        gap: 10px;
+        gap: 8px;
       }
       .btn-red-card {
-        padding: 16px 8px !important;
+        padding: 14px 6px !important;
       }
       .btn-red-card span.text-label {
-        font-size: 13px !important;
+        font-size: 12px !important;
       }
     }
     .btn-red-card {
@@ -87,8 +121,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 22px 14px;
+      gap: 6px;
+      padding: 18px 12px;
       background-color: #1e1e1e;
       border-radius: 12px;
       text-decoration: none;
@@ -97,729 +131,507 @@
       border-style: solid;
       user-select: none;
     }
-    .btn-red-card:hover {
-      transform: translateY(-2px);
-    }
-    .btn-red-card:active {
-      transform: scale(0.97);
-    }
+    .btn-red-card:hover { transform: translateY(-2px); }
+    .btn-red-card:active { transform: scale(0.97); }
+
     .btn-card-wsp { border-color: #4ade80; }
     .btn-card-wsp:hover { background-color: rgba(74, 222, 128, 0.1); box-shadow: 0 0 16px rgba(74, 222, 128, 0.25); }
     .btn-card-wsp .icon-red, .btn-card-wsp .text-label { color: #4ade80; }
-    
+
     .btn-card-cat { border-color: #facc15; }
     .btn-card-cat:hover { background-color: rgba(250, 204, 21, 0.1); box-shadow: 0 0 16px rgba(250, 204, 21, 0.25); }
     .btn-card-cat .icon-red, .btn-card-cat .text-label { color: #facc15; }
-    
+
     .btn-card-ig { border-color: #fb923c; }
     .btn-card-ig:hover { background-color: rgba(251, 146, 60, 0.1); box-shadow: 0 0 16px rgba(251, 146, 60, 0.25); }
     .btn-card-ig .icon-red, .btn-card-ig .text-label { color: #fb923c; }
 
-    /* Toast Flotante Elegante */
-    #security-toast {
-      position: fixed;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 100;
-    }
-    #security-toast.toast-visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    /* Blindaje anti-copia / anti-captura */
+    .shield-layer {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
   </style>
 </head>
+
 <body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col selection:bg-[#005580] selection:text-white antialiased">
-<!-- 1. Encabezado Oficial -->
-<header class="sticky top-0 z-40 bg-[#111111]/90 backdrop-blur-md border-b border-[#262626] transition-all duration-200 select-none">
-<div class="flex items-center justify-between w-full max-w-[1200px] mx-auto px-4 sm:px-6 h-18 py-3">
-<a class="flex items-center gap-3.5 group" href="index.html">
-<img alt="Sergio Ricardo Molina" class="w-11 h-11 rounded-full border border-sky-400/60 object-cover shadow-sm group-hover:scale-105 transition-transform pointer-events-none" draggable="false" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
-<div class="flex flex-col text-left">
-<span class="font-['Raleway'] text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors">
+
+  <!-- TOAST AVISO BLINDAJE Y SEGURIDAD -->
+  <div id="toast-seguridad" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0, 85, 128, 0.95); border: 1px solid #38bdf8; color: #ffffff; padding: 10px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; z-index: 9999; box-shadow: 0 8px 25px rgba(0,0,0,0.6); align-items: center; gap: 8px;">
+    <span class="material-symbols-outlined" style="font-size: 18px; color: #38bdf8;">verified_user</span>
+    <span class="">Fotografía Oficial protegida por derechos de autor · Sergio Molina</span>
+  </div>
+
+  <!-- 1. ENCABEZADO OFICIAL CON MARCA PERSONAL Y RETORNO -->
+  <header class="sticky top-0 z-50 bg-[#111111]/95 backdrop-blur-md border-b border-[#222222] transition-all duration-200">
+    <div class="flex items-center justify-between w-full max-w-[1200px] mx-auto px-4 sm:px-6 h-18 py-3.5">
+      <!-- Info Marca -->
+      <a class="flex items-center gap-3 group" href="index.html">
+        <img alt="Sergio Ricardo Molina" class="w-11 h-11 rounded-full border border-sky-400/60 object-cover shadow-sm group-hover:scale-105 transition-transform pointer-events-none" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA">
+        <div class="flex flex-col text-left">
+          <span class="font-['Raleway'] text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors">
             SERGIO RICARDO MOLINA
           </span>
-<span class="text-[11px] text-sky-400 font-semibold tracking-widest uppercase">
+          <span class="text-[11px] text-sky-400 font-semibold tracking-widest uppercase">
             Fotografía Profesional / Eventos Escolares
           </span>
-</div>
-</a>
-<div>
-<a class="inline-flex items-center gap-2 text-neutral-300 hover:text-white px-3.5 py-2 rounded-lg border border-neutral-700/80 bg-[#1a1a1a] hover:bg-[#252525] hover:border-neutral-500 transition-all duration-150 active:scale-[0.97] text-xs font-semibold uppercase tracking-wider shadow-sm" href="index.html">
-<span class="material-symbols-outlined text-base">arrow_back</span>
-<span class="hidden sm:inline">Volver al Portafolio</span>
-<span class="sm:hidden">Volver</span>
-</a>
-</div>
-</div>
-</header>
-<!-- Main Container -->
-<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 pb-12">
-<!-- 2. Título de Sección -->
-<section class="mb-10 text-left select-none">
-<h1 class="font-['Raleway'] text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
-        Eventos Disponibles</h1>
-<p class="text-neutral-400 text-base sm:text-lg max-w-2xl leading-relaxed">
-        Elije un evento y selecciona tus fotografías impresas o digitales para hacer tu pedido.</p>
-</section>
-<!-- 3. Cuadrícula de eventos: 2 columnas en móvil, 3 en PC -->
-<section class="mb-12" id="eventos-section">
-<div class="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800 select-none">
-<div class="flex items-center gap-2 text-xs font-semibold text-neutral-400 tracking-widest uppercase">
-<span class="material-symbols-outlined text-sky-400 text-base">photo_library</span>
-<span id="gallery-counter" class="">2 GALERÍAS DISPONIBLES</span>
-</div>
-</div>
-<!-- Empty State (oculto por defecto hasta verificar) -->
-<div class="hidden text-center py-16 px-4 border border-dashed border-neutral-800 rounded-xl bg-[#161616]" id="empty-state">
-<div class="w-14 h-14 mx-auto mb-4 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center text-neutral-400">
-<span class="material-symbols-outlined text-2xl">photo_library</span>
-</div>
-<h3 class="font-['Raleway'] text-lg text-white font-medium mb-1">Sin eventos en este momento</h3>
-<p class="text-neutral-400 text-sm max-w-md mx-auto leading-relaxed">
-          No se encontraron coberturas públicas disponibles.</p>
-</div>
-<!-- Public Grid Container: 2 cols en mobile, 3 cols en desktop -->
-<div class="grid grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6" id="galleries-grid">
-          <a class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block select-none" href="galeria.html?id=1WOnmaidKHVu071hNQhtC016rVne5tWEJ&amp;titulo=Promesa%20a%20La%20Bandera%20TM%202026">
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
-              
-                <img alt="Promesa a La Bandera TM 2026" draggable="false" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out select-none" loading="lazy" src="https://lh3.googleusercontent.com/d/1nGLKoDm3FnFsJYO7SZXwLUeMhCGbmlTp=w600" onerror="this.onerror=null; this.parentElement.innerHTML='&lt;div class=\'w-full h-full flex items-center justify-center bg-[#181818] text-neutral-600\'&gt;&lt;span class=\'material-symbols-outlined text-4xl\'&gt;photo&lt;/span&gt;&lt;/div&gt;';">
-              
-              <div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm pointer-events-none">
-                <span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
-                <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
-              </div>
-              
-            </div>
-            <div class="p-3.5 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
-              <div>
-                
-                <h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
-                  Promesa a La Bandera TM 2026
-                </h3>
-              </div>
-            </div>
-          </a>
-        
-          <a class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block select-none" href="galeria.html?id=1YxwsZ0Kv-vLWN8RcXNPIrQKZ5n6gYwzl&amp;titulo=Practicas%20CCT6014%20Electricidad%20TT%202026%20">
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
-              
-                <img alt="Practicas CCT6014 Electricidad TT 2026 " draggable="false" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out select-none" loading="lazy" src="https://lh3.googleusercontent.com/d/12l9zeTaNCzY2C6NNPUokQvp5oYFhMd8c=w600" onerror="this.onerror=null; this.parentElement.innerHTML='&lt;div class=\'w-full h-full flex items-center justify-center bg-[#181818] text-neutral-600\'&gt;&lt;span class=\'material-symbols-outlined text-4xl\'&gt;photo&lt;/span&gt;&lt;/div&gt;';">
-              
-              <div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm pointer-events-none">
-                <span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
-                <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
-              </div>
-              
-            </div>
-            <div class="p-3.5 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
-              <div>
-                
-                <h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
-                  Practicas CCT6014 Electricidad TT 2026 
-                </h3>
-              </div>
-            </div>
-          </a>
         </div>
-</section>
-<!-- 4. Bloque 'Acceso Privado Clientes' -->
-<section class="mb-5 w-full">
+      </a>
 
-</section>
-<!-- 5. Bloque de Redes Sociales: 3 columnas -->
-<section class="mb-14">
-<div class="redes-sociales-grid">
-<a class="btn-red-card btn-card-wsp" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined icon-red text-2xl">chat</span>
-<span class="text-label text-sm sm:text-base font-semibold tracking-wide">Chat WhatsApp</span>
-</a>
-<a class="btn-red-card btn-card-cat" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined icon-red text-2xl">inventory_2</span>
-<span class="text-label text-sm sm:text-base font-semibold tracking-wide">Catálogo</span>
-</a>
-<a class="btn-red-card btn-card-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined icon-red text-2xl">photo_camera_back</span>
-<span class="text-label text-sm sm:text-base font-semibold tracking-wide">Instagram</span>
-</a>
-</div>
-</section>
-</main>
-<!-- 6. Pie de página centrado -->
-<footer class="border-t border-neutral-900 bg-[#0d0d0d] py-7 mt-auto select-none">
-<div class="w-full max-w-[1200px] mx-auto px-4 text-center">
-<p class="text-[#888888] text-xs sm:text-sm tracking-wide">
+      <!-- Botón Volver al Portafolio -->
+      <div>
+        <a class="inline-flex items-center gap-1.5 text-neutral-300 hover:text-white px-3.5 py-2 rounded-lg border border-neutral-700/80 bg-[#181818] hover:bg-[#252525] hover:border-neutral-500 transition-all duration-150 active:scale-[0.97] text-xs font-semibold uppercase tracking-wider shadow-sm" href="index.html">
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          <span class="hidden sm:inline">Volver al Portafolio</span>
+          <span class="sm:hidden">Volver</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-8 pb-12">
+    
+    <!-- 2. TÍTULO Y SUBTÍTULO SOBRIO -->
+    <section class="mb-8 text-left">
+      <h1 class="font-['Raleway'] text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-2.5">
+        Eventos Disponibles
+      </h1>
+      <p class="text-neutral-400 text-sm sm:text-base max-w-2xl leading-relaxed">
+        Elije un evento y selecciona tus fotografías impresas o digitales para hacer tu pedido.
+      </p>
+    </section>
+
+    <!-- 3. CONTADOR Y CUADRÍCULA DINÁMICA DE GALERÍAS PÚBLICAS -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-5 pb-2 border-b border-neutral-800">
+        <div class="flex items-center gap-2 text-xs font-semibold text-neutral-400 tracking-widest uppercase">
+          <span class="material-symbols-outlined text-sky-400 text-base">photo_library</span>
+          <span id="gallery-counter" class="">2 GALERÍAS DISPONIBLES</span>
+        </div>
+      </div>
+
+      <!-- Estado de carga -->
+      <div class="grid-eventos-escolares hidden" id="loading-state">
+        <div class="bg-[#181818] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
+          <div class="aspect-[16/10] w-full bg-[#242424]"></div>
+          <div class="p-4 flex flex-col gap-2">
+            <div class="h-4 bg-[#242424] rounded w-2/3"></div>
+          </div>
+        </div>
+        <div class="bg-[#181818] rounded-xl overflow-hidden border border-neutral-800 animate-pulse flex flex-col">
+          <div class="aspect-[16/10] w-full bg-[#242424]"></div>
+          <div class="p-4 flex flex-col gap-2">
+            <div class="h-4 bg-[#242424] rounded w-2/3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado Vacío -->
+      <div class="hidden text-center py-14 px-4 border border-dashed border-neutral-800 rounded-xl bg-[#161616]" id="empty-state">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center text-neutral-400">
+          <span class="material-symbols-outlined text-2xl">photo_library</span>
+        </div>
+        <h3 class="font-['Raleway'] text-base text-white font-medium mb-1">Sin eventos en este momento</h3>
+        <p class="text-neutral-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+          No se encontraron coberturas escolares públicas disponibles en este momento. Si disponés de un código o clave para un álbum privado, ingresá mediante el botón de Acceso Privado Clientes.
+        </p>
+      </div>
+
+      <!-- Cuadrícula 2 columnas en móvil y 3 en desktop (Toda la tarjeta es enlace) -->
+      <div class="grid-eventos-escolares" id="galleries-grid"><a href="galeria.html?id=1SGFpyNYczUz6MpeB6nITGtAi11YM8N2v&amp;titulo=Promesa%20a%20La%20Bandera%20TT%202026" class="card-zoom group flex flex-col bg-[#181818] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-md cursor-pointer block text-inherit">
+          <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#0d0d0d] border-b border-neutral-800">
+            <img src="https://lh3.googleusercontent.com/d/1VJNz5LV4LbyrXunBf38Qc7Q08C6yia9A=w800" alt="Promesa a La Bandera TT 2026" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out shield-layer" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=800&amp;auto=format&amp;fit=crop';">
+            <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 py-0.5 rounded text-sky-400 shadow-sm">
+              <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+              <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span>
+            </div>
+          </div>
+          <div class="p-3.5 sm:p-4 flex flex-col justify-center bg-[#181818]">
+            <h3 class="font-['Raleway'] text-sm sm:text-base font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+              Promesa a La Bandera TT 2026
+            </h3>
+          </div>
+        </a><a href="galeria.html?id=1WOnmaidKHVu071hNQhtC016rVne5tWEJ&amp;titulo=Promesa%20a%20La%20Bandera%20TM%202026" class="card-zoom group flex flex-col bg-[#181818] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-md cursor-pointer block text-inherit">
+          <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#0d0d0d] border-b border-neutral-800">
+            <img src="https://lh3.googleusercontent.com/d/1nGLKoDm3FnFsJYO7SZXwLUeMhCGbmlTp=w800" alt="Promesa a La Bandera TM 2026" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out shield-layer" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&amp;w=800&amp;auto=format&amp;fit=crop';">
+            <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 py-0.5 rounded text-sky-400 shadow-sm">
+              <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+              <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span>
+            </div>
+          </div>
+          <div class="p-3.5 sm:p-4 flex flex-col justify-center bg-[#181818]">
+            <h3 class="font-['Raleway'] text-sm sm:text-base font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+              Promesa a La Bandera TM 2026
+            </h3>
+          </div>
+        </a></div>
+    </section>
+
+    <!-- 4. BLOQUE ACCESO PRIVADO CLIENTES FIEL AL ESTILO OFICIAL -->
+    <section class="mb-4 w-full">
+      <button class="btn-acceso-privado-box group" onclick="abrirModalPrivado()" type="button">
+        <span class="material-symbols-outlined text-[#38bdf8] text-3xl mb-1.5 transition-transform group-hover:scale-110">lock</span>
+        
+      </button>
+    </section>
+
+    <!-- 5. BLOQUE DE REDES SOCIALES (3 COLUMNAS IDÉNTICO A INDEX) -->
+    <section class="mb-12">
+      <div class="redes-sociales-grid">
+        <!-- Chat WhatsApp -->
+        <a class="btn-red-card btn-card-wsp" href="https://wa.me/542613175222" rel="noopener noreferrer" target="_blank">
+          <span class="material-symbols-outlined icon-red text-2xl">chat</span>
+          <span class="text-label text-sm sm:text-base font-semibold tracking-wide">Chat WhatsApp</span>
+        </a>
+
+        <!-- Catálogo -->
+        <a class="btn-red-card btn-card-cat" href="https://wa.me/c/5492613175222" rel="noopener noreferrer" target="_blank">
+          <span class="material-symbols-outlined icon-red text-2xl">inventory_2</span>
+          <span class="text-label text-sm sm:text-base font-semibold tracking-wide">Catálogo</span>
+        </a>
+
+        <!-- Instagram -->
+        <a class="btn-red-card btn-card-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" rel="noopener noreferrer" target="_blank">
+          <span class="material-symbols-outlined icon-red text-2xl">photo_camera_back</span>
+          <span class="text-label text-sm sm:text-base font-semibold tracking-wide">Instagram</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. PIE DE PÁGINA SOBRIO -->
+  <footer class="border-t border-neutral-900 bg-[#0d0d0d] py-6 mt-auto">
+    <div class="w-full max-w-[1200px] mx-auto px-4 text-center">
+      <p class="text-[#888888] text-xs sm:text-sm tracking-wide">
         © Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina
       </p>
-</div>
-</footer>
-<!-- Toast Notificación de Seguridad Elegante -->
-<div id="security-toast" class="">
-<div class="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#181818]/95 backdrop-blur-md border border-neutral-700/80 shadow-2xl text-xs sm:text-sm text-neutral-200">
-<span class="material-symbols-outlined text-sky-400 text-base">shield</span>
-<span class="font-medium tracking-wide">Galería protegida · Sergio Ricardo Molina</span>
-</div>
-</div>
-<!-- Modal Acceso Privado Clientes -->
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden" id="modal-privado">
-<div class="relative w-full max-w-md bg-[#1a1a1a] border border-neutral-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl transition-all">
-<!-- Botón Cerrar -->
-<button aria-label="Cerrar modal" class="absolute top-4 right-4 text-neutral-400 hover:text-white transition-colors p-1" onclick="cerrarModalPrivado()" type="button">
-<span class="material-symbols-outlined text-2xl">close</span>
-</button>
-<!-- Encabezado Modal -->
-<div class="flex flex-col items-center text-center mb-6 select-none">
-<div class="w-14 h-14 rounded-full bg-sky-950/60 border border-sky-800/80 flex items-center justify-center text-sky-400 mb-3 shadow-inner">
-<span class="material-symbols-outlined text-2xl">lock</span>
-</div>
-<h3 class="font-['Raleway'] text-xl sm:text-2xl font-bold text-white tracking-tight">Acceso Privado Clientes</h3>
-<p class="text-neutral-400 text-xs sm:text-sm mt-1.5">
-          Ingresá la contraseña proporcionada para acceder a tu galería privada.
-        </p>
-</div>
-<!-- Formulario -->
-<form id="form-privado" onsubmit="validarAccesoPrivado(event)">
-<div class="mb-4">
-<label class="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-2 select-none" for="input-clave">
-            Contraseña de acceso
-          </label>
-<div class="relative">
-<input autocomplete="current-password" class="w-full bg-[#111111] border border-neutral-700 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 transition-colors outline-none" id="input-clave" placeholder="Contraseña de tu álbum o sesión" required="" type="password">
-</div>
-<p class="hidden text-xs text-rose-400 mt-2 flex items-center gap-1" id="msg-error">
-<span class="material-symbols-outlined text-sm">error</span>
-<span id="msg-error-text" class="">Contraseña incorrecta o álbum no encontrado.</span>
-</p>
-</div>
-<div class="flex flex-col gap-2.5 mt-6">
-<button class="w-full flex items-center justify-center gap-2 bg-[#006699] hover:bg-[#0077b3] active:scale-[0.98] text-white font-semibold py-3 px-4 rounded-lg transition-all shadow-md text-sm uppercase tracking-wider" id="btn-submit-clave" type="submit">
-<span class="">Ingresar a la Galería</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-<button class="w-full py-2.5 text-xs text-neutral-400 hover:text-neutral-200 transition-colors uppercase tracking-wider font-medium" onclick="cerrarModalPrivado()" type="button">
-            Cancelar
-          </button>
-</div>
-</form>
-</div>
-</div>
-<!-- Script Supabase y Gestión -->
-<script>
-    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    </div>
+  </footer>
+
+  <!-- SCRIPT CON SUPABASE + REGISTRO AUTOMÁTICO DE MÉTRICAS EN TIEMPO REAL -->
+  <script>
+    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68";
+
     let supabaseClient = null;
-
-    if (window.supabase && typeof window.supabase.createClient === 'function') {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    try {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+    } catch (e) {
+      console.warn("Error iniciando Supabase:", e);
     }
 
-    /* =========================================================
-       SISTEMA DE SEGURIDAD ANTI-COPIA Y PROTECCIÓN DE IMÁGENES
-       ========================================================= */
-    let toastTimeout = null;
-    function mostrarAvisoSeguridad() {
-      const toast = document.getElementById('security-toast');
-      if (!toast) return;
-      toast.classList.add('toast-visible');
-      if (toastTimeout) clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('toast-visible');
-      }, 2400);
-    }
-
-    // 1. Bloqueo estricto de menú contextual (clic derecho) en imágenes y galería
-    document.addEventListener('contextmenu', function(e) {
-      const target = e.target;
-      const isImg = target.tagName === 'IMG' || target.closest('img') || target.classList.contains('card-img');
-      const isInGallery = target.closest('#galleries-grid') || target.closest('#eventos-section');
-
-      if (isImg || isInGallery) {
-        e.preventDefault();
-        mostrarAvisoSeguridad();
-        return false;
-      }
-    });
-
-    // 2. Bloqueo de arrastre de imágenes (dragstart)
-    document.addEventListener('dragstart', function(e) {
-      if (e.target.tagName === 'IMG' || e.target.closest('img')) {
-        e.preventDefault();
-        return false;
-      }
-    });
-
-    // 3. Bloqueo de atajos de teclado para guardar, imprimir, ver código (Ctrl+S, Ctrl+P, Ctrl+U, F12, Ctrl+Shift+I)
-    document.addEventListener('keydown', function(e) {
-      const key = e.key ? e.key.toLowerCase() : '';
-      const isCtrlOrMeta = e.ctrlKey || e.metaKey;
-
-      // Permitir uso normal en campos de texto (por ej. el modal de contraseña)
-      const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
-
-      // F12 (DevTools)
-      if (e.key === 'F12' || e.keyCode === 123) {
-        e.preventDefault();
-        mostrarAvisoSeguridad();
-        return false;
-      }
-
-      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspeccionar elemento)
-      if (isCtrlOrMeta && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) {
-        e.preventDefault();
-        mostrarAvisoSeguridad();
-        return false;
-      }
-
-      // Ctrl+U (Ver código fuente), Ctrl+S (Guardar página), Ctrl+P (Imprimir)
-      if (isCtrlOrMeta && (key === 'u' || key === 's' || key === 'p')) {
-        e.preventDefault();
-        mostrarAvisoSeguridad();
-        return false;
-      }
-    });
-
-    // Extractor universal y tolerante de ID de Google Drive
-    function extraerDriveId(raw) {
-      if (!raw) return '';
-      const str = String(raw).trim();
-      if (!str) return '';
-
-      // Si viene URL de carpetas de Drive: /folders/ID
-      const mFolders = str.match(/\/folders\/([a-zA-Z0-9_-]{15,})/);
-      if (mFolders && mFolders[1]) return mFolders[1];
-
-      // Si viene URL tipo /d/ID
-      const mD = str.match(/\/d\/([a-zA-Z0-9_-]{15,})/);
-      if (mD && mD[1]) return mD[1];
-
-      // Si viene con id=ID
-      const mIdParam = str.match(/[?&]id=([a-zA-Z0-9_-]{15,})/);
-      if (mIdParam && mIdParam[1]) return mIdParam[1];
-
-      // Si ya es un ID directo alfanumérico largo
-      if (/^[a-zA-Z0-9_-]{15,}$/.test(str)) {
-        return str;
-      }
-
-      return str;
-    }
-
-    // Alias para satisfacer el requerimiento de extraerIdDrive
-    const extraerIdDrive = extraerDriveId;
-
-    // Constructor tolerante de portadas
-    function construirUrlPortada(coverRaw, folderId) {
-      if (coverRaw) {
-        const coverStr = String(coverRaw).trim();
-        if (coverStr.startsWith('http://') || coverStr.startsWith('https://')) {
-          return coverStr;
-        }
-        const extractedCoverId = extraerDriveId(coverStr);
-        if (extractedCoverId) {
-          return `https://lh3.googleusercontent.com/d/${extractedCoverId}=w800`;
-        }
-      }
-
-      if (folderId) {
-        return `https://lh3.googleusercontent.com/d/${folderId}=w800`;
-      }
-
-      return '';
-    }
-
-    function escaparHTML(texto) {
-      if (!texto) return '';
-      const div = document.createElement('div');
-      div.textContent = texto;
-      return div.innerHTML;
-    }
-
-    // Obtener clave única representativa para evitar cualquier duplicación
-    function obtenerClaveUnica(item) {
-      if (!item) return '';
-      const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || '';
-      const driveId = extraerIdDrive(driveRaw);
-      if (driveId && driveId.length >= 15) {
-        return `drive:${driveId}`;
-      }
-      if (item.id) {
-        return `id:${String(item.id).trim()}`;
-      }
-      const titulo = String(item.titulo || item.nombre || item.name || '').trim().toLowerCase();
-      if (titulo) {
-        return `title:${titulo}`;
-      }
-      return '';
-    }
-
-    // Identifica con rigor si una entrada es pública (excluye cualquier galería privada o con clave)
-    function esGaleriaPublica(item) {
-      if (!item) return false;
-
-      // Si tiene clave/contraseña obligatoria asignada, es PRIVADA
-      const clave = String(item.password || item.clave || item.codigo || item.pass || '').trim();
-      if (clave.length > 0) return false;
-
-      // Si está explícitamente marcada como privada
-      const flagPrivada = (
-        item.es_privada === true ||
-        item.es_privada === 'true' ||
-        item.privada === true ||
-        item.privada === 'true' ||
-        item.tipo === 'privada'
-      );
-      if (flagPrivada) return false;
-
-      // Si explícitamente se marcó pública
-      if (item.es_publica === true || item.es_publica === 'true' || item.publica === true || item.publica === 'true' || item.tipo === 'publica') {
-        return true;
-      }
-
-      return true;
-    }
-
-    // Normalizador de item para garantizar campos compatibles
-    function normalizarGaleria(item) {
-      const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || item.id || '';
-      const folderId = extraerIdDrive(driveRaw);
-      const titulo = item.titulo || item.nombre || item.name || 'Evento Escolar';
-      const coverRaw = item.portada_url || item.portada || item.portada_id || item.cover_id || item.cover || '';
-      const imgUrl = construirUrlPortada(coverRaw, folderId);
-      const fecha = item.fecha || item.mes || item.date || '';
-      const totalFotos = item.total_fotos || item.fotos_count || item.cantidad_fotos || '';
-
-      return {
-        original: item,
-        folderId,
-        titulo,
-        imgUrl,
-        fecha,
-        totalFotos
-      };
-    }
-
-    // Carga de eventos públicos con deduplicación estricta
-    async function cargarEventosPublicos() {
-      const grid = document.getElementById('galleries-grid');
-      const emptyState = document.getElementById('empty-state');
-      const counter = document.getElementById('gallery-counter');
-      grid.innerHTML = '';
-
-      const listaDeduplicada = [];
-      const clavesProcesadas = new Set();
-      const driveIdsProcesados = new Set();
-
-      // Función auxiliar para agregar sin duplicar
-      function agregarSiNoExiste(item) {
-        if (!item) return;
-
-        // Extraer id de drive
-        const driveRaw = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || '';
-        const driveId = extraerIdDrive(driveRaw);
-
-        // Clave primaria normalizada
-        const clave = obtenerClaveUnica(item);
-
-        // Si ya registramos el Drive ID
-        if (driveId && driveId.length >= 15 && driveIdsProcesados.has(driveId)) {
-          return;
-        }
-
-        // Si ya registramos la clave normalizada
-        if (clave && clavesProcesadas.has(clave)) {
-          return;
-        }
-
-        // Si tiene id de Supabase
-        if (item.id && clavesProcesadas.has(`id:${String(item.id).trim()}`)) {
-          return;
-        }
-
-        // Registrar huellas
-        if (driveId && driveId.length >= 15) {
-          driveIdsProcesados.add(driveId);
-        }
-        if (clave) {
-          clavesProcesadas.add(clave);
-        }
-        if (item.id) {
-          clavesProcesadas.add(`id:${String(item.id).trim()}`);
-        }
-        const tituloNorm = String(item.titulo || item.nombre || item.name || '').trim().toLowerCase();
-        if (tituloNorm) {
-          clavesProcesadas.add(`title:${tituloNorm}`);
-        }
-
-        listaDeduplicada.push(item);
-      }
-
-      // 1. Consulta a Supabase
-      if (supabaseClient) {
-        try {
-          // Consulta principal tabla 'galeria'
-          let galeriaData = null;
-          try {
-            const { data, error } = await supabaseClient
-              .from('galeria')
-              .select('*')
-              .order('created_at', { ascending: false });
-            if (!error && Array.isArray(data)) {
-              galeriaData = data;
-            }
-          } catch (e) {
-            console.warn('Tabla galeria no disponible o error:', e);
-          }
-
-          if (galeriaData && galeriaData.length > 0) {
-            galeriaData.forEach(agregarSiNoExiste);
-          } else {
-            // Si galeria falló o vino vacía, intentar con 'galerias'
-            try {
-              const resFallback = await supabaseClient
-                .from('galerias')
-                .select('*')
-                .order('created_at', { ascending: false });
-              if (resFallback.data && Array.isArray(resFallback.data)) {
-                resFallback.data.forEach(agregarSiNoExiste);
-              }
-            } catch (errFallback) {
-              console.warn('Fallback tabla galerias fallo:', errFallback);
-            }
-          }
-        } catch (err) {
-          console.warn('Advertencia al consultar Supabase:', err);
-        }
-      }
-
-      // 2. Respaldo complementario de localStorage ('galerias_locales') deduplicado
+    // ==============================================================================
+    // 1. REGISTRO AUTOMÁTICO DE MÉTRICAS EN TIEMPO REAL (TABLA 'visitas')
+    // ==============================================================================
+    async function registrarVisitaEnVivo() {
       try {
-        const guardadasLocal = localStorage.getItem('galerias_locales');
-        if (guardadasLocal) {
-          const parsed = JSON.parse(guardadasLocal);
-          if (Array.isArray(parsed)) {
-            parsed.forEach(localItem => {
-              agregarSiNoExiste(localItem);
-            });
-          }
+        // Excluir si es el administrador navegando
+        const esAdmin = sessionStorage.getItem('admin_autenticado') === 'true';
+        const emailAdmin = (sessionStorage.getItem('admin_email') || '').toLowerCase();
+        if (esAdmin || emailAdmin.includes('molinaoksergio')) {
+          return;
         }
-      } catch (errLocal) {
-        console.warn('Aviso al leer localStorage:', errLocal);
-      }
 
-      // 3. Filtrar galerías exclusivamente públicas
-      const publicasFiltradas = listaDeduplicada.filter(esGaleriaPublica);
-      const itemsNormalizados = publicasFiltradas.map(normalizarGaleria).filter(g => Boolean(g.folderId || g.titulo));
+        const payload = {
+          tipo: 'visita_pagina',
+          pagina: 'eventos.html',
+          detalle: 'Visita a Cartelera de Eventos Escolares',
+          dispositivo: window.innerWidth < 800 ? 'móvil' : 'desktop',
+          origen: document.referrer ? new URL(document.referrer).hostname : 'directo',
+          created_at: new Date().toISOString()
+        };
 
-      // Actualizar contador
-      const count = itemsNormalizados.length;
-      if (counter) {
-        counter.textContent = `${count} ${count === 1 ? 'GALERÍA DISPONIBLE' : 'GALERÍAS DISPONIBLES'}`;
-      }
+        if (supabaseClient) {
+          await supabaseClient.from('visitas').insert([payload]);
+          return;
+        }
 
-      // Si no hay galerías disponibles
-      if (count === 0) {
-        if (emptyState) emptyState.classList.remove('hidden');
-        return;
-      }
-
-      if (emptyState) emptyState.classList.add('hidden');
-
-      // Renderizar cuadrícula responsive (2 col mobile, 3 col desktop)
-      grid.innerHTML = itemsNormalizados.map(item => {
-        const hrefTarget = `galeria.html?id=${encodeURIComponent(item.folderId)}&titulo=${encodeURIComponent(item.titulo)}`;
-
-        return `
-          <a class="card-zoom group flex flex-col bg-[#1a1a1a] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-lg cursor-pointer block select-none" href="${hrefTarget}">
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#111111] border-b border-neutral-800">
-              ${item.imgUrl ? `
-                <img alt="${escaparHTML(item.titulo)}" draggable="false" class="card-img w-full h-full object-cover transition-transform duration-500 ease-out select-none" loading="lazy" src="${item.imgUrl}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center bg-[#181818] text-neutral-600\\'><span class=\\'material-symbols-outlined text-4xl\\'>photo</span></div>';"/>
-              ` : `
-                <div class="w-full h-full flex items-center justify-center bg-[#181818] text-neutral-600 select-none">
-                  <span class="material-symbols-outlined text-4xl">photo</span>
-                </div>
-              `}
-              <div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-sky-400 shadow-sm pointer-events-none">
-                <span class="material-symbols-outlined text-[10px] sm:text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
-                <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Oficial</span>
-              </div>
-              ${item.totalFotos ? `
-                <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#111111]/85 backdrop-blur-sm px-2 sm:px-2.5 py-0.5 sm:py-1 rounded text-neutral-300 text-[10px] sm:text-xs font-semibold border border-neutral-700/60 pointer-events-none">
-                  ${escaparHTML(String(item.totalFotos))} Fotos
-                </div>
-              ` : ''}
-            </div>
-            <div class="p-3.5 sm:p-5 flex flex-col flex-grow justify-between bg-[#1a1a1a]">
-              <div>
-                ${item.fecha ? `
-                <div class="flex items-center gap-1.5 text-neutral-400 text-[11px] sm:text-xs font-semibold mb-1.5 sm:mb-2 uppercase tracking-wider">
-                  <span class="material-symbols-outlined text-xs sm:text-sm text-sky-400">calendar_month</span>
-                  <span>${escaparHTML(item.fecha)}</span>
-                </div>` : ''}
-                <h3 class="font-['Raleway'] text-sm sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
-                  ${escaparHTML(item.titulo)}
-                </h3>
-              </div>
-            </div>
-          </a>
-        `;
-      }).join('');
-    }
-
-    // Modal Controls
-    function abrirModalPrivado() {
-      const modal = document.getElementById('modal-privado');
-      const input = document.getElementById('input-clave');
-      const errorMsg = document.getElementById('msg-error');
-      if (errorMsg) errorMsg.classList.add('hidden');
-      if (input) input.value = '';
-      if (modal) {
-        modal.classList.remove('hidden');
-        setTimeout(() => input && input.focus(), 100);
+        // Vía 2: Fetch nativo directo (inmune a bloqueadores)
+        await fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('Métricas eventos.html:', err);
       }
     }
 
-    function cerrarModalPrivado() {
-      const modal = document.getElementById('modal-privado');
-      if (modal) modal.classList.add('hidden');
+    // ==============================================================================
+    // 2. BLINDAJE Y SEGURIDAD ANTI-COPIA / ANTI-CAPTURA
+    // ==============================================================================
+    function mostrarAvisoSeguridad() {
+      const toast = document.getElementById('toast-seguridad');
+      if (toast) {
+        toast.style.display = 'flex';
+        setTimeout(() => { toast.style.display = 'none'; }, 2500);
+      }
     }
 
-    // Cerrar al hacer clic en el backdrop
-    document.getElementById('modal-privado')?.addEventListener('click', function(e) {
-      if (e.target === this) {
-        cerrarModalPrivado();
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.closest('#galleries-grid') || e.target.tagName === 'IMG') {
+        e.preventDefault();
+        mostrarAvisoSeguridad();
+        return false;
       }
     });
 
-    // Cerrar con Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        cerrarModalPrivado();
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
       }
     });
 
-    // Claves locales de respaldo preconfiguradas
-    const CLAVES_LOCALES_RESPALDO = {
-      'familia2026': {
-        folder_id: '1w6yZ9b7J7s_familia2026',
-        titulo: 'Sesión Familiar 2026'
-      },
-      'boda1234': {
-        folder_id: '1x8zA3k2M9p_boda1234',
-        titulo: 'Cobertura Boda Privada'
-      },
-      'miprueba': {
-        folder_id: '1p5kX4v1L2q_miprueba',
-        titulo: 'Galería de Prueba Privada'
-      },
-      'brenda': {
-        folder_id: '1q9jW8m3T5y_brenda',
-        titulo: 'Sesión Privada Brenda'
+    // ==============================================================================
+    // 3. ACCESO PRIVADO A CLIENTES (MODAL / PROMPT SEGURO)
+    // ==============================================================================
+    window.abrirModalPrivado = async function() {
+      const pass = prompt("Acceso Privado Clientes 🔒\n\nIngresá la contraseña o código de tu evento:");
+      if (pass !== null) {
+        const trimmed = pass.trim();
+        if (!trimmed) return;
+        await verificarClave(trimmed);
       }
     };
 
-    // Validación rigurosa de contraseñas: SIEMPRE redirige a privadas.html
-    async function validarAccesoPrivado(event) {
-      event.preventDefault();
-      const input = document.getElementById('input-clave');
-      const errorMsg = document.getElementById('msg-error');
-      const errorText = document.getElementById('msg-error-text');
-      const btnSubmit = document.getElementById('btn-submit-clave');
-      
-      const clave = input ? input.value.trim() : '';
-      if (!clave) return;
+    async function verificarClave(clave) {
+      let album = null;
 
-      if (errorMsg) errorMsg.classList.add('hidden');
-      if (btnSubmit) {
-        btnSubmit.disabled = true;
-        btnSubmit.classList.add('opacity-75', 'cursor-wait');
+      // Consulta directa a Supabase (tabla galeria y vista galerias)
+      if (supabaseClient) {
+        try {
+          let { data } = await supabaseClient
+            .from('galeria')
+            .select('*')
+            .ilike('password', clave);
+          if (data && data.length > 0) album = data[0];
+
+          if (!album) {
+            let resG = await supabaseClient
+              .from('galerias')
+              .select('*')
+              .ilike('password', clave);
+            if (resG.data && resG.data.length > 0) album = resG.data[0];
+          }
+        } catch (_) {}
       }
 
-      let albumEncontrado = null;
+      if (!album) {
+        try {
+          const resp = await fetch(`${SUPABASE_URL}/rest/v1/galeria?password=ilike.${encodeURIComponent(clave)}&select=*`, {
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          });
+          if (resp.ok) {
+            const dataJson = await resp.json();
+            if (Array.isArray(dataJson) && dataJson.length > 0) album = dataJson[0];
+          }
+        } catch (_) {}
+      }
 
-      // 1. Búsqueda en Supabase ('galeria' y fallback 'galerias') por clave/password
+      if (album) {
+        const driveRaw = album.drive_url || album.enlace_drive || '';
+        const matchF = driveRaw.match(/folders\/([a-zA-Z0-9_-]+)/);
+        const folderId = matchF && matchF[1] ? matchF[1] : (album.folder_id || album.id || '');
+        const titulo = album.titulo || 'Galería Privada';
+        window.location.href = `privadas.html?key=${encodeURIComponent(clave)}&folder=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
+        return;
+      }
+
+      // Claves de respaldo locales
+      const clavesLocales = {
+        'familia2026': 'ID_CARPETA_FAMILIA_PEREZ',
+        'boda1234': 'ID_CARPETA_BODA_JUAN_Y_MARIA',
+        'miprueba': '1XYJaNvgWAVzO7w-XI8N7OkJXeBoE9uZB',
+        'brenda': '1UPMfWHBYpU3T-1nukwM0Yi_X3KM6a7G_'
+      };
+
+      const lower = clave.toLowerCase();
+      if (clavesLocales[lower]) {
+        window.location.href = `privadas.html?key=${encodeURIComponent(clave)}&folder=${encodeURIComponent(clavesLocales[lower])}&titulo=${encodeURIComponent('Galería Privada Clientes')}`;
+        return;
+      }
+
+      alert("Contraseña incorrecta o álbum no encontrado.\nPor favor verificá e intentá nuevamente.");
+    }
+
+    // ==============================================================================
+    // 4. CARGA DE EVENTOS PÚBLICOS REALES (DEDUPLICACIÓN ESTRICTA)
+    // ==============================================================================
+    function resolverPortada(url, driveUrl) {
+      if (url && url.trim().length > 10) {
+        const match = url.match(/[-\w]{25,}/);
+        if (match) return `https://lh3.googleusercontent.com/d/${match[0]}=w800`;
+        return url;
+      }
+      if (driveUrl) {
+        const match = driveUrl.match(/[-\w]{25,}/);
+        if (match) return `https://lh3.googleusercontent.com/d/${match[0]}=w800`;
+      }
+      return 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop';
+    }
+
+    function extraerDriveId(enlace) {
+      if (!enlace) return '';
+      const str = String(enlace).trim();
+      const matchF = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+      if (matchF && matchF[1]) return matchF[1];
+      const matchId = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (matchId && matchId[1]) return matchId[1];
+      const matchD = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (matchD && matchD[1]) return matchD[1];
+      return str;
+    }
+
+    async function cargarGaleriasPublicas() {
+      const grid = document.getElementById('galleries-grid');
+      const loading = document.getElementById('loading-state');
+      const empty = document.getElementById('empty-state');
+      const counter = document.getElementById('gallery-counter');
+
+      let eventos = [];
+
+      // A) Consultar Supabase
       if (supabaseClient) {
         try {
           let { data, error } = await supabaseClient
             .from('galeria')
             .select('*')
-            .or(`password.eq.${clave},clave.eq.${clave},codigo.eq.${clave}`);
-          
-          if (!data || data.length === 0 || error) {
-            const resFallback = await supabaseClient
+            .order('created_at', { ascending: false });
+
+          if (!error && data && data.length > 0) {
+            eventos = data;
+          } else {
+            let resG = await supabaseClient
               .from('galerias')
               .select('*')
-              .or(`password.eq.${clave},clave.eq.${clave},codigo.eq.${clave}`);
-            if (resFallback.data && resFallback.data.length > 0) {
-              data = resFallback.data;
-            }
+              .order('created_at', { ascending: false });
+            if (resG.data && resG.data.length > 0) eventos = resG.data;
           }
-
-          if (data && data.length > 0) {
-            albumEncontrado = data[0];
-          }
-        } catch (err) {
-          console.warn('Error al verificar clave en Supabase:', err);
-        }
+        } catch (_) {}
       }
 
-      // 2. Búsqueda en claves de respaldo fijas (familia2026, boda1234, miprueba, brenda)
-      if (!albumEncontrado && CLAVES_LOCALES_RESPALDO[clave.toLowerCase()]) {
-        albumEncontrado = CLAVES_LOCALES_RESPALDO[clave.toLowerCase()];
-      }
-
-      // 3. Respaldo de búsqueda en localStorage ('galerias_locales')
-      if (!albumEncontrado) {
+      // Fallback REST directo si el SDK fallara
+      if (eventos.length === 0) {
         try {
-          const guardadasLocal = localStorage.getItem('galerias_locales');
-          if (guardadasLocal) {
-            const parsed = JSON.parse(guardadasLocal);
-            if (Array.isArray(parsed)) {
-              albumEncontrado = parsed.find(item => {
-                const itemClave = String(item.password || item.clave || item.codigo || item.pass || '').trim();
-                return itemClave === clave;
-              });
+          const resp = await fetch(`${SUPABASE_URL}/rest/v1/galeria?select=*&order=created_at.desc`, {
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
             }
+          });
+          if (resp.ok) {
+            const dataJson = await resp.json();
+            if (Array.isArray(dataJson)) eventos = dataJson;
           }
-        } catch (e) {
-          console.warn('Error al validar con localStorage:', e);
-        }
+        } catch (_) {}
       }
 
-      if (btnSubmit) {
-        btnSubmit.disabled = false;
-        btnSubmit.classList.remove('opacity-75', 'cursor-wait');
+      // B) Respaldo local
+      try {
+        const locales = JSON.parse(localStorage.getItem('galerias_locales') || '[]');
+        if (Array.isArray(locales) && locales.length > 0) {
+          locales.forEach(loc => {
+            const existe = eventos.some(ev => String(ev.id) === String(loc.id));
+            if (!existe) eventos.push(loc);
+          });
+        }
+      } catch (_) {}
+
+      // FILTRAR ESTRICTAMENTE PÚBLICAS
+      const publicas = eventos.filter(ev => {
+        const esPriv = ev.es_privada === true || ev.es_privada === 'true' || ev.privada === true ||
+                       (ev.password && String(ev.password).trim().length > 0);
+        return !esPriv;
+      });
+
+      // DEDUPLICAR POR ID DE CARPETA DE GOOGLE DRIVE
+      const mapaUnicos = new Map();
+      publicas.forEach(item => {
+        const driveId = extraerDriveId(item.drive_url || item.enlace_drive || item.folder_id);
+        const key = driveId ? driveId : (item.id || item.titulo);
+        if (!mapaUnicos.has(key)) {
+          mapaUnicos.set(key, item);
+        }
+      });
+
+      const listaFinal = Array.from(mapaUnicos.values());
+
+      if (loading) loading.classList.add('hidden');
+
+      if (listaFinal.length === 0) {
+        if (empty) empty.classList.remove('hidden');
+        if (counter) counter.textContent = '0 GALERÍAS DISPONIBLES';
+        grid.innerHTML = '';
+        return;
       }
 
-      if (albumEncontrado) {
-        const driveRaw = albumEncontrado.folder_id || albumEncontrado.drive_id || albumEncontrado.drive_url || albumEncontrado.url_drive || albumEncontrado.id || 'privado';
-        const folderId = extraerDriveId(driveRaw);
-        const titulo = albumEncontrado.titulo || albumEncontrado.nombre || 'Álbum Privado de Cliente';
-        
-        // REDIRECCIÓN EXCLUSIVA A privadas.html (NUNCA a galeria.html para sesiones privadas)
-        window.location.href = 'privadas.html?key=' + encodeURIComponent(clave) + '&id=' + encodeURIComponent(folderId) + '&titulo=' + encodeURIComponent(titulo);
-      } else {
-        if (errorMsg) {
-          errorText.textContent = 'Contraseña incorrecta o álbum no encontrado. Verificá e intentá nuevamente.';
-          errorMsg.classList.remove('hidden');
-        }
-        if (input) {
-          input.focus();
-          input.select();
-        }
+      if (empty) empty.classList.add('hidden');
+      if (counter) {
+        counter.textContent = `${listaFinal.length} ${listaFinal.length === 1 ? 'GALERÍA DISPONIBLE' : 'GALERÍAS DISPONIBLES'}`;
       }
+
+      grid.innerHTML = '';
+      listaFinal.forEach(ev => {
+        const folderId = extraerDriveId(ev.drive_url || ev.enlace_drive || ev.folder_id || ev.id);
+        const titulo = ev.titulo || 'Evento Escolar Oficial';
+        const cover = resolverPortada(ev.portada_url || ev.portada, ev.drive_url);
+        const targetUrl = `galeria.html?id=${encodeURIComponent(folderId)}&titulo=${encodeURIComponent(titulo)}`;
+
+        const card = document.createElement('a');
+        card.href = targetUrl;
+        card.className = 'card-zoom group flex flex-col bg-[#181818] rounded-xl border border-neutral-800 overflow-hidden hover:border-sky-500/80 transition-all duration-300 shadow-md cursor-pointer block text-inherit';
+
+        card.innerHTML = `
+          <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#0d0d0d] border-b border-neutral-800">
+            <img 
+              src="${cover}" 
+              alt="${titulo}"
+              class="card-img w-full h-full object-cover transition-transform duration-500 ease-out shield-layer"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop';"
+            />
+            <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-[#111111]/90 backdrop-blur-md border border-neutral-700 px-2 py-0.5 rounded text-sky-400 shadow-sm">
+              <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+              <span class="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">Galería Pública</span>
+            </div>
+          </div>
+          <div class="p-3.5 sm:p-4 flex flex-col justify-center bg-[#181818]">
+            <h3 class="font-['Raleway'] text-sm sm:text-base font-bold text-white group-hover:text-sky-300 transition-colors duration-200 line-clamp-2 leading-snug">
+              ${titulo}
+            </h3>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
     }
 
-    // Disparar carga cuando el DOM esté listo
+    // Inicialización automática
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', cargarEventosPublicos);
+      document.addEventListener('DOMContentLoaded', () => {
+        cargarGaleriasPublicas();
+        registrarVisitaEnVivo();
+      });
     } else {
-      cargarEventosPublicos();
+      cargarGaleriasPublicas();
+      registrarVisitaEnVivo();
     }
   </script>
+
+
 
 
 </body></html>
