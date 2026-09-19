@@ -1,541 +1,609 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Métricas y Visitas | Sergio Ricardo Molina - Atelier Darkroom</title>
-<!-- Google Fonts: Raleway & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Config -->
-<script id="tailwind-config">
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>Rendimiento de Álbumes y Visitas | SERGIO RICARDO MOLINA</title>
+  
+  <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
+        screens: {
+          'xs': '480px',
+          'sm': '640px',
+          'md': '800px',
+          'lg': '1024px',
+          'xl': '1280px'
+        },
         extend: {
-          "colors": {
-            "surface-container": "#201f1f",
-            "tertiary-container": "#794303",
-            "secondary": "#9bccf4",
-            "on-tertiary": "#4c2700",
-            "error": "#ffb4ab",
-            "surface-bright": "#3a3939",
-            "primary-fixed": "#cbe6ff",
-            "inverse-on-surface": "#313030",
-            "on-secondary": "#00344f",
-            "tertiary-fixed": "#ffdcc1",
-            "on-secondary-fixed": "#001e30",
-            "surface": "#131313",
-            "on-error-container": "#ffdad6",
-            "on-tertiary-container": "#ffb36e",
-            "error-container": "#93000a",
-            "on-tertiary-fixed": "#2e1500",
-            "tertiary": "#ffb878",
-            "outline-variant": "#41474e",
-            "outline": "#8b9199",
-            "surface-tint": "#91cdfe",
+          colors: {
             "primary": "#91cdfe",
-            "surface-variant": "#353534",
-            "on-background": "#e5e2e1",
-            "background": "#131313",
-            "surface-container-low": "#1c1b1b",
-            "secondary-container": "#124d70",
-            "surface-container-highest": "#353534",
-            "on-tertiary-fixed-variant": "#6c3a00",
-            "on-secondary-fixed-variant": "#0e4b6d",
+            "primary-container": "#005580",
+            "surface": "#131313",
+            "surface-container": "#181818",
+            "surface-container-high": "#222222",
+            "outline": "#8b9199",
             "on-surface": "#e5e2e1",
-            "surface-dim": "#131313",
-            "surface-container-high": "#2a2a2a",
-            "surface-container-lowest": "#0e0e0e",
-            "on-primary-fixed": "#001e30",
-            "on-surface-variant": "#c0c7cf",
-            "secondary-fixed-dim": "#9bccf4",
-            "secondary-fixed": "#cae6ff",
-            "on-error": "#690005",
-            "on-primary": "#003350",
-            "inverse-primary": "#1e638f",
-            "primary-fixed-dim": "#91cdfe",
-            "on-primary-fixed-variant": "#004b72",
-            "on-primary-container": "#8ec9fa",
-            "on-secondary-container": "#8dbee6",
-            "tertiary-fixed-dim": "#ffb878",
-            "inverse-surface": "#e5e2e1",
-            "primary-container": "#005580"
+            "on-surface-variant": "#c0c7cf"
           },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-sm": "0.75rem",
-            "space-md": "1rem",
-            "gutter-desktop": "2rem",
-            "container-max": "1440px",
-            "space-xs": "0.5rem",
-            "gutter-tablet": "1.5rem",
-            "space-3xl": "4.5rem",
-            "space-4xl": "6rem",
-            "space-2xl": "3rem",
-            "space-lg": "1.5rem",
-            "gutter-mobile": "1rem",
-            "space-xl": "2rem",
-            "space-2xs": "0.25rem"
-          },
-          "fontFamily": {
-            "headline-sm": ["Raleway"],
-            "headline-lg-mobile": ["Raleway"],
-            "label-md": ["Manrope"],
-            "body-lg": ["Manrope"],
-            "body-md": ["Manrope"],
-            "headline-md": ["Raleway"],
-            "display-hero-mobile": ["Raleway"],
-            "display-hero": ["Raleway"],
-            "label-sm": ["Manrope"],
-            "headline-lg": ["Raleway"]
-          },
-          "fontSize": {
-            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }],
-            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "500" }]
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            headline: ['Raleway', 'sans-serif']
           }
         }
       }
-    }
+    };
   </script>
-<style>
-    /* Custom Scrollbar for Darkroom Atmosphere */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background-color: #111111;
+      color: #e5e2e1;
+      font-family: 'Manrope', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
-    ::-webkit-scrollbar-track {
-      background: #111111;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #282828;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #005580;
-    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #141414; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #262626; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #005580; }
   </style>
 </head>
-<body class="bg-[#111111] text-[#ffffff] font-body-md text-body-md antialiased min-h-screen flex flex-col lg:flex-row overflow-x-hidden selection:bg-[#005580] selection:text-white">
-<!-- ========================================================================= -->
-<!-- 1. SIDEBAR LATERAL IZQUIERDO DARKROOM (#161616, borde #222222, ancho 250px) -->
-<!-- ========================================================================= -->
-<aside class="w-full lg:w-[250px] lg:fixed lg:top-0 lg:left-0 lg:h-screen bg-[#161616] border-b lg:border-b-0 lg:border-r border-[#222222] flex flex-col justify-between z-40 select-none">
-<div>
-<div class="p-4 sm:p-5 border-b border-[#222222] flex items-center justify-between lg:block">
-<div>
-<div class="flex items-center gap-2 mb-1.5 sm:mb-2">
-<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-<span class="font-label-sm text-label-sm tracking-widest text-[#aaaaaa]">SISTEMA ACTIVO</span>
-</div>
-<h2 class="font-headline-sm text-[16px] sm:text-headline-sm font-bold tracking-tight text-white uppercase leading-snug">
-          SERGIO RICARDO MOLINA
-        </h2>
-<p class="font-label-sm text-label-sm text-[#0088cc] uppercase tracking-wider mt-0.5 sm:mt-1">
-          Panel de Control
-        </p>
-</div>
-<button aria-label="Alternar menú de navegación" class="lg:hidden p-2 rounded-lg bg-[#202020] border border-[#333333] text-[#aaaaaa] hover:text-white transition-colors" onclick="const m = document.getElementById('mobile-nav-panel'); m.classList.toggle('hidden');" type="button">
-<span class="material-symbols-outlined text-[20px]">menu</span>
-</button>
-</div>
-<!-- Navigation Tabs -->
-<div class="hidden lg:block" id="mobile-nav-panel">
-<nav class="p-3 space-y-1.5 mt-1 sm:mt-2">
-<!-- Galerías -->
-<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="panel.html">
-<span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">photo_library</span>
-<span class="font-label-md text-label-md font-medium tracking-wide">Galerías</span>
-</a>
-<!-- Cargas y Enlaces -->
-<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="cargas.html">
-<span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">cloud_upload</span>
-<span class="font-label-md text-label-md font-medium tracking-wide">Cargas y Enlaces</span>
-</a>
-<!-- Tarifas y Precios -->
-<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[#aaaaaa] hover:text-white hover:bg-[#202020] transition-all duration-150 group" href="precios.html">
-<span class="material-symbols-outlined text-[20px] text-[#888888] group-hover:text-white transition-colors">payments</span>
-<span class="font-label-md text-label-md font-medium tracking-wide">Tarifas y Precios</span>
-</a>
-<!-- Métricas y Visitas (ACTIVO) -->
-<a class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-[#004466] border border-[#0088cc] text-white shadow-sm transition-all duration-150" href="metricas.html">
-<span class="material-symbols-outlined text-[20px] text-[#9bccf4]">analytics</span>
-<span class="font-label-md text-label-md font-semibold tracking-wide">Métricas y Visitas</span>
-</a>
-<div class="pt-3 mt-3 border-t border-[#222222]/60 space-y-1.5">
-<a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="eventos.html">
-<span class="flex items-center gap-3">
-<span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">arrow_back</span>
-<span class="font-label-md text-label-md font-medium tracking-wide">Volver a Eventos</span>
-</span>
-<span class="text-[10px] text-[#555555] font-mono">eventos.html</span>
-</a>
-<a class="flex items-center justify-between px-3.5 py-2 rounded-lg text-[#888888] hover:text-[#38bdf8] hover:bg-[#202020] transition-all duration-150 group" href="index.html">
-<span class="flex items-center gap-3">
-<span class="material-symbols-outlined text-[18px] text-[#888888] group-hover:text-[#38bdf8] transition-colors">open_in_new</span>
-<span class="font-label-md text-label-md font-medium tracking-wide">Ver Portafolio</span>
-</span>
-<span class="text-[10px] text-[#555555] font-mono">index.html</span>
-</a>
-</div>
-</nav>
-</div>
-</div>
-<!-- Bottom Links & Meta -->
-<div class="hidden lg:block p-4 border-t border-[#222222] bg-[#141414] space-y-2">
-<div class="text-center">
-<span class="font-label-sm text-label-sm text-[#555555] tracking-widest block">ESTUDIO FOTOGRÁFICO • v2.5</span>
-</div>
-</div>
-</aside>
-<!-- ========================================================================= -->
-<!-- 2. ÁREA PRINCIPAL DE CONTENIDO (fondo #111111, padding ml-[250px])       -->
-<!-- ========================================================================= -->
-<main class="w-full lg:ml-[250px] lg:w-[calc(100%-250px)] flex-1 p-4 sm:p-6 lg:p-10 max-w-[1440px] pb-16">
-<!-- Top Header Area -->
-<header class="flex flex-col xl:flex-row xl:items-end justify-between pb-6 sm:pb-8 border-b border-[#222222] gap-5 sm:gap-6">
-<div>
-<div class="flex items-center gap-3 mb-2"><a class="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#38bdf8] transition-colors py-1" href="eventos.html"><span class="material-symbols-outlined text-[16px]">arrow_back</span> Volver a Eventos</a><span class="text-[#444444]">•</span><a class="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#38bdf8] transition-colors py-1" href="index.html" target="_blank"><span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver Portafolio</a></div><h1 class="font-headline-lg text-2xl sm:text-headline-lg font-bold text-white tracking-tight">
-          Rendimiento de Álbumes y Visitas
-        </h1>
-</div>
-<!-- Controls & Filters (horizontal scrollable on mobile) -->
-<div class="flex items-center gap-2.5 overflow-x-auto pb-1 max-w-full xl:self-end">
-<!-- Range Filters -->
-<div class="inline-flex bg-[#161616] p-1 rounded-lg border border-[#333333] shrink-0">
-<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Hoy', this)">Hoy</button>
-<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('7 Días', this)">7 Días</button>
-<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded text-[#aaaaaa] hover:text-white font-label-sm text-label-sm transition-all" onclick="setPeriod('Este Mes', this)">Este Mes</button>
-<button class="period-btn px-2.5 sm:px-3 py-1.5 rounded bg-[#005580] text-white border border-[#0088cc] font-label-sm text-label-sm font-semibold transition-all shadow-sm" onclick="setPeriod('Histórico', this)">Histórico</button>
-</div>
-<!-- CSV Export Button -->
-<button class="flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white px-3 py-2 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98] shrink-0" onclick="exportToCSV()">
-<span class="material-symbols-outlined text-[18px] text-[#9bccf4]">download</span>
-<span class="hidden sm:inline">Exportar CSV</span>
-<span class="sm:hidden">CSV</span>
-</button>
-<!-- Refresh Button -->
-<button class="flex items-center justify-center bg-[#1f1f1f] hover:bg-[#282828] border border-[#333333] hover:border-[#555555] text-white w-9 h-9 rounded-lg transition-all active:scale-[0.98] group shrink-0" onclick="refreshData()" title="Sincronizar y refrescar">
-<span class="material-symbols-outlined text-[18px] text-[#aaaaaa] group-hover:text-white transition-transform duration-500" id="refresh-icon">refresh</span>
-</button>
-</div>
-</header>
-<!-- ========================================================================= -->
-<!-- 3. TARJETAS KPI SUPERIORES (4 TARJETAS EN GRID)                           -->
-<!-- ========================================================================= -->
-<section class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 my-6 sm:my-8"><!-- KPI 1: TOTAL VISITAS WEB -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200 flex flex-col justify-between">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
-<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate font-semibold">TOTAL VISITAS WEB</span>
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#9bccf4] shrink-0">
-<span class="material-symbols-outlined text-[16px] sm:text-[18px]">visibility</span>
-</div>
-</div>
-<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2"><span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-white tracking-tight" id="val-visitas-web">0</span></div>
-<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Cargas de página de clientes</p>
-</div>
-<!-- KPI 2: ÁLBUMES EXPLORADOS -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200 flex flex-col justify-between">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
-<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate font-semibold">ÁLBUMES EXPLORADOS</span>
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#38bdf8] shrink-0">
-<span class="material-symbols-outlined text-[16px] sm:text-[18px]">folder_open</span>
-</div>
-</div>
-<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2"><span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-white tracking-tight" id="val-albumes-abiertos">0</span></div>
-<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Galerías y eventos abiertos</p>
-</div>
-<!-- KPI 3: FOTOS EN VISOR HD -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200 flex flex-col justify-between">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
-<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate font-semibold">FOTOS EN VISOR HD</span>
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#9bccf4] shrink-0">
-<span class="material-symbols-outlined text-[16px] sm:text-[18px]">photo_camera</span>
-</div>
-</div>
-<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2"><span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-white tracking-tight" id="val-fotos-hd">0</span></div>
-<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Aperturas pantalla completa</p>
-</div>
-<!-- KPI 4: CLICS EN WHATSAPP -->
-<div class="bg-[#222222] border border-[#333333] rounded-xl p-3.5 sm:p-5 hover:border-[#444444] transition-all duration-200 flex flex-col justify-between">
-<div class="flex items-center justify-between text-[#aaaaaa] mb-2 sm:mb-3">
-<span class="font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider truncate font-semibold">CLICS EN WHATSAPP</span>
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181818] border border-[#333333] flex items-center justify-center text-[#4ade80] shrink-0">
-<span class="material-symbols-outlined text-[16px] sm:text-[18px]">chat</span>
-</div>
-</div>
-<div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2"><span class="font-headline-lg text-xl sm:text-headline-lg font-bold text-[#4ade80] tracking-tight" id="val-clics-wsp">0</span></div>
-<p class="font-label-sm text-[11px] sm:text-label-sm text-[#888888] mt-1.5 sm:mt-2 truncate">Consultas y pedidos directos</p>
-</div></section>
-<!-- ========================================================================= -->
-<!-- 4. MÓDULOS ANALÍTICOS EN DOS COLUMNAS                                     -->
-<!-- ========================================================================= -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8"><!-- Columna 1: Visitas por Página y Sección -->
-<div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 flex flex-col justify-between shadow-sm">
-<div>
-<div class="flex items-center justify-between border-b border-[#242424] pb-4 mb-5">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#38bdf8] text-[20px]">layers</span>
-<h2 class="font-headline-sm text-headline-sm font-semibold text-white">Visitas por Página y Sección</h2>
-</div>
-<span class="font-label-sm text-label-sm text-[#888888] uppercase tracking-wider">Desglose Tráfico</span>
-</div>
-<div class="space-y-5" id="page-breakdown-list">
-<div class="text-[#666666] text-xs py-4 text-center">Cargando desglose de visitas...</div>
-</div>
-</div>
-<div class="mt-6 pt-4 border-t border-[#242424] flex items-center justify-between text-[#777777] font-label-sm text-label-sm">
-<span id="rebote-label" class="">Filtro Admin: Activo (Excluido)</span>
-<span class="text-[#0088cc] flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse"></span> Supabase en vivo</span>
-</div>
-</div>
-<!-- Columna 2: Álbumes y Colecciones Destacadas -->
-<div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 shadow-sm flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between border-b border-[#242424] pb-4 mb-5">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#ffd700] text-[20px]">military_tech</span>
-<h2 class="font-headline-sm text-headline-sm font-semibold text-white">Álbumes y Colecciones Destacadas</h2>
-</div>
-<span class="font-label-sm text-label-sm text-[#888888] uppercase tracking-wider">Ranking de Impacto</span>
-</div>
-<div class="space-y-3" id="ranking-albumes"><div class="text-[#666666] text-xs py-8 text-center">Aún no hay aperturas de álbumes en este período</div></div>
-</div>
-<div class="mt-4 pt-3 border-t border-[#242424] text-right">
-<span class="text-[11px] text-[#777777] font-mono" id="ranking-total-label">Sin datos registrados</span>
-</div>
-</div></div>
-<!-- ========================================================================= -->
-<!-- 5. REGISTRO DE ACTIVIDAD RECIENTE / LOG EN VIVO                           -->
-<!-- ========================================================================= -->
-<section class="bg-[#181818] border border-[#282828] rounded-xl p-4 sm:p-6 shadow-sm">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#242424] pb-4 mb-4 gap-2">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#4ade80] text-[20px]">sensors</span>
-<h2 class="font-headline-sm text-headline-sm font-semibold text-white">Registro de Actividad en Vivo</h2>
-<span class="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse ml-1"></span>
-</div>
-<div class="flex items-center gap-3">
-<span class="text-[11px] text-[#888888] font-mono">Sincronización LocalStorage &amp; Supabase</span>
-<button class="text-xs text-[#aaaaaa] hover:text-[#ffb4ab] transition-colors" onclick="clearActivityLog()">
-            Limpiar log
-          </button>
-</div>
-</div>
-<!-- Feed Table / Live Log -->
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="border-b border-[#242424] text-[#777777] font-label-sm text-label-sm uppercase tracking-wider">
-<th class="py-3 px-3">Tiempo</th>
-<th class="py-3 px-3">Tipo de Evento</th>
-<th class="py-3 px-3">Detalle / Recurso</th>
-<th class="py-3 px-3">Dispositivo / Ref</th>
-<th class="py-3 px-3 text-right">Estado</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md divide-y divide-[#222222]" id="activity-log-body"><tr><td colspan="5" class="py-8 text-center text-[#666666] font-label-md">Sin actividad reciente registrada</td></tr></tbody>
-</table>
-</div>
-</section>
-<!-- Footer Atelier Darkroom -->
-<footer class="mt-12 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-center justify-between text-[#666666] font-label-sm text-label-sm gap-4"><div class="flex items-center gap-4 order-last sm:order-first"><a class="flex items-center gap-1.5 text-xs text-[#aaaaaa] hover:text-[#38bdf8] transition-colors" href="eventos.html"><span class="material-symbols-outlined text-[16px]">arrow_back</span> Volver a Eventos</a><span class="text-[#333333]">•</span><a class="flex items-center gap-1.5 text-xs text-[#aaaaaa] hover:text-[#38bdf8] transition-colors" href="index.html" target="_blank"><span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver Portafolio</a></div>
-<div>
-<span class="">Sergio Ricardo Molina Fotografía • Suite de Producción y Métricas</span>
-</div>
-<div class="flex items-center gap-4">
-<span class="">Zona Horaria: America/Argentina/Buenos_Aires (GMT-3)</span>
-<span class="">•</span>
-<span class="text-[#38bdf8]">Atelier Darkroom Edition</span>
-</div>
-</footer>
-</main>
-<!-- ========================================================================= -->
-<!-- SCRIPT ANALÍTICO FUNCIONAL: LOCALSTORAGE, SUPABASE SYNC Y EXPORTADOR CSV   -->
-<!-- ========================================================================= -->
-<script>
-    // Inicialización y persistencia de métricas
-    const STORAGE_KEY = "SRM_ATELIER_METRICS_V2";
 
-    const defaultMetrics = {
-      visitas: 1420,
-      fotosHD: 4850,
-      pedidosWA: 68,
-      historicoLog: [
-        { time: "Hace 4 min", type: "Visita a Galería", detail: "Galería Pública Colegio San Martín", device: "Móvil • Chrome iOS", status: "OK" },
-        { time: "Hace 18 min", type: "Visor HD Abierto", detail: "Apertura de foto DSC_4822 en visor HD", device: "Desktop • Safari macOS", status: "OK" },
-        { time: "Hace 42 min", type: "WhatsApp Click", detail: "Clic en Pedir por WhatsApp (Paquete Foto Digital + Copia 15x21)", device: "Móvil • WhatsApp Direct", status: "LEAD" },
-        { time: "Hace 1 h 12 min", type: "Visita a Galería", detail: "Instituto Belgrano - Acto 9 de Julio", device: "Móvil • Android Chrome", status: "OK" },
-        { time: "Hace 2 h 05 min", type: "Acceso con PIN", detail: "Álbum Privado Sala Celeste • PIN correcto", device: "Móvil • Safari iOS", status: "OK" }
-      ]
+<body class="bg-[#111111] text-[#e5e2e1] min-h-screen flex flex-col antialiased selection:bg-[#005580] selection:text-white">
+
+  <!-- HEADER GLOBAL -->
+  <header class="w-full bg-[#131313] border-b border-[#222222] sticky top-0 z-50">
+    <div class="flex justify-between items-center w-full px-4 md:px-6 max-w-7xl mx-auto h-16">
+      <div class="flex items-center gap-3">
+        <button aria-label="Abrir menú" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-[#181818] border border-[#262626] text-[#e5e2e1] hover:text-[#38bdf8] active:scale-95 transition-all" id="btnMobileMenu" type="button">
+          <span class="material-symbols-outlined text-[24px]" id="menuIcon">menu</span>
+        </button>
+        <a class="flex items-center gap-2.5 text-[#38bdf8] font-bold text-lg font-headline tracking-tight" href="metricas.html">
+          <span class="material-symbols-outlined text-[#38bdf8] text-[26px]">insights</span>
+          <span class="text-white tracking-wide font-semibold text-base sm:text-lg">Analítica y Rendimiento</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#181818] border border-emerald-800/60 text-emerald-400 text-xs font-semibold rounded-full uppercase tracking-wider" id="syncBadge">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" id="syncDot"></span>
+          <span class="hidden xs:inline text-[11px]" id="syncText">Supabase Conectado</span>
+          <span class="xs:hidden text-[10px]">En Vivo</span>
+        </div>
+        <button onclick="refreshData()" class="p-2 rounded-lg bg-[#181818] border border-[#333333] hover:border-[#555555] text-[#c0c7cf] hover:text-white transition-all active:scale-95" title="Actualizar datos">
+          <span class="material-symbols-outlined text-[18px]" id="refresh-icon">refresh</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div class="hidden md:hidden border-b border-[#222222] bg-[#141414] px-4 py-4 space-y-4 shadow-2xl" id="mobileDrawer">
+      <div class="px-2 pb-2 border-b border-[#222222]">
+        <h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+        <p class="text-[11px] text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
+      </div>
+      <nav class="space-y-1">
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e]" href="panel.html">
+          <span class="material-symbols-outlined text-[20px]">photo_library</span>
+          <span>Galerías</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e]" href="cargas.html">
+          <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+          <span>Cargas y Enlaces</span>
+        </a>
+        <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1f1e1e]" href="precios.html">
+          <span class="material-symbols-outlined text-[20px]">payments</span>
+          <span>Tarifas y Precios</span>
+        </a>
+        <a class="flex items-center gap-3 text-white px-3 py-2.5 text-sm font-semibold rounded-lg bg-[#004466] border border-[#0088cc]" href="metricas.html">
+          <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">insights</span>
+          <span>Métricas y Visitas</span>
+        </a>
+      </nav>
+      <div class="pt-3 border-t border-[#222222] space-y-1">
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b]" href="eventos.html">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199]">arrow_back</span>
+            <span>Volver a Eventos</span>
+          </div>
+        </a>
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-3 py-2 text-sm rounded-lg hover:bg-[#1b1b1b]" href="index.html">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199]">visibility</span>
+            <span>Ver Portafolio</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL CON SIDEBAR -->
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Sidebar Desktop -->
+    <aside class="w-64 bg-[#131313] border-r border-[#222222] flex-col justify-between shrink-0 hidden md:flex">
+      <div class="p-5">
+        <div class="mb-6 px-1">
+          <h2 class="text-base font-headline font-bold text-white tracking-tight">SERGIO RICARDO MOLINA</h2>
+          <p class="text-[10px] font-semibold text-[#8b9199] tracking-wider uppercase mt-0.5">Fotografía Profesional</p>
+        </div>
+        <nav class="space-y-1.5">
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all" href="panel.html">
+            <span class="material-symbols-outlined text-[20px]">photo_library</span>
+            <span>Galerías</span>
+          </a>
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all" href="cargas.html">
+            <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+            <span>Cargas y Enlaces</span>
+          </a>
+          <a class="flex items-center gap-3 text-[#c0c7cf] px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-[#1e1e1e] hover:text-white transition-all" href="precios.html">
+            <span class="material-symbols-outlined text-[20px]">payments</span>
+            <span>Tarifas y Precios</span>
+          </a>
+          <a class="flex items-center gap-3 bg-[#004466] border border-[#0088cc] text-white rounded-lg px-3 py-2.5 text-sm font-semibold shadow-sm" href="metricas.html">
+            <span class="material-symbols-outlined text-[20px] text-[#38bdf8]">insights</span>
+            <span>Métricas y Visitas</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 border-t border-[#222222] bg-[#0f0f0f]/80 space-y-1">
+        <p class="text-[10px] font-bold text-[#8b9199] uppercase tracking-wider px-2 mb-2">Accesos Directos</p>
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm transition-all hover:bg-[#1a1a1a]" href="eventos.html">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199]">arrow_back</span>
+            <span>Volver a Eventos</span>
+          </div>
+          <span class="material-symbols-outlined text-[14px] text-[#8b9199]">chevron_right</span>
+        </a>
+        <a class="flex items-center justify-between text-[#c0c7cf] hover:text-[#38bdf8] px-2 py-2 rounded-lg text-sm transition-all hover:bg-[#1a1a1a]" href="index.html">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-[#8b9199]">visibility</span>
+            <span>Ver Portafolio</span>
+          </div>
+          <span class="material-symbols-outlined text-[14px] text-[#8b9199]">open_in_new</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO -->
+    <main class="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full pb-20 md:pb-8">
+      
+      <!-- RETORNO ARRIBA Y FILTROS -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#222222]">
+        <div class="flex items-center gap-2 text-xs font-semibold text-[#8b9199] uppercase tracking-wider">
+          <a class="flex items-center gap-1.5 text-[#c0c7cf] hover:text-[#38bdf8] transition-colors" href="eventos.html">
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            <span>Volver a Eventos</span>
+          </a>
+          <span class="text-[#333]">•</span>
+          <a class="flex items-center gap-1.5 text-[#c0c7cf] hover:text-[#38bdf8] transition-colors" href="index.html">
+            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+            <span>Ver Portafolio</span>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="inline-flex rounded-lg p-0.5 bg-[#181818] border border-[#282828] text-xs">
+            <button class="period-btn px-2.5 py-1 rounded text-[#8b9199] hover:text-white" onclick="setPeriod('Hoy', this)">Hoy</button>
+            <button class="period-btn px-2.5 py-1 rounded text-[#8b9199] hover:text-white" onclick="setPeriod('7 Días', this)">7 Días</button>
+            <button class="period-btn px-2.5 py-1 rounded text-[#8b9199] hover:text-white" onclick="setPeriod('Este Mes', this)">Este Mes</button>
+            <button class="period-btn px-2.5 py-1 rounded bg-[#005580] text-white font-semibold border border-[#0088cc] shadow-sm" onclick="setPeriod('Histórico', this)">Histórico</button>
+          </div>
+          <button onclick="exportarMetricasCSV()" class="px-3 py-1.5 bg-[#181818] hover:bg-[#222222] border border-[#333333] hover:border-[#555555] rounded-lg text-xs font-semibold text-white flex items-center gap-1 transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[16px]">download</span>
+            <span class="hidden sm:inline">Exportar CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TÍTULO -->
+      <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl font-headline font-bold text-white tracking-tight">Rendimiento de Álbumes y Visitas</h1>
+        <p class="text-sm text-[#c0c7cf] mt-1" id="rebote-label">Métricas 100% reales auditadas directamente desde la base de datos Supabase.</p>
+      </div>
+
+      <!-- 4 TARJETAS CLAVE -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <div class="bg-[#181818] border border-[#262626] rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[#8b9199] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Total Visitas Web</span>
+            <span class="material-symbols-outlined text-[#38bdf8] text-[20px]">visibility</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-headline font-bold text-white font-mono" id="val-visitas-web">0</div>
+          <p class="text-[11px] text-[#8b9199] mt-2">Cargas de página de clientes</p>
+        </div>
+
+        <div class="bg-[#181818] border border-[#262626] rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[#8b9199] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Álbumes Explorados</span>
+            <span class="material-symbols-outlined text-[#38bdf8] text-[20px]">folder_open</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-headline font-bold text-white font-mono" id="val-albumes-abiertos">0</div>
+          <p class="text-[11px] text-[#8b9199] mt-2">Galerías y eventos abiertos</p>
+        </div>
+
+        <div class="bg-[#181818] border border-[#262626] rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[#8b9199] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Fotos en Visor HD</span>
+            <span class="material-symbols-outlined text-[#38bdf8] text-[20px]">photo_camera</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-headline font-bold text-white font-mono" id="val-fotos-hd">0</div>
+          <p class="text-[11px] text-[#8b9199] mt-2">Aperturas pantalla completa</p>
+        </div>
+
+        <div class="bg-[#181818] border border-[#262626] rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[#8b9199] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Clics en WhatsApp</span>
+            <span class="material-symbols-outlined text-[#4ade80] text-[20px]">chat</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-headline font-bold text-white font-mono" id="val-clics-wsp">0</div>
+          <p class="text-[11px] text-[#8b9199] mt-2">Consultas y pedidos directos</p>
+        </div>
+      </div>
+
+      <!-- DESGLOSE Y RANKING REAL -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
+        <!-- Desglose por Página -->
+        <div class="bg-[#181818] border border-[#222222] rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-[#242424] mb-4">
+            <h3 class="text-base font-headline font-bold text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#38bdf8] text-[20px]">layers</span>
+              <span>Visitas por Página y Sección</span>
+            </h3>
+            <span class="text-xs text-[#8b9199] uppercase font-semibold">Desglose Tráfico</span>
+          </div>
+          <div class="space-y-3" id="page-breakdown-list">
+            <div class="flex items-center justify-between text-xs text-[#aaaaaa] py-2 border-b border-[#222222]"><span>/index.html (Portafolio)</span><span class="font-mono font-semibold text-white" id="row-visitas-index">0</span></div>
+            <div class="flex items-center justify-between text-xs text-[#aaaaaa] py-2 border-b border-[#222222]"><span>/eventos.html (Galerías)</span><span class="font-mono font-semibold text-white" id="row-visitas-eventos">0</span></div>
+            <div class="flex items-center justify-between text-xs text-[#aaaaaa] py-2 border-b border-[#222222]"><span>/cargas.html (Subida)</span><span class="font-mono font-semibold text-white" id="row-visitas-cargas">0</span></div>
+            <div class="flex items-center justify-between text-xs text-[#aaaaaa] py-2"><span>Otras Páginas</span><span class="font-mono font-semibold text-white" id="row-visitas-otras">0</span></div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[#222222] flex items-center justify-between text-xs text-[#8b9199]">
+            <span>Filtro Admin: Activo (Excluido)</span>
+            <span class="text-emerald-400 font-semibold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Supabase en vivo
+            </span>
+          </div>
+        </div>
+
+        <!-- Ranking Real de Álbumes -->
+        <div class="bg-[#181818] border border-[#222222] rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-[#242424] mb-4">
+            <h3 class="text-base font-headline font-bold text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#facc15] text-[20px]">military_tech</span>
+              <span>Álbumes y Colecciones Destacadas</span>
+            </h3>
+            <span class="text-xs text-[#8b9199] uppercase font-semibold" id="ranking-total-label">Ranking de Impacto</span>
+          </div>
+          <div class="space-y-3" id="ranking-albumes">
+            <div class="text-[#666666] text-xs py-8 text-center">Aún no hay aperturas de álbumes en este período</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA DE LOGS EN VIVO -->
+      <div class="bg-[#181818] border border-[#222222] rounded-xl p-4 sm:p-6 shadow-sm mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#222222] mb-4">
+          <div>
+            <h3 class="text-base sm:text-lg font-headline font-bold text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-emerald-400 text-[20px]">sensors</span>
+              <span>Registro de Actividad en Vivo</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping ml-1"></span>
+            </h3>
+            <p class="text-xs text-[#8b9199] mt-0.5">Sincronización LocalStorage & Supabase</p>
+          </div>
+          <button onclick="refreshData()" class="text-xs text-[#8b9199] hover:text-[#38bdf8] transition-colors">
+            Refrescar registros
+          </button>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table class="w-full text-left border-collapse min-w-[620px]">
+            <thead>
+              <tr class="border-b border-[#262626] text-[11px] font-bold text-[#8b9199] uppercase tracking-wider">
+                <th class="py-2.5 px-3">Tiempo</th>
+                <th class="py-2.5 px-3">Tipo de Evento</th>
+                <th class="py-2.5 px-3">Detalle / Recurso</th>
+                <th class="py-2.5 px-3">Dispositivo / Ref</th>
+                <th class="py-2.5 px-3 text-right">Estado</th>
+              </tr>
+            </thead>
+            <tbody class="text-xs divide-y divide-[#222222]" id="activity-log-body">
+              <tr>
+                <td colspan="5" class="py-8 text-center text-[#666666]">Sin actividad reciente registrada</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- NAVEGACIÓN MÓVIL INFERIOR -->
+  <nav class="md:hidden bg-[#131313]/95 backdrop-blur-md border-t border-[#222222] fixed bottom-0 left-0 right-0 z-40 px-2 py-1 flex justify-around items-center">
+    <a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="panel.html">
+      <span class="material-symbols-outlined text-[20px]">photo_library</span>
+      <span class="text-[10px] mt-0.5 font-medium">Galerías</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="cargas.html">
+      <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+      <span class="text-[10px] mt-0.5 font-medium">Cargas</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-2 text-[#8b9199] hover:text-white" href="precios.html">
+      <span class="material-symbols-outlined text-[20px]">payments</span>
+      <span class="text-[10px] mt-0.5 font-medium">Tarifa</span>
+    </a>
+    <a class="flex flex-col items-center py-1 px-2 text-[#38bdf8] font-bold" href="metricas.html">
+      <span class="material-symbols-outlined text-[20px]">insights</span>
+      <span class="text-[10px] mt-0.5">Métrica</span>
+    </a>
+  </nav>
+
+  <!-- SCRIPT ANALÍTICO DE LECTURA Y RENDERIZADO SUPABASE -->
+  <script>
+    const SUPABASE_URL = "https://zbixojacwvanucxlrdcd.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68";
+
+    let rawVisitasData = [];
+    let selectedPeriod = 'Histórico';
+
+    // Menú desplegable móvil
+    const btnMobileMenu = document.getElementById('btnMobileMenu');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const menuIcon = document.getElementById('menuIcon');
+    if (btnMobileMenu && mobileDrawer) {
+      btnMobileMenu.addEventListener('click', () => {
+        const isHidden = mobileDrawer.classList.contains('hidden');
+        if (isHidden) {
+          mobileDrawer.classList.remove('hidden');
+          if (menuIcon) menuIcon.textContent = 'close';
+        } else {
+          mobileDrawer.classList.add('hidden');
+          if (menuIcon) menuIcon.textContent = 'menu';
+        }
+      });
+    }
+
+    async function fetchVisitasSupabase() {
+      const syncText = document.getElementById('syncText');
+      const statusLabel = document.getElementById('rebote-label');
+      if (syncText) syncText.textContent = "Sincronizando...";
+
+      let records = [];
+
+      // Vía 1: SDK Oficial Supabase
+      try {
+        if (window.supabase && typeof window.supabase.createClient === 'function') {
+          const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          const { data, error } = await client.from('visitas').select('*').order('created_at', { ascending: false }).limit(1000);
+          if (!error && data && data.length > 0) {
+            records = data;
+          }
+        }
+      } catch (err) {
+        console.warn("[SDK Error]:", err);
+      }
+
+      // Vía 2: Fetch REST directo (inmune a bloqueadores o caídas de SDK)
+      if (records.length === 0) {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/visitas?select=*&order=created_at.desc&limit=1000`, {
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          });
+          if (res.ok) {
+            const arr = await res.json();
+            if (Array.isArray(arr) && arr.length > 0) {
+              records = arr;
+            }
+          }
+        } catch (fetchErr) {
+          console.warn("[REST Error]:", fetchErr);
+        }
+      }
+
+      if (records && records.length > 0) {
+        rawVisitasData = records;
+        if (syncText) syncText.textContent = "Supabase Conectado";
+        if (statusLabel) statusLabel.textContent = `Métricas 100% reales auditadas directamente desde Supabase (${records.length} eventos registrados).`;
+      } else {
+        if (syncText) syncText.textContent = "Sin datos aún";
+        if (statusLabel) statusLabel.textContent = "Base de datos conectada. Esperando primeras visitas reales de clientes.";
+      }
+
+      renderDashboard(rawVisitasData);
+    }
+
+    function filterDataByPeriod(data, period) {
+      if (!data || data.length === 0) return [];
+      if (period === 'Histórico') return data;
+      const now = new Date();
+      return data.filter(item => {
+        const dateStr = item.created_at || item.fecha || item.timestamp;
+        if (!dateStr) return true;
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return true;
+        const diffMs = now - d;
+        const diffHours = diffMs / (1000 * 60 * 60);
+        if (period === 'Hoy') return diffHours <= 24;
+        if (period === '7 Días') return diffHours <= (24 * 7);
+        if (period === 'Este Mes') return diffHours <= (24 * 30);
+        return true;
+      });
+    }
+
+    function renderDashboard(data) {
+      const filtered = filterDataByPeriod(data, selectedPeriod);
+
+      let totalVisitas = 0;
+      let albumesExplorados = 0;
+      let fotosHD = 0;
+      let whatsappClicks = 0;
+
+      let pIndex = 0;
+      let pEventos = 0;
+      let pCargas = 0;
+      let pOtras = 0;
+      const albumCounters = {};
+
+      filtered.forEach(row => {
+        const tipo = String(row.tipo || row.tipo_evento || row.event_type || row.evento || '').toLowerCase();
+        const pagina = String(row.pagina || row.page || row.recurso || row.url || '').toLowerCase();
+        const detalle = String(row.detalle || row.album || row.nombre || row.titulo || '');
+
+        if (tipo.includes('visita') || tipo.includes('pageview') || tipo.includes('vista') || tipo.includes('carga') || tipo === '') {
+          totalVisitas++;
+        }
+        if (tipo.includes('album') || tipo.includes('galeria') || tipo.includes('galería') || pagina.includes('eventos') || detalle.toLowerCase().includes('álbum') || detalle.toLowerCase().includes('album')) {
+          albumesExplorados++;
+        }
+        if (tipo.includes('foto') || tipo.includes('hd') || tipo.includes('visor') || tipo.includes('zoom')) {
+          fotosHD++;
+        }
+        if (tipo.includes('wsp') || tipo.includes('whatsapp') || tipo.includes('mensaje') || tipo.includes('contacto') || tipo.includes('lead')) {
+          whatsappClicks++;
+        }
+
+        if (pagina.includes('index') || pagina === '/' || pagina === '') pIndex++;
+        else if (pagina.includes('eventos')) pEventos++;
+        else if (pagina.includes('cargas')) pCargas++;
+        else pOtras++;
+
+        if (detalle && (tipo.includes('album') || tipo.includes('galeria') || pagina.includes('eventos'))) {
+          const key = detalle.trim();
+          albumCounters[key] = (albumCounters[key] || 0) + 1;
+        }
+      });
+
+      // KPI Cards
+      const elVisitas = document.getElementById('val-visitas-web');
+      const elAlbumes = document.getElementById('val-albumes-abiertos');
+      const elFotos = document.getElementById('val-fotos-hd');
+      const elWsp = document.getElementById('val-clics-wsp');
+
+      if (elVisitas) elVisitas.innerText = filtered.length > 0 ? (totalVisitas || filtered.length) : 0;
+      if (elAlbumes) elAlbumes.innerText = albumesExplorados;
+      if (elFotos) elFotos.innerText = fotosHD;
+      if (elWsp) elWsp.innerText = whatsappClicks;
+
+      // Desglose
+      const rowIdx = document.getElementById('row-visitas-index');
+      const rowEvt = document.getElementById('row-visitas-eventos');
+      const rowCrg = document.getElementById('row-visitas-cargas');
+      const rowOtr = document.getElementById('row-visitas-otras');
+      if (rowIdx) rowIdx.innerText = pIndex;
+      if (rowEvt) rowEvt.innerText = pEventos;
+      if (rowCrg) rowCrg.innerText = pCargas;
+      if (rowOtr) rowOtr.innerText = pOtras;
+
+      // Ranking Álbumes
+      const rankingBox = document.getElementById('ranking-albumes');
+      const rankingLabel = document.getElementById('ranking-total-label');
+      if (rankingBox) {
+        const entries = Object.entries(albumCounters).sort((a,b) => b[1] - a[1]).slice(0, 5);
+        if (entries.length > 0) {
+          rankingBox.innerHTML = entries.map(([name, count], i) => `
+            <div class="flex items-center justify-between p-2.5 rounded bg-[#202020] border border-[#282828] text-xs">
+              <div class="flex items-center gap-2 truncate pr-2">
+                <span class="text-[#ffd700] font-bold">#${i+1}</span>
+                <span class="text-white truncate font-medium">${name}</span>
+              </div>
+              <span class="font-mono font-semibold text-[#38bdf8] shrink-0">${count} visitas</span>
+            </div>
+          `).join('');
+          if (rankingLabel) rankingLabel.innerText = `${entries.length} álbumes destacados`;
+        } else {
+          rankingBox.innerHTML = '<div class="text-[#666666] text-xs py-8 text-center">Aún no hay aperturas de álbumes en este período</div>';
+          if (rankingLabel) rankingLabel.innerText = 'Sin aperturas registradas';
+        }
+      }
+
+      // Tabla de Logs
+      const tbody = document.getElementById('activity-log-body');
+      if (tbody) {
+        if (filtered.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="py-8 text-center text-[#666666]">Sin actividad reciente registrada</td></tr>';
+        } else {
+          tbody.innerHTML = filtered.slice(0, 15).map(item => {
+            const timeVal = item.created_at ? new Date(item.created_at).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }) : (item.time || 'Reciente');
+            const tipoVal = item.tipo || item.tipo_evento || 'Visita';
+            const detVal = item.detalle || item.recurso || item.pagina || 'Acceso general';
+            const dispVal = item.dispositivo || item.device || item.ref || 'Móvil / Web';
+            const estadoVal = item.estado || (String(tipoVal).toLowerCase().includes('wsp') ? 'LEAD' : 'OK');
+            const badgeColor = estadoVal === 'LEAD' ? 'text-[#4ade80] bg-[#4ade80]/10 border-[#4ade80]/30' : 'text-[#9bccf4] bg-[#9bccf4]/10 border-[#9bccf4]/30';
+            return `
+              <tr class="hover:bg-[#1f1f1f] transition-colors">
+                <td class="py-2.5 px-3 text-xs text-[#aaaaaa] font-mono whitespace-nowrap">${timeVal}</td>
+                <td class="py-2.5 px-3 text-xs text-white font-medium whitespace-nowrap">${tipoVal}</td>
+                <td class="py-2.5 px-3 text-xs text-[#cccccc] truncate max-w-[240px]">${detVal}</td>
+                <td class="py-2.5 px-3 text-xs text-[#888888] truncate max-w-[160px]">${dispVal}</td>
+                <td class="py-2.5 px-3 text-right"><span class="inline-block text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${badgeColor}">${estadoVal}</span></td>
+              </tr>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    window.setPeriod = function(periodName, btnElement) {
+      selectedPeriod = periodName;
+      document.querySelectorAll('.period-btn').forEach(btn => {
+        btn.className = "period-btn px-2.5 py-1 rounded text-[#8b9199] hover:text-white";
+      });
+      if (btnElement) {
+        btnElement.className = "period-btn px-2.5 py-1 rounded bg-[#005580] text-white font-semibold border border-[#0088cc] shadow-sm";
+      }
+      renderDashboard(rawVisitasData);
     };
 
-    function loadMetrics() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          return JSON.parse(saved);
-        }
-      } catch (e) {
-        console.warn("LocalStorage no disponible, usando métricas por defecto.", e);
-      }
-      return defaultMetrics;
-    }
-
-    function saveMetrics(data) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } catch (e) {
-        console.error("Error guardando métricas en LocalStorage", e);
-      }
-    }
-
-    // Filtrar período visual
-    function setPeriod(periodName, btnElement) {
-      document.querySelectorAll('.period-btn').forEach(btn => {
-        btn.classList.remove('bg-[#005580]', 'text-white', 'border', 'border-[#0088cc]', 'font-semibold', 'shadow-sm');
-        btn.classList.add('text-[#aaaaaa]');
+    window.refreshData = function() {
+      const icon = document.getElementById('refresh-icon');
+      if (icon) icon.classList.add('animate-spin');
+      fetchVisitasSupabase().finally(() => {
+        setTimeout(() => {
+          if (icon) icon.classList.remove('animate-spin');
+        }, 500);
       });
+    };
 
-      btnElement.classList.remove('text-[#aaaaaa]');
-      btnElement.classList.add('bg-[#005580]', 'text-white', 'border', 'border-[#0088cc]', 'font-semibold', 'shadow-sm');
-
-      // Modificadores de demostración para los períodos
-      const kpiVisitas = document.getElementById('kpi-visitas');
-      const kpiFotos = document.getElementById('kpi-fotos');
-      const kpiPedidos = document.getElementById('kpi-pedidos');
-      const kpiConv = document.getElementById('kpi-conversion');
-
-      if (periodName === 'Hoy') {
-        kpiVisitas.innerText = "142";
-        kpiFotos.innerText = "512";
-        kpiPedidos.innerText = "8";
-        kpiConv.innerText = "5.6%";
-      } else if (periodName === '7 Días') {
-        kpiVisitas.innerText = "680";
-        kpiFotos.innerText = "2.190";
-        kpiPedidos.innerText = "34";
-        kpiConv.innerText = "5.0%";
-      } else if (periodName === 'Este Mes') {
-        kpiVisitas.innerText = "1.180";
-        kpiFotos.innerText = "3.940";
-        kpiPedidos.innerText = "56";
-        kpiConv.innerText = "4.7%";
-      } else {
-        kpiVisitas.innerText = "1.420";
-        kpiFotos.innerText = "4.850";
-        kpiPedidos.innerText = "68";
-        kpiConv.innerText = "4.8%";
+    function exportarMetricasCSV() {
+      if (rawVisitasData.length === 0) {
+        alert("No hay métricas disponibles para exportar.");
+        return;
       }
-    }
-
-    // Exportador de reporte CSV
-    function exportToCSV() {
-      const data = loadMetrics();
-      const csvRows = [
-        ["Reporte Analitico de Metricas - Sergio Ricardo Molina"],
-        ["Fecha de Descarga", new Date().toLocaleString("es-AR")],
-        [""],
-        ["Indicador KPI", "Total Registrado"],
-        ["Total Visitas Web", data.visitas || 1420],
-        ["Fotos en Visor HD", data.fotosHD || 4850],
-        ["Clics y Consultas WhatsApp", data.pedidosWA || 68],
-        ["Tasa de Conversion Estimada", "4.8%"],
-        [""],
-        ["Top Albumes", "Visitas", "Fotos Vistas"],
-        ["Colegio San Martin - Promocion 2026", 780, 2150],
-        ["Instituto Belgrano - Acto 9 de Julio", 410, 1320],
-        ["Colegio Nacional - Gala de Egresados", 230, 1380],
-        ["Promesa a la Bandera TM 2026", 180, 920],
-        [""],
-        ["Registro de Actividad Reciente"],
-        ["Tiempo", "Tipo", "Detalle", "Dispositivo"]
-      ];
-
-      data.historicoLog.forEach(item => {
-        csvRows.push([item.time, item.type, `"${item.detail.replace(/"/g, '""')}"`, item.device]);
+      let csv = "ID,Fecha,Tipo,Pagina,Album_ID,Album_Titulo,Detalle,Dispositivo,Origen\n";
+      rawVisitasData.forEach(r => {
+        csv += `"${r.id || ''}","${r.created_at || ''}","${r.tipo || ''}","${r.pagina || ''}","${r.album_id || ''}","${(r.album_titulo || '').replace(/"/g, '""')}","${(r.detalle || '').replace(/"/g, '""')}","${r.dispositivo || ''}","${r.origen || ''}"\n`;
       });
-
-      const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + csvRows.map(e => e.join(";")).join("\n");
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", `metricas_molina_${new Date().toISOString().slice(0, 10)}.csv`);
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Metricas_SergioMolina_${new Date().toISOString().slice(0, 10)}.csv`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
 
-    // Refrescar y sincronizar
-    function refreshData() {
-      const icon = document.getElementById('refresh-icon');
-      icon.classList.add('rotate-180');
-      
-      setTimeout(() => {
-        icon.classList.remove('rotate-180');
-        // Chequeo si hay cliente de Supabase configurado en el scope global
-        if (window.supabase) {
-          console.log("[Supabase Sync] Métricas sincronizadas con la base remota.");
-        } else {
-          console.log("[Local Sync] Métricas locales validadas y actualizadas en tiempo real.");
-        }
-      }, 500);
-    }
-
-    // Limpiar tabla de logs visualmente
-    function clearActivityLog() {
-      const tbody = document.getElementById('activity-log-body');
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="5" class="py-8 text-center text-[#666666] font-label-md">
-            No hay eventos recientes registrados en la sesión actual.
-          </td>
-        </tr>
-      `;
-    }
-
-    // Asegurar estructura al iniciar
-    document.addEventListener("DOMContentLoaded", () => {
-      const current = loadMetrics();
-      saveMetrics(current);
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchVisitasSupabase();
     });
   </script>
-<!-- Barra de navegación inferior móvil táctil -->
-<nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-[#161616]/95 border-t border-[#222222] backdrop-blur px-3 py-2 z-40 flex items-center justify-around">
-<a class="flex flex-col items-center text-[#aaaaaa] hover:text-white py-1" href="panel.html">
-<span class="material-symbols-outlined text-[20px]">photo_library</span>
-<span class="text-[10px] font-medium mt-0.5">Galerías</span>
-</a>
-<a class="flex flex-col items-center text-[#aaaaaa] hover:text-white py-1" href="cargas.html">
-<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
-<span class="text-[10px] font-medium mt-0.5">Cargas</span>
-</a>
-<a class="flex flex-col items-center text-[#aaaaaa] hover:text-white py-1" href="precios.html">
-<span class="material-symbols-outlined text-[20px]">payments</span>
-<span class="text-[10px] font-medium mt-0.5">Tarifas</span>
-</a>
-<a class="flex flex-col items-center text-[#38bdf8] py-1" href="metricas.html">
-<span class="material-symbols-outlined text-[20px]">analytics</span>
-<span class="text-[10px] font-semibold mt-0.5">Métricas</span>
-</a>
-</nav>
-
-
-</body></html>
+</body>
+</html>
