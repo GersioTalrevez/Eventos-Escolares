@@ -1,14 +1,16 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Métricas y Visitas | Sergio Ricardo Molina - Atelier Darkroom</title>
 <!-- Google Fonts: Raleway & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Tailwind Config -->
@@ -212,11 +214,9 @@
 <!-- Top Header Area -->
 <header class="flex flex-col xl:flex-row xl:items-end justify-between pb-6 sm:pb-8 border-b border-[#222222] gap-5 sm:gap-6">
 <div>
-
-<h1 class="font-headline-lg text-2xl sm:text-headline-lg font-bold text-white tracking-tight">
+<div class="flex items-center gap-3 mb-2"><a class="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#38bdf8] transition-colors py-1" href="eventos.html"><span class="material-symbols-outlined text-[16px]">arrow_back</span> Volver a Eventos</a><span class="text-[#444444]">•</span><a class="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#38bdf8] transition-colors py-1" href="index.html" target="_blank"><span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver Portafolio</a></div><h1 class="font-headline-lg text-2xl sm:text-headline-lg font-bold text-white tracking-tight">
           Rendimiento de Álbumes y Visitas
         </h1>
-
 </div>
 <!-- Controls & Filters (horizontal scrollable on mobile) -->
 <div class="flex items-center gap-2.5 overflow-x-auto pb-1 max-w-full xl:self-end">
@@ -309,8 +309,7 @@
 <!-- ========================================================================= -->
 <!-- 4. MÓDULOS ANALÍTICOS EN DOS COLUMNAS                                     -->
 <!-- ========================================================================= -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-<!-- Columna 1: Visitas por Página y Sección (5/12) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8"><!-- Columna 1: Visitas por Página y Sección -->
 <div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 flex flex-col justify-between shadow-sm">
 <div>
 <div class="flex items-center justify-between border-b border-[#242424] pb-4 mb-5">
@@ -320,70 +319,18 @@
 </div>
 <span class="font-label-sm text-label-sm text-[#888888] uppercase tracking-wider">Desglose Tráfico</span>
 </div>
-<!-- Listado con barras de progreso -->
-<div class="space-y-5">
-<!-- Portafolio Principal -->
-<div>
-<div class="flex justify-between items-center mb-1.5">
-<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-[#0088cc]"></span>
-                  Portafolio Principal <code class="text-[11px] text-[#777777] font-mono">(index.html)</code>
-</span>
-<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>610</strong> visitas <span class="text-[#555555]">• 43%</span></span>
-</div>
-<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
-<div class="bg-[#0088cc] h-full rounded-full transition-all duration-700" style="width: 43%;"></div>
+<div class="space-y-5" id="page-breakdown-list">
+<div class="text-[#666666] text-xs py-4 text-center">Cargando desglose de visitas...</div>
 </div>
 </div>
-<!-- Colecciones y Eventos -->
-<div>
-<div class="flex justify-between items-center mb-1.5">
-<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
-                  Colecciones y Eventos <code class="text-[11px] text-[#777777] font-mono">(eventos.html)</code>
-</span>
-<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>430</strong> visitas <span class="text-[#555555]">• 30%</span></span>
-</div>
-<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
-<div class="bg-[#38bdf8] h-full rounded-full transition-all duration-700" style="width: 30%;"></div>
-</div>
-</div>
-<!-- Galerías Públicas -->
-<div>
-<div class="flex justify-between items-center mb-1.5">
-<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-[#9bccf4]"></span>
-                  Galerías Públicas <code class="text-[11px] text-[#777777] font-mono">(galeria.html)</code>
-</span>
-<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>260</strong> visitas <span class="text-[#555555]">• 18%</span></span>
-</div>
-<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
-<div class="bg-[#9bccf4] h-full rounded-full transition-all duration-700" style="width: 18%;"></div>
-</div>
-</div>
-<!-- Acceso Privado PIN -->
-<div>
-<div class="flex justify-between items-center mb-1.5">
-<span class="font-label-md text-label-md text-[#ffffff] font-medium flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-[#c084fc]"></span>
-                  Acceso Privado PIN <code class="text-[11px] text-[#777777] font-mono">(privadas.html)</code>
-</span>
-<span class="font-label-sm text-label-sm text-[#aaaaaa]"><strong>120</strong> visitas <span class="text-[#555555]">• 9%</span></span>
-</div>
-<div class="w-full bg-[#111111] h-2 rounded-full overflow-hidden border border-[#2a2a2a]">
-<div class="bg-[#c084fc] h-full rounded-full transition-all duration-700" style="width: 9%;"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Mini insight footer -->
 <div class="mt-6 pt-4 border-t border-[#242424] flex items-center justify-between text-[#777777] font-label-sm text-label-sm">
-<span class="">Tasa de rebote estimada: 24.2%</span>
-<span class="text-[#0088cc]">Datos calibrados en vivo</span>
+<span id="rebote-label">Filtro Admin: Activo (Excluido)</span>
+<span class="text-[#0088cc] flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse"></span> Supabase en vivo</span>
 </div>
 </div>
-<!-- Columna 2: Álbumes y Colecciones Destacadas (7/12) -->
-<div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 shadow-sm">
+<!-- Columna 2: Álbumes y Colecciones Destacadas -->
+<div class="lg:col-span-6 bg-[#181818] border border-[#282828] rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
 <div class="flex items-center justify-between border-b border-[#242424] pb-4 mb-5">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[#ffd700] text-[20px]">military_tech</span>
@@ -391,83 +338,14 @@
 </div>
 <span class="font-label-sm text-label-sm text-[#888888] uppercase tracking-wider">Ranking de Impacto</span>
 </div>
-<!-- Ranking Podium -->
-<div class="space-y-3">
-<!-- #1 -->
-<div class="flex items-center justify-between p-3.5 bg-[#202020] border border-[#333333] rounded-lg hover:border-[#0088cc]/60 transition-colors group">
-<div class="flex items-center gap-3.5">
-<div class="w-7 h-7 rounded-md bg-[#ffd700]/10 border border-[#ffd700]/30 text-[#ffd700] flex items-center justify-center font-bold font-label-md text-label-md">
-                #1
-              </div>
-<div>
-<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
-                  Colegio San Martín - Promoción 2026
-                </h3>
-<p class="font-label-sm text-label-sm text-[#888888]">Lote Escolar Egresados • Alta Demanda</p>
+<div class="space-y-3" id="album-ranking-list">
+<div class="text-[#666666] text-xs py-4 text-center">Consultando álbumes con más vistas...</div>
 </div>
 </div>
-<div class="text-right">
-<span class="font-label-md text-label-md text-white font-semibold block">780 visitas</span>
-<span class="font-label-sm text-label-sm text-[#38bdf8]">2.150 fotos vistas</span>
+<div class="mt-4 pt-3 border-t border-[#242424] text-right">
+<span class="text-[11px] text-[#777777] font-mono" id="ranking-total-label">Calculando impacto total...</span>
 </div>
-</div>
-<!-- #2 -->
-<div class="flex items-center justify-between p-3.5 bg-[#1b1b1b] border border-[#2a2a2a] rounded-lg hover:border-[#444444] transition-colors group">
-<div class="flex items-center gap-3.5">
-<div class="w-7 h-7 rounded-md bg-[#c0c0c0]/10 border border-[#c0c0c0]/30 text-[#c0c0c0] flex items-center justify-center font-bold font-label-md text-label-md">
-                #2
-              </div>
-<div>
-<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
-                  Instituto Belgrano - Acto 9 de Julio
-                </h3>
-<p class="font-label-sm text-label-sm text-[#888888]">Ceremonia Oficial • Primaria</p>
-</div>
-</div>
-<div class="text-right">
-<span class="font-label-md text-label-md text-white font-semibold block">410 visitas</span>
-<span class="font-label-sm text-label-sm text-[#38bdf8]">1.320 fotos vistas</span>
-</div>
-</div>
-<!-- #3 -->
-<div class="flex items-center justify-between p-3.5 bg-[#1b1b1b] border border-[#2a2a2a] rounded-lg hover:border-[#444444] transition-colors group">
-<div class="flex items-center gap-3.5">
-<div class="w-7 h-7 rounded-md bg-[#cd7f32]/10 border border-[#cd7f32]/30 text-[#cd7f32] flex items-center justify-center font-bold font-label-md text-label-md">
-                #3
-              </div>
-<div>
-<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
-                  Colegio Nacional - Gala de Egresados
-                </h3>
-<p class="font-label-sm text-label-sm text-[#888888]">Fiesta de Gala • Nocturna</p>
-</div>
-</div>
-<div class="text-right">
-<span class="font-label-md text-label-md text-white font-semibold block">230 visitas</span>
-<span class="font-label-sm text-label-sm text-[#38bdf8]">1.380 fotos vistas</span>
-</div>
-</div>
-<!-- #4 -->
-<div class="flex items-center justify-between p-3.5 bg-[#1b1b1b] border border-[#2a2a2a] rounded-lg hover:border-[#444444] transition-colors group">
-<div class="flex items-center gap-3.5">
-<div class="w-7 h-7 rounded-md bg-[#2a2a2a] border border-[#333333] text-[#777777] flex items-center justify-center font-bold font-label-md text-label-md">
-                #4
-              </div>
-<div>
-<h3 class="font-headline-sm text-[15px] font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
-                  Promesa a la Bandera TM 2026
-                </h3>
-<p class="font-label-sm text-label-sm text-[#888888]">4to Grado • Galería Abierta</p>
-</div>
-</div>
-<div class="text-right">
-<span class="font-label-md text-label-md text-white font-semibold block">180 visitas</span>
-<span class="font-label-sm text-label-sm text-[#38bdf8]">920 fotos vistas</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+</div></div>
 <!-- ========================================================================= -->
 <!-- 5. REGISTRO DE ACTIVIDAD RECIENTE / LOG EN VIVO                           -->
 <!-- ========================================================================= -->
@@ -598,7 +476,7 @@
 </div>
 </section>
 <!-- Footer Atelier Darkroom -->
-<footer class="mt-12 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-center justify-between text-[#666666] font-label-sm text-label-sm gap-4">
+<footer class="mt-12 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-center justify-between text-[#666666] font-label-sm text-label-sm gap-4"><div class="flex items-center gap-4 order-last sm:order-first"><a class="flex items-center gap-1.5 text-xs text-[#aaaaaa] hover:text-[#38bdf8] transition-colors" href="eventos.html"><span class="material-symbols-outlined text-[16px]">arrow_back</span> Volver a Eventos</a><span class="text-[#333333]">•</span><a class="flex items-center gap-1.5 text-xs text-[#aaaaaa] hover:text-[#38bdf8] transition-colors" href="index.html" target="_blank"><span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver Portafolio</a></div>
 <div>
 <span class="">Sergio Ricardo Molina Fotografía • Suite de Producción y Métricas</span>
 </div>
@@ -778,5 +656,4 @@
 <span class="text-[10px] font-semibold mt-0.5">Métricas</span>
 </a>
 </nav>
-
 </body></html>
