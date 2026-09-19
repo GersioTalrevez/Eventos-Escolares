@@ -488,7 +488,7 @@
 </div>
 <div>
 <h3 class="text-base sm:text-headline-sm font-headline-sm text-on-surface font-semibold">Confirmar Eliminación</h3>
-<span class="text-[10px] sm:text-label-sm font-label-sm text-outline">ACCIÓN IRREVERSIBLE EN SUPABASE</span>
+<span class="text-[10px] sm:text-label-sm font-label-sm text-outline">ACCIÓN IRREVERSIBLE EN SUPABASE Y LOCAL</span>
 </div>
 </div>
 <p class="text-xs sm:text-body-md font-body-md text-on-surface-variant leading-relaxed">
@@ -516,55 +516,141 @@
     supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
 
+  // Helper para extraer ID de Google Drive
+  function extraerDriveId(enlace) {
+    if (!enlace) return '';
+    const clean = String(enlace).trim();
+    const matchFolder = clean.match(/folders\/([a-zA-Z0-9_-]+)/);
+    if (matchFolder) return matchFolder[1];
+    const matchFile = clean.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (matchFile) return matchFile[1];
+    const matchId = clean.match(/id=([a-zA-Z0-9_-]+)/);
+    if (matchId) return matchId[1];
+    // Si ya parece un ID directo alfanumérico sin slash
+    if (!clean.includes('/') && clean.length >= 10) return clean;
+    return '';
+  }
+
+  // Helper para normalizar URL de portada (directa o via Google Drive)
+  function resolverCoverUrl(gal) {
+    const rawCover = gal.cover_url || gal.portada || gal.imagen || '';
+    if (rawCover && (rawCover.startsWith('http://') || rawCover.startsWith('https://') || rawCover.startsWith('data:'))) {
+      return rawCover;
+    }
+    const rawDrive = gal.drive_url || gal.enlace_drive || gal.url_drive || gal.drive_id || gal.id_drive || '';
+    const extractedId = extraerDriveId(rawDrive) || extraerDriveId(rawCover);
+    if (extractedId) {
+      return 'https://lh3.googleusercontent.com/d/' + extractedId + '=w600';
+    }
+    return '';
+  }
+
   // Estado reactivo
   let dbGalerias = [];
   let currentFilter = 'all';
   let searchQuery = '';
   let itemPendingDelete = null;
 
-  // 1. Cargar Colecciones desde Supabase
+  // 1. Cargar Colecciones desde Supabase + Fallback a 'galerias' + localStorage 'galerias_locales'
   async function cargarColecciones() {
     const refreshBtn = document.getElementById('btnRefreshGrid');
     const refreshIcon = refreshBtn ? refreshBtn.querySelector('.material-symbols-outlined') : null;
     if (refreshIcon) refreshIcon.classList.add('animate-spin');
 
-    if (!supabaseClient) {
-      dbGalerias = [];
-      actualizarContadores();
-      renderizarTarjetas();
-      if (refreshIcon) refreshIcon.classList.remove('animate-spin');
-      return;
+    let filasSupabase = [];
+
+    if (supabaseClient) {
+      // Intento 1: consultar tabla 'galeria'
+      try {
+        const { data, error } = await supabaseClient
+          .from('galeria')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!error && Array.isArray(data) && data.length > 0) {
+          filasSupabase = data;
+        } else if (error) {
+          console.warn('[Supabase] Aviso o sin registros en galeria:', error.message);
+        }
+      } catch (err) {
+        console.warn('[Supabase] Error consultando tabla galeria:', err);
+      }
+
+      // Intento 2: si no hay filas, consultar 'galerias' (plural)
+      if (filasSupabase.length === 0) {
+        try {
+          const { data: dataPlural, error: errPlural } = await supabaseClient
+            .from('galerias')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!errPlural && Array.isArray(dataPlural) && dataPlural.length > 0) {
+            filasSupabase = dataPlural;
+          }
+        } catch (e2) {
+          console.warn('[Supabase] Error consultando tabla galerias:', e2);
+        }
+      }
     }
 
+    // Intento 3: Cargar respaldo de localStorage ('galerias_locales')
+    let filasLocales = [];
     try {
-      const { data, error } = await supabaseClient
-        .from('galeria')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.warn('[Supabase] Error al consultar tabla galeria:', error.message);
-        dbGalerias = [];
-      } else {
-        dbGalerias = Array.isArray(data) ? data : [];
+      const rawLocales = localStorage.getItem('galerias_locales');
+      if (rawLocales) {
+        const parsed = JSON.parse(rawLocales);
+        if (Array.isArray(parsed)) {
+          filasLocales = parsed;
+        }
       }
-    } catch (err) {
-      console.warn('[Supabase] Excepción en fetch:', err);
-      dbGalerias = [];
-    } finally {
-      actualizarContadores();
-      renderizarTarjetas();
-      if (refreshIcon) {
-        setTimeout(() => refreshIcon.classList.remove('animate-spin'), 300);
-      }
+    } catch (errLocal) {
+      console.warn('[localStorage] Error al parsear galerias_locales:', errLocal);
     }
+
+    // Combinar sin duplicados por ID o drive_url / id_drive
+    const mapaCombinado = new Map();
+
+    // 1ro agregamos datos de Supabase
+    filasSupabase.forEach(item => {
+      const key = item.id || item.drive_url || item.drive_id || item.id_drive || (item.titulo ? `t_${item.titulo}` : Math.random().toString());
+      mapaCombinado.set(String(key), item);
+    });
+
+    // 2do integramos locales (si ya existe la llave, se preserva o actualiza)
+    filasLocales.forEach(item => {
+      const key = item.id || item.drive_url || item.drive_id || item.id_drive || (item.titulo ? `t_${item.titulo}` : Math.random().toString());
+      if (!mapaCombinado.has(String(key))) {
+        mapaCombinado.set(String(key), item);
+      }
+    });
+
+    dbGalerias = Array.from(mapaCombinado.values());
+
+    actualizarContadores();
+    renderizarTarjetas();
+
+    if (refreshIcon) {
+      setTimeout(() => refreshIcon.classList.remove('animate-spin'), 300);
+    }
+  }
+
+  // Helper para determinar si una galería es privada
+  function esGaleriaPrivada(gal) {
+    if (gal.is_private === true || gal.es_privada === true || String(gal.is_private) === 'true' || String(gal.es_privada) === 'true') {
+      return true;
+    }
+    const clave = (gal.clave || gal.pin || gal.password || '').toString().trim();
+    if (clave.length > 0 && clave.toLowerCase() !== 'n/a' && clave.toLowerCase() !== 'ninguna' && clave.toLowerCase() !== 'sin clave') {
+      return true;
+    }
+    return false;
   }
 
   // 2. Actualizar Contadores (#lblTotal, #lblPublicas, #lblPrivadas, badges)
   function actualizarContadores() {
     const total = dbGalerias.length;
-    const pubCount = dbGalerias.filter(g => !g.is_private && !g.es_privada).length;
-    const privCount = dbGalerias.filter(g => g.is_private || g.es_privada).length;
+    const privCount = dbGalerias.filter(g => esGaleriaPrivada(g)).length;
+    const pubCount = total - privCount;
 
     const lblTot = document.getElementById('lblTotal');
     const lblPub = document.getElementById('lblPublicas');
@@ -604,14 +690,14 @@
     grid.innerHTML = '';
 
     const filtered = dbGalerias.filter(item => {
-      const isPriv = Boolean(item.is_private || item.es_privada);
+      const isPriv = esGaleriaPrivada(item);
       const matchesFilter = (currentFilter === 'all') || 
                             (currentFilter === 'public' && !isPriv) || 
                             (currentFilter === 'private' && isPriv);
       
       const q = searchQuery.toLowerCase().trim();
       const titulo = (item.titulo || item.title || '').toLowerCase();
-      const driveId = (item.drive_id || item.id_drive || '').toLowerCase();
+      const driveId = (item.drive_id || item.id_drive || item.drive_url || '').toLowerCase();
       const clave = (item.clave || item.pin || '').toLowerCase();
 
       const matchesSearch = !q || titulo.includes(q) || driveId.includes(q) || clave.includes(q);
@@ -635,23 +721,27 @@
       const card = document.createElement('article');
       card.className = "flex flex-col bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary/50 transition-all duration-200 group";
       
-      const isPriv = Boolean(gal.is_private || gal.es_privada);
+      const isPriv = esGaleriaPrivada(gal);
       const badgeClass = isPriv 
         ? "bg-tertiary-container/80 text-tertiary border-tertiary/40" 
         : "bg-secondary-container/80 text-secondary border-secondary/40";
       const badgeLabel = isPriv ? "PRIVADA" : "PÚBLICA";
       const badgeIcon = isPriv ? "lock" : "public";
       const titulo = gal.titulo || gal.title || "Galería sin título";
-      const driveId = gal.drive_id || gal.id_drive || "N/D";
+      const rawDriveRef = gal.drive_id || gal.id_drive || gal.drive_url || gal.enlace_drive || "N/D";
+      const driveIdDisplay = extraerDriveId(rawDriveRef) || rawDriveRef;
       const clave = gal.clave || gal.pin || "N/A";
-      const totalFotos = gal.total_fotos || gal.count || 0;
-      const coverSrc = gal.cover_url || gal.portada || '';
+      const totalFotos = gal.total_fotos || gal.count || gal.fotos_count || (Array.isArray(gal.fotos) ? gal.fotos.length : 0) || 0;
+      const coverSrc = resolverCoverUrl(gal);
       const fechaCreacion = gal.created_at ? new Date(gal.created_at).toLocaleDateString('es-AR', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Reciente';
+
+      const safeGalId = gal.id || driveIdDisplay;
+      const enlaceProbar = gal.id ? `galeria.html?id=${gal.id}` : (driveIdDisplay !== 'N/D' ? `galeria.html?drive=${encodeURIComponent(driveIdDisplay)}` : 'galeria.html');
 
       card.innerHTML = `
         <div class="relative aspect-video w-full bg-surface-container-highest overflow-hidden border-b border-outline-variant flex items-center justify-center">
           ${coverSrc 
-            ? `<img src="${coverSrc}" alt="${titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />` 
+            ? `<img src="${coverSrc}" alt="${titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'material-symbols-outlined text-4xl sm:text-5xl text-outline/40\\'>photo_library</span>';" />` 
             : `<span class="material-symbols-outlined text-4xl sm:text-5xl text-outline/40">photo_library</span>`
           }
           <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/50"></div>
@@ -677,7 +767,7 @@
                 <span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
                 <span>ID DRIVE:</span>
               </span>
-              <span class="text-on-surface font-mono text-[11px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant truncate max-w-[150px] sm:max-w-[180px]">${driveId}</span>
+              <span class="text-on-surface font-mono text-[11px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant truncate max-w-[150px] sm:max-w-[180px]" title="${driveIdDisplay}">${driveIdDisplay}</span>
             </div>
 
             <div class="flex items-center justify-between py-1 border-b border-outline-variant/60">
@@ -701,12 +791,12 @@
           </div>
 
           <div class="flex items-center justify-between pt-2 border-t border-outline-variant gap-2">
-            <a href="galeria.html?id=${gal.id}" target="_blank" class="inline-flex items-center gap-1 text-xs sm:text-label-md font-label-md text-primary hover:text-secondary-fixed transition-colors active:scale-[0.98] min-h-[38px]">
+            <a href="${enlaceProbar}" target="_blank" class="inline-flex items-center gap-1 text-xs sm:text-label-md font-label-md text-primary hover:text-secondary-fixed transition-colors active:scale-[0.98] min-h-[38px]">
               <span class="material-symbols-outlined text-base" data-icon="open_in_new">open_in_new</span>
               <span>Probar Enlace</span>
             </a>
 
-            <button onclick="eliminarGaleria('${gal.id}', '${(titulo || '').replace(/'/g, "\\'")}')" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-transparent hover:border-error/40 transition-colors active:scale-[0.98] min-h-[38px]">
+            <button onclick="eliminarGaleria('${safeGalId}', '${(titulo || '').replace(/'/g, "\\'")}', '${gal.drive_url || ''}')" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-transparent hover:border-error/40 transition-colors active:scale-[0.98] min-h-[38px]">
               <span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
               <span>Eliminar</span>
             </button>
@@ -718,8 +808,8 @@
   }
 
   // 5. Eliminar Galería con Confirmación Modal
-  function eliminarGaleria(id, titulo) {
-    itemPendingDelete = { id, titulo };
+  function eliminarGaleria(id, titulo, driveUrl) {
+    itemPendingDelete = { id, titulo, driveUrl };
     const modalTitle = document.getElementById('modalGalTitle');
     if (modalTitle) modalTitle.textContent = `"${titulo || 'Esta galería'}"`;
     const modal = document.getElementById('deleteModal');
@@ -738,25 +828,46 @@
     itemPendingDelete = null;
   }
 
-  // Confirmar Borrado Real en Supabase
+  // Confirmar Borrado Real en Supabase ('galeria' y 'galerias') + Limpieza en localStorage ('galerias_locales')
   document.getElementById('btnConfirmDelete')?.addEventListener('click', async () => {
     if (!itemPendingDelete) return;
     const deleteId = itemPendingDelete.id;
+    const deleteDriveUrl = itemPendingDelete.driveUrl;
 
+    // 1. Borrar en Supabase
     if (supabaseClient) {
-      try {
-        const { error } = await supabaseClient
-          .from('galeria')
-          .delete()
-          .eq('id', deleteId);
-
-        if (error) {
-          console.error('[Supabase] Error al eliminar:', error.message);
-          alert('Hubo un error al eliminar en Supabase: ' + error.message);
+      const tablas = ['galeria', 'galerias'];
+      for (const t of tablas) {
+        try {
+          if (deleteId) {
+            await supabaseClient.from(t).delete().eq('id', deleteId);
+          }
+          if (deleteDriveUrl) {
+            await supabaseClient.from(t).delete().eq('drive_url', deleteDriveUrl);
+          }
+        } catch (e) {
+          console.warn(`[Supabase] Advertencia al eliminar en tabla ${t}:`, e);
         }
-      } catch (e) {
-        console.error('[Supabase] Excepción en delete:', e);
       }
+    }
+
+    // 2. Borrar del respaldo local 'galerias_locales'
+    try {
+      const rawLocales = localStorage.getItem('galerias_locales');
+      if (rawLocales) {
+        let locales = JSON.parse(rawLocales);
+        if (Array.isArray(locales)) {
+          locales = locales.filter(g => {
+            const matchId = g.id && String(g.id) === String(deleteId);
+            const matchDrive = deleteDriveUrl && (g.drive_url === deleteDriveUrl || g.enlace_drive === deleteDriveUrl);
+            const matchDriveId = g.drive_id && String(g.drive_id) === String(deleteId);
+            return !(matchId || matchDrive || matchDriveId);
+          });
+          localStorage.setItem('galerias_locales', JSON.stringify(locales));
+        }
+      }
+    } catch (eLocal) {
+      console.warn('[localStorage] Error al limpiar galería local:', eLocal);
     }
 
     closeModal();
