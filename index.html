@@ -530,6 +530,100 @@
 
     history.pushState({ vista: 'inicio' }, '', '');
 
+    // REGISTRO AUTOMÁTICO EN TIEMPO REAL A SUPABASE (TABLA 'visitas')
+    async function registrarVisitaEnSupabase() {
+      try {
+        // 1. Detección de sesión activa de administrador
+        let esAdmin = false;
+
+        // Comprobación de flags y auth local
+        if (localStorage.getItem('admin_autenticado') === 'true' || 
+            sessionStorage.getItem('admin_autenticado') === 'true' ||
+            localStorage.getItem('isAdmin') === 'true') {
+          esAdmin = true;
+        }
+
+        // Inspección de sesión de Supabase Auth en localStorage
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.includes('supabase.auth.token') || key.includes('sb-') || key.includes('auth-token'))) {
+            try {
+              const valor = localStorage.getItem(key);
+              if (valor && (valor.includes('molinaoksergio@gmail.com') || valor.includes('admin'))) {
+                esAdmin = true;
+                break;
+              }
+            } catch (_) {}
+          }
+        }
+
+        // Verificación directa vía Supabase SDK si existe
+        if (!esAdmin && window.supabase) {
+          try {
+            const clienteAuth = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            const { data: { session } } = await clienteAuth.auth.getSession();
+            if (session && session.user && session.user.email === 'molinaoksergio@gmail.com') {
+              esAdmin = true;
+            }
+          } catch (_) {}
+        }
+
+        // Si es el propietario/admin, omitir registro para no adulterar métricas
+        if (esAdmin) {
+          return;
+        }
+
+        // 2. Detección de dispositivo y datos de visita
+        const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        const dispositivo = esMovil ? 'móvil' : 'desktop';
+        const origen = document.referrer ? document.referrer : 'directo';
+        const datosVisita = {
+          tipo: 'visita_pagina',
+          pagina: 'index.html',
+          detalle: 'Visita a Portafolio Principal',
+          dispositivo: dispositivo,
+          origen: origen,
+          created_at: new Date().toISOString()
+        };
+
+        // 3. Inserción con doble vía segura (SDK + fetch REST directo)
+        let insertado = false;
+
+        if (window.supabase) {
+          try {
+            const cliente = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            const { error } = await cliente.from('visitas').insert([datosVisita]);
+            if (!error) {
+              insertado = true;
+            }
+          } catch (errSdk) {
+            console.warn('Supabase SDK insert fallback:', errSdk);
+          }
+        }
+
+        if (!insertado) {
+          await fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(datosVisita)
+          });
+        }
+      } catch (errGlobal) {
+        console.warn('Registro de visita omitido:', errGlobal);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', registrarVisitaEnSupabase);
+    } else {
+      registrarVisitaEnSupabase();
+    }
+
     // ATAJO SECRETO: Ctrl + Alt + A
     document.addEventListener('keydown', (e) => {
       const isCtrlOrCmd = e.ctrlKey || e.metaKey;
