@@ -1,13 +1,15 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>Darkroom Console · Administración Oficial Sergio Ricardo Molina</title>
 <!-- Google Fonts: Raleway (Headlines) & Manrope (Body/Data) -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS with custom plugins -->
@@ -192,7 +194,7 @@
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-2xl shrink-0" data-icon="lens_blur">lens_blur</span>
 <div class="flex flex-col">
-<span class="text-base sm:text-headline-sm font-headline-sm font-bold text-on-surface tracking-wide leading-tight">Panel Control</span>
+<span class="text-base sm:text-headline-sm font-headline-sm font-bold text-on-surface tracking-wide leading-tight">Darkroom Console</span>
 <span class="text-[10px] font-label-sm text-outline tracking-wider leading-tight truncate max-w-[170px] sm:max-w-none">Administración · SERGIO RICARDO MOLINA</span>
 </div>
 </div>
@@ -359,14 +361,42 @@
 </a>
 </div>
 </section>
-<!-- Métricas Rápidas: 1 columna en móvil, 3 columnas en tablet/desktop (#lblTotal, #lblPublicas, #lblPrivadas) -->
-<section class="grid sm:grid-cols-3 sm:gap-4 grid-cols-3 gap-2"><div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm"><div class="space-y-1 min-w-0"><span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">TOTAL REG.</span><div class="text-xl sm:text-headline-lg font-headline-lg text-on-surface font-bold leading-none" id="lblTotal">0</div></div><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-primary border border-[#262626] shrink-0 ml-1"><span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="folder_special">folder_special</span></div></div><div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm"><div class="space-y-1 min-w-0"><span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">PÚBLICAS</span><div class="text-xl sm:text-headline-lg font-headline-lg text-[#38bdf8] font-bold leading-none" id="lblPublicas">0</div></div><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-[#38bdf8] border border-[#262626] shrink-0 ml-1"><span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="lock_open">lock_open</span></div></div><div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm"><div class="space-y-1 min-w-0"><span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">CON CLAVE</span><div class="text-xl sm:text-headline-lg font-headline-lg text-yellow-400 font-bold leading-none" id="lblPrivadas">0</div></div><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-yellow-400 border border-[#262626] shrink-0 ml-1"><span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="key">key</span></div></div></section>
+<!-- Métricas Rápidas: 3 columnas de igual altura (#lblTotal, #lblPublicas, #lblPrivadas) -->
+<section class="grid sm:grid-cols-3 sm:gap-4 grid-cols-3 gap-2">
+<div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm min-h-[96px]">
+<div class="space-y-1 min-w-0">
+<span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">TOTAL REG.</span>
+<div class="text-xl sm:text-headline-lg font-headline-lg text-on-surface font-bold leading-none" id="lblTotal">0</div>
+</div>
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-primary border border-[#262626] shrink-0 ml-1">
+<span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="folder_special">folder_special</span>
+</div>
+</div>
+<div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm min-h-[96px]">
+<div class="space-y-1 min-w-0">
+<span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">ÁLBUMES PÚBLICOS</span>
+<div class="text-xl sm:text-headline-lg font-headline-lg text-[#38bdf8] font-bold leading-none" id="lblPublicas">0</div>
+</div>
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-[#38bdf8] border border-[#262626] shrink-0 ml-1">
+<span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="lock_open">lock_open</span>
+</div>
+</div>
+<div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm min-h-[96px]">
+<div class="space-y-1 min-w-0">
+<span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">CON CLAVE</span>
+<div class="text-xl sm:text-headline-lg font-headline-lg text-yellow-400 font-bold leading-none" id="lblPrivadas">0</div>
+</div>
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-yellow-400 border border-[#262626] shrink-0 ml-1">
+<span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="key">key</span>
+</div>
+</div>
+</section>
 <!-- Barra de Filtros, Búsqueda Dinámica y Refresco adaptados a móviles -->
 <section class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#0e0e0e] p-3 sm:p-space-md rounded-xl border border-[#262626]">
 <!-- Buscador Dinámico (#inputBusqueda) -->
 <div class="relative flex-1">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
-<input class="w-full bg-[#181818] border border-[#262626] rounded-lg pl-10 pr-4 py-2.5 text-on-surface text-sm placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors min-h-[44px]" id="inputBusqueda" placeholder="Filtrar por título, ID de Drive o clave..." type="text">
+<input class="w-full bg-[#181818] border border-[#262626] rounded-lg pl-10 pr-4 py-2.5 text-on-surface text-sm placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors min-h-[44px]" id="inputBusqueda" placeholder="Filtrar por título, ID de Drive o clave..." type="text"/>
 </div>
 <!-- Filtros Rápidos (Chips) y Botón Refrescar -->
 <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
@@ -387,7 +417,7 @@
 <!-- Cuadrícula de Álbumes (#gridGalerias: 1 col en mobile, 2 en md) -->
 <section>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridGalerias"></div>
-<div class="flex-col items-center justify-center p-6 sm:p-space-3xl rounded-xl border border-dashed border-[#262626] bg-[#0e0e0e] text-center my-2 flex" id="emptyState">
+<div class="flex-col items-center justify-center p-6 sm:p-space-3xl rounded-xl border border-dashed border-[#262626] bg-[#0e0e0e] text-center my-2 hidden" id="emptyState">
 <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#181818] flex items-center justify-center mb-3 sm:mb-space-md border border-[#262626] text-primary">
 <span class="material-symbols-outlined text-2xl sm:text-3xl" data-icon="collections_bookmark">collections_bookmark</span>
 </div>
@@ -428,12 +458,8 @@
 <footer class="bg-[#0e0e0e] full-width bottom border-t border-[#262626] mt-auto mb-14 md:mb-0">
 <div class="flex flex-col md:flex-row justify-between items-center w-full px-4 sm:px-gutter-desktop max-w-container-max mx-auto py-space-md gap-space-sm text-center md:text-left">
 <div class="text-xs sm:text-label-md font-label-md text-on-surface-variant">
-      © 2026&nbsp; · Sergio Ricardo Molina</div>
+      © 2026  · Sergio Ricardo Molina</div>
 <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-space-md">
-
-
-
-
 </div>
 </div>
 </footer>
@@ -450,7 +476,7 @@
 </div>
 </div>
 <p class="text-xs sm:text-body-md font-body-md text-on-surface-variant leading-relaxed">
-      ¿Está seguro de que desea eliminar permanentemente la galería <strong class="text-on-surface font-bold" id="modalGalTitle"></strong>? Se removerá del registro activo.
+      ¿Está seguro de que desea eliminar permanentemente la galería <strong class="text-on-surface font-bold" id="modalGalTitle"></strong>? Se removerá de Supabase y del registro local.
     </p>
 <div class="flex items-center justify-end gap-2 pt-2">
 <button class="px-4 py-2.5 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md border border-[#262626] text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors active:scale-[0.98]" id="btnCancelDelete" onclick="closeModal()">
@@ -463,7 +489,7 @@
 </div>
 </div>
 </div>
-<!-- Lógica JavaScript Oficial: Conexión Real con Supabase, Respaldo Local, Muestras Verificadas y Navegación Directa -->
+<!-- Lógica JavaScript Oficial: Supabase + LocalStorage + Normalización Robusta -->
 <script>
   // Inicialización de Supabase oficial
   const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
@@ -474,71 +500,76 @@
     try {
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } catch(e) {
-      console.warn('[Supabase] Init error:', e);
+      console.warn('[Supabase] Error en init client:', e);
     }
   }
 
-  // Muestras verificadas predeterminadas (para evitar pantallas en 0 registros en conexiones lentas o primer inicio)
-  const SEED_GALERIAS = [
-    {
-      id: 'gal_grad_2024',
-      titulo: 'Graduación Promoción 2024 - Colegio San Martín',
-      drive_id: '1A9x_Klm892bZb7Y',
-      es_privada: false,
-      is_private: false,
-      clave: '',
-      total_fotos: 142,
-      cover_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJvlBvbbVFsZLw4HvJ5MW8Fm-Y7-UMcOryaA8Gx4JK7p8a6JtO-cEK23Ye5YHQVKSiLrVR7OC1U6TDZaYirDdM5D3T639BoR-XKmjESzAWPDKwg9KBam8ewFcUhgvoEOek3dSr87hLh-Ecj52AzFO6iY44TPSE9rwwIOv8_Ri6iO8tLGX73DxV_z21Pkb1c5GMYwqt9Eo051pjUyPDg7wnEEQO4REdXbxCS7dLQw1aX66r0gY1JsE0',
-      created_at: '2024-11-18T14:30:00Z'
-    },
-    {
-      id: 'gal_brenda_xv',
-      titulo: 'Quince Años & Sesión Privada - Brenda',
-      drive_id: '0B7q_Pzm341kAc9X',
-      es_privada: true,
-      is_private: true,
-      clave: 'brenda',
-      total_fotos: 88,
-      cover_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsLoBqEvqxARDAKg4mzi6HN1TayRrGkvOtiSqqJ5HTftB5ZfOrz01tkydrAdCTrxOF2Z6VBquqyx-bvb7fEUZqep4kcu7sjpf-EgleEy3WS9DTn9C5u_0cyw9hiQD4dVqKARfF5rM4zDuZAwBuja2KoY20lxF1GIGDYg5slSeAL7MXulCpYjT90wpk45hT0lr0i1u-MJcTLBwLVpJKUQ5fcoOmlFBOaTpgbhlWEqxolLQmPYlOfyBS',
-      created_at: '2024-11-24T19:00:00Z'
-    }
-  ];
+  // Utilidad para extraer id limpio de Google Drive de URLs o texto
+  function extraerDriveId(val) {
+    if (!val) return '';
+    const str = String(val).trim();
+    // Casos: folders/ID, id=ID, d/ID
+    const folderMatch = str.match(/folders\/([a-zA-Z0-9_-]+)/);
+    if (folderMatch) return folderMatch[1];
+    const idParamMatch = str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (idParamMatch) return idParamMatch[1];
+    const dMatch = str.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (dMatch) return dMatch[1];
+    // Si no contiene '/', asumimos que ya es un ID limpio
+    if (!str.includes('/') && !str.includes('?')) return str;
+    return str;
+  }
 
-  // Estado reactivo en memoria
+  // Estado en memoria
   let dbGalerias = [];
   let currentFilter = 'all';
   let searchQuery = '';
   let itemPendingDelete = null;
 
-  // Normalizador de formato de galería para máxima compatibilidad
-  function normalizarGaleria(g) {
-    if (!g) return null;
-    const isPriv = Boolean(g.is_private === true || g.es_privada === true || (g.clave && g.clave.toString().trim() !== '') || (g.pin && g.pin.toString().trim() !== ''));
-    const rawDrive = g.drive_id || g.id_drive || g.driveId || g.id || '';
-    const claveFinal = (g.clave || g.pin || (isPriv ? 'brenda' : '')).toString().trim();
+  // Normalizador de campos de galería hiper-tolerante a variaciones de Supabase o localStorage
+  function normalizarGaleria(item) {
+    if (!item) return null;
+    const rawDrive = item.drive_url || item.url_drive || item.enlace_drive || item.folder_id || item.drive_id || item.id_drive || item.driveId || '';
+    const driveClean = extraerDriveId(rawDrive) || (typeof item.id === 'string' && item.id.length > 10 ? item.id : 'DRIVE_ID');
+    const rawPass = item.password || item.clave || item.codigo || item.pin || '';
+    const passStr = String(rawPass || '').trim();
+    
+    // Condición de privada
+    const esPriv = Boolean(
+      item.es_privada === true || 
+      item.es_privada === 'true' || 
+      item.privada === true || 
+      item.privada === 'true' || 
+      item.is_private === true || 
+      passStr.length > 0
+    );
+
+    const tituloFinal = item.titulo || item.nombre || item.title || item.name || 'Galería sin título';
+    const portadaFinal = item.portada_url || item.portada || item.cover_url || item.cover || '';
+    const idFinal = item.id || driveClean || ('gal_' + Date.now() + Math.random().toString(36).substr(2, 6));
+    const createdFinal = item.created_at || item.fecha || item.date || new Date().toISOString();
+
     return {
-      id: g.id || rawDrive || 'gal_' + Math.random().toString(36).substr(2, 9),
-      titulo: g.titulo || g.title || 'Galería Atelier Sergio Ricardo Molina',
-      drive_id: rawDrive || 'ID_DRIVE_GENERAL',
-      es_privada: isPriv,
-      is_private: isPriv,
-      clave: claveFinal,
-      total_fotos: g.total_fotos || g.totalFotos || g.count || 0,
-      cover_url: g.cover_url || g.portada || g.cover || '',
-      created_at: g.created_at || new Date().toISOString()
+      id: String(idFinal),
+      titulo: tituloFinal,
+      drive_url: rawDrive || driveClean,
+      drive_id: driveClean,
+      portada_url: portadaFinal,
+      es_privada: esPriv,
+      password: passStr,
+      created_at: createdFinal
     };
   }
 
-  // 1. Cargar Colecciones de forma infalible (Sin timeouts agresivos, soporte 4G/móviles, fallback Supabase + LocalStorage + Seeds)
+  // Función hiper-robusta cargarColecciones() con fallback multi-fuente
   async function cargarColecciones() {
     const refreshBtn = document.getElementById('btnRefreshGrid');
     const refreshIcon = refreshBtn ? refreshBtn.querySelector('.material-symbols-outlined') : null;
     if (refreshIcon) refreshIcon.classList.add('animate-spin');
 
     let remoteList = [];
-    let fetchedRemote = false;
 
-    // Intentar consulta a Supabase si está disponible de forma segura
+    // a) Supabase: Intentar tabla 'galeria' y fallback a 'galerias'
     if (supabaseClient) {
       try {
         let { data, error } = await supabaseClient
@@ -546,66 +577,80 @@
           .select('*')
           .order('created_at', { ascending: false });
 
-        // Si la tabla galeria falla, intentar fallback 'galerias'
         if (error || !data || data.length === 0) {
-          const resFallback = await supabaseClient
+          const res2 = await supabaseClient
             .from('galerias')
             .select('*')
             .order('created_at', { ascending: false });
-          if (!resFallback.error && Array.isArray(resFallback.data) && resFallback.data.length > 0) {
-            data = resFallback.data;
+          if (!res2.error && Array.isArray(res2.data) && res2.data.length > 0) {
+            data = res2.data;
             error = null;
           }
         }
 
         if (!error && Array.isArray(data) && data.length > 0) {
           remoteList = data.map(normalizarGaleria).filter(Boolean);
-          fetchedRemote = true;
         }
       } catch (err) {
-        console.warn('[Supabase] Conexión omitida o en espera, usando respaldos locales:', err);
+        console.warn('[Supabase] Consulta remota falló o en espera, usando respaldos locales:', err);
       }
     }
 
-    // Leer respaldo de LocalStorage ('galerias_locales')
+    // b) Leer inmediatamente de localStorage: 'galerias_locales' y 'galerias'
     let localList = [];
-    try {
-      const stored = localStorage.getItem('galerias_locales');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          localList = parsed.map(normalizarGaleria).filter(Boolean);
+    ['galerias_locales', 'galerias'].forEach(key => {
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            parsed.forEach(p => {
+              const norm = normalizarGaleria(p);
+              if (norm) localList.push(norm);
+            });
+          }
         }
+      } catch(e) {
+        console.warn(`[LocalStorage] Error al leer ${key}:`, e);
       }
-    } catch (e) {
-      console.warn('[LocalStorage] Error al leer galerias_locales:', e);
-    }
-
-    // Combinar sin duplicados
-    const mapComb = new Map();
-    // Primero agregar colecciones remotas
-    remoteList.forEach(item => mapComb.set(String(item.id || item.drive_id), item));
-    // Luego agregar colecciones locales
-    localList.forEach(item => {
-      const key = String(item.id || item.drive_id);
-      if (!mapComb.has(key)) mapComb.set(key, item);
     });
 
-    // Si aún no hay nada (o BD nueva), sembrar datos de muestra verificados
-    if (mapComb.size === 0) {
-      SEED_GALERIAS.forEach(seed => {
-        const norm = normalizarGaleria(seed);
-        mapComb.set(String(norm.id), norm);
-      });
-      // Guardar semilla en local para persistencia inmediata
-      try {
-        localStorage.setItem('galerias_locales', JSON.stringify(Array.from(mapComb.values())));
-      } catch (_) {}
+    // c & d) Desduplicar la lista unificada por id y por ID de Drive
+    const mapComb = new Map();
+    // Agregar remotas
+    remoteList.forEach(item => {
+      const key = String(item.id || item.drive_id);
+      mapComb.set(key, item);
+      if (item.drive_id) mapComb.set(String(item.drive_id), item);
+    });
+    // Agregar locales asegurando sincronización instantánea
+    localList.forEach(item => {
+      const key = String(item.id || item.drive_id);
+      if (!mapComb.has(key) && (!item.drive_id || !mapComb.has(String(item.drive_id)))) {
+        mapComb.set(key, item);
+      }
+    });
+
+    // Extraer valores únicos
+    const uniqueValues = [];
+    const seenIds = new Set();
+    for (const item of mapComb.values()) {
+      const identifier = item.drive_id || item.id;
+      if (!seenIds.has(identifier)) {
+        seenIds.add(identifier);
+        uniqueValues.push(item);
+      }
     }
 
-    dbGalerias = Array.from(mapComb.values());
+    // Ordenar por created_at descendente
+    uniqueValues.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
 
+    dbGalerias = uniqueValues;
+
+    // e) Calcular y actualizar los 3 contadores superiores
     actualizarContadores();
+
+    // f) Renderizar tarjetas en #gridGalerias
     renderizarTarjetas();
 
     if (refreshIcon) {
@@ -613,11 +658,11 @@
     }
   }
 
-  // 2. Actualizar Contadores Superiores en Tiempo Real
+  // e) Actualizar Contadores Superiores en Tiempo Real
   function actualizarContadores() {
     const total = dbGalerias.length;
-    const pubCount = dbGalerias.filter(g => !g.es_privada && !g.is_private).length;
-    const privCount = dbGalerias.filter(g => g.es_privada || g.is_private).length;
+    const pubCount = dbGalerias.filter(g => !g.es_privada).length;
+    const privCount = dbGalerias.filter(g => g.es_privada).length;
 
     const lblTot = document.getElementById('lblTotal');
     const lblPub = document.getElementById('lblPublicas');
@@ -632,7 +677,7 @@
     if (badgeDrawer) badgeDrawer.textContent = total;
   }
 
-  // 3. Aplicar Filtros Dinámicos
+  // Filtros dinámicos (Todas, Solo Públicas, Solo Privadas)
   function aplicarFiltro(tipo) {
     currentFilter = tipo;
     const chips = document.querySelectorAll('.filter-chip');
@@ -649,7 +694,7 @@
     renderizarTarjetas();
   }
 
-  // 4. Renderizar Tarjetas con estética Atelier Darkroom y botón "Ver Galería"
+  // f) Renderizar tarjetas en #gridGalerias con diseño Atelier
   function renderizarTarjetas() {
     const grid = document.getElementById('gridGalerias');
     const empty = document.getElementById('emptyState');
@@ -657,7 +702,7 @@
     grid.innerHTML = '';
 
     const filtered = dbGalerias.filter(item => {
-      const isPriv = Boolean(item.es_privada || item.is_private);
+      const isPriv = item.es_privada;
       const matchesFilter = (currentFilter === 'all') || 
                             (currentFilter === 'public' && !isPriv) || 
                             (currentFilter === 'private' && isPriv);
@@ -665,9 +710,9 @@
       const q = searchQuery.toLowerCase().trim();
       const titulo = (item.titulo || '').toLowerCase();
       const driveId = (item.drive_id || '').toLowerCase();
-      const clave = (item.clave || '').toLowerCase();
+      const pass = (item.password || '').toLowerCase();
 
-      const matchesSearch = !q || titulo.includes(q) || driveId.includes(q) || clave.includes(q);
+      const matchesSearch = !q || titulo.includes(q) || driveId.includes(q) || pass.includes(q);
       return matchesFilter && matchesSearch;
     });
 
@@ -688,49 +733,55 @@
       const card = document.createElement('article');
       card.className = "flex flex-col bg-[#181818] border border-[#262626] rounded-xl overflow-hidden shadow-sm hover:border-[#38bdf8]/50 transition-all duration-200 group";
       
-      const isPriv = Boolean(gal.es_privada || gal.is_private);
-      // Colores de acento según especificación: #38bdf8 para públicas, #facc15 (amarillo) para privadas con clave
+      const isPriv = gal.es_privada;
+      // Badge superior: "Pública" (azul cian) o "Privada" (ámbar dorado)
       const badgeClass = isPriv 
-        ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/40" 
+        ? "bg-[#794303]/80 text-[#facc15] border-[#facc15]/40" 
         : "bg-[#005580]/80 text-[#38bdf8] border-[#38bdf8]/40";
-      const badgeLabel = isPriv ? "PRIVADA" : "PÚBLICA";
+      const badgeLabel = isPriv ? "Privada" : "Pública";
       const badgeIcon = isPriv ? "lock" : "public";
-      const titulo = gal.titulo || "Galería Atelier";
-      const driveId = gal.drive_id || "N/D";
-      const clave = gal.clave || (isPriv ? "brenda" : "Acceso Abierto");
-      const totalFotos = gal.total_fotos || (isPriv ? 88 : 142);
-      const coverSrc = gal.cover_url || '';
+      
+      const titulo = gal.titulo;
+      const driveClean = gal.drive_id || 'ID_DRIVE';
+      const clave = gal.password || (isPriv ? "requerida" : "Acceso Abierto");
+      
+      // Portada inteligente: si existe portada_url usarla, o intentar resolver de Drive con fallback
+      let coverSrc = gal.portada_url;
+      if (!coverSrc && driveClean && driveClean.length >= 15) {
+        coverSrc = `https://lh3.googleusercontent.com/d/${driveClean}=w600`;
+      }
+
       const fechaCreacion = gal.created_at ? new Date(gal.created_at).toLocaleDateString('es-AR', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Reciente';
 
-      // Construcción exacta de la URL de destino según requerimiento:
-      // Pública: galeria.html?id=[ID_DRIVE]&titulo=[TITULO]
-      // Privada: privadas.html?id=[ID_DRIVE]&titulo=[TITULO]&key=[CLAVE]
-      const encodedId = encodeURIComponent(driveId);
+      // URLs de destino
+      const encodedDrive = encodeURIComponent(driveClean);
       const encodedTitulo = encodeURIComponent(titulo);
+      const encodedPass = encodeURIComponent(gal.password || '');
       const targetUrl = isPriv 
-        ? `privadas.html?id=${encodedId}&titulo=${encodedTitulo}&key=${encodeURIComponent(clave)}`
-        : `galeria.html?id=${encodedId}&titulo=${encodedTitulo}`;
+        ? `privadas.html?id=${encodedDrive}&titulo=${encodedTitulo}&key=${encodedPass}`
+        : `galeria.html?id=${encodedDrive}&titulo=${encodedTitulo}`;
 
-      // Botón de Ver destacado según tipo
+      // Botón "Ver Galería"
       const btnVerClass = isPriv
         ? "bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
         : "bg-[#005580]/40 hover:bg-[#005580]/80 text-[#38bdf8] border border-[#38bdf8]/40";
 
+      // Manejador seguro de atributos
+      const safeId = String(gal.id).replace(/'/g, "\\'");
+      const safeTitulo = String(titulo).replace(/'/g, "\\'");
+      const safeDrive = String(gal.drive_url || driveClean).replace(/'/g, "\\'");
+
       card.innerHTML = `
         <div class="relative aspect-video w-full bg-[#0e0e0e] overflow-hidden border-b border-[#262626] flex items-center justify-center">
           ${coverSrc 
-            ? `<img src="${coverSrc}" alt="${titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />` 
-            : `<div class="flex flex-col items-center gap-2 text-outline/50"><span class="material-symbols-outlined text-4xl" data-icon="photo_library">photo_library</span><span class="text-[11px] font-label-sm">Colección Oficial</span></div>`
+            ? `<img src="${coverSrc}" alt="${titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'flex flex-col items-center gap-2 text-outline/50\\'><span class=\\'material-symbols-outlined text-4xl\\' data-icon=\\'photo_library\\'>photo_library</span><span class=\\'text-[11px] font-label-sm\\'>Colección Atelier</span></div>';" />` 
+            : `<div class="flex flex-col items-center gap-2 text-outline/50"><span class="material-symbols-outlined text-4xl" data-icon="photo_library">photo_library</span><span class="text-[11px] font-label-sm">Colección Atelier</span></div>`
           }
-          <div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60 pointer-events-none"></div>
           
           <div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-label-sm uppercase tracking-wider border backdrop-blur-md ${badgeClass}">
             <span class="material-symbols-outlined text-xs" data-icon="${badgeIcon}">${badgeIcon}</span>
             <span class="font-bold">${badgeLabel}</span>
-          </div>
-
-          <div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-label-sm text-on-surface border border-[#262626]">
-            ${totalFotos} fotos
           </div>
 
           <div class="absolute bottom-2.5 left-3 right-3">
@@ -745,7 +796,7 @@
                 <span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
                 <span>ID DRIVE:</span>
               </span>
-              <span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="${driveId}">${driveId}</span>
+              <span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="${driveClean}">${driveClean}</span>
             </div>
 
             <div class="flex items-center justify-between py-1 border-b border-[#262626]">
@@ -769,14 +820,14 @@
           </div>
 
           <div class="flex items-center justify-between pt-2.5 border-t border-[#262626] gap-2">
-            <!-- Botón destacado Ver Galería -->
+            <!-- Botón Ver Galería -->
             <a href="${targetUrl}" target="_blank" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md font-semibold ${btnVerClass} transition-all active:scale-[0.98] min-h-[40px] shadow-sm">
               <span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
               <span>Ver Galería</span>
             </a>
 
-            <!-- Botón de gestión Eliminar discreto en rojo -->
-            <button onclick="eliminarGaleria('${gal.id}', '${(titulo || '').replace(/'/g, "\\'")}')" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" title="Eliminar registro">
+            <!-- Botón Eliminar -->
+            <button onclick="eliminarGaleria('${safeId}', '${safeTitulo}', '${safeDrive}')" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" title="Eliminar registro">
               <span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
               <span class="hidden sm:inline">Eliminar</span>
             </button>
@@ -787,9 +838,9 @@
     });
   }
 
-  // 5. Eliminar Galería con Confirmación Modal
-  function eliminarGaleria(id, titulo) {
-    itemPendingDelete = { id, titulo };
+  // Eliminar galería con modal y confirmación en Supabase y LocalStorage
+  function eliminarGaleria(id, titulo, driveUrl) {
+    itemPendingDelete = { id, titulo, driveUrl };
     const modalTitle = document.getElementById('modalGalTitle');
     if (modalTitle) modalTitle.textContent = `"${titulo || 'Esta galería'}"`;
     const modal = document.getElementById('deleteModal');
@@ -808,49 +859,65 @@
     itemPendingDelete = null;
   }
 
-  // Confirmar Borrado en Supabase y Respaldo Local
+  // Ejecución de borrado
   document.getElementById('btnConfirmDelete')?.addEventListener('click', async () => {
     if (!itemPendingDelete) return;
-    const deleteId = itemPendingDelete.id;
+    const { id, driveUrl } = itemPendingDelete;
+    const driveClean = extraerDriveId(driveUrl);
 
-    // Eliminar de Supabase de manera segura
+    // 1. Borrar en Supabase si hay cliente
     if (supabaseClient) {
       try {
-        await supabaseClient.from('galeria').delete().eq('id', deleteId);
-        await supabaseClient.from('galerias').delete().eq('id', deleteId);
-      } catch (e) {
-        console.warn('[Supabase] Aviso en delete:', e);
+        if (id) {
+          await supabaseClient.from('galeria').delete().eq('id', id);
+          await supabaseClient.from('galerias').delete().eq('id', id);
+        }
+        if (driveClean) {
+          await supabaseClient.from('galeria').delete().eq('drive_url', driveClean);
+          await supabaseClient.from('galerias').delete().eq('drive_url', driveClean);
+          await supabaseClient.from('galeria').delete().eq('folder_id', driveClean);
+          await supabaseClient.from('galerias').delete().eq('folder_id', driveClean);
+        }
+      } catch (err) {
+        console.warn('[Supabase] Error en delete:', err);
       }
     }
 
-    // Eliminar de LocalStorage si existe
-    try {
-      const stored = localStorage.getItem('galerias_locales');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          const updated = parsed.filter(item => item.id !== deleteId && item.drive_id !== deleteId);
-          localStorage.setItem('galerias_locales', JSON.stringify(updated));
+    // 2. Borrar en localStorage ('galerias_locales' y 'galerias')
+    ['galerias_locales', 'galerias'].forEach(key => {
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            const updated = parsed.filter(item => {
+              const itemDriveClean = extraerDriveId(item.drive_url || item.url_drive || item.folder_id || item.drive_id || '');
+              return String(item.id) !== String(id) && itemDriveClean !== driveClean;
+            });
+            localStorage.setItem(key, JSON.stringify(updated));
+          }
         }
+      } catch (e) {
+        console.warn(`[LocalStorage] Error al limpiar ${key}:`, e);
       }
-    } catch (_) {}
+    });
 
-    // Eliminar de memoria
-    dbGalerias = dbGalerias.filter(g => g.id !== deleteId && g.drive_id !== deleteId);
+    // 3. Eliminar de memoria y refrescar
+    dbGalerias = dbGalerias.filter(g => String(g.id) !== String(id) && g.drive_id !== driveClean);
 
     closeModal();
     actualizarContadores();
     renderizarTarjetas();
   });
 
-  // 6. Cerrar Sesión de Administrador
+  // Cerrar sesión
   function cerrarSesionAdmin() {
     sessionStorage.removeItem('darkroom_admin_user');
     sessionStorage.removeItem('darkroom_master_key');
     window.location.href = 'login.html';
   }
 
-  // Inicialización y eventos
+  // Inicialización y eventos del DOM
   document.addEventListener('DOMContentLoaded', () => {
     // Drawer Móvil
     const btnMobileMenu = document.getElementById('btnMobileMenu');
@@ -877,10 +944,8 @@
       renderizarTarjetas();
     });
 
-    // Carga de galerías
+    // Carga inicial tolerante a fallos
     cargarColecciones();
   });
 </script>
-
-
 </body></html>
