@@ -1,13 +1,15 @@
-<!DOCTYPE html><html class="dark" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!DOCTYPE html>
+
+<html class="dark" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>Darkroom Console · Administración Oficial Sergio Ricardo Molina</title>
 <!-- Google Fonts: Raleway (Headlines) & Manrope (Body/Data) -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Tailwind CSS with custom plugins -->
@@ -351,7 +353,6 @@
 <span class="text-[10px] sm:text-label-sm font-label-sm text-primary tracking-widest uppercase font-semibold">CONSOLA ATELIER · ARCHIVOS SUPABASE</span>
 </div>
 <h1 class="text-xl sm:text-headline-md font-headline-md text-on-surface font-semibold leading-tight">Administración de Galerías y Sesiones</h1>
-
 </div>
 <div class="flex-shrink-0 pt-1 sm:pt-0">
 <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md uppercase tracking-wider text-white bg-[#005580] border border-[#38bdf8] hover:bg-[#124d70] active:scale-[0.98] transition-all shadow-md font-semibold" href="cargas.html">
@@ -361,47 +362,13 @@
 </div>
 </section>
 <!-- Métricas Rápidas: 1 columna en móvil, 3 columnas en tablet/desktop (#lblTotal, #lblPublicas, #lblPrivadas) -->
-<section class="grid sm:grid-cols-3 sm:gap-4 grid-cols-3 gap-2">
-<!-- Card 1: Total Registradas -->
-<div class="sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm p-3">
-<div class="space-y-1">
-<span class="text-[11px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold">TOTAL REG.</span>
-<div class="text-2xl sm:text-headline-lg font-headline-lg text-on-surface font-bold leading-none" id="lblTotal">2</div>
-
-</div>
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-primary border border-[#262626] shrink-0">
-<span class="material-symbols-outlined text-2xl" data-icon="folder_special">folder_special</span>
-</div>
-</div>
-<!-- Card 2: Álbumes Públicos -->
-<div class="sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm p-3">
-<div class="space-y-1">
-<span class="text-[11px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold">ÁLBUMES PÚBLICOS</span>
-<div class="text-2xl sm:text-headline-lg font-headline-lg text-[#38bdf8] font-bold leading-none" id="lblPublicas">1</div>
-
-</div>
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-[#38bdf8] border border-[#262626] shrink-0">
-<span class="material-symbols-outlined text-2xl" data-icon="lock_open">lock_open</span>
-</div>
-</div>
-<!-- Card 3: Privadas con Clave -->
-<div class="sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm p-3">
-<div class="space-y-1">
-<span class="text-[11px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold">CON CLAVE</span>
-<div class="text-2xl sm:text-headline-lg font-headline-lg text-yellow-400 font-bold leading-none" id="lblPrivadas">1</div>
-
-</div>
-<div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-yellow-400 border border-[#262626] shrink-0">
-<span class="material-symbols-outlined text-2xl" data-icon="key">key</span>
-</div>
-</div>
-</section>
+<section class="grid sm:grid-cols-3 sm:gap-4 grid-cols-3 gap-2"><div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm"><div class="space-y-1 min-w-0"><span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">TOTAL REG.</span><div class="text-xl sm:text-headline-lg font-headline-lg text-on-surface font-bold leading-none" id="lblTotal">2</div></div><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-primary border border-[#262626] shrink-0 ml-1"><span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="folder_special">folder_special</span></div></div><div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm"><div class="space-y-1 min-w-0"><span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">PÚBLICAS</span><div class="text-xl sm:text-headline-lg font-headline-lg text-[#38bdf8] font-bold leading-none" id="lblPublicas">1</div></div><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-[#38bdf8] border border-[#262626] shrink-0 ml-1"><span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="lock_open">lock_open</span></div></div><div class="p-3 sm:p-space-lg rounded-xl bg-[#181818] border border-[#262626] flex items-center justify-between shadow-sm"><div class="space-y-1 min-w-0"><span class="text-[10px] sm:text-label-sm font-label-sm text-outline tracking-wider font-semibold truncate block">CON CLAVE</span><div class="text-xl sm:text-headline-lg font-headline-lg text-yellow-400 font-bold leading-none" id="lblPrivadas">1</div></div><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#353534]/50 flex items-center justify-center text-yellow-400 border border-[#262626] shrink-0 ml-1"><span class="material-symbols-outlined text-xl sm:text-2xl" data-icon="key">key</span></div></div></section>
 <!-- Barra de Filtros, Búsqueda Dinámica y Refresco adaptados a móviles -->
 <section class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#0e0e0e] p-3 sm:p-space-md rounded-xl border border-[#262626]">
 <!-- Buscador Dinámico (#inputBusqueda) -->
 <div class="relative flex-1">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
-<input class="w-full bg-[#181818] border border-[#262626] rounded-lg pl-10 pr-4 py-2.5 text-on-surface text-sm placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors min-h-[44px]" id="inputBusqueda" placeholder="Filtrar por título, ID de Drive o clave..." type="text">
+<input class="w-full bg-[#181818] border border-[#262626] rounded-lg pl-10 pr-4 py-2.5 text-on-surface text-sm placeholder-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors min-h-[44px]" id="inputBusqueda" placeholder="Filtrar por título, ID de Drive o clave..." type="text"/>
 </div>
 <!-- Filtros Rápidos (Chips) y Botón Refrescar -->
 <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
@@ -422,131 +389,115 @@
 <!-- Cuadrícula de Álbumes (#gridGalerias: 1 col en mobile, 2 en md) -->
 <section>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridGalerias"><article class="flex flex-col bg-[#181818] border border-[#262626] rounded-xl overflow-hidden shadow-sm hover:border-[#38bdf8]/50 transition-all duration-200 group">
-        <div class="relative aspect-video w-full bg-[#0e0e0e] overflow-hidden border-b border-[#262626] flex items-center justify-center">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJvlBvbbVFsZLw4HvJ5MW8Fm-Y7-UMcOryaA8Gx4JK7p8a6JtO-cEK23Ye5YHQVKSiLrVR7OC1U6TDZaYirDdM5D3T639BoR-XKmjESzAWPDKwg9KBam8ewFcUhgvoEOek3dSr87hLh-Ecj52AzFO6iY44TPSE9rwwIOv8_Ri6iO8tLGX73DxV_z21Pkb1c5GMYwqt9Eo051pjUyPDg7wnEEQO4REdXbxCS7dLQw1aX66r0gY1JsE0" alt="Graduación Promoción 2024 - Colegio San Martín" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60"></div>
-          
-          <div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-label-sm uppercase tracking-wider border backdrop-blur-md bg-[#005580]/80 text-[#38bdf8] border-[#38bdf8]/40">
-            <span class="material-symbols-outlined text-xs" data-icon="public">public</span>
-            <span class="font-bold">PÚBLICA</span>
-          </div>
-
-          <div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-label-sm text-on-surface border border-[#262626]">
+<div class="relative aspect-video w-full bg-[#0e0e0e] overflow-hidden border-b border-[#262626] flex items-center justify-center">
+<img alt="Graduación Promoción 2024 - Colegio San Martín" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJvlBvbbVFsZLw4HvJ5MW8Fm-Y7-UMcOryaA8Gx4JK7p8a6JtO-cEK23Ye5YHQVKSiLrVR7OC1U6TDZaYirDdM5D3T639BoR-XKmjESzAWPDKwg9KBam8ewFcUhgvoEOek3dSr87hLh-Ecj52AzFO6iY44TPSE9rwwIOv8_Ri6iO8tLGX73DxV_z21Pkb1c5GMYwqt9Eo051pjUyPDg7wnEEQO4REdXbxCS7dLQw1aX66r0gY1JsE0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-label-sm uppercase tracking-wider border backdrop-blur-md bg-[#005580]/80 text-[#38bdf8] border-[#38bdf8]/40">
+<span class="material-symbols-outlined text-xs" data-icon="public">public</span>
+<span class="font-bold">PÚBLICA</span>
+</div>
+<div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-label-sm text-on-surface border border-[#262626]">
             142 fotos
           </div>
-
-          <div class="absolute bottom-2.5 left-3 right-3">
-            <h3 class="text-sm sm:text-headline-sm font-headline-sm text-on-surface font-semibold line-clamp-1 group-hover:text-primary transition-colors">Graduación Promoción 2024 - Colegio San Martín</h3>
-          </div>
-        </div>
-
-        <div class="p-3.5 sm:p-space-md flex-1 flex flex-col justify-between space-y-3">
-          <div class="space-y-1.5 text-xs sm:text-label-md font-label-md">
-            <div class="flex items-center justify-between py-1 border-b border-[#262626]">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
-                <span class="">ID DRIVE:</span>
-              </span>
-              <span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="1A9x_Klm892bZb7Y">1A9x_Klm892bZb7Y</span>
-            </div>
-
-            <div class="flex items-center justify-between py-1 border-b border-[#262626]">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="vpn_key">vpn_key</span>
-                <span class="">CLAVE:</span>
-              </span>
-              <span class="text-[#38bdf8] font-medium text-[11px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>Acceso Abierto</span>
-            </div>
-
-            <div class="flex items-center justify-between py-1">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
-                <span class="">REGISTRO:</span>
-              </span>
-              <span class="text-on-surface-variant text-[11px]">18 de nov de 2024</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-2.5 border-t border-[#262626] gap-2">
-            <!-- Botón destacado Ver Galería -->
-            <a href="galeria.html?id=1A9x_Klm892bZb7Y&amp;titulo=Graduaci%C3%B3n%20Promoci%C3%B3n%202024%20-%20Colegio%20San%20Mart%C3%ADn" target="_blank" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md font-semibold bg-[#005580]/40 hover:bg-[#005580]/80 text-[#38bdf8] border border-[#38bdf8]/40 transition-all active:scale-[0.98] min-h-[40px] shadow-sm">
-              <span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
-              <span class="">Ver Galería</span>
-            </a>
-
-            <!-- Botón de gestión Eliminar discreto en rojo -->
-            <button onclick="eliminarGaleria('gal_grad_2024', 'Graduación Promoción 2024 - Colegio San Martín')" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" title="Eliminar registro">
-              <span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
-              <span class="hidden sm:inline">Eliminar</span>
-            </button>
-          </div>
-        </div>
-      </article><article class="flex flex-col bg-[#181818] border border-[#262626] rounded-xl overflow-hidden shadow-sm hover:border-[#38bdf8]/50 transition-all duration-200 group">
-        <div class="relative aspect-video w-full bg-[#0e0e0e] overflow-hidden border-b border-[#262626] flex items-center justify-center">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsLoBqEvqxARDAKg4mzi6HN1TayRrGkvOtiSqqJ5HTftB5ZfOrz01tkydrAdCTrxOF2Z6VBquqyx-bvb7fEUZqep4kcu7sjpf-EgleEy3WS9DTn9C5u_0cyw9hiQD4dVqKARfF5rM4zDuZAwBuja2KoY20lxF1GIGDYg5slSeAL7MXulCpYjT90wpk45hT0lr0i1u-MJcTLBwLVpJKUQ5fcoOmlFBOaTpgbhlWEqxolLQmPYlOfyBS" alt="Quince Años &amp; Sesión Privada - Brenda" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60"></div>
-          
-          <div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-label-sm uppercase tracking-wider border backdrop-blur-md bg-yellow-500/20 text-yellow-400 border-yellow-500/40">
-            <span class="material-symbols-outlined text-xs" data-icon="lock">lock</span>
-            <span class="font-bold">PRIVADA</span>
-          </div>
-
-          <div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-label-sm text-on-surface border border-[#262626]">
+<div class="absolute bottom-2.5 left-3 right-3">
+<h3 class="text-sm sm:text-headline-sm font-headline-sm text-on-surface font-semibold line-clamp-1 group-hover:text-primary transition-colors">Graduación Promoción 2024 - Colegio San Martín</h3>
+</div>
+</div>
+<div class="p-3.5 sm:p-space-md flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1.5 text-xs sm:text-label-md font-label-md">
+<div class="flex items-center justify-between py-1 border-b border-[#262626]">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
+<span class="">ID DRIVE:</span>
+</span>
+<span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="1A9x_Klm892bZb7Y">1A9x_Klm892bZb7Y</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-[#262626]">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="vpn_key">vpn_key</span>
+<span class="">CLAVE:</span>
+</span>
+<span class="text-[#38bdf8] font-medium text-[11px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>Acceso Abierto</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span class="">REGISTRO:</span>
+</span>
+<span class="text-on-surface-variant text-[11px]">18 de nov de 2024</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2.5 border-t border-[#262626] gap-2">
+<!-- Botón destacado Ver Galería -->
+<a class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md font-semibold bg-[#005580]/40 hover:bg-[#005580]/80 text-[#38bdf8] border border-[#38bdf8]/40 transition-all active:scale-[0.98] min-h-[40px] shadow-sm" href="galeria.html?id=1A9x_Klm892bZb7Y&amp;titulo=Graduaci%C3%B3n%20Promoci%C3%B3n%202024%20-%20Colegio%20San%20Mart%C3%ADn" target="_blank">
+<span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
+<span class="">Ver Galería</span>
+</a>
+<!-- Botón de gestión Eliminar discreto en rojo -->
+<button class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" onclick="eliminarGaleria('gal_grad_2024', 'Graduación Promoción 2024 - Colegio San Martín')" title="Eliminar registro">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="hidden sm:inline">Eliminar</span>
+</button>
+</div>
+</div>
+</article><article class="flex flex-col bg-[#181818] border border-[#262626] rounded-xl overflow-hidden shadow-sm hover:border-[#38bdf8]/50 transition-all duration-200 group">
+<div class="relative aspect-video w-full bg-[#0e0e0e] overflow-hidden border-b border-[#262626] flex items-center justify-center">
+<img alt="Quince Años &amp; Sesión Privada - Brenda" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsLoBqEvqxARDAKg4mzi6HN1TayRrGkvOtiSqqJ5HTftB5ZfOrz01tkydrAdCTrxOF2Z6VBquqyx-bvb7fEUZqep4kcu7sjpf-EgleEy3WS9DTn9C5u_0cyw9hiQD4dVqKARfF5rM4zDuZAwBuja2KoY20lxF1GIGDYg5slSeAL7MXulCpYjT90wpk45hT0lr0i1u-MJcTLBwLVpJKUQ5fcoOmlFBOaTpgbhlWEqxolLQmPYlOfyBS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-black/60"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-label-sm uppercase tracking-wider border backdrop-blur-md bg-yellow-500/20 text-yellow-400 border-yellow-500/40">
+<span class="material-symbols-outlined text-xs" data-icon="lock">lock</span>
+<span class="font-bold">PRIVADA</span>
+</div>
+<div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-label-sm text-on-surface border border-[#262626]">
             88 fotos
           </div>
-
-          <div class="absolute bottom-2.5 left-3 right-3">
-            <h3 class="text-sm sm:text-headline-sm font-headline-sm text-on-surface font-semibold line-clamp-1 group-hover:text-primary transition-colors">Quince Años &amp; Sesión Privada - Brenda</h3>
-          </div>
-        </div>
-
-        <div class="p-3.5 sm:p-space-md flex-1 flex flex-col justify-between space-y-3">
-          <div class="space-y-1.5 text-xs sm:text-label-md font-label-md">
-            <div class="flex items-center justify-between py-1 border-b border-[#262626]">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
-                <span class="">ID DRIVE:</span>
-              </span>
-              <span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="0B7q_Pzm341kAc9X">0B7q_Pzm341kAc9X</span>
-            </div>
-
-            <div class="flex items-center justify-between py-1 border-b border-[#262626]">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="vpn_key">vpn_key</span>
-                <span class="">CLAVE:</span>
-              </span>
-              <span class="text-yellow-400 font-mono font-semibold bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30 text-[11px]">brenda</span>
-            </div>
-
-            <div class="flex items-center justify-between py-1">
-              <span class="text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
-                <span class="">REGISTRO:</span>
-              </span>
-              <span class="text-on-surface-variant text-[11px]">24 de nov de 2024</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-2.5 border-t border-[#262626] gap-2">
-            <!-- Botón destacado Ver Galería -->
-            <a href="privadas.html?id=0B7q_Pzm341kAc9X&amp;titulo=Quince%20A%C3%B1os%20%26%20Sesi%C3%B3n%20Privada%20-%20Brenda&amp;key=brenda" target="_blank" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md font-semibold bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 transition-all active:scale-[0.98] min-h-[40px] shadow-sm">
-              <span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
-              <span class="">Ver Galería</span>
-            </a>
-
-            <!-- Botón de gestión Eliminar discreto en rojo -->
-            <button onclick="eliminarGaleria('gal_brenda_xv', 'Quince Años &amp; Sesión Privada - Brenda')" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" title="Eliminar registro">
-              <span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
-              <span class="hidden sm:inline">Eliminar</span>
-            </button>
-          </div>
-        </div>
-      </article></div>
+<div class="absolute bottom-2.5 left-3 right-3">
+<h3 class="text-sm sm:text-headline-sm font-headline-sm text-on-surface font-semibold line-clamp-1 group-hover:text-primary transition-colors">Quince Años &amp; Sesión Privada - Brenda</h3>
+</div>
+</div>
+<div class="p-3.5 sm:p-space-md flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1.5 text-xs sm:text-label-md font-label-md">
+<div class="flex items-center justify-between py-1 border-b border-[#262626]">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="folder_zip">folder_zip</span>
+<span class="">ID DRIVE:</span>
+</span>
+<span class="text-on-surface font-mono text-[11px] bg-[#0e0e0e] px-2 py-0.5 rounded border border-[#262626] truncate max-w-[150px] sm:max-w-[190px]" title="0B7q_Pzm341kAc9X">0B7q_Pzm341kAc9X</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-[#262626]">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="vpn_key">vpn_key</span>
+<span class="">CLAVE:</span>
+</span>
+<span class="text-yellow-400 font-mono font-semibold bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30 text-[11px]">brenda</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span class="">REGISTRO:</span>
+</span>
+<span class="text-on-surface-variant text-[11px]">24 de nov de 2024</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2.5 border-t border-[#262626] gap-2">
+<!-- Botón destacado Ver Galería -->
+<a class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md font-semibold bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 transition-all active:scale-[0.98] min-h-[40px] shadow-sm" href="privadas.html?id=0B7q_Pzm341kAc9X&amp;titulo=Quince%20A%C3%B1os%20%26%20Sesi%C3%B3n%20Privada%20-%20Brenda&amp;key=brenda" target="_blank">
+<span class="material-symbols-outlined text-base" data-icon="visibility">visibility</span>
+<span class="">Ver Galería</span>
+</a>
+<!-- Botón de gestión Eliminar discreto en rojo -->
+<button class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-label-md font-label-md text-error hover:bg-error-container/20 border border-error/20 hover:border-error/50 transition-colors active:scale-[0.98] min-h-[40px]" onclick="eliminarGaleria('gal_brenda_xv', 'Quince Años &amp; Sesión Privada - Brenda')" title="Eliminar registro">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="hidden sm:inline">Eliminar</span>
+</button>
+</div>
+</div>
+</article></div>
 <div class="hidden flex-col items-center justify-center p-6 sm:p-space-3xl rounded-xl border border-dashed border-[#262626] bg-[#0e0e0e] text-center my-2" id="emptyState">
 <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#181818] flex items-center justify-center mb-3 sm:mb-space-md border border-[#262626] text-primary">
 <span class="material-symbols-outlined text-2xl sm:text-3xl" data-icon="collections_bookmark">collections_bookmark</span>
 </div>
-<h2 class="text-base sm:text-headline-sm font-headline-sm text-on-surface font-semibold mb-1 sm:mb-2">No se encontraron galerías</h2>
+<h2 class="text-base sm:text-headline-sm font-headline-sm text-on-surface font-semibold mb-1 sm:mb-2">No hay galerías registradas en este momento</h2>
 <p class="text-xs sm:text-body-md font-body-md text-on-surface-variant max-w-lg mb-4 sm:mb-space-lg leading-relaxed">Crea una nueva colección desde Cargas y Enlaces o revisa los filtros aplicados arriba.</p>
 <a class="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-lg text-xs sm:text-label-md font-label-md uppercase tracking-wider text-white bg-[#005580] border border-[#38bdf8] hover:bg-[#124d70] active:scale-[0.98] transition-all shadow-md font-semibold" href="cargas.html">
 <span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
@@ -1037,6 +988,4 @@
     cargarColecciones();
   });
 </script>
-
-
 </body></html>
