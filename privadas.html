@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Galería Privada de Cliente | SERGIO RICARDO MOLINA</title>
-  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-  <!-- Supabase JS Client & JSZip para empaquetar descargas -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-  <style>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Galería Privada de Cliente | SERGIO RICARDO MOLINA</title>
+<link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Supabase JS Client & JSZip para empaquetar descargas -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -522,100 +521,90 @@
     }
   </style>
 </head>
-
 <body>
-
-  <!-- ENCABEZADO CON RETORNO DIRECTO AL PORTAFOLIO -->
-  <header>
-    <a href="index.html" class="marca-personal">
-      <img src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" alt="Sergio Ricardo Molina" class="avatar-mini" />
-      <span class="marca-nombre">SERGIO RICARDO MOLINA</span>
-    </a>
-    <a href="index.html" class="btn-volver-nav">
-      <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
-      <span>Volver al Portafolio</span>
-    </a>
-  </header>
-
-  <main>
-    <!-- HERO DE LA SESIÓN PRIVADA -->
-    <section class="hero-privada">
-      <div class="badge-privada-top">
-        <span class="material-symbols-outlined" style="font-size: 14px;">lock_open</span>
-        <span>Galería Privada de Cliente</span>
-      </div>
-      <h1 class="titulo-album" id="titulo-galeria">Cargando sesión privada...</h1>
-      <p class="subtitulo-album" id="subtitulo-galeria">
+<!-- ENCABEZADO CON RETORNO DIRECTO AL PORTAFOLIO -->
+<header>
+<a class="marca-personal" href="index.html">
+<img alt="Sergio Ricardo Molina" class="avatar-mini" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
+<span class="marca-nombre">SERGIO RICARDO MOLINA</span>
+</a>
+<a class="btn-volver-nav" href="index.html">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+<span>Volver al Portafolio</span>
+</a>
+</header>
+<main>
+<!-- HERO DE LA SESIÓN PRIVADA -->
+<section class="hero-privada">
+<div class="badge-privada-top">
+<span class="material-symbols-outlined" style="font-size: 14px;">lock_open</span>
+<span>Galería Privada de Cliente</span>
+</div>
+<h1 class="titulo-album" id="titulo-galeria">Cargando sesión privada...</h1>
+<p class="subtitulo-album" id="subtitulo-galeria">
         Álbum exclusivo para visualización en alta definición y descarga de originales sin marcas de agua.
       </p>
-    </section>
-
-    <!-- BANNER DE ACCESO PROTEGIDO -->
-    <div class="banner-info-privada">
-      <div class="banner-info-left">
-        <span class="material-symbols-outlined" style="font-size: 18px; color:#facc15;">verified</span>
-        <span>Acceso protegido por clave autorizada: <strong id="lbl-clave-autorizada">Verificando...</strong></span>
-      </div>
-      <div class="banner-info-badge">
-        <span class="material-symbols-outlined" style="font-size: 16px;">hd</span>
-        <span>Fotografías sin marcas de agua</span>
-      </div>
-    </div>
-
-    <!-- CUADRÍCULA DE FOTOS PRIVADAS (CON BOTONES "DESCARGAR" Y "SELECCIONAR") -->
-    <div class="grid-fotos-privadas" id="contenedor-fotos-privadas">
-      <div class="estado-mensaje-box">
-        <span class="material-symbols-outlined" style="animation: spin 1s linear infinite;">sync</span>
-        <h3>Conectando con tu álbum privado</h3>
-        <p>Validando clave de acceso y cargando fotografías en alta resolución desde Google Drive...</p>
-      </div>
-    </div>
-
-    <!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO Y EVENTOS) -->
-    <div class="redes-sociales">
-      <a href="https://wa.me/542613175222" target="_blank" class="btn-red btn-wsp">
-        <span class="material-symbols-outlined" style="font-size: 22px;">chat</span>
-        <span>Chat WhatsApp</span>
-      </a>
-      <a href="https://wa.me/c/5492613175222" target="_blank" class="btn-red btn-cat">
-        <span class="material-symbols-outlined" style="font-size: 22px;">inventory_2</span>
-        <span>Catálogo</span>
-      </a>
-      <a href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank" class="btn-red btn-ig">
-        <span class="material-symbols-outlined" style="font-size: 22px;">photo_camera_back</span>
-        <span>Instagram</span>
-      </a>
-    </div>
-  </main>
-
-  <!-- BARRA FLOTANTE FIJA PARA DESCARGA DE SELECCIONADAS EN ARCHIVO ZIP -->
-  <div class="barra-zip-flotante" id="barra-zip-flotante" style="display: none;">
-    <div class="resumen-seleccion-zip">
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span class="badge-contador-zip" id="lbl-contador-seleccionadas">0 seleccionadas</span>
-        <span style="font-size:0.85rem; color:#e5e2e1; font-weight:600;">Listas para comprimir</span>
-      </div>
-      <button class="btn-vaciar-seleccion" onclick="vaciarSeleccion()">Limpiar</button>
-    </div>
-    <button class="btn-descargar-zip-accion" id="btn-empaquetar-zip" onclick="descargarLoteZip()">
-      <span class="material-symbols-outlined" style="font-size: 19px;">folder_zip</span>
-      <span id="txt-btn-zip">Descargar Lote en ZIP</span>
-    </button>
-  </div>
-
-  <!-- VISOR MODAL AMPLIO -->
-  <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
-    <span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
-    <span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
-    <img id="img-ampliada" src="" alt="Vista Previa en Alta Resolución" />
-    <span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
-  </div>
-
-  <footer class="text-center">
-    <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
-  </footer>
-
-  <script>
+</section>
+<!-- BANNER DE ACCESO PROTEGIDO -->
+<div class="banner-info-privada">
+<div class="banner-info-left">
+<span class="material-symbols-outlined" style="font-size: 18px; color:#facc15;">verified</span>
+<span>Acceso protegido por clave autorizada: <strong id="lbl-clave-autorizada">Verificando...</strong></span>
+</div>
+<div class="banner-info-badge">
+<span class="material-symbols-outlined" style="font-size: 16px;">hd</span>
+<span>Fotografías sin marcas de agua</span>
+</div>
+</div>
+<!-- CUADRÍCULA DE FOTOS PRIVADAS (CON BOTONES "DESCARGAR" Y "SELECCIONAR") -->
+<div class="grid-fotos-privadas" id="contenedor-fotos-privadas">
+<div class="estado-mensaje-box">
+<span class="material-symbols-outlined" style="animation: spin 1s linear infinite;">sync</span>
+<h3>Conectando con tu álbum privado</h3>
+<p>Validando clave de acceso y cargando fotografías en alta resolución desde Google Drive...</p>
+</div>
+</div>
+<!-- REDES SOCIALES Y CONTACTO (IDÉNTICO AL PORTAFOLIO Y EVENTOS) -->
+<div class="redes-sociales">
+<a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
+<span class="material-symbols-outlined" style="font-size: 22px;">chat</span>
+<span>Chat WhatsApp</span>
+</a>
+<a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
+<span class="material-symbols-outlined" style="font-size: 22px;">inventory_2</span>
+<span>Catálogo</span>
+</a>
+<a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
+<span class="material-symbols-outlined" style="font-size: 22px;">photo_camera_back</span>
+<span>Instagram</span>
+</a>
+</div>
+</main>
+<!-- BARRA FLOTANTE FIJA PARA DESCARGA DE SELECCIONADAS EN ARCHIVO ZIP -->
+<div class="barra-zip-flotante" id="barra-zip-flotante" style="display: none;">
+<div class="resumen-seleccion-zip">
+<div style="display:flex; align-items:center; gap:8px;">
+<span class="badge-contador-zip" id="lbl-contador-seleccionadas">0 seleccionadas</span>
+<span style="font-size:0.85rem; color:#e5e2e1; font-weight:600;">Listas para comprimir</span>
+</div>
+<button class="btn-vaciar-seleccion" onclick="vaciarSeleccion()">Limpiar</button>
+</div>
+<button class="btn-descargar-zip-accion" id="btn-empaquetar-zip" onclick="descargarLoteZip()">
+<span class="material-symbols-outlined" style="font-size: 19px;">folder_zip</span>
+<span id="txt-btn-zip">Descargar Lote en ZIP</span>
+</button>
+</div>
+<!-- VISOR MODAL AMPLIO -->
+<div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar-visor" onclick="cerrarVisor()">✕</span>
+<span class="btn-nav-visor btn-nav-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<img alt="Vista Previa en Alta Resolución" id="img-ampliada" src=""/>
+<span class="btn-nav-visor btn-nav-next" onclick="cambiarFoto(1, event)">❯</span>
+</div>
+<footer class="text-center">
+<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+</footer>
+<script>
     // CREDENCIALES OFICIALES SUPABASE & GOOGLE DRIVE
     const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
@@ -757,8 +746,9 @@
           id: f.id,
           name: f.name || 'Fotografia.jpg',
           thumb: `https://lh3.googleusercontent.com/d/${f.id}=w600`,
-          full: `https://lh3.googleusercontent.com/d/${f.id}=w2000`,
-          downloadUrl: `https://lh3.googleusercontent.com/d/${f.id}`
+          full: `https://lh3.googleusercontent.com/d/${f.id}=w2048`,
+          originalUrl: `https://lh3.googleusercontent.com/d/${f.id}=s0`,
+          driveDownloadUrl: `https://drive.google.com/uc?export=download&id=${f.id}`
         }));
 
         renderizarFotosPrivadas();
@@ -799,17 +789,18 @@
       });
     }
 
-    // 1. DESCARGA DIRECTA DE UNA SOLA FOTOGRAFÍA (ALTA RESOLUCIÓN)
+    // 1. DESCARGA DIRECTA DE UNA SOLA FOTOGRAFÍA (ALTA RESOLUCIÓN NATIVA Y SIN COMPRESIÓN)
     async function descargarFotoDirecta(id, nombre, event) {
       if (event) event.stopPropagation();
       registrarMetrica('descarga_individual', `Foto: ${nombre}`);
 
       try {
-        const foto = listaFotos.find(f => f.id === id);
-        const urlDescarga = foto ? foto.full : `https://lh3.googleusercontent.com/d/${id}=w2000`;
+        const urlOriginal = `https://lh3.googleusercontent.com/d/${id}=s0`;
 
-        // Intentar descarga como Blob para forzar el guardado limpio en el dispositivo
-        const respuesta = await fetch(urlDescarga);
+        // Descarga preferentemente mediante fetch Blob de la URL original nativa (=s0)
+        const respuesta = await fetch(urlOriginal);
+        if (!respuesta.ok) throw new Error('Respuesta de red no satisfactoria');
+
         const blob = await respuesta.blob();
         const urlBlob = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -820,8 +811,8 @@
         document.body.removeChild(a);
         setTimeout(() => URL.revokeObjectURL(urlBlob), 2000);
       } catch (e) {
-        // Fallback abriendo enlace directo
-        window.open(`https://lh3.googleusercontent.com/d/${id}=w2000`, '_blank');
+        // Fallback: descarga directa del binario nativo de Google Drive para preservar tamaño y resolución original
+        window.location.href = 'https://drive.google.com/uc?export=download&id=' + id;
       }
     }
 
@@ -877,7 +868,7 @@
       actualizarBarraZip();
     }
 
-    // 3. EMPAQUETAR Y DESCARGAR ARCHIVO ZIP CON JSZIP
+    // 3. EMPAQUETAR Y DESCARGAR ARCHIVO ZIP CON JSZIP (RESOLUCIÓN ORIGINAL NATIVA =s0)
     async function descargarLoteZip() {
       if (seleccionadas.size === 0) return;
 
@@ -896,7 +887,9 @@
           const f = fotosAComprimir[i];
           txtBtn.innerText = `Descargando ${i + 1}/${fotosAComprimir.length}...`;
           try {
-            const resp = await fetch(f.full);
+            // Se descarga cada foto usando su URL de resolución completa sin compresión (=s0)
+            const urlDescargaZip = f.originalUrl || `https://lh3.googleusercontent.com/d/${f.id}=s0`;
+            const resp = await fetch(urlDescargaZip);
             const blob = await resp.blob();
             const nombreLimpio = f.name.endsWith('.jpg') ? f.name : `${f.name}.jpg`;
             zip.file(nombreLimpio, blob);
@@ -1012,5 +1005,4 @@
 
     document.addEventListener('DOMContentLoaded', iniciarSesionPrivada);
   </script>
-</body>
-</html>
+</body></html>
