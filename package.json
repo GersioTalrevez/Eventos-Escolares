@@ -4,7 +4,7 @@
   "description": "Backend seguro para Eventos Escolares con autenticación JWT y Google Drive",
   "main": "api/index.js",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "scripts": {
     "start": "node api/index.js",
