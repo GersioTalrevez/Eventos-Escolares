@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>Ensayos | Sergio Ricardo Molina Fotografía</title>
+  
+  <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      padding: 20px 16px 40px;
+      max-width: 1040px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #262626;
+      margin-bottom: 24px;
+    }
+
+    .btn-volver {
+      background: #1c1c1c;
+      color: #ffffff;
+      border: 1px solid #005580;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-volver:hover {
+      background: #252525;
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .titulo-cabecera {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-family: 'Raleway', sans-serif;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subcarpeta-bloque {
+      margin-bottom: 34px;
+    }
+
+    .titulo-subcarpeta {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #38bdf8;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #262626;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    /* GRID DE FOTOS: 2 columnas en móvil, 4 en desktop */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .galeria-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .galeria-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+    }
+
+    .tarjeta-img {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0d0d0d;
+      border: 1px solid #262626;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tarjeta-img:hover {
+      transform: scale(1.02);
+      border-color: #0088cc;
+    }
+
+    .tarjeta-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-drag: none;
+      display: block;
+    }
+
+    .cargando {
+      text-align: center;
+      color: #888888;
+      padding: 60px 20px;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* VISOR MODAL EN PANTALLA COMPLETA */
+    .modal-visor {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.96);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-visor-contenedor {
+      position: relative;
+      max-width: 94%;
+      max-height: 88vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-visor img {
+      max-width: 100%;
+      max-height: 88vh;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      border-radius: 4px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    }
+
+    /* FIRMA DE AUTOR FIJA EN LA ESQUINA INFERIOR IZQUIERDA DE LA FOTO */
+    .firma-visor {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(14, 14, 14, 0.78);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      z-index: 10;
+    }
+
+    .firma-visor .material-symbols-outlined {
+      font-size: 14px;
+      color: #38bdf8;
+    }
+
+    .btn-cerrar {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      color: #ffffff;
+      font-size: 26px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1002;
+      line-height: 1;
+    }
+
+    .btn-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      font-size: 2.2rem;
+      padding: 12px 16px;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 50%;
+      user-select: none;
+      z-index: 1002;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: background 0.2s;
+    }
+
+    .btn-nav:hover { background: rgba(0, 85, 128, 0.75); }
+    .btn-prev { left: 16px; }
+    .btn-next { right: 16px; }
+
+    @media (max-width: 640px) {
+      .btn-nav { display: none; }
+    }
+
+    /* REDES SOCIALES */
+    .redes-sociales {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .btn-red {
+      background: #1c1c1c;
+      border-radius: 12px;
+      padding: 14px 6px;
+      text-align: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-red:active { transform: scale(0.96); background: #252525; }
+    .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
+    .btn-cat { border: 2px solid #facc15; color: #facc15; }
+    .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
+
+    footer {
+      text-align: center;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid #222222;
+      color: #666666;
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <!-- CABECERA DE RETORNO -->
+    <header>
+      <a href="index.html" class="btn-volver">
+        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+        <span>Volver al Portafolio</span>
+      </a>
+      <h2 class="titulo-cabecera">
+        <span class="material-symbols-outlined" style="color: #0088cc;">auto_awesome</span>
+        <span>Ensayos</span>
+      </h2>
+    </header>
+
+    <!-- CONTENEDOR DINÁMICO DE SUBCARPETAS Y FOTOS -->
+    <main id="contenedor-galeria">
+      <div class="cargando">
+        <div style="width: 36px; height: 36px; border: 2px solid rgba(56, 189, 248, 0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spin 0.9s linear infinite;"></div>
+        <p>Cargando fotografías y subcarpetas en alta definición...</p>
+      </div>
+    </main>
+
+    <!-- REDES SOCIALES -->
+    <div class="redes-sociales">
+      <a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
+        <span class="material-symbols-outlined">chat</span>
+        <span>Chat WhatsApp</span>
+      </a>
+      <a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span>Catálogo</span>
+      </a>
+      <a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
+        <span class="material-symbols-outlined">photo_camera_back</span>
+        <span>Instagram</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+  </footer>
+
+  <!-- MODAL VISOR EN PANTALLA COMPLETA CON FIRMA DE AUTOR -->
+  <div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
+    <span class="btn-cerrar" onclick="cerrarVisor()">✕</span>
+    <span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
+    
+    <div class="modal-visor-contenedor">
+      <img alt="Fotografía" id="img-ampliada" src="">
+      <div class="firma-visor">
+        <span class="material-symbols-outlined">photo_camera</span>
+        <span id="txt-firma">Sergio Molina</span>
+      </div>
+    </div>
+
+    <span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
+  </div>
+
+  <!-- SCRIPT DE CARGA AUTOMÁTICA DRIVE, SUBCARPETAS Y MÉTRICAS -->
+  <script>
+    const FOLDER_ID = '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS'; // ID Ensayos
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+
+    let fotosActuales = [];
+    let indiceFotoActual = 0;
+
+    // 1. Cargar subcarpetas y fotos de Drive
+    async function cargarContenidoGaleria() {
+      const contenedor = document.getElementById('contenedor-galeria');
+      fotosActuales = [];
+
+      try {
+        // Consultar subcarpetas
+        const urlSubfolders = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType='application/vnd.google-apps.folder'+and+trashed=false&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+        const resFolders = await fetch(urlSubfolders);
+        const dataFolders = await resFolders.json();
+        const subcarpetas = dataFolders.files || [];
+
+        // Consultar fotos directas de la raíz
+        const urlFotosRaiz = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+        const resFotosRaiz = await fetch(urlFotosRaiz);
+        const dataFotosRaiz = await resFotosRaiz.json();
+        const fotosRaiz = dataFotosRaiz.files || [];
+
+        contenedor.innerHTML = '';
+
+        // Si hay fotos directas en la raíz
+        if (fotosRaiz.length > 0) {
+          renderizarBloque(contenedor, 'Colección Principal', fotosRaiz);
+        }
+
+        // Recorrer cada subcarpeta y mostrar su bloque titulado
+        for (const sub of subcarpetas) {
+          const urlSubFotos = `https://www.googleapis.com/drive/v3/files?q='${sub.id}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&orderBy=name&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+          try {
+            const resSub = await fetch(urlSubFotos);
+            const dataSub = await resSub.json();
+            if (dataSub.files && dataSub.files.length > 0) {
+              renderizarBloque(contenedor, sub.name, dataSub.files);
+            }
+          } catch (_) {}
+        }
+
+        if (fotosActuales.length === 0) {
+          contenedor.innerHTML = '<div class="cargando"><p>No se encontraron fotografías en esta sección.</p></div>';
+        }
+
+      } catch (err) {
+        console.error('Error Drive:', err);
+        contenedor.innerHTML = '<div class="cargando"><p style="color:#f87171;">Error de conexión con Google Drive.</p></div>';
+      }
+    }
+
+    function renderizarBloque(contenedor, titulo, archivos) {
+      const bloque = document.createElement('div');
+      bloque.className = 'subcarpeta-bloque';
+
+      bloque.innerHTML = `
+        <h3 class="titulo-subcarpeta">
+          <span class="material-symbols-outlined" style="font-size: 20px;">folder</span>
+          <span>${titulo}</span>
+        </h3>
+        <div class="galeria-grid" id="grid-${titulo.replace(/\\s+/g, '-')}"></div>
+      `;
+
+      contenedor.appendChild(bloque);
+      const grid = bloque.querySelector('.galeria-grid');
+
+      archivos.forEach(archivo => {
+        const urlHD = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+        const urlThumb = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
+        const indexFoto = fotosActuales.length;
+
+        fotosActuales.push({
+          id: archivo.id,
+          name: archivo.name,
+          urlHD: urlHD,
+          subcarpeta: titulo
+        });
+
+        const card = document.createElement('div');
+        card.className = 'tarjeta-img';
+        card.onclick = () => abrirVisor(indexFoto);
+        card.innerHTML = `<img src="${urlThumb}" alt="${archivo.name}" loading="lazy">`;
+        grid.appendChild(card);
+      });
+    }
+
+    // 2. Visor Ampliado con Firma de Autor
+    function abrirVisor(index) {
+      indiceFotoActual = index;
+      const foto = fotosActuales[indiceFotoActual];
+      document.getElementById('img-ampliada').src = foto.urlHD;
+      document.getElementById('txt-firma').innerText = `Sergio Molina • ${foto.subcarpeta} • #${foto.name}`;
+      document.getElementById('modal-visor').style.display = 'flex';
+
+      // Registro de Foto HD vista a Supabase
+      registrarFotoVista(foto.name, 'Ensayos');
+    }
+
+    function cerrarVisor() {
+      document.getElementById('modal-visor').style.display = 'none';
+    }
+
+    function cerrarVisorFondo(e) {
+      if (e.target && e.target.id === 'modal-visor') cerrarVisor();
+    }
+
+    function cambiarFoto(dir, event) {
+      if (event) event.stopPropagation();
+      indiceFotoActual += dir;
+      if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
+      else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
+
+      const foto = fotosActuales[indiceFotoActual];
+      document.getElementById('img-ampliada').src = foto.urlHD;
+      document.getElementById('txt-firma').innerText = `Sergio Molina • ${foto.subcarpeta} • #${foto.name}`;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const m = document.getElementById('modal-visor');
+      if (m && m.style.display === 'flex') {
+        if (e.key === 'Escape') cerrarVisor();
+        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
+        else if (e.key === 'ArrowRight') cambiarFoto(1);
+      }
+    });
+
+    // 3. Registrar visita de página y foto a Supabase
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+
+    (function() {
+      const esMobil = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+      fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          tipo: 'visita_pagina',
+          pagina: 'ensayos.html',
+          detalle: 'Galería Ensayos - Portafolio',
+          dispositivo: esMobil ? 'móvil' : 'desktop',
+          origen: document.referrer ? (new URL(document.referrer, window.location.href)).hostname : 'directo',
+          created_at: new Date().toISOString()
+        }),
+        keepalive: true
+      }).catch(function() {});
+    })();
+
+    function registrarFotoVista(fotoNombre, categoria) {
+      const esMobil = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+      fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          tipo: 'foto_visor_hd',
+          pagina: 'ensayos.html',
+          album_titulo: categoria,
+          detalle: `Visualización HD foto #${fotoNombre}`,
+          dispositivo: esMobil ? 'móvil' : 'desktop',
+          created_at: new Date().toISOString()
+        }),
+        keepalive: true
+      }).catch(function() {});
+    }
+
+    document.addEventListener('DOMContentLoaded', cargarContenidoGaleria);
+  </script>
+</body>
+</html>
