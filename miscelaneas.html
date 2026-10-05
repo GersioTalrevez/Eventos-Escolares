@@ -1,71 +1,82 @@
 <!DOCTYPE html>
 
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
 <title>Misceláneas | Sergio Ricardo Molina</title>
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Raleway:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #111111;
-      color: #ffffff;
-      padding: 20px 16px 40px;
-      max-width: 960px;
+      background-color: #111111;
+      color: #e5e2e1;
+      padding: 16px 12px calc(24px + env(safe-area-inset-bottom, 0px));
+      max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     .cabecera-galeria {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
+      gap: 12px;
+      margin-bottom: 20px;
       padding-bottom: 12px;
       border-bottom: 1px solid #282828;
     }
     .btn-volver {
-      background: #222222;
-      color: #ffffff;
+      background: #1c1b1b;
+      color: #e5e2e1;
       border: 1px solid #005580;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.88rem;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
       font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
+      white-space: nowrap;
       transition: background 0.2s, border-color 0.2s;
     }
-    .btn-volver:hover {
-      background: #2f2f2f;
+    .btn-volver:active {
+      background: #2a2a2a;
       border-color: #38bdf8;
     }
     .titulo-categoria {
-      font-size: 1.3rem;
-      font-weight: 400;
-      letter-spacing: 1px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      color: #ffffff;
     }
     .titulo-subcarpeta {
-      font-size: 1rem;
-      font-weight: 500;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: #38bdf8;
-      margin: 26px 0 12px;
+      margin: 22px 0 10px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid #222222;
+      gap: 6px;
+      border-bottom: 1px solid #201f1f;
       padding-bottom: 6px;
     }
     .galeria {
@@ -73,193 +84,205 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
-    @media (min-width: 600px) {
-      .galeria {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-    }
-    @media (min-width: 768px) {
-      .galeria {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-      }
-    }
     .galeria img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      background: #000000;
+      background: #0e0e0e;
       border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
       border: 1px solid #2a2a2a;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      display: block;
     }
-    .galeria img:hover {
-      transform: scale(1.02);
-      opacity: 0.95;
+    .galeria img:active {
+      transform: scale(0.97);
+      opacity: 0.9;
     }
     .modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.96);
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      touch-action: pan-y;
     }
     .modal-contenido {
       position: relative;
       display: inline-block;
-      max-width: 92%;
-      max-height: 85vh;
+      max-width: 94%;
+      max-height: 82vh;
     }
     .modal img {
       max-width: 100%;
-      max-height: 85vh;
+      max-height: 82vh;
       object-fit: contain;
-      border-radius: 4px;
+      border-radius: 6px;
       display: block;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9);
     }
     .firma-visor {
       position: absolute;
-      bottom: 12px;
-      left: 14px;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(4px);
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #e0e0e0;
-      font-family: monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.5px;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(14, 14, 14, 0.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 5px 9px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e5e2e1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
       pointer-events: none;
       z-index: 1002;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      max-width: 88%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
-    .firma-visor .dot { color: #38bdf8; }
+    .firma-visor .dot {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+    .btn-cerrar {
+      position: absolute;
+      top: calc(16px + env(safe-area-inset-top, 0px));
+      right: 18px;
+      color: #ffffff;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1003;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
     .btn-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       color: white;
-      font-size: 2.2rem;
-      padding: 14px 20px;
+      font-size: 1.8rem;
+      padding: 10px 14px;
       cursor: pointer;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.55);
       border-radius: 50%;
       user-select: none;
       z-index: 1001;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: background 0.2s;
-    }
-    .btn-nav:hover { background: rgba(0,85,128,0.7); }
-    .btn-prev { left: 16px; }
-    .btn-next { right: 16px; }
-    .btn-cerrar {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      z-index: 1001;
-      padding: 4px 14px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: none;
     }
     .redes-sociales {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 40px;
+      gap: 8px;
+      margin-top: 36px;
     }
     .btn-red {
-      background: #222222;
-      border-radius: 12px;
-      padding: 14px 6px;
+      background: #1c1b1b;
+      border-radius: 10px;
+      padding: 12px 4px;
       text-align: center;
-      color: #ffffff;
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 4px;
-      transition: transform 0.2s;
+      transition: transform 0.15s ease, background-color 0.15s ease;
     }
-    .btn-red:active { transform: scale(0.96); }
-    .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
-    .btn-cat { border: 2px solid #facc15; color: #facc15; }
-    .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
+    .btn-red:active {
+      transform: scale(0.95);
+      background: #201f1f;
+    }
+    .btn-red .material-symbols-outlined {
+      font-size: 20px;
+    }
+    .btn-wsp {
+      border: 1.5px solid #4ade80;
+      color: #4ade80;
+    }
+    .btn-cat {
+      border: 1.5px solid #facc15;
+      color: #facc15;
+    }
+    .btn-ig {
+      border: 1.5px solid #fb923c;
+      color: #fb923c;
+    }
     footer {
       text-align: center;
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #222222;
-      color: #666666;
-      font-size: 0.8rem;
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid #201f1f;
+      color: #8b9199;
+      font-size: 0.72rem;
+      line-height: 1.4;
     }
-    @media (max-width: 600px) { .btn-nav { display: none; } }
   </style>
 </head>
 <body>
 <div class="cabecera-galeria">
 <a class="btn-volver" href="index.html">← Volver al Portafolio</a>
 <h2 class="titulo-categoria">
-<span class="material-symbols-outlined" style="color: #38bdf8;">grain</span>
+<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 22px;">grain</span>
 <span>Misceláneas</span>
 </h2>
 </div>
 <main id="contenedor-secciones">
 <section>
 <h3 class="titulo-subcarpeta">
-<span class="material-symbols-outlined" style="font-size: 20px;">folder</span>
+<span class="material-symbols-outlined" style="font-size: 19px;">folder</span>
 <span>Fauna</span>
 </h3>
 <div class="galeria">
-<img alt="Picaflor de cordillera" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Picaflor-Mendoza.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Guanaco andino" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Guanaco-Cordillera.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Ave autóctona" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1555169062-013468b47731?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Ave-Silvestre.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Zorro colorado" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1534567153574-2b12153a87f0?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Zorro-Andino.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Picaflor de cordillera" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Picaflor-Mendoza.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWkinXSCekg0WYClRvv1Hzdm4zdDYD1qPzvK3gMd16KTdb5st_9qmMHDHof_gPQ3usQLt_OK9oHH3KVI5I_Tcje9TRwpXO7SwfLgToi0JoehCeis4iQ8dxGUM08eA_IPHicKW-yyRx_wp9B-G0J2NWBv9RfY4xrK33g2Gks25vQTOBDyzxfd81XJNVIYf6FwZZZu0ZAeM-OrpdhVab6Ykmyl0_FuimGeA56FDaI8-mkm1nsrGPrv3l"/>
+<img alt="Guanaco andino" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Guanaco-Cordillera.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADfI9cStERqi4BTwA69Ey-LLG5L8kshRS4zWV2ocqt3ZY2qsxHQ-qE923FSRjdEaCGYSStRNtbjLBPokiaV0r419otkRAFSDCgUdpTgFlEHGBcrpeUhsEzhc0jmNOHUsF3pdWVsJeqHEa_xO_Dd9geFJykeZw1dCzMgPQxr1FzhZjv61GNLW6LoKQzn8hbi8SJ59uYM0ABT35BDjIQgNdclSsc5N5ObtD9Z-Fzz4KIEQft00W76ZLq"/>
+<img alt="Ave autóctona" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1555169062-013468b47731?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Ave-Silvestre.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaWPEw_G4G36CU8LM4zqI_6qXnJNlfli37iVxb7nvFdoK1mYQoSueRc69I4MsyCjZj125QXr37CjTA7itP3bmOSgeMmeQl63afHVFEadIbx9DXMFr4oTa_av_e8oJj_tZaDbm8yJ0XzNGr2z4At536uELIgEseqzW4_mhLPRErLPTty79y5aLMEOigol_Cav30jgBjKuj4h8IWAypOWXRy_otwaL3qM9ZpoqHwu2W6II7wF5hhheIc"/>
+<img alt="Zorro colorado" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1534567153574-2b12153a87f0?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Fauna', '#Zorro-Andino.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeUPeYpHQ2o40SyLLYXbEGERy8X02JZR_3q3MjFgAxPhBM_Kb9u1TQNZZh0WANIkdZsvCld1gaXf5kGn-lWzlqnr_QjYmNkYbBgc-jWKwxMY99pSOMt1IqOEfaslDbVNe7JIO2weka__5dnsVQdXzoFwjT1Ff4lmwqJyPoVQXz76wDI3aU9_Vre2Q3A3FWXW9x_FGULAvLY-Dk8j9TuuQFq0-4hgSQoT1fIkD_tLbacWc8P-BFoHyC"/>
 </div>
 </section>
 <section>
 <h3 class="titulo-subcarpeta">
-<span class="material-symbols-outlined" style="font-size: 20px;">folder</span>
+<span class="material-symbols-outlined" style="font-size: 19px;">folder</span>
 <span>Misceláneas</span>
 </h3>
 <div class="galeria">
-<img alt="Cactus y vasijas" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Cactus-Tierra.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Laguna al amanecer" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Reflejos-Agua.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Árbol centenario" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Sombra-Verano.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Ventanal al cerro" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Ventana-Ruina.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Cactus y vasijas" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Cactus-Tierra.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfs41Lwx4z71OEZvM05aMQzI0EccVyfLWpXPpJaZ-Tp8mvuNN8pMINRTraCkWyWaKMlL9x7bGoCXUatQgkwAFhihbgkHENGqB1-CSqyRuEevM7YFThusfX03geZ-o_K5khvjZPTgToP4FjlFMHbxtD5Xt3bvKM1gvb2IU0wR7NY0OsvC8TN8l7BzMQqhOEjV74vIBnhbZlFoCLYD9INJ8RDMkB60kzEb9kFqSkwXMsZ3ATSVqE-XEd"/>
+<img alt="Laguna al amanecer" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Reflejos-Agua.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5n2IyC_U6UN51vscoqrCPrnHbdr7nIlB1EtoRBapuT7P1XP-qjOh2qjaIfvTpazOLPaGJVgMD_F7ablOGqM2GgbfTatoJEshuHF0SbD8bWHuhKiEk6cCk-UmANiFx3WhIUIvinkvjip0PBe4Gu2uvuR_p6b4zmyG1kEn9kGM5LRnHV6b5qQwaNCoe0c2PbL_4L__OdQ2RBDU8Pq69ht5OpJfwnXo6HF3NQfefZTiIUQ2xIl8yOU-O"/>
+<img alt="Árbol centenario" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Sombra-Verano.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2QrUtb4tBw1hshAl3yPLWIsW6hfsKpEhGs4QdvgOxoTNVK42yA37REVi1Ux98LfMDxPbtTiKeX2Tgm0AYkDfXqy42s2S47hsQGw-sOrrpglpkz-iTJUpoZZmNx7ct7aET8iQIVDMYHC28dqdFB_3zp6zrDlz3c40vxfqKMmux1oxCRK63QmCcRZFWsbJC6HSjBkFDlFRRJpFKNDWhyZz3Wt59FeQxPzGqMPMr8Gyl8HmGtxKOO5kU"/>
+<img alt="Ventanal al cerro" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Misceláneas', '#Ventana-Ruina.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcRMne5aJm7RbEaJvx_oUwJMj3_uwvGY3uYHkPCFa7ACW4yHqlPzbV9e6jy96WXsXod4CjS1meSRbzzHj3DKDe4sWxWgwpkecoVvm90QcuJsDZ5-uWac6yRA4eOKzHl2i5CpgAKXXaQbsq_tlSM5YQy0JrTW6ZHIdveLOC1zL2Z9IROenmufurqeqUOXNBycOrOojBgOFAxLV2sCyDOClslEdtK_XTf0TLWkUTOLhhWKDW74xJBdCl"/>
 </div>
 </section>
 <section>
 <h3 class="titulo-subcarpeta">
-<span class="material-symbols-outlined" style="font-size: 20px;">folder</span>
+<span class="material-symbols-outlined" style="font-size: 19px;">folder</span>
 <span>Raíces</span>
 </h3>
 <div class="galeria">
-<img alt="Copa de árboles" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Follaje-Otoño.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Bosque de álamos" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Alamos-Luz.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Textura de corteza" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Tronco-Antiguo.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-<img alt="Paisaje natural" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Horizonte-Cuyo.jpg')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Copa de árboles" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Follaje-Otoño.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVDY55SAlyt92VQQN3uk--qwU1qRms91kEWTFuq8nasoArA4r6wr4qkgX9oleAHXCfJjbEVFzJp5zpxmnU9Uup4ygIZGttFeyoWjw7WEqZ2VenVOrLfM4YpzwdIujPmfGeMMLTleWsR6DX-PyKLHfDAn6aTAVmBZFl0TubFIk9vSG8SUBsW4N3QUj6u2RQTObUN3wBk_n0SDy_JrNIEHuOZqq0m_zu0J8ba0clvIfs8rCgCaIpJA7J"/>
+<img alt="Bosque de álamos" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Alamos-Luz.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjZJsSBJnKsgXNasirIueVgeldRDTwC3QEzT-7t8Ge4riYgP8a0BP_bh3o6VLH1epoNAOBJiAnWA-KyD71ncrUt7vE88gd0GoHnxxlmJKbcP3fu-hfxEKf_heX6NdxUeGmvxYV_M5pdqVv8C3iYV0RKU8R9CqB3C0HYdc1NNaGjQ2DvfOnZsoGKNAA6WhJbQ2fEFYyR_Zyfk9gHdVxOck88h9fdRLMHjKeXma46b152PqKbQugQ7a-"/>
+<img alt="Textura de corteza" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Tronco-Antiguo.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWBmwYj1ss_dFOro12Qm3y2o1lFXSY0RZ7ADaWiha5NDDlgL9aYMnlshnE2s4tCvQMq4ilBgPoU90SpTUk_hj65GWhEtuB1gFau2OaHP23TkSc6QUWl1ZREiLwtAnUSvI4LMaRW-7yKnYURNo5ByPkAIfTWBTU4J9HwtWYVDTBNp6rVtWyTNYjQPU02FwAf_6cdOWxF8NmTObFS7nj5VOAEyitOe_8Mg6_Lt6rbVrJLT30SZzmtunC"/>
+<img alt="Paisaje natural" onclick="abrirVisorDirecto('https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&amp;w=1600&amp;auto=format&amp;fit=crop', 'Raíces', '#Horizonte-Cuyo.jpg')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEiAmpZWUFjd7IcNOr2RZyYrA6j5KGnYneHKV_sZHEBCavcjq1dkc3_Ihps2qlMg39mWJ7R-YLjqlerndgE4WSuDEm2ugv2puWLG22cKjjUUGC8e0OlmXpWih7-8qK6fK2EW7NQoa_HOK03ruw7EHftMC2OtXm4Vey-Alld2uQqG1DFo0ey1mOglPkTIKFJkCdUIwfP9725tHGncFZz2lF2U3NTCTol5cAJL-WR697FSO3DP0qf5Qs"/>
 </div>
 </section>
 </main>
 <div class="redes-sociales">
 <a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
 <span class="material-symbols-outlined">chat</span>
-<span>Chat WhatsApp</span>
+<span>WhatsApp</span>
 </a>
 <a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
 <span class="material-symbols-outlined">inventory_2</span>
@@ -326,7 +349,7 @@
           const seccion = document.createElement('section');
           seccion.innerHTML = `
             <h3 class="titulo-subcarpeta">
-              <span class="material-symbols-outlined" style="font-size: 20px;">folder</span>
+              <span class="material-symbols-outlined" style="font-size: 19px;">folder</span>
               <span>${subNombre}</span>
             </h3>
             <div class="galeria" id="galeria-${subId}"></div>
@@ -439,6 +462,5 @@
       cargarSubcarpetas();
       registrarMetrica('visita_pagina', 'Visita a galería Misceláneas');
     });
-  </script>
-</body>
-</html>
+</script>
+</body></html>
