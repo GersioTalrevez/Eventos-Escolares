@@ -315,16 +315,24 @@
 <div class="modal" id="modal">
 <span class="btn-cerrar" id="btn-cerrar-modal" title="Cerrar">×</span>
 <span class="btn-nav btn-prev" id="btn-prev-modal" title="Anterior">❮</span>
-<div class="modal-contenido" id="modal-touch-area">
-<img alt="Fotografía Sergio Molina" id="img-ampliada" src=""/>
-<div class="firma-visor" id="firma-visor">
+<div class="modal-contenido" id="modal-touch-area"><div style="position: relative; display: inline-flex; max-width: 100%; max-height: 85vh; overflow: hidden; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+<img alt="Fotografía Sergio Molina" id="img-ampliada" src="" style="max-width: 100%; max-height: 85vh; object-fit: contain; display: block;"/>
+<div id="marca-agua-visor" style="position: absolute; inset: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(circle, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 100%);">
+<div style="position: absolute; inset: -50%; display: flex; flex-direction: column; justify-content: space-around; transform: rotate(-30deg); opacity: 0.18; user-select: none;">
+<div style="white-space: nowrap; font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 4px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">MUESTRA OFICIAL • SERGIO RICARDO MOLINA • PROHIBIDA SU REPRODUCCIÓN • MUESTRA OFICIAL • SERGIO RICARDO MOLINA</div>
+<div style="white-space: nowrap; font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 4px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-left: -120px;">MUESTRA OFICIAL • SERGIO RICARDO MOLINA • PROHIBIDA SU REPRODUCCIÓN • MUESTRA OFICIAL • SERGIO RICARDO MOLINA</div>
+<div style="white-space: nowrap; font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 4px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-left: 60px;">MUESTRA OFICIAL • SERGIO RICARDO MOLINA • PROHIBIDA SU REPRODUCCIÓN • MUESTRA OFICIAL • SERGIO RICARDO MOLINA</div>
+</div>
+<div style="position: absolute; bottom: 8px; right: 12px; font-family: 'Manrope', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); text-shadow: 0 1px 3px rgba(0,0,0,0.9); text-transform: uppercase;">MUESTRA OFICIAL • SERGIO RICARDO MOLINA</div>
+</div>
+<div class="firma-visor" id="firma-visor" style="position: absolute; bottom: 8px; left: 8px;">
 <span>Sergio Molina</span>
 <span class="dot">•</span>
 <span id="firma-subcarpeta">Postales</span>
 <span class="dot">•</span>
 <span id="firma-archivo">#foto.jpg</span>
 </div>
-</div>
+</div></div>
 <span class="btn-nav btn-next" id="btn-next-modal" title="Siguiente">❯</span>
 </div>
 <script>
