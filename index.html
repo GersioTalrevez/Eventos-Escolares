@@ -171,8 +171,10 @@
       display: inline-flex;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       gap: 7px;
       transition: all 0.2s ease;
+      min-width: 180px;
     }
     .btn-propietario:hover {
       background: #1f1f1f;
@@ -189,154 +191,10 @@
       font-size: 0.82rem;
       letter-spacing: 0.4px;
     }
-
-    /* Vistas de interior */
-    .contenedor-galeria { display: none; }
-    .cabecera-galeria {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #282828;
-    }
-    .btn-volver {
-      background: #1f1f1f;
-      color: #ffffff;
-      border: 1px solid #005580;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s ease;
-    }
-    .btn-volver:hover { background: #2a2a2a; border-color: #38bdf8; }
-    .titulo-categoria { font-family: 'Raleway', sans-serif; font-size: 1.35rem; font-weight: 500; letter-spacing: 0.5px; }
-
-    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    @media (min-width: 600px) {
-      .galeria { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    }
-    @media (min-width: 768px) {
-      .galeria { grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    }
-    .galeria img { 
-      width: 100%; 
-      aspect-ratio: 1 / 1; 
-      object-fit: cover; 
-      background: #000000; 
-      border-radius: 8px; 
-      cursor: pointer; 
-      transition: transform 0.2s ease, opacity 0.2s ease; 
-      border: 1px solid #2a2a2a;
-    }
-    .galeria img:hover { transform: scale(1.02); opacity: 0.95; }
-    .cargando { text-align: center; color: #888888; grid-column: 1 / -1; padding: 50px 0; font-size: 0.95rem; }
-
-    .subcarpeta-bloque {
-      grid-column: 1 / -1;
-      margin: 16px 0 8px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #262626;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #38bdf8;
-      letter-spacing: 0.5px;
-      text-align: left;
-    }
-
-    /* Modal visor de foto */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.96);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-contenido-wrap {
-      position: relative;
-      display: inline-flex;
-      max-width: 92%;
-      max-height: 85vh;
-    }
-    .modal img {
-      max-width: 100%;
-      max-height: 85vh;
-      object-fit: contain;
-      user-select: none;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    }
-    .firma-autor-visor {
-      position: absolute;
-      bottom: 14px;
-      left: 16px;
-      background: rgba(14, 14, 14, 0.75);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px;
-      padding: 6px 12px;
-      text-align: left;
-      pointer-events: none;
-      z-index: 1002;
-    }
-    .firma-autor-visor .nombre-firma {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-    .firma-autor-visor .archivo-firma {
-      font-size: 0.7rem;
-      font-family: monospace;
-      color: #38bdf8;
-      margin-top: 1px;
-    }
-
-    .btn-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 2.2rem;
-      padding: 14px 20px;
-      cursor: pointer;
-      background: rgba(0,0,0,0.5);
-      border-radius: 50%;
-      user-select: none;
-      z-index: 1001;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: background 0.2s ease;
-    }
-    .btn-nav:hover { background: rgba(0,85,128,0.7); }
-    .btn-prev { left: 16px; }
-    .btn-next { right: 16px; }
-    .btn-cerrar {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      z-index: 1001;
-      padding: 4px 14px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      line-height: 1;
-    }
-    @media (max-width: 600px) {
-      .btn-nav { display: none; }
-    }
   </style>
 </head>
 <body>
-<!-- VISTA 1: MENÚ PRINCIPAL -->
+<!-- VISTA: MENÚ PRINCIPAL -->
 <div id="vista-menu">
 <header>
 <img alt="Sergio Ricardo Molina" class="avatar-header" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA"/>
@@ -344,27 +202,27 @@
 </header>
 <main>
 <div class="grid-categorias">
-<div class="card-categoria" onclick="abrirSeccionTexto()">
+<a class="card-categoria" href="sobre-mi.html">
 <span class="material-symbols-outlined card-icon">person</span>
 <span>Sobre mí</span>
-</div>
-<div class="card-categoria" onclick="abrirGaleria('Ensayos', '1K4h3SPq2WdCEMMzrTSToD-quebXDD4rS')">
+</a>
+<a class="card-categoria" href="ensayos.html">
 <span class="material-symbols-outlined card-icon">auto_awesome</span>
 <span>Ensayos</span>
-</div>
-<div class="card-categoria" onclick="abrirGaleria('Postales', '1W-eFu0G6mqggGw6TN7bSU9Dvz0k2h70M')">
+</a>
+<a class="card-categoria" href="postales.html">
 <span class="material-symbols-outlined card-icon">landscape</span>
 <span>Postales</span>
-</div>
-<div class="card-categoria" onclick="abrirGaleria('Misceláneas', '1cRFXW5h8P_z6gd0Zz91tct77Or5CBBZM')">
+</a>
+<a class="card-categoria" href="miscelaneas.html">
 <span class="material-symbols-outlined card-icon">grain</span>
 <span>Misceláneas</span>
-</div>
-<div class="card-categoria" onclick="abrirGaleria('Sesiones', '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY')">
+</a>
+<a class="card-categoria" href="sesiones.html">
 <span class="material-symbols-outlined card-icon">photo_camera</span>
 <span>Sesiones</span>
-</div>
-<a class="card-categoria" href="eventos.html" style="text-decoration: none;">
+</a>
+<a class="card-categoria" href="eventos.html">
 <span class="material-symbols-outlined card-icon" style="color: #38bdf8;">school</span>
 <span>Eventos</span>
 </a>
@@ -400,29 +258,6 @@
 <p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
 </footer>
 </div>
-<!-- VISTA 2: GALERÍA DE FOTOS -->
-<div class="contenedor-galeria" id="vista-galeria">
-<div class="cabecera-galeria">
-<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
-<h2 class="titulo-categoria" id="titulo-categoria">Categoría</h2>
-</div>
-<main class="galeria" id="galeria"></main>
-</div>
-<!-- VISTA 3: SOBRE MÍ -->
-<div class="contenedor-galeria" id="vista-sobre-mi">
-<div class="cabecera-galeria">
-<button class="btn-volver" onclick="mostrarMenu()">← Volver al inicio</button>
-<h2 class="titulo-categoria">Sobre mí</h2>
-</div>
-<div style="padding: 25px 15px; line-height: 1.75; text-align: center; max-width: 680px; margin: 0 auto;">
-<img alt="Sergio Ricardo Molina" src="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" style="width: 170px; height: 170px; object-fit: cover; border-radius: 50%; margin-bottom: 24px; border: 2px solid #005580; box-shadow: 0 4px 20px rgba(0,0,0,0.6);"/>
-<p style="margin-bottom: 18px; color: #e5e5e5; font-size: 1.05rem;">Desde siempre me cautivó la magia de detener el tiempo a través de una imagen. La fotografía es mi manera de conectar profundamente con el entorno: me apasiona capturar momentos únicos y espontáneos, buscando siempre la esencia genuina de las personas y la fuerza de los paisajes de nuestra tierra.</p>
-<p style="color: #cccccc; font-size: 1rem;">Como fotógrafo profesional, cada toma representa una nueva oportunidad de contar una historia, fusionando la técnica con una mirada íntima y un enfoque profundamente artístico.</p>
-<div style="margin-top: 30px;">
-<a class="btn-volver" href="https://wa.me/542613175222" rel="noopener noreferrer" style="text-decoration: none; padding: 10px 20px; font-size: 0.95rem; border-color: #4ade80; color: #4ade80;" target="_blank">Consultar por Sesiones Privadas 💬</a>
-</div>
-</div>
-</div>
 <!-- MODAL CLAVE CLIENTE -->
 <div id="modal-cliente" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 1200; align-items: center; justify-content: center; padding: 20px;">
 <div style="background: #181818; border: 1px solid #005580; border-radius: 16px; max-width: 440px; width: 100%; padding: 28px 24px; box-shadow: 0 10px 35px rgba(0, 85, 128, 0.25); text-align: center; position: relative;">
@@ -441,19 +276,6 @@
 </button>
 </form>
 </div>
-</div>
-<!-- VISOR MODAL CON FIRMA SOBRE LA IMAGEN -->
-<div class="modal" id="modal" onclick="cerrarVisorFondo(event)">
-<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
-<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
-<div class="modal-contenido-wrap" onclick="event.stopPropagation()">
-<img alt="Vista Previa" id="img-ampliada" src=""/>
-<div class="firma-autor-visor">
-<div class="nombre-firma">Sergio Molina</div>
-<div class="archivo-firma" id="firma-archivo-sub">Foto Oficial</div>
-</div>
-</div>
-<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
 </div>
 <!-- REGISTRADOR UNIVERSAL DE VISITAS EN VIVO SUPABASE -->
 <script>
@@ -484,17 +306,12 @@
       }).catch(function() {});
     })();
   </script>
-<!-- LÓGICA DE GALERÍAS Y VALIDACIÓN -->
+<!-- LÓGICA DE MODAL CLIENTE Y ACCESO -->
 <script>
-    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
     const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
 
     const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
-
-    let fotosActuales = [];
-    let indiceFotoActual = 0;
-    history.pushState({ vista: 'inicio' }, '', '');
 
     function abrirModalCliente() {
       const m = document.getElementById('modal-cliente');
@@ -567,155 +384,16 @@
       }
     }
 
-    async function cargarFotos(folderId) {
-      const galeria = document.getElementById('galeria');
-      galeria.innerHTML = '<div class="cargando">Cargando fotos en alta resolución...</div>';
-      fotosActuales = [];
-
-      try {
-        // Consultar subcarpetas
-        const urlCarpetas = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType='application/vnd.google-apps.folder'+and+trashed=false&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
-        const resCarpetas = await fetch(urlCarpetas);
-        const dataCarpetas = await resCarpetas.json();
-
-        galeria.innerHTML = '';
-
-        if (dataCarpetas.files && dataCarpetas.files.length > 0) {
-          for (const sub of dataCarpetas.files) {
-            const urlFotos = `https://www.googleapis.com/drive/v3/files?q='${sub.id}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
-            const resFotos = await fetch(urlFotos);
-            const dataFotos = await resFotos.json();
-
-            if (dataFotos.files && dataFotos.files.length > 0) {
-              const tituloSub = document.createElement('div');
-              tituloSub.className = 'subcarpeta-bloque';
-              tituloSub.textContent = sub.name;
-              galeria.appendChild(tituloSub);
-
-              dataFotos.files.forEach(archivo => {
-                const urlAlta = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
-                const idx = fotosActuales.length;
-                fotosActuales.push({
-                  url: urlAlta,
-                  nombre: archivo.name || 'Fotografía',
-                  subcarpeta: sub.name
-                });
-
-                const img = document.createElement('img');
-                img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
-                img.alt = archivo.name;
-                img.loading = 'lazy';
-                img.onclick = () => abrirVisor(idx);
-                galeria.appendChild(img);
-              });
-            }
-          }
-        } else {
-          // Consultar raíz directa
-          const urlRaiz = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&orderBy=name&key=${API_KEY}&fields=files(id,name)`;
-          const resRaiz = await fetch(urlRaiz);
-          const dataRaiz = await resRaiz.json();
-
-          if (dataRaiz.files && dataRaiz.files.length > 0) {
-            dataRaiz.files.forEach(archivo => {
-              const urlAlta = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
-              const idx = fotosActuales.length;
-              fotosActuales.push({
-                url: urlAlta,
-                nombre: archivo.name || 'Fotografía',
-                subcarpeta: ''
-              });
-
-              const img = document.createElement('img');
-              img.src = `https://lh3.googleusercontent.com/d/${archivo.id}=w800`;
-              img.alt = archivo.name;
-              img.loading = 'lazy';
-              img.onclick = () => abrirVisor(idx);
-              galeria.appendChild(img);
-            });
-          } else {
-            galeria.innerHTML = '<p style="text-align:center; color:#888; grid-column:1/-1; padding:40px;">No se encontraron fotografías en esta sección.</p>';
-          }
-        }
-      } catch (err) {
-        galeria.innerHTML = '<p style="text-align:center; color:#ff6b6b; grid-column:1/-1; padding:40px;">Error al conectar con Google Drive. Verificá los permisos.</p>';
-      }
-    }
-
-    function abrirGaleria(nombre, folderId) {
-      history.pushState({ vista: 'interior' }, '', '');
-      document.getElementById('vista-menu').style.display = 'none';
-      document.getElementById('vista-sobre-mi').style.display = 'none';
-      document.getElementById('vista-galeria').style.display = 'block';
-      document.getElementById('titulo-categoria').innerText = nombre;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      cargarFotos(folderId);
-    }
-
-    function abrirSeccionTexto() {
-      history.pushState({ vista: 'interior' }, '', '');
-      document.getElementById('vista-menu').style.display = 'none';
-      document.getElementById('vista-galeria').style.display = 'none';
-      document.getElementById('vista-sobre-mi').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function mostrarMenu() {
-      if (window.history.state && window.history.state.vista === 'interior') {
-        window.history.back();
-      } else {
-        forzarVistaMenu();
-      }
-    }
-
-    function forzarVistaMenu() {
-      document.getElementById('vista-galeria').style.display = 'none';
-      document.getElementById('vista-sobre-mi').style.display = 'none';
-      document.getElementById('vista-menu').style.display = 'block';
-      cerrarVisor();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    window.addEventListener('popstate', () => {
-      const m = document.getElementById('modal');
-      if (m.style.display === 'flex') {
-        cerrarVisor();
-        history.pushState({ vista: 'interior' }, '', '');
-      } else {
-        forzarVistaMenu();
-        history.pushState({ vista: 'inicio' }, '', '');
-      }
+    // Cerrar modal al hacer click en el fondo exterior
+    window.addEventListener('click', (e) => {
+      const m = document.getElementById('modal-cliente');
+      if (e.target === m) cerrarModalCliente();
     });
 
-    function abrirVisor(index) {
-      indiceFotoActual = index;
-      const foto = fotosActuales[indiceFotoActual];
-      document.getElementById('img-ampliada').src = foto.url || foto;
-      const lblFirma = document.getElementById('firma-archivo-sub');
-      if (lblFirma) {
-        lblFirma.textContent = foto.subcarpeta ? `${foto.subcarpeta} • ${foto.nombre}` : (foto.nombre || 'Fotografía');
-      }
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function cerrarVisor() { document.getElementById('modal').style.display = 'none'; }
-    function cerrarVisorFondo(e) { if (e.target.id === 'modal') cerrarVisor(); }
-
-    function cambiarFoto(dir, e) {
-      if (e) e.stopPropagation();
-      indiceFotoActual += dir;
-      if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
-      else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
-      abrirVisor(indiceFotoActual);
-    }
-
-    // Navegación de fotos con teclado (Escape, Flechas) dentro del visor modal
+    // Tecla Escape para cerrar modal
     document.addEventListener('keydown', (e) => {
-      const m = document.getElementById('modal');
-      if (m && m.style.display === 'flex') {
-        if (e.key === 'Escape') cerrarVisor();
-        else if (e.key === 'ArrowLeft') cambiarFoto(-1);
-        else if (e.key === 'ArrowRight') cambiarFoto(1);
+      if (e.key === 'Escape') {
+        cerrarModalCliente();
       }
     });
   </script>
