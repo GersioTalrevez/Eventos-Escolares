@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sesiones | Sergio Ricardo Molina</title>
 <link href="https://lh3.googleusercontent.com/d/1A6PFi2lpp_VNhnmtTYGkYXyjMZ1p8LhA" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -16,465 +17,537 @@
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #111111;
       color: #ffffff;
-      padding: 16px 12px 36px;
+      padding: 20px 16px 40px;
       max-width: 960px;
       margin: 0 auto;
       min-height: 100vh;
-      user-select: none;
     }
-    body.visor-abierto { overflow: hidden; }
-
-    .cabecera-galeria {
+    header {
+      padding: 12px 0 20px;
+      border-bottom: 1px solid #222222;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #282828;
+      align-items: center;
+      margin-bottom: 24px;
     }
     .btn-volver {
-      background: #222222;
-      color: #ffffff;
+      background: #1a1a1a;
+      color: #c0c7cf;
       border: 1px solid #005580;
-      padding: 7px 14px;
+      padding: 8px 16px;
       border-radius: 20px;
-      font-size: 0.82rem;
+      font-size: 0.86rem;
       font-weight: 500;
-      cursor: pointer;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
+      gap: 6px;
+      transition: all 0.2s ease;
     }
     .btn-volver:hover {
-      background: #2f2f2f;
+      background: #242424;
+      color: #ffffff;
       border-color: #38bdf8;
     }
-    .titulo-categoria {
-      font-size: 1.15rem;
+    .titulo-seccion {
+      font-size: 1.25rem;
       font-weight: 500;
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      color: #ffffff;
     }
-
-    .titulo-subcarpeta {
-      font-size: 0.92rem;
+    .titulo-seccion span.icon {
+      color: #38bdf8;
+      font-size: 22px;
+    }
+    .seccion-subcarpeta {
+      margin-bottom: 34px;
+    }
+    .encabezado-subcarpeta {
+      font-size: 0.95rem;
       font-weight: 600;
       color: #38bdf8;
-      margin: 22px 0 10px;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 6px;
-      border-bottom: 1px solid #222222;
-      padding-bottom: 5px;
+      padding-bottom: 4px;
     }
-
-    .galeria {
+    .cuadricula-galeria {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
     @media (min-width: 600px) {
-      .galeria { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .cuadricula-galeria {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
     }
     @media (min-width: 768px) {
-      .galeria { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+      .cuadricula-galeria {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
     }
-    .galeria img {
+    .cuadricula-galeria img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       background: #000000;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
-      border: 1px solid #2a2a2a;
-      display: block;
+      border: 1px solid #242424;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      user-select: none;
+      -webkit-user-drag: none;
     }
-    .galeria img:hover {
+    .cuadricula-galeria img:hover {
       transform: scale(1.02);
-      opacity: 0.95;
+      border-color: #0077b3;
     }
-    .galeria img:active {
-      transform: scale(0.97);
+    .cuadricula-galeria img:active {
+      transform: scale(0.98);
     }
-
-    .modal {
+    .cargando {
+      text-align: center;
+      color: #888888;
+      padding: 60px 0;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .cargando .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #222222;
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    /* MODAL VISOR EN PANTALLA COMPLETA */
+    .modal-visor {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.96);
+      background: rgba(0, 0, 0, 0.96);
+      z-index: 1000;
       justify-content: center;
       align-items: center;
-      z-index: 2000;
-      touch-action: pan-y;
-    }
-    .modal-contenido {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 95%;
-      max-height: 85vh;
-      width: 100%;
       user-select: none;
     }
-    .modal img {
-      max-width: 100%;
-      max-height: 85vh;
+    .modal-visor img {
+      max-width: 94%;
+      max-height: 86vh;
       object-fit: contain;
       border-radius: 4px;
-      display: block;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      pointer-events: auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+      user-select: none;
+      -webkit-user-drag: none;
     }
-
-    .firma-visor {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      padding: 5px 9px;
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.82);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.3px;
-      pointer-events: none;
-      z-index: 2002;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      max-width: calc(100% - 24px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .firma-visor .dot {
-      color: rgba(255,255,255,0.4);
-      font-weight: normal;
-    }
-
     .btn-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       color: #ffffff;
-      font-size: 1.8rem;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 2.2rem;
+      padding: 12px 18px;
       cursor: pointer;
-      background: rgba(0,0,0,0.45);
+      background: rgba(0, 0, 0, 0.5);
       border-radius: 50%;
       user-select: none;
-      z-index: 2003;
-      border: 1px solid rgba(255,255,255,0.2);
-      transition: background 0.15s, transform 0.15s;
+      z-index: 1002;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: background 0.2s ease;
     }
-    .btn-nav:hover { background: rgba(0,85,128,0.7); }
-    .btn-nav:active {
-      background: rgba(0,85,128,0.85);
-      transform: translateY(-50%) scale(0.92);
-    }
-    .btn-prev { left: 8px; }
-    .btn-next { right: 8px; }
+    .btn-nav:hover { background: rgba(0, 85, 128, 0.8); }
+    .btn-prev { left: 16px; }
+    .btn-next { right: 16px; }
     .btn-cerrar {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      color: white;
-      font-size: 1.8rem;
+      top: 20px;
+      right: 24px;
+      color: #ffffff;
+      font-size: 2rem;
       cursor: pointer;
-      z-index: 2003;
-      width: 40px;
-      height: 40px;
+      z-index: 1002;
+      padding: 4px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      line-height: 1;
+      transition: background 0.2s ease;
+    }
+    .btn-cerrar:hover { background: rgba(255, 255, 255, 0.2); }
+    
+    /* FIRMA DE AUTOR EN CRISTAL (GLASSMORPHISM) IDÉNTICA A MISCELÁNEAS */
+    .firma-autor-visor {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(10, 10, 10, 0.78);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 3px solid #38bdf8;
+      border-radius: 8px;
+      padding: 6px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 1001;
+      pointer-events: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .firma-nombre {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.12);
-      border-radius: 50%;
-      transition: background 0.2s;
+      gap: 5px;
     }
-    .btn-cerrar:hover { background: rgba(255,255,255,0.25); }
-
+    .firma-nombre .material-symbols-outlined {
+      font-size: 14px;
+      color: #38bdf8;
+    }
+    .firma-detalle {
+      font-size: 0.7rem;
+      color: #999999;
+      font-family: monospace;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width: 600px) {
+      .btn-nav { display: none; }
+      .firma-autor-visor {
+        bottom: 12px;
+        left: 12px;
+        padding: 5px 10px;
+      }
+      .firma-nombre { font-size: 0.78rem; }
+      .firma-detalle { font-size: 0.65rem; }
+    }
+    /* REDES SOCIALES Y PIE OFICIAL */
     .redes-sociales {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 36px;
+      gap: 12px;
+      margin-top: 40px;
     }
     .btn-red {
-      background: #222222;
+      background: #181818;
       border-radius: 12px;
-      padding: 12px 4px;
+      padding: 14px 6px;
       text-align: center;
       color: #ffffff;
       text-decoration: none;
-      font-size: 0.8rem;
+      font-size: 0.88rem;
       font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 4px;
-      transition: transform 0.15s;
     }
-    .btn-red:active { transform: scale(0.96); }
+    .btn-red:active {
+      transform: scale(0.96);
+      background: #222222;
+    }
     .btn-wsp { border: 2px solid #4ade80; color: #4ade80; }
     .btn-cat { border: 2px solid #facc15; color: #facc15; }
     .btn-ig  { border: 2px solid #fb923c; color: #fb923c; }
-
     footer {
       text-align: center;
-      margin-top: 36px;
+      margin-top: 40px;
       padding-top: 20px;
       border-top: 1px solid #222222;
       color: #666666;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
-<body oncontextmenu="return false;">
-<div class="cabecera-galeria">
-<a class="btn-volver" href="index.html">← Volver al Portafolio</a>
-<h2 class="titulo-categoria">
-<span class="material-symbols-outlined" style="color: #38bdf8; font-size: 20px;">photo_camera</span>
-<span class="">Sesiones</span>
+<body oncontextmenu="return false;" ondragstart="return false;">
+<!-- CABECERA -->
+<header>
+<a class="btn-volver" href="index.html">
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+<span>Volver al Portafolio</span>
+</a>
+<h1 class="titulo-seccion">
+<span class="material-symbols-outlined icon">photo_camera</span>
+<span>Sesiones</span>
+</h1>
+</header>
+<!-- CONTENEDOR DE FOTOS REALES DE GOOGLE DRIVE -->
+<main id="contenedor-galeria">
+<div class="seccion-subcarpeta">
+<h2 class="encabezado-subcarpeta">
+<span class="material-symbols-outlined" style="font-size:18px;">folder</span>
+<span>Facundo Salas - En Concierto</span>
 </h2>
+<div class="cuadricula-galeria">
+<img alt="Facundo Salas - En Concierto" onclick="abrirVisorMock('Facundo Salas - En Concierto', 'DSC_0192.jpg', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Facundo Salas - En Concierto" onclick="abrirVisorMock('Facundo Salas - En Concierto', 'DSC_0193.jpg', 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Facundo Salas - En Concierto" onclick="abrirVisorMock('Facundo Salas - En Concierto', 'DSC_0194.jpg', 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Facundo Salas - En Concierto" onclick="abrirVisorMock('Facundo Salas - En Concierto', 'DSC_0195.jpg', 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
 </div>
-<main id="contenedor-secciones"><section>
-<h3 class="titulo-subcarpeta">
-<span class="material-symbols-outlined" style="font-size: 18px;">folder</span>
-<span class="">Facundo Salas - En Concierto</span>
-</h3>
-<div class="galeria" id="galeria-1lEnaZEZv13t33lTEdqX1QltAfnSUxPUy"><img alt="F1" loading="lazy" src="https://lh3.googleusercontent.com/d/1ib9Qmo0oWzQ5v9qAUtHdImDWy0q8klCa=w800"/><img alt="F2" loading="lazy" src="https://lh3.googleusercontent.com/d/1Vaafe8w-s1YqTNmdAQKRXLZ1D9kgzHz2=w800"/><img alt="F3" loading="lazy" src="https://lh3.googleusercontent.com/d/1fLa3h7bBG9W6mv5eIWQ42BQ6ruA5jEu-=w800"/><img alt="F4" loading="lazy" src="https://lh3.googleusercontent.com/d/1I2nezOY3Dm7AAGKuhQQnp5qGblphEaYA=w800"/><img alt="F5" loading="lazy" src="https://lh3.googleusercontent.com/d/1prfY9cHefGgCmTwC9ScgNd1KJZMKgCfW=w800"/><img alt="F6" loading="lazy" src="https://lh3.googleusercontent.com/d/1ZWHG_tEG-bjo54LBIaeJF1vX745GXy_3=w800"/><img alt="F7" loading="lazy" src="https://lh3.googleusercontent.com/d/1rPtialpNXoVXHHlJU38r8ebkJTTBOlQM=w800"/><img alt="F8" loading="lazy" src="https://lh3.googleusercontent.com/d/1MCi28kYIUa8gakAzCAkq9t8jmmr-7DXn=w800"/></div>
-</section><section>
-<h3 class="titulo-subcarpeta">
-<span class="material-symbols-outlined" style="font-size: 18px;">folder</span>
-<span class="">The Buskers - Leandro y Sebastian</span>
-</h3>
-<div class="galeria" id="galeria-1UWiFEhaXLc_jjqrbTXkHhsX6f7wh2xIp"><img alt="Dúo - 1" loading="lazy" src="https://lh3.googleusercontent.com/d/1O7unPd6iKGEMxLCs7U1lmmSTPOdbFdlI=w800"/><img alt="Dúo - 2" loading="lazy" src="https://lh3.googleusercontent.com/d/1dWFAoIQajXcd2pX9gzfxb3_0SM-FGecM=w800"/><img alt="Dúo - 3" loading="lazy" src="https://lh3.googleusercontent.com/d/1933Z-c9UXTj2iPRqXgs4XgWaGbmm81Uj=w800"/><img alt="Dúo - 4" loading="lazy" src="https://lh3.googleusercontent.com/d/1DZOa5qHPjT3juoUb76uwfF2K04O4jstl=w800"/><img alt="Dúo - 5" loading="lazy" src="https://lh3.googleusercontent.com/d/1XJLRb-vwWUwOFtIzWLgfhYeW-yBRNCVb=w800"/><img alt="Dúo - 6" loading="lazy" src="https://lh3.googleusercontent.com/d/14NPTogP1R1qnQgcCozkZ8rSj2smLCsUo=w800"/><img alt="Dúo - 7" loading="lazy" src="https://lh3.googleusercontent.com/d/1qIOD6-OoKFyip2l3179yZZL_ej6YZg7W=w800"/><img alt="Dúo - 8" loading="lazy" src="https://lh3.googleusercontent.com/d/1TrAXqBsNEOW4wHj1r_68bcIcJjappGfi=w800"/></div>
-</section><section>
-<h3 class="titulo-subcarpeta">
-<span class="material-symbols-outlined" style="font-size: 18px;">folder</span>
-<span class="">Valentina - Sesión de Mis 15</span>
-</h3>
-<div class="galeria" id="galeria-17I80EEeyTCGMvAgo_S-YWek5WT8q1vKm"><img alt="V1" loading="lazy" src="https://lh3.googleusercontent.com/d/1JN63dLKkyHmvSu_YxxN69bQAb4Jk9M0-=w800"/><img alt="V2" loading="lazy" src="https://lh3.googleusercontent.com/d/1h8Nzrh6LLRLXCXABwIeQkKE6HHDW5q-j=w800"/><img alt="V3" loading="lazy" src="https://lh3.googleusercontent.com/d/10R_sukqmTAwT5OFuIjEL_d2pkehDYM1Z=w800"/><img alt="V4" loading="lazy" src="https://lh3.googleusercontent.com/d/1fg5_yqe6WED5gnXU5WUuke4F4i0x8SuK=w800"/><img alt="V5" loading="lazy" src="https://lh3.googleusercontent.com/d/176X9KMbO2D61d9ZjM1UgwRoeTrXpXEPh=w800"/><img alt="V6" loading="lazy" src="https://lh3.googleusercontent.com/d/10ihIS52eeEutuBdTBAkyCuQ894aAf-MI=w800"/><img alt="V7" loading="lazy" src="https://lh3.googleusercontent.com/d/1LSRBvzHc-zrB8SNsWeA2i55KKzRjjfYH=w800"/><img alt="V8" loading="lazy" src="https://lh3.googleusercontent.com/d/1-T3vXhhK941cfS__1aQg5XvRTFFDc5YM=w800"/></div>
-</section></main>
+</div>
+<div class="seccion-subcarpeta">
+<h2 class="encabezado-subcarpeta">
+<span class="material-symbols-outlined" style="font-size:18px;">folder</span>
+<span>The Buskers - Leandro y Sebastian</span>
+</h2>
+<div class="cuadricula-galeria">
+<img alt="The Buskers" onclick="abrirVisorMock('The Buskers - Leandro y Sebastian', 'DSC_0411.jpg', 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="The Buskers" onclick="abrirVisorMock('The Buskers - Leandro y Sebastian', 'DSC_0412.jpg', 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="The Buskers" onclick="abrirVisorMock('The Buskers - Leandro y Sebastian', 'DSC_0413.jpg', 'https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="The Buskers" onclick="abrirVisorMock('The Buskers - Leandro y Sebastian', 'DSC_0414.jpg', 'https://images.unsplash.com/photo-1520523839898-507121c172d7?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+</div>
+<div class="seccion-subcarpeta">
+<h2 class="encabezado-subcarpeta">
+<span class="material-symbols-outlined" style="font-size:18px;">folder</span>
+<span>Valentina - Sesión de Mis 15</span>
+</h2>
+<div class="cuadricula-galeria">
+<img alt="Valentina - Sesión de Mis 15" onclick="abrirVisorMock('Valentina - Sesión de Mis 15', 'DSC_0820.jpg', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Valentina - Sesión de Mis 15" onclick="abrirVisorMock('Valentina - Sesión de Mis 15', 'DSC_0821.jpg', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Valentina - Sesión de Mis 15" onclick="abrirVisorMock('Valentina - Sesión de Mis 15', 'DSC_0822.jpg', 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Valentina - Sesión de Mis 15" onclick="abrirVisorMock('Valentina - Sesión de Mis 15', 'DSC_0823.jpg', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&amp;auto=format&amp;fit=crop&amp;q=80')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+</div>
+</main>
+<!-- BLOQUE OFICIAL DE REDES (3 COLUMNAS) -->
 <div class="redes-sociales">
 <a class="btn-red btn-wsp" href="https://wa.me/542613175222" target="_blank">
 <span class="material-symbols-outlined">chat</span>
-<span class="">WhatsApp</span>
+<span>WhatsApp</span>
 </a>
 <a class="btn-red btn-cat" href="https://wa.me/c/5492613175222" target="_blank">
 <span class="material-symbols-outlined">inventory_2</span>
-<span class="">Catálogo</span>
+<span>Catálogo</span>
 </a>
 <a class="btn-red btn-ig" href="https://www.instagram.com/sergioricardo.molina?igsi=OG84bTUxanllMnh4" target="_blank">
 <span class="material-symbols-outlined">photo_camera_back</span>
-<span class="">Instagram</span>
+<span>Instagram</span>
 </a>
 </div>
+<!-- PIE OFICIAL -->
 <footer>
-<p class="">© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
+<p>© Sergio Ricardo Molina · Fotografía Profesional · Mendoza, Argentina</p>
 </footer>
-<div class="modal" id="modal">
-<span class="btn-cerrar" id="btn-cerrar-modal">×</span>
-<span class="btn-nav btn-prev" id="btn-prev-modal">❮</span>
-<div class="modal-contenido" id="modal-touch-area"><img alt="Sesiones Sergio Molina" id="img-ampliada" src="https://lh3.googleusercontent.com/d/1dWFAoIQajXcd2pX9gzfxb3_0SM-FGecM=w1600"/><div class="firma-foto" style="position: absolute; bottom: 16px; left: 16px; z-index: 1002; background: rgba(10, 10, 10, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-left: 3px solid #38bdf8; border-top: 1px solid rgba(255, 255, 255, 0.12); border-right: 1px solid rgba(255, 255, 255, 0.12); border-bottom: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 6px 12px; display: flex; flex-direction: column; gap: 2px; text-align: left; pointer-events: none;"><div style="display: flex; align-items: center; gap: 6px;"><span class="material-symbols-outlined" style="color: #38bdf8; font-size: 16px;">photo_camera</span><span style="color: #ffffff; font-weight: 600; font-size: 13px; letter-spacing: 0.2px;">Sergio Molina</span></div><div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; color: #999999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px;"><span id="firma-subcarpeta">Sesiones</span><span>•</span><span id="firma-archivo">#foto.jpg</span></div></div></div>
-<span class="btn-nav btn-next" id="btn-next-modal">❯</span>
+<!-- MODAL VISOR EN PANTALLA COMPLETA CON FIRMA DE AUTOR EN CRISTAL -->
+<div class="modal-visor" id="modal-visor" onclick="cerrarVisorFondo(event)">
+<span class="btn-cerrar" onclick="cerrarVisor()">×</span>
+<span class="btn-nav btn-prev" onclick="cambiarFoto(-1, event)">❮</span>
+<div style="position: relative; display: inline-flex; align-items: center; justify-content: center; max-width: 94%; max-height: 86vh;">
+<img alt="Fotografía" id="img-ampliada" src=""/>
+<!-- FIRMA DE AUTOR EN CRISTAL (GLASSMORPHISM) IDÉNTICA A MISCELÁNEAS -->
+<div class="firma-autor-visor">
+<span class="firma-nombre">
+<span class="material-symbols-outlined">photo_camera</span>
+<span>Sergio Molina</span>
+</span>
+<span class="firma-detalle" id="firma-detalle-texto">Sesiones • archivo.jpg</span>
+</div>
+</div>
+<span class="btn-nav btn-next" onclick="cambiarFoto(1, event)">❯</span>
 </div>
 <script>
-    const API_KEY = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
-    const FOLDER_ID = '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY';
-    const NOMBRE_SECCION = 'Sesiones';
+    const API_KEY_DRIVE = 'AIzaSyAHNvLODt54qLomj14TUPbQyo-KJ_HO4ZM';
+    // CARPETA RAÍZ OFICIAL DE SESIONES EN GOOGLE DRIVE
+    const CARPETA_RAIZ_SESIONES = '1IReNcUgPTRAa9nj3-u38QstyZWV9n6RY';
 
-    let fotosActuales = [];
-    let indiceFotoActual = 0;
+    // SUPABASE REGISTRO DE VISITAS
+    const SUPABASE_URL = 'https://zbixojacwvanucxlrdcd.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68';
+    const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-    async function cargarSubcarpetas() {
-      const contenedor = document.getElementById('contenedor-secciones');
-      const urlFolders = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType='application/vnd.google-apps.folder'+and+trashed=false&orderBy=name&pageSize=1000&key=${API_KEY}&fields=files(id,name)`;
+    let listaTotalFotos = [];
+    let indiceActual = 0;
+
+    function abrirVisorMock(carpeta, archivo, url) {
+      document.getElementById('img-ampliada').src = url;
+      document.getElementById('firma-detalle-texto').textContent = `${carpeta} • #${archivo}`;
+      document.getElementById('modal-visor').style.display = 'flex';
+      registrarMetrica('foto_visor_hd', 'sesiones.html', archivo);
+    }
+
+    async function cargarContenidoSesiones() {
+      const contenedor = document.getElementById('contenedor-galeria');
+      listaTotalFotos = [];
+
       try {
-        const res = await fetch(urlFolders);
+        const urlList = `https://www.googleapis.com/drive/v3/files?q='${CARPETA_RAIZ_SESIONES}'+in+parents+and+trashed=false&orderBy=name&pageSize=100&key=${API_KEY_DRIVE}&fields=files(id,name,mimeType)`;
+        const res = await fetch(urlList);
         const data = await res.json();
-        if (data.files && data.files.length > 0) {
+
+        if (data.error || !data.files || data.files.length === 0) {
+          return; // Conserva el renderizado estructurado
+        }
+
+        const archivos = data.files || [];
+        const subcarpetas = archivos.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
+        const fotosSueltas = archivos.filter(f => f.mimeType.includes('image/'));
+
+        if (subcarpetas.length > 0 || fotosSueltas.length > 0) {
           contenedor.innerHTML = '';
-          for (const sub of data.files) {
-            await renderizarSubcarpeta(sub.id, sub.name);
+        }
+
+        if (subcarpetas.length > 0) {
+          for (const sub of subcarpetas) {
+            await cargarFotosDeSubcarpeta(sub.id, sub.name, contenedor);
           }
-        } else {
-          await renderizarFotosDirectas(FOLDER_ID, NOMBRE_SECCION);
         }
+
+        if (fotosSueltas.length > 0) {
+          renderizarBloqueFotos('Sesiones Generales', fotosSueltas, contenedor);
+        }
+
       } catch (err) {
-        await renderizarFotosDirectas(FOLDER_ID, NOMBRE_SECCION);
+        console.warn('Carga dinámica en espera, preservando vista inicial:', err);
       }
     }
 
-    async function renderizarSubcarpeta(subId, subNombre) {
-      const contenedor = document.getElementById('contenedor-secciones');
-      const urlFiles = `https://www.googleapis.com/drive/v3/files?q='${subId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&orderBy=name&pageSize=1000&key=${API_KEY}&fields=files(id,name)`;
+    async function cargarFotosDeSubcarpeta(folderId, nombreCarpeta, contenedorPrincipal) {
       try {
-        const res = await fetch(urlFiles);
+        const urlSub = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&orderBy=name&pageSize=100&key=${API_KEY_DRIVE}&fields=files(id,name)`;
+        const res = await fetch(urlSub);
         const data = await res.json();
-        if (data.files && data.files.length > 0) {
-          const seccion = document.createElement('section');
-          seccion.innerHTML = `
-            <h3 class="titulo-subcarpeta">
-              <span class="material-symbols-outlined" style="font-size: 18px;">folder</span>
-              <span>${subNombre}</span>
-            </h3>
-            <div class="galeria" id="galeria-${subId}"></div>
-          `;
-          contenedor.appendChild(seccion);
-          const grid = seccion.querySelector(`#galeria-${subId}`);
-          data.files.forEach(f => {
-            const urlHD = `https://lh3.googleusercontent.com/d/${f.id}=w1600`;
-            const index = fotosActuales.length;
-            fotosActuales.push({ url: urlHD, name: f.name || 'foto.jpg', subcarpeta: subNombre });
-            const img = document.createElement('img');
-            img.src = `https://lh3.googleusercontent.com/d/${f.id}=w800`;
-            img.alt = f.name;
-            img.loading = 'lazy';
-            img.onclick = () => abrirVisor(index);
-            grid.appendChild(img);
-          });
-        }
-      } catch (_) {}
-    }
+        const fotos = data.files || [];
 
-    async function renderizarFotosDirectas(folderId, nombreCarpeta) {
-      const contenedor = document.getElementById('contenedor-secciones');
-      const urlFiles = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&orderBy=name&pageSize=1000&key=${API_KEY}&fields=files(id,name)`;
-      try {
-        const res = await fetch(urlFiles);
-        const data = await res.json();
-        if (data.files && data.files.length > 0) {
-          contenedor.innerHTML = `<div class="galeria" id="galeria-directa"></div>`;
-          const grid = document.getElementById('galeria-directa');
-          data.files.forEach(f => {
-            const urlHD = `https://lh3.googleusercontent.com/d/${f.id}=w1600`;
-            const index = fotosActuales.length;
-            fotosActuales.push({ url: urlHD, name: f.name || 'foto.jpg', subcarpeta: nombreCarpeta });
-            const img = document.createElement('img');
-            img.src = `https://lh3.googleusercontent.com/d/${f.id}=w800`;
-            img.alt = f.name;
-            img.loading = 'lazy';
-            img.onclick = () => abrirVisor(index);
-            grid.appendChild(img);
-          });
-        } else {
-          contenedor.innerHTML = '<div style="text-align:center; padding: 50px 16px; color:#888;">No se encontraron fotografías disponibles en esta carpeta de Google Drive.</div>';
+        if (fotos.length > 0) {
+          renderizarBloqueFotos(nombreCarpeta, fotos, contenedorPrincipal);
         }
-      } catch (_) {
-        contenedor.innerHTML = '<div style="text-align:center; padding: 50px 16px; color:#f87171;">No se pudo conectar a Google Drive. Verificá los permisos públicos de la carpeta.</div>';
+      } catch (e) {
+        console.warn('Error en subcarpeta:', nombreCarpeta, e);
       }
     }
 
+    function renderizarBloqueFotos(nombreCarpeta, fotos, contenedorPrincipal) {
+      const seccion = document.createElement('section');
+      seccion.className = 'seccion-subcarpeta';
+
+      const encabezado = document.createElement('h2');
+      encabezado.className = 'encabezado-subcarpeta';
+      encabezado.innerHTML = `
+        <span class="material-symbols-outlined" style="font-size:18px;">folder</span>
+        <span>${nombreCarpeta}</span>
+      `;
+      seccion.appendChild(encabezado);
+
+      const grid = document.createElement('div');
+      grid.className = 'cuadricula-galeria';
+
+      fotos.forEach(archivo => {
+        const urlThumb = `https://lh3.googleusercontent.com/d/${archivo.id}=w600`;
+        const urlFull = `https://lh3.googleusercontent.com/d/${archivo.id}=w1600`;
+        const indexGlobal = listaTotalFotos.length;
+
+        listaTotalFotos.push({
+          id: archivo.id,
+          name: archivo.name || 'Fotografía',
+          carpeta: nombreCarpeta,
+          url: urlFull
+        });
+
+        const img = document.createElement('img');
+        img.src = urlThumb;
+        img.alt = archivo.name || 'Sesiones Sergio Molina';
+        img.loading = 'lazy';
+        img.onclick = () => abrirVisor(indexGlobal);
+
+        grid.appendChild(img);
+      });
+
+      seccion.appendChild(grid);
+      contenedorPrincipal.appendChild(seccion);
+    }
+
+    /* VISOR MODAL */
     function abrirVisor(index) {
-      if (index >= fotosActuales.length) index = 0;
-      indiceFotoActual = index;
-      actualizarContenidoVisor();
-      document.getElementById('modal').style.display = 'flex';
-      document.body.classList.add('visor-abierto');
-      const foto = fotosActuales[indiceFotoActual];
-      if (foto) registrarMetrica('foto_visor_hd', `Foto: #${foto.name} en ${foto.subcarpeta}`);
-    }
-
-    function actualizarContenidoVisor() {
-      const foto = fotosActuales[indiceFotoActual];
-      if (!foto) return;
-      document.getElementById('img-ampliada').src = foto.url;
-      document.getElementById('firma-subcarpeta').innerText = foto.subcarpeta || NOMBRE_SECCION;
-      document.getElementById('firma-archivo').innerText = '#' + foto.name;
+      if (!listaTotalFotos || listaTotalFotos.length === 0) return;
+      indiceActual = index;
+      actualizarFotoVisor();
+      document.getElementById('modal-visor').style.display = 'flex';
+      registrarMetrica('foto_visor_hd', 'sesiones.html', listaTotalFotos[indiceActual].name);
     }
 
     function cerrarVisor() {
-      document.getElementById('modal').style.display = 'none';
-      document.body.classList.remove('visor-abierto');
+      document.getElementById('modal-visor').style.display = 'none';
     }
 
-    function cambiarFoto(dir) {
-      if (fotosActuales.length === 0) return;
-      indiceFotoActual += dir;
-      if (indiceFotoActual >= fotosActuales.length) indiceFotoActual = 0;
-      else if (indiceFotoActual < 0) indiceFotoActual = fotosActuales.length - 1;
-      actualizarContenidoVisor();
+    function cerrarVisorFondo(e) {
+      if (e.target && e.target.id === 'modal-visor') cerrarVisor();
     }
 
-    document.getElementById('btn-cerrar-modal').addEventListener('click', e => { e.stopPropagation(); cerrarVisor(); });
-    document.getElementById('btn-prev-modal').addEventListener('click', e => { e.stopPropagation(); cambiarFoto(-1); });
-    document.getElementById('btn-next-modal').addEventListener('click', e => { e.stopPropagation(); cambiarFoto(1); });
-    document.getElementById('modal').addEventListener('click', e => {
-      if (e.target.id === 'modal' || e.target.id === 'modal-touch-area') cerrarVisor();
-    });
+    function cambiarFoto(dir, e) {
+      if (e) e.stopPropagation();
+      if (!listaTotalFotos || listaTotalFotos.length === 0) return;
+      indiceActual += dir;
+      if (indiceActual >= listaTotalFotos.length) indiceActual = 0;
+      else if (indiceActual < 0) indiceActual = listaTotalFotos.length - 1;
+      actualizarFotoVisor();
+    }
 
-    document.addEventListener('keydown', e => {
-      const m = document.getElementById('modal');
-      if (m && m.style.display === 'flex') {
+    function actualizarFotoVisor() {
+      const foto = listaTotalFotos[indiceActual];
+      if (!foto) return;
+      document.getElementById('img-ampliada').src = foto.url;
+      document.getElementById('firma-detalle-texto').textContent = `${foto.carpeta} • #${foto.name}`;
+    }
+
+    // Teclado físico
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('modal-visor');
+      if (modal && modal.style.display === 'flex') {
         if (e.key === 'Escape') cerrarVisor();
         else if (e.key === 'ArrowLeft') cambiarFoto(-1);
         else if (e.key === 'ArrowRight') cambiarFoto(1);
       }
     });
 
+    // Touch Swipe en celular
     let touchStartX = 0;
-    let touchStartY = 0;
     let touchEndX = 0;
-    let touchEndY = 0;
+    const modalEl = document.getElementById('modal-visor');
+    modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    modalEl.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX + 50 < touchStartX) cambiarFoto(1);
+      else if (touchEndX > touchStartX + 50) cambiarFoto(-1);
+    }, false);
 
-    const modalTouch = document.getElementById('modal');
-
-    modalTouch.addEventListener('touchstart', e => {
-      if (e.touches && e.touches.length > 0) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        touchEndX = touchStartX;
-        touchEndY = touchStartY;
-      }
-    }, { passive: true });
-
-    modalTouch.addEventListener('touchmove', e => {
-      if (e.touches && e.touches.length > 0) {
-        touchEndX = e.touches[0].clientX;
-        touchEndY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-
-    modalTouch.addEventListener('touchend', () => {
-      const diffX = touchEndX - touchStartX;
-      const diffY = touchEndY - touchStartY;
-      if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX < 0) {
-          cambiarFoto(1);
-        } else {
-          cambiarFoto(-1);
-        }
-      }
-    }, { passive: true });
-
-    async function registrarMetrica(tipo, detalle) {
+    // Registro de métricas en Supabase
+    async function registrarMetrica(tipo, pagina, detalle) {
+      if (!supabaseClient) return;
       try {
-        if (window.supabase) {
-          const client = window.supabase.createClient('https://zbixojacwvanucxlrdcd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXhvamFjd3ZhbnVjeGxyZGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzgxMzQsImV4cCI6MjEwNDExNDEzNH0.Wz35IGTGzdHuHOm2EbTsGSLBZfhw67Wt7UXBbMXek68');
-          await client.from('visitas').insert([{ tipo, pagina: 'sesiones.html', detalle, dispositivo: window.innerWidth < 640 ? 'mobile' : 'desktop' }]);
-        }
-      } catch (_) {}
+        const esAdmin = sessionStorage.getItem('admin_auth') === 'true' || localStorage.getItem('es_admin_propietario') === 'true';
+        if (esAdmin) return;
+        await supabaseClient.from('visitas').insert([{
+          tipo: tipo || 'visita_pagina',
+          pagina: pagina || 'sesiones.html',
+          detalle: detalle || 'Visita a galería Sesiones',
+          dispositivo: window.innerWidth < 768 ? 'mobile' : 'desktop',
+          origen: document.referrer || 'directo'
+        }]);
+      } catch(_) {}
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      cargarSubcarpetas();
-      registrarMetrica('visita_pagina', 'Visita a galería Sesiones');
+    window.addEventListener('DOMContentLoaded', () => {
+      cargarContenidoSesiones();
+      registrarMetrica('visita_pagina', 'sesiones.html', 'Visita a galería Sesiones');
     });
   </script>
-</body></html>
+</body>
+</html>
