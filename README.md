@@ -45,7 +45,7 @@ El proyecto se encuentra dividido en dos repositorios independientes en GitHub p
         ├── miscelaneas.html (Subcarpetas Drive)
         └── sesiones.html (Subcarpetas Drive)
                      │
-                     │  (Acceso oculto Ctrl+Alt+A / Consola Propietario)
+                     │  (********)
                      ▼
         ┌─────────────────────────────────────────────────────────────┐
         │        REPOSITORIO PRIVADO: GersioTalrevez/panel            │
